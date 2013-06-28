@@ -215,3 +215,25 @@ java.lang.ClassCastException: org.eclipse.egit.ui.internal.repository.tree.Folde
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:584)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1438)
 	at org.eclipse.equinox.launcher.Main.main(Main.java:1414)
+
+!ENTRY org.eclipse.egit.ui 4 0 2013-06-28 15:03:50.222
+!MESSAGE An internal error occurred
+!STACK 0
+org.eclipse.jgit.api.errors.JGitInternalException: Exception caught during execution of commit command
+	at org.eclipse.jgit.api.CommitCommand.call(CommitCommand.java:282)
+	at org.eclipse.egit.core.op.CommitOperation.commit(CommitOperation.java:236)
+	at org.eclipse.egit.core.op.CommitOperation.access$5(CommitOperation.java:225)
+	at org.eclipse.egit.core.op.CommitOperation$1.run(CommitOperation.java:190)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2344)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2326)
+	at org.eclipse.egit.core.op.CommitOperation.execute(CommitOperation.java:200)
+	at org.eclipse.egit.ui.internal.commit.CommitJob.run(CommitJob.java:94)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+Caused by: java.io.IOException: The process cannot access the file because another process has locked a portion of the file
+	at java.io.FileInputStream.readBytes(Native Method)
+	at java.io.FileInputStream.read(FileInputStream.java:242)
+	at org.eclipse.jgit.util.IO.readFully(IO.java:303)
+	at org.eclipse.jgit.storage.file.ObjectDirectoryInserter.insert(ObjectDirectoryInserter.java:100)
+	at org.eclipse.jgit.api.CommitCommand.createTemporaryIndex(CommitCommand.java:377)
+	at org.eclipse.jgit.api.CommitCommand.call(CommitCommand.java:200)
+	... 8 more
