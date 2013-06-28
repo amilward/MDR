@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<installs>
+<install is-default="true">
+<home>C:\Users\Adam Milward\Downloads\springsource\grails-2.2.1\</home>
+<name>Grails 2.2.1</name>
+</install>
+</installs>
