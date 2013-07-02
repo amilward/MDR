@@ -1,0 +1,7 @@
+package uk.co.mdc.model
+
+class ValueDomain {
+
+    static constraints = {
+    }
+}

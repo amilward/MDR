@@ -1,0 +1,26 @@
+package uk.co.mdc.model
+
+class DataElement {
+
+	
+	Integer refId;
+	
+	Integer parentId;
+	
+	Integer vdId;
+	
+	String description;
+	
+	String definition;
+	
+	
+	static hasMany = [subelements: DataElement]
+	
+	//@ManyToMany(cascade = CascadeType.ALL)
+	//private Set<uk.co.mdc.model.Dataelement> subelements = new HashSet<uk.co.mdc.model.Dataelement>();
+	
+	
+	
+    static constraints = {
+    }
+}

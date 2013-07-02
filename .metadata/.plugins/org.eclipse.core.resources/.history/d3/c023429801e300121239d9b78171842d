@@ -1,0 +1,13 @@
+package uk.co.mdc.model
+
+import com.lucastex.grails.fileuploader.UFile
+
+class Document {
+
+	
+
+	
+	
+    static constraints = {
+    }
+}

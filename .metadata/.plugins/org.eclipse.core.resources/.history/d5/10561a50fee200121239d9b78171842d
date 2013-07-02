@@ -1,0 +1,11 @@
+package uk.co.mdc.model
+
+class Document {
+
+	
+
+	
+	
+    static constraints = {
+    }
+}

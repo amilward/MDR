@@ -1,0 +1,41 @@
+<plugin name='spring-security-ui' version='0.2' grailsVersion='1.3 &gt; *'>
+  <author>Burt Beckwith</author>
+  <authorEmail>beckwithb@vmware.com</authorEmail>
+  <title>Spring Security UI</title>
+  <description>User interface extensions for the Spring Security plugin</description>
+  <documentation>http://grails.org/plugin/spring-security-ui</documentation>
+  <type>SpringSecurityUiGrailsPlugin</type>
+  <resources>
+    <resource>DefaultUiSecurityConfig</resource>
+    <resource>SpringSecurityUIPluginResources</resource>
+    <resource>grails.plugins.springsecurity.ui.AbstractS2UiController</resource>
+    <resource>grails.plugins.springsecurity.ui.AclClassController</resource>
+    <resource>grails.plugins.springsecurity.ui.AclEntryController</resource>
+    <resource>grails.plugins.springsecurity.ui.AclObjectIdentityController</resource>
+    <resource>grails.plugins.springsecurity.ui.AclSidController</resource>
+    <resource>grails.plugins.springsecurity.ui.PersistentLoginController</resource>
+    <resource>grails.plugins.springsecurity.ui.RegisterController</resource>
+    <resource>grails.plugins.springsecurity.ui.RegistrationCodeController</resource>
+    <resource>grails.plugins.springsecurity.ui.RequestmapController</resource>
+    <resource>grails.plugins.springsecurity.ui.RoleController</resource>
+    <resource>grails.plugins.springsecurity.ui.SecurityInfoController</resource>
+    <resource>grails.plugins.springsecurity.ui.UserController</resource>
+    <resource>org.codehaus.groovy.grails.plugins.springsecurity.ui.RegistrationCode</resource>
+    <resource>grails.plugins.springsecurity.ui.SpringSecurityUiService</resource>
+    <resource>grails.plugins.springsecurity.ui.SecurityUiTagLib</resource>
+  </resources>
+  <repositories>
+    <repository name='grailsCentral' url='http://plugins.grails.org' />
+    <repository name='http://repo.grails.org/grails/plugins' url='http://repo.grails.org/grails/plugins/' />
+    <repository name='http://repo.grails.org/grails/core' url='http://repo.grails.org/grails/core/' />
+    <repository name='grailsCore' url='http://svn.codehaus.org/grails/trunk/grails-plugins' />
+    <repository name='mavenCentral' url='http://repo1.maven.org/maven2/' />
+    <repository name='http://download.java.net/maven/2/' url='http://download.java.net/maven/2/' />
+    <repository name='ebrRelease' url='http://repository.springsource.com/maven/bundles/release/' />
+    <repository name='ebrExternal' url='http://repository.springsource.com/maven/bundles/external/' />
+  </repositories>
+  <dependencies />
+  <plugins />
+  <runtimePluginRequirements />
+  <behavior />
+</plugin>

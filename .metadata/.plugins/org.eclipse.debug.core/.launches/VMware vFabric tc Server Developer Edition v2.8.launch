@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="com.vmware.server.tc.launchConfiguration">
+<listAttribute key="org.eclipse.jdt.launching.CLASSPATH">
+<listEntry value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;&#13;&#10;&lt;runtimeClasspathEntry containerPath=&quot;org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.7.0_17&quot; path=&quot;2&quot; type=&quot;4&quot;/&gt;&#13;&#10;"/>
+<listEntry value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;&#13;&#10;&lt;runtimeClasspathEntry externalArchive=&quot;C:/Users/Adam Milward/Downloads/springsource/vfabric-tc-server-developer-2.8.2.RELEASE/tomcat-7.0.35.B.RELEASE/bin/bootstrap.jar&quot; path=&quot;3&quot; type=&quot;2&quot;/&gt;&#13;&#10;"/>
+<listEntry value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;&#13;&#10;&lt;runtimeClasspathEntry externalArchive=&quot;C:/Users/Adam Milward/Downloads/springsource/vfabric-tc-server-developer-2.8.2.RELEASE/tomcat-7.0.35.B.RELEASE/bin/tomcat-juli.jar&quot; path=&quot;3&quot; type=&quot;2&quot;/&gt;&#13;&#10;"/>
+<listEntry value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;&#13;&#10;&lt;runtimeClasspathEntry externalArchive=&quot;C:/Program Files/Java/jdk1.7.0_17/lib/tools.jar&quot; path=&quot;3&quot; type=&quot;2&quot;/&gt;&#13;&#10;"/>
+</listAttribute>
+<booleanAttribute key="org.eclipse.jdt.launching.DEFAULT_CLASSPATH" value="false"/>
+<stringAttribute key="org.eclipse.jdt.launching.JRE_CONTAINER" value="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.7.0_17"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="start"/>
+<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Dcatalina.base=&quot;C:\Users\Adam Milward\Downloads\springsource\vfabric-tc-server-developer-2.8.2.RELEASE\base-instance&quot; -Dcatalina.home=&quot;C:\Users\Adam Milward\Downloads\springsource\vfabric-tc-server-developer-2.8.2.RELEASE\tomcat-7.0.35.B.RELEASE&quot; -Dwtp.deploy=&quot;C:\Users\Adam Milward\Downloads\springsource\vfabric-tc-server-developer-2.8.2.RELEASE\base-instance\wtpwebapps&quot; -Djava.endorsed.dirs=&quot;C:\Users\Adam Milward\Downloads\springsource\vfabric-tc-server-developer-2.8.2.RELEASE\tomcat-7.0.35.B.RELEASE\endorsed&quot; -Xmx768m -Xss192k -XX:MaxPermSize=256m -Dgrails.gsp.enable.reload=true -Dinsight.enabled=false"/>
+<stringAttribute key="server-id" value="VMware vFabric tc Server Developer Edition v2.8"/>
+</launchConfiguration>

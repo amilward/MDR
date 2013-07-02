@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.grails.ide.eclipse.ui.internal.inplace.GrailsInplaceDialog">
+		<item value="435" key="size.width"/>
+		<item value="79" key="size.height"/>
+		<item value="743" key="location.x"/>
+		<item value="468" key="location.y"/>
+	</section>
+</section>

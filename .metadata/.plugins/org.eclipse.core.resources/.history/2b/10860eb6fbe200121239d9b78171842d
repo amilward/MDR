@@ -1,0 +1,23 @@
+package uk.co.mdc.model
+
+class UmlModel {
+
+	private Integer refid;
+	
+		Integer conceptId;
+		String description;
+	
+		//@ManyToMany(cascade = CascadeType.ALL)
+		//private Set<Dataelement> dataelements = new HashSet<Dataelement>();
+	
+		//@ManyToMany(cascade = CascadeType.ALL)
+		//private Set<Valuedomain> valuedomains = new HashSet<Valuedomain>();
+	
+		
+	
+	
+	
+	
+    static constraints = {
+    }
+}

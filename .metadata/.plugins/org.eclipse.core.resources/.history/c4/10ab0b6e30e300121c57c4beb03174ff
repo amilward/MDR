@@ -1,0 +1,27 @@
+import uk.co.mdc.*
+
+class BootStrap {
+
+	def springSecurityService
+	
+    def init = { servletContext ->
+	
+		def userAuth = SecAuth.findByAuthority('Auth_USER') ?: new SecAuth(authority: 'Auth_USER').save(failOnError: true)
+		def adminAuth = SecAuth.findByAuthority('Auth_ADMIN') ?: new SecAuth(authority: 'Auth_ADMIN').save(failOnError: true)
+
+		
+		def adminUser = SecUser.findByUsername('admin') ?: new SecUser(
+			username: 'admin',
+			password: 'admin',
+			enabled: true).save(failOnError: true)
+
+	if (!adminUser.authorities.contains(adminAuth)) {
+		SecUserSecAuth.create adminUser, adminAuth
+	}
+
+		
+		
+    }
+    def destroy = {
+    }
+}

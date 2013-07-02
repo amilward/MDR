@@ -89,3 +89,43 @@ log4j = {
            'org.hibernate',
            'net.sf.ehcache.hibernate'
 }
+
+
+
+
+
+
+// Added by the Spring Security Core plugin:
+grails.plugins.springsecurity.userLookup.userDomainClassName = 'co.uk.mdc.SecUser'
+grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'co.uk.mdc.SecUserSecRole'
+grails.plugins.springsecurity.authority.className = 'co.uk.mdc.SecRole'
+
+// Added by the Spring Security Core plugin:
+grails.plugins.springsecurity.userLookup.userDomainClassName = 'uk.co.mdc.SecUser'
+grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'uk.co.mdc.SecUserSecAuth'
+grails.plugins.springsecurity.authority.className = 'uk.co.mdc.SecAuth'
+
+//security config
+
+import grails.plugins.springsecurity.SecurityConfigType
+
+grails.plugins.springsecurity.securityConfigType = SecurityConfigType.InterceptUrlMap
+grails.plugins.springsecurity.interceptUrlMap = [
+	
+	'/login/*':    ['IS_AUTHENTICATED_ANONYMOUSLY'],
+	'/**':         ["hasAnyRole('ROLE_USER', 'ROLE_ADMIN')", 'IS_AUTHENTICATED_FULLY'],
+	
+	/*'/DataElement/*':         ["hasAnyRole('ROLE_USER', 'ROLE_ADMIN')", 'IS_AUTHENTICATED_FULLY'],
+	'/Document/*':         ["hasAnyRole('ROLE_USER', 'ROLE_ADMIN')", 'IS_AUTHENTICATED_FULLY'],
+	'/UmlModel/*':         ["hasAnyRole('ROLE_USER', 'ROLE_ADMIN')", 'IS_AUTHENTICATED_FULLY'],
+	'/ValueDomain/*':         ["hasAnyRole('ROLE_USER', 'ROLE_ADMIN')", 'IS_AUTHENTICATED_FULLY']
+	'/person/*':         ['IS_AUTHENTICATED_REMEMBERED'],
+	'/post/followAjax':  ['ROLE_USER'],
+	'/post/addPostAjax': ['ROLE_USER', 'IS_AUTHENTICATED_FULLY'],
+	'/**':               ['IS_AUTHENTICATED_ANONYMOUSLY']*/
+]
+
+
+
+
+

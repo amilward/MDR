@@ -1,0 +1,64 @@
+package uk.co.mdc.model
+
+import java.sql.Blob
+
+
+class Document {
+	
+	String name
+	String description
+	String contentType
+	String fileName
+	Blob content
+	
+	Date dateCreated
+	Date lastUpdated
+	
+	def setData(InputStream is, long length) {
+		content = new BlobImpl(is, (int)length)
+	}
+	
+	def getData() {
+		return content?.binaryStream
+	}
+	
+	static transients = [ 'size', 'data' ]
+
+	Long getSize() {
+		return content?.length() ?: 0
+	}
+	
+	def render(def response) {
+		response.contentType = "application/octet-stream"
+		response.outputStream << data
+	}
+	
+	static fromUpload(def file) {
+		if(!file) return new Document()
+		
+		def origFileName = file.originalFilename
+		def slashIndex = Math.max(origFileName.lastIndexOf("/"),origFileName.lastIndexOf("\\"))
+		if(slashIndex > -1) origFileName = origFileName.substring(slashIdex + 1)
+		
+		def doc = new Document(name: origFileName)
+		doc.setData(file.inputStream, file.size)
+		return doc
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+    static constraints = {
+		name blank: false, nullable: false, size: 2..20
+		description blank: false, nullable: false, size: 2..500
+		content maxSize: 1024 * 1024 * 2
+
+    }
+	
+}
+

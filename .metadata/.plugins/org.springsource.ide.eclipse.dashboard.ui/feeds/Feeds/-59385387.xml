@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xml:base="http://www.springsource.org"  xmlns:dc="http://purl.org/dc/elements/1.1/">
+<channel>
+ <title>SpringSource.org</title>
+ <link>http://www.springsource.org</link>
+ <description>Welcome to the home of Spring, the leading platform to build and run enterprise Java applications. Led and sustained by SpringSource, Spring delivers significant benefits for many projects, increasing development productivity and runtime performance while improving test coverage and application quality.</description>
+ <language>en</language>
+<item>
+ <title>SpringSource Training Schedule: August 2013</title>
+ <link>http://www.springsource.org/springsource-training-schedule-august-2013</link>
+ <description>&lt;p&gt;If you are a Java developer looking to increase your Spring knowledge, vFabric Education by SpringSource is the place to start. We are providing several Spring trainings across the globe closely connected to your needs as a professional developer. This month SpringSource is offering a special &lt;a href=&quot;http://mylearn.vmware.com/portals/www/search/results.cfm?ui=www_edu&amp;menu=search-results&amp;searchtype=simple&amp;category=schedule&amp;id_subject=18470&quot;&gt;Hyperic Administrator&lt;/a&gt; class in Minneapolis. SpringSource is also offering several &lt;a href=&quot;http://mylearn.vmware.com/portals/www/search/results.cfm?ui=www_edu&amp;category=schedule&amp;searchtype=advanced&amp;keyword=&amp;subjectID=0&amp;startDateStartOperator=%3E%3D&amp;startDateStart=07%2F02%2F2013&amp;startDateEndOperator=%3C%3D&amp;startDateEnd=&amp;max_dateHolder2=&amp;countryID=0&amp;currencyID=0&amp;deliveryType=16&amp;languageID=0&amp;hostID=0&amp;tzID=0&amp;betaClass=2&amp;productID=0&amp;roleID=79&quot;&gt;Online Enterprise Integration with Spring classes&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The complete Spring training schedule for August, 2013 can be found below:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Step 1: Core Spring&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;i&gt;Americas&lt;/i&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;August 06 - 09: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=181822&quot;&gt;Core Spring in Phoenix, AZ&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;August 06 - 09: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=181801&quot;&gt;Core Spring Live Online in the US&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;August 06 - 09: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=181823&quot;&gt;Core Spring in Sacramento, CA&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;August 06 - 09: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=181824&quot;&gt;Core Spring in San Francisco, CA&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;August 06 - 09: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=181825&quot;&gt;Core Spring in San Jose, CA&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;August 06 - 09: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=177958&quot;&gt;Core Spring in Boston, MA&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;August 06 - 09: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=176261&quot;&gt;Core Spring in Philadelphia, PA&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;August 06 - 09: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=177959&quot;&gt;Core Spring in Austin, TX&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;August 13 - 16: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=177960&quot;&gt;Core Spring in Atlanta, GA&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;August 13 - 16: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=181993&quot;&gt;Core Spring in New York, NY&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;August 19 - 22: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=182127&quot;&gt;Core Spring Live Online in Latin America&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;August 20 - 23: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=177961&quot;&gt;Core Spring in Chicago, IL&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;August 20 - 23: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=177962&quot;&gt;Core Spring in Minneapolis, MN&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;August 20 - 23: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=177963&quot;&gt;Core Spring in Omaha, NE&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;August 27 - 30: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=182000&quot;&gt;Core Spring in Ottawa, ON&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;August 27 - 30: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=182001&quot;&gt;Core Spring in Toronto, ON&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;August 27 - 30: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=181999&quot;&gt;Core Spring in Montreal, QC&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;August 27 - 30: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=181803&quot;&gt;Core Spring Live Online in the US&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;August 27 - 30: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=177965&quot;&gt;Core Spring in Stamford, CT&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;August 27 - 30: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=181998&quot;&gt;Core Spring in Edison, NJ&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;August 27 - 30: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=177966&quot;&gt;Core Spring in Houston, TX&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;
+
+&lt;p&gt;&lt;i&gt;Asia Pacific&lt;/i&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;August 05 - 08: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=174873&quot;&gt;Core Spring in Melbourne, Australia&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;August 05 - 08: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=158769&quot;&gt;Core Spring in Bangalore, India&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;August 19 - 22: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=174878&quot;&gt;Core Spring in Wellington, New Zealand&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;August 21 - 24: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=158766&quot;&gt;Core Spring in Pune, India&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;i&gt;Europe, Middle East &amp; Africa&lt;/i&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;August 05 - 08: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=177377&quot;&gt;Core Spring in Paris, France&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;August 06 - 09: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=181180&quot;&gt;Core Spring Live Online in EMEA&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;August 13 - 16: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=140834&quot;&gt;Core Spring in Berlin, Germany&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;August 20 - 23: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=181552&quot;&gt;Core Spring in Dublin, Ireland&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Step 2: Spring Web / Enterprise Integration with Spring / Hibernate with Spring&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;i&gt;Americas&lt;/i&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;August 07 - 09: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=173203&quot;&gt;Hibernate with Spring Live Online in the US&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;August 12 - 15: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=181071&quot;&gt;Spring Web Live Online in the US&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;August 13 - 15: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=181988&quot;&gt;Hibernate with Spring in Ottawa, ON&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;August 13 - 15: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=181989&quot;&gt;Hibernate with Spring in Toronto, ON&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;August 13 - 15: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=181986&quot;&gt;Hibernate with Spring in Montreal, QC&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;August 13 - 15: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=181812&quot;&gt;Hibernate with Spring Live Online in the US&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;August 13 - 15: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=181984&quot;&gt;Hibernate with Spring in Edison, NJ&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;August 13 - 16: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=177967&quot;&gt;Spring Web in Washington, DC&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;August 19 - 22: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=181323&quot;&gt;Enterprise Integration with Spring Live Online in the US&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;August 20 - 23: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=181996&quot;&gt;Enterprise Integration with Spring in Ottawa, ON&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;August 20 - 23: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=181997&quot;&gt;Enterprise Integration with Spring in Toronto, ON&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;August 20 - 23: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=181995&quot;&gt;Enterprise Integration with Spring in Montreal, QC&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;August 20 - 23: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=181809&quot;&gt;Enterprise Integration with Spring Live Online in the US&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;August 20 - 23: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=181994&quot;&gt;Enterprise Integration with Spring in Edison, NJ&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;i&gt;Europe, Middle East &amp; Africa&lt;/i&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;August 06 - 09: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=171422&quot;&gt;Enterprise Integration with Spring in London, UK&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;August 20 - 23: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=154784&quot;&gt;Spring Web in Berlin, Germany&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;August 26 - 29: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=181521&quot;&gt;Spring Web Live Online in EMEA&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;August 27 - 30: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=181736&quot;&gt;Enterprise Integration with Spring in Prague, Czech Republic&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;August 27 - 30: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=140857&quot;&gt;Enterprise Integration with Spring in Berlin, Germany&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;August 27 - 30: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=176659&quot;&gt;Enterprise Integration with Spring in Oslo, Norway&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;If you cannot find a professional training near you, you can always request an &lt;a href=http://mylearn.vmware.com/mgrReg/message.cfm?ui=www&amp;subject=Onsite%20Training&gt;onsite SpringSource training&lt;/a&gt;&lt;/p&gt;</description>
+ <comments>http://www.springsource.org/springsource-training-schedule-august-2013#comments</comments>
+ <category domain="http://www.springsource.org/taxonomy/term/4">News and Announcements</category>
+ <pubDate>Tue, 02 Jul 2013 09:53:50 +0000</pubDate>
+ <dc:creator>Mark Baars</dc:creator>
+ <guid isPermaLink="false">22641 at http://www.springsource.org</guid>
+</item>
+<item>
+ <title>Spring Security Java Configuration 1.0.0.M1 Released</title>
+ <link>http://www.springsource.org/node/22640</link>
+ <description>&lt;p&gt;I&#039;m pleased to announce the release of Spring Security Java Configuration as a stand alone module. The milestone is compatible with Spring 3.2.3.RELEASE+ and Spring Security 3.1.4.RELEASE.&lt;/p&gt;
+&lt;p&gt;This code has been merged into Spring Security 3.2.0.M2 release and will be maintained within the Spring Security code base going forward. We hope that by making the release available for stable versions of Spring and Spring Security it will encourage you to try it sooner and provide us feedback before the final release.&lt;/p&gt;
+&lt;p&gt;Stay tuned to the &lt;a href=&quot;http://blog.springsource.org&quot;&gt;SpringSource blog&lt;/a&gt; for an article that walks you through how to use Spring Security Java Configuration. In the mean time, you can find out how to obtain spring-security-javaconfig, documentation, and samples at &lt;a href=&quot;http://github.com/SpringSource/spring-security-javaconfig&quot;&gt;http://github.com/SpringSource/spring-security-javaconfig&lt;/a&gt;.&lt;/p&gt;
+</description>
+ <comments>http://www.springsource.org/node/22640#comments</comments>
+ <category domain="http://www.springsource.org/taxonomy/term/4">News and Announcements</category>
+ <pubDate>Mon, 01 Jul 2013 20:54:31 +0000</pubDate>
+ <dc:creator>rwinch</dc:creator>
+ <guid isPermaLink="false">22640 at http://www.springsource.org</guid>
+</item>
+<item>
+ <title>Spring Security 3.2.0.M2 Released</title>
+ <link>http://www.springsource.org/node/22639</link>
+ <description>&lt;p&gt;The second milestone release toward Spring Security 3.2 is now available from the SpringSource repository at &lt;a href=&quot;http://repo.springsource.org&quot;&gt;http://repo.springsource.org&lt;/a&gt;.  See &lt;a href=&quot;https://github.com/SpringSource/spring-framework/wiki/Downloading-Spring-artifacts#wiki-resolving-spring-artifacts&quot;&gt;here&lt;/a&gt; for a quick tutorial on resolving these artifacts via Maven.&lt;/p&gt;
+&lt;p&gt;I&#039;d like to extend a special thanks to all those that contributed to this release by submitting bugs, pull requests, and feedback.&lt;/p&gt;
+&lt;p&gt;The highlights of this release include:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Spring Security Java Configuration Support&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://jira.springsource.org/browse/SEC-2111&quot;&gt;SEC-2111&lt;/a&gt; resolves an issue with Async support when a timeout occurs and the same Thread handles both the original request and the timeout.&lt;/li&gt;
+&lt;li&gt;Added support for configuring the remember me parameter via the XML namespace. Special thanks to &lt;a href=&quot;https://github.com/obecker&quot;&gt;Oliver Becker&lt;/a&gt; for submitting a pull request for this feature!&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://jira.springsource.org/browse/SEC-2002&quot;&gt;SEC-2002&lt;/a&gt; Added SessionFixationProtectionEvent. Special thanks to &lt;a href=&quot;https://github.com/beamerblvd&quot;&gt;Nick Williams&lt;/a&gt; for submitting a pull request for this feature!&lt;/li&gt;
+&lt;li&gt;Improvements to the Embedded LDAP container&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Stay tuned to the &lt;a target=&quot;_blank&quot; href=&quot;http://blog.springsource.com&quot;&gt;SpringSource Blog&lt;/a&gt; over the coming week for more information about Spring Security Java Configuration.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://jira.springsource.org/secure/ReleaseNote.jspa?projectId=10040&amp;amp;version=13796&quot;&gt;Changelog&lt;/a&gt; | &lt;a href=&quot;http://www.springsource.com/download/community?project=Spring%20Security&amp;amp;version=3.2.0.M2&quot;&gt;Download&lt;/a&gt; | &lt;a href=&quot;http://static.springsource.org/spring-security/site/docs/3.2.x/reference/springsecurity-single.html&quot;&gt;Reference Manual&lt;/a&gt; | &lt;a href=&quot;http://static.springsource.org/spring-security/site/faq.html&quot;&gt;FAQ&lt;/a&gt;&lt;/p&gt;
+</description>
+ <comments>http://www.springsource.org/node/22639#comments</comments>
+ <category domain="http://www.springsource.org/taxonomy/term/4">News and Announcements</category>
+ <pubDate>Mon, 01 Jul 2013 20:25:15 +0000</pubDate>
+ <dc:creator>rwinch</dc:creator>
+ <guid isPermaLink="false">22639 at http://www.springsource.org</guid>
+</item>
+<item>
+ <title>Webinar: Introducing Reactor - A framework for asynchronous applications on the JVM</title>
+ <link>http://www.springsource.org/node/22638</link>
+ <description>&lt;div&gt;
+  &lt;p&gt;The sheer volume of non-human-generated data in modern applications can easily overtake a traditional single-threaded, blocking design model. Reactor aims to address this volume, by providing a foundational framework for JVM applications -- applications that need high throughput when performing reasonably small chunks of stateless, asynchronous processing. Join Jon Brisbin as he discusses the motivations behind the project, the design patterns and existing technology that inspired the project, and how it fits in the asynchronous ecosystem today, as a teaser to his upcoming session at SpringOne 2GX 2013. &lt;/p&gt;
+  &lt;p&gt;
+    &lt;center&gt;
+      &lt;iframe width=&quot;420&quot; height=&quot;315&quot; src=&quot;http://www.youtube.com/embed/8jPJh1VFNpk&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
+    &lt;/center&gt;
+  &lt;/p&gt;
+&lt;/div&gt;
+&lt;div&gt;
+  &lt;div&gt;&lt;br /&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;div&gt;
+      &lt;div&gt;
+        &lt;h2&gt;About the speaker&lt;/h2&gt;
+        &lt;div&gt; &lt;a href=&quot;http://www.springone2gx.com/conference/washington/2012/10/speakers/josh_long&quot;&gt;&lt;img src=&quot;http://www.springone2gx.com/s/images/bio/39910_Brisbin_20130502_163929_medium.jpg&quot; alt=&quot;Chris Harris&quot; /&gt;&lt;/a&gt;
+          &lt;div&gt;
+            &lt;h3&gt;Jon Brisbin&lt;/h3&gt;
+            &lt;p&gt;Jon works with the Spring Data, Grails, RabbitMQ, and other teams to provide next-generation data and messaging capabilities for modern Ajax and mobile applications. He&#039;s been working with Spring Data to provide mapping capabilities for NoSQL databases like MongoDB and Riak and he&#039;s working with RabbitMQ and NoSQL to provide modern evented and message-driven data utilities. He authored the Grails support for Riak as well as contributes Erlang-based utilities for the Riak and RabbitMQ communities. Prior to SpringSource, Jon developed private cloud architectures at the world&#039;s largest Pizza Hut franchisee, developed Lotus Domino, J2EE, PHP and even Perl CGI applications in BBEdit on an aged Mac, and got his start in web-based development 15 years ago, as an intelligence analyst for the US Air Force, when NCSA Mosaic 1.0 was cool&lt;/p&gt;
+            &lt;p&gt;&lt;a href=&quot;www.springone2gx.com/conference/speaker/jon_brisbin&quot;&gt;More About Jon »&lt;/a&gt; &lt;br /&gt;
+            &lt;/p&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;h2&gt;&lt;br /&gt;
+      &lt;/h2&gt;
+        &lt;div&gt;
+        &lt;/div&gt;
+        &lt;div&gt;
+          &lt;br /&gt;
+        &lt;/div&gt;
+        &lt;div&gt;
+&lt;/div&gt;
+        &lt;div&gt;
+        &lt;/div&gt;
+        &lt;div&gt;        &lt;/div&gt;
+        &lt;div&gt;
+          &lt;br /&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+</description>
+ <comments>http://www.springsource.org/node/22638#comments</comments>
+ <category domain="http://www.springsource.org/taxonomy/term/4">News and Announcements</category>
+ <pubDate>Wed, 26 Jun 2013 06:54:06 +0000</pubDate>
+ <dc:creator>Pieter Humphrey</dc:creator>
+ <guid isPermaLink="false">22638 at http://www.springsource.org</guid>
+</item>
+<item>
+ <title>This Week in Spring - June 25, 2013</title>
+ <link>http://www.springsource.org/node/22637</link>
+ <description>&lt;p&gt;Welcome back to another installment of &lt;em&gt;This Week in Spring&lt;/em&gt;. As usual, we&amp;#39;ve got a lot to cover. In particular, you&amp;#39;ll note that this week&amp;#39;s roundup features a lot of great Spring Batch content. So, let&amp;#39;s get to it -- and don&#039;t forget the &lt;a href=&quot;http://springone2gx.com/conference/santa_clara/2013/09/home&quot;&gt;SpringOne2GX&lt;/a&gt; early bird rate ends Aug 9th!&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;I did a webinar introducing how to build REST APIs with Spring&amp;#39;s rich REST stack a few weeks ago, and I&amp;#39;m happy to report that the talk - which introduces Spring MVC, Spring HATEOAS, Spring REST Shell, Spring Data REST, Spring Security OAuth and Spring Social in terms of a simple sample application that we refine  - is now available on the &lt;a href=&quot;http://www.youtube.com/watch?feature=player_embedded&amp;amp;v=SC0FPuDKei0&quot;&gt;SpringSourceDev YouTube Channel&lt;/a&gt;. As I mentioned last week, the slides are available on &lt;a href=&quot;http://www.slideshare.net/joshlong/rest-apis-with-spring&quot;&gt;my SlideShare.net page&lt;/a&gt; and the code is available &lt;a href=&quot;https://github.com/joshlong/the-spring-rest-stack&quot;&gt;on my GitHub page&lt;/a&gt;. Enjoy, and don&amp;#39;t hesitate to feedback/ask questions at &lt;strong&gt;josh&lt;/strong&gt;(dot)&lt;strong&gt;long&lt;/strong&gt;(at)&lt;strong&gt;SpringSource&lt;/strong&gt;(dot)&lt;strong&gt;com&lt;/strong&gt;!&lt;/li&gt;
+&lt;li&gt;InfoQ has a great post introducing &lt;a href=&quot;http://www.infoq.com/news/2013/06/ee7-spring-batch&quot;&gt;JSR 352, the Java Batch specification&lt;/a&gt;. If you&amp;#39;re a Spring Batch user, then a lot of this will look very familiar! I think this is a particularly nice JSR, and encourage you to check it out. Spring &lt;/li&gt;
+&lt;li&gt;Chris Schaefer has put together &lt;a href=&quot;http://refcardz.dzone.com/refcardz/spring-batch-refcard&quot;&gt;a brilliant Spring Batch refcard for DZone&lt;/a&gt; which went up yesterday, head over to DZone for the free download.&lt;/li&gt;
+&lt;li&gt;Craig Walls has announced that &lt;a href=&quot;http://www.springsource.org/spring-social/news/spring-social-facebook-1.0.3-released&quot;&gt;Spring Social Facebook 1.0.3 is now available&lt;/a&gt;. The new release addresses breaking changes in the upcoming Facebook API revision.&lt;/li&gt;
+&lt;li&gt;Gary Russell has announced that &lt;a href=&quot;http://www.springsource.org/node/22635&quot;&gt;Spring AMQP 1.2.0 release candidate is now available&lt;/a&gt;. The new release features many improvements and bug fixes.&lt;/li&gt;
+&lt;li&gt;Johnathan Mark Smith is back at it again, with a blog on &lt;a href=&quot;http://johnathanmarksmith.com/spring/java/javaconfig/programming/spring%20java%20configuration/spring%20mvc/web/rest/resttemplate/2013/06/18/how-to-use-spring-resttemplate-to-post-data-to-a-web-service/&quot;&gt;RESTTemplate To Post Data to a Web Service&lt;/a&gt;.  Nice work Jonathan!&lt;/li&gt;
+&lt;li&gt;This week SpringSource is offering a four-day Groovy &amp; Grails class in San Francisco, &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=177968&quot;&gt;check it out here&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Our pal  Tobias Flohre is back with the 4th installment of his &lt;a href=&quot;http://blog.codecentric.de/en/2013/06/spring-batch-2-2-javaconfig-part-4-job-inheritance/&quot;&gt;series introducing Java configuration with Spring Batch&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/leleuj/spring-security-pac4j&quot;&gt;Leleu Jérôme has released a Spring Security Pac4J client&lt;/a&gt;. It has OAuth with providers, OpenID, CAS, and HTTP.&lt;/li&gt;
+&lt;li&gt;Are you a &lt;em&gt;Spring Champion&lt;/em&gt;? Enter to &lt;a href=&quot;http://springchampions.cloudfoundry.com/&quot;&gt;win a free SpringOne2GX 2013 pass&lt;/a&gt;!&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/vam-si/javaee7-springmvc&quot;&gt;Vamsi Kancharla put together a nice sample project with Spring MVC&lt;/a&gt;, bean-validation, error handling (using &lt;code&gt;@ControllerAdvice&lt;/code&gt;), protection against XSS and input form attacks, and a lot more. Check it out! &lt;/li&gt;
+&lt;li&gt;Kim Saabye Pedersen put together a nice post reinforcing some useful (and &lt;em&gt;hopefully&lt;/em&gt; well-understood!) principles of &lt;a href=&quot;http://kim.saabye-pedersen.org/2013/06/spring-singletons-potential-source-of.html&quot;&gt;&lt;em&gt;singleton&lt;/em&gt;s in Spring&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Hantsy Bai has put together a very nice post explaining &lt;a href=&quot;http://hantsy.blogspot.com/2013/06/create-spring-project-from-spring.html?goback=%2Egmp_46964%2Egde_46964_member_252796358&quot;&gt;how to create a Spring project&lt;/a&gt; from the &lt;a href=&quot;http://springsource.org/sts&quot;&gt;Spring Tool Suite&lt;/a&gt;.&lt;/li&gt;
+&lt;/ol&gt;</description>
+ <comments>http://www.springsource.org/node/22637#comments</comments>
+ <category domain="http://www.springsource.org/taxonomy/term/14">This Week in Spring</category>
+ <pubDate>Wed, 26 Jun 2013 01:44:43 +0000</pubDate>
+ <dc:creator>Josh Long</dc:creator>
+ <guid isPermaLink="false">22637 at http://www.springsource.org</guid>
+</item>
+<item>
+ <title>Webinar Replay: Building REST-ful services with Spring</title>
+ <link>http://www.springsource.org/node/22636</link>
+ <description>&lt;div&gt;
+  &lt;p&gt;Today&#039;s applications don&#039;t exist in isolation. REST applications and web services are a great way to connect applications together. REST is a design principle that imposes no constraints on the client except basic HTTP support, which all platforms provide. Designing REST services, however, is still as much art as it is science, as standards are emerging. Join Spring Developer Advocate Josh Long as he introduces some of the ins-and-outs of REST API design with Spring, building on Spring MVC, Spring HATEOAS and answers some commonly- asked questions like how to secure REST-ful services, and how to tailor payload serialization to your specific use cases. &lt;/p&gt;
+  &lt;p&gt;
+    &lt;center&gt;
+      &lt;iframe width=&quot;420&quot; height=&quot;315&quot; src=&quot;http://www.youtube.com/embed/SC0FPuDKei0&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
+    &lt;/center&gt;
+  &lt;/p&gt;
+&lt;/div&gt;
+&lt;div&gt;
+  &lt;div&gt;&lt;br /&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;div&gt;
+      &lt;div&gt;
+        &lt;h2&gt;About the speaker&lt;/h2&gt;
+        &lt;div&gt; &lt;a href=&quot;http://www.springone2gx.com/conference/washington/2012/10/speakers/josh_long&quot;&gt;&lt;img src=&quot;http://www.springone2gx.com/s/images/bio/40784_Long_20110418_132926_medium.jpg&quot; alt=&quot;Chris Harris&quot; /&gt;&lt;/a&gt;
+          &lt;div&gt;
+            &lt;h3&gt;Josh Long&lt;/h3&gt;
+            &lt;p&gt;Josh Long is the Spring developer advocate. Josh is the lead author on Apress’ Spring Recipes, 2nd Edition, and a SpringSource committer and contributor. When he&#039;s not hacking on code, he can be found at the local Java User Group or at the local coffee shop. Josh likes solutions that push the boundaries of the technologies that enable them. His interests include scalability, BPM, grid processing, mobile computing and so-called &amp;quot;smart&amp;quot; systems. He blogs at blog.springsource.org or joshlong.com.&lt;/p&gt;
+            &lt;p&gt;&lt;a href=&quot;http://www.springone2gx.com/conference/santa_clara/2013/09/speakers/josh_long&quot;&gt;More About Josh »&lt;/a&gt; &lt;br /&gt;
+            &lt;/p&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;h2&gt;&lt;br /&gt;
+      &lt;/h2&gt;
+        &lt;div&gt;
+        &lt;/div&gt;
+        &lt;div&gt;
+          &lt;br /&gt;
+        &lt;/div&gt;
+        &lt;div&gt;
+&lt;/div&gt;
+        &lt;div&gt;
+        &lt;/div&gt;
+        &lt;div&gt;        &lt;/div&gt;
+        &lt;div&gt;
+          &lt;br /&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+</description>
+ <comments>http://www.springsource.org/node/22636#comments</comments>
+ <category domain="http://www.springsource.org/taxonomy/term/4">News and Announcements</category>
+ <pubDate>Tue, 25 Jun 2013 21:23:47 +0000</pubDate>
+ <dc:creator>Pieter Humphrey</dc:creator>
+ <guid isPermaLink="false">22636 at http://www.springsource.org</guid>
+</item>
+<item>
+ <title>Spring-AMQP 1.2.0 Release Candidate is Now Available!</title>
+ <link>http://www.springsource.org/node/22635</link>
+ <description>&lt;p&gt;The release candidate for the upcoming Spring-AMQP 1.2.0 release for Java is now available.&lt;/p&gt;
+&lt;p&gt;See &lt;a href=&quot;https://jira.springsource.org/secure/ReleaseNote.jspa?projectId=10450&amp;amp;version=11824&quot;&gt;the release notes&lt;/a&gt; for more information.&lt;/p&gt;
+&lt;p&gt;This release includes a few additional improvements and features over and above those in the previous milestone.&lt;/p&gt;
+&lt;p&gt;See the &lt;a href=&quot;http://www.springsource.org/spring-amqp&quot;&gt;project page&lt;/a&gt; for links to downloads and documentation.&lt;/p&gt;
+</description>
+ <comments>http://www.springsource.org/node/22635#comments</comments>
+ <pubDate>Thu, 20 Jun 2013 15:59:53 +0000</pubDate>
+ <dc:creator>Gary Russell</dc:creator>
+ <guid isPermaLink="false">22635 at http://www.springsource.org</guid>
+</item>
+<item>
+ <title>Spring Social Facebook 1.0.3 Released</title>
+ <link>http://www.springsource.org/spring-social/news/spring-social-facebook-1.0.3-released</link>
+ <description>&lt;p&gt;Dear Spring Community,&lt;/p&gt;
+&lt;p&gt;I&#039;m happy to announce the release of Spring Social Facebook 1.0.3.RELEASE.&lt;/p&gt;
+&lt;p&gt;Spring Social is an extension of the Spring Framework that enables you to connect your Java applications to Software-as-a-Service (SaaS) providers such as Facebook and Twitter.&lt;/p&gt;
+&lt;p&gt;Spring Social Facebook 1.0.3.RELEASE is made available to address &lt;a href=&quot;https://developers.facebook.com/roadmap/#q3_2013&quot;&gt;breaking changes&lt;/a&gt; forthcoming in Facebook&#039;s Graph API to be applied on July 10, 2013. Specifically, the following breaking changes have been addressed:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The removal of the &#039;count&#039; property in a list of comments.&lt;/li&gt;
+&lt;li&gt;Deprecation of checkins via the /checkins resource. All checkins should be done as posts with a location now.&lt;/li&gt;
+&lt;li&gt;Removal of the &#039;version&#039; property for groups.&lt;/li&gt;
+&lt;li&gt;The Graph API no longer returns images for photos with sizes larger than the original image size.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In addition, a handful of small improvements were made to Spring Social Facebook&#039;s API binding. See the &lt;a href=&quot;http://static.springsource.org/spring-social-facebook/docs/1.0.x/changelog.txt&quot; target=&quot;_blank&quot;&gt;changelog&lt;/a&gt; for details.&lt;/p&gt;
+&lt;p&gt;To get the software, download the &lt;a href=&quot;http://www.springsource.org/download/community?project=Spring%2520Social%2520Facebook&amp;amp;version=1.0.3.RELEASE&quot; target=&quot;_blank&quot;&gt;release distribution&lt;/a&gt; or change the Spring Social Facebook dependency in your build file to reference 1.0.3.RELEASE.&lt;/p&gt;
+&lt;p&gt;Important: This release includes changes to enable Spring Social Facebook to work after the &lt;a href=&quot;https://developers.facebook.com/roadmap/#q3_2013&quot; target=&quot;_blank&quot;&gt;July 2013 Breaking Changes&lt;/a&gt;. In order for this version of Spring Social Facebook to work prior to July 10, 2013, you&#039;ll need to configure your application at Facebook to enable the July 2013 Breaking Changes. Within Facebook&#039;s application configuration, go to &quot;Settings-&amp;gt;Advanced&quot; and click the &quot;Enabled&quot; radio button next to &quot;July 2013 Breaking Changes&quot;.&lt;/p&gt;
+&lt;p&gt;We invite you to discuss this release as well as the continuing work toward Spring Social 1.1.0 in the &lt;a href=&quot;http://forum.springsource.org/forumdisplay.php?82-Social&quot;&gt;Spring Social Forum&lt;/a&gt; and to report any bugs or improvements in the &lt;a href=&quot;https://jira.springsource.org/browse/SOCIALFB&quot; target=&quot;_blank&quot;&gt;Spring Social Facebook issue tracker&lt;/a&gt;.&lt;/p&gt;
+</description>
+ <comments>http://www.springsource.org/spring-social/news/spring-social-facebook-1.0.3-released#comments</comments>
+ <category domain="http://www.springsource.org/taxonomy/term/4">News and Announcements</category>
+ <pubDate>Wed, 19 Jun 2013 14:09:59 +0000</pubDate>
+ <dc:creator>Craig Walls</dc:creator>
+ <guid isPermaLink="false">22634 at http://www.springsource.org</guid>
+</item>
+<item>
+ <title>This Week in Spring - June 18, 2013</title>
+ <link>http://www.springsource.org/node/22633</link>
+ <description>&lt;p&gt;Welcome back to another installation of &lt;em&gt;This Week in Spring&lt;/em&gt;! What a week! We&amp;#39;re fast approaching the final stretch of the journey to &lt;a href=&quot;http://springone2gx.com/conference/santa_clara/2013/09/home&quot;&gt;SpringOne2GX 2013&lt;/a&gt; and preparations are underway at full tilt. This year&amp;#39;s going to be &lt;em&gt;memorable&lt;/em&gt;. I wish I could tell you more, but trust me when I say you need to be at this show this year! :) &lt;/p&gt;
+
+&lt;p&gt;Anyway, let&amp;#39;s get on with the roundup!&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Mark Pollack has announced &lt;a href=&quot;http://blog.springsource.org/2013/06/12/spring-xd-1-0-milestone-1-released/&quot;&gt;the release of Spring XD 1.0 milestone 1&lt;/a&gt;. Spring XD is a unified, distributed, and extensible system for data ingestion, real time analytics, batch processing, and data export.  The project’s goal is to simplify the development of big data applications. &lt;/li&gt;
+&lt;li&gt;Join Tony Erksine from Liberty University on June 27th as he instructs us &lt;a href=&quot;http://www.springsource.org/node/22620&quot;&gt;How to talk Spring and Influence People&lt;/a&gt;, a pragmatic lesson on soft skills and technology adoption strategies needed to help get other people in your company excited about and using, new technology -- in this case, with Spring.&lt;/li&gt;
+&lt;li&gt;Want a pass to &lt;a href= &quot;http://springone2gx.com&quot;&gt; SpringOne 2GX 2013&lt;/a&gt;? 
+If you&#039;re a Spring champion, &lt;a href= &quot;http://bit.ly/springchampathon&quot;&gt;show off your stuff on our champions forum and follow these instructions&lt;/a&gt; by June 21, 2013. You might be one of our 5 lucky winners!
+(If you&#039;re a Groovy &amp;amp; &lt;a href  = &quot;http://grails.org&quot;&gt;Grails&lt;/a&gt; or &lt;a href= &quot;http://cloudfoundry.org&quot;&gt;Cloud Foundry champion&lt;/a&gt;, never fear, we will be rolling out future contests for you!)&lt;/li&gt;
+&lt;li&gt;Head over to gopivotal.com for the  next blog in the Hadoop 101 series -- &lt;a href=&quot;http://blog.gopivotal.com/products/programming-with-hadoop-101-getting-started-with-spring-hadoop&quot;&gt;How to Use Spring Batch with Spring for Apache Hadoop&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;We&amp;#39;re excited to launch &lt;em&gt;A Week of Spring&lt;/em&gt; in conjunction with Manning Publications. Check &lt;a href=&quot;http://www.springsource.org/node/22632&quot;&gt;out this post&lt;/a&gt; for more information on great discounts for titles covering SpringSource technologies! Every day we&#039;re posting a new 50% discount code for two books.&lt;/li&gt;
+&lt;li&gt;Our pal Tobias Fiohre is back at it again, this time with not one, not two, but &lt;em&gt;three&lt;/em&gt; posts on Java configuration support for Spring Batch, just released in the latest Spring Batch 2.2.0.RELEASE of Spring Batch. The first post looks at &lt;a href=&quot;http://blog.codecentric.de/en/2013/06/spring-batch-2-2-javaconfig-part-1-a-comparison-to-xml/&quot;&gt;how Spring Batch&amp;#39;s Java configuration support compares with the XML equivalents&lt;/a&gt;. The second post looks at the Spring Batch &lt;code&gt;StepScope&lt;/code&gt;, which lets you &lt;a href=&quot;http://blog.codecentric.de/en/2013/06/spring-batch-2-2-javaconfig-part-2-jobparameters-executioncontext-and-stepscope/&quot;&gt;configure &lt;code&gt;job&lt;/code&gt;s with parameters provided at runtime (as opposed to design-time&lt;/a&gt;. The third post looks at how to use the new configuration style &lt;a href=&quot;http://blog.codecentric.de/en/2013/06/spring-batch-2-2-javaconfig-part-3-profiles-and-environments/&quot;&gt;with Spring&amp;#39;s environment profiles feature&lt;/a&gt;.&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;Johnathan Mark Smith has put together a post on how &lt;a href=&quot;http://t.co/cGvBHARsQO&quot;&gt;use Spring MVC and Spring MVC Test&lt;/a&gt;&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;Xavier Padró&amp;#39;s has put together a nice post that &lt;a href=&quot;http://t.co/VOjqU0QutH&quot;&gt;introduces Spring&amp;#39;s core Aspect-Oriented Programming&lt;/a&gt; support.&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;The video replay of the webinar from the &lt;a href=&quot;http://www.broadleafcommerce.org/&quot;&gt;Broadleaf Commerce&lt;/a&gt; project on &lt;a href=&quot;http://www.youtube.com/watch?v=vzC4VfrWyK4&quot;&gt;their migration from GWT to Spring MVC&lt;/a&gt; is now online at our &lt;a href=&quot;http://youtube.com/SpringSourceDev&quot;&gt;SpringSourceDev YouTube channel&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;This isn&amp;#39;t strictly Spring-related, but I felt it worth mentioning: Java 9 is slated to &lt;a href=&quot;http://openjdk.java.net/jeps/182&quot;&gt;drop support for compiling Java 1.4-or-older source code&lt;/a&gt;. Java 8 is approaching (finally!), and Spring 4 will offer first class support for Java 8 lambas. Java 6 is EOL as of February 2013, so if you&amp;#39;re not already on Java 7, consider just making the jump to Java 8 when it drops early next year. If you&amp;#39;re migrating right now, definitely consider looking at Java 7 at a minimum. Spring, of course, works well with older JDK versions, but we often provide functionality specific to newer language releases &lt;em&gt;if&lt;/em&gt; they&amp;#39;re available. For example, we debuted annotations (like &lt;code&gt;@Transactional&lt;/code&gt;) when Java 5 made it feasible, as an addition to our then primary support for commons annotations, even while we supported Java 1.3 and 1.4. Java 8 is no different. &lt;/li&gt;
+&lt;li&gt;I did a webinar last week on building REST APIs with Spring. The webinar video will be up soon on &lt;a href=&quot;http://youtube.com/SpringSourceDev&quot;&gt;our SpringSource Developer YouTube channel&lt;/a&gt;. For the many who&amp;#39;ve asked, the code is available on &lt;a href=&quot;https://github.com/joshlong/the-spring-rest-stack&quot;&gt;my GitHub account&lt;/a&gt;, and the slides are available &lt;a href=&quot;http://www.slideshare.net/joshlong/rest-apis-with-spring&quot;&gt;on my SlideShare account&lt;/a&gt;. Check them out!&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;Petri Kainulainen has put together a really detailed, easily-read post on how to plugin a property from a property file when &lt;a href=&quot;http://www.petrikainulainen.net/programming/spring-framework/spring-from-the-trenches-using-environment-specific-cron-expressions-with-the-scheduled-annotation/&quot;&gt;configuring the &lt;code&gt;@Scheduled&lt;/code&gt; annotation&amp;#39;s CRON expression&lt;/a&gt;&lt;br&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+ <comments>http://www.springsource.org/node/22633#comments</comments>
+ <category domain="http://www.springsource.org/taxonomy/term/14">This Week in Spring</category>
+ <pubDate>Wed, 19 Jun 2013 00:25:35 +0000</pubDate>
+ <dc:creator>Josh Long</dc:creator>
+ <guid isPermaLink="false">22633 at http://www.springsource.org</guid>
+</item>
+<item>
+ <title>&quot;Week of Spring&quot; with Manning Publications</title>
+ <link>http://www.springsource.org/node/22632</link>
+ <description>            &lt;p&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;span style=&quot;font-size: 15px; font-family: Arial; background-color: transparent; vertical-align: baseline;&quot;&gt;We&amp;rsquo;re excited to launch&amp;nbsp;Week of Spring, a joint effort with &lt;a href=&quot;http://www.manning.com/&quot; target=&quot;_blank&quot;&gt;Manning Publications&lt;/a&gt; where we highlight a new book each day that is special to us and hand-picked by the Spring team. We also collaborated with Manning to select a second book for each day of the week, and will be offering our choices at a 50% discount on their site! You can even read excerpts from some of the books online for free by clicking on the links below.&lt;/span&gt;&lt;/strong&gt;
+              &lt;/p&gt;
+&lt;p&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;span style=&quot;font-size: 15px; font-family: Arial; background-color: transparent; vertical-align: baseline;&quot;&gt;We hope you enjoy the deals! We&amp;rsquo;ll be tweeting and updating this post with the daily discount codes throughout the week, so stay tuned. Also, if you are a Spring Champion (or want to be one) don&#039;t miss your &lt;a href=&quot;http://www.springsource.org/node/22616&quot;&gt;chance to win a free pass&lt;/a&gt; to SpringOne 2GX 2013 this year&lt;/span&gt;&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;span style=&quot;font-size: 15px; font-family: Arial; background-color: transparent; vertical-align: baseline;&quot;&gt;Here&amp;rsquo;s the schedule for our Week of Spring discounts!&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: strong;&quot;&gt;&lt;strong style=&quot;font-weight: strong;&quot;&gt;&lt;span style=&quot;font-size: 15px; font-family: Arial; background-color: transparent; vertical-align: baseline;&quot;&gt;Monday, June 17th, 2013 &lt;/span&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;font-size: small;&quot;&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;strong style=&quot;font-weight: normal;&quot;&gt;&lt;span style=&quot;font-family: Arial; background-color: transparent; vertical-align: baseline;&quot;&gt;Discount Code: &lt;/span&gt;&lt;/strong&gt;&lt;/strong&gt;sprwkd1(exp. 6/18, 12 midnight EST)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;span style=&quot;font-size: 15px; font-family: Arial; background-color: transparent; font-weight: bold; vertical-align: baseline;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://www.manning.com/walls5/&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;http://www.springsource.org/files/walls5_cover150.jpg&quot; alt=&quot;&quot; width=&quot;117px;&quot; height=&quot;148px;&quot; /&gt;&lt;br /&gt;
+&lt;span style=&quot;font-size: 15px; font-family: Arial; color: #1155cc; background-color: transparent; font-style: italic; vertical-align: baseline;&quot;&gt;Spring in Action, 4th Edition&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;
+&lt;span style=&quot;font-size: 15px; font-family: Arial; background-color: transparent; vertical-align: baseline;&quot;&gt;by Craig Walls&lt;/span&gt;&lt;br /&gt;
+&lt;/strong&gt;&lt;span style=&quot;font-size: small;&quot;&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;span style=&quot;font-family: Arial; background-color: transparent; vertical-align: baseline;&quot;&gt;*To read an excerpt, click &lt;/span&gt;&lt;span style=&quot;font-family: Arial; color: #1155cc; background-color: transparent; vertical-align: baseline;&quot;&gt;&lt;a href=&quot;https://dl.dropboxusercontent.com/u/108743992/manning/sia/springinactionch11.html&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;! &lt;/span&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;span style=&quot;font-size: 15px; font-family: Arial; background-color: transparent; vertical-align: baseline;&quot;&gt;You also might be interested in:&lt;/span&gt;&lt;br /&gt;
+      &lt;em&gt;&lt;a href=&quot;http://www.manning.com/marz/&quot; target=&quot;_blank&quot;&gt;Big Data&lt;/a&gt;&amp;nbsp;&lt;/em&gt;&lt;a href=&quot;http://www.manning.com/holmes/&quot; target=&quot;_blank&quot;&gt;&lt;/a&gt;&lt;br /&gt;
+&lt;span style=&quot;font-size: 15px; font-family: Arial; background-color: transparent; vertical-align: baseline;&quot;&gt;by &lt;/span&gt;Nathan Marz and James Warren&lt;/strong&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;strong style=&quot;font-weight: normal;&quot;&gt;&lt;span style=&quot;font-size: 15px; font-family: Arial; background-color: transparent; font-weight: bold; vertical-align: baseline;&quot;&gt;Tuesday, June 18, 2013&lt;/span&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;strong style=&quot;font-weight: normal;&quot;&gt;&lt;span style=&quot;font-size: 15px; font-family: Arial; background-color: transparent; vertical-align: baseline;&quot;&gt;Discount Code: &lt;/span&gt;&lt;/strong&gt;&lt;span style=&quot;font-size: small;&quot;&gt;sprwkd2&lt;/span&gt; &lt;/strong&gt;&lt;/strong&gt;&lt;span style=&quot;font-size: small;&quot;&gt;(exp. 6/19, 12 midnight EST)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt; &lt;/strong&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;a href=&quot;http://www.manning.com/ghosh/&quot;&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&amp;nbsp;&lt;/strong&gt;&lt;/a&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;a href=&quot;http://www.manning.com/videla/&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;http://www.springsource.org/files/videla_cover150.jpg&quot; height=&quot;148px;&quot; alt=&quot;&quot; width=&quot;105px;&quot; /&gt;&lt;br /&gt;
+  &lt;span style=&quot;font-size: 15px; font-family: Arial; color: #1155cc; background-color: transparent; font-style: italic; vertical-align: baseline;&quot;&gt;RabbitMQ in Action&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;
+  &lt;span style=&quot;font-size: 15px; font-family: Arial; background-color: transparent; vertical-align: baseline;&quot;&gt;by Alvaro Videla and Jason J.W. Williams&lt;/span&gt;&lt;br /&gt;
+&lt;/strong&gt;&lt;/strong&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;span style=&quot;font-size: 15px; font-family: Arial; background-color: transparent; vertical-align: baseline;&quot;&gt;*To read an excerpt, click &lt;/span&gt;&lt;a href=&quot;https://dl.dropboxusercontent.com/u/108743992/manning/rabbit/rabbitmqinactionch06.html&quot; target=&quot;_blank&quot;&gt;&lt;span style=&quot;font-size: 15px; font-family: Arial; color: #1155cc; background-color: transparent; vertical-align: baseline;&quot;&gt;here&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot;font-size: 15px; font-family: Arial; background-color: transparent; vertical-align: baseline;&quot;&gt;!&lt;/span&gt;&lt;/strong&gt;&lt;/strong&gt;
+&lt;/p&gt;
+&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;span style=&quot;font-size: 15px; font-family: Arial; background-color: transparent; vertical-align: baseline;&quot;&gt;You also might be interested in:&lt;/span&gt;&lt;br /&gt;
+&lt;a href=&quot;http://www.manning.com/holmes/&quot; target=&quot;_blank&quot;&gt;&lt;span style=&quot;font-size: 15px; font-family: Arial; color: #1155cc; background-color: transparent; font-style: italic; vertical-align: baseline;&quot;&gt;Hadoop in Practice&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;
+&lt;span style=&quot;font-size: 15px; font-family: Arial; background-color: transparent; vertical-align: baseline;&quot;&gt;by Alex Holmes&lt;/span&gt;&lt;/strong&gt;&lt;/strong&gt;
+&lt;p&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt; &lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;span style=&quot;font-size: 15px; font-family: Arial; background-color: transparent; font-weight: bold; vertical-align: baseline;&quot;&gt;Wednesday, June 19, 2013&lt;/span&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;span style=&quot;font-size: 15px; font-family: Arial; background-color: transparent; vertical-align: baseline;&quot;&gt;Discount Code:&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;font-size: small;&quot;&gt;sprwkd3 &lt;/span&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;span style=&quot;font-size: small;&quot;&gt;(exp. 6/20, 12 midnight EST)&lt;/span&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;span style=&quot;font-size: 15px; font-family: Arial; background-color: transparent; vertical-align: baseline;&quot;&gt; &amp;nbsp;&lt;/span&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt; &lt;/strong&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;a href=&quot;http://www.manning.com/ghosh/&quot;&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&amp;nbsp;&lt;/strong&gt;&lt;/a&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;a href=&quot;http://www.manning.com/fisher/&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;http://www.springsource.org/files/fisher_cover150.jpg&quot; height=&quot;148px;&quot; alt=&quot;&quot; width=&quot;105px;&quot; /&gt;&lt;br /&gt;
+        &lt;span style=&quot;font-size: 15px; font-family: Arial; color: #1155cc; background-color: transparent; font-style: italic; vertical-align: baseline;&quot;&gt;Spring Integration in Action&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;
+        &lt;span style=&quot;font-size: 15px; font-family: Arial; background-color: transparent; vertical-align: baseline;&quot;&gt;by Mark Fisher, Jonas Partner, Marius Bogoevici, and Iwein Fuld&lt;/span&gt;&lt;br /&gt;
+&lt;/strong&gt;&lt;/strong&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;span style=&quot;font-size: 15px; font-family: Arial; background-color: transparent; vertical-align: baseline;&quot;&gt;*To read an excerpt, click &lt;/span&gt;&lt;a href=&quot;https://dl.dropboxusercontent.com/u/108743992/manning/siia/springintegrationinactionch01.html&quot; target=&quot;_blank&quot;&gt;&lt;span style=&quot;font-size: 15px; font-family: Arial; color: #1155cc; background-color: transparent; vertical-align: baseline;&quot;&gt;here&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot;font-size: 15px; font-family: Arial; background-color: transparent; vertical-align: baseline;&quot;&gt;!&lt;/span&gt;&lt;/strong&gt;&lt;/strong&gt;
+&lt;/p&gt;
+&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;span style=&quot;font-size: 15px; font-family: Arial; background-color: transparent; vertical-align: baseline;&quot;&gt;You also might be interested in:&lt;/span&gt;&lt;br /&gt;
+  &lt;a href=&quot;http://www.manning.com/carlson/&quot; target=&quot;_blank&quot;&gt;&lt;span style=&quot;font-size: 15px; font-family: Arial; color: #1155cc; background-color: transparent; font-style: italic; vertical-align: baseline;&quot;&gt;Redis in Action&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;
+  &lt;span style=&quot;font-size: 15px; font-family: Arial; background-color: transparent; vertical-align: baseline;&quot;&gt;by Josiah L. Carlson&lt;/span&gt;&lt;br /&gt;
+&lt;/strong&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt; &lt;/strong&gt;
+&lt;p&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;strong style=&quot;font-weight: normal;&quot;&gt;&lt;span style=&quot;font-size: 15px; font-family: Arial; background-color: transparent; font-weight: bold; vertical-align: baseline;&quot;&gt;Thursday, June 20, 2013&lt;/span&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;strong style=&quot;font-weight: normal;&quot;&gt;&lt;span style=&quot;font-size: 15px; font-family: Arial; background-color: transparent; font-weight: bold; vertical-align: baseline;&quot;&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;strong style=&quot;font-weight: normal;&quot;&gt;&lt;span style=&quot;font-family: Arial; background-color: transparent; vertical-align: baseline;&quot;&gt;Discount Code: &lt;/span&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/strong&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;span style=&quot;font-size: small;&quot;&gt;sprwkd4 &lt;/span&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;span style=&quot;font-size: small;&quot;&gt;(exp. 6/21, 12 midnight EST)&lt;/span&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;span style=&quot;font-size: 15px; font-family: Arial; background-color: transparent; vertical-align: baseline;&quot;&gt; &amp;nbsp;&lt;/span&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt; &lt;/strong&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;a href=&quot;http://www.manning.com/ghosh/&quot;&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&amp;nbsp;&lt;/strong&gt;&lt;/a&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;a href=&quot;http://www.manning.com/wheeler/&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;http://www.springsource.org/files/Wheeler-SpringinP.jpg&quot; height=&quot;148px;&quot; alt=&quot;&quot; width=&quot;105px;&quot; /&gt;&lt;br /&gt;
+        &lt;span style=&quot;font-size: 15px; font-family: Arial; color: #1155cc; background-color: transparent; font-style: italic; vertical-align: baseline;&quot;&gt;Spring in Practice&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;
+        &lt;span style=&quot;font-size: 15px; font-family: Arial; background-color: transparent; vertical-align: baseline;&quot;&gt;by Willie Wheeler with Joshua White&lt;/span&gt;&lt;br /&gt;
+&lt;/strong&gt;&lt;/strong&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;span style=&quot;font-size: 15px; font-family: Arial; background-color: transparent; vertical-align: baseline;&quot;&gt;*To read an excerpt, click &lt;/span&gt;&lt;a href=&quot;https://dl.dropboxusercontent.com/u/108743992/manning/sip/springinpracticech13.html&quot; target=&quot;_blank&quot;&gt;&lt;span style=&quot;font-size: 15px; font-family: Arial; color: #1155cc; background-color: transparent; vertical-align: baseline;&quot;&gt;here&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot;font-size: 15px; font-family: Arial; background-color: transparent; vertical-align: baseline;&quot;&gt;!&lt;/span&gt;&lt;/strong&gt;&lt;/strong&gt;
+&lt;/p&gt;
+&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;span style=&quot;font-size: 15px; font-family: Arial; background-color: transparent; vertical-align: baseline;&quot;&gt;You also might be interested in:&lt;/span&gt;&lt;br /&gt;
+  &lt;a href=&quot;http://www.manning.com/lam/&quot; target=&quot;_blank&quot;&gt;&lt;span style=&quot;font-size: 15px; font-family: Arial; color: #1155cc; background-color: transparent; font-style: italic; vertical-align: baseline;&quot;&gt;Hadoop in Action&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;
+  &lt;span style=&quot;font-size: 15px; font-family: Arial; background-color: transparent; vertical-align: baseline;&quot;&gt;by Chuck Lam&lt;/span&gt;
+&lt;/strong&gt;
+&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;p /&gt;
+&lt;span style=&quot;font-size: 15px; font-family: Arial; background-color: transparent; font-weight: bold; vertical-align: baseline;&quot;&gt;Friday, June 21, 2013&lt;/span&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;strong style=&quot;font-weight: normal;&quot;&gt;&lt;span style=&quot;font-size: 15px; font-family: Arial; background-color: transparent; font-weight: bold; vertical-align: baseline;&quot;&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;strong style=&quot;font-weight: normal;&quot;&gt;&lt;span style=&quot;font-family: Arial; background-color: transparent; vertical-align: baseline;&quot;&gt;Discount Code: &lt;/span&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/strong&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;span style=&quot;font-size: small;&quot;&gt;sprwkd5 &lt;/span&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;span style=&quot;font-size: small;&quot;&gt;(exp. 6/22, 12 midnight EST)&lt;/span&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;span style=&quot;font-size: 15px; font-family: Arial; background-color: transparent; vertical-align: baseline;&quot;&gt; &amp;nbsp;&lt;/span&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt; &lt;/strong&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;a href=&quot;http://www.manning.com/ghosh/&quot;&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&amp;nbsp;&lt;/strong&gt;&lt;/a&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;a href=&quot;http://www.manning.com/templier/&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;http://www.springsource.org/files/sbia_cover.png&quot; height=&quot;148px;&quot; alt=&quot;&quot; width=&quot;105px;&quot; /&gt;&lt;br /&gt;
+  &lt;span style=&quot;font-size: 15px; font-family: Arial; color: #1155cc; background-color: transparent; font-style: italic; vertical-align: baseline;&quot;&gt;Spring Batch in Action&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;
+  &lt;span style=&quot;font-size: 15px; font-family: Arial; background-color: transparent; vertical-align: baseline;&quot;&gt;by Arnaud Cogoluegnes, Thierry Templier, Gary Gregory, Olivier Bazoud&lt;/span&gt;&lt;br /&gt;
+&lt;/strong&gt;&lt;/strong&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;span style=&quot;font-size: 15px; font-family: Arial; background-color: transparent; vertical-align: baseline;&quot;&gt;*To read an excerpt, click &lt;/span&gt;&lt;a href=&quot;https://dl.dropboxusercontent.com/u/108743992/manning/sbia/springbatchinactionch01.html&quot; target=&quot;_blank&quot;&gt;&lt;span style=&quot;font-size: 15px; font-family: Arial; color: #1155cc; background-color: transparent; vertical-align: baseline;&quot;&gt;here&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot;font-size: 15px; font-family: Arial; background-color: transparent; vertical-align: baseline;&quot;&gt;!&lt;/span&gt;&lt;/strong&gt;&lt;/strong&gt; &lt;/p&gt;
+&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;/strong&gt;&lt;/strong&gt;
+&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;span style=&quot;font-size: 15px; font-family: Arial; background-color: transparent; vertical-align: baseline;&quot;&gt;You also might be interested in:&lt;/span&gt;&lt;br /&gt;
+&lt;a href=&quot;http://www.manning.com/grainger/&quot; target=&quot;_blank&quot;&gt;&lt;span style=&quot;font-size: 15px; font-family: Arial; color: #1155cc; background-color: transparent; font-style: italic; vertical-align: baseline;&quot;&gt;Solr in Action&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;
+&lt;span style=&quot;font-size: 15px; font-family: Arial; background-color: transparent; vertical-align: baseline;&quot;&gt;by Chuck Lam&lt;/span&gt; &lt;/strong&gt; &lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;/strong&gt;&lt;/strong&gt;
+&lt;p&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;span style=&quot;font-size: 15px; font-family: Arial; background-color: transparent; font-weight: bold; vertical-align: baseline;&quot;&gt;Saturday, June 22, 2013&lt;/span&gt;&lt;/strong&gt;&lt;/strong&gt;
+&lt;/p&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;strong style=&quot;font-weight: normal;&quot;&gt;&lt;span style=&quot;font-size: 15px; font-family: Arial; background-color: transparent; font-weight: bold; vertical-align: baseline;&quot;&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;strong style=&quot;font-weight: normal;&quot;&gt;&lt;span style=&quot;font-family: Arial; background-color: transparent; vertical-align: baseline;&quot;&gt;Discount Code: &lt;/span&gt;&lt;/strong&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;span style=&quot;font-size: small;&quot;&gt;sprwkd6 &lt;/span&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;span style=&quot;font-size: small;&quot;&gt;(exp. 6/23, 12 midnight EST)&lt;/span&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;span style=&quot;font-size: 15px; font-family: Arial; background-color: transparent; vertical-align: baseline;&quot;&gt; &amp;nbsp;&lt;/span&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt; &lt;/strong&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;a href=&quot;http://www.manning.com/ghosh/&quot;&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&amp;nbsp;&lt;/strong&gt;&lt;/a&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;a href=&quot;http://www.manning.com/laddad/&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;http://www.springsource.org/files/aspectj_cover.jpg&quot; height=&quot;148px;&quot; alt=&quot;&quot; width=&quot;105px;&quot; /&gt;&lt;br /&gt;
+  &lt;span style=&quot;font-size: 15px; font-family: Arial; color: #1155cc; background-color: transparent; font-style: italic; vertical-align: baseline;&quot;&gt;AspectJ in Action&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;
+  &lt;span style=&quot;font-size: 15px; font-family: Arial; background-color: transparent; vertical-align: baseline;&quot;&gt;Ramnivas Laddad&lt;/span&gt;&lt;br /&gt;
+&lt;/strong&gt;&lt;/strong&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;span style=&quot;font-size: 15px; font-family: Arial; background-color: transparent; vertical-align: baseline;&quot;&gt;*To read an excerpt, click &lt;/span&gt;&lt;a href=&quot;https://dl.dropboxusercontent.com/u/108743992/manning/ajia/aspectjinaction2ch00.html&quot; target=&quot;_blank&quot;&gt;&lt;span style=&quot;font-size: 15px; font-family: Arial; color: #1155cc; background-color: transparent; vertical-align: baseline;&quot;&gt;here&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot;font-size: 15px; font-family: Arial; background-color: transparent; vertical-align: baseline;&quot;&gt;!&lt;/span&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;/strong&gt;&lt;/strong&gt; &lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;span style=&quot;font-size: 15px; font-family: Arial; background-color: transparent; vertical-align: baseline;&quot;&gt;You also might be interested in:&lt;/span&gt;&lt;br /&gt;
+&lt;a href=&quot;http://www.manning.com/partner/&quot; target=&quot;_blank&quot;&gt;&lt;span style=&quot;font-size: 15px; font-family: Arial; color: #1155cc; background-color: transparent; font-style: italic; vertical-align: baseline;&quot;&gt;Neo4J in Action&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;
+&lt;span style=&quot;font-size: 15px; font-family: Arial; background-color: transparent; vertical-align: baseline;&quot;&gt;by Jonas Partner, Aleksa Vukotic, and Nicki Watt&lt;/span&gt;&lt;/strong&gt;
+&lt;p&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt; &lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;strong style=&quot;font-weight: normal;&quot;&gt;&lt;span style=&quot;font-size: 15px; font-family: Arial; background-color: transparent; font-weight: bold; vertical-align: baseline;&quot;&gt;Sunday, June 23, 2013&lt;/span&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt; &lt;/strong&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;50% off all titles!&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;strong style=&quot;font-weight: normal;&quot;&gt;&lt;span style=&quot;font-size: 15px; font-family: Arial; background-color: transparent; font-weight: bold; vertical-align: baseline;&quot;&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;strong style=&quot;font-weight: normal;&quot;&gt;&lt;span style=&quot;font-family: Arial; background-color: transparent; vertical-align: baseline;&quot;&gt;Discount Code: &lt;/span&gt;&lt;/strong&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;strong style=&quot;font-weight: normal;&quot;&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;span style=&quot;font-size: small;&quot;&gt;sprwkd6 &lt;/span&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;span style=&quot;font-size: small;&quot;&gt;(exp. 6/24, 12 midnight EST)&lt;/span&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;span style=&quot;font-size: 15px; font-family: Arial; background-color: transparent; vertical-align: baseline;&quot;&gt; &amp;nbsp;&lt;/span&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt; &lt;/strong&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;span style=&quot;font-size: 15px; font-family: Arial; background-color: transparent; vertical-align: baseline;&quot;&gt;We&amp;rsquo;d like to thank Manning Publications for making Week of Spring possible!&lt;/span&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt;&lt;br /&gt;
+&lt;span style=&quot;font-size: 15px; font-family: Arial; background-color: transparent; vertical-align: baseline;&quot;&gt;Enjoy your reading!&lt;/span&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong style=&quot;font-family: Arial; font-size: 15px; font-weight: normal;&quot;&gt; &lt;/strong&gt;&lt;/p&gt;</description>
+ <comments>http://www.springsource.org/node/22632#comments</comments>
+ <category domain="http://www.springsource.org/taxonomy/term/4">News and Announcements</category>
+ <enclosure url="http://www.springsource.org/files/walls5_cover150.jpg" length="10078" type="image/jpeg" />
+ <pubDate>Mon, 17 Jun 2013 21:28:25 +0000</pubDate>
+ <dc:creator>Pieter Humphrey</dc:creator>
+ <guid isPermaLink="false">22632 at http://www.springsource.org</guid>
+</item>
+</channel>
+</rss>
