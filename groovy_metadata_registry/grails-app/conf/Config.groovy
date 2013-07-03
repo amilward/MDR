@@ -33,7 +33,7 @@ grails.mime.types = [
 //grails.urlmapping.cache.maxsize = 1000
 
 // What URL patterns should be processed by the resources plugin
-grails.resources.adhoc.patterns = ['/images/*', '/css/*', '/js/*', '/plugins/*']
+grails.resources.adhoc.patterns = ['/images/*', '/css/*','/js/*', '/plugins/*']
 
 // The default codec used to encode data with ${}
 grails.views.default.codec = "none" // none, html, base64
@@ -111,8 +111,20 @@ import grails.plugins.springsecurity.SecurityConfigType
 
 grails.plugins.springsecurity.securityConfigType = SecurityConfigType.InterceptUrlMap
 grails.plugins.springsecurity.interceptUrlMap = [
-	
+	'/':    ['IS_AUTHENTICATED_ANONYMOUSLY'],
+	'/index/*':    ['IS_AUTHENTICATED_ANONYMOUSLY'],
 	'/login/*':    ['IS_AUTHENTICATED_ANONYMOUSLY'],
+	'/home.html':    ['IS_AUTHENTICATED_ANONYMOUSLY'],
+	'/content.html':    ['IS_AUTHENTICATED_ANONYMOUSLY'],
+	'/data.html':    ['IS_AUTHENTICATED_ANONYMOUSLY'],
+	'/design.html':    ['IS_AUTHENTICATED_ANONYMOUSLY'],
+	'/mobile.html':    ['IS_AUTHENTICATED_ANONYMOUSLY'],
+	'/search.html':    ['IS_AUTHENTICATED_ANONYMOUSLY'],
+	'/services.html':    ['IS_AUTHENTICATED_ANONYMOUSLY'],
+	'/we_are.html':    ['IS_AUTHENTICATED_ANONYMOUSLY'],
+	'/we_do.html':    ['IS_AUTHENTICATED_ANONYMOUSLY'],
+	'/web.html':    ['IS_AUTHENTICATED_ANONYMOUSLY'],
+	'/weve_done.html':    ['IS_AUTHENTICATED_ANONYMOUSLY'],
 	'/**':         ["hasAnyRole('ROLE_USER', 'ROLE_ADMIN')", 'IS_AUTHENTICATED_FULLY'],
 	
 	/*'/DataElement/*':         ["hasAnyRole('ROLE_USER', 'ROLE_ADMIN')", 'IS_AUTHENTICATED_FULLY'],

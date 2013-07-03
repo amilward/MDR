@@ -103,12 +103,12 @@ class DocumentController {
 	
 	def download(Long id) {
 		def document = Document.get(id)
+		def docName  = document.name + "." + document.contentType
 		
 		//Whatever your content type is
-		response.setContentType("text/plain")
-		response.setHeader("Content-disposition", "filename=${Document.name}")
+		response.setContentType("application-xdownload")
+		response.setHeader("Content-disposition", "attachment;filename=${docName}")
 		response.outputStream << document.content
-		
 		return
 	}
 	
