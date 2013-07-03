@@ -1,0 +1,8 @@
+package uk.co.mdc
+
+class IndexController {
+
+    def index() { 
+		
+	}
+}

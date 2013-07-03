@@ -2,3 +2,13 @@
 1372756129980	Delete element
 1372775895479	Rename package 'co.uk.mdc'
 1372777982536	Delete element
+1372850938015	Copy file
+1372860582549	Rename resource 'index'
+1372860818780	Rename resource 'IndexController'
+1372863458416	Rename resource 'index.css'
+1372863462234	Move 1 resources to 'css'
+1372863471025	Delete element
+1372867269497	Rename resource 'normalize.css'
+1372869865887	Move 'contact.html' to 'web-app'
+1372869961547	Delete element
+1372871694313	Rename resource 'main.css'

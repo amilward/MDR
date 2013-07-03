@@ -13,11 +13,25 @@
 	<atom:link href="http://blog.springsource.org/feed/" rel="self" type="application/rss+xml" />
 	<link>http://blog.springsource.org</link>
 	<description>The voice of SpringSource</description>
-	<lastBuildDate>Fri, 14 Jun 2013 17:01:43 +0000</lastBuildDate>
+	<lastBuildDate>Tue, 02 Jul 2013 22:38:45 +0000</lastBuildDate>
 	<language>en</language>
 	<sy:updatePeriod>hourly</sy:updatePeriod>
 	<sy:updateFrequency>1</sy:updateFrequency>
 	<generator>http://wordpress.org/?v=3.1.1</generator>
+		<item>
+		<title>Spring Security Java Config Preview: Introduction</title>
+		<link>http://blog.springsource.org/2013/07/02/spring-security-java-config-preview-introduction/</link>
+		<comments>http://blog.springsource.org/2013/07/02/spring-security-java-config-preview-introduction/#comments</comments>
+		<pubDate>Tue, 02 Jul 2013 22:38:45 +0000</pubDate>
+		<dc:creator>rwinch</dc:creator>
+				<category><![CDATA[Security]]></category>
+		<category><![CDATA[Spring]]></category>
+
+		<guid isPermaLink="false">http://blog.springsource.org/?p=13625</guid>
+		<description><![CDATA[Yesterday I announced the release of Spring Security Java Configuration support and the release of Spring Security 3.2.0.M2 which contains Java Configuration support. Spring Security&#039;s Java Configuration support is intended to provide a complete replacement of the XML namespace configuration. It is also designed to be extensible, so that Spring Security&#039;s extension projects can work  <a href="http://blog.springsource.org/2013/07/02/spring-security-java-config-preview-introduction/"><em>Read more...</em></a>]]></description>
+		<wfw:commentRss>http://blog.springsource.org/2013/07/02/spring-security-java-config-preview-introduction/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
 		<item>
 		<title>Spring XD 1.0 Milestone 1 Released</title>
 		<link>http://blog.springsource.org/2013/06/12/spring-xd-1-0-milestone-1-released/</link>
@@ -113,7 +127,7 @@
 		<guid isPermaLink="false">http://blog.springsource.org/?p=13321</guid>
 		<description><![CDATA[We’re pleased to announce that, after a long period of internal incubation, we’re releasing a foundational framework for asynchronous applications on the JVM which we’re calling Reactor. It provides abstractions for Java, Groovy and other JVM languages to make building event and data-driven applications easier. It’s also really fast. On modest hardware, it&#039;s possible to  <a href="http://blog.springsource.org/2013/05/13/reactor-a-foundation-for-asynchronous-applications-on-the-jvm/"><em>Read more...</em></a>]]></description>
 		<wfw:commentRss>http://blog.springsource.org/2013/05/13/reactor-a-foundation-for-asynchronous-applications-on-the-jvm/feed/</wfw:commentRss>
-		<slash:comments>36</slash:comments>
+		<slash:comments>37</slash:comments>
 		</item>
 		<item>
 		<title>Content Negotiation using Spring MVC</title>
@@ -161,21 +175,6 @@
 		<description><![CDATA[Today we are officially kicking off a new initiative called Spring XD whose theme is &#034;tackling Big Data complexity&#034;1. The Spring Data team has been incredibly busy over the past few years, not only providing support for NoSQL datastores but also simplifying the development experience with Hadoop. With the creation of the Spring for Apache  <a href="http://blog.springsource.org/2013/04/23/introducing-spring-xd/"><em>Read more...</em></a>]]></description>
 		<wfw:commentRss>http://blog.springsource.org/2013/04/23/introducing-spring-xd/feed/</wfw:commentRss>
 		<slash:comments>9</slash:comments>
-		</item>
-		<item>
-		<title>Spring and Open Source at the Pivotal Initiative</title>
-		<link>http://blog.springsource.org/2013/04/03/spring-and-open-source-at-the-pivotal-initiative/</link>
-		<comments>http://blog.springsource.org/2013/04/03/spring-and-open-source-at-the-pivotal-initiative/#comments</comments>
-		<pubDate>Wed, 03 Apr 2013 16:34:09 +0000</pubDate>
-		<dc:creator>Adrian Colyer</dc:creator>
-				<category><![CDATA[Groovy/Grails]]></category>
-		<category><![CDATA[Open Source]]></category>
-		<category><![CDATA[Spring]]></category>
-
-		<guid isPermaLink="false">http://blog.springsource.org/?p=13076</guid>
-		<description><![CDATA[By now you’ve probably heard about Pivotal. I’d like to take a moment here to explain what this means for Spring, and to tell you about some of our plans for 2013. In case you missed it, here’s the essential background on Pivotal: Led by Paul Maritz, the initiative unites key people and projects from  <a href="http://blog.springsource.org/2013/04/03/spring-and-open-source-at-the-pivotal-initiative/"><em>Read more...</em></a>]]></description>
-		<wfw:commentRss>http://blog.springsource.org/2013/04/03/spring-and-open-source-at-the-pivotal-initiative/feed/</wfw:commentRss>
-		<slash:comments>4</slash:comments>
 		</item>
 	</channel>
 </rss>

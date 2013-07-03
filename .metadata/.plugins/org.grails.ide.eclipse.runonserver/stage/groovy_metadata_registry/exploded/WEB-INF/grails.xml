@@ -50,6 +50,7 @@
     <resource>UrlMappings</resource>
     <resource>LoginController</resource>
     <resource>LogoutController</resource>
+    <resource>uk.co.mdc.IndexController</resource>
     <resource>uk.co.mdc.model.ConceptualDomainController</resource>
     <resource>uk.co.mdc.model.DataElementController</resource>
     <resource>uk.co.mdc.model.DocumentController</resource>
@@ -63,6 +64,7 @@
     <resource>uk.co.mdc.SecAuth</resource>
     <resource>uk.co.mdc.SecUser</resource>
     <resource>uk.co.mdc.SecUserSecAuth</resource>
+    <resource>uk.co.mdc.LeapingMindTagLib</resource>
   </resources>
   <plugins>
     <plugin>HibernateGrailsPlugin</plugin>

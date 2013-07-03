@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="layout" content="main"/>
+		<title>Metadata Consulting Limited</title>
+		<lm:css />
+	</head>
+	<body>
+		
+		
+		<div id="wrapper">
+
+			<div id="home"></div>
+			<div id="content"></div>
+		</div>
+
+		<!---------------------------------- animated line frame ------------------------------------------->
+			<div id="horizontal1" class="lines"></div>
+			<div id="horizontal2" class="lines"></div>
+		<div id="vertical1" class="lines"></div>
+		<div id="vertical2" class="lines"></div>
+		
+		
+	</body>
+</html>
