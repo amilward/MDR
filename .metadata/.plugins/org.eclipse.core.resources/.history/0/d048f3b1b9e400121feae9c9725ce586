@@ -1,0 +1,66 @@
+package groovy_metadata_registry
+
+import java.io.IOException;
+
+import org.springframework.beans.factory.InitializingBean
+import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.context.ApplicationEventPublisherAware;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
+import org.springframework.security.core.Authentication
+import org.springframework.security.core.AuthenticationException
+import org.springframework.security.web.authentication.*
+ 
+import org.springframework.security.core.context.SecurityContextHolder
+import org.springframework.web.filter.GenericFilterBean
+ 
+import javax.servlet.FilterChain
+import javax.servlet.ServletException
+import javax.servlet.ServletRequest
+import javax.servlet.ServletResponse
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+
+class RESTAPIFilters extends GenericFilterBean implements ApplicationEventPublisherAware {
+
+    def filters = {
+        testREST(uri:'/api/**') {
+            before = {
+				
+				def token = new UsernamePasswordAuthenticationToken(params.j_username, params.j_password)
+				
+				println token
+
+            }
+            after = { Map model ->
+
+            }
+            afterView = { Exception e ->
+
+            }
+        }
+    }
+
+
+	@Override
+	public void doFilter(ServletRequest arg0, ServletResponse arg1,
+			FilterChain arg2) throws IOException, ServletException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setApplicationEventPublisher(ApplicationEventPublisher arg0) {
+		// TODO Auto-generated method stub
+		
+	}}
+
+
+
+
+
+
+
+
+
+

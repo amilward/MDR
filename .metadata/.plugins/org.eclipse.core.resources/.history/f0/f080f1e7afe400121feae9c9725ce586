@@ -1,0 +1,20 @@
+package groovy_metadata_registry
+
+class RESTAPIFilter {
+
+    def filters = {
+		testREST(uri:'/api/**') {
+			 before = {
+				 println 'test rest filter'
+			 }
+
+            after = { Map model ->
+
+            }
+            afterView = { Exception e ->
+
+            }
+		 }
+		
+    }
+

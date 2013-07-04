@@ -1,0 +1,55 @@
+<plugin name='jaxrs' version='0.8' grailsVersion='2.2 &gt; *'>
+  <author>Martin Krasser</author>
+  <authorEmail>krasserm@googlemail.com</authorEmail>
+  <title>JSR 311 plugin</title>
+  <description>
+A plugin that supports the development of RESTful web services based on the
+Java API for RESTful Web Services (JSR 311: JAX-RS). It is targeted at
+developers who want to structure the web service layer of an application in
+a JSR 311 compatible way but still want to continue to use Grails' powerful
+features such as GORM, automated XML and JSON marshalling, Grails services,
+Grails filters and so on. This plugin is an alternative to Grails' built-in
+mechanism for implementing  RESTful web services.
+
+At the moment, plugin users may choose between Jersey and Restlet as JAX-RS
+implementation. Both implementations are packaged with the plugin. Support for
+Restlet was added in version 0.2 of the plugin in order to support deployments
+on the Google App Engine. Other JAX-RS implementations such as RestEasy or
+Apache Wink are likely to be added in upcoming versions of the plugin.
+</description>
+  <documentation>https://github.com/krasserm/grails-jaxrs/wiki</documentation>
+  <type>JaxrsGrailsPlugin</type>
+  <resources>
+    <resource>JaxrsUrlMappings</resource>
+    <resource>org.grails.jaxrs.JaxrsController</resource>
+    <resource>my.pack.MyResourceResource</resource>
+  </resources>
+  <repositories>
+    <repository name='grailsCentral' url='http://grails.org/plugins' />
+    <repository name='mavenCentral' url='http://repo1.maven.org/maven2/' />
+    <repository name='http://maven.restlet.org' url='http://maven.restlet.org/' />
+  </repositories>
+  <dependencies>
+    <compile>
+      <dependency group='org.restlet.gae' name='org.restlet.ext.json' version='2.0.0' />
+      <dependency group='org.restlet.gae' name='org.restlet' version='2.0.0' />
+      <dependency group='com.sun.jersey' name='jersey-core' version='1.14' />
+      <dependency group='javax.ws.rs' name='jsr311-api' version='1.1.1' />
+      <dependency group='com.sun.jersey' name='jersey-json' version='1.14' />
+      <dependency group='org.restlet.gae' name='org.restlet.ext.servlet' version='2.0.0' />
+      <dependency group='com.sun.jersey.contribs' name='jersey-spring' version='1.14' />
+      <dependency group='com.sun.jersey' name='jersey-server' version='1.14' />
+      <dependency group='org.springframework' name='spring-test' version='3.1.2.RELEASE' />
+      <dependency group='com.sun.jersey' name='jersey-servlet' version='1.14' />
+      <dependency group='asm' name='asm' version='3.3' />
+      <dependency group='org.spockframework' name='spock-grails-support' version='0.7-groovy-2.0' />
+    </compile>
+  </dependencies>
+  <plugins>
+    <compile>
+      <plugin group='org.grails.plugins' name='spock' version='0.7' />
+    </compile>
+  </plugins>
+  <runtimePluginRequirements />
+  <behavior />
+</plugin>

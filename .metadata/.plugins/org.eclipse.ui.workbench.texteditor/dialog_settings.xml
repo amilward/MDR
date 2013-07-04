@@ -2,26 +2,31 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
 		<item value="257" key="DIALOG_WIDTH"/>
-		<item value="274" key="DIALOG_Y_ORIGIN"/>
+		<item value="352" key="DIALOG_Y_ORIGIN"/>
+		<item value="934" key="DIALOG_X_ORIGIN"/>
 		<item value="381" key="DIALOG_HEIGHT"/>
-		<item value="840" key="DIALOG_X_ORIGIN"/>
 		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="true" key="wrap"/>
-		<item value="false" key="isRegEx"/>
 		<item value="false" key="casesensitive"/>
+		<item value="false" key="isRegEx"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="Auth" key="selection"/>
+		<item value="footer" key="selection"/>
 		<list key="findhistory">
-			<item value="role"/>
-			<item value="download"/>
-			<item value="environment"/>
-			<item value="link"/>
-			<item value="plugin"/>
+			<item value="footer"/>
+			<item value="header"/>
+			<item value="contact"/>
+			<item value="data"/>
+			<item value="case &apos;data&apos;:"/>
+			<item value="&quot;data"/>
+			<item value="max-width"/>
+			<item value="width"/>
 		</list>
 		<list key="replacehistory">
+			<item value=""/>
+			<item value="/static/inc/"/>
 			<item value="Auth"/>
 		</list>
 	</section>

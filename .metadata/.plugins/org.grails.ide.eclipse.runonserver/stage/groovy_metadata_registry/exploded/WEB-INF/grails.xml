@@ -1,5 +1,6 @@
 <grails>
   <resources>
+    <resource>org.grails.jaxrs.JaxrsController</resource>
     <resource>DefaultWebXmlConfig</resource>
     <resource>grails.plugins.springsecurity.ui.SpringSecurityUiService</resource>
     <resource>org.grails.plugin.resource.BundleResourceMapper</resource>
@@ -16,29 +17,31 @@
     <resource>grails.plugin.databasemigration.DbdocController</resource>
     <resource>org.grails.plugin.resource.CSSRewriterResourceMapper</resource>
     <resource>JqueryUiPluginResources</resource>
-    <resource>DefaultUiSecurityConfig</resource>
     <resource>grails.plugins.springsecurity.ui.AclObjectIdentityController</resource>
+    <resource>DefaultUiSecurityConfig</resource>
     <resource>grails.plugins.springsecurity.ui.AclEntryController</resource>
     <resource>DbdocUrlMappings</resource>
-    <resource>grails.plugins.springsecurity.SecurityTagLib</resource>
     <resource>JQueryTagLib</resource>
+    <resource>grails.plugins.springsecurity.SecurityTagLib</resource>
     <resource>org.codehaus.groovy.grails.plugins.springsecurity.ui.RegistrationCode</resource>
     <resource>grails.plugins.springsecurity.ui.AbstractS2UiController</resource>
     <resource>grails.plugins.springsecurity.ui.AclSidController</resource>
     <resource>grails.plugins.springsecurity.ui.PersistentLoginController</resource>
+    <resource>my.pack.MyResourceResource</resource>
     <resource>grails.plugins.springsecurity.ui.RequestmapController</resource>
     <resource>grails.plugins.springsecurity.ui.RegistrationCodeController</resource>
-    <resource>grails.plugin.mail.MailService</resource>
     <resource>DefaultCacheConfig</resource>
+    <resource>grails.plugin.mail.MailService</resource>
     <resource>grails.plugins.springsecurity.ui.UserController</resource>
-    <resource>DefaultSecurityConfig</resource>
     <resource>ResourcesBootStrap</resource>
+    <resource>DefaultSecurityConfig</resource>
     <resource>com.burtbeckwith.grails.plugin.famfamfam.FamfamfamTagLib</resource>
-    <resource>grails.plugins.springsecurity.SpringSecurityService</resource>
     <resource>grails.plugins.springsecurity.ui.RegisterController</resource>
     <resource>org.grails.plugin.resource.CSSPreprocessorResourceMapper</resource>
     <resource>JQueryConfig</resource>
+    <resource>grails.plugins.springsecurity.SpringSecurityService</resource>
     <resource>grails.plugin.mail.PlainTextMailTagLib</resource>
+    <resource>JaxrsUrlMappings</resource>
     <resource>JQueryResourceTagLib</resource>
     <resource>org.grails.plugin.resource.ResourceTagLib</resource>
     <resource>ApplicationResources</resource>
@@ -46,6 +49,8 @@
     <resource>BuildConfig</resource>
     <resource>Config</resource>
     <resource>DataSource</resource>
+    <resource>groovy_metadata_registry.APIAuthenticationFilters</resource>
+    <resource>groovy_metadata_registry.RESTAPIFilters</resource>
     <resource>resources</resource>
     <resource>UrlMappings</resource>
     <resource>LoginController</resource>
@@ -64,14 +69,25 @@
     <resource>uk.co.mdc.SecAuth</resource>
     <resource>uk.co.mdc.SecUser</resource>
     <resource>uk.co.mdc.SecUserSecAuth</resource>
+    <resource>uk.co.mdc.model.ConceptualDomainCollectionResource</resource>
+    <resource>uk.co.mdc.model.ConceptualDomainResource</resource>
+    <resource>uk.co.mdc.model.DataElementCollectionResource</resource>
+    <resource>uk.co.mdc.model.DataElementResource</resource>
+    <resource>uk.co.mdc.model.ValueDomainCollectionResource</resource>
+    <resource>uk.co.mdc.model.ValueDomainResource</resource>
+    <resource>uk.co.mdc.model.ConceptualDomainResourceService</resource>
+    <resource>uk.co.mdc.model.DataElementResourceService</resource>
+    <resource>uk.co.mdc.model.ValueDomainResourceService</resource>
     <resource>uk.co.mdc.LeapingMindTagLib</resource>
   </resources>
   <plugins>
+    <plugin>JaxrsGrailsPlugin</plugin>
     <plugin>HibernateGrailsPlugin</plugin>
     <plugin>SpringSecurityCoreGrailsPlugin</plugin>
     <plugin>MailGrailsPlugin</plugin>
     <plugin>WebxmlGrailsPlugin</plugin>
     <plugin>FamfamfamGrailsPlugin</plugin>
+    <plugin>SpockGrailsPlugin</plugin>
     <plugin>SpringSecurityUiGrailsPlugin</plugin>
     <plugin>JqueryUiGrailsPlugin</plugin>
     <plugin>CacheGrailsPlugin</plugin>

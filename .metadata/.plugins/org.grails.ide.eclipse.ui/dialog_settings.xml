@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
+	<item value="1" key="org.grails.ide.eclipse.ui.dialogsettings.sortColumn"/>
+	<item value="140" key="org.grails.ide.eclipse.ui.dialogsettings.columnWidth0"/>
+	<item value="280" key="org.grails.ide.eclipse.ui.dialogsettings.columnWidth1"/>
 	<section name="org.grails.ide.eclipse.ui.internal.inplace.GrailsInplaceDialog">
 		<item value="435" key="size.width"/>
 		<item value="79" key="size.height"/>

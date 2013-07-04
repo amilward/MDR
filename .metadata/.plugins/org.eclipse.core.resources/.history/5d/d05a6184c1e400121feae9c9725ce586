@@ -1,0 +1,18 @@
+package groovy_metadata_registry
+
+class APIAuthenticationFilters {
+
+    def filters = {
+        all(controller:'*', action:'*') {
+            before = {
+
+            }
+            after = { Map model ->
+
+            }
+            afterView = { Exception e ->
+
+            }
+        }
+    }
+}

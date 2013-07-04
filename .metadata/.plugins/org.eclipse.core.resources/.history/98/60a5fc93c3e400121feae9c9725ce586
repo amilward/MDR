@@ -1,0 +1,30 @@
+package groovy_metadata_registry
+
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
+import org.springframework.security.core.Authentication
+
+class RESTAPIFilters {
+
+    def filters = {
+        testREST(uri:'/api/**') {
+            before = {
+				
+				Authentication auth
+				UsernamePasswordAuthenticationToken upat
+				
+				
+				
+				def token = new UsernamePasswordAuthenticationToken(params.j_username, params.j_password)
+				
+				println token
+
+            }
+            after = { Map model ->
+
+            }
+            afterView = { Exception e ->
+
+            }
+        }
+    }
+}

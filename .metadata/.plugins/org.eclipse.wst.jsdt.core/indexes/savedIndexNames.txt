@@ -1,5 +1,1 @@
 INDEX VERSION 1.122+C:\repositories\groovy_metadata_registry\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
-78130789.index
-3981152540.index
-315651437.index
-3626458353.index

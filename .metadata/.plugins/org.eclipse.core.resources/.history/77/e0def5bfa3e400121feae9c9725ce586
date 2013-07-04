@@ -1,0 +1,16 @@
+
+class RESTFilter {
+
+	def filters = {
+		
+	testUris(uri:'/api/test/**') {
+		before = {
+			println "testing rest filter"
+		}
+		after = {
+			// do some postprocessing
+		}
+		
+	}
+	}
+}

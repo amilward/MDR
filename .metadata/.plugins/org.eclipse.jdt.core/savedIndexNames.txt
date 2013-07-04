@@ -1,15 +1,18 @@
 INDEX VERSION 1.126+C:\repositories\groovy_metadata_registry\.metadata\.plugins\org.eclipse.jdt.core
 3925590549.index
 3495914088.index
+2569255795.index
 1365351851.index
 1586046676.index
 3216265067.index
 562765608.index
 3053969749.index
 3840130266.index
+1822546274.index
 3695389830.index
 1171319636.index
 994082489.index
+3779442617.index
 1911004437.index
 358089929.index
 2702761857.index
@@ -23,6 +26,7 @@ INDEX VERSION 1.126+C:\repositories\groovy_metadata_registry\.metadata\.plugins\
 2709864665.index
 550336554.index
 969227147.index
+554242672.index
 182961421.index
 2744265276.index
 2545746952.index
@@ -33,6 +37,7 @@ INDEX VERSION 1.126+C:\repositories\groovy_metadata_registry\.metadata\.plugins\
 3966615320.index
 301609773.index
 3969378465.index
+501620572.index
 2438627572.index
 3415270317.index
 2832076072.index
@@ -66,8 +71,8 @@ INDEX VERSION 1.126+C:\repositories\groovy_metadata_registry\.metadata\.plugins\
 4208100198.index
 1449378813.index
 4055110044.index
+2807718752.index
 4125240983.index
-3717869568.index
 3330823858.index
 2577472012.index
 3716374434.index
@@ -79,6 +84,7 @@ INDEX VERSION 1.126+C:\repositories\groovy_metadata_registry\.metadata\.plugins\
 332383186.index
 169653029.index
 1690891076.index
+1384346977.index
 2158816573.index
 1134716291.index
 809060854.index
@@ -95,13 +101,17 @@ INDEX VERSION 1.126+C:\repositories\groovy_metadata_registry\.metadata\.plugins\
 76362584.index
 2298747481.index
 2073803000.index
+3696333954.index
 1098992269.index
 2296735870.index
+2253138859.index
 4075399035.index
 2144200358.index
 1215496299.index
 2877569409.index
+2142980416.index
 2036493481.index
+1494764815.index
 1056798735.index
 1800337809.index
 2170463833.index
@@ -112,6 +122,7 @@ INDEX VERSION 1.126+C:\repositories\groovy_metadata_registry\.metadata\.plugins\
 2908997776.index
 1609474657.index
 308179550.index
+3920130928.index
 301394235.index
 4257325822.index
 2711671814.index
@@ -120,6 +131,9 @@ INDEX VERSION 1.126+C:\repositories\groovy_metadata_registry\.metadata\.plugins\
 964803157.index
 3093738864.index
 3517697344.index
+2800085115.index
+122095772.index
+348863219.index
 1269967441.index
 2461695259.index
 1259139480.index

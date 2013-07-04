@@ -1,0 +1,11 @@
+// Place your Spring DSL code here
+import groovy_metadata_registry.APIAuthenticationFilters
+
+beans = { 
+    apiAuthFilter(APIAuthenticationFilters) {
+        authenticationManager = ref("authenticationManager")
+        rememberMeServices = ref("rememberMeServices")
+        springSecurityService = ref("springSecurityService")
+    }
+}
+
