@@ -13,11 +13,39 @@
 	<atom:link href="http://blog.springsource.org/feed/" rel="self" type="application/rss+xml" />
 	<link>http://blog.springsource.org</link>
 	<description>The voice of SpringSource</description>
-	<lastBuildDate>Wed, 03 Jul 2013 15:02:44 +0000</lastBuildDate>
+	<lastBuildDate>Fri, 05 Jul 2013 15:09:19 +0000</lastBuildDate>
 	<language>en</language>
 	<sy:updatePeriod>hourly</sy:updatePeriod>
 	<sy:updateFrequency>1</sy:updateFrequency>
 	<generator>http://wordpress.org/?v=3.1.1</generator>
+		<item>
+		<title>Spring Security Java Config Preview: OAuth</title>
+		<link>http://blog.springsource.org/2013/07/05/spring-security-java-config-preview-oauth/</link>
+		<comments>http://blog.springsource.org/2013/07/05/spring-security-java-config-preview-oauth/#comments</comments>
+		<pubDate>Fri, 05 Jul 2013 13:13:04 +0000</pubDate>
+		<dc:creator>Rob Winch</dc:creator>
+				<category><![CDATA[Security]]></category>
+		<category><![CDATA[Spring]]></category>
+
+		<guid isPermaLink="false">http://blog.springsource.org/?p=13856</guid>
+		<description><![CDATA[This is the last post in my four part blog series that introduces Spring Security Java configuration. In this post, we will discuss how Spring Security Java configuration can be extended by walking through Spring Security OAuth Java configuration support. Proof of Concept While the Spring Security Java configuration works well for very basic configuration,  <a href="http://blog.springsource.org/2013/07/05/spring-security-java-config-preview-oauth/"><em>Read more...</em></a>]]></description>
+		<wfw:commentRss>http://blog.springsource.org/2013/07/05/spring-security-java-config-preview-oauth/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Spring Security Java Config Preview: Method Security</title>
+		<link>http://blog.springsource.org/2013/07/04/spring-security-java-config-preview-method-security/</link>
+		<comments>http://blog.springsource.org/2013/07/04/spring-security-java-config-preview-method-security/#comments</comments>
+		<pubDate>Thu, 04 Jul 2013 08:00:22 +0000</pubDate>
+		<dc:creator>Rob Winch</dc:creator>
+				<category><![CDATA[Security]]></category>
+		<category><![CDATA[Spring]]></category>
+
+		<guid isPermaLink="false">http://blog.springsource.org/?p=13848</guid>
+		<description><![CDATA[This is the third installment of a four part blog series. In my first post, I introduced Spring Security Java configuration and discussed some of the logistics of the project. In my previous post, we walked through a few examples of configuring web based security. In this post, I will discuss how to configure method  <a href="http://blog.springsource.org/2013/07/04/spring-security-java-config-preview-method-security/"><em>Read more...</em></a>]]></description>
+		<wfw:commentRss>http://blog.springsource.org/2013/07/04/spring-security-java-config-preview-method-security/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
 		<item>
 		<title>Spring Security Java Config Preview: Web Security</title>
 		<link>http://blog.springsource.org/2013/07/03/spring-security-java-config-preview-web-security/</link>
@@ -29,7 +57,7 @@
 		<guid isPermaLink="false">http://blog.springsource.org/?p=13769</guid>
 		<description><![CDATA[In my previous post, I introduced Spring Security Java configuration and discussed some of the logistics of the project. In this post, we will start off by walking through a very simple web security configuration. We will then spice things up a bit with configuration that has been customized some. Hello Web Security In this  <a href="http://blog.springsource.org/2013/07/03/spring-security-java-config-preview-web-security/"><em>Read more...</em></a>]]></description>
 		<wfw:commentRss>http://blog.springsource.org/2013/07/03/spring-security-java-config-preview-web-security/feed/</wfw:commentRss>
-		<slash:comments>1</slash:comments>
+		<slash:comments>2</slash:comments>
 		</item>
 		<item>
 		<title>Spring Security Java Config Preview: Introduction</title>
@@ -43,7 +71,7 @@
 		<guid isPermaLink="false">http://blog.springsource.org/?p=13625</guid>
 		<description><![CDATA[Yesterday I announced the release of Spring Security Java Configuration support and the release of Spring Security 3.2.0.M2 which contains Java Configuration support. Spring Security&#039;s Java Configuration support is intended to provide a complete replacement of the XML namespace configuration. It is also designed to be extensible, so that Spring Security&#039;s extension projects can work  <a href="http://blog.springsource.org/2013/07/02/spring-security-java-config-preview-introduction/"><em>Read more...</em></a>]]></description>
 		<wfw:commentRss>http://blog.springsource.org/2013/07/02/spring-security-java-config-preview-introduction/feed/</wfw:commentRss>
-		<slash:comments>1</slash:comments>
+		<slash:comments>2</slash:comments>
 		</item>
 		<item>
 		<title>Spring XD 1.0 Milestone 1 Released</title>
@@ -108,7 +136,7 @@
 		<guid isPermaLink="false">http://blog.springsource.org/?p=13431</guid>
 		<description><![CDATA[As you may have seen, the first milestone of Spring Framework 4.0 was already announced and with it we&#039;ve released early WebSocket support. Why WebSocket matters? It enables efficient, two-way communication over the web that is essential in applications where messages need to be exchanged between client (typically browser) and server at high frequency and  <a href="http://blog.springsource.org/2013/05/22/spring-framework-4-0-m1-websocket-support/"><em>Read more...</em></a>]]></description>
 		<wfw:commentRss>http://blog.springsource.org/2013/05/22/spring-framework-4-0-m1-websocket-support/feed/</wfw:commentRss>
-		<slash:comments>23</slash:comments>
+		<slash:comments>25</slash:comments>
 		</item>
 		<item>
 		<title>Spring Framework 4.0 M1 &amp; 3.2.3 available</title>
@@ -141,34 +169,6 @@
 		<description><![CDATA[We’re pleased to announce that, after a long period of internal incubation, we’re releasing a foundational framework for asynchronous applications on the JVM which we’re calling Reactor. It provides abstractions for Java, Groovy and other JVM languages to make building event and data-driven applications easier. It’s also really fast. On modest hardware, it&#039;s possible to  <a href="http://blog.springsource.org/2013/05/13/reactor-a-foundation-for-asynchronous-applications-on-the-jvm/"><em>Read more...</em></a>]]></description>
 		<wfw:commentRss>http://blog.springsource.org/2013/05/13/reactor-a-foundation-for-asynchronous-applications-on-the-jvm/feed/</wfw:commentRss>
 		<slash:comments>38</slash:comments>
-		</item>
-		<item>
-		<title>Content Negotiation using Spring MVC</title>
-		<link>http://blog.springsource.org/2013/05/11/content-negotiation-using-spring-mvc/</link>
-		<comments>http://blog.springsource.org/2013/05/11/content-negotiation-using-spring-mvc/#comments</comments>
-		<pubDate>Sat, 11 May 2013 12:54:44 +0000</pubDate>
-		<dc:creator>Paul Chapman</dc:creator>
-				<category><![CDATA[Spring]]></category>
-		<category><![CDATA[Web]]></category>
-
-		<guid isPermaLink="false">http://blog.springsource.org/?p=13194</guid>
-		<description><![CDATA[There are two ways to generate output using Spring MVC: You can use the RESTful @ResponseBody approach and HTTP message converters, typically to return data-formats like JSON or XML. Programmatic clients, mobile apps and AJAX enabled browsers are the usual clients. Alternatively you may use view resolution. Although views are perfectly capable of generating JSON  <a href="http://blog.springsource.org/2013/05/11/content-negotiation-using-spring-mvc/"><em>Read more...</em></a>]]></description>
-		<wfw:commentRss>http://blog.springsource.org/2013/05/11/content-negotiation-using-spring-mvc/feed/</wfw:commentRss>
-		<slash:comments>21</slash:comments>
-		</item>
-		<item>
-		<title>Spring Data Arora SR1 released</title>
-		<link>http://blog.springsource.org/2013/04/25/spring-data-arora-sr1-released/</link>
-		<comments>http://blog.springsource.org/2013/04/25/spring-data-arora-sr1-released/#comments</comments>
-		<pubDate>Thu, 25 Apr 2013 07:48:57 +0000</pubDate>
-		<dc:creator>Oliver Gierke</dc:creator>
-				<category><![CDATA[Spring]]></category>
-		<category><![CDATA[Spring Data]]></category>
-
-		<guid isPermaLink="false">http://blog.springsource.org/?p=13138</guid>
-		<description><![CDATA[I am pleased to announce the first service release for the Spring Data Arora release. It includes the following modules: Spring Data Commons 1.5.1 &#8211; Changelog Spring Data JPA 1.3.1 &#8211; Changelog Spring Data MongoDB 1.2.1 &#8211; Changelog Spring Data Neo4j 2.2.1 &#8211; Changelog Spring Data Redis 1.0.4 &#8211; Changelog Spring Data Gemfire 1.3.1 &#8211;  <a href="http://blog.springsource.org/2013/04/25/spring-data-arora-sr1-released/"><em>Read more...</em></a>]]></description>
-		<wfw:commentRss>http://blog.springsource.org/2013/04/25/spring-data-arora-sr1-released/feed/</wfw:commentRss>
-		<slash:comments>2</slash:comments>
 		</item>
 	</channel>
 </rss>

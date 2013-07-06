@@ -9001,3 +9001,1569 @@ See menu Windows >> Preferences >> Grails >> Launch
 !SUBENTRY 2 org.grails.ide.eclipse.core 4 0 2013-07-04 18:23:22.763
 !MESSAGE ------System.err:-----------
 
+!SESSION 2013-07-06 17:10:01.616 -----------------------------------------------
+eclipse.buildId=3.2.0.201303060821-RELEASE-e38
+java.version=1.7.0_17
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_GB
+Framework arguments:  -product org.springsource.ggts.ide
+Command-line arguments:  -data C:\Users\Adam Milward\git\groovy_metadata -os win32 -ws win32 -arch x86_64 -product org.springsource.ggts.ide
+
+!ENTRY org.eclipse.core.resources 2 10035 2013-07-06 17:10:11.335
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY org.grails.ide.eclipse.core 4 0 2013-07-06 17:11:34.821
+!MESSAGE A problem occurred building the war file for P/groovy_metadata_registry
+!STACK 1
+org.eclipse.core.runtime.CoreException: Command terminated with an error code (see details for output)
+	at org.grails.ide.eclipse.core.launch.SynchLaunch$LaunchResult.getCoreException(SynchLaunch.java:168)
+	at org.grails.ide.eclipse.longrunning.LongRunningProcessGrailsExecutor.synchExec(LongRunningProcessGrailsExecutor.java:106)
+	at org.grails.ide.eclipse.commands.GrailsCommand.synchExec(GrailsCommand.java:169)
+	at org.grails.ide.eclipse.runonserver.GrailsAppModuleDelegate.cacheWarFile(GrailsAppModuleDelegate.java:476)
+	at org.grails.ide.eclipse.runonserver.GrailsAppModuleDelegate.cacheMembers(GrailsAppModuleDelegate.java:263)
+	at org.grails.ide.eclipse.runonserver.GrailsAppModuleDelegate.members(GrailsAppModuleDelegate.java:128)
+	at org.eclipse.wst.server.core.internal.ModulePublishInfo.hasDelta(ModulePublishInfo.java:415)
+	at org.eclipse.wst.server.core.internal.ServerPublishInfo.hasDelta(ServerPublishInfo.java:440)
+	at org.eclipse.wst.server.core.internal.Server.hasPublishedResourceDelta(Server.java:1586)
+	at org.eclipse.wst.server.core.internal.Server$ResourceChangeJob$1.visit(Server.java:217)
+	at org.eclipse.wst.server.core.internal.Server.visitModule(Server.java:3036)
+	at org.eclipse.wst.server.core.internal.Server.visit(Server.java:3020)
+	at org.eclipse.wst.server.core.internal.Server$ResourceChangeJob.run(Server.java:228)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+Contains: ------System.out:-----------
+ Loading Grails 2.2.1
+| Configuring classpath.
+| Environment set to development.....
+| Packaging Grails application..
+| Compiling 1 source files..
+| Compiling 1 source files.....
+| Compiling 32 GSP files for package [groovy_metadata_registry]..
+| Compiling 4 GSP files for package [mail].
+| Compiling 41 GSP files for package [springSecurityUi].
+| Compiling 4 GSP files for package [databaseMigration]..
+| Building WAR file.....
+Contains: ------System.err:-----------
+
+!SUBENTRY 1 org.grails.ide.eclipse.core 4 4 2013-07-06 17:11:34.823
+!MESSAGE Command terminated with an error code (see details for output)
+!SUBENTRY 2 org.grails.ide.eclipse.core 4 0 2013-07-06 17:11:34.823
+!MESSAGE ------System.out:-----------
+ Loading Grails 2.2.1
+| Configuring classpath.
+| Environment set to development.....
+| Packaging Grails application..
+| Compiling 1 source files..
+| Compiling 1 source files.....
+| Compiling 32 GSP files for package [groovy_metadata_registry]..
+| Compiling 4 GSP files for package [mail].
+| Compiling 41 GSP files for package [springSecurityUi].
+| Compiling 4 GSP files for package [databaseMigration]..
+| Building WAR file.....
+!SUBENTRY 2 org.grails.ide.eclipse.core 4 0 2013-07-06 17:11:34.823
+!MESSAGE ------System.err:-----------
+
+
+!ENTRY org.eclipse.egit.ui 2 0 2013-07-06 17:12:09.414
+!MESSAGE Warning: EGit couldn't detect the installation path "gitPrefix" of native Git. Hence EGit can't respect system level
+Git settings which might be configured in ${gitPrefix}/etc/gitconfig under the native Git installation directory.
+The most important of these settings is core.autocrlf. Git for Windows by default sets this parameter to true in
+this system level configuration. The Git installation location can be configured on the
+Team > Git > Configuration preference page's 'System Settings' tab.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.egit.ui 2 0 2013-07-06 17:12:09.415
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Adam Milward'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.grails.ide.eclipse.core 4 0 2013-07-06 17:12:31.268
+!MESSAGE A problem occurred building the war file for P/groovy_metadata_registry
+!STACK 1
+org.eclipse.core.runtime.CoreException: Command terminated with an error code (see details for output)
+	at org.grails.ide.eclipse.core.launch.SynchLaunch$LaunchResult.getCoreException(SynchLaunch.java:168)
+	at org.grails.ide.eclipse.longrunning.LongRunningProcessGrailsExecutor.synchExec(LongRunningProcessGrailsExecutor.java:106)
+	at org.grails.ide.eclipse.commands.GrailsCommand.synchExec(GrailsCommand.java:169)
+	at org.grails.ide.eclipse.runonserver.GrailsAppModuleDelegate.cacheWarFile(GrailsAppModuleDelegate.java:476)
+	at org.grails.ide.eclipse.runonserver.GrailsAppModuleDelegate.cacheMembers(GrailsAppModuleDelegate.java:263)
+	at org.grails.ide.eclipse.runonserver.GrailsAppModuleDelegate.members(GrailsAppModuleDelegate.java:128)
+	at org.eclipse.wst.server.core.internal.ModulePublishInfo.hasDelta(ModulePublishInfo.java:415)
+	at org.eclipse.wst.server.core.internal.ServerPublishInfo.hasDelta(ServerPublishInfo.java:440)
+	at org.eclipse.wst.server.core.internal.Server.hasPublishedResourceDelta(Server.java:1586)
+	at org.eclipse.wst.server.core.internal.Server$ResourceChangeJob$1.visit(Server.java:217)
+	at org.eclipse.wst.server.core.internal.Server.visitModule(Server.java:3036)
+	at org.eclipse.wst.server.core.internal.Server.visit(Server.java:3020)
+	at org.eclipse.wst.server.core.internal.Server$ResourceChangeJob.run(Server.java:228)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+Contains: ------System.out:-----------
+ Loading Grails 2.2.1
+| Environment set to development.....
+| Packaging Grails application..
+| Compiling 1 source files..
+| Compiling 1 source files.....
+| Compiling 32 GSP files for package [groovy_metadata_registry]..
+| Compiling 4 GSP files for package [mail].
+| Compiling 41 GSP files for package [springSecurityUi].
+| Compiling 4 GSP files for package [databaseMigration]..
+| Building WAR file.....
+Contains: ------System.err:-----------
+
+!SUBENTRY 1 org.grails.ide.eclipse.core 4 4 2013-07-06 17:12:31.269
+!MESSAGE Command terminated with an error code (see details for output)
+!SUBENTRY 2 org.grails.ide.eclipse.core 4 0 2013-07-06 17:12:31.269
+!MESSAGE ------System.out:-----------
+ Loading Grails 2.2.1
+| Environment set to development.....
+| Packaging Grails application..
+| Compiling 1 source files..
+| Compiling 1 source files.....
+| Compiling 32 GSP files for package [groovy_metadata_registry]..
+| Compiling 4 GSP files for package [mail].
+| Compiling 41 GSP files for package [springSecurityUi].
+| Compiling 4 GSP files for package [databaseMigration]..
+| Building WAR file.....
+!SUBENTRY 2 org.grails.ide.eclipse.core 4 0 2013-07-06 17:12:31.269
+!MESSAGE ------System.err:-----------
+
+
+!ENTRY org.grails.ide.eclipse.core 4 0 2013-07-06 17:29:18.287
+!MESSAGE A problem occurred building the war file for P/groovy_metadata_registry
+!STACK 1
+org.eclipse.core.runtime.CoreException: Command terminated with an error code (see details for output)
+	at org.grails.ide.eclipse.core.launch.SynchLaunch$LaunchResult.getCoreException(SynchLaunch.java:168)
+	at org.grails.ide.eclipse.longrunning.LongRunningProcessGrailsExecutor.synchExec(LongRunningProcessGrailsExecutor.java:106)
+	at org.grails.ide.eclipse.commands.GrailsCommand.synchExec(GrailsCommand.java:169)
+	at org.grails.ide.eclipse.runonserver.GrailsAppModuleDelegate.cacheWarFile(GrailsAppModuleDelegate.java:476)
+	at org.grails.ide.eclipse.runonserver.GrailsAppModuleDelegate.cacheMembers(GrailsAppModuleDelegate.java:263)
+	at org.grails.ide.eclipse.runonserver.GrailsAppModuleDelegate.members(GrailsAppModuleDelegate.java:128)
+	at org.eclipse.wst.server.core.internal.ModulePublishInfo.fillCache(ModulePublishInfo.java:294)
+	at org.eclipse.wst.server.core.internal.ModulePublishInfo.getDelta(ModulePublishInfo.java:376)
+	at org.eclipse.wst.server.core.internal.ServerPublishInfo.getDelta(ServerPublishInfo.java:366)
+	at org.eclipse.wst.server.core.internal.Server.getPublishedResourceDelta(Server.java:1574)
+	at org.eclipse.wst.server.core.model.ServerBehaviourDelegate.getPublishedResourceDelta(ServerBehaviourDelegate.java:698)
+	at org.eclipse.jst.server.tomcat.core.internal.TomcatServerBehaviour.getPublishedResourceDelta(TomcatServerBehaviour.java:958)
+	at com.vmware.vfabric.ide.eclipse.tcserver.internal.core.TcServerBehaviour.getPublishedResourceDelta(TcServerBehaviour.java:170)
+	at org.eclipse.wst.server.core.model.ServerBehaviourDelegate.computeDelta(ServerBehaviourDelegate.java:874)
+	at org.eclipse.wst.server.core.model.ServerBehaviourDelegate.publish(ServerBehaviourDelegate.java:909)
+	at org.eclipse.wst.server.core.model.ServerBehaviourDelegate.publish(ServerBehaviourDelegate.java:774)
+	at org.eclipse.wst.server.core.internal.Server.publishImpl(Server.java:3153)
+	at org.eclipse.wst.server.core.internal.Server$PublishJob.run(Server.java:345)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+Contains: ------System.out:-----------
+ Loading Grails 2.2.1
+| Environment set to development.....
+| Packaging Grails application..
+| Compiling 1 source files..
+| Compiling 1 source files.....
+| Compiling 32 GSP files for package [groovy_metadata_registry]..
+| Compiling 4 GSP files for package [mail].
+| Compiling 41 GSP files for package [springSecurityUi].
+| Compiling 4 GSP files for package [databaseMigration]..
+| Building WAR file.....
+| Error : Unable to delete directory C:\Users\Adam Milward\.grails\2.2.1\projects\groovy_metadata_registry\stage\WEB-INF\classes\org\grails\plugin\resources\artefacts
+| Error 	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+| Error 	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+| Error 	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+| Error 	at java.lang.reflect.Constructor.newInstance(Constructor.java:525)
+| Error 	at org.codehaus.groovy.reflection.CachedConstructor.invoke(CachedConstructor.java:77)
+| Error 	at org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrapNoCoerce.callConstructor(ConstructorSite.java:102)
+| Error 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:194)
+| Error 	at gant.Gant$_dispatch_closure5.doCall(Gant.groovy:391)
+| Error 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+| Error 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+| Error 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+| Error 	at java.lang.reflect.Method.invoke(Method.java:601)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite$PogoCachedMethodSiteNoUnwrapNoCoerce.invoke(PogoMetaMethodSite.java:272)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite.call(PogoMetaMethodSite.java:64)
+| Error 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:116)
+| Error 	at gant.Gant$_dispatch_closure7.doCall(Gant.groovy:415)
+| Error 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+| Error 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+| Error 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+| Error 	at java.lang.reflect.Method.invoke(Method.java:601)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite$PogoCachedMethodSite.invoke(PogoMetaMethodSite.java:231)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite.callCurrent(PogoMetaMethodSite.java:52)
+| Error 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:141)
+| Error 	at gant.Gant$_dispatch_closure7.doCall(Gant.groovy)
+| Error 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+| Error 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+| Error 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+| Error 	at java.lang.reflect.Method.invoke(Method.java:601)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite$PogoCachedMethodSiteNoUnwrapNoCoerce.invoke(PogoMetaMethodSite.java:272)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite.call(PogoMetaMethodSite.java:64)
+| Error 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:112)
+| Error 	at gant.Gant.withBuildListeners(Gant.groovy:427)
+| Error 	at gant.Gant.this$2$withBuildListeners(Gant.groovy)
+| Error 	at gant.Gant$this$2$withBuildListeners.callCurrent(Unknown Source)
+| Error 	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallCurrent(CallSiteArray.java:49)
+| Error 	at gant.Gant$this$2$withBuildListeners.callCurrent(Unknown Source)
+| Error 	at gant.Gant.dispatch(Gant.groovy:415)
+| Error 	at gant.Gant.this$2$dispatch(Gant.groovy)
+| Error 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+| Error 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+| Error 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+| Error 	at java.lang.reflect.Method.invoke(Method.java:601)
+| Error 	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:90)
+| Error 	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1082)
+| Error 	at groovy.lang.ExpandoMetaClass.invokeMethod(ExpandoMetaClass.java:1106)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:906)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:729)
+| Error 	at gant.Gant.invokeMethod(Gant.groovy)
+| Error 	at groovy.lang.GroovyObject$invokeMethod.callCurrent(Unknown Source)
+| Error 	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallCurrent(CallSiteArray.java:49)
+| Error 	at groovy.lang.GroovyObject$invokeMethod.callCurrent(Unknown Source)
+| Error 	at gant.Gant.executeTargets(Gant.groovy:591)
+| Error 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+| Error 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+| Error 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+| Error 	at java.lang.reflect.Method.invoke(Method.java:601)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite$PogoCachedMethodSite.invoke(PogoMetaMethodSite.java:231)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite.callCurrent(PogoMetaMethodSite.java:52)
+| Error 	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallCurrent(CallSiteArray.java:49)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite.callCurrent(PogoMetaMethodSite.java:57)
+| Error 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:145)
+| Error 	at gant.Gant.executeTargets(Gant.groovy:590)
+| Error 	at org.codehaus.groovy.grails.cli.GrailsScriptRunner.executeWithGantInstance(GrailsScriptRunner.java:768)
+| Error 	at org.codehaus.groovy.grails.cli.GrailsScriptRunner.executeScriptFile(GrailsScriptRunner.java:566)
+| Error 	at org.codehaus.groovy.grails.cli.GrailsScriptRunner.executeScriptWithCaching(GrailsScriptRunner.java:465)
+| Error 	at org.codehaus.groovy.grails.cli.GrailsScriptRunner.executeScriptWithCaching(GrailsScriptRunner.java:416)
+| Error 	at org.grails.ide.api.impl.GrailsConnectorImpl.executeCommand(GrailsConnectorImpl.java:144)
+| Error 	at org.grails.ide.eclipse.longrunning.process.GrailsProcess.run(GrailsProcess.java:126)
+| Error 	at org.grails.ide.eclipse.longrunning.process.GrailsProcess.main(GrailsProcess.java:89)
+| Error 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+| Error 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+| Error 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+| Error 	at java.lang.reflect.Method.invoke(Method.java:601)
+| Error 	at org.codehaus.groovy.grails.cli.support.GrailsStarter.rootLoader(GrailsStarter.java:234)
+| Error 	at org.codehaus.groovy.grails.cli.support.GrailsStarter.main(GrailsStarter.java:262)
+| Error Caused by: : Unable to delete directory C:\Users\Adam Milward\.grails\2.2.1\projects\groovy_metadata_registry\stage\WEB-INF\classes\org\grails\plugin\resources\artefacts
+| Error 	at org.apache.tools.ant.taskdefs.Delete.handle(Delete.java:704)
+| Error 	at org.apache.tools.ant.taskdefs.Delete.removeDir(Delete.java:759)
+| Error 	at org.apache.tools.ant.taskdefs.Delete.removeDir(Delete.java:749)
+| Error 	at org.apache.tools.ant.taskdefs.Delete.execute(Delete.java:571)
+| Error 	at org.apache.tools.ant.UnknownElement.execute(UnknownElement.java:291)
+| Error 	at sun.reflect.GeneratedMethodAccessor71.invoke(Unknown Source)
+| Error 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+| Error 	at java.lang.reflect.Method.invoke(Method.java:601)
+| Error 	at org.apache.tools.ant.dispatch.DispatchUtils.execute(DispatchUtils.java:106)
+| Error 	at groovy.util.AntBuilder.performTask(AntBuilder.java:260)
+| Error 	at groovy.util.AntBuilder.nodeCompleted(AntBuilder.java:220)
+| Error 	at groovy.util.BuilderSupport.doInvokeMethod(BuilderSupport.java:147)
+| Error 	at groovy.util.AntBuilder.doInvokeMethod(AntBuilder.java:170)
+| Error 	at groovy.util.BuilderSupport.invokeMethod(BuilderSupport.java:64)
+| Error 	at org.codehaus.gant.GantBuilder.invokeMethod(GantBuilder.java:99)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaClassSite.call(PogoMetaClassSite.java:45)
+| Error 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:116)
+| Error 	at org.codehaus.groovy.grails.project.packaging.GrailsProjectWarCreator.cleanUpAfterWar(GrailsProjectWarCreator.groovy:357)
+| Error 	at org.codehaus.groovy.grails.project.packaging.GrailsProjectWarCreator$cleanUpAfterWar.callCurrent(Unknown Source)
+| Error 	at org.codehaus.groovy.grails.project.packaging.GrailsProjectWarCreator.packageWar(GrailsProjectWarCreator.groovy:344)
+| Error 	at org.codehaus.groovy.grails.project.packaging.GrailsProjectWarCreator$packageWar.call(Unknown Source)
+| Error 	at _GrailsWar_groovy$_run_closure2.doCall(_GrailsWar_groovy:43)
+| Error 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+| Error 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+| Error 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+| Error 	at java.lang.reflect.Method.invoke(Method.java:601)
+| Error 	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:90)
+| Error 	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1082)
+| Error 	at groovy.lang.ExpandoMetaClass.invokeMethod(ExpandoMetaClass.java:1106)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:906)
+| Error 	at groovy.lang.DelegatingMetaClass.invokeMethod(DelegatingMetaClass.java:149)
+| Error 	at org.codehaus.gant.GantMetaClass.invokeMethod(GantMetaClass.java:133)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaClassSite.call(PogoMetaClassSite.java:39)
+| Error 	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:45)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaClassSite.call(PogoMetaClassSite.java:54)
+| Error 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:116)
+| Error 	at org.codehaus.gant.GantBinding$_initializeGantBinding_closure5_closure16_closure18.doCall(GantBinding.groovy:185)
+| Error 	at sun.reflect.GeneratedMethodAccessor107.invoke(Unknown Source)
+| Error 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+| Error 	at java.lang.reflect.Method.invoke(Method.java:601)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite$PogoCachedMethodSite.invoke(PogoMetaMethodSite.java:231)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite.callCurrent(PogoMetaMethodSite.java:52)
+| Error 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:141)
+| Error 	at org.codehaus.gant.GantBinding$_initializeGantBinding_closure5_closure16_closure18.doCall(GantBinding.groovy)
+| Error 	at sun.reflect.GeneratedMethodAccessor106.invoke(Unknown Source)
+| Error 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+| Error 	at java.lang.reflect.Method.invoke(Method.java:601)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite$PogoCachedMethodSiteNoUnwrapNoCoerce.invoke(PogoMetaMethodSite.java:272)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite.call(PogoMetaMethodSite.java:64)
+| Error 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:112)
+| Error 	at org.codehaus.gant.GantBinding.withTargetEvent(GantBinding.groovy:90)
+| Error 	at org.codehaus.gant.GantBinding.this$4$withTargetEvent(GantBinding.groovy)
+| Error 	at sun.reflect.GeneratedMethodAccessor101.invoke(Unknown Source)
+| Error 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+| Error 	at java.lang.reflect.Method.invoke(Method.java:601)
+| Error 	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:90)
+| Error 	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1082)
+| Error 	at groovy.lang.ExpandoMetaClass.invokeMethod(ExpandoMetaClass.java:1106)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:906)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1027)
+| Error 	at groovy.lang.ExpandoMetaClass.invokeMethod(ExpandoMetaClass.java:1106)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:906)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:727)
+| Error 	at groovy.lang.GroovyObjectSupport.invokeMethod(GroovyObjectSupport.java:44)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethodOnGroovyObject(MetaClassImpl.java:1147)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1041)
+| Error 	at groovy.lang.ExpandoMetaClass.invokeMethod(ExpandoMetaClass.java:1106)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:906)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaClassSite.callCurrent(PogoMetaClassSite.java:66)
+| Error 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:149)
+| Error 	at org.codehaus.gant.GantBinding$_initializeGantBinding_closure5_closure16.doCall(GantBinding.groovy:185)
+| Error 	at sun.reflect.GeneratedMethodAccessor100.invoke(Unknown Source)
+| Error 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+| Error 	at java.lang.reflect.Method.invoke(Method.java:601)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite$PogoCachedMethodSite.invoke(PogoMetaMethodSite.java:231)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite.callCurrent(PogoMetaMethodSite.java:52)
+| Error 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:141)
+| Error 	at org.codehaus.gant.GantBinding$_initializeGantBinding_closure5_closure16.doCall(GantBinding.groovy)
+| Error 	at sun.reflect.GeneratedMethodAccessor99.invoke(Unknown Source)
+| Error 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+| Error 	at java.lang.reflect.Method.invoke(Method.java:601)
+| Error 	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:90)
+| Error 	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1082)
+| Error 	at groovy.lang.ExpandoMetaClass.invokeMethod(ExpandoMetaClass.java:1106)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:906)
+| Error 	at groovy.lang.Closure.call(Closure.java:412)
+| Error 	at groovy.lang.Closure.call(Closure.java:406)
+| Error 	at org.codehaus.gant.GantMetaClass.processClosure(GantMetaClass.java:81)
+| Error 	at org.codehaus.gant.GantMetaClass.processArgument(GantMetaClass.java:95)
+| Error 	at org.codehaus.gant.GantMetaClass.invokeMethod(GantMetaClass.java:128)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaClassSite.callCurrent(PogoMetaClassSite.java:66)
+| Error 	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallCurrent(CallSiteArray.java:49)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaClassSite.callCurrent(PogoMetaClassSite.java:81)
+| Error 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:145)
+| Error 	at War$_run_closure1.doCall(War.groovy:38)
+| Error 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+| Error 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+| Error 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+| Error 	at java.lang.reflect.Method.invoke(Method.java:601)
+| Error 	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:90)
+| Error 	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1082)
+| Error 	at groovy.lang.ExpandoMetaClass.invokeMethod(ExpandoMetaClass.java:1106)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:906)
+| Error 	at groovy.lang.DelegatingMetaClass.invokeMethod(DelegatingMetaClass.java:149)
+| Error 	at org.codehaus.gant.GantMetaClass.invokeMethod(GantMetaClass.java:133)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaClassSite.call(PogoMetaClassSite.java:39)
+| Error 	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:45)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaClassSite.call(PogoMetaClassSite.java:54)
+| Error 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:116)
+| Error 	at org.codehaus.gant.GantBinding$_initializeGantBinding_closure5_closure16_closure18.doCall(GantBinding.groovy:185)
+| Error 	at sun.reflect.GeneratedMethodAccessor107.invoke(Unknown Source)
+| Error 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+| Error 	at java.lang.reflect.Method.invoke(Method.java:601)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite$PogoCachedMethodSite.invoke(PogoMetaMethodSite.java:231)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite.callCurrent(PogoMetaMethodSite.java:52)
+| Error 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:141)
+| Error 	at org.codehaus.gant.GantBinding$_initializeGantBinding_closure5_closure16_closure18.doCall(GantBinding.groovy)
+| Error 	at sun.reflect.GeneratedMethodAccessor106.invoke(Unknown Source)
+| Error 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+| Error 	at java.lang.reflect.Method.invoke(Method.java:601)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite$PogoCachedMethodSiteNoUnwrapNoCoerce.invoke(PogoMetaMethodSite.java:272)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite.call(PogoMetaMethodSite.java:64)
+| Error 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:112)
+| Error 	at org.codehaus.gant.GantBinding.withTargetEvent(GantBinding.groovy:90)
+| Error 	at org.codehaus.gant.GantBinding.this$4$withTargetEvent(GantBinding.groovy)
+| Error 	at sun.reflect.GeneratedMethodAccessor101.invoke(Unknown Source)
+| Error 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+| Error 	at java.lang.reflect.Method.invoke(Method.java:601)
+| Error 	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:90)
+| Error 	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1082)
+| Error 	at groovy.lang.ExpandoMetaClass.invokeMethod(ExpandoMetaClass.java:1106)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:906)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1027)
+| Error 	at groovy.lang.ExpandoMetaClass.invokeMethod(ExpandoMetaClass.java:1106)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:906)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:727)
+| Error 	at groovy.lang.GroovyObjectSupport.invokeMethod(GroovyObjectSupport.java:44)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethodOnGroovyObject(MetaClassImpl.java:1147)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1041)
+| Error 	at groovy.lang.ExpandoMetaClass.invokeMethod(ExpandoMetaClass.java:1106)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:906)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaClassSite.callCurrent(PogoMetaClassSite.java:66)
+| Error 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:149)
+| Error 	at org.codehaus.gant.GantBinding$_initializeGantBinding_closure5_closure16.doCall(GantBinding.groovy:185)
+| Error 	at sun.reflect.GeneratedMethodAccessor100.invoke(Unknown Source)
+| Error 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+| Error 	at java.lang.reflect.Method.invoke(Method.java:601)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite$PogoCachedMethodSite.invoke(PogoMetaMethodSite.java:231)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite.callCurrent(PogoMetaMethodSite.java:52)
+| Error 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:141)
+| Error 	at org.codehaus.gant.GantBinding$_initializeGantBinding_closure5_closure16.doCall(GantBinding.groovy)
+| Error 	at sun.reflect.GeneratedMethodAccessor99.invoke(Unknown Source)
+| Error 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+| Error 	at java.lang.reflect.Method.invoke(Method.java:601)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite$PogoCachedMethodSiteNoUnwrapNoCoerce.invoke(PogoMetaMethodSite.java:272)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite.call(PogoMetaMethodSite.java:64)
+| Error 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:112)
+| Error 	at gant.Gant$_dispatch_closure5.doCall(Gant.groovy:381)
+| Error 	... 68 more
+Contains: ------System.err:-----------
+
+!SUBENTRY 1 org.grails.ide.eclipse.core 4 4 2013-07-06 17:29:18.312
+!MESSAGE Command terminated with an error code (see details for output)
+!SUBENTRY 2 org.grails.ide.eclipse.core 4 0 2013-07-06 17:29:18.312
+!MESSAGE ------System.out:-----------
+ Loading Grails 2.2.1
+| Environment set to development.....
+| Packaging Grails application..
+| Compiling 1 source files..
+| Compiling 1 source files.....
+| Compiling 32 GSP files for package [groovy_metadata_registry]..
+| Compiling 4 GSP files for package [mail].
+| Compiling 41 GSP files for package [springSecurityUi].
+| Compiling 4 GSP files for package [databaseMigration]..
+| Building WAR file.....
+| Error : Unable to delete directory C:\Users\Adam Milward\.grails\2.2.1\projects\groovy_metadata_registry\stage\WEB-INF\classes\org\grails\plugin\resources\artefacts
+| Error 	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+| Error 	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+| Error 	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+| Error 	at java.lang.reflect.Constructor.newInstance(Constructor.java:525)
+| Error 	at org.codehaus.groovy.reflection.CachedConstructor.invoke(CachedConstructor.java:77)
+| Error 	at org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrapNoCoerce.callConstructor(ConstructorSite.java:102)
+| Error 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:194)
+| Error 	at gant.Gant$_dispatch_closure5.doCall(Gant.groovy:391)
+| Error 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+| Error 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+| Error 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+| Error 	at java.lang.reflect.Method.invoke(Method.java:601)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite$PogoCachedMethodSiteNoUnwrapNoCoerce.invoke(PogoMetaMethodSite.java:272)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite.call(PogoMetaMethodSite.java:64)
+| Error 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:116)
+| Error 	at gant.Gant$_dispatch_closure7.doCall(Gant.groovy:415)
+| Error 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+| Error 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+| Error 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+| Error 	at java.lang.reflect.Method.invoke(Method.java:601)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite$PogoCachedMethodSite.invoke(PogoMetaMethodSite.java:231)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite.callCurrent(PogoMetaMethodSite.java:52)
+| Error 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:141)
+| Error 	at gant.Gant$_dispatch_closure7.doCall(Gant.groovy)
+| Error 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+| Error 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+| Error 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+| Error 	at java.lang.reflect.Method.invoke(Method.java:601)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite$PogoCachedMethodSiteNoUnwrapNoCoerce.invoke(PogoMetaMethodSite.java:272)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite.call(PogoMetaMethodSite.java:64)
+| Error 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:112)
+| Error 	at gant.Gant.withBuildListeners(Gant.groovy:427)
+| Error 	at gant.Gant.this$2$withBuildListeners(Gant.groovy)
+| Error 	at gant.Gant$this$2$withBuildListeners.callCurrent(Unknown Source)
+| Error 	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallCurrent(CallSiteArray.java:49)
+| Error 	at gant.Gant$this$2$withBuildListeners.callCurrent(Unknown Source)
+| Error 	at gant.Gant.dispatch(Gant.groovy:415)
+| Error 	at gant.Gant.this$2$dispatch(Gant.groovy)
+| Error 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+| Error 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+| Error 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+| Error 	at java.lang.reflect.Method.invoke(Method.java:601)
+| Error 	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:90)
+| Error 	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1082)
+| Error 	at groovy.lang.ExpandoMetaClass.invokeMethod(ExpandoMetaClass.java:1106)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:906)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:729)
+| Error 	at gant.Gant.invokeMethod(Gant.groovy)
+| Error 	at groovy.lang.GroovyObject$invokeMethod.callCurrent(Unknown Source)
+| Error 	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallCurrent(CallSiteArray.java:49)
+| Error 	at groovy.lang.GroovyObject$invokeMethod.callCurrent(Unknown Source)
+| Error 	at gant.Gant.executeTargets(Gant.groovy:591)
+| Error 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+| Error 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+| Error 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+| Error 	at java.lang.reflect.Method.invoke(Method.java:601)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite$PogoCachedMethodSite.invoke(PogoMetaMethodSite.java:231)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite.callCurrent(PogoMetaMethodSite.java:52)
+| Error 	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallCurrent(CallSiteArray.java:49)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite.callCurrent(PogoMetaMethodSite.java:57)
+| Error 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:145)
+| Error 	at gant.Gant.executeTargets(Gant.groovy:590)
+| Error 	at org.codehaus.groovy.grails.cli.GrailsScriptRunner.executeWithGantInstance(GrailsScriptRunner.java:768)
+| Error 	at org.codehaus.groovy.grails.cli.GrailsScriptRunner.executeScriptFile(GrailsScriptRunner.java:566)
+| Error 	at org.codehaus.groovy.grails.cli.GrailsScriptRunner.executeScriptWithCaching(GrailsScriptRunner.java:465)
+| Error 	at org.codehaus.groovy.grails.cli.GrailsScriptRunner.executeScriptWithCaching(GrailsScriptRunner.java:416)
+| Error 	at org.grails.ide.api.impl.GrailsConnectorImpl.executeCommand(GrailsConnectorImpl.java:144)
+| Error 	at org.grails.ide.eclipse.longrunning.process.GrailsProcess.run(GrailsProcess.java:126)
+| Error 	at org.grails.ide.eclipse.longrunning.process.GrailsProcess.main(GrailsProcess.java:89)
+| Error 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+| Error 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+| Error 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+| Error 	at java.lang.reflect.Method.invoke(Method.java:601)
+| Error 	at org.codehaus.groovy.grails.cli.support.GrailsStarter.rootLoader(GrailsStarter.java:234)
+| Error 	at org.codehaus.groovy.grails.cli.support.GrailsStarter.main(GrailsStarter.java:262)
+| Error Caused by: : Unable to delete directory C:\Users\Adam Milward\.grails\2.2.1\projects\groovy_metadata_registry\stage\WEB-INF\classes\org\grails\plugin\resources\artefacts
+| Error 	at org.apache.tools.ant.taskdefs.Delete.handle(Delete.java:704)
+| Error 	at org.apache.tools.ant.taskdefs.Delete.removeDir(Delete.java:759)
+| Error 	at org.apache.tools.ant.taskdefs.Delete.removeDir(Delete.java:749)
+| Error 	at org.apache.tools.ant.taskdefs.Delete.execute(Delete.java:571)
+| Error 	at org.apache.tools.ant.UnknownElement.execute(UnknownElement.java:291)
+| Error 	at sun.reflect.GeneratedMethodAccessor71.invoke(Unknown Source)
+| Error 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+| Error 	at java.lang.reflect.Method.invoke(Method.java:601)
+| Error 	at org.apache.tools.ant.dispatch.DispatchUtils.execute(DispatchUtils.java:106)
+| Error 	at groovy.util.AntBuilder.performTask(AntBuilder.java:260)
+| Error 	at groovy.util.AntBuilder.nodeCompleted(AntBuilder.java:220)
+| Error 	at groovy.util.BuilderSupport.doInvokeMethod(BuilderSupport.java:147)
+| Error 	at groovy.util.AntBuilder.doInvokeMethod(AntBuilder.java:170)
+| Error 	at groovy.util.BuilderSupport.invokeMethod(BuilderSupport.java:64)
+| Error 	at org.codehaus.gant.GantBuilder.invokeMethod(GantBuilder.java:99)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaClassSite.call(PogoMetaClassSite.java:45)
+| Error 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:116)
+| Error 	at org.codehaus.groovy.grails.project.packaging.GrailsProjectWarCreator.cleanUpAfterWar(GrailsProjectWarCreator.groovy:357)
+| Error 	at org.codehaus.groovy.grails.project.packaging.GrailsProjectWarCreator$cleanUpAfterWar.callCurrent(Unknown Source)
+| Error 	at org.codehaus.groovy.grails.project.packaging.GrailsProjectWarCreator.packageWar(GrailsProjectWarCreator.groovy:344)
+| Error 	at org.codehaus.groovy.grails.project.packaging.GrailsProjectWarCreator$packageWar.call(Unknown Source)
+| Error 	at _GrailsWar_groovy$_run_closure2.doCall(_GrailsWar_groovy:43)
+| Error 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+| Error 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+| Error 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+| Error 	at java.lang.reflect.Method.invoke(Method.java:601)
+| Error 	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:90)
+| Error 	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1082)
+| Error 	at groovy.lang.ExpandoMetaClass.invokeMethod(ExpandoMetaClass.java:1106)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:906)
+| Error 	at groovy.lang.DelegatingMetaClass.invokeMethod(DelegatingMetaClass.java:149)
+| Error 	at org.codehaus.gant.GantMetaClass.invokeMethod(GantMetaClass.java:133)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaClassSite.call(PogoMetaClassSite.java:39)
+| Error 	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:45)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaClassSite.call(PogoMetaClassSite.java:54)
+| Error 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:116)
+| Error 	at org.codehaus.gant.GantBinding$_initializeGantBinding_closure5_closure16_closure18.doCall(GantBinding.groovy:185)
+| Error 	at sun.reflect.GeneratedMethodAccessor107.invoke(Unknown Source)
+| Error 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+| Error 	at java.lang.reflect.Method.invoke(Method.java:601)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite$PogoCachedMethodSite.invoke(PogoMetaMethodSite.java:231)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite.callCurrent(PogoMetaMethodSite.java:52)
+| Error 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:141)
+| Error 	at org.codehaus.gant.GantBinding$_initializeGantBinding_closure5_closure16_closure18.doCall(GantBinding.groovy)
+| Error 	at sun.reflect.GeneratedMethodAccessor106.invoke(Unknown Source)
+| Error 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+| Error 	at java.lang.reflect.Method.invoke(Method.java:601)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite$PogoCachedMethodSiteNoUnwrapNoCoerce.invoke(PogoMetaMethodSite.java:272)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite.call(PogoMetaMethodSite.java:64)
+| Error 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:112)
+| Error 	at org.codehaus.gant.GantBinding.withTargetEvent(GantBinding.groovy:90)
+| Error 	at org.codehaus.gant.GantBinding.this$4$withTargetEvent(GantBinding.groovy)
+| Error 	at sun.reflect.GeneratedMethodAccessor101.invoke(Unknown Source)
+| Error 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+| Error 	at java.lang.reflect.Method.invoke(Method.java:601)
+| Error 	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:90)
+| Error 	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1082)
+| Error 	at groovy.lang.ExpandoMetaClass.invokeMethod(ExpandoMetaClass.java:1106)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:906)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1027)
+| Error 	at groovy.lang.ExpandoMetaClass.invokeMethod(ExpandoMetaClass.java:1106)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:906)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:727)
+| Error 	at groovy.lang.GroovyObjectSupport.invokeMethod(GroovyObjectSupport.java:44)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethodOnGroovyObject(MetaClassImpl.java:1147)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1041)
+| Error 	at groovy.lang.ExpandoMetaClass.invokeMethod(ExpandoMetaClass.java:1106)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:906)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaClassSite.callCurrent(PogoMetaClassSite.java:66)
+| Error 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:149)
+| Error 	at org.codehaus.gant.GantBinding$_initializeGantBinding_closure5_closure16.doCall(GantBinding.groovy:185)
+| Error 	at sun.reflect.GeneratedMethodAccessor100.invoke(Unknown Source)
+| Error 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+| Error 	at java.lang.reflect.Method.invoke(Method.java:601)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite$PogoCachedMethodSite.invoke(PogoMetaMethodSite.java:231)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite.callCurrent(PogoMetaMethodSite.java:52)
+| Error 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:141)
+| Error 	at org.codehaus.gant.GantBinding$_initializeGantBinding_closure5_closure16.doCall(GantBinding.groovy)
+| Error 	at sun.reflect.GeneratedMethodAccessor99.invoke(Unknown Source)
+| Error 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+| Error 	at java.lang.reflect.Method.invoke(Method.java:601)
+| Error 	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:90)
+| Error 	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1082)
+| Error 	at groovy.lang.ExpandoMetaClass.invokeMethod(ExpandoMetaClass.java:1106)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:906)
+| Error 	at groovy.lang.Closure.call(Closure.java:412)
+| Error 	at groovy.lang.Closure.call(Closure.java:406)
+| Error 	at org.codehaus.gant.GantMetaClass.processClosure(GantMetaClass.java:81)
+| Error 	at org.codehaus.gant.GantMetaClass.processArgument(GantMetaClass.java:95)
+| Error 	at org.codehaus.gant.GantMetaClass.invokeMethod(GantMetaClass.java:128)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaClassSite.callCurrent(PogoMetaClassSite.java:66)
+| Error 	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallCurrent(CallSiteArray.java:49)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaClassSite.callCurrent(PogoMetaClassSite.java:81)
+| Error 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:145)
+| Error 	at War$_run_closure1.doCall(War.groovy:38)
+| Error 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+| Error 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+| Error 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+| Error 	at java.lang.reflect.Method.invoke(Method.java:601)
+| Error 	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:90)
+| Error 	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1082)
+| Error 	at groovy.lang.ExpandoMetaClass.invokeMethod(ExpandoMetaClass.java:1106)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:906)
+| Error 	at groovy.lang.DelegatingMetaClass.invokeMethod(DelegatingMetaClass.java:149)
+| Error 	at org.codehaus.gant.GantMetaClass.invokeMethod(GantMetaClass.java:133)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaClassSite.call(PogoMetaClassSite.java:39)
+| Error 	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:45)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaClassSite.call(PogoMetaClassSite.java:54)
+| Error 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:116)
+| Error 	at org.codehaus.gant.GantBinding$_initializeGantBinding_closure5_closure16_closure18.doCall(GantBinding.groovy:185)
+| Error 	at sun.reflect.GeneratedMethodAccessor107.invoke(Unknown Source)
+| Error 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+| Error 	at java.lang.reflect.Method.invoke(Method.java:601)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite$PogoCachedMethodSite.invoke(PogoMetaMethodSite.java:231)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite.callCurrent(PogoMetaMethodSite.java:52)
+| Error 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:141)
+| Error 	at org.codehaus.gant.GantBinding$_initializeGantBinding_closure5_closure16_closure18.doCall(GantBinding.groovy)
+| Error 	at sun.reflect.GeneratedMethodAccessor106.invoke(Unknown Source)
+| Error 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+| Error 	at java.lang.reflect.Method.invoke(Method.java:601)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite$PogoCachedMethodSiteNoUnwrapNoCoerce.invoke(PogoMetaMethodSite.java:272)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite.call(PogoMetaMethodSite.java:64)
+| Error 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:112)
+| Error 	at org.codehaus.gant.GantBinding.withTargetEvent(GantBinding.groovy:90)
+| Error 	at org.codehaus.gant.GantBinding.this$4$withTargetEvent(GantBinding.groovy)
+| Error 	at sun.reflect.GeneratedMethodAccessor101.invoke(Unknown Source)
+| Error 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+| Error 	at java.lang.reflect.Method.invoke(Method.java:601)
+| Error 	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:90)
+| Error 	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1082)
+| Error 	at groovy.lang.ExpandoMetaClass.invokeMethod(ExpandoMetaClass.java:1106)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:906)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1027)
+| Error 	at groovy.lang.ExpandoMetaClass.invokeMethod(ExpandoMetaClass.java:1106)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:906)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:727)
+| Error 	at groovy.lang.GroovyObjectSupport.invokeMethod(GroovyObjectSupport.java:44)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethodOnGroovyObject(MetaClassImpl.java:1147)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1041)
+| Error 	at groovy.lang.ExpandoMetaClass.invokeMethod(ExpandoMetaClass.java:1106)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:906)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaClassSite.callCurrent(PogoMetaClassSite.java:66)
+| Error 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:149)
+| Error 	at org.codehaus.gant.GantBinding$_initializeGantBinding_closure5_closure16.doCall(GantBinding.groovy:185)
+| Error 	at sun.reflect.GeneratedMethodAccessor100.invoke(Unknown Source)
+| Error 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+| Error 	at java.lang.reflect.Method.invoke(Method.java:601)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite$PogoCachedMethodSite.invoke(PogoMetaMethodSite.java:231)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite.callCurrent(PogoMetaMethodSite.java:52)
+| Error 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:141)
+| Error 	at org.codehaus.gant.GantBinding$_initializeGantBinding_closure5_closure16.doCall(GantBinding.groovy)
+| Error 	at sun.reflect.GeneratedMethodAccessor99.invoke(Unknown Source)
+| Error 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+| Error 	at java.lang.reflect.Method.invoke(Method.java:601)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite$PogoCachedMethodSiteNoUnwrapNoCoerce.invoke(PogoMetaMethodSite.java:272)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite.call(PogoMetaMethodSite.java:64)
+| Error 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:112)
+| Error 	at gant.Gant$_dispatch_closure5.doCall(Gant.groovy:381)
+| Error 	... 68 more
+!SUBENTRY 2 org.grails.ide.eclipse.core 4 0 2013-07-06 17:29:18.312
+!MESSAGE ------System.err:-----------
+
+
+!ENTRY org.grails.ide.eclipse.core 4 0 2013-07-06 17:43:27.195
+!MESSAGE Problem executing: war
+!STACK 1
+org.eclipse.core.runtime.CoreException: Command terminated with an error code (see details for output)
+	at org.grails.ide.eclipse.core.launch.SynchLaunch$LaunchResult.getCoreException(SynchLaunch.java:168)
+	at org.grails.ide.eclipse.longrunning.LongRunningProcessGrailsExecutor.synchExec(LongRunningProcessGrailsExecutor.java:106)
+	at org.grails.ide.eclipse.commands.GrailsCommand.synchExec(GrailsCommand.java:169)
+	at org.grails.ide.eclipse.ui.internal.inplace.GrailsLaunchUtils$1.run(GrailsLaunchUtils.java:120)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+Contains: ------System.out:-----------
+ Loading Grails 2.2.1
+| Configuring classpath.
+| Environment set to production.....
+| Packaging Grails application..
+| Compiling 1 source files..
+| Compiling 1 source files.....
+| Compiling 32 GSP files for package [groovy_metadata_registry]..
+| Compiling 4 GSP files for package [mail].
+| Compiling 41 GSP files for package [springSecurityUi].
+| Compiling 4 GSP files for package [databaseMigration]..
+| Building WAR file.....
+Contains: ------System.err:-----------
+
+!SUBENTRY 1 org.grails.ide.eclipse.core 4 4 2013-07-06 17:43:27.195
+!MESSAGE Command terminated with an error code (see details for output)
+!SUBENTRY 2 org.grails.ide.eclipse.core 4 0 2013-07-06 17:43:27.195
+!MESSAGE ------System.out:-----------
+ Loading Grails 2.2.1
+| Configuring classpath.
+| Environment set to production.....
+| Packaging Grails application..
+| Compiling 1 source files..
+| Compiling 1 source files.....
+| Compiling 32 GSP files for package [groovy_metadata_registry]..
+| Compiling 4 GSP files for package [mail].
+| Compiling 41 GSP files for package [springSecurityUi].
+| Compiling 4 GSP files for package [databaseMigration]..
+| Building WAR file.....
+!SUBENTRY 2 org.grails.ide.eclipse.core 4 0 2013-07-06 17:43:27.195
+!MESSAGE ------System.err:-----------
+
+
+!ENTRY org.grails.ide.eclipse.core 4 0 2013-07-06 17:43:56.289
+!MESSAGE Problem executing: war
+!STACK 1
+org.eclipse.core.runtime.CoreException: Command terminated with an error code (see details for output)
+	at org.grails.ide.eclipse.core.launch.SynchLaunch$LaunchResult.getCoreException(SynchLaunch.java:168)
+	at org.grails.ide.eclipse.longrunning.LongRunningProcessGrailsExecutor.synchExec(LongRunningProcessGrailsExecutor.java:106)
+	at org.grails.ide.eclipse.commands.GrailsCommand.synchExec(GrailsCommand.java:169)
+	at org.grails.ide.eclipse.ui.internal.inplace.GrailsLaunchUtils$1.run(GrailsLaunchUtils.java:120)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+Contains: ------System.out:-----------
+ Loading Grails 2.2.1
+| Environment set to production.....
+| Packaging Grails application..
+| Compiling 1 source files..
+| Compiling 1 source files.....
+| Compiling 32 GSP files for package [groovy_metadata_registry]..
+| Compiling 4 GSP files for package [mail].
+| Compiling 41 GSP files for package [springSecurityUi].
+| Compiling 4 GSP files for package [databaseMigration]..
+| Building WAR file.....
+Contains: ------System.err:-----------
+
+!SUBENTRY 1 org.grails.ide.eclipse.core 4 4 2013-07-06 17:43:56.289
+!MESSAGE Command terminated with an error code (see details for output)
+!SUBENTRY 2 org.grails.ide.eclipse.core 4 0 2013-07-06 17:43:56.289
+!MESSAGE ------System.out:-----------
+ Loading Grails 2.2.1
+| Environment set to production.....
+| Packaging Grails application..
+| Compiling 1 source files..
+| Compiling 1 source files.....
+| Compiling 32 GSP files for package [groovy_metadata_registry]..
+| Compiling 4 GSP files for package [mail].
+| Compiling 41 GSP files for package [springSecurityUi].
+| Compiling 4 GSP files for package [databaseMigration]..
+| Building WAR file.....
+!SUBENTRY 2 org.grails.ide.eclipse.core 4 0 2013-07-06 17:43:56.289
+!MESSAGE ------System.err:-----------
+
+
+!ENTRY org.grails.ide.eclipse.core 4 0 2013-07-06 17:49:01.215
+!MESSAGE Problem executing: run-app
+!STACK 1
+org.eclipse.core.runtime.CoreException: The command 'C:\Program Files\Java\jdk1.7.0_17\bin\javaw.exe (6 Jul 2013 17:47:00)' was terminated because it didn't produce new output for some time.
+
+See details for the output produced so far.
+
+If you think the command simply needed more time, you can increase the time limit in the Grails preferences page.
+
+See menu Windows >> Preferences >> Grails >> Launch
+	at org.grails.ide.eclipse.core.launch.SynchLaunch$LaunchResult.getCoreException(SynchLaunch.java:168)
+	at org.grails.ide.eclipse.core.launch.SynchLaunch.synchExec(SynchLaunch.java:57)
+	at org.grails.ide.eclipse.commands.GrailsExecutor.synchExec(GrailsExecutor.java:131)
+	at org.grails.ide.eclipse.longrunning.LongRunningProcessGrailsExecutor.synchExec(LongRunningProcessGrailsExecutor.java:60)
+	at org.grails.ide.eclipse.commands.GrailsCommand.synchExec(GrailsCommand.java:169)
+	at org.grails.ide.eclipse.ui.internal.inplace.GrailsLaunchUtils$1.run(GrailsLaunchUtils.java:120)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+Contains: ------System.out:-----------
+ | Loading Grails 2.2.1
+| Configuring classpath.
+| Environment set to development.....
+| Packaging Grails application..
+| Compiling 1 source files..
+| Compiling 1 source files.....
+| Running Grails application
+
+Configuring Spring Security UI ...
+... finished configuring Spring Security UI
+
+
+Configuring Spring Security Core ...
+... finished configuring Spring Security Core
+
+| Server running. Browse to http://localhost:8080/groovy_metadata_registry
+
+Contains: ------System.err:-----------
+
+Terminating process: Timeout: no new output for 60000 milliseconds
+!SUBENTRY 1 org.grails.ide.eclipse.core 4 4 2013-07-06 17:49:01.215
+!MESSAGE The command 'C:\Program Files\Java\jdk1.7.0_17\bin\javaw.exe (6 Jul 2013 17:47:00)' was terminated because it didn't produce new output for some time.
+
+See details for the output produced so far.
+
+If you think the command simply needed more time, you can increase the time limit in the Grails preferences page.
+
+See menu Windows >> Preferences >> Grails >> Launch
+!SUBENTRY 2 org.grails.ide.eclipse.core 4 0 2013-07-06 17:49:01.215
+!MESSAGE ------System.out:-----------
+ | Loading Grails 2.2.1
+| Configuring classpath.
+| Environment set to development.....
+| Packaging Grails application..
+| Compiling 1 source files..
+| Compiling 1 source files.....
+| Running Grails application
+
+Configuring Spring Security UI ...
+... finished configuring Spring Security UI
+
+
+Configuring Spring Security Core ...
+... finished configuring Spring Security Core
+
+| Server running. Browse to http://localhost:8080/groovy_metadata_registry
+
+!SUBENTRY 2 org.grails.ide.eclipse.core 4 0 2013-07-06 17:49:01.215
+!MESSAGE ------System.err:-----------
+
+Terminating process: Timeout: no new output for 60000 milliseconds
+
+!ENTRY org.grails.ide.eclipse.core 4 0 2013-07-06 17:50:51.697
+!MESSAGE Problem executing: war
+!STACK 1
+org.eclipse.core.runtime.CoreException: Command terminated with an error code (see details for output)
+	at org.grails.ide.eclipse.core.launch.SynchLaunch$LaunchResult.getCoreException(SynchLaunch.java:168)
+	at org.grails.ide.eclipse.longrunning.LongRunningProcessGrailsExecutor.synchExec(LongRunningProcessGrailsExecutor.java:106)
+	at org.grails.ide.eclipse.commands.GrailsCommand.synchExec(GrailsCommand.java:169)
+	at org.grails.ide.eclipse.ui.internal.inplace.GrailsLaunchUtils$1.run(GrailsLaunchUtils.java:120)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+Contains: ------System.out:-----------
+ Loading Grails 2.2.1
+| Environment set to production.....
+| Packaging Grails application..
+| Compiling 1 source files..
+| Compiling 1 source files.....
+| Compiling 32 GSP files for package [groovy_metadata_registry]..
+| Compiling 4 GSP files for package [mail].
+| Compiling 41 GSP files for package [springSecurityUi].
+| Compiling 4 GSP files for package [databaseMigration]..
+| Building WAR file.....
+Contains: ------System.err:-----------
+
+!SUBENTRY 1 org.grails.ide.eclipse.core 4 4 2013-07-06 17:50:51.697
+!MESSAGE Command terminated with an error code (see details for output)
+!SUBENTRY 2 org.grails.ide.eclipse.core 4 0 2013-07-06 17:50:51.697
+!MESSAGE ------System.out:-----------
+ Loading Grails 2.2.1
+| Environment set to production.....
+| Packaging Grails application..
+| Compiling 1 source files..
+| Compiling 1 source files.....
+| Compiling 32 GSP files for package [groovy_metadata_registry]..
+| Compiling 4 GSP files for package [mail].
+| Compiling 41 GSP files for package [springSecurityUi].
+| Compiling 4 GSP files for package [databaseMigration]..
+| Building WAR file.....
+!SUBENTRY 2 org.grails.ide.eclipse.core 4 0 2013-07-06 17:50:51.697
+!MESSAGE ------System.err:-----------
+
+
+!ENTRY org.grails.ide.eclipse.core 4 0 2013-07-06 17:55:10.829
+!MESSAGE A problem occurred building the war file for P/groovy_metadata_registry
+!STACK 1
+org.eclipse.core.runtime.CoreException: Command terminated with an error code (see details for output)
+	at org.grails.ide.eclipse.core.launch.SynchLaunch$LaunchResult.getCoreException(SynchLaunch.java:168)
+	at org.grails.ide.eclipse.longrunning.LongRunningProcessGrailsExecutor.synchExec(LongRunningProcessGrailsExecutor.java:106)
+	at org.grails.ide.eclipse.commands.GrailsCommand.synchExec(GrailsCommand.java:169)
+	at org.grails.ide.eclipse.runonserver.GrailsAppModuleDelegate.cacheWarFile(GrailsAppModuleDelegate.java:476)
+	at org.grails.ide.eclipse.runonserver.GrailsAppModuleDelegate.cacheMembers(GrailsAppModuleDelegate.java:263)
+	at org.grails.ide.eclipse.runonserver.GrailsAppModuleDelegate.members(GrailsAppModuleDelegate.java:128)
+	at org.eclipse.wst.server.core.internal.ModulePublishInfo.getModuleResources(ModulePublishInfo.java:335)
+	at org.eclipse.wst.server.core.internal.ServerPublishInfo.getResources(ServerPublishInfo.java:373)
+	at org.eclipse.wst.server.core.internal.Server.getResources(Server.java:1551)
+	at org.eclipse.wst.server.core.model.ServerBehaviourDelegate.getResources(ServerBehaviourDelegate.java:671)
+	at org.eclipse.jst.server.tomcat.core.internal.TomcatServerBehaviour.getResources(TomcatServerBehaviour.java:954)
+	at com.vmware.vfabric.ide.eclipse.tcserver.internal.core.TcServerBehaviour.getResources(TcServerBehaviour.java:175)
+	at org.eclipse.jst.server.tomcat.core.internal.TomcatServerBehaviour.publishDir(TomcatServerBehaviour.java:327)
+	at org.eclipse.jst.server.tomcat.core.internal.TomcatServerBehaviour.publishModule(TomcatServerBehaviour.java:268)
+	at com.vmware.vfabric.ide.eclipse.tcserver.internal.core.TcServerBehaviour.publishModule(TcServerBehaviour.java:454)
+	at org.eclipse.wst.server.core.model.ServerBehaviourDelegate.publishModule(ServerBehaviourDelegate.java:1091)
+	at org.eclipse.wst.server.core.model.ServerBehaviourDelegate.publishModules(ServerBehaviourDelegate.java:1183)
+	at org.eclipse.wst.server.core.model.ServerBehaviourDelegate.publish(ServerBehaviourDelegate.java:987)
+	at org.eclipse.wst.server.core.model.ServerBehaviourDelegate.publish(ServerBehaviourDelegate.java:774)
+	at org.eclipse.wst.server.core.internal.Server.publishImpl(Server.java:3153)
+	at org.eclipse.wst.server.core.internal.Server$PublishJob.run(Server.java:345)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+Contains: ------System.out:-----------
+ Loading Grails 2.2.1
+| Environment set to development.....
+| Packaging Grails application..
+| Compiling 1 source files..
+| Compiling 1 source files.....
+| Compiling 32 GSP files for package [groovy_metadata_registry]..
+| Compiling 4 GSP files for package [mail].
+| Compiling 41 GSP files for package [springSecurityUi].
+| Compiling 4 GSP files for package [databaseMigration]..
+| Building WAR file.....
+Contains: ------System.err:-----------
+
+!SUBENTRY 1 org.grails.ide.eclipse.core 4 4 2013-07-06 17:55:10.829
+!MESSAGE Command terminated with an error code (see details for output)
+!SUBENTRY 2 org.grails.ide.eclipse.core 4 0 2013-07-06 17:55:10.829
+!MESSAGE ------System.out:-----------
+ Loading Grails 2.2.1
+| Environment set to development.....
+| Packaging Grails application..
+| Compiling 1 source files..
+| Compiling 1 source files.....
+| Compiling 32 GSP files for package [groovy_metadata_registry]..
+| Compiling 4 GSP files for package [mail].
+| Compiling 41 GSP files for package [springSecurityUi].
+| Compiling 4 GSP files for package [databaseMigration]..
+| Building WAR file.....
+!SUBENTRY 2 org.grails.ide.eclipse.core 4 0 2013-07-06 17:55:10.829
+!MESSAGE ------System.err:-----------
+
+
+!ENTRY org.grails.ide.eclipse.core 4 0 2013-07-06 17:55:22.228
+!MESSAGE A problem occurred building the war file for P/groovy_metadata_registry
+!STACK 1
+org.eclipse.core.runtime.CoreException: Command terminated with an error code (see details for output)
+	at org.grails.ide.eclipse.core.launch.SynchLaunch$LaunchResult.getCoreException(SynchLaunch.java:168)
+	at org.grails.ide.eclipse.longrunning.LongRunningProcessGrailsExecutor.synchExec(LongRunningProcessGrailsExecutor.java:106)
+	at org.grails.ide.eclipse.commands.GrailsCommand.synchExec(GrailsCommand.java:169)
+	at org.grails.ide.eclipse.runonserver.GrailsAppModuleDelegate.cacheWarFile(GrailsAppModuleDelegate.java:476)
+	at org.grails.ide.eclipse.runonserver.GrailsAppModuleDelegate.cacheMembers(GrailsAppModuleDelegate.java:263)
+	at org.grails.ide.eclipse.runonserver.GrailsAppModuleDelegate.members(GrailsAppModuleDelegate.java:128)
+	at org.eclipse.wst.server.core.internal.ModulePublishInfo.fill(ModulePublishInfo.java:444)
+	at org.eclipse.wst.server.core.internal.ServerPublishInfo.fill(ServerPublishInfo.java:359)
+	at org.eclipse.wst.server.core.internal.Server$25.visit(Server.java:3165)
+	at org.eclipse.wst.server.core.internal.Server.visitModule(Server.java:3036)
+	at org.eclipse.wst.server.core.internal.Server.visit(Server.java:3020)
+	at org.eclipse.wst.server.core.internal.Server.publishImpl(Server.java:3162)
+	at org.eclipse.wst.server.core.internal.Server$PublishJob.run(Server.java:345)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+Contains: ------System.out:-----------
+ Loading Grails 2.2.1
+| Environment set to development.....
+| Packaging Grails application..
+| Compiling 1 source files..
+| Compiling 1 source files.....
+| Compiling 32 GSP files for package [groovy_metadata_registry]..
+| Compiling 4 GSP files for package [mail].
+| Compiling 41 GSP files for package [springSecurityUi].
+| Compiling 4 GSP files for package [databaseMigration]..
+| Building WAR file.....
+Contains: ------System.err:-----------
+
+!SUBENTRY 1 org.grails.ide.eclipse.core 4 4 2013-07-06 17:55:22.229
+!MESSAGE Command terminated with an error code (see details for output)
+!SUBENTRY 2 org.grails.ide.eclipse.core 4 0 2013-07-06 17:55:22.229
+!MESSAGE ------System.out:-----------
+ Loading Grails 2.2.1
+| Environment set to development.....
+| Packaging Grails application..
+| Compiling 1 source files..
+| Compiling 1 source files.....
+| Compiling 32 GSP files for package [groovy_metadata_registry]..
+| Compiling 4 GSP files for package [mail].
+| Compiling 41 GSP files for package [springSecurityUi].
+| Compiling 4 GSP files for package [databaseMigration]..
+| Building WAR file.....
+!SUBENTRY 2 org.grails.ide.eclipse.core 4 0 2013-07-06 17:55:22.229
+!MESSAGE ------System.err:-----------
+
+
+!ENTRY org.grails.ide.eclipse.core 4 0 2013-07-06 17:55:53.845
+!MESSAGE Problem executing: war dev
+!STACK 1
+org.eclipse.core.runtime.CoreException: Command terminated with an error code (see details for output)
+	at org.grails.ide.eclipse.core.launch.SynchLaunch$LaunchResult.getCoreException(SynchLaunch.java:168)
+	at org.grails.ide.eclipse.longrunning.LongRunningProcessGrailsExecutor.synchExec(LongRunningProcessGrailsExecutor.java:106)
+	at org.grails.ide.eclipse.commands.GrailsCommand.synchExec(GrailsCommand.java:169)
+	at org.grails.ide.eclipse.ui.internal.inplace.GrailsLaunchUtils$1.run(GrailsLaunchUtils.java:120)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+Contains: ------System.out:-----------
+ Loading Grails 2.2.1
+| Environment set to production.....
+| Packaging Grails application..
+| Compiling 1 source files..
+| Compiling 1 source files.....
+| Compiling 32 GSP files for package [groovy_metadata_registry]..
+| Compiling 4 GSP files for package [mail].
+| Compiling 41 GSP files for package [springSecurityUi].
+| Compiling 4 GSP files for package [databaseMigration]..
+| Building WAR file.....
+| Error : C:\Users\Adam Milward\git\groovy_metadata\groovy_metadata_registry\grails-app\migrations does not exist.
+| Error 	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+| Error 	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+| Error 	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+| Error 	at java.lang.reflect.Constructor.newInstance(Constructor.java:525)
+| Error 	at org.codehaus.groovy.reflection.CachedConstructor.invoke(CachedConstructor.java:77)
+| Error 	at org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrapNoCoerce.callConstructor(ConstructorSite.java:102)
+| Error 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:194)
+| Error 	at gant.Gant$_dispatch_closure5.doCall(Gant.groovy:391)
+| Error 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+| Error 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+| Error 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+| Error 	at java.lang.reflect.Method.invoke(Method.java:601)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite$PogoCachedMethodSiteNoUnwrapNoCoerce.invoke(PogoMetaMethodSite.java:272)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite.call(PogoMetaMethodSite.java:64)
+| Error 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:116)
+| Error 	at gant.Gant$_dispatch_closure7.doCall(Gant.groovy:415)
+| Error 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+| Error 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+| Error 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+| Error 	at java.lang.reflect.Method.invoke(Method.java:601)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite$PogoCachedMethodSite.invoke(PogoMetaMethodSite.java:231)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite.callCurrent(PogoMetaMethodSite.java:52)
+| Error 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:141)
+| Error 	at gant.Gant$_dispatch_closure7.doCall(Gant.groovy)
+| Error 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+| Error 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+| Error 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+| Error 	at java.lang.reflect.Method.invoke(Method.java:601)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite$PogoCachedMethodSiteNoUnwrapNoCoerce.invoke(PogoMetaMethodSite.java:272)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite.call(PogoMetaMethodSite.java:64)
+| Error 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:112)
+| Error 	at gant.Gant.withBuildListeners(Gant.groovy:427)
+| Error 	at gant.Gant.this$2$withBuildListeners(Gant.groovy)
+| Error 	at gant.Gant$this$2$withBuildListeners.callCurrent(Unknown Source)
+| Error 	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallCurrent(CallSiteArray.java:49)
+| Error 	at gant.Gant$this$2$withBuildListeners.callCurrent(Unknown Source)
+| Error 	at gant.Gant.dispatch(Gant.groovy:415)
+| Error 	at gant.Gant.this$2$dispatch(Gant.groovy)
+| Error 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+| Error 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+| Error 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+| Error 	at java.lang.reflect.Method.invoke(Method.java:601)
+| Error 	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:90)
+| Error 	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1082)
+| Error 	at groovy.lang.ExpandoMetaClass.invokeMethod(ExpandoMetaClass.java:1106)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:906)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:729)
+| Error 	at gant.Gant.invokeMethod(Gant.groovy)
+| Error 	at groovy.lang.GroovyObject$invokeMethod.callCurrent(Unknown Source)
+| Error 	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallCurrent(CallSiteArray.java:49)
+| Error 	at groovy.lang.GroovyObject$invokeMethod.callCurrent(Unknown Source)
+| Error 	at gant.Gant.executeTargets(Gant.groovy:591)
+| Error 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+| Error 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+| Error 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+| Error 	at java.lang.reflect.Method.invoke(Method.java:601)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite$PogoCachedMethodSite.invoke(PogoMetaMethodSite.java:231)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite.callCurrent(PogoMetaMethodSite.java:52)
+| Error 	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallCurrent(CallSiteArray.java:49)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite.callCurrent(PogoMetaMethodSite.java:57)
+| Error 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:145)
+| Error 	at gant.Gant.executeTargets(Gant.groovy:590)
+| Error 	at org.codehaus.groovy.grails.cli.GrailsScriptRunner.executeWithGantInstance(GrailsScriptRunner.java:768)
+| Error 	at org.codehaus.groovy.grails.cli.GrailsScriptRunner.executeScriptFile(GrailsScriptRunner.java:566)
+| Error 	at org.codehaus.groovy.grails.cli.GrailsScriptRunner.executeScriptWithCaching(GrailsScriptRunner.java:465)
+| Error 	at org.codehaus.groovy.grails.cli.GrailsScriptRunner.executeScriptWithCaching(GrailsScriptRunner.java:416)
+| Error 	at org.grails.ide.api.impl.GrailsConnectorImpl.executeCommand(GrailsConnectorImpl.java:144)
+| Error 	at org.grails.ide.eclipse.longrunning.process.GrailsProcess.run(GrailsProcess.java:126)
+| Error 	at org.grails.ide.eclipse.longrunning.process.GrailsProcess.main(GrailsProcess.java:89)
+| Error 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+| Error 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+| Error 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+| Error 	at java.lang.reflect.Method.invoke(Method.java:601)
+| Error 	at org.codehaus.groovy.grails.cli.support.GrailsStarter.rootLoader(GrailsStarter.java:234)
+| Error 	at org.codehaus.groovy.grails.cli.support.GrailsStarter.main(GrailsStarter.java:262)
+| Error Caused by: : C:\Users\Adam Milward\git\groovy_metadata\groovy_metadata_registry\grails-app\migrations does not exist.
+| Error 	at org.apache.tools.ant.types.AbstractFileSet.getDirectoryScanner(AbstractFileSet.java:483)
+| Error 	at org.apache.tools.ant.taskdefs.Copy.execute(Copy.java:475)
+| Error 	at org.apache.tools.ant.UnknownElement.execute(UnknownElement.java:291)
+| Error 	at sun.reflect.GeneratedMethodAccessor71.invoke(Unknown Source)
+| Error 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+| Error 	at java.lang.reflect.Method.invoke(Method.java:601)
+| Error 	at org.apache.tools.ant.dispatch.DispatchUtils.execute(DispatchUtils.java:106)
+| Error 	at groovy.util.AntBuilder.performTask(AntBuilder.java:260)
+| Error 	at groovy.util.AntBuilder.nodeCompleted(AntBuilder.java:220)
+| Error 	at groovy.util.BuilderSupport.doInvokeMethod(BuilderSupport.java:147)
+| Error 	at groovy.util.AntBuilder.doInvokeMethod(AntBuilder.java:170)
+| Error 	at groovy.util.BuilderSupport.invokeMethod(BuilderSupport.java:64)
+| Error 	at org.codehaus.gant.GantBuilder.invokeMethod(GantBuilder.java:99)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaClassSite.call(PogoMetaClassSite.java:45)
+| Error 	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:45)
+| Error 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:108)
+| Error 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:120)
+| Error 	at _Events$_run_closure2.doCall(_Events.groovy:20)
+| Error 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+| Error 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+| Error 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+| Error 	at java.lang.reflect.Method.invoke(Method.java:601)
+| Error 	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:90)
+| Error 	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1082)
+| Error 	at groovy.lang.ExpandoMetaClass.invokeMethod(ExpandoMetaClass.java:1106)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:906)
+| Error 	at groovy.lang.Closure.call(Closure.java:412)
+| Error 	at org.codehaus.groovy.grails.cli.support.GrailsBuildEventListener.triggerEvent(GrailsBuildEventListener.java:209)
+| Error 	at sun.reflect.GeneratedMethodAccessor257.invoke(Unknown Source)
+| Error 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+| Error 	at java.lang.reflect.Method.invoke(Method.java:601)
+| Error 	at org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite$PojoCachedMethodSite.invoke(PojoMetaMethodSite.java:189)
+| Error 	at org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite.call(PojoMetaMethodSite.java:53)
+| Error 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:124)
+| Error 	at org.codehaus.groovy.grails.project.packaging.GrailsProjectWarCreator.packageWar(GrailsProjectWarCreator.groovy:333)
+| Error 	at org.codehaus.groovy.grails.project.packaging.GrailsProjectWarCreator$packageWar.call(Unknown Source)
+| Error 	at _GrailsWar_groovy$_run_closure2.doCall(_GrailsWar_groovy:43)
+| Error 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+| Error 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+| Error 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+| Error 	at java.lang.reflect.Method.invoke(Method.java:601)
+| Error 	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:90)
+| Error 	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1082)
+| Error 	at groovy.lang.ExpandoMetaClass.invokeMethod(ExpandoMetaClass.java:1106)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:906)
+| Error 	at groovy.lang.DelegatingMetaClass.invokeMethod(DelegatingMetaClass.java:149)
+| Error 	at org.codehaus.gant.GantMetaClass.invokeMethod(GantMetaClass.java:133)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaClassSite.call(PogoMetaClassSite.java:39)
+| Error 	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:45)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaClassSite.call(PogoMetaClassSite.java:54)
+| Error 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:116)
+| Error 	at org.codehaus.gant.GantBinding$_initializeGantBinding_closure5_closure16_closure18.doCall(GantBinding.groovy:185)
+| Error 	at sun.reflect.GeneratedMethodAccessor108.invoke(Unknown Source)
+| Error 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+| Error 	at java.lang.reflect.Method.invoke(Method.java:601)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite$PogoCachedMethodSite.invoke(PogoMetaMethodSite.java:231)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite.callCurrent(PogoMetaMethodSite.java:52)
+| Error 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:141)
+| Error 	at org.codehaus.gant.GantBinding$_initializeGantBinding_closure5_closure16_closure18.doCall(GantBinding.groovy)
+| Error 	at sun.reflect.GeneratedMethodAccessor107.invoke(Unknown Source)
+| Error 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+| Error 	at java.lang.reflect.Method.invoke(Method.java:601)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite$PogoCachedMethodSiteNoUnwrapNoCoerce.invoke(PogoMetaMethodSite.java:272)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite.call(PogoMetaMethodSite.java:64)
+| Error 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:112)
+| Error 	at org.codehaus.gant.GantBinding.withTargetEvent(GantBinding.groovy:90)
+| Error 	at org.codehaus.gant.GantBinding.this$4$withTargetEvent(GantBinding.groovy)
+| Error 	at sun.reflect.GeneratedMethodAccessor102.invoke(Unknown Source)
+| Error 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+| Error 	at java.lang.reflect.Method.invoke(Method.java:601)
+| Error 	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:90)
+| Error 	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1082)
+| Error 	at groovy.lang.ExpandoMetaClass.invokeMethod(ExpandoMetaClass.java:1106)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:906)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1027)
+| Error 	at groovy.lang.ExpandoMetaClass.invokeMethod(ExpandoMetaClass.java:1106)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:906)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:727)
+| Error 	at groovy.lang.GroovyObjectSupport.invokeMethod(GroovyObjectSupport.java:44)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethodOnGroovyObject(MetaClassImpl.java:1147)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1041)
+| Error 	at groovy.lang.ExpandoMetaClass.invokeMethod(ExpandoMetaClass.java:1106)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:906)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaClassSite.callCurrent(PogoMetaClassSite.java:66)
+| Error 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:149)
+| Error 	at org.codehaus.gant.GantBinding$_initializeGantBinding_closure5_closure16.doCall(GantBinding.groovy:185)
+| Error 	at sun.reflect.GeneratedMethodAccessor101.invoke(Unknown Source)
+| Error 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+| Error 	at java.lang.reflect.Method.invoke(Method.java:601)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite$PogoCachedMethodSite.invoke(PogoMetaMethodSite.java:231)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite.callCurrent(PogoMetaMethodSite.java:52)
+| Error 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:141)
+| Error 	at org.codehaus.gant.GantBinding$_initializeGantBinding_closure5_closure16.doCall(GantBinding.groovy)
+| Error 	at sun.reflect.GeneratedMethodAccessor100.invoke(Unknown Source)
+| Error 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+| Error 	at java.lang.reflect.Method.invoke(Method.java:601)
+| Error 	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:90)
+| Error 	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1082)
+| Error 	at groovy.lang.ExpandoMetaClass.invokeMethod(ExpandoMetaClass.java:1106)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:906)
+| Error 	at groovy.lang.Closure.call(Closure.java:412)
+| Error 	at groovy.lang.Closure.call(Closure.java:406)
+| Error 	at org.codehaus.gant.GantMetaClass.processClosure(GantMetaClass.java:81)
+| Error 	at org.codehaus.gant.GantMetaClass.processArgument(GantMetaClass.java:95)
+| Error 	at org.codehaus.gant.GantMetaClass.invokeMethod(GantMetaClass.java:128)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaClassSite.callCurrent(PogoMetaClassSite.java:66)
+| Error 	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallCurrent(CallSiteArray.java:49)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaClassSite.callCurrent(PogoMetaClassSite.java:81)
+| Error 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:145)
+| Error 	at War$_run_closure1.doCall(War.groovy:38)
+| Error 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+| Error 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+| Error 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+| Error 	at java.lang.reflect.Method.invoke(Method.java:601)
+| Error 	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:90)
+| Error 	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1082)
+| Error 	at groovy.lang.ExpandoMetaClass.invokeMethod(ExpandoMetaClass.java:1106)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:906)
+| Error 	at groovy.lang.DelegatingMetaClass.invokeMethod(DelegatingMetaClass.java:149)
+| Error 	at org.codehaus.gant.GantMetaClass.invokeMethod(GantMetaClass.java:133)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaClassSite.call(PogoMetaClassSite.java:39)
+| Error 	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:45)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaClassSite.call(PogoMetaClassSite.java:54)
+| Error 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:116)
+| Error 	at org.codehaus.gant.GantBinding$_initializeGantBinding_closure5_closure16_closure18.doCall(GantBinding.groovy:185)
+| Error 	at sun.reflect.GeneratedMethodAccessor108.invoke(Unknown Source)
+| Error 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+| Error 	at java.lang.reflect.Method.invoke(Method.java:601)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite$PogoCachedMethodSite.invoke(PogoMetaMethodSite.java:231)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite.callCurrent(PogoMetaMethodSite.java:52)
+| Error 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:141)
+| Error 	at org.codehaus.gant.GantBinding$_initializeGantBinding_closure5_closure16_closure18.doCall(GantBinding.groovy)
+| Error 	at sun.reflect.GeneratedMethodAccessor107.invoke(Unknown Source)
+| Error 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+| Error 	at java.lang.reflect.Method.invoke(Method.java:601)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite$PogoCachedMethodSiteNoUnwrapNoCoerce.invoke(PogoMetaMethodSite.java:272)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite.call(PogoMetaMethodSite.java:64)
+| Error 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:112)
+| Error 	at org.codehaus.gant.GantBinding.withTargetEvent(GantBinding.groovy:90)
+| Error 	at org.codehaus.gant.GantBinding.this$4$withTargetEvent(GantBinding.groovy)
+| Error 	at sun.reflect.GeneratedMethodAccessor102.invoke(Unknown Source)
+| Error 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+| Error 	at java.lang.reflect.Method.invoke(Method.java:601)
+| Error 	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:90)
+| Error 	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1082)
+| Error 	at groovy.lang.ExpandoMetaClass.invokeMethod(ExpandoMetaClass.java:1106)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:906)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1027)
+| Error 	at groovy.lang.ExpandoMetaClass.invokeMethod(ExpandoMetaClass.java:1106)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:906)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:727)
+| Error 	at groovy.lang.GroovyObjectSupport.invokeMethod(GroovyObjectSupport.java:44)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethodOnGroovyObject(MetaClassImpl.java:1147)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1041)
+| Error 	at groovy.lang.ExpandoMetaClass.invokeMethod(ExpandoMetaClass.java:1106)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:906)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaClassSite.callCurrent(PogoMetaClassSite.java:66)
+| Error 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:149)
+| Error 	at org.codehaus.gant.GantBinding$_initializeGantBinding_closure5_closure16.doCall(GantBinding.groovy:185)
+| Error 	at sun.reflect.GeneratedMethodAccessor101.invoke(Unknown Source)
+| Error 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+| Error 	at java.lang.reflect.Method.invoke(Method.java:601)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite$PogoCachedMethodSite.invoke(PogoMetaMethodSite.java:231)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite.callCurrent(PogoMetaMethodSite.java:52)
+| Error 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:141)
+| Error 	at org.codehaus.gant.GantBinding$_initializeGantBinding_closure5_closure16.doCall(GantBinding.groovy)
+| Error 	at sun.reflect.GeneratedMethodAccessor100.invoke(Unknown Source)
+| Error 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+| Error 	at java.lang.reflect.Method.invoke(Method.java:601)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite$PogoCachedMethodSiteNoUnwrapNoCoerce.invoke(PogoMetaMethodSite.java:272)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite.call(PogoMetaMethodSite.java:64)
+| Error 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:112)
+| Error 	at gant.Gant$_dispatch_closure5.doCall(Gant.groovy:381)
+| Error 	... 68 more
+Contains: ------System.err:-----------
+
+!SUBENTRY 1 org.grails.ide.eclipse.core 4 4 2013-07-06 17:55:53.845
+!MESSAGE Command terminated with an error code (see details for output)
+!SUBENTRY 2 org.grails.ide.eclipse.core 4 0 2013-07-06 17:55:53.845
+!MESSAGE ------System.out:-----------
+ Loading Grails 2.2.1
+| Environment set to production.....
+| Packaging Grails application..
+| Compiling 1 source files..
+| Compiling 1 source files.....
+| Compiling 32 GSP files for package [groovy_metadata_registry]..
+| Compiling 4 GSP files for package [mail].
+| Compiling 41 GSP files for package [springSecurityUi].
+| Compiling 4 GSP files for package [databaseMigration]..
+| Building WAR file.....
+| Error : C:\Users\Adam Milward\git\groovy_metadata\groovy_metadata_registry\grails-app\migrations does not exist.
+| Error 	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+| Error 	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+| Error 	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+| Error 	at java.lang.reflect.Constructor.newInstance(Constructor.java:525)
+| Error 	at org.codehaus.groovy.reflection.CachedConstructor.invoke(CachedConstructor.java:77)
+| Error 	at org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrapNoCoerce.callConstructor(ConstructorSite.java:102)
+| Error 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:194)
+| Error 	at gant.Gant$_dispatch_closure5.doCall(Gant.groovy:391)
+| Error 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+| Error 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+| Error 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+| Error 	at java.lang.reflect.Method.invoke(Method.java:601)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite$PogoCachedMethodSiteNoUnwrapNoCoerce.invoke(PogoMetaMethodSite.java:272)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite.call(PogoMetaMethodSite.java:64)
+| Error 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:116)
+| Error 	at gant.Gant$_dispatch_closure7.doCall(Gant.groovy:415)
+| Error 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+| Error 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+| Error 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+| Error 	at java.lang.reflect.Method.invoke(Method.java:601)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite$PogoCachedMethodSite.invoke(PogoMetaMethodSite.java:231)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite.callCurrent(PogoMetaMethodSite.java:52)
+| Error 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:141)
+| Error 	at gant.Gant$_dispatch_closure7.doCall(Gant.groovy)
+| Error 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+| Error 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+| Error 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+| Error 	at java.lang.reflect.Method.invoke(Method.java:601)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite$PogoCachedMethodSiteNoUnwrapNoCoerce.invoke(PogoMetaMethodSite.java:272)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite.call(PogoMetaMethodSite.java:64)
+| Error 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:112)
+| Error 	at gant.Gant.withBuildListeners(Gant.groovy:427)
+| Error 	at gant.Gant.this$2$withBuildListeners(Gant.groovy)
+| Error 	at gant.Gant$this$2$withBuildListeners.callCurrent(Unknown Source)
+| Error 	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallCurrent(CallSiteArray.java:49)
+| Error 	at gant.Gant$this$2$withBuildListeners.callCurrent(Unknown Source)
+| Error 	at gant.Gant.dispatch(Gant.groovy:415)
+| Error 	at gant.Gant.this$2$dispatch(Gant.groovy)
+| Error 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+| Error 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+| Error 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+| Error 	at java.lang.reflect.Method.invoke(Method.java:601)
+| Error 	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:90)
+| Error 	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1082)
+| Error 	at groovy.lang.ExpandoMetaClass.invokeMethod(ExpandoMetaClass.java:1106)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:906)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:729)
+| Error 	at gant.Gant.invokeMethod(Gant.groovy)
+| Error 	at groovy.lang.GroovyObject$invokeMethod.callCurrent(Unknown Source)
+| Error 	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallCurrent(CallSiteArray.java:49)
+| Error 	at groovy.lang.GroovyObject$invokeMethod.callCurrent(Unknown Source)
+| Error 	at gant.Gant.executeTargets(Gant.groovy:591)
+| Error 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+| Error 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+| Error 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+| Error 	at java.lang.reflect.Method.invoke(Method.java:601)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite$PogoCachedMethodSite.invoke(PogoMetaMethodSite.java:231)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite.callCurrent(PogoMetaMethodSite.java:52)
+| Error 	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallCurrent(CallSiteArray.java:49)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite.callCurrent(PogoMetaMethodSite.java:57)
+| Error 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:145)
+| Error 	at gant.Gant.executeTargets(Gant.groovy:590)
+| Error 	at org.codehaus.groovy.grails.cli.GrailsScriptRunner.executeWithGantInstance(GrailsScriptRunner.java:768)
+| Error 	at org.codehaus.groovy.grails.cli.GrailsScriptRunner.executeScriptFile(GrailsScriptRunner.java:566)
+| Error 	at org.codehaus.groovy.grails.cli.GrailsScriptRunner.executeScriptWithCaching(GrailsScriptRunner.java:465)
+| Error 	at org.codehaus.groovy.grails.cli.GrailsScriptRunner.executeScriptWithCaching(GrailsScriptRunner.java:416)
+| Error 	at org.grails.ide.api.impl.GrailsConnectorImpl.executeCommand(GrailsConnectorImpl.java:144)
+| Error 	at org.grails.ide.eclipse.longrunning.process.GrailsProcess.run(GrailsProcess.java:126)
+| Error 	at org.grails.ide.eclipse.longrunning.process.GrailsProcess.main(GrailsProcess.java:89)
+| Error 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+| Error 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+| Error 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+| Error 	at java.lang.reflect.Method.invoke(Method.java:601)
+| Error 	at org.codehaus.groovy.grails.cli.support.GrailsStarter.rootLoader(GrailsStarter.java:234)
+| Error 	at org.codehaus.groovy.grails.cli.support.GrailsStarter.main(GrailsStarter.java:262)
+| Error Caused by: : C:\Users\Adam Milward\git\groovy_metadata\groovy_metadata_registry\grails-app\migrations does not exist.
+| Error 	at org.apache.tools.ant.types.AbstractFileSet.getDirectoryScanner(AbstractFileSet.java:483)
+| Error 	at org.apache.tools.ant.taskdefs.Copy.execute(Copy.java:475)
+| Error 	at org.apache.tools.ant.UnknownElement.execute(UnknownElement.java:291)
+| Error 	at sun.reflect.GeneratedMethodAccessor71.invoke(Unknown Source)
+| Error 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+| Error 	at java.lang.reflect.Method.invoke(Method.java:601)
+| Error 	at org.apache.tools.ant.dispatch.DispatchUtils.execute(DispatchUtils.java:106)
+| Error 	at groovy.util.AntBuilder.performTask(AntBuilder.java:260)
+| Error 	at groovy.util.AntBuilder.nodeCompleted(AntBuilder.java:220)
+| Error 	at groovy.util.BuilderSupport.doInvokeMethod(BuilderSupport.java:147)
+| Error 	at groovy.util.AntBuilder.doInvokeMethod(AntBuilder.java:170)
+| Error 	at groovy.util.BuilderSupport.invokeMethod(BuilderSupport.java:64)
+| Error 	at org.codehaus.gant.GantBuilder.invokeMethod(GantBuilder.java:99)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaClassSite.call(PogoMetaClassSite.java:45)
+| Error 	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:45)
+| Error 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:108)
+| Error 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:120)
+| Error 	at _Events$_run_closure2.doCall(_Events.groovy:20)
+| Error 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+| Error 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+| Error 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+| Error 	at java.lang.reflect.Method.invoke(Method.java:601)
+| Error 	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:90)
+| Error 	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1082)
+| Error 	at groovy.lang.ExpandoMetaClass.invokeMethod(ExpandoMetaClass.java:1106)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:906)
+| Error 	at groovy.lang.Closure.call(Closure.java:412)
+| Error 	at org.codehaus.groovy.grails.cli.support.GrailsBuildEventListener.triggerEvent(GrailsBuildEventListener.java:209)
+| Error 	at sun.reflect.GeneratedMethodAccessor257.invoke(Unknown Source)
+| Error 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+| Error 	at java.lang.reflect.Method.invoke(Method.java:601)
+| Error 	at org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite$PojoCachedMethodSite.invoke(PojoMetaMethodSite.java:189)
+| Error 	at org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite.call(PojoMetaMethodSite.java:53)
+| Error 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:124)
+| Error 	at org.codehaus.groovy.grails.project.packaging.GrailsProjectWarCreator.packageWar(GrailsProjectWarCreator.groovy:333)
+| Error 	at org.codehaus.groovy.grails.project.packaging.GrailsProjectWarCreator$packageWar.call(Unknown Source)
+| Error 	at _GrailsWar_groovy$_run_closure2.doCall(_GrailsWar_groovy:43)
+| Error 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+| Error 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+| Error 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+| Error 	at java.lang.reflect.Method.invoke(Method.java:601)
+| Error 	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:90)
+| Error 	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1082)
+| Error 	at groovy.lang.ExpandoMetaClass.invokeMethod(ExpandoMetaClass.java:1106)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:906)
+| Error 	at groovy.lang.DelegatingMetaClass.invokeMethod(DelegatingMetaClass.java:149)
+| Error 	at org.codehaus.gant.GantMetaClass.invokeMethod(GantMetaClass.java:133)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaClassSite.call(PogoMetaClassSite.java:39)
+| Error 	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:45)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaClassSite.call(PogoMetaClassSite.java:54)
+| Error 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:116)
+| Error 	at org.codehaus.gant.GantBinding$_initializeGantBinding_closure5_closure16_closure18.doCall(GantBinding.groovy:185)
+| Error 	at sun.reflect.GeneratedMethodAccessor108.invoke(Unknown Source)
+| Error 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+| Error 	at java.lang.reflect.Method.invoke(Method.java:601)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite$PogoCachedMethodSite.invoke(PogoMetaMethodSite.java:231)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite.callCurrent(PogoMetaMethodSite.java:52)
+| Error 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:141)
+| Error 	at org.codehaus.gant.GantBinding$_initializeGantBinding_closure5_closure16_closure18.doCall(GantBinding.groovy)
+| Error 	at sun.reflect.GeneratedMethodAccessor107.invoke(Unknown Source)
+| Error 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+| Error 	at java.lang.reflect.Method.invoke(Method.java:601)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite$PogoCachedMethodSiteNoUnwrapNoCoerce.invoke(PogoMetaMethodSite.java:272)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite.call(PogoMetaMethodSite.java:64)
+| Error 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:112)
+| Error 	at org.codehaus.gant.GantBinding.withTargetEvent(GantBinding.groovy:90)
+| Error 	at org.codehaus.gant.GantBinding.this$4$withTargetEvent(GantBinding.groovy)
+| Error 	at sun.reflect.GeneratedMethodAccessor102.invoke(Unknown Source)
+| Error 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+| Error 	at java.lang.reflect.Method.invoke(Method.java:601)
+| Error 	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:90)
+| Error 	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1082)
+| Error 	at groovy.lang.ExpandoMetaClass.invokeMethod(ExpandoMetaClass.java:1106)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:906)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1027)
+| Error 	at groovy.lang.ExpandoMetaClass.invokeMethod(ExpandoMetaClass.java:1106)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:906)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:727)
+| Error 	at groovy.lang.GroovyObjectSupport.invokeMethod(GroovyObjectSupport.java:44)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethodOnGroovyObject(MetaClassImpl.java:1147)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1041)
+| Error 	at groovy.lang.ExpandoMetaClass.invokeMethod(ExpandoMetaClass.java:1106)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:906)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaClassSite.callCurrent(PogoMetaClassSite.java:66)
+| Error 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:149)
+| Error 	at org.codehaus.gant.GantBinding$_initializeGantBinding_closure5_closure16.doCall(GantBinding.groovy:185)
+| Error 	at sun.reflect.GeneratedMethodAccessor101.invoke(Unknown Source)
+| Error 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+| Error 	at java.lang.reflect.Method.invoke(Method.java:601)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite$PogoCachedMethodSite.invoke(PogoMetaMethodSite.java:231)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite.callCurrent(PogoMetaMethodSite.java:52)
+| Error 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:141)
+| Error 	at org.codehaus.gant.GantBinding$_initializeGantBinding_closure5_closure16.doCall(GantBinding.groovy)
+| Error 	at sun.reflect.GeneratedMethodAccessor100.invoke(Unknown Source)
+| Error 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+| Error 	at java.lang.reflect.Method.invoke(Method.java:601)
+| Error 	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:90)
+| Error 	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1082)
+| Error 	at groovy.lang.ExpandoMetaClass.invokeMethod(ExpandoMetaClass.java:1106)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:906)
+| Error 	at groovy.lang.Closure.call(Closure.java:412)
+| Error 	at groovy.lang.Closure.call(Closure.java:406)
+| Error 	at org.codehaus.gant.GantMetaClass.processClosure(GantMetaClass.java:81)
+| Error 	at org.codehaus.gant.GantMetaClass.processArgument(GantMetaClass.java:95)
+| Error 	at org.codehaus.gant.GantMetaClass.invokeMethod(GantMetaClass.java:128)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaClassSite.callCurrent(PogoMetaClassSite.java:66)
+| Error 	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallCurrent(CallSiteArray.java:49)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaClassSite.callCurrent(PogoMetaClassSite.java:81)
+| Error 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:145)
+| Error 	at War$_run_closure1.doCall(War.groovy:38)
+| Error 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+| Error 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+| Error 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+| Error 	at java.lang.reflect.Method.invoke(Method.java:601)
+| Error 	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:90)
+| Error 	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1082)
+| Error 	at groovy.lang.ExpandoMetaClass.invokeMethod(ExpandoMetaClass.java:1106)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:906)
+| Error 	at groovy.lang.DelegatingMetaClass.invokeMethod(DelegatingMetaClass.java:149)
+| Error 	at org.codehaus.gant.GantMetaClass.invokeMethod(GantMetaClass.java:133)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaClassSite.call(PogoMetaClassSite.java:39)
+| Error 	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:45)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaClassSite.call(PogoMetaClassSite.java:54)
+| Error 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:116)
+| Error 	at org.codehaus.gant.GantBinding$_initializeGantBinding_closure5_closure16_closure18.doCall(GantBinding.groovy:185)
+| Error 	at sun.reflect.GeneratedMethodAccessor108.invoke(Unknown Source)
+| Error 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+| Error 	at java.lang.reflect.Method.invoke(Method.java:601)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite$PogoCachedMethodSite.invoke(PogoMetaMethodSite.java:231)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite.callCurrent(PogoMetaMethodSite.java:52)
+| Error 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:141)
+| Error 	at org.codehaus.gant.GantBinding$_initializeGantBinding_closure5_closure16_closure18.doCall(GantBinding.groovy)
+| Error 	at sun.reflect.GeneratedMethodAccessor107.invoke(Unknown Source)
+| Error 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+| Error 	at java.lang.reflect.Method.invoke(Method.java:601)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite$PogoCachedMethodSiteNoUnwrapNoCoerce.invoke(PogoMetaMethodSite.java:272)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite.call(PogoMetaMethodSite.java:64)
+| Error 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:112)
+| Error 	at org.codehaus.gant.GantBinding.withTargetEvent(GantBinding.groovy:90)
+| Error 	at org.codehaus.gant.GantBinding.this$4$withTargetEvent(GantBinding.groovy)
+| Error 	at sun.reflect.GeneratedMethodAccessor102.invoke(Unknown Source)
+| Error 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+| Error 	at java.lang.reflect.Method.invoke(Method.java:601)
+| Error 	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:90)
+| Error 	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1082)
+| Error 	at groovy.lang.ExpandoMetaClass.invokeMethod(ExpandoMetaClass.java:1106)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:906)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1027)
+| Error 	at groovy.lang.ExpandoMetaClass.invokeMethod(ExpandoMetaClass.java:1106)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:906)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:727)
+| Error 	at groovy.lang.GroovyObjectSupport.invokeMethod(GroovyObjectSupport.java:44)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethodOnGroovyObject(MetaClassImpl.java:1147)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1041)
+| Error 	at groovy.lang.ExpandoMetaClass.invokeMethod(ExpandoMetaClass.java:1106)
+| Error 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:906)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaClassSite.callCurrent(PogoMetaClassSite.java:66)
+| Error 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:149)
+| Error 	at org.codehaus.gant.GantBinding$_initializeGantBinding_closure5_closure16.doCall(GantBinding.groovy:185)
+| Error 	at sun.reflect.GeneratedMethodAccessor101.invoke(Unknown Source)
+| Error 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+| Error 	at java.lang.reflect.Method.invoke(Method.java:601)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite$PogoCachedMethodSite.invoke(PogoMetaMethodSite.java:231)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite.callCurrent(PogoMetaMethodSite.java:52)
+| Error 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:141)
+| Error 	at org.codehaus.gant.GantBinding$_initializeGantBinding_closure5_closure16.doCall(GantBinding.groovy)
+| Error 	at sun.reflect.GeneratedMethodAccessor100.invoke(Unknown Source)
+| Error 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+| Error 	at java.lang.reflect.Method.invoke(Method.java:601)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite$PogoCachedMethodSiteNoUnwrapNoCoerce.invoke(PogoMetaMethodSite.java:272)
+| Error 	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite.call(PogoMetaMethodSite.java:64)
+| Error 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:112)
+| Error 	at gant.Gant$_dispatch_closure5.doCall(Gant.groovy:381)
+| Error 	... 68 more
+!SUBENTRY 2 org.grails.ide.eclipse.core 4 0 2013-07-06 17:55:53.845
+!MESSAGE ------System.err:-----------
+
+
+!ENTRY org.grails.ide.eclipse.core 4 0 2013-07-06 17:56:05.533
+!MESSAGE A problem occurred building the war file for P/groovy_metadata_registry
+!STACK 1
+org.eclipse.core.runtime.CoreException: Command terminated with an error code (see details for output)
+	at org.grails.ide.eclipse.core.launch.SynchLaunch$LaunchResult.getCoreException(SynchLaunch.java:168)
+	at org.grails.ide.eclipse.longrunning.LongRunningProcessGrailsExecutor.synchExec(LongRunningProcessGrailsExecutor.java:106)
+	at org.grails.ide.eclipse.commands.GrailsCommand.synchExec(GrailsCommand.java:169)
+	at org.grails.ide.eclipse.runonserver.GrailsAppModuleDelegate.cacheWarFile(GrailsAppModuleDelegate.java:476)
+	at org.grails.ide.eclipse.runonserver.GrailsAppModuleDelegate.cacheMembers(GrailsAppModuleDelegate.java:263)
+	at org.grails.ide.eclipse.runonserver.GrailsAppModuleDelegate.members(GrailsAppModuleDelegate.java:128)
+	at org.eclipse.wst.server.core.internal.ModulePublishInfo.hasDelta(ModulePublishInfo.java:415)
+	at org.eclipse.wst.server.core.internal.ServerPublishInfo.hasDelta(ServerPublishInfo.java:440)
+	at org.eclipse.wst.server.core.internal.Server.hasPublishedResourceDelta(Server.java:1586)
+	at org.eclipse.wst.server.core.internal.Server$ResourceChangeJob$1.visit(Server.java:217)
+	at org.eclipse.wst.server.core.internal.Server.visitModule(Server.java:3036)
+	at org.eclipse.wst.server.core.internal.Server.visit(Server.java:3020)
+	at org.eclipse.wst.server.core.internal.Server$ResourceChangeJob.run(Server.java:228)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+Contains: ------System.out:-----------
+ Loading Grails 2.2.1
+| Environment set to development.....
+| Packaging Grails application..
+| Compiling 1 source files..
+| Compiling 1 source files.....
+| Compiling 32 GSP files for package [groovy_metadata_registry]..
+| Compiling 4 GSP files for package [mail].
+| Compiling 41 GSP files for package [springSecurityUi].
+| Compiling 4 GSP files for package [databaseMigration]..
+| Building WAR file.....
+Contains: ------System.err:-----------
+
+!SUBENTRY 1 org.grails.ide.eclipse.core 4 4 2013-07-06 17:56:05.533
+!MESSAGE Command terminated with an error code (see details for output)
+!SUBENTRY 2 org.grails.ide.eclipse.core 4 0 2013-07-06 17:56:05.534
+!MESSAGE ------System.out:-----------
+ Loading Grails 2.2.1
+| Environment set to development.....
+| Packaging Grails application..
+| Compiling 1 source files..
+| Compiling 1 source files.....
+| Compiling 32 GSP files for package [groovy_metadata_registry]..
+| Compiling 4 GSP files for package [mail].
+| Compiling 41 GSP files for package [springSecurityUi].
+| Compiling 4 GSP files for package [databaseMigration]..
+| Building WAR file.....
+!SUBENTRY 2 org.grails.ide.eclipse.core 4 0 2013-07-06 17:56:05.534
+!MESSAGE ------System.err:-----------
+

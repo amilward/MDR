@@ -50,7 +50,6 @@
     <resource>Config</resource>
     <resource>DataSource</resource>
     <resource>groovy_metadata_registry.APIAuthenticationFilters</resource>
-    <resource>groovy_metadata_registry.RESTAPIFilters</resource>
     <resource>resources</resource>
     <resource>UrlMappings</resource>
     <resource>LoginController</resource>
