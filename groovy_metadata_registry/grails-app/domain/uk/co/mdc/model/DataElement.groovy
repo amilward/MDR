@@ -16,5 +16,6 @@ class DataElement {
 	static hasMany = [subElements: DataElement]
 	
     static constraints = {
+		parentId(nullable:true )	
     }
 }

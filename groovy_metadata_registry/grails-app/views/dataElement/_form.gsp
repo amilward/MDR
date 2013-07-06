@@ -2,6 +2,14 @@
 
 
 
+<div class="fieldcontain ${hasErrors(bean: dataElementInstance, field: 'parentId', 'error')} ">
+	<label for="parentId">
+		<g:message code="dataElement.parentId.label" default="Parent Id" />
+		
+	</label>
+	<g:field name="parentId" type="number" value="${dataElementInstance.parentId}"/>
+</div>
+
 <div class="fieldcontain ${hasErrors(bean: dataElementInstance, field: 'definition', 'error')} ">
 	<label for="definition">
 		<g:message code="dataElement.definition.label" default="Definition" />
@@ -16,14 +24,6 @@
 		
 	</label>
 	<g:textField name="description" value="${dataElementInstance?.description}"/>
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: dataElementInstance, field: 'parentId', 'error')} required">
-	<label for="parentId">
-		<g:message code="dataElement.parentId.label" default="Parent Id" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:field name="parentId" type="number" value="${dataElementInstance.parentId}" required=""/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: dataElementInstance, field: 'refId', 'error')} required">

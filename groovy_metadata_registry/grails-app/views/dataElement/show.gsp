@@ -23,6 +23,15 @@
 			</g:if>
 			<ol class="property-list dataElement">
 			
+				<g:if test="${dataElementInstance?.parentId}">
+				<li class="fieldcontain">
+					<span id="parentId-label" class="property-label"><g:message code="dataElement.parentId.label" default="Parent Id" /></span>
+					
+						<span class="property-value" aria-labelledby="parentId-label"><g:fieldValue bean="${dataElementInstance}" field="parentId"/></span>
+					
+				</li>
+				</g:if>
+			
 				<g:if test="${dataElementInstance?.definition}">
 				<li class="fieldcontain">
 					<span id="definition-label" class="property-label"><g:message code="dataElement.definition.label" default="Definition" /></span>
@@ -37,15 +46,6 @@
 					<span id="description-label" class="property-label"><g:message code="dataElement.description.label" default="Description" /></span>
 					
 						<span class="property-value" aria-labelledby="description-label"><g:fieldValue bean="${dataElementInstance}" field="description"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${dataElementInstance?.parentId}">
-				<li class="fieldcontain">
-					<span id="parentId-label" class="property-label"><g:message code="dataElement.parentId.label" default="Parent Id" /></span>
-					
-						<span class="property-value" aria-labelledby="parentId-label"><g:fieldValue bean="${dataElementInstance}" field="parentId"/></span>
 					
 				</li>
 				</g:if>

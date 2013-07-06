@@ -24,11 +24,11 @@
 				<thead>
 					<tr>
 					
+						<g:sortableColumn property="parentId" title="${message(code: 'dataElement.parentId.label', default: 'Parent Id')}" />
+					
 						<g:sortableColumn property="definition" title="${message(code: 'dataElement.definition.label', default: 'Definition')}" />
 					
 						<g:sortableColumn property="description" title="${message(code: 'dataElement.description.label', default: 'Description')}" />
-					
-						<g:sortableColumn property="parentId" title="${message(code: 'dataElement.parentId.label', default: 'Parent Id')}" />
 					
 						<g:sortableColumn property="refId" title="${message(code: 'dataElement.refId.label', default: 'Ref Id')}" />
 					
@@ -40,11 +40,11 @@
 				<g:each in="${dataElementInstanceList}" status="i" var="dataElementInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
-						<td><g:link action="show" id="${dataElementInstance.id}">${fieldValue(bean: dataElementInstance, field: "definition")}</g:link></td>
+						<td><g:link action="show" id="${dataElementInstance.id}">${fieldValue(bean: dataElementInstance, field: "parentId")}</g:link></td>
+					
+						<td>${fieldValue(bean: dataElementInstance, field: "definition")}</td>
 					
 						<td>${fieldValue(bean: dataElementInstance, field: "description")}</td>
-					
-						<td>${fieldValue(bean: dataElementInstance, field: "parentId")}</td>
 					
 						<td>${fieldValue(bean: dataElementInstance, field: "refId")}</td>
 					
