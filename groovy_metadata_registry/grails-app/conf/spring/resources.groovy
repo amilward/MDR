@@ -1,3 +1,5 @@
+import groovy_metadata_registry.APIAuthenticationFilters
+
 // Place your Spring DSL code here
 beans = {
 	
