@@ -19,6 +19,11 @@ class BootStrap {
 		SecUserSecAuth.create adminUser, adminAuth
 	}
 
+	
+	//register rest api security filter
+	
+	SpringSecurityUtils.clientRegisterFilter('apiAuthFilter', SecurityFilterPosition.SECURITY_CONTEXT_FILTER.order + 10)
+		
 		
 		
     }
