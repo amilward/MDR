@@ -13,16 +13,16 @@
 		<item value="false" key="isRegEx"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="footer" key="selection"/>
+		<item value="dataElementValue" key="selection"/>
 		<list key="findhistory">
+			<item value="DataElementValue"/>
+			<item value="each"/>
+			<item value="log"/>
 			<item value="footer"/>
 			<item value="header"/>
 			<item value="contact"/>
 			<item value="data"/>
 			<item value="case &apos;data&apos;:"/>
-			<item value="&quot;data"/>
-			<item value="max-width"/>
-			<item value="width"/>
 		</list>
 		<list key="replacehistory">
 			<item value=""/>

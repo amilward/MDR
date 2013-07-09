@@ -71,7 +71,7 @@
 		<guid isPermaLink="false">http://blog.springsource.org/?p=13625</guid>
 		<description><![CDATA[Yesterday I announced the release of Spring Security Java Configuration support and the release of Spring Security 3.2.0.M2 which contains Java Configuration support. Spring Security&#039;s Java Configuration support is intended to provide a complete replacement of the XML namespace configuration. It is also designed to be extensible, so that Spring Security&#039;s extension projects can work  <a href="http://blog.springsource.org/2013/07/02/spring-security-java-config-preview-introduction/"><em>Read more...</em></a>]]></description>
 		<wfw:commentRss>http://blog.springsource.org/2013/07/02/spring-security-java-config-preview-introduction/feed/</wfw:commentRss>
-		<slash:comments>2</slash:comments>
+		<slash:comments>3</slash:comments>
 		</item>
 		<item>
 		<title>Spring XD 1.0 Milestone 1 Released</title>
@@ -136,7 +136,7 @@
 		<guid isPermaLink="false">http://blog.springsource.org/?p=13431</guid>
 		<description><![CDATA[As you may have seen, the first milestone of Spring Framework 4.0 was already announced and with it we&#039;ve released early WebSocket support. Why WebSocket matters? It enables efficient, two-way communication over the web that is essential in applications where messages need to be exchanged between client (typically browser) and server at high frequency and  <a href="http://blog.springsource.org/2013/05/22/spring-framework-4-0-m1-websocket-support/"><em>Read more...</em></a>]]></description>
 		<wfw:commentRss>http://blog.springsource.org/2013/05/22/spring-framework-4-0-m1-websocket-support/feed/</wfw:commentRss>
-		<slash:comments>25</slash:comments>
+		<slash:comments>26</slash:comments>
 		</item>
 		<item>
 		<title>Spring Framework 4.0 M1 &amp; 3.2.3 available</title>

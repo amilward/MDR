@@ -62,6 +62,7 @@
     <resource>uk.co.mdc.model.ValueDomainController</resource>
     <resource>uk.co.mdc.model.ConceptualDomain</resource>
     <resource>uk.co.mdc.model.DataElement</resource>
+    <resource>uk.co.mdc.model.DataElementValueDomain</resource>
     <resource>uk.co.mdc.model.Document</resource>
     <resource>uk.co.mdc.model.UmlModel</resource>
     <resource>uk.co.mdc.model.ValueDomain</resource>

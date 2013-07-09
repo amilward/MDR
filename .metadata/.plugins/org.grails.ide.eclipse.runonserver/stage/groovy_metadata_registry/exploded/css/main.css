@@ -45,6 +45,7 @@ body {
 	   -moz-box-shadow: 0 0 0.3em #255b17;
 	-webkit-box-shadow: 0 0 0.3em #255b17;
 	        box-shadow: 0 0 0.3em #255b17;
+	 height:auto;
 }
 
 #grailsLogo {
@@ -79,6 +80,11 @@ h1 {
 	margin: 0.8em 0 0.3em 0;
 }
 
+p {
+	margin: 0.8em 0 0.3em 0;
+}
+
+
 ul {
 	padding: 0;
 }
@@ -101,6 +107,17 @@ img {
 	border-bottom: 1px solid #CCCCCC;
 	margin: 0.8em 1em 0.3em;
 	padding: 0 0.25em;
+}
+
+.content p {
+	margin: 0.8em 1em 0.3em;
+	padding: 0 0.25em;
+}
+
+.content table{
+	margin: 0.8em 1em 0.3em;
+	padding: 0 0.25em;
+	width: 90%;
 }
 
 .scaffold-list h1 {
@@ -146,13 +163,14 @@ img {
 	
 
 .footer {
-	background: #abbf78;
+	background: none;
 	color: #000;
 	clear: both;
 	font-size: 0.8em;
 	margin-top: 1.5em;
 	padding: 1em;
 	min-height: 1em;
+	z-index:-1;
 }
 
 .footer a {
@@ -632,3 +650,5 @@ a.skip {
 	position: absolute;
 	left: -9999px;
 }
+
+

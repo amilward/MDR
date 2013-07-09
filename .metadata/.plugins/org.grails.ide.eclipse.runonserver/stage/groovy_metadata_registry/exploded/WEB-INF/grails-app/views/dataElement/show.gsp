@@ -23,6 +23,34 @@
 			</g:if>
 			<ol class="property-list dataElement">
 			
+				<g:if test="${dataElementInstance?.name}">
+				<li class="fieldcontain">
+					<span id="name-label" class="property-label"><g:message code="dataElement.name.label" default="Name" /></span>
+					
+						<span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${dataElementInstance}" field="name"/></span>
+					
+				</li>
+				</g:if>
+			
+			
+				<g:if test="${dataElementInstance?.refId}">
+				<li class="fieldcontain">
+					<span id="refId-label" class="property-label"><g:message code="dataElement.refId.label" default="Ref Id" /></span>
+					
+						<span class="property-value" aria-labelledby="refId-label"><g:fieldValue bean="${dataElementInstance}" field="refId"/></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${dataElementInstance?.parent}">
+				<li class="fieldcontain">
+					<span id="parent-label" class="property-label"><g:message code="dataElement.parent.label" default="Parent" /></span>
+					
+						<span class="property-value" aria-labelledby="parent-label"><g:link controller="dataElement" action="show" id="${dataElementInstance?.parent?.id}">${dataElementInstance?.parent?.name?.encodeAsHTML()}</g:link></span>
+					
+				</li>
+				</g:if>
+			
 				<g:if test="${dataElementInstance?.definition}">
 				<li class="fieldcontain">
 					<span id="definition-label" class="property-label"><g:message code="dataElement.definition.label" default="Definition" /></span>
@@ -41,24 +69,6 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${dataElementInstance?.parentId}">
-				<li class="fieldcontain">
-					<span id="parentId-label" class="property-label"><g:message code="dataElement.parentId.label" default="Parent Id" /></span>
-					
-						<span class="property-value" aria-labelledby="parentId-label"><g:fieldValue bean="${dataElementInstance}" field="parentId"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${dataElementInstance?.refId}">
-				<li class="fieldcontain">
-					<span id="refId-label" class="property-label"><g:message code="dataElement.refId.label" default="Ref Id" /></span>
-					
-						<span class="property-value" aria-labelledby="refId-label"><g:fieldValue bean="${dataElementInstance}" field="refId"/></span>
-					
-				</li>
-				</g:if>
-			
 				<g:if test="${dataElementInstance?.subElements}">
 				<li class="fieldcontain">
 					<span id="subElements-label" class="property-label"><g:message code="dataElement.subElements.label" default="Sub Elements" /></span>
@@ -70,16 +80,37 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${dataElementInstance?.vdId}">
-				<li class="fieldcontain">
-					<span id="vdId-label" class="property-label"><g:message code="dataElement.vdId.label" default="Vd Id" /></span>
-					
-						<span class="property-value" aria-labelledby="vdId-label"><g:fieldValue bean="${dataElementInstance}" field="vdId"/></span>
-					
-				</li>
-				</g:if>
-			
 			</ol>
+			
+			<g:if test="${dataElementInstance?.dataElementValueDomains}">
+			
+				<h1>Associated Value Domains:</h1>
+					<table>
+							<thead>
+								<tr>
+									<th>Name</th>
+									<th>Reference ID</th>
+									<th>Description</th>
+									<th>Data Type</th>
+									<th>Unit of Measure</th>
+									<th>Regex definition</th>
+		
+								</tr>
+							</thead>
+							<g:each var="valueDomain" in="${dataElementInstance.dataElementValueDomains()}">
+								<tr>
+									<td>${valueDomain?.name}</td>
+									<td>${valueDomain?.refId}</td>
+									<td>${valueDomain?.description}</td>
+									<td>${valueDomain?.dataType} </td>
+									<td>${valueDomain?.unitOfMeasure} </td>
+									<td>${valueDomain?.regexDef} </td>
+								</tr>
+							</g:each>
+					</table>
+		
+			</g:if>
+			
 			<g:form>
 				<fieldset class="buttons">
 					<g:hiddenField name="id" value="${dataElementInstance?.id}" />

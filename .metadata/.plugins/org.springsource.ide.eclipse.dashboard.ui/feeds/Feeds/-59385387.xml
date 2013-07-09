@@ -6,6 +6,84 @@
  <description>Welcome to the home of Spring, the leading platform to build and run enterprise Java applications. Led and sustained by SpringSource, Spring delivers significant benefits for many projects, increasing development productivity and runtime performance while improving test coverage and application quality.</description>
  <language>en</language>
 <item>
+ <title>Webinar: Resistance Is NOT Futile: How to talk Spring and Influence People</title>
+ <link>http://www.springsource.org/node/22648</link>
+ <description>  &lt;p&gt;Sure the new features coming out in Spring Framework 4.0 are super exciting, but what about those of us that are still explaining dependency injection to our junior developers? And while Spock, Geb, and spring-test-mvc are revolutionizing our ability to test applications, what about the senior developers that are still justifying the value of unit testing to their managers. Strong technical leadership can overcome the organizational inertia that often resists your team&#039;s adoption of Spring technologies. Improve your leadership skills by drawing from lessons that were learned during the process of migrating Liberty University&#039;s software development department from &amp;quot;cut-and-paste coding&amp;quot; in ColdFusion to enterprise grade application development on the Spring Framework. Learn to plan an effective technology adoption strategy that avoids &amp;quot;new technology overload&amp;quot; and balances the pace of technology improvement with the necessity to continue production. Relationships with managers, junior developers, and production system administrators will all be important. Gain a better xtunderstanding of nontechnical managers and explore strategies for providing the conte they need to make the right decisions. Examine ways to build mentoring plans for your junior developers that include but extend beyond training and certifications from SpringSource University so that you can spend less time teaching and more time coding.&lt;/p&gt;
+  &lt;p&gt;
+    &lt;center&gt;
+      &lt;iframe width=&quot;420&quot; height=&quot;315&quot; src=&quot;//www.youtube.com/embed/9ONit-BdWmM&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
+    &lt;/center&gt;
+  &lt;/p&gt;
+&lt;/div&gt;
+&lt;div&gt;
+  &lt;div&gt;&lt;br /&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;div&gt;
+      &lt;div&gt;
+        &lt;h2&gt;About the speaker&lt;/h2&gt;
+        &lt;div&gt; &lt;a href=&quot;http://www.springone2gx.com/conference/washington/2012/10/speakers/josh_long&quot;&gt;&lt;img src=&quot;http://m.c.lnkd.licdn.com/mpr/mpr/shrink_200_200/p/4/000/16f/288/2a98850.jpg&quot; alt=&quot;Chris Harris&quot; /&gt;&lt;/a&gt;
+          &lt;div&gt;
+            &lt;h3&gt;Tony Erksine, Liberty University&lt;/h3&gt;
+            &lt;p&gt;Designed and developed Java web applications using Spring, Hibernate, and Oracle. Coached teams of developers during every stage of the SDLC. Supervised the vetting, hiring, and training of new software developers. Helped transition the organization to agile software development using Scrum. Pioneered the adoption of new technologies and methodologies at Liberty (i.e. Spring, TDD) Participated in various interdepartmental efforts for architecture, crisis resolution, etc.&lt;/p&gt;
+            &lt;p&gt;&lt;a href=&quot;http://www.linkedin.com/pub/tony-erskine/52/b14/688&quot;&gt;More About Tony »&lt;/a&gt; &lt;br /&gt;
+            &lt;/p&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;h2&gt;&lt;br /&gt;
+      &lt;/h2&gt;
+        &lt;div&gt;
+        &lt;/div&gt;
+        &lt;div&gt;
+          &lt;br /&gt;
+        &lt;/div&gt;
+        &lt;div&gt;
+&lt;/div&gt;
+        &lt;div&gt;
+        &lt;/div&gt;
+        &lt;div&gt;        &lt;/div&gt;
+        &lt;div&gt;
+          &lt;br /&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+</description>
+ <comments>http://www.springsource.org/node/22648#comments</comments>
+ <category domain="http://www.springsource.org/taxonomy/term/4">News and Announcements</category>
+ <pubDate>Mon, 08 Jul 2013 23:45:07 +0000</pubDate>
+ <dc:creator>Pieter Humphrey</dc:creator>
+ <guid isPermaLink="false">22648 at http://www.springsource.org</guid>
+</item>
+<item>
+ <title>Spring Social 1.0.0.M3 Released</title>
+ <link>http://www.springsource.org/spring-social/news/1.1.0.m3-released</link>
+ <description>&lt;p&gt;Dear Spring Community,&lt;/p&gt;
+&lt;p&gt;I&#039;m happy to announce the 1.1.0.M3 release of Spring Social, Spring Social Facebook, and Spring Social Twitter. At the same time, I&#039;m also pleased to include Spring Social LinkedIn 1.0.0.RC2 along with these releases.&lt;/p&gt;
+&lt;p&gt;Spring Social is an extension of the Spring Framework that enables you to connect your Java applications to Software-as-a-Service (SaaS) providers such as Facebook and Twitter.&lt;/p&gt;
+&lt;p&gt;In these four releases, you&#039;ll find several improvements and new features, including:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;New ReconnectFilter to automatically handle invalid/expired connections and attempt to reestablish a new connection.&lt;/li&gt;
+&lt;li&gt;Support for OAuth 2&#039;s &#039;state&#039; parameter to prevent CSRF attacks.&lt;/li&gt;
+&lt;li&gt;Support for non-standard, provider-specific parameters during provider sign-in.&lt;/li&gt;
+&lt;li&gt;Several API updates in the API bindings for Facebook, Twitter, and LinkedIn.&lt;/li&gt;
+&lt;li&gt;Initial support for Twitter&#039;s streaming API.&lt;/li&gt;
+&lt;li&gt;Support for application-only Twitter authorization.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In addition, several bugs were fixed. See the changelog (&lt;a href=&quot;http://static.springsource.org/spring-social/docs/1.1.x/changelog.txt&quot; target=&quot;_blank&quot;&gt;Core&lt;/a&gt;|&lt;a href=&quot;http://static.springsource.org/spring-social-facebook/docs/1.1.x/changelog.txt&quot; target=&quot;_blank&quot;&gt;Facebook&lt;/a&gt;|&lt;a href=&quot;http://static.springsource.org/spring-social-twitter/docs/1.1.x/changelog.txt&quot; target=&quot;_blank&quot;&gt;Twitter&lt;/a&gt;|&lt;a href=&quot;http://static.springsource.org/spring-social-linkedin/docs/1.0.x/changelog.txt&quot; target=&quot;_blank&quot;&gt;LinkedIn&lt;/a&gt;) for details.&lt;/p&gt;
+&lt;p&gt;To get the software, download the release distribution (&lt;a href=&quot;http://www.springsource.org/download/community?project=Spring%2520Social&amp;amp;version=1.1.0.M3&quot; target=&quot;_blank&quot;&gt;Core&lt;/a&gt;|&lt;a href=&quot;http://www.springsource.org/download/community?project=Spring%2520Social%2520Facebook&amp;amp;version=1.1.0.M3&quot; target=&quot;_blank&quot;&gt;Facebook&lt;/a&gt;|&lt;a href=&quot;http://www.springsource.org/download/community?project=Spring%2520Social%2520Twitter&amp;amp;version=1.1.0.M3&quot; target=&quot;_blank&quot;&gt;Twitter&lt;/a&gt;|&lt;a href=&quot;http://www.springsource.org/download/community?project=Spring%2520Social%2520LinkedIn&amp;amp;version=1.0.0.RC2&quot; target=&quot;_blank&quot;&gt;LinkedIn&lt;/a&gt;) or change the dependencies in your build file to reference version 1.1.0.M3 (or 1.0.0.RC2 for Spring Social LinkedIn).&lt;/p&gt;
+&lt;p&gt;These releases represent a step toward a Spring Social 1.1.0 release later this year. We have planned one more milestone release of Spring Social, Spring Social Facebook, and Spring Social Twitter that will include a few more small improvements and features.&lt;/p&gt;
+&lt;p&gt;We invite you to discuss this release as well as the continuing work toward Spring Social 1.1.0 in the &lt;a href=&quot;http://forum.springsource.org/forumdisplay.php?82-Social&quot;&gt;Spring Social Forum&lt;/a&gt; and to report any bugs or improvements in the &lt;a href=&quot;https://jira.springsource.org/browse/SOCIAL&quot; target=&quot;_blank&quot;&gt;Spring Social issue tracker&lt;/a&gt;.&lt;/p&gt;
+</description>
+ <comments>http://www.springsource.org/spring-social/news/1.1.0.m3-released#comments</comments>
+ <category domain="http://www.springsource.org/taxonomy/term/4">News and Announcements</category>
+ <pubDate>Fri, 05 Jul 2013 22:34:16 +0000</pubDate>
+ <dc:creator>Craig Walls</dc:creator>
+ <guid isPermaLink="false">22647 at http://www.springsource.org</guid>
+</item>
+<item>
  <title>This Week in Spring - July 2nd, 2013</title>
  <link>http://www.springsource.org/node/22646</link>
  <description> 
@@ -308,43 +386,6 @@
  <pubDate>Tue, 25 Jun 2013 21:23:47 +0000</pubDate>
  <dc:creator>Pieter Humphrey</dc:creator>
  <guid isPermaLink="false">22636 at http://www.springsource.org</guid>
-</item>
-<item>
- <title>Spring-AMQP 1.2.0 Release Candidate is Now Available!</title>
- <link>http://www.springsource.org/node/22635</link>
- <description>&lt;p&gt;The release candidate for the upcoming Spring-AMQP 1.2.0 release for Java is now available.&lt;/p&gt;
-&lt;p&gt;See &lt;a href=&quot;https://jira.springsource.org/secure/ReleaseNote.jspa?projectId=10450&amp;amp;version=11824&quot;&gt;the release notes&lt;/a&gt; for more information.&lt;/p&gt;
-&lt;p&gt;This release includes a few additional improvements and features over and above those in the previous milestone.&lt;/p&gt;
-&lt;p&gt;See the &lt;a href=&quot;http://www.springsource.org/spring-amqp&quot;&gt;project page&lt;/a&gt; for links to downloads and documentation.&lt;/p&gt;
-</description>
- <comments>http://www.springsource.org/node/22635#comments</comments>
- <pubDate>Thu, 20 Jun 2013 15:59:53 +0000</pubDate>
- <dc:creator>Gary Russell</dc:creator>
- <guid isPermaLink="false">22635 at http://www.springsource.org</guid>
-</item>
-<item>
- <title>Spring Social Facebook 1.0.3 Released</title>
- <link>http://www.springsource.org/spring-social/news/spring-social-facebook-1.0.3-released</link>
- <description>&lt;p&gt;Dear Spring Community,&lt;/p&gt;
-&lt;p&gt;I&#039;m happy to announce the release of Spring Social Facebook 1.0.3.RELEASE.&lt;/p&gt;
-&lt;p&gt;Spring Social is an extension of the Spring Framework that enables you to connect your Java applications to Software-as-a-Service (SaaS) providers such as Facebook and Twitter.&lt;/p&gt;
-&lt;p&gt;Spring Social Facebook 1.0.3.RELEASE is made available to address &lt;a href=&quot;https://developers.facebook.com/roadmap/#q3_2013&quot;&gt;breaking changes&lt;/a&gt; forthcoming in Facebook&#039;s Graph API to be applied on July 10, 2013. Specifically, the following breaking changes have been addressed:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;The removal of the &#039;count&#039; property in a list of comments.&lt;/li&gt;
-&lt;li&gt;Deprecation of checkins via the /checkins resource. All checkins should be done as posts with a location now.&lt;/li&gt;
-&lt;li&gt;Removal of the &#039;version&#039; property for groups.&lt;/li&gt;
-&lt;li&gt;The Graph API no longer returns images for photos with sizes larger than the original image size.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;In addition, a handful of small improvements were made to Spring Social Facebook&#039;s API binding. See the &lt;a href=&quot;http://static.springsource.org/spring-social-facebook/docs/1.0.x/changelog.txt&quot; target=&quot;_blank&quot;&gt;changelog&lt;/a&gt; for details.&lt;/p&gt;
-&lt;p&gt;To get the software, download the &lt;a href=&quot;http://www.springsource.org/download/community?project=Spring%2520Social%2520Facebook&amp;amp;version=1.0.3.RELEASE&quot; target=&quot;_blank&quot;&gt;release distribution&lt;/a&gt; or change the Spring Social Facebook dependency in your build file to reference 1.0.3.RELEASE.&lt;/p&gt;
-&lt;p&gt;Important: This release includes changes to enable Spring Social Facebook to work after the &lt;a href=&quot;https://developers.facebook.com/roadmap/#q3_2013&quot; target=&quot;_blank&quot;&gt;July 2013 Breaking Changes&lt;/a&gt;. In order for this version of Spring Social Facebook to work prior to July 10, 2013, you&#039;ll need to configure your application at Facebook to enable the July 2013 Breaking Changes. Within Facebook&#039;s application configuration, go to &quot;Settings-&amp;gt;Advanced&quot; and click the &quot;Enabled&quot; radio button next to &quot;July 2013 Breaking Changes&quot;.&lt;/p&gt;
-&lt;p&gt;We invite you to discuss this release as well as the continuing work toward Spring Social 1.1.0 in the &lt;a href=&quot;http://forum.springsource.org/forumdisplay.php?82-Social&quot;&gt;Spring Social Forum&lt;/a&gt; and to report any bugs or improvements in the &lt;a href=&quot;https://jira.springsource.org/browse/SOCIALFB&quot; target=&quot;_blank&quot;&gt;Spring Social Facebook issue tracker&lt;/a&gt;.&lt;/p&gt;
-</description>
- <comments>http://www.springsource.org/spring-social/news/spring-social-facebook-1.0.3-released#comments</comments>
- <category domain="http://www.springsource.org/taxonomy/term/4">News and Announcements</category>
- <pubDate>Wed, 19 Jun 2013 14:09:59 +0000</pubDate>
- <dc:creator>Craig Walls</dc:creator>
- <guid isPermaLink="false">22634 at http://www.springsource.org</guid>
 </item>
 </channel>
 </rss>

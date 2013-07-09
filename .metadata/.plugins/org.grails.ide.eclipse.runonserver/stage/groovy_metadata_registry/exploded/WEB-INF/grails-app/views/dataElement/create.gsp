@@ -16,6 +16,7 @@
 		</div>
 		<div id="create-dataElement" class="content scaffold-create" role="main">
 			<h1><g:message code="default.create.label" args="[entityName]" /></h1>
+			<p>${DataElement.HELP}</p>
 			<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>

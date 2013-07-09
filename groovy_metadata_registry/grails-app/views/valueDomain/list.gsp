@@ -24,11 +24,13 @@
 				<thead>
 					<tr>
 					
-						<g:sortableColumn property="datatype" title="${message(code: 'valueDomain.datatype.label', default: 'Datatype')}" />
+						<g:sortableColumn property="dataType" title="${message(code: 'valueDomain.dataType.label', default: 'Data Type')}" />
 					
 						<g:sortableColumn property="description" title="${message(code: 'valueDomain.description.label', default: 'Description')}" />
 					
-						<g:sortableColumn property="refid" title="${message(code: 'valueDomain.refid.label', default: 'Refid')}" />
+						<g:sortableColumn property="name" title="${message(code: 'valueDomain.name.label', default: 'Name')}" />
+					
+						<g:sortableColumn property="refId" title="${message(code: 'valueDomain.refId.label', default: 'Ref Id')}" />
 					
 						<g:sortableColumn property="regexDef" title="${message(code: 'valueDomain.regexDef.label', default: 'Regex Def')}" />
 					
@@ -40,11 +42,13 @@
 				<g:each in="${valueDomainInstanceList}" status="i" var="valueDomainInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
-						<td><g:link action="show" id="${valueDomainInstance.id}">${fieldValue(bean: valueDomainInstance, field: "datatype")}</g:link></td>
+						<td><g:link action="show" id="${valueDomainInstance.id}">${fieldValue(bean: valueDomainInstance, field: "name")}</g:link></td>
 					
+						<td>${fieldValue(bean: valueDomainInstance, field: "refId")}</td>
+						
 						<td>${fieldValue(bean: valueDomainInstance, field: "description")}</td>
 					
-						<td>${fieldValue(bean: valueDomainInstance, field: "refid")}</td>
+						<td>${fieldValue(bean: valueDomainInstance, field: "dataType")}</td>
 					
 						<td>${fieldValue(bean: valueDomainInstance, field: "regexDef")}</td>
 					

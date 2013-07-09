@@ -1,7 +1,7 @@
 INDEX VERSION 1.126+C:\Users\Adam Milward\git\groovy_metadata\.metadata\.plugins\org.eclipse.jdt.core
 2158816573.index
-809060854.index
 2545746952.index
+809060854.index
 3330823858.index
 2711671814.index
 964803157.index
@@ -18,8 +18,8 @@ INDEX VERSION 1.126+C:\Users\Adam Milward\git\groovy_metadata\.metadata\.plugins
 1911004437.index
 1800337809.index
 554242672.index
-2877569409.index
 2569255795.index
+2877569409.index
 1287321560.index
 3695389830.index
 2448516573.index
@@ -70,10 +70,11 @@ INDEX VERSION 1.126+C:\Users\Adam Milward\git\groovy_metadata\.metadata\.plugins
 4205602535.index
 4075399035.index
 2913013742.index
-2043117352.index
 348863219.index
+2043117352.index
 2928557547.index
 2438627572.index
+332383186.index
 4257325822.index
 1702774071.index
 3920130928.index

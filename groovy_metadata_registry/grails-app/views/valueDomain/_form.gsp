@@ -2,20 +2,20 @@
 
 
 
-<div class="fieldcontain ${hasErrors(bean: valueDomainInstance, field: 'dataElements', 'error')} ">
-	<label for="dataElements">
-		<g:message code="valueDomain.dataElements.label" default="Data Elements" />
+<div class="fieldcontain ${hasErrors(bean: valueDomainInstance, field: 'name', 'error')} ">
+	<label for="name">
+		<g:message code="valueDomain.name.label" default="Name" />
 		
 	</label>
-	<g:select name="dataElements" from="${uk.co.mdc.model.DataElement.list()}" multiple="multiple" optionKey="id" size="5" value="${valueDomainInstance?.dataElements*.id}" class="many-to-many"/>
+	<g:textField name="name" value="${valueDomainInstance?.name}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: valueDomainInstance, field: 'datatype', 'error')} ">
-	<label for="datatype">
-		<g:message code="valueDomain.datatype.label" default="Datatype" />
-		
+<div class="fieldcontain ${hasErrors(bean: valueDomainInstance, field: 'refId', 'error')} required">
+	<label for="refId">
+		<g:message code="valueDomain.refId.label" default="Ref Id" />
+		<span class="required-indicator">*</span>
 	</label>
-	<g:textField name="datatype" value="${valueDomainInstance?.datatype}"/>
+	<g:field name="refId" type="number" value="${valueDomainInstance.refId}" required=""/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: valueDomainInstance, field: 'description', 'error')} ">
@@ -26,12 +26,20 @@
 	<g:textField name="description" value="${valueDomainInstance?.description}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: valueDomainInstance, field: 'refid', 'error')} required">
-	<label for="refid">
-		<g:message code="valueDomain.refid.label" default="Refid" />
-		<span class="required-indicator">*</span>
+<div class="fieldcontain ${hasErrors(bean: valueDomainInstance, field: 'dataType', 'error')} ">
+	<label for="dataType">
+		<g:message code="valueDomain.dataType.label" default="Data Type" />
+		
 	</label>
-	<g:field name="refid" type="number" value="${valueDomainInstance.refid}" required=""/>
+	<g:textField name="dataType" value="${valueDomainInstance?.dataType}"/>
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: valueDomainInstance, field: 'unitOfMeasure', 'error')} ">
+	<label for="unitOfMeasure">
+		<g:message code="valueDomain.unitOfMeasure.label" default="Unit Of Measure" />
+		
+	</label>
+	<g:textField name="unitOfMeasure" value="${valueDomainInstance?.unitOfMeasure}"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: valueDomainInstance, field: 'regexDef', 'error')} ">
@@ -42,11 +50,23 @@
 	<g:textField name="regexDef" value="${valueDomainInstance?.regexDef}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: valueDomainInstance, field: 'unitOfMeasure', 'error')} ">
-	<label for="unitOfMeasure">
-		<g:message code="valueDomain.unitOfMeasure.label" default="Unit Of Measure" />
+<div class="fieldcontain ${hasErrors(bean: valueDomainInstance, field: 'dataElementValueDomains', 'error')} ">
+	<label for="dataElementValueDomains">
+		<g:message code="dataElement.dataElementValueDomains.label" default="Add Associated Value Domain" />
 		
 	</label>
-	<g:textField name="unitOfMeasure" value="${valueDomainInstance?.unitOfMeasure}"/>
+	
+	<g:select
+			name="dataElements"
+			from="${dataElements}"
+			value="${params.list('dataElements')}"
+			optionKey="id"
+			optionValue="name"
+			multiple="true"
+			size="6"
+		/>
+
 </div>
+
+
 
