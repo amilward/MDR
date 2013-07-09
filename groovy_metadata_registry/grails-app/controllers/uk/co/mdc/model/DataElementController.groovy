@@ -16,18 +16,40 @@ class DataElementController {
     }
 
     def create() {
-        [dataElementInstance: new DataElement(params)]
+        [valueDomains: ValueDomain.list(), dataElementInstance: new DataElement(params)]
     }
 
     def save() {
-        def dataElementInstance = new DataElement(params)
+        DataElement dataElementInstance = new DataElement(params)
         if (!dataElementInstance.save(flush: true)) {
             render(view: "create", model: [dataElementInstance: dataElementInstance])
             return
         }
+		
+		def valueDomains = params.valueDomains
+		if(valueDomains!=null){
+			
+			if (valueDomains instanceof String) {
+				ValueDomain valueDomain =  ValueDomain.get(valueDomains)
+				if(valueDomain){
+					DataElementValueDomain.link(dataElementInstance, valueDomain)
+				}
+			}
+			
+			if (valueDomains instanceof String[]) {
+				  for (valueDomainID in valueDomains){
+					  ValueDomain valueDomain =  ValueDomain.get(valueDomainID)
+					  if(valueDomain){
+							DataElementValueDomain.link(dataElementInstance, valueDomain)
+						}
+				  }
+			}
+
+		}
+		
 
         flash.message = message(code: 'default.created.message', args: [message(code: 'dataElement.label', default: 'DataElement'), dataElementInstance.id])
-        redirect(action: "show", id: dataElementInstance.id)
+        redirect(action: "show", id: dataElementInstance.id, model: [valueDomains: ValueDomain.list()])
     }
 
     def show(Long id) {
@@ -49,7 +71,7 @@ class DataElementController {
             return
         }
 
-        [dataElementInstance: dataElementInstance]
+        [valueDomains: ValueDomain.list(), dataElementInstance: dataElementInstance]
     }
 
     def update(Long id, Long version) {
@@ -76,7 +98,29 @@ class DataElementController {
             render(view: "edit", model: [dataElementInstance: dataElementInstance])
             return
         }
+		
+		
+		def valueDomains = params.valueDomains
+		if(valueDomains!=null){
+			
+			if (valueDomains instanceof String) {
+				ValueDomain valueDomain =  ValueDomain.get(valueDomains)
+				if(valueDomain){
+					DataElementValueDomain.link(dataElementInstance, valueDomain)
+				}
+			}
+			
+			if (valueDomains instanceof String[]) {
+				  for (valueDomainID in valueDomains){
+					  ValueDomain valueDomain =  ValueDomain.get(valueDomainID)
+					  if(valueDomain){
+							DataElementValueDomain.link(dataElementInstance, valueDomain)
+						}
+				  }
+			}
 
+		}
+	
         flash.message = message(code: 'default.updated.message', args: [message(code: 'dataElement.label', default: 'DataElement'), dataElementInstance.id])
         redirect(action: "show", id: dataElementInstance.id)
     }
@@ -99,4 +143,17 @@ class DataElementController {
             redirect(action: "show", id: id)
         }
     }
+	
+	
+	def removeValueDomain() {
+		ValueDomain valueDomain = ValueDomain.get(params.valueDomainId)
+		DataElement dataElement = DataElement.get(params.dataElementId)
+		if(valueDomain && dataElement){
+			dataElement.removeFromDataElementValueDomains(valueDomain)
+		}
+		redirect(action: 'edit', id: params.dataElementId)
+	}
+	
+	
+	
 }

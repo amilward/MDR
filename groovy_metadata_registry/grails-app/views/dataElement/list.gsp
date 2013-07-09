@@ -24,15 +24,15 @@
 				<thead>
 					<tr>
 					
+						<g:sortableColumn property="refId" title="${message(code: 'dataElement.refId.label', default: 'Ref Id')}" />
+					
+						<th><g:message code="dataElement.parent.label" default="Parent" /></th>
+					
 						<g:sortableColumn property="definition" title="${message(code: 'dataElement.definition.label', default: 'Definition')}" />
 					
 						<g:sortableColumn property="description" title="${message(code: 'dataElement.description.label', default: 'Description')}" />
 					
-						<g:sortableColumn property="parentId" title="${message(code: 'dataElement.parentId.label', default: 'Parent Id')}" />
-					
-						<g:sortableColumn property="refId" title="${message(code: 'dataElement.refId.label', default: 'Ref Id')}" />
-					
-						<g:sortableColumn property="vdId" title="${message(code: 'dataElement.vdId.label', default: 'Vd Id')}" />
+						<g:sortableColumn property="name" title="${message(code: 'dataElement.name.label', default: 'Name')}" />
 					
 					</tr>
 				</thead>
@@ -40,15 +40,17 @@
 				<g:each in="${dataElementInstanceList}" status="i" var="dataElementInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
-						<td><g:link action="show" id="${dataElementInstance.id}">${fieldValue(bean: dataElementInstance, field: "definition")}</g:link></td>
-					
-						<td>${fieldValue(bean: dataElementInstance, field: "description")}</td>
-					
-						<td>${fieldValue(bean: dataElementInstance, field: "parentId")}</td>
+						<td><g:link action="show" id="${dataElementInstance.id}">${fieldValue(bean: dataElementInstance, field: "name")}</g:link></td>
 					
 						<td>${fieldValue(bean: dataElementInstance, field: "refId")}</td>
+						
+						<td>${fieldValue(bean: dataElementInstance, field: "description")}</td>
 					
-						<td>${fieldValue(bean: dataElementInstance, field: "vdId")}</td>
+						<td>${fieldValue(bean: dataElementInstance, field: "definition")}</td>					
+						
+						<td>${fieldValue(bean: dataElementInstance, field: "parent")}</td>
+					
+						
 					
 					</tr>
 				</g:each>
