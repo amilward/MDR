@@ -16,9 +16,15 @@ class ValueDomain {
 	
 	String dataType
 	
+	Set dataElementValueDomains = []
+	
 	static hasMany = [dataElementValueDomains: DataElementValueDomain]
 	
+	static belongsTo = [conceptualDomain: ConceptualDomain]
+	
     static constraints = {
+		refId unique: true
+		conceptualDomain nullable:true
     }
 	
 	
@@ -41,17 +47,6 @@ class ValueDomain {
 		return dataElementValueDomains()
 	}
 	
-	//remove all the dataElements who have signed up to the game before deleting the game
-	
-	def beforeDelete() {
-		
-		if(dataElementValueDomains.size()!=0){
-			dataElementValueDomains.each{ p->
-				removeFromDataElementValueDomains(p.dataElement)
-			}
-		}
-	  }
-	
 	def removeDataElement() {
 		ValueDomain valueDomain = ValueDomain.get(params.valueDomainId)
 		DataElement dataElement = DataElement.get(params.dataElementId)
@@ -59,6 +54,14 @@ class ValueDomain {
 			dataElement.removeFromDataElementValueDomains(valueDomain)
 		}
 		redirect(action: 'edit', id: params.dataElementId)
+	}
+	
+	def prepareForDelete(){
+		if(this.dataElementValueDomains.size()!=0){
+			this.dataElementValueDomains.each{ p->
+				this.removeFromDataElementValueDomains(p.dataElement)
+			}
+		}
 	}
 	
 }

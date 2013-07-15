@@ -34,9 +34,10 @@
 					<g:render template="form"/>
 				</fieldset>
 				
-			<g:if test="${valueDomainInstance?.dataElementValueDomains}">
+				<g:if test="${valueDomainInstance?.dataElementValueDomains}">
 				
-				<h1>Associated Data Elements:</h1>
+					<h1>Associated Data Elements:</h1>
+					
 					<table>
 							<thead>
 								<tr>
@@ -50,18 +51,19 @@
 							</thead>
 							<g:each var="dataElement" in="${valueDomainInstance.dataElementValueDomains()}">
 								<tr>
-									<td>${dataElement?.name}</td>
+									<td><g:link action="show" controller="DataElement" id="${dataElement?.id}">${dataElement?.name} </g:link></td>
 									<td>${dataElement?.refId}</td>
 									<td>${dataElement?.description}</td>
 									<td>${dataElement?.definition} </td>
-									<td>${dataElement?.parent?.name} </td>
+									<td><g:link action="show" controller="DataElement" id="${dataElement?.parent?.id}">${dataElement?.parent?.name} </g:link></td>
 									<td><g:link params="[dataElementId: "${dataElement?.id}", valueDomainId: "${valueDomainInstance?.id}"]" action="removeDataElement" controller="ValueDomain">Remove</g:link></td>		
 								</tr>
 							</g:each>
 					</table>
 					
 				</g:if>
-
+				
+				
 				<fieldset class="buttons">
 					<g:actionSubmit class="save" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" />
 					<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" formnovalidate="" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
