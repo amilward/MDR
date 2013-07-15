@@ -1,7 +1,0 @@
-package uk.co.mdc
-
-class Model {
-
-    static constraints = {
-    }
-}

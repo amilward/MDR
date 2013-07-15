@@ -74,7 +74,7 @@
 					<span id="subElements-label" class="property-label"><g:message code="dataElement.subElements.label" default="Sub Elements" /></span>
 					
 						<g:each in="${dataElementInstance.subElements}" var="s">
-						<span class="property-value" aria-labelledby="subElements-label"><g:link controller="dataElement" action="show" id="${s.id}">${s?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="subElements-label"><g:link controller="dataElement" action="show" id="${s.id}">${s?.name?.encodeAsHTML()}</g:link></span>
 						</g:each>
 					
 				</li>
@@ -99,7 +99,7 @@
 							</thead>
 							<g:each var="valueDomain" in="${dataElementInstance.dataElementValueDomains()}">
 								<tr>
-									<td>${valueDomain?.name}</td>
+									<td><g:link action="show" controller="ValueDomain" id="${valueDomain?.id}">${valueDomain?.name} </g:link></td>
 									<td>${valueDomain?.refId}</td>
 									<td>${valueDomain?.description}</td>
 									<td>${valueDomain?.dataType} </td>

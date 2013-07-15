@@ -1,6 +1,7 @@
 import uk.co.mdc.*
 import uk.co.mdc.model.ValueDomain
 import uk.co.mdc.model.DataElement
+import uk.co.mdc.model.ConceptualDomain
 import org.codehaus.groovy.grails.plugins.springsecurity.SecurityFilterPosition
 import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils
 
@@ -29,6 +30,12 @@ class BootStrap {
 		SpringSecurityUtils.clientRegisterFilter('apiAuthFilter', SecurityFilterPosition.SECURITY_CONTEXT_FILTER.order + 10)
 			
 		//populate with test data
+		
+		
+		if (!ConceptualDomain.count()) {
+			new ConceptualDomain(name:"motor racing", refId:1, description:"any value domains associated with the motor racing").save(failOnError: true)			
+		}
+		
 		
 		if (!DataElement.count()) {
 			new DataElement(name:"average_speed", refId:1, description:"average speed of vehicle", definition:"total distance travelled divided by total journey time").save(failOnError: true)

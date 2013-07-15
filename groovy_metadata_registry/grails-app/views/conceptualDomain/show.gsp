@@ -23,6 +23,15 @@
 			</g:if>
 			<ol class="property-list conceptualDomain">
 			
+				<g:if test="${conceptualDomainInstance?.name}">
+				<li class="fieldcontain">
+					<span id="name-label" class="property-label"><g:message code="conceptualDomain.name.label" default="Name" /></span>
+					
+						<span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${conceptualDomainInstance}" field="name"/></span>
+					
+				</li>
+				</g:if>
+			
 				<g:if test="${conceptualDomainInstance?.description}">
 				<li class="fieldcontain">
 					<span id="description-label" class="property-label"><g:message code="conceptualDomain.description.label" default="Description" /></span>
@@ -32,24 +41,40 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${conceptualDomainInstance?.refid}">
+				<g:if test="${conceptualDomainInstance?.refId}">
 				<li class="fieldcontain">
-					<span id="refid-label" class="property-label"><g:message code="conceptualDomain.refid.label" default="Refid" /></span>
+					<span id="refId-label" class="property-label"><g:message code="conceptualDomain.refId.label" default="Ref Id" /></span>
 					
-						<span class="property-value" aria-labelledby="refid-label"><g:fieldValue bean="${conceptualDomainInstance}" field="refid"/></span>
+						<span class="property-value" aria-labelledby="refId-label"><g:fieldValue bean="${conceptualDomainInstance}" field="refId"/></span>
 					
 				</li>
 				</g:if>
 			
 				<g:if test="${conceptualDomainInstance?.valueDomains}">
-				<li class="fieldcontain">
-					<span id="valueDomains-label" class="property-label"><g:message code="conceptualDomain.valueDomains.label" default="Value Domains" /></span>
+					<h1>Associated Value Domains:</h1>
+						<table>
+							<thead>
+											<tr>
+												<th>Name</th>
+												<th>Reference ID</th>
+												<th>Description</th>
+												<th>Data Type</th>
+												<th>Unit of Measure</th>
+												<th>Regex definition</th>
 					
-						<g:each in="${conceptualDomainInstance.valueDomains}" var="v">
-						<span class="property-value" aria-labelledby="valueDomains-label"><g:link controller="valueDomain" action="show" id="${v.id}">${v?.encodeAsHTML()}</g:link></span>
-						</g:each>
-					
-				</li>
+											</tr>
+										</thead>
+										<g:each var="valueDomain" in="${conceptualDomainInstance?.valueDomains?}">
+											<tr>
+												<td><g:link action="show" controller="ValueDomain" id="${valueDomain?.id}">${valueDomain?.name} </g:link></td>
+												<td>${valueDomain?.refId}</td>
+												<td>${valueDomain?.description}</td>
+												<td>${valueDomain?.dataType} </td>
+												<td>${valueDomain?.unitOfMeasure} </td>
+												<td>${valueDomain?.regexDef} </td>
+											</tr>
+										</g:each>
+					</table>
 				</g:if>
 			
 			</ol>

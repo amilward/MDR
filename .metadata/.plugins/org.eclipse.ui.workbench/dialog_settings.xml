@@ -15,4 +15,13 @@
 			<item value="org.eclipse.egit.ui.GitCategory"/>
 		</list>
 	</section>
+	<section name="FileSystemExportWizard">
+		<item value="true" key="WizardFileSystemResourceExportPage1.STORE_OVERWRITE_EXISTING_FILES_ID"/>
+		<item value="false" key="WizardFileSystemResourceExportPage1.STORE_CREATE_STRUCTURE_ID"/>
+		<list key="WizardFileSystemResourceExportPage1.STORE_DESTINATION_NAMES_ID">
+			<item value="C:\Users\Adam Milward\backups"/>
+		</list>
+	</section>
+	<section name="ImportExportAction">
+	</section>
 </section>

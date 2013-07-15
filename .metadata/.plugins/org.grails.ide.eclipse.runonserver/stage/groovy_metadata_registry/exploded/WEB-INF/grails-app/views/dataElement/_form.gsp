@@ -37,7 +37,15 @@
 		<g:message code="dataElement.parent.label" default="Parent" />
 		
 	</label>
-	<g:select id="parent" name="parent.id" from="${uk.co.mdc.model.DataElement.list()}" optionKey="id" value="${dataElementInstance?.parent?.id}" class="many-to-one" noSelection="['null': '']"/>
+	<g:select 
+			id="parent" 
+			name="parent.id" 
+			from="${uk.co.mdc.model.DataElement.list()}" 
+			optionKey="id" 
+			optionValue="name"
+			value="${dataElementInstance?.parent?.id}" 
+			class="many-to-one" 
+			noSelection="['null': '']"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: dataElementInstance, field: 'dataElementValueDomains', 'error')} ">
@@ -48,6 +56,7 @@
 	
 	<g:select
 			name="valueDomains"
+			noSelection="${['':'Select One...']}"
 			from="${valueDomains}"
 			value="${params.list('valueDomains')}"
 			optionKey="id"
@@ -64,14 +73,16 @@
 		
 	</label>
 	
-<ul class="one-to-many">
-<g:each in="${dataElementInstance?.subElements?}" var="s">
-    <li><g:link controller="dataElement" action="show" id="${s.id}">${s?.encodeAsHTML()}</g:link></li>
-</g:each>
-<li class="add">
-<g:link controller="dataElement" action="create" params="['dataElement.id': dataElementInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'dataElement.label', default: 'DataElement')])}</g:link>
-</li>
-</ul>
+   <g:select
+            name="subElements"
+            noSelection="${['':'Select One...']}"
+            from="${dataElements}"
+            value="${params.list('dataElements')}"
+            optionKey="id"
+            optionValue="name"
+            multiple="true"
+            size="6"
+    />
 
 </div>
 

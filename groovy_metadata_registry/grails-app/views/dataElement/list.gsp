@@ -23,17 +23,16 @@
 			<table>
 				<thead>
 					<tr>
+						<g:sortableColumn property="name" title="${message(code: 'dataElement.name.label', default: 'Name')}" />
 					
 						<g:sortableColumn property="refId" title="${message(code: 'dataElement.refId.label', default: 'Ref Id')}" />
-					
-						<th><g:message code="dataElement.parent.label" default="Parent" /></th>
+						
+						<g:sortableColumn property="description" title="${message(code: 'dataElement.description.label', default: 'Description')}" />
 					
 						<g:sortableColumn property="definition" title="${message(code: 'dataElement.definition.label', default: 'Definition')}" />
 					
-						<g:sortableColumn property="description" title="${message(code: 'dataElement.description.label', default: 'Description')}" />
-					
-						<g:sortableColumn property="name" title="${message(code: 'dataElement.name.label', default: 'Name')}" />
-					
+						<g:sortableColumn property="parent" title="${message(code: 'dataElement.parent.label', default: 'Parent')}" />
+
 					</tr>
 				</thead>
 				<tbody>
@@ -48,9 +47,7 @@
 					
 						<td>${fieldValue(bean: dataElementInstance, field: "definition")}</td>					
 						
-						<td>${fieldValue(bean: dataElementInstance, field: "parent")}</td>
-					
-						
+						<td>${dataElementInstance?.parent?.name}</td>
 					
 					</tr>
 				</g:each>

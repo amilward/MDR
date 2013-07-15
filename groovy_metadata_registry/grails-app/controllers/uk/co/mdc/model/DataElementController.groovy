@@ -16,15 +16,31 @@ class DataElementController {
     }
 
     def create() {
-        [valueDomains: ValueDomain.list(), dataElementInstance: new DataElement(params)]
+        [valueDomains: ValueDomain.list(), dataElements: DataElement.list(), dataElementInstance: new DataElement(params)]
     }
 
     def save() {
-        DataElement dataElementInstance = new DataElement(params)
+       
+		
+		//validate the parent child relationship
+		
+		Boolean valid = validate()
+		
+		if(!valid){
+			render(view: "edit", model: [valueDomains: ValueDomain.list(), dataElements: DataElement.list(), dataElementInstance: new DataElement(params)])
+			return
+		}
+
+		//save the dataElement
+		
+		DataElement dataElementInstance = new DataElement(params)
+		
         if (!dataElementInstance.save(flush: true)) {
-            render(view: "create", model: [dataElementInstance: dataElementInstance])
+            render(view: "create", model: [dataElementInstance: dataElementInstance, valueDomains: ValueDomain.list(), dataElements: DataElement.list()])
             return
         }
+		
+		
 		
 		def valueDomains = params.valueDomains
 		if(valueDomains!=null){
@@ -71,10 +87,22 @@ class DataElementController {
             return
         }
 
-        [valueDomains: ValueDomain.list(), dataElementInstance: dataElementInstance]
+        [valueDomains: ValueDomain.list(), dataElements: DataElement.list(), dataElementInstance: dataElementInstance]
     }
 
     def update(Long id, Long version) {
+		
+		//validate that the parent child relationship
+		
+		Boolean valid = validate()
+		
+		if(!valid){
+			redirect(action: "edit", id: params.id)
+			return
+		}
+		
+		//save the updates
+		
         def dataElementInstance = DataElement.get(id)
         if (!dataElementInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'dataElement.label', default: 'DataElement'), id])
@@ -87,7 +115,7 @@ class DataElementController {
                 dataElementInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
                           [message(code: 'dataElement.label', default: 'DataElement')] as Object[],
                           "Another user has updated this DataElement while you were editing")
-                render(view: "edit", model: [dataElementInstance: dataElementInstance])
+                render(view: "edit", model: [dataElementInstance: dataElementInstance,valueDomains: ValueDomain.list(), dataElements: DataElement.list()])
                 return
             }
         }
@@ -95,13 +123,13 @@ class DataElementController {
         dataElementInstance.properties = params
 
         if (!dataElementInstance.save(flush: true)) {
-            render(view: "edit", model: [dataElementInstance: dataElementInstance])
+            render(view: "edit", model: [dataElementInstance: dataElementInstance],valueDomains: ValueDomain.list(), dataElements: DataElement.list())
             return
         }
 		
 		
 		def valueDomains = params.valueDomains
-		if(valueDomains!=null){
+		if(valueDomains!=null && valueDomains!='null'){
 			
 			if (valueDomains instanceof String) {
 				ValueDomain valueDomain =  ValueDomain.get(valueDomains)
@@ -110,7 +138,7 @@ class DataElementController {
 				}
 			}
 			
-			if (valueDomains instanceof String[]) {
+			if (valueDomains instanceof String[] && !valueDomains.empty) {
 				  for (valueDomainID in valueDomains){
 					  ValueDomain valueDomain =  ValueDomain.get(valueDomainID)
 					  if(valueDomain){
@@ -134,6 +162,7 @@ class DataElementController {
         }
 
         try {
+			dataElementInstance.prepareForDelete()
             dataElementInstance.delete(flush: true)
             flash.message = message(code: 'default.deleted.message', args: [message(code: 'dataElement.label', default: 'DataElement'), id])
             redirect(action: "list")
@@ -153,6 +182,78 @@ class DataElementController {
 		}
 		redirect(action: 'edit', id: params.dataElementId)
 	}
+	
+	
+	Boolean validateChildParentRelationship(String parent, ArrayList children){
+		
+		if(children.contains(parent)){
+			return false
+		}
+		
+		return true
+	}
+	
+	
+	List getChildren(){
+		
+		List children = new ArrayList()
+		
+		if(params.subElements.class.isArray()){
+			children.addAll(params.subElements)
+		}else{
+			children.add(params.subElements.value.toString())
+		}
+		
+		return children
+		
+	}
+
+	Boolean validate(){
+		
+		ArrayList children
+		
+		//check if subelements contain the given element
+		
+		if(params?.subElements!=null && params?.id!=null){
+			
+			children = getChildren()
+			
+			if(children.contains(params.id)){
+				params.subElements = ''
+				flash.message = 'Error: Sub elements must not contain the element itself'
+				return false
+			}
+
+		}
+		
+		//check if parent elements contain the given element
+		
+		if(params?.parent?.id!=''&& params?.id!=null){
+			if(params.parent.id == params.id){
+				params.parent = ''
+				flash.message = 'Error: Parent elements must not contain the element itself'
+				return false
+			}
+
+		}
+		
+		//check if subelements contain the parent element
+		
+		if(params?.subElements!=null && params?.parent?.id!=''){
+			
+			if(children.isEmpty()){
+				children = getChildren()
+			}
+			
+			if(!validateChildParentRelationship(params.parent.id.value.toString(), children)){
+				params.subElements = ''
+				flash.message = 'Error: Sub elements must not contain the parent element'
+				return false
+			}
+		}
+		return true
+	}
+
 	
 	
 	

@@ -1,6 +1,20 @@
 <%@ page import="uk.co.mdc.model.ValueDomain" %>
 
 
+<div class="fieldcontain ${hasErrors(bean: valueDomainInstance, field: 'conceptualDomain', 'error')} required">
+	<label for="conceptualDomain">
+		<g:message code="valueDomain.conceptualDomain.label" default="Conceptual Domain" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:select id="conceptualDomain" 
+	name="conceptualDomain.id" 
+	from="${uk.co.mdc.model.ConceptualDomain.list()}" 
+	noSelection="['': 'select one...']"
+	optionKey="id" 
+	optionValue="name" 
+	value="${valueDomainInstance?.conceptualDomain?.id}" 
+	class="many-to-one"/>
+</div>
 
 <div class="fieldcontain ${hasErrors(bean: valueDomainInstance, field: 'name', 'error')} ">
 	<label for="name">
@@ -34,6 +48,7 @@
 	<g:textField name="dataType" value="${valueDomainInstance?.dataType}"/>
 </div>
 
+
 <div class="fieldcontain ${hasErrors(bean: valueDomainInstance, field: 'unitOfMeasure', 'error')} ">
 	<label for="unitOfMeasure">
 		<g:message code="valueDomain.unitOfMeasure.label" default="Unit Of Measure" />
@@ -41,6 +56,7 @@
 	</label>
 	<g:textField name="unitOfMeasure" value="${valueDomainInstance?.unitOfMeasure}"/>
 </div>
+
 
 <div class="fieldcontain ${hasErrors(bean: valueDomainInstance, field: 'regexDef', 'error')} ">
 	<label for="regexDef">
@@ -50,23 +66,31 @@
 	<g:textField name="regexDef" value="${valueDomainInstance?.regexDef}"/>
 </div>
 
+
+
 <div class="fieldcontain ${hasErrors(bean: valueDomainInstance, field: 'dataElementValueDomains', 'error')} ">
-	<label for="dataElementValueDomains">
-		<g:message code="dataElement.dataElementValueDomains.label" default="Add Associated Value Domain" />
-		
-	</label>
-	
-	<g:select
-			name="dataElements"
-			from="${dataElements}"
-			value="${params.list('dataElements')}"
-			optionKey="id"
-			optionValue="name"
-			multiple="true"
-			size="6"
-		/>
+        <label for="dataElementValueDomains">
+                <g:message code="dataElement.dataElementValueDomains.label" default="Add Associated Value Domain" />
+                
+        </label>
+        
+        <g:select
+                        name="dataElements"
+                        noSelection="${['':'Select One...']}"
+                        from="${dataElements}"
+                        value="${params.list('dataElements')}"
+                        optionKey="id"
+                        optionValue="name"
+                        multiple="true"
+                        size="6"
+                />
 
 </div>
+
+
+
+
+
 
 
 

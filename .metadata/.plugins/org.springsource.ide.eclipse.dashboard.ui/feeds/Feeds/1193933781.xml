@@ -13,11 +13,39 @@
 	<atom:link href="http://blog.springsource.org/feed/" rel="self" type="application/rss+xml" />
 	<link>http://blog.springsource.org</link>
 	<description>The voice of SpringSource</description>
-	<lastBuildDate>Fri, 05 Jul 2013 15:09:19 +0000</lastBuildDate>
+	<lastBuildDate>Sat, 13 Jul 2013 18:35:12 +0000</lastBuildDate>
 	<language>en</language>
 	<sy:updatePeriod>hourly</sy:updatePeriod>
 	<sy:updateFrequency>1</sy:updateFrequency>
 	<generator>http://wordpress.org/?v=3.1.1</generator>
+		<item>
+		<title>Spring Security Java Config Preview: Readability</title>
+		<link>http://blog.springsource.org/2013/07/11/spring-security-java-config-preview-readability/</link>
+		<comments>http://blog.springsource.org/2013/07/11/spring-security-java-config-preview-readability/#comments</comments>
+		<pubDate>Thu, 11 Jul 2013 22:01:34 +0000</pubDate>
+		<dc:creator>Rob Winch</dc:creator>
+				<category><![CDATA[Security]]></category>
+		<category><![CDATA[Spring]]></category>
+
+		<guid isPermaLink="false">http://blog.springsource.org/?p=13894</guid>
+		<description><![CDATA[In this post, I will discuss how to make your Spring Security Java configuration more readable. The post is intended to elaborate on a point from Spring Security Java Config Preview: Web Security where I stated: By formatting our Java configuration code it is much easier to read. It can be read similar to the  <a href="http://blog.springsource.org/2013/07/11/spring-security-java-config-preview-readability/"><em>Read more...</em></a>]]></description>
+		<wfw:commentRss>http://blog.springsource.org/2013/07/11/spring-security-java-config-preview-readability/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+		</item>
+		<item>
+		<title>Eclipse Quick Search</title>
+		<link>http://blog.springsource.org/2013/07/11/eclipse-quick-search/</link>
+		<comments>http://blog.springsource.org/2013/07/11/eclipse-quick-search/#comments</comments>
+		<pubDate>Thu, 11 Jul 2013 19:53:42 +0000</pubDate>
+		<dc:creator>Kris De Volder</dc:creator>
+				<category><![CDATA[Open Source]]></category>
+		<category><![CDATA[Tools]]></category>
+
+		<guid isPermaLink="false">http://blog.springsource.org/?p=13600</guid>
+		<description><![CDATA[Are you an Eclipse user? Do you want a fast and easy way to search for text snippets and patterns in your workspace? Then read on! A new &#034;Quick Search&#034; is included in Spring ToolSuite (STS) 3.3.0 and Groovy Gails Tool Suite (GGTS) 3.3.0 which have just been released. Even if you are not a  <a href="http://blog.springsource.org/2013/07/11/eclipse-quick-search/"><em>Read more...</em></a>]]></description>
+		<wfw:commentRss>http://blog.springsource.org/2013/07/11/eclipse-quick-search/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+		</item>
 		<item>
 		<title>Spring Security Java Config Preview: OAuth</title>
 		<link>http://blog.springsource.org/2013/07/05/spring-security-java-config-preview-oauth/</link>
@@ -57,7 +85,7 @@
 		<guid isPermaLink="false">http://blog.springsource.org/?p=13769</guid>
 		<description><![CDATA[In my previous post, I introduced Spring Security Java configuration and discussed some of the logistics of the project. In this post, we will start off by walking through a very simple web security configuration. We will then spice things up a bit with configuration that has been customized some. Hello Web Security In this  <a href="http://blog.springsource.org/2013/07/03/spring-security-java-config-preview-web-security/"><em>Read more...</em></a>]]></description>
 		<wfw:commentRss>http://blog.springsource.org/2013/07/03/spring-security-java-config-preview-web-security/feed/</wfw:commentRss>
-		<slash:comments>2</slash:comments>
+		<slash:comments>8</slash:comments>
 		</item>
 		<item>
 		<title>Spring Security Java Config Preview: Introduction</title>
@@ -71,7 +99,7 @@
 		<guid isPermaLink="false">http://blog.springsource.org/?p=13625</guid>
 		<description><![CDATA[Yesterday I announced the release of Spring Security Java Configuration support and the release of Spring Security 3.2.0.M2 which contains Java Configuration support. Spring Security&#039;s Java Configuration support is intended to provide a complete replacement of the XML namespace configuration. It is also designed to be extensible, so that Spring Security&#039;s extension projects can work  <a href="http://blog.springsource.org/2013/07/02/spring-security-java-config-preview-introduction/"><em>Read more...</em></a>]]></description>
 		<wfw:commentRss>http://blog.springsource.org/2013/07/02/spring-security-java-config-preview-introduction/feed/</wfw:commentRss>
-		<slash:comments>3</slash:comments>
+		<slash:comments>4</slash:comments>
 		</item>
 		<item>
 		<title>Spring XD 1.0 Milestone 1 Released</title>
@@ -91,7 +119,7 @@
 		<guid isPermaLink="false">http://blog.springsource.org/?p=13524</guid>
 		<description><![CDATA[Today we are pleased to announce the 1.0 M1 release of Spring XD  (download).Spring XD is a unified, distributed, and extensible system for data ingestion, real time analytics, batch processing, and data export.  The project’s goal is to simplify the development of big data applications. From the 10,000 foot view, big data applications share many  <a href="http://blog.springsource.org/2013/06/12/spring-xd-1-0-milestone-1-released/"><em>Read more...</em></a>]]></description>
 		<wfw:commentRss>http://blog.springsource.org/2013/06/12/spring-xd-1-0-milestone-1-released/feed/</wfw:commentRss>
-		<slash:comments>4</slash:comments>
+		<slash:comments>5</slash:comments>
 		</item>
 		<item>
 		<title>First milestone of Spring Data release train Babbage arrived</title>
@@ -136,39 +164,7 @@
 		<guid isPermaLink="false">http://blog.springsource.org/?p=13431</guid>
 		<description><![CDATA[As you may have seen, the first milestone of Spring Framework 4.0 was already announced and with it we&#039;ve released early WebSocket support. Why WebSocket matters? It enables efficient, two-way communication over the web that is essential in applications where messages need to be exchanged between client (typically browser) and server at high frequency and  <a href="http://blog.springsource.org/2013/05/22/spring-framework-4-0-m1-websocket-support/"><em>Read more...</em></a>]]></description>
 		<wfw:commentRss>http://blog.springsource.org/2013/05/22/spring-framework-4-0-m1-websocket-support/feed/</wfw:commentRss>
-		<slash:comments>26</slash:comments>
-		</item>
-		<item>
-		<title>Spring Framework 4.0 M1 &amp; 3.2.3 available</title>
-		<link>http://blog.springsource.org/2013/05/21/spring-framework-4-0-m1-3-2-3-available/</link>
-		<comments>http://blog.springsource.org/2013/05/21/spring-framework-4-0-m1-3-2-3-available/#comments</comments>
-		<pubDate>Tue, 21 May 2013 15:15:54 +0000</pubDate>
-		<dc:creator>Juergen Hoeller</dc:creator>
-				<category><![CDATA[Java]]></category>
-		<category><![CDATA[Spring]]></category>
-
-		<guid isPermaLink="false">http://blog.springsource.org/?p=13378</guid>
-		<description><![CDATA[Dear Spring community, It&#039;s my pleasure to announce the first milestone towards Spring Framework 4.0, delivering a first cut of our work on several key themes: the first wave of Java SE 8 / OpenJDK 8 support (some details following below) initial support for JMS 2.0, JPA 2.1, Bean Validation 1.1, and JSR-236 concurrency (from  <a href="http://blog.springsource.org/2013/05/21/spring-framework-4-0-m1-3-2-3-available/"><em>Read more...</em></a>]]></description>
-		<wfw:commentRss>http://blog.springsource.org/2013/05/21/spring-framework-4-0-m1-3-2-3-available/feed/</wfw:commentRss>
-		<slash:comments>16</slash:comments>
-		</item>
-		<item>
-		<title>Reactor &#8211; a foundation for asynchronous applications on the JVM</title>
-		<link>http://blog.springsource.org/2013/05/13/reactor-a-foundation-for-asynchronous-applications-on-the-jvm/</link>
-		<comments>http://blog.springsource.org/2013/05/13/reactor-a-foundation-for-asynchronous-applications-on-the-jvm/#comments</comments>
-		<pubDate>Mon, 13 May 2013 16:47:53 +0000</pubDate>
-		<dc:creator>jbrisbin</dc:creator>
-				<category><![CDATA[Big Data]]></category>
-		<category><![CDATA[Cloud Computing]]></category>
-		<category><![CDATA[Enterprise Integration]]></category>
-		<category><![CDATA[Groovy/Grails]]></category>
-		<category><![CDATA[Java]]></category>
-		<category><![CDATA[Spring]]></category>
-
-		<guid isPermaLink="false">http://blog.springsource.org/?p=13321</guid>
-		<description><![CDATA[We’re pleased to announce that, after a long period of internal incubation, we’re releasing a foundational framework for asynchronous applications on the JVM which we’re calling Reactor. It provides abstractions for Java, Groovy and other JVM languages to make building event and data-driven applications easier. It’s also really fast. On modest hardware, it&#039;s possible to  <a href="http://blog.springsource.org/2013/05/13/reactor-a-foundation-for-asynchronous-applications-on-the-jvm/"><em>Read more...</em></a>]]></description>
-		<wfw:commentRss>http://blog.springsource.org/2013/05/13/reactor-a-foundation-for-asynchronous-applications-on-the-jvm/feed/</wfw:commentRss>
-		<slash:comments>38</slash:comments>
+		<slash:comments>27</slash:comments>
 		</item>
 	</channel>
 </rss>

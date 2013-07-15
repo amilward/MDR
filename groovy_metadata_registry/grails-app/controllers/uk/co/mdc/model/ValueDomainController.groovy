@@ -26,7 +26,6 @@ class ValueDomainController {
             return
         }
 		
-		
 		def dataElements = params.dataElements
 		if(dataElements!=null){
 			
@@ -98,17 +97,16 @@ class ValueDomainController {
             return
         }
 
-		
-		
+	
 		def dataElements = params.dataElements
-		if(dataElements!=null){
+		if(dataElements!=null && dataElements!='null'){
 			
 			if (dataElements instanceof String) {
 				DataElement dataElement =  DataElement.get(dataElements)
 				if(dataElement){
 					DataElementValueDomain.link(dataElement, valueDomainInstance)
 				}
-			} else if (dataElements instanceof String[]) {
+			} else if (dataElements instanceof String[] && !dataElements.empty) {
 				  for (dataElementID in dataElements){
 					  DataElement dataElement =  DataElement.get(dataElementID)
 					  if(dataElement){
@@ -119,14 +117,15 @@ class ValueDomainController {
 
 		}
 		
-		
-		
+
+
         flash.message = message(code: 'default.updated.message', args: [message(code: 'valueDomain.label', default: 'ValueDomain'), valueDomainInstance.id])
         redirect(action: "show", id: valueDomainInstance.id)
     }
 
     def delete(Long id) {
         def valueDomainInstance = ValueDomain.get(id)
+		
         if (!valueDomainInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'valueDomain.label', default: 'ValueDomain'), id])
             redirect(action: "list")
@@ -134,7 +133,11 @@ class ValueDomainController {
         }
 
         try {
+			
+			valueDomainInstance.prepareForDelete()
+			
             valueDomainInstance.delete(flush: true)
+			
             flash.message = message(code: 'default.deleted.message', args: [message(code: 'valueDomain.label', default: 'ValueDomain'), id])
             redirect(action: "list")
         }
@@ -143,7 +146,6 @@ class ValueDomainController {
             redirect(action: "show", id: id)
         }
     }
-	
 	
 	def removeDataElement() {
 		ValueDomain valueDomain = ValueDomain.get(params.valueDomainId)

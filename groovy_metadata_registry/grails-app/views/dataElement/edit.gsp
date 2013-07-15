@@ -51,7 +51,7 @@
 										</thead>
 										<g:each var="valueDomain" in="${dataElementInstance.dataElementValueDomains()}">
 											<tr>
-												<td>${valueDomain?.name}</td>
+												<td><g:link action="show" controller="ValueDomain" id="${valueDomain?.id}">${valueDomain?.name} </g:link></td>
 												<td>${valueDomain?.refId}</td>
 												<td>${valueDomain?.description}</td>
 												<td>${valueDomain?.dataType} </td>

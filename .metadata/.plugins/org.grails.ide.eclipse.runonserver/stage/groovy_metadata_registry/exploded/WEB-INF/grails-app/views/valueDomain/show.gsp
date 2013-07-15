@@ -23,20 +23,20 @@
 			</g:if>
 			<ol class="property-list valueDomain">
 			
+				<g:if test="${valueDomainInstance?.conceptualDomain}">
+				<li class="fieldcontain">
+					<span id="conceptualDomain-label" class="property-label"><g:message code="valueDomain.conceptualDomain.label" default="Conceptual Domain" /></span>
+					
+						<span class="property-value" aria-labelledby="conceptualDomain-label"><g:link controller="conceptualDomain" action="show" id="${valueDomainInstance?.conceptualDomain?.id}">${valueDomainInstance?.conceptualDomain?.name?.encodeAsHTML()}</g:link></span>
+					
+				</li>
+				</g:if>
+				
 				<g:if test="${valueDomainInstance?.name}">
 				<li class="fieldcontain">
 					<span id="name-label" class="property-label"><g:message code="valueDomain.name.label" default="Name" /></span>
 					
 						<span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${valueDomainInstance}" field="name"/></span>
-					
-				</li>
-				</g:if>
-				
-				<g:if test="${valueDomainInstance?.refId}">
-				<li class="fieldcontain">
-					<span id="refId-label" class="property-label"><g:message code="valueDomain.refId.label" default="Ref Id" /></span>
-					
-						<span class="property-value" aria-labelledby="refId-label"><g:fieldValue bean="${valueDomainInstance}" field="refId"/></span>
 					
 				</li>
 				</g:if>
@@ -58,7 +58,26 @@
 					
 				</li>
 				</g:if>
+			
 				
+				<g:if test="${valueDomainInstance?.refId}">
+				<li class="fieldcontain">
+					<span id="refId-label" class="property-label"><g:message code="valueDomain.refId.label" default="Ref Id" /></span>
+					
+						<span class="property-value" aria-labelledby="refId-label"><g:fieldValue bean="${valueDomainInstance}" field="refId"/></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${valueDomainInstance?.regexDef}">
+				<li class="fieldcontain">
+					<span id="regexDef-label" class="property-label"><g:message code="valueDomain.regexDef.label" default="Regex Def" /></span>
+					
+						<span class="property-value" aria-labelledby="regexDef-label"><g:fieldValue bean="${valueDomainInstance}" field="regexDef"/></span>
+					
+				</li>
+				</g:if>
+			
 				<g:if test="${valueDomainInstance?.unitOfMeasure}">
 				<li class="fieldcontain">
 					<span id="unitOfMeasure-label" class="property-label"><g:message code="valueDomain.unitOfMeasure.label" default="Unit Of Measure" /></span>
@@ -68,18 +87,8 @@
 				</li>
 				</g:if>
 			
-
-				<g:if test="${valueDomainInstance?.regexDef}">
-				<li class="fieldcontain">
-					<span id="regexDef-label" class="property-label"><g:message code="valueDomain.regexDef.label" default="Regex Def" /></span>
-					
-						<span class="property-value" aria-labelledby="regexDef-label"><g:fieldValue bean="${valueDomainInstance}" field="regexDef"/></span>
-					
-				</li>
-				</g:if>
-
-			
 			</ol>
+			
 			
 			<g:if test="${valueDomainInstance?.dataElementValueDomains}">
 			
@@ -97,17 +106,17 @@
 						</thead>
 						<g:each var="dataElement" in="${valueDomainInstance.dataElementValueDomains()}">
 							<tr>
-								<td>${dataElement?.name}</td>
+								<td><g:link action="show" controller="DataElement" id="${dataElement?.id}">${dataElement?.name} </g:link></td>
 								<td>${dataElement?.refId}</td>
 								<td>${dataElement?.description}</td>
 								<td>${dataElement?.definition} </td>
-								<td>${dataElement?.parent?.name} </td>
+								<td><g:link action="show" controller="DataElement" id="${dataElement?.parent?.id}">${dataElement?.parent?.name} </g:link> </td>
 							</tr>
 						</g:each>
 				</table>
 			</g:if>	
-
-
+			
+			
 			<g:form>
 				<fieldset class="buttons">
 					<g:hiddenField name="id" value="${valueDomainInstance?.id}" />

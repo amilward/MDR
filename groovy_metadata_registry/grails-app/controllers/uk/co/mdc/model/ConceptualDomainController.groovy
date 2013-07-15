@@ -1,6 +1,7 @@
 package uk.co.mdc.model
 
 import org.springframework.dao.DataIntegrityViolationException
+import org.apache.commons.lang.StringUtils
 
 class ConceptualDomainController {
 
@@ -16,7 +17,7 @@ class ConceptualDomainController {
     }
 
     def create() {
-        [conceptualDomainInstance: new ConceptualDomain(params)]
+        [valueDomains: ValueDomain.list(), conceptualDomainInstance: new ConceptualDomain(params)]
     }
 
     def save() {
@@ -49,7 +50,7 @@ class ConceptualDomainController {
             return
         }
 
-        [conceptualDomainInstance: conceptualDomainInstance]
+        [valueDomains: ValueDomain.list(), conceptualDomainInstance: conceptualDomainInstance]
     }
 
     def update(Long id, Long version) {
@@ -68,10 +69,10 @@ class ConceptualDomainController {
                 render(view: "edit", model: [conceptualDomainInstance: conceptualDomainInstance])
                 return
             }
-        }
+        }	
 
         conceptualDomainInstance.properties = params
-
+		
         if (!conceptualDomainInstance.save(flush: true)) {
             render(view: "edit", model: [conceptualDomainInstance: conceptualDomainInstance])
             return
@@ -90,6 +91,7 @@ class ConceptualDomainController {
         }
 
         try {
+			conceptualDomainInstance.prepareForDelete()
             conceptualDomainInstance.delete(flush: true)
             flash.message = message(code: 'default.deleted.message', args: [message(code: 'conceptualDomain.label', default: 'ConceptualDomain'), id])
             redirect(action: "list")
@@ -99,4 +101,15 @@ class ConceptualDomainController {
             redirect(action: "show", id: id)
         }
     }
+	
+	def removeValueDomain(){
+		ValueDomain valueDomain = ValueDomain.get(params.valueDomainId)
+		ConceptualDomain conceptualDomain = ConceptualDomain.get(params.conceptualDomainId)
+		if(valueDomain && conceptualDomain){
+			conceptualDomain.removeFromValueDomains(valueDomain)
+		}
+		
+		redirect(action: 'edit', id: params.conceptualDomainId)
+
+	}
 }

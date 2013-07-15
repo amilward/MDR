@@ -33,6 +33,37 @@
 				<fieldset class="form">
 					<g:render template="form"/>
 				</fieldset>
+				
+				<g:if test="${conceptualDomainInstance?.valueDomains}">
+					<h1>Associated Value Domains:</h1>
+						<table>
+							<thead>
+											<tr>
+												<th>Name</th>
+												<th>Reference ID</th>
+												<th>Description</th>
+												<th>Data Type</th>
+												<th>Unit of Measure</th>
+												<th>Regex definition</th>
+												<th>&nbsp;</th>
+					
+											</tr>
+										</thead>
+										<g:each var="valueDomain" in="${conceptualDomainInstance?.valueDomains?}">
+											<tr>
+												<td><g:link action="show" controller="ValueDomain" id="${valueDomain?.id}">${valueDomain?.name} </g:link></td>
+												<td>${valueDomain?.refId}</td>
+												<td>${valueDomain?.description}</td>
+												<td>${valueDomain?.dataType} </td>
+												<td>${valueDomain?.unitOfMeasure} </td>
+												<td>${valueDomain?.regexDef} </td>
+												<td><g:link params="[valueDomainId: "${valueDomain?.id}", conceptualDomainId: "${conceptualDomainInstance?.id}"]" action="removeValueDomain" controller="ConceptualDomain">Remove</g:link></td>
+											</tr>
+										</g:each>
+					</table>
+				</g:if>
+				
+				
 				<fieldset class="buttons">
 					<g:actionSubmit class="save" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" />
 					<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" formnovalidate="" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />

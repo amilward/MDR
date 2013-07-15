@@ -24,9 +24,11 @@
 				<thead>
 					<tr>
 					
+						<g:sortableColumn property="name" title="${message(code: 'conceptualDomain.name.label', default: 'Name')}" />
+						
 						<g:sortableColumn property="description" title="${message(code: 'conceptualDomain.description.label', default: 'Description')}" />
-					
-						<g:sortableColumn property="refid" title="${message(code: 'conceptualDomain.refid.label', default: 'Refid')}" />
+						
+						<g:sortableColumn property="refId" title="${message(code: 'conceptualDomain.refId.label', default: 'Ref Id')}" />
 					
 					</tr>
 				</thead>
@@ -34,9 +36,11 @@
 				<g:each in="${conceptualDomainInstanceList}" status="i" var="conceptualDomainInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
-						<td><g:link action="show" id="${conceptualDomainInstance.id}">${fieldValue(bean: conceptualDomainInstance, field: "description")}</g:link></td>
+						<td><g:link action="show" id="${conceptualDomainInstance.id}">${fieldValue(bean: conceptualDomainInstance, field: "name")}</g:link></td>
 					
-						<td>${fieldValue(bean: conceptualDomainInstance, field: "refid")}</td>
+						<td>${fieldValue(bean: conceptualDomainInstance, field: "description")}</td>
+					
+						<td>${fieldValue(bean: conceptualDomainInstance, field: "refId")}</td>
 					
 					</tr>
 				</g:each>

@@ -1,5 +1,7 @@
 package uk.co.mdc.model
 
+import org.codehaus.groovy.grails.web.servlet.mvc.GrailsParameterMap
+
 class DataElement {
 	
 	String name
@@ -43,15 +45,13 @@ class DataElement {
 	
 	//remove all the valueDomains who have signed up to the game before deleting the game
 	
-	def beforeDelete() {
-		
-		if(dataElementValueDomains.size()!=0){
-			dataElementValueDomains.each{ p->
-				removeFromDataElementValueDomains(p.valueDomain)
+	def prepareForDelete(){
+		if(this.dataElementValueDomains.size()!=0){
+			this.dataElementValueDomains.each{ p->
+				this.removeFromDataElementValueDomains(p.valueDomain)
 			}
 		}
-	  }
-	
+	}
 	
 	static final String HELP = "A data element describes a logical unit of data that has precise meaning or precise semantics." + 
 	"Alternatively one can understand a data element as something close to a column in a database table.  <br/>" +

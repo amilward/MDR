@@ -1,7 +1,0 @@
-package uk.co.mdc.model
-
-class UmlModel {
-
-    static constraints = {
-    }
-}
