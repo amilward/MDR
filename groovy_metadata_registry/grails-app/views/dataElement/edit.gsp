@@ -62,6 +62,33 @@
 										</g:each>
 					</table>
 				</g:if>
+				
+				<g:if test="${dataElementInstance?.subElements}">
+					<h1>Sub Elements:</h1>
+						<table>
+							<thead>
+								<tr>
+									<th>Name</th>
+									<th>Reference ID</th>
+									<th>Description</th>
+									<th>Definition</th>
+									<th>&nbsp;</th>
+								</tr>
+							</thead>
+							<g:each var="dataElement" in="${dataElementInstance.subElements}">
+								<tr>
+									<td><g:link action="show" controller="DataElement" id="${dataElement?.id}">${dataElement?.name} </g:link></td>
+									<td>${dataElement?.refId}</td>
+									<td>${dataElement?.description}</td>
+									<td>${dataElement?.definition} </td>
+									<td><g:link params="[subElementId: "${dataElement?.id}", elementId: "${dataElementInstance?.id}"]" action="removeSubElement" controller="DataElement">Remove</g:link></td>		
+								</tr>
+							</g:each>
+					</table>
+				</g:if>
+				
+				
+				
 				<fieldset class="buttons">
 					<g:actionSubmit class="save" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" />
 					<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" formnovalidate="" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />

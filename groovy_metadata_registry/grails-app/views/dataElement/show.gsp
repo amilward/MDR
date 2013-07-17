@@ -69,17 +69,7 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${dataElementInstance?.subElements}">
-				<li class="fieldcontain">
-					<span id="subElements-label" class="property-label"><g:message code="dataElement.subElements.label" default="Sub Elements" /></span>
-					
-						<g:each in="${dataElementInstance.subElements}" var="s">
-						<span class="property-value" aria-labelledby="subElements-label"><g:link controller="dataElement" action="show" id="${s.id}">${s?.name?.encodeAsHTML()}</g:link></span>
-						</g:each>
-					
-				</li>
-				</g:if>
-			
+				
 			</ol>
 			
 			<g:if test="${dataElementInstance?.dataElementValueDomains}">
@@ -110,6 +100,30 @@
 					</table>
 		
 			</g:if>
+
+				
+			<g:if test="${dataElementInstance?.subElements}">
+					<h1>Sub Elements:</h1>
+						<table>
+							<thead>
+								<tr>
+									<th>Name</th>
+									<th>Reference ID</th>
+									<th>Description</th>
+									<th>Definition</th>
+								</tr>
+							</thead>
+							<g:each var="dataElement" in="${dataElementInstance.subElements}">
+								<tr>
+									<td><g:link action="show" controller="DataElement" id="${dataElement?.id}">${dataElement?.name} </g:link></td>
+									<td>${dataElement?.refId}</td>
+									<td>${dataElement?.description}</td>
+									<td>${dataElement?.definition} </td>
+								</tr>
+							</g:each>
+					</table>
+				</g:if>	
+			
 			
 			<g:form>
 				<fieldset class="buttons">
