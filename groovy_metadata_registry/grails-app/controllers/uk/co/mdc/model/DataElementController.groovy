@@ -40,29 +40,11 @@ class DataElementController {
             return
         }
 		
+		//link selected value domains with  data element
 		
+		linkValueDomains(dataElementInstance)
 		
-		def valueDomains = params.valueDomains
-		if(valueDomains!=null){
-			
-			if (valueDomains instanceof String) {
-				ValueDomain valueDomain =  ValueDomain.get(valueDomains)
-				if(valueDomain){
-					DataElementValueDomain.link(dataElementInstance, valueDomain)
-				}
-			}
-			
-			if (valueDomains instanceof String[]) {
-				  for (valueDomainID in valueDomains){
-					  ValueDomain valueDomain =  ValueDomain.get(valueDomainID)
-					  if(valueDomain){
-							DataElementValueDomain.link(dataElementInstance, valueDomain)
-						}
-				  }
-			}
-
-		}
-		
+		//redirect with message
 
         flash.message = message(code: 'default.created.message', args: [message(code: 'dataElement.label', default: 'DataElement'), dataElementInstance.id])
         redirect(action: "show", id: dataElementInstance.id, model: [valueDomains: ValueDomain.list()])
@@ -92,7 +74,7 @@ class DataElementController {
 
     def update(Long id, Long version) {
 		
-		//validate that the parent child relationship
+		//validate the update a params
 		
 		Boolean valid = validate()
 		
@@ -128,26 +110,7 @@ class DataElementController {
         }
 		
 		
-		def valueDomains = params.valueDomains
-		if(valueDomains!=null && valueDomains!='null'){
-			
-			if (valueDomains instanceof String) {
-				ValueDomain valueDomain =  ValueDomain.get(valueDomains)
-				if(valueDomain){
-					DataElementValueDomain.link(dataElementInstance, valueDomain)
-				}
-			}
-			
-			if (valueDomains instanceof String[] && !valueDomains.empty) {
-				  for (valueDomainID in valueDomains){
-					  ValueDomain valueDomain =  ValueDomain.get(valueDomainID)
-					  if(valueDomain){
-							DataElementValueDomain.link(dataElementInstance, valueDomain)
-						}
-				  }
-			}
-
-		}
+		linkValueDomains(dataElementInstance)
 	
         flash.message = message(code: 'default.updated.message', args: [message(code: 'dataElement.label', default: 'DataElement'), dataElementInstance.id])
         redirect(action: "show", id: dataElementInstance.id)
@@ -184,6 +147,91 @@ class DataElementController {
 	}
 	
 	
+	def removeSubElement(){
+		DataElement element = DataElement.get(params.elementId)
+		DataElement subElement = DataElement.get(params.subElementId)
+		
+		if(element && subElement){
+			element.removeFromSubElements(subElement)
+		}
+		
+		redirect(action: 'edit', id: params.elementId)
+	}
+	
+	
+	
+	def linkValueDomains(dataElementInstance){
+		
+		def valueDomains = params.valueDomains
+		if(valueDomains!=null){
+			
+			if (valueDomains instanceof String) {
+				ValueDomain valueDomain =  ValueDomain.get(valueDomains)
+				if(valueDomain){
+					DataElementValueDomain.link(dataElementInstance, valueDomain)
+				}
+			}
+			
+			if (valueDomains instanceof String[]) {
+				  for (valueDomainID in valueDomains){
+					  ValueDomain valueDomain =  ValueDomain.get(valueDomainID)
+					  if(valueDomain){
+							DataElementValueDomain.link(dataElementInstance, valueDomain)
+						}
+				  }
+			}
+
+		}
+	}
+		
+	Boolean validate(){
+		
+		
+		ArrayList children
+		
+		//check if subelements contain the given element
+		
+		if(params?.subElements!=null && params?.id!=null){
+			
+			children = getChildren()
+			
+			if(children.contains(params.id)){
+				params.subElements = ''
+				flash.message = 'Error: Sub elements must not contain the element itself'
+				return false
+			}
+
+		}
+		
+		//check if parent elements contain the given element
+		
+		if(!params?.parent?.id.isEmpty() &&  params?.id!=null){
+			if(params.parent.id == params.id){
+				params.parent = ''
+				flash.message = 'Error: Parent elements must not contain the element itself'
+				return false
+			}
+
+		}
+		
+		//check if subelements contain the parent element
+		
+		if(params?.subElements!=null && params?.parent?.id!=null){
+			
+			if(children==null){
+				children = getChildren()
+			}
+			
+			if(!validateChildParentRelationship(params.parent.id.value.toString(), children)){
+				params.subElements = ''
+				flash.message = 'Error: Sub elements must not contain the parent element'
+				return false
+			}
+		}
+		return true
+	}
+
+	
 	Boolean validateChildParentRelationship(String parent, ArrayList children){
 		
 		if(children.contains(parent)){
@@ -207,54 +255,5 @@ class DataElementController {
 		return children
 		
 	}
-
-	Boolean validate(){
-		
-		ArrayList children
-		
-		//check if subelements contain the given element
-		
-		if(params?.subElements!=null && params?.id!=null){
-			
-			children = getChildren()
-			
-			if(children.contains(params.id)){
-				params.subElements = ''
-				flash.message = 'Error: Sub elements must not contain the element itself'
-				return false
-			}
-
-		}
-		
-		//check if parent elements contain the given element
-		
-		if(params?.parent?.id!=''&& params?.id!=null){
-			if(params.parent.id == params.id){
-				params.parent = ''
-				flash.message = 'Error: Parent elements must not contain the element itself'
-				return false
-			}
-
-		}
-		
-		//check if subelements contain the parent element
-		
-		if(params?.subElements!=null && params?.parent?.id!=''){
-			
-			if(children.isEmpty()){
-				children = getChildren()
-			}
-			
-			if(!validateChildParentRelationship(params.parent.id.value.toString(), children)){
-				params.subElements = ''
-				flash.message = 'Error: Sub elements must not contain the parent element'
-				return false
-			}
-		}
-		return true
-	}
-
-	
-	
 	
 }

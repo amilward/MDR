@@ -87,7 +87,6 @@ INDEX VERSION 1.126+C:\Users\Adam Milward\git\groovy_metadata\.metadata\.plugins
 3872356831.index
 76362584.index
 2935294028.index
-1449378813.index
 260930152.index
 1269967441.index
 3788745682.index

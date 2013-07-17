@@ -13,16 +13,16 @@
 		<item value="false" key="isRegEx"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="linkWith" key="selection"/>
+		<item value="validate()" key="selection"/>
 		<list key="findhistory">
+			<item value="validate()"/>
+			<item value="edit"/>
+			<item value="flash.message ="/>
 			<item value="linkwith"/>
 			<item value="dataElementValueDomains()"/>
 			<item value="dataElementValueDomains"/>
 			<item value="name"/>
 			<item value=".content"/>
-			<item value="table"/>
-			<item value="footer"/>
-			<item value="list"/>
 		</list>
 		<list key="replacehistory">
 			<item value="collapsible_content"/>

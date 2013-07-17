@@ -92,7 +92,9 @@ log4j = {
 
 
 
+//disable mail send functionality
 
+grails.mail.disabled=true
 
 
 // Added by the Spring Security Core plugin:

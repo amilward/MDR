@@ -40,12 +40,12 @@
 	<g:select 
 			id="parent" 
 			name="parent.id" 
-			from="${uk.co.mdc.model.DataElement.list()}" 
+			from="${uk.co.mdc.model.DataElement.list().minus(dataElementInstance)}" 
 			optionKey="id" 
 			optionValue="name"
 			value="${dataElementInstance?.parent?.id}" 
 			class="many-to-one" 
-			noSelection="${['':'Select One...']}"
+			noSelection="${[null:'Select One...']}"
 			/>
 </div>
 
@@ -77,7 +77,7 @@
    <g:select
             name="subElements"
             noSelection="${['':'Select One...']}"
-            from="${dataElements}"
+            from="${dataElements.minus(dataElementInstance)}"
             value="${params.list('dataElements')}"
             optionKey="id"
             optionValue="name"

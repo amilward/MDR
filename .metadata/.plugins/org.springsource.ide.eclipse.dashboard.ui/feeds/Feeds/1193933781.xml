@@ -13,7 +13,7 @@
 	<atom:link href="http://blog.springsource.org/feed/" rel="self" type="application/rss+xml" />
 	<link>http://blog.springsource.org</link>
 	<description>The voice of SpringSource</description>
-	<lastBuildDate>Sat, 13 Jul 2013 18:35:12 +0000</lastBuildDate>
+	<lastBuildDate>Tue, 16 Jul 2013 13:14:45 +0000</lastBuildDate>
 	<language>en</language>
 	<sy:updatePeriod>hourly</sy:updatePeriod>
 	<sy:updateFrequency>1</sy:updateFrequency>
@@ -30,7 +30,7 @@
 		<guid isPermaLink="false">http://blog.springsource.org/?p=13894</guid>
 		<description><![CDATA[In this post, I will discuss how to make your Spring Security Java configuration more readable. The post is intended to elaborate on a point from Spring Security Java Config Preview: Web Security where I stated: By formatting our Java configuration code it is much easier to read. It can be read similar to the  <a href="http://blog.springsource.org/2013/07/11/spring-security-java-config-preview-readability/"><em>Read more...</em></a>]]></description>
 		<wfw:commentRss>http://blog.springsource.org/2013/07/11/spring-security-java-config-preview-readability/feed/</wfw:commentRss>
-		<slash:comments>2</slash:comments>
+		<slash:comments>3</slash:comments>
 		</item>
 		<item>
 		<title>Eclipse Quick Search</title>
@@ -56,7 +56,7 @@
 		<category><![CDATA[Spring]]></category>
 
 		<guid isPermaLink="false">http://blog.springsource.org/?p=13856</guid>
-		<description><![CDATA[This is the last post in my four part blog series that introduces Spring Security Java configuration. In this post, we will discuss how Spring Security Java configuration can be extended by walking through Spring Security OAuth Java configuration support. Proof of Concept While the Spring Security Java configuration works well for very basic configuration,  <a href="http://blog.springsource.org/2013/07/05/spring-security-java-config-preview-oauth/"><em>Read more...</em></a>]]></description>
+		<description><![CDATA[This is the fourth post in my five part blog series that introduces Spring Security Java configuration. In this post, we will discuss how Spring Security Java configuration can be extended by walking through Spring Security OAuth Java configuration support. Proof of Concept While the Spring Security Java configuration works well for very basic configuration,  <a href="http://blog.springsource.org/2013/07/05/spring-security-java-config-preview-oauth/"><em>Read more...</em></a>]]></description>
 		<wfw:commentRss>http://blog.springsource.org/2013/07/05/spring-security-java-config-preview-oauth/feed/</wfw:commentRss>
 		<slash:comments>0</slash:comments>
 		</item>
@@ -85,7 +85,7 @@
 		<guid isPermaLink="false">http://blog.springsource.org/?p=13769</guid>
 		<description><![CDATA[In my previous post, I introduced Spring Security Java configuration and discussed some of the logistics of the project. In this post, we will start off by walking through a very simple web security configuration. We will then spice things up a bit with configuration that has been customized some. Hello Web Security In this  <a href="http://blog.springsource.org/2013/07/03/spring-security-java-config-preview-web-security/"><em>Read more...</em></a>]]></description>
 		<wfw:commentRss>http://blog.springsource.org/2013/07/03/spring-security-java-config-preview-web-security/feed/</wfw:commentRss>
-		<slash:comments>8</slash:comments>
+		<slash:comments>10</slash:comments>
 		</item>
 		<item>
 		<title>Spring Security Java Config Preview: Introduction</title>

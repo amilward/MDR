@@ -6,6 +6,39 @@
  <description>Welcome to the home of Spring, the leading platform to build and run enterprise Java applications. Led and sustained by SpringSource, Spring delivers significant benefits for many projects, increasing development productivity and runtime performance while improving test coverage and application quality.</description>
  <language>en</language>
 <item>
+ <title>This Week in Spring - July 15, 2013</title>
+ <link>http://www.springsource.org/node/22653</link>
+ <description>
+&lt;p&gt;Welcome back to another installation of &lt;em&gt;This Week in Spring.&lt;/em&gt; We&amp;#39;ve got a lot to cover, as usual, so let&amp;#39;s get right to it! This week I&amp;#39;m at SenchaCon, talking to developers about building RESTful applications and clients, and then I&amp;#39;m off to OSCON next week, where I&amp;#39;ll be hosting the Spring BOF, giving a talk on the latest and greatest in Spring 4, and helping to man the Pivotal booth. If you&amp;#39;re at SenchaCon or OSCON, &lt;a href=&quot;http://twitter.com/starbuxman&quot;&gt;don&amp;#39;t hesitate to ping me&lt;/a&gt; and we can talk &lt;a href=&quot;http://www.springsource.org&quot;&gt;Spring&lt;/a&gt;, &lt;a href=&quot;http://cloudfoundry.com&quot;&gt;Cloud Foundry&lt;/a&gt;, &lt;a href=&quot;http://www.springsource.org/spring-xd&quot;&gt;big-data&lt;/a&gt;, and more!&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;SpringOne 2GX 2013 early bird expires soon, &lt;a href=&quot;http://www.springone2gx.com/conference/santa_clara/2013/09/register&quot;&gt;register now&lt;/a&gt; to secure the discounted rate!&lt;/li&gt;
+&lt;li&gt;Spring Data ninja Thomas Risberg has announced that &lt;a href=&quot;http://www.springsource.org/node/22651&quot;&gt;Spring For Apache Hadoop 1.0.1.RC1 has been released&lt;/a&gt;. The new release supports Hadoop 2.0 and Pivotal HD, among other things.&lt;/li&gt;
+&lt;li&gt;Tool Suite ninja and lead Martin Lippert has announced that &lt;a href=&quot;http://www.springsource.org/node/22650&quot;&gt;Spring Tool Suite And Groovy/Grails Tool Suite 3.3.0 have been released&lt;/a&gt;. Very nice! &lt;/li&gt;
+&lt;li&gt;Gary Russell has announced that &lt;a href=&quot;http://www.springsource.org/node/22652&quot;&gt;Spring AMQP 1.2.0 has been released&lt;/a&gt;. Check out the &lt;a href=&quot;http://static.springsource.org/spring-amqp/reference/html/whats-new.html&quot;&gt;What&amp;#39;s New&lt;/a&gt; for details. &lt;/li&gt;
+&lt;li&gt;Join    	 Mattias Severson &amp;amp; Johan Haleby and learn about  &lt;a href=&quot;http://www.springsource.org/node/22643&quot;&gt;Functional Programming without Lambdas&lt;/a&gt; on     July 18, 2013&lt;/li&gt;
+&lt;li&gt;Join Hemant Joshi as he introduces how to use Spring and the &lt;a href=&quot;https://www.springsource.org/node/22644&quot;&gt;Cucumber BDD testing framework in a webinar on July 30th, 2013&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Our friends at Skills Matter are throwing a Spring-centric conference (&lt;a href=&quot;https://plus.google.com/u/0/events/cuqrmfcosup8ghpdqs9j450ulso&quot;&gt;the Spring Exchange&lt;/a&gt;) in London on November 14 and November 15.  There are some killer speakers, and I highly encourage you to make it, if you can. &lt;/li&gt;
+&lt;li&gt;Are you using &lt;a href=&quot;http://www.springsource.org/Spring-Social&quot;&gt;Spring Social&lt;/a&gt; in the wild? &lt;a href=&quot;http://forum.springsource.org/showthread.php?139750-Spring-Social-in-the-Wild&quot;&gt;We want to hear about it&lt;/a&gt;! &lt;/li&gt;
+&lt;li&gt;Spring Security lead and ninja Rob Winch has put together a very nice post on &lt;em&gt;readability&lt;/em&gt; &lt;a href=&quot;http://blog.springsource.org/2013/07/11/spring-security-java-config-preview-readability/&quot;&gt;when using Spring Security Java configuration&lt;/a&gt;. &lt;/li&gt;
+&lt;li&gt;A new &amp;quot;Quick Search&amp;quot; is included in Spring ToolSuite (STS) 3.3.0 and Groovy Grails Tool Suite (GGTS) 3.3.0 which have just been released. Kris De Volder, a senior developer on the Spring and Groovy and Grails Tool Suites, has just put together &lt;a href=&quot;http://blog.springsource.org/2013/07/11/eclipse-quick-search/&quot;&gt;a nice post on this new feature&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Our friend Johnathan Mark Smith is at it again! This time, he&amp;#39;s written a post, &lt;a href=&quot;http://johnathanmarksmith.com/spring/spring%20data/mongodb/fongo/java/javaconfig/programming/spring%20java%20configuration/2013/06/28/how-to-use-fongo-and-nosql-unit-to-test-spring-data-project-with-mongodb-junit-log4j/&quot;&gt;&lt;em&gt;How to use Fongo and nosql unit to test Spring Data project with MongoDB, JUnit, Log4J&lt;/em&gt;&lt;/a&gt;. Check it out!&lt;/li&gt;
+&lt;li&gt;Wow!  Amir Kibbar, at the &lt;em&gt;HP Software Developer&amp;#39;s blog&lt;/em&gt;, has put together a &lt;em&gt;really&lt;/em&gt; comprehensive look at how to develop a service tier, build a web tier, and then test both. The first post &lt;a href=&quot;http://h30499.www3.hp.com/t5/HP-Software-Developers-Blog/A-Comprehensive-Example-of-a-Spring-MVC-Application-Part-1/ba-p/6135439#.UeR36GRASIc&quot;&gt;on setting up a service tier&lt;/a&gt;, the second is an example &lt;a href=&quot;http://h30499.www3.hp.com/t5/HP-Software-Developers-Blog/A-Comprehensive-Example-of-a-Spring-MVC-Application-Part-2/ba-p/6135443#.UeR4GmRASIc&quot;&gt;of refining the service tier and testing it&lt;/a&gt;, the third post introduces how to &lt;a href=&quot;http://h30499.www3.hp.com/t5/HP-Software-Developers-Blog/A-Comprehensive-Example-of-a-Spring-MVC-Application-Part-3/ba-p/6135449#.UeR4HGRASIc&quot;&gt;setup a REST endpoint&lt;/a&gt;, and the fourth post &lt;a href=&quot;http://h30499.www3.hp.com/t5/HP-Software-Developers-Blog/A-Comprehensive-Example-of-a-Spring-MVC-Application-Part-4/ba-p/6135463#.UeR6TGRASIc&quot;&gt;talks about testing the REST service&lt;/a&gt;. Definitely worth a read (and a bookmark!) It&amp;#39;s possible to do everything demonstrated in these posts using straight Java configuration, also… &lt;/li&gt;
+&lt;li&gt;Igor Artamonov has a nice, abbreviated post on how &lt;a href=&quot;http://igorartamonov.com/2013/07/restful-using-spring-framework/&quot;&gt;to build a RESTful endpoint with Spring&lt;/a&gt;. &lt;/li&gt;
+&lt;LI&gt;
+  Our friend at the &lt;EM&gt;Baeldung&lt;/EM&gt; blog has put together a very nice post on
+  how to use &lt;a
+href=&quot;http://www.baeldung.com/spring-security-digest-authentication&quot;&gt;digest
+authentication with Spring Security&lt;/a&gt;.
+&lt;/LI&gt;
+&lt;/ol&gt;</description>
+ <comments>http://www.springsource.org/node/22653#comments</comments>
+ <category domain="http://www.springsource.org/taxonomy/term/14">This Week in Spring</category>
+ <pubDate>Tue, 16 Jul 2013 04:39:55 +0000</pubDate>
+ <dc:creator>Josh Long</dc:creator>
+ <guid isPermaLink="false">22653 at http://www.springsource.org</guid>
+</item>
+<item>
  <title>Spring AMQP 1.2.0 for Java Released</title>
  <link>http://www.springsource.org/node/22652</link>
  <description>&lt;p&gt;The Spring AMQP project applies core Spring concepts to the development of AMQP-based messaging solutions.&lt;/p&gt;
@@ -309,19 +342,6 @@ The SpringSource tooling team&lt;/p&gt;
  <pubDate>Tue, 02 Jul 2013 09:53:50 +0000</pubDate>
  <dc:creator>Mark Baars</dc:creator>
  <guid isPermaLink="false">22641 at http://www.springsource.org</guid>
-</item>
-<item>
- <title>Spring Security Java Configuration 1.0.0.M1 Released</title>
- <link>http://www.springsource.org/node/22640</link>
- <description>&lt;p&gt;I&#039;m pleased to announce the release of Spring Security Java Configuration as a stand alone module. The milestone is compatible with Spring 3.2.3.RELEASE+ and Spring Security 3.1.4.RELEASE.&lt;/p&gt;
-&lt;p&gt;This code has been merged into Spring Security 3.2.0.M2 release and will be maintained within the Spring Security code base going forward. We hope that by making the release available for stable versions of Spring and Spring Security it will encourage you to try it sooner and provide us feedback before the final release.&lt;/p&gt;
-&lt;p&gt;Stay tuned to the &lt;a href=&quot;http://blog.springsource.org&quot;&gt;SpringSource blog&lt;/a&gt; for an article that walks you through how to use Spring Security Java Configuration. In the mean time, you can find out how to obtain spring-security-javaconfig, documentation, and samples at &lt;a href=&quot;http://github.com/SpringSource/spring-security-javaconfig&quot;&gt;http://github.com/SpringSource/spring-security-javaconfig&lt;/a&gt;.&lt;/p&gt;
-</description>
- <comments>http://www.springsource.org/node/22640#comments</comments>
- <category domain="http://www.springsource.org/taxonomy/term/4">News and Announcements</category>
- <pubDate>Mon, 01 Jul 2013 20:54:31 +0000</pubDate>
- <dc:creator>rwinch</dc:creator>
- <guid isPermaLink="false">22640 at http://www.springsource.org</guid>
 </item>
 </channel>
 </rss>
