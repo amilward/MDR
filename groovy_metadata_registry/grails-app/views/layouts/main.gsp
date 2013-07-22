@@ -12,37 +12,67 @@
 		<link rel="shortcut icon" href="${resource(dir: 'images', file: 'favicon.ico')}" type="image/x-icon">
 		<link rel="apple-touch-icon" href="${resource(dir: 'images', file: 'apple-touch-icon.png')}">
 		<link rel="apple-touch-icon" sizes="114x114" href="${resource(dir: 'images', file: 'apple-touch-icon-retina.png')}">
-		<link rel="stylesheet" href="${resource(dir: 'css', file: 'normalise.css')}" type="text/css">
+		<link href='http://fonts.googleapis.com/css?family=Michroma' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'main.css')}" type="text/css">
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'mobile.css')}" type="text/css">
 		<g:javascript>
 		    window.appContext = '${request.contextPath}';
 		</g:javascript>
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-		<script src="${resource(dir:'js',file:'jquery.ui.core.js')}" type="text/javascript" ></script>
-		<script src="${resource(dir:'js',file:'jquery.ui.effect.js')}" type="text/javascript" ></script>
-		<script src="${resource(dir:'js',file:'jquery.ui.effect-slide.js')}" type="text/javascript" ></script>
-		<script src="${resource(dir:'js',file:'raphael-min.js')}" type="text/javascript" ></script>
-		<script src="${resource(dir:'js',file:'lazylinepainter.js')}" type="text/javascript" ></script>
-		<script src="${resource(dir:'js',file:'lazypaint.js')}" type="text/javascript" ></script>
-		<script src="${resource(dir:'js',file:'navigation.js')}" type="text/javascript" ></script>
-		<script src="${resource(dir:'js',file:'flip.js')}" type="text/javascript" ></script>
+		<g:javascript library="jquery" plugin="jquery" />
+		<r:require module="jquery-ui"/>
 		<g:layoutHead/>
 		<r:layoutResources />
 	</head>
 	<body>
-	  	<div id="grailsLogo" role="banner">
-	  		<a href="http://grails.org"><img src="${resource(dir: 'images', file: 'grails_logo.png')}" alt="Grails"/></a>
-	  	</div>
-	  	<div class="header">
-		  		<g:link controller="ConceptualDomain"> Conceptual Domain </g:link>
-		  		<g:link controller="ValueDomain"> Value Domain </g:link>
-		  		<g:link controller="DataElement"> Data Element </g:link>
-		  		<g:link controller="UmlModel"> UML Model </g:link>
-		  		<g:link controller="Document"> Document </g:link>
-	  	</div>
-		<g:layoutBody/>
-	 <div class="footer" role="contentinfo"></div>
+	  <div id="maincontainer">
+
+			<div id="contentwrapper">
+				<div id="contentcolumn">
+
+					<g:layoutBody/>
+				</div>
+			</div>
+
+			<div id="leftcolumn">
+					<div id="left_menu">
+						<div class="left_menu" id="user_menu">
+							<sec:ifLoggedIn>
+								        Welcome <sec:loggedInUserInfo field="username" /> </br>
+								        <g:link controller="Logout">Logout</g:link>
+								<!-- END #login -->
+							</sec:ifLoggedIn>
+							<sec:ifNotLoggedIn>
+								<g:link controller="Login">login </g:link> || <a href="#"><g:link controller="Register">register </g:link> </a>
+							</sec:ifNotLoggedIn>
+						</div>
+						
+						
+						
+						<sec:ifLoggedIn>
+						<div class="left_menu" id="mdr_menu">
+							<ul>
+								<li><strong>metadata registry</strong></li>
+								<li><g:link controller="ConceptualDomain">conceptual domains </g:link></li>
+								<li><g:link controller="ValueDomain">value domains </g:link></li>
+								<li><g:link controller="DataElement">data elements </g:link></li>
+								<li><g:link controller="DataType">data types </g:link></li>
+								<li><g:link controller="UmlModel">uml </g:link></li>
+								<li><g:link controller="Document">documents </g:link></li>
+							</ul>
+						</div>
+						</sec:ifLoggedIn>
+						
+					</div>
+			</div>
+
+			<div id="rightcolumn">
+				<div class="innertube"></div>
+			</div>
+
+			<div id="footer"><a href="#">MDC</a></div>
+
+		</div>	
 		<div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>
 		<g:javascript library="application"/>
 		<r:layoutResources />

@@ -26,11 +26,13 @@
 					
 						<g:sortableColumn property="name" title="${message(code: 'valueDomain.name.label', default: 'Name')}" />
 						
+						<g:sortableColumn property="refId" title="${message(code: 'valueDomain.refId.label', default: 'Ref Id')}" />
+						
 						<g:sortableColumn property="description" title="${message(code: 'valueDomain.description.label', default: 'Description')}" />						
 						
 						<g:sortableColumn property="dataType" title="${message(code: 'valueDomain.dataType.label', default: 'Data Type')}" />
 					
-						<g:sortableColumn property="refId" title="${message(code: 'valueDomain.refId.label', default: 'Ref Id')}" />
+						<g:sortableColumn property="unitOfMeasure" title="${message(code: 'valueDomain.dataType.label', default: 'Unit of Measure')}" />
 					
 						<g:sortableColumn property="regexDef" title="${message(code: 'valueDomain.regexDef.label', default: 'Regex Def')}" />
 						
@@ -44,11 +46,13 @@
 					
 						<td><g:link action="show" id="${valueDomainInstance.id}">${fieldValue(bean: valueDomainInstance, field: "name")}</g:link></td>
 						
+						<td>${fieldValue(bean: valueDomainInstance, field: "refId")}</td>
+						
 						<td>${fieldValue(bean: valueDomainInstance, field: "description")}</td>						
 						
-						<td>${fieldValue(bean: valueDomainInstance, field: "dataType")}</td>
+						<td><g:link controller="DataType" action="show" id="${valueDomainInstance?.dataType?.id}">${valueDomainInstance?.dataType?.dataType}</g:link></td>
 					
-						<td>${fieldValue(bean: valueDomainInstance, field: "refId")}</td>
+						<td>${fieldValue(bean: valueDomainInstance, field: "unitOfMeasure")}</td>
 					
 						<td>${fieldValue(bean: valueDomainInstance, field: "regexDef")}</td>
 						

@@ -54,7 +54,8 @@
 				<li class="fieldcontain">
 					<span id="dataType-label" class="property-label"><g:message code="valueDomain.dataType.label" default="Data Type" /></span>
 					
-						<span class="property-value" aria-labelledby="dataType-label"><g:fieldValue bean="${valueDomainInstance}" field="dataType"/></span>
+						<span class="property-value" aria-labelledby="dataType-label">
+						<g:link controller="DataType" action="show" id="${valueDomainInstance?.dataType?.id}">${valueDomainInstance?.dataType?.dataType}</g:link></span>
 					
 				</li>
 				</g:if>

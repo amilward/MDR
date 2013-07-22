@@ -1,7 +1,7 @@
 /* FONT STACK */
 body,
 input, select, textarea {
-	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+	font-family: 'Michroma', sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -11,17 +11,8 @@ h1, h2, h3, h4, h5, h6 {
 /* BASE LAYOUT */
 
 html {
-	background-color: #000000;
-	background-image: -moz-linear-gradient(center top, #aaa, #ddd);
-	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #aaa), color-stop(1, #ddd));
-	background-image: linear-gradient(top, #aaa, #ddd);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr = '#aaaaaa', EndColorStr = '#dddddd');
-	background-repeat: no-repeat;
-	height: 100%;
-	/* change the box model to exclude the padding from the calculation of 100% height (IE8+) */
-	-webkit-box-sizing: border-box;
-	   -moz-box-sizing: border-box;
-	        box-sizing: border-box;
+	height:100%;
+	
 }
 
 html.no-cssgradients {
@@ -37,22 +28,14 @@ html * {
 }
 
 body {
-	background: #ffffff;
-	color: #333333;
-	margin: 0 auto;
-	max-width: 960px;
-	overflow-x: hidden; /* prevents box-shadow causing a horizontal scrollbar in firefox when viewport < 960px wide */
-	   -moz-box-shadow: 0 0 0.3em #255b17;
-	-webkit-box-shadow: 0 0 0.3em #255b17;
-	        box-shadow: 0 0 0.3em #255b17;
-	 height:auto;
+	height:100%;
+	background-color: #e2ebe8;
+	margin: 0;
+	padding: 0;
+	font-family: 'Michroma', sans-serif;
 }
 
-#grailsLogo {
-	background-color: #abbf78;
-}
-
-/* replace with .no-boxshadow body if you have modernizr available */
+/* replace with .no-boxshadow body if you have modernizr available 
 .ie6 body,
 .ie7 body,
 .ie8 body {
@@ -63,7 +46,7 @@ body {
 
 .ie6 body {
 	height: 100%;
-}
+}*/
 
 a:link, a:visited, a:hover {
 	color: #48802c;
@@ -80,13 +63,8 @@ h1 {
 	margin: 0.8em 0 0.3em 0;
 }
 
-p {
-	margin: 0.8em 0 0.3em 0;
-}
-
-
 ul {
-	padding: 0;
+	padding-left: 40px;
 }
 
 img {
@@ -94,11 +72,6 @@ img {
 }
 
 /* GENERAL */
-
-#grailsLogo a {
-	display: inline-block;
-	margin: 1em;
-}
 
 .content {
 }
@@ -115,9 +88,8 @@ img {
 }
 
 .content table{
-	margin: 0.8em 1em 0.3em;
-	padding: 0 0.25em;
-	width: 97%;
+	width: 100%;
+	table-layout:fixed;
 }
 
 .scaffold-list h1 {
@@ -125,42 +97,10 @@ img {
 }
 
 
-.header {
-	background-color: #ABBF78;
-}
-
-.header a {
-	-moz-box-shadow:inset 0px 1px 0px 0px #caefab;
-	-webkit-box-shadow:inset 0px 1px 0px 0px #caefab;
-	box-shadow:inset 0px 1px 0px 0px #caefab;
-	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #77d42a), color-stop(1, #5cb811) );
-	background:-moz-linear-gradient( center top, #77d42a 5%, #5cb811 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#77d42a', endColorstr='#5cb811');
-	background-color:#77d42a;
-	-moz-border-radius:6px;
-	-webkit-border-radius:6px;
-	border-radius:6px;
-	border:1px solid #268a16;
-	display:inline-block;
-	color:#306108;
-	font-family:arial;
-	font-size:15px;
-	font-weight:bold;
-	padding:6px 24px;
-	text-decoration:none;
-	text-shadow:1px 1px 0px #aade7c;
-	width: 15%;
-	margin: none;
-}.header a:hover {
-	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #5cb811), color-stop(1, #77d42a) );
-	background:-moz-linear-gradient( center top, #5cb811 5%, #77d42a 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#5cb811', endColorstr='#77d42a');
-	background-color:#5cb811;
-}.header a:active {
-	position:relative;
-	top:1px;
-}
 	
+		
+		
+.header{}
 
 .footer {
 	background: none;
@@ -493,7 +433,6 @@ th {
 }
 
 thead th {
-	white-space: nowrap;
 }
 
 th a {
@@ -523,6 +462,11 @@ th.desc a {
 	background-image: url(../images/skin/sorted_desc.gif);
 }
 
+
+td{
+	word-wrap:break-word;cust
+}
+
 .odd {
 	background: #f7f7f7;
 }
@@ -539,7 +483,7 @@ th:hover, tr:hover {
 
 .pagination {
 	border-top: 0;
-	margin: 0;
+	margin: 50px 0;
 	padding: 0.3em 0.2em;
 	text-align: center;
 	   -moz-box-shadow: 0 0 3px 1px #AAAAAA;
@@ -651,4 +595,148 @@ a.skip {
 	left: -9999px;
 }
 
+/*expandable*/
+
+
+
+/* tabindex="1" in the link code to fix the 'focus persist' problem in safari and chrome */
+		html {-webkit-animation: safariSelectorFix infinite 1s;}
+		@-webkit-keyframes safariSelectorFix {
+		0% {zoom:1;} 
+		100% {zoom:1;}
+		}
+		
+		div.exp {font:normal 0.9em/1.5em arial, sans-serif; color:#666;}
+		a.exp {display:block;margin: 1em 0 0 0;text-decoration:none;background:#hhhhhh;padding:10px;text-align:right}
+		a.exp::after {content:"»";float:right;}
+		a.exp:focus {border-width: 1px 1px 0 1px;border-radius:4px 4px 0 0}
+		a.exp + div {display:none;}
+		a.exp:focus + div {display:block;border-width: 0 1px 1px 1px;border-style:solid; border-radius:0 0 4px 4px;border-color:black;}
+		a.exp:focus::after {content:"";}
+		div.exp *{padding:0.3em 10px 0em 10px;}
+		div.exp *:last-child::after {content:"«";float:right;}
+		div.exp *:first-child {margin-top:0;}
+		
+		div.exp ul {margin-bottom: 2em;}
+		div.exp ul li {list-style-position: inside;}
+		div.exp ul li:last-child::after{content:'' !important;}
+
+
+/* my custom styles*/
+
+#maincontainer{
+			height:100%;
+		}
+			
+		#contentwrapper{
+		float: left;
+		width: 100%;
+		height:95%;
+		padding-bottom:30px;
+		}
+
+		#contentcolumn{
+		margin: 0 20% 0 20%; /*Margins for content column. Should be "0 RightColumnWidth 0 LeftColumnWidth*/
+		background-color: white;
+		width:75%;
+		padding-bottom:30px;
+		}
+
+		#leftcolumn{
+		float: left;
+		width: 20%; /*Width of left column in percentage*/
+		margin-left: -100%;
+		height:95%;
+		font-size: 16px;
+		text-align:right;
+		padding-top:25px;
+		}
+
+		#rightcolumn{
+		float: left;
+		width: 5%; /*Width of right column in pixels*/
+		margin-left: -20%; /*Set margin to that of -(RightColumnWidth)*/
+		height:95%;
+		}
+
+		#footer{
+		position:fixed;
+		bottom:0;
+		clear: left;
+		width: 100%;
+		background: black;
+		color: #FFF;
+		text-align: right;
+		padding: 4px 0;
+		height:20px;
+		}
+
+		#footer a{
+		color: #e2ebe8;
+		padding-right:20px;
+		text-decoration:none;	
+		}
+
+		.innertube{
+		margin: 10px; /*Margins for inner DIV inside each column (to provide padding)*/
+		margin-top: 0;
+
+		}
+		
+		#welcome{
+				font-size: 40px;
+				color: #ce265d;
+				padding-top:15px;
+				padding-right:25px;
+				font-family: 'Orbitron', sans-serif;
+				}
+
+		#left_menu{
+			margin-right:20px;
+			padding-top: 10px;
+		}	
+
+		#left_menu a{
+			color: #000000;
+			text-decoration:none;
+		}
+		
+		#left_menu ul{
+			 list-style-type: none;
+		}
+		
+		.left_menu{
+		margin-bottom:20px;
+		}			
+				
+		p{
+		padding:20px;
+		}
+		
+		
+/*  register   */
+
+
+	#loginFormContainer{
+		margin: 0 auto;
+		padding-bottom:100px;
+	}
+
+	#create{
+	}
+	
+	#create_submit{
+		visibility: hidden;
+	}
+		
+		
+	#enumerations{
+		display: none;
+	}	
+		
+		
+/*Data types*/
+	
+		
+/* my custom styles*/	
 

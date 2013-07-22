@@ -45,7 +45,15 @@
 		<g:message code="valueDomain.dataType.label" default="Data Type" />
 		
 	</label>
-	<g:textField name="dataType" value="${valueDomainInstance?.dataType}"/>
+	 <g:select
+                       name="dataType"
+                        from="${dataTypes}"
+                        value="${params.list('dataTypes')}"
+                        optionKey="id"
+                        optionValue="dataType"
+                        size="6"
+      />
+	
 </div>
 
 
@@ -70,7 +78,7 @@
 
 <div class="fieldcontain ${hasErrors(bean: valueDomainInstance, field: 'dataElementValueDomains', 'error')} ">
         <label for="dataElementValueDomains">
-                <g:message code="dataElement.dataElementValueDomains.label" default="Add Associated Value Domain" />
+                <g:message code="dataElement.dataElementValueDomains.label" default="Add Associated Data Elements" />
                 
         </label>
         

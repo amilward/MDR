@@ -4,15 +4,17 @@
 	<title><g:message code="springSecurity.login.title"/></title>
 	<style type='text/css' media='screen'>
 	#login {
-		margin: 15px 0px;
-		padding: 0px;
+		margin: 0;
+		padding: 0;
 		text-align: center;
+		padding-top:60px;
+		padding-bottom: 60px;
 	}
 
 	#login .inner {
 		width: 340px;
-		padding-bottom: 6px;
-		margin: 60px auto;
+		padding: 0 0;
+		margin: 0 auto;
 		text-align: left;
 		border: 1px solid #aab;
 		background-color: #f0f0fa;
@@ -52,6 +54,9 @@
 		width: 110px;
 		padding-top: 3px;
 		padding-right: 10px;
+	}
+	#login #loginForm{
+		margin:10px 0 0 10px;
 	}
 
 	#login #remember_me_holder {

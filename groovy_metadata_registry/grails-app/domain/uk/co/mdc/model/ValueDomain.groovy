@@ -14,8 +14,8 @@ class ValueDomain {
 	
 	String description
 	
-	String dataType
-	
+	DataType dataType
+ 	
 	Set dataElementValueDomains = []
 	
 	static hasMany = [dataElementValueDomains: DataElementValueDomain]
@@ -25,8 +25,8 @@ class ValueDomain {
     static constraints = {
 		refId unique: true
 		conceptualDomain nullable:true
+		dataType nullable:true
     }
-	
 	
 	List dataElementValueDomains() {
 		return dataElementValueDomains.collect{it.dataElement}
