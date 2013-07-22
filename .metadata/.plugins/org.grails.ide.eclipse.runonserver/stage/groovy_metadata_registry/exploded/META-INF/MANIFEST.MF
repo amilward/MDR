@@ -52,24 +52,25 @@ Bundle-ClassPath: .,WEB-INF/classes,WEB-INF/lib/activation-1.1.jar,WEB
  sey-spring-1.14.jar,WEB-INF/lib/jsr311-api-1.1.1.jar,WEB-INF/lib/jstl
  -1.1.2.jar,WEB-INF/lib/jta-1.1.jar,WEB-INF/lib/jul-to-slf4j-1.6.2.jar
  ,WEB-INF/lib/junit-dep-4.10.jar,WEB-INF/lib/liquibase-core-2.0.5.jar,
- WEB-INF/lib/log4j-1.2.16.jar,WEB-INF/lib/mail-1.4.3.jar,WEB-INF/lib/o
- rg.restlet-2.0.0.jar,WEB-INF/lib/org.restlet.ext.jaxrs-2.0.0.jar,WEB-
- INF/lib/org.restlet.ext.json-2.0.0.jar,WEB-INF/lib/org.restlet.ext.se
- rvlet-2.0.0.jar,WEB-INF/lib/oro-2.0.8.jar,WEB-INF/lib/sitemesh-2.4.ja
- r,WEB-INF/lib/slf4j-api-1.6.2.jar,WEB-INF/lib/spock-core-0.7-groovy-2
- .0.jar,WEB-INF/lib/spock-grails-support-0.7-groovy-2.0.jar,WEB-INF/li
- b/spring-aop-3.1.4.RELEASE.jar,WEB-INF/lib/spring-asm-3.1.4.RELEASE.j
- ar,WEB-INF/lib/spring-aspects-3.1.4.RELEASE.jar,WEB-INF/lib/spring-be
- ans-3.1.4.RELEASE.jar,WEB-INF/lib/spring-context-3.1.4.RELEASE.jar,WE
- B-INF/lib/spring-context-support-3.1.4.RELEASE.jar,WEB-INF/lib/spring
- -core-3.1.4.RELEASE.jar,WEB-INF/lib/spring-expression-3.1.4.RELEASE.j
- ar,WEB-INF/lib/spring-jdbc-3.1.4.RELEASE.jar,WEB-INF/lib/spring-jms-3
- .1.4.RELEASE.jar,WEB-INF/lib/spring-orm-3.1.4.RELEASE.jar,WEB-INF/lib
- /spring-security-core-3.0.7.RELEASE.jar,WEB-INF/lib/spring-security-w
- eb-3.0.7.RELEASE.jar,WEB-INF/lib/spring-test-3.1.2.RELEASE.jar,WEB-IN
- F/lib/spring-tx-3.1.4.RELEASE.jar,WEB-INF/lib/spring-web-3.1.4.RELEAS
- E.jar,WEB-INF/lib/spring-webmvc-3.1.4.RELEASE.jar,WEB-INF/lib/validat
- ion-api-1.0.0.GA.jar,WEB-INF/lib/xpp3_min-1.1.4c.jar
+ WEB-INF/lib/log4j-1.2.16.jar,WEB-INF/lib/mail-1.4.3.jar,WEB-INF/lib/m
+ ysql-connector-java-5.1.22.jar,WEB-INF/lib/org.restlet-2.0.0.jar,WEB-
+ INF/lib/org.restlet.ext.jaxrs-2.0.0.jar,WEB-INF/lib/org.restlet.ext.j
+ son-2.0.0.jar,WEB-INF/lib/org.restlet.ext.servlet-2.0.0.jar,WEB-INF/l
+ ib/oro-2.0.8.jar,WEB-INF/lib/sitemesh-2.4.jar,WEB-INF/lib/slf4j-api-1
+ .6.2.jar,WEB-INF/lib/spock-core-0.7-groovy-2.0.jar,WEB-INF/lib/spock-
+ grails-support-0.7-groovy-2.0.jar,WEB-INF/lib/spring-aop-3.1.4.RELEAS
+ E.jar,WEB-INF/lib/spring-asm-3.1.4.RELEASE.jar,WEB-INF/lib/spring-asp
+ ects-3.1.4.RELEASE.jar,WEB-INF/lib/spring-beans-3.1.4.RELEASE.jar,WEB
+ -INF/lib/spring-context-3.1.4.RELEASE.jar,WEB-INF/lib/spring-context-
+ support-3.1.4.RELEASE.jar,WEB-INF/lib/spring-core-3.1.4.RELEASE.jar,W
+ EB-INF/lib/spring-expression-3.1.4.RELEASE.jar,WEB-INF/lib/spring-jdb
+ c-3.1.4.RELEASE.jar,WEB-INF/lib/spring-jms-3.1.4.RELEASE.jar,WEB-INF/
+ lib/spring-orm-3.1.4.RELEASE.jar,WEB-INF/lib/spring-security-core-3.0
+ .7.RELEASE.jar,WEB-INF/lib/spring-security-web-3.0.7.RELEASE.jar,WEB-
+ INF/lib/spring-test-3.1.2.RELEASE.jar,WEB-INF/lib/spring-tx-3.1.4.REL
+ EASE.jar,WEB-INF/lib/spring-web-3.1.4.RELEASE.jar,WEB-INF/lib/spring-
+ webmvc-3.1.4.RELEASE.jar,WEB-INF/lib/validation-api-1.0.0.GA.jar,WEB-
+ INF/lib/xpp3_min-1.1.4c.jar
 
 Name: Grails Application
 Implementation-Title: groovy_metadata_registry

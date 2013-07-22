@@ -57,12 +57,14 @@
     <resource>uk.co.mdc.IndexController</resource>
     <resource>uk.co.mdc.model.ConceptualDomainController</resource>
     <resource>uk.co.mdc.model.DataElementController</resource>
+    <resource>uk.co.mdc.model.DataTypeController</resource>
     <resource>uk.co.mdc.model.DocumentController</resource>
     <resource>uk.co.mdc.model.UmlModelController</resource>
     <resource>uk.co.mdc.model.ValueDomainController</resource>
     <resource>uk.co.mdc.model.ConceptualDomain</resource>
     <resource>uk.co.mdc.model.DataElement</resource>
     <resource>uk.co.mdc.model.DataElementValueDomain</resource>
+    <resource>uk.co.mdc.model.DataType</resource>
     <resource>uk.co.mdc.model.Document</resource>
     <resource>uk.co.mdc.model.UmlModel</resource>
     <resource>uk.co.mdc.model.ValueDomain</resource>
@@ -73,10 +75,14 @@
     <resource>uk.co.mdc.model.ConceptualDomainResource</resource>
     <resource>uk.co.mdc.model.DataElementCollectionResource</resource>
     <resource>uk.co.mdc.model.DataElementResource</resource>
+    <resource>uk.co.mdc.model.DataTypeCollectionResource</resource>
+    <resource>uk.co.mdc.model.DataTypeResource</resource>
     <resource>uk.co.mdc.model.ValueDomainCollectionResource</resource>
     <resource>uk.co.mdc.model.ValueDomainResource</resource>
     <resource>uk.co.mdc.model.ConceptualDomainResourceService</resource>
+    <resource>uk.co.mdc.model.ConceptualDomainService</resource>
     <resource>uk.co.mdc.model.DataElementResourceService</resource>
+    <resource>uk.co.mdc.model.DataTypeResourceService</resource>
     <resource>uk.co.mdc.model.ValueDomainResourceService</resource>
     <resource>uk.co.mdc.LeapingMindTagLib</resource>
   </resources>

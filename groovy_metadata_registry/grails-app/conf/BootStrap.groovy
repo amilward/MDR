@@ -31,7 +31,6 @@ class BootStrap {
 			
 		//populate with test data
 		
-		
 		if (!ConceptualDomain.count()) {
 			new ConceptualDomain(name:"motor racing", refId:1, description:"any value domains associated with the motor racing").save(failOnError: true)			
 		}
@@ -43,8 +42,8 @@ class BootStrap {
 		}
 
 		if (!ValueDomain.count()) {
-			new ValueDomain(name:"speed", refId:1, description:"speed", dataType:"float", unitOfMeasure:"mph", regexDef:"sss").save(failOnError: true)
-			new ValueDomain(name:"volume", refId:2, description:"volume", dataType:"float", unitOfMeasure:"cm3", regexDef:"sss").save(failOnError: true)
+			new ValueDomain(name:"mph", refId:1, description:"speed measured in miles per hour", unitOfMeasure:"mph", regexDef:"sss").save(failOnError: true)
+			new ValueDomain(name:"cm3", refId:2, description:"volume measured in centimeters cubed", unitOfMeasure:"cm3", regexDef:"sss").save(failOnError: true)
 		}
 		
 		

@@ -16,34 +16,23 @@ class ValueDomainController {
     }
 
     def create() {
-        [dataElements: DataElement.list(), valueDomainInstance: new ValueDomain(params)]
+        [dataElements: DataElement.list(), dataTypes: DataType.list(), valueDomainInstance: new ValueDomain(params)]
     }
 
     def save() {
+		
+		
+		if(params?.dataType){
+			DataType dataType = DataType.get(params?.dataType)
+			params.dataType = dataType
+		}
         def valueDomainInstance = new ValueDomain(params)
         if (!valueDomainInstance.save(flush: true)) {
             render(view: "create", model: [valueDomainInstance: valueDomainInstance])
             return
         }
 		
-		def dataElements = params.dataElements
-		if(dataElements!=null){
-			
-			if (dataElements instanceof String) {
-				DataElement dataElement =  DataElement.get(dataElements)
-				if(dataElement){
-					DataElementValueDomain.link(dataElement, valueDomainInstance)
-				}
-			} else if (dataElements instanceof String[]) {
-				  for (dataElementID in dataElements){
-					  DataElement dataElement =  DataElement.get(dataElementID)
-					  if(dataElement){
-						  DataElementValueDomain.link(dataElement, valueDomainInstance)
-					  }
-				  }
-			}
-
-		}
+		linkDataElements(valueDomainInstance)
 		
 
         flash.message = message(code: 'default.created.message', args: [message(code: 'valueDomain.label', default: 'ValueDomain'), valueDomainInstance.id])
@@ -69,7 +58,7 @@ class ValueDomainController {
             return
         }
 
-        [dataElements: DataElement.list(), valueDomainInstance: valueDomainInstance]
+        [dataElements: DataElement.list(), dataTypes: DataType.list(), valueDomainInstance: valueDomainInstance]
     }
 
     def update(Long id, Long version) {
@@ -85,39 +74,25 @@ class ValueDomainController {
                 valueDomainInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
                           [message(code: 'valueDomain.label', default: 'ValueDomain')] as Object[],
                           "Another user has updated this ValueDomain while you were editing")
-                render(view: "edit", model: [valueDomainInstance: valueDomainInstance])
+                render(view: "edit", model: [dataElements: DataElement.list(), dataTypes: DataType.list(), valueDomainInstance: valueDomainInstance])
                 return
             }
         }
 
+		if(params?.dataType){
+			DataType dataType = DataType.get(params?.dataType)
+			params.dataType = dataType
+		}
+		
         valueDomainInstance.properties = params
 
         if (!valueDomainInstance.save(flush: true)) {
-            render(view: "edit", model: [valueDomainInstance: valueDomainInstance])
+            render(view: "edit", model: [dataElements: DataElement.list(), dataTypes: DataType.list(), valueDomainInstance: valueDomainInstance])
             return
         }
 
 	
-		def dataElements = params.dataElements
-		if(dataElements!=null && dataElements!='null'){
-			
-			if (dataElements instanceof String) {
-				DataElement dataElement =  DataElement.get(dataElements)
-				if(dataElement){
-					DataElementValueDomain.link(dataElement, valueDomainInstance)
-				}
-			} else if (dataElements instanceof String[] && !dataElements.empty) {
-				  for (dataElementID in dataElements){
-					  DataElement dataElement =  DataElement.get(dataElementID)
-					  if(dataElement){
-						  DataElementValueDomain.link(dataElement, valueDomainInstance)
-					  }
-				  }
-			}
-
-		}
-		
-
+		linkDataElements(valueDomainInstance)
 
         flash.message = message(code: 'default.updated.message', args: [message(code: 'valueDomain.label', default: 'ValueDomain'), valueDomainInstance.id])
         redirect(action: "show", id: valueDomainInstance.id)
@@ -154,6 +129,27 @@ class ValueDomainController {
 			valueDomain.removeFromDataElementValueDomains(dataElement)
 		}
 		redirect(action: 'edit', id: params.valueDomainId)
+	}
+	
+	def linkDataElements(valueDomainInstance){
+		def dataElements = params.dataElements
+		if(dataElements!=null){
+			
+			if (dataElements instanceof String) {
+				DataElement dataElement =  DataElement.get(dataElements)
+				if(dataElement){
+					DataElementValueDomain.link(dataElement, valueDomainInstance)
+				}
+			} else if (dataElements instanceof String[]) {
+				  for (dataElementID in dataElements){
+					  DataElement dataElement =  DataElement.get(dataElementID)
+					  if(dataElement){
+						  DataElementValueDomain.link(dataElement, valueDomainInstance)
+					  }
+				  }
+			}
+
+		}
 	}
 	
 }

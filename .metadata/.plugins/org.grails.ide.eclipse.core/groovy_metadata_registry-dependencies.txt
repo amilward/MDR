@@ -1,5 +1,5 @@
 #dependencies
-123
+124
 C:\\Users\\Adam Milward\\.grails\\ivy-cache\\org.springframework.uaa\\org.springframework.uaa.client\\bundles\\org.springframework.uaa.client-1.0.1.RELEASE.jar
 C:\\Users\\Adam Milward\\.grails\\ivy-cache\\com.google.protobuf\\protobuf-java\\jars\\protobuf-java-2.4.1.jar
 C:\\Users\\Adam Milward\\.grails\\ivy-cache\\com.googlecode.json-simple\\json-simple\\jars\\json-simple-1.1.jar
@@ -91,6 +91,7 @@ C:\\Users\\Adam Milward\\.grails\\ivy-cache\\xpp3\\xpp3_min\\jars\\xpp3_min-1.1.
 C:\\Users\\Adam Milward\\.grails\\ivy-cache\\net.sf.ehcache\\ehcache-core\\jars\\ehcache-core-2.4.6.jar
 C:\\Users\\Adam Milward\\.grails\\ivy-cache\\log4j\\log4j\\bundles\\log4j-1.2.16.jar
 C:\\Users\\Adam Milward\\.grails\\ivy-cache\\org.slf4j\\jul-to-slf4j\\jars\\jul-to-slf4j-1.6.2.jar
+C:\\Users\\Adam Milward\\.grails\\ivy-cache\\mysql\\mysql-connector-java\\jars\\mysql-connector-java-5.1.22.jar
 C:\\Users\\Adam Milward\\.grails\\ivy-cache\\org.hibernate\\hibernate-validator\\jars\\hibernate-validator-4.1.0.Final.jar
 C:\\Users\\Adam Milward\\.grails\\ivy-cache\\javax.validation\\validation-api\\jars\\validation-api-1.0.0.GA.jar
 C:\\Users\\Adam Milward\\.grails\\ivy-cache\\org.hibernate\\hibernate-commons-annotations\\jars\\hibernate-commons-annotations-3.2.0.Final.jar

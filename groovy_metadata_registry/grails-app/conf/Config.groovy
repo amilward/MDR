@@ -91,6 +91,10 @@ log4j = {
 }
 
 
+//javascript libraries
+
+grails.views.javascript.library="jquery"
+
 
 //disable mail send functionality
 
@@ -116,18 +120,13 @@ grails.plugins.springsecurity.interceptUrlMap = [
 	'/':    ['IS_AUTHENTICATED_ANONYMOUSLY'],
 	'/index/*':    ['IS_AUTHENTICATED_ANONYMOUSLY'],
 	'/login/*':    ['IS_AUTHENTICATED_ANONYMOUSLY'],
-	'/home.html':    ['IS_AUTHENTICATED_ANONYMOUSLY'],
-	'/content.html':    ['IS_AUTHENTICATED_ANONYMOUSLY'],
-	'/data.html':    ['IS_AUTHENTICATED_ANONYMOUSLY'],
-	'/design.html':    ['IS_AUTHENTICATED_ANONYMOUSLY'],
-	'/mobile.html':    ['IS_AUTHENTICATED_ANONYMOUSLY'],
-	'/search.html':    ['IS_AUTHENTICATED_ANONYMOUSLY'],
-	'/services.html':    ['IS_AUTHENTICATED_ANONYMOUSLY'],
-	'/we_are.html':    ['IS_AUTHENTICATED_ANONYMOUSLY'],
-	'/we_do.html':    ['IS_AUTHENTICATED_ANONYMOUSLY'],
-	'/web.html':    ['IS_AUTHENTICATED_ANONYMOUSLY'],
-	'/weve_done.html':    ['IS_AUTHENTICATED_ANONYMOUSLY'],
-	'/**':         ["hasAnyRole('ROLE_USER', 'ROLE_ADMIN')", 'IS_AUTHENTICATED_FULLY'],
+	'/register/*':    ['IS_AUTHENTICATED_ANONYMOUSLY'],
+	'/conceptualDomain/*':         ["hasAnyRole('ROLE_USER', 'ROLE_ADMIN')", 'IS_AUTHENTICATED_FULLY'],
+	'/valueDomain/*':         ["hasAnyRole('ROLE_USER', 'ROLE_ADMIN')", 'IS_AUTHENTICATED_FULLY'],
+	'/dataElement/*':         ["hasAnyRole('ROLE_USER', 'ROLE_ADMIN')", 'IS_AUTHENTICATED_FULLY'],
+	'/umlModel/*':         ["hasAnyRole('ROLE_USER', 'ROLE_ADMIN')", 'IS_AUTHENTICATED_FULLY'],
+	'/document/*':         ["hasAnyRole('ROLE_USER', 'ROLE_ADMIN')", 'IS_AUTHENTICATED_FULLY'],
+	'/**':         ["hasAnyRole('ROLE_ADMIN')", 'IS_AUTHENTICATED_FULLY'],
 	
 	/*'/DataElement/*':         ["hasAnyRole('ROLE_USER', 'ROLE_ADMIN')", 'IS_AUTHENTICATED_FULLY'],
 	'/Document/*':         ["hasAnyRole('ROLE_USER', 'ROLE_ADMIN')", 'IS_AUTHENTICATED_FULLY'],
