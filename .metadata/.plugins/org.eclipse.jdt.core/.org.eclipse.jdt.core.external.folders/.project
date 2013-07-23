@@ -15,22 +15,22 @@
 			<location>C:/Users/Adam Milward/Downloads/springsource/ggts-3.2.0.RELEASE/plugins/org.grails.ide.eclipse.resources_3.2.0.201303060657-RELEASE/dsl-support</location>
 		</link>
 		<link>
-			<name>.link1</name>
+			<name>.link3</name>
 			<type>2</type>
 			<location>C:/Users/Adam Milward/Downloads/springsource/grails-2.2.1/scripts</location>
 		</link>
 		<link>
-			<name>.link2</name>
+			<name>.link4</name>
 			<type>2</type>
 			<location>C:/Users/Adam Milward/.grails/2.2.1/projects/groovy_metadata_registry/plugin-classes</location>
 		</link>
 		<link>
-			<name>.link3</name>
+			<name>.link5</name>
 			<type>2</type>
 			<location>C:/Users/Adam Milward/.groovy/greclipse/global_dsld_support</location>
 		</link>
 		<link>
-			<name>.link4</name>
+			<name>.link6</name>
 			<type>2</type>
 			<location>C:/Users/Adam Milward/Downloads/springsource/ggts-3.2.0.RELEASE/plugins/org.codehaus.groovy_2.0.7.xx-20130304-1200-e42/plugin_dsld_support</location>
 		</link>

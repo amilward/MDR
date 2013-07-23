@@ -1,27 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
-	<section name="WorkbenchPreferenceDialogSettings">
-		<item value="60" key="DIALOG_Y_ORIGIN"/>
-		<item value="202" key="DIALOG_X_ORIGIN"/>
-	</section>
 	<section name="ShowViewDialog">
 		<item value="311" key="DIALOG_WIDTH"/>
-		<item value="org.eclipse.egit.ui.StagingView" key="ShowViewDialog.STORE_SELECTED_VIEW_ID"/>
-		<item value="236" key="DIALOG_Y_ORIGIN"/>
-		<item value="813" key="DIALOG_X_ORIGIN"/>
+		<item value="org.eclipse.ui.views.ProblemView" key="ShowViewDialog.STORE_SELECTED_VIEW_ID"/>
+		<item value="96" key="DIALOG_Y_ORIGIN"/>
+		<item value="493" key="DIALOG_X_ORIGIN"/>
 		<item value="439" key="DIALOG_HEIGHT"/>
 		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
 		<list key="ShowViewDialog.STORE_EXPANDED_CATEGORIES_ID">
-			<item value="org.eclipse.egit.ui.GitCategory"/>
-		</list>
-	</section>
-	<section name="FileSystemExportWizard">
-		<item value="true" key="WizardFileSystemResourceExportPage1.STORE_OVERWRITE_EXISTING_FILES_ID"/>
-		<item value="false" key="WizardFileSystemResourceExportPage1.STORE_CREATE_STRUCTURE_ID"/>
-		<list key="WizardFileSystemResourceExportPage1.STORE_DESTINATION_NAMES_ID">
-			<item value="C:\Users\Adam Milward\backups"/>
+			<item value="org.eclipse.ui"/>
 		</list>
 	</section>
 	<section name="ImportExportAction">
+		<item value="org.grails.ide.eclipse.wizards.import" key="ImportExportPage.STORE_SELECTED_IMPORT_WIZARD_ID"/>
+		<list key="ImportExportPage.STORE_EXPANDED_IMPORT_CATEGORIES">
+			<item value="org.grails.ide.eclipse.wizards.import"/>
+		</list>
 	</section>
 </section>

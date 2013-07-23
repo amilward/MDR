@@ -32,7 +32,7 @@
 		<guid isPermaLink="false">http://blog.springsource.org/?p=13965</guid>
 		<description><![CDATA[I&#039;m super excited to announce the first milestone release of Project Reactor! Project Reactor is a foundational framework for building asynchronous, FastData applications on the JVM. Some of the goodness in Reactor 1.0.0.M1 includes: reactive composition helpers Stream and Promise, a TcpServer and TcpClient, and Groovy and Spring support. Inspired by Reactive Extenstions, RxJava, the  <a href="http://blog.springsource.org/2013/07/18/reactor-1-0-0-m1-a-foundation-for-asynchronous-fast-data-applications-on-the-jvm/"><em>Read more...</em></a>]]></description>
 		<wfw:commentRss>http://blog.springsource.org/2013/07/18/reactor-1-0-0-m1-a-foundation-for-asynchronous-fast-data-applications-on-the-jvm/feed/</wfw:commentRss>
-		<slash:comments>4</slash:comments>
+		<slash:comments>5</slash:comments>
 		</item>
 		<item>
 		<title>JavaConfig support in the Spring Tool Suite</title>
@@ -114,7 +114,7 @@
 		<guid isPermaLink="false">http://blog.springsource.org/?p=13769</guid>
 		<description><![CDATA[In my previous post, I introduced Spring Security Java configuration and discussed some of the logistics of the project. In this post, we will start off by walking through a very simple web security configuration. We will then spice things up a bit with configuration that has been customized some. Hello Web Security In this  <a href="http://blog.springsource.org/2013/07/03/spring-security-java-config-preview-web-security/"><em>Read more...</em></a>]]></description>
 		<wfw:commentRss>http://blog.springsource.org/2013/07/03/spring-security-java-config-preview-web-security/feed/</wfw:commentRss>
-		<slash:comments>10</slash:comments>
+		<slash:comments>11</slash:comments>
 		</item>
 		<item>
 		<title>Spring Security Java Config Preview: Introduction</title>

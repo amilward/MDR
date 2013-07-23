@@ -6,6 +6,25 @@
  <description>Welcome to the home of Spring, the leading platform to build and run enterprise Java applications. Led and sustained by SpringSource, Spring delivers significant benefits for many projects, increasing development productivity and runtime performance while improving test coverage and application quality.</description>
  <language>en</language>
 <item>
+ <title>Spring Data Arora Service Release 2 available</title>
+ <link>http://www.springsource.org/node/22654</link>
+ <description>&lt;p&gt;I am pleased to announce the availability of the second service release of the Spring Data Arora release train. It includes quite a few significant bug fixes that we have already released in the first milestone for the Babbage release train. To makethem available in an official release, we backported them into this one here. The modules included are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Spring Data Commons 1.5.2 - &lt;a href=&quot;http://repo.springsource.org/libs-release/org/springframework/data/spring-data-commons/1.5.2.RELEASE/&quot;&gt;Artifacts&lt;/a&gt; - &lt;a href=&quot;http://static.springsource.org/spring-data/commons/docs/1.5.2.RELEASE/api/&quot;&gt;JavaDocs&lt;/a&gt; - &lt;a href=&quot;http://static.springsource.org/spring-data/commons/docs/1.5.2.RELEASE/reference/html/&quot;&gt;Documentation&lt;/a&gt; - &lt;a href=&quot;http://static.springsource.org/spring-data/commons/docs/1.5.2.RELEASE/changelog.txt&quot;&gt;Changelog&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Spring Data JPA 1.3.3 - &lt;a href=&quot;http://repo.springsource.org/libs-release/org/springframework/data/spring-data-jpa/1.3.3.RELEASE/&quot;&gt;Artifacts&lt;/a&gt; - &lt;a href=&quot;http://static.springsource.org/spring-data/jpa/docs/1.3.3.RELEASE/api/&quot;&gt;JavaDocs&lt;/a&gt; - &lt;a href=&quot;http://static.springsource.org/spring-data/jpa/docs/1.3.3.RELEASE/reference/html/&quot;&gt;Documentation&lt;/a&gt; - &lt;a href=&quot;http://static.springsource.org/spring-data/jpa/docs/1.3.3.RELEASE/changelog.txt&quot;&gt;Changelog&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Spring Data MongoDB 1.2 - &lt;a href=&quot;http://repo.springsource.org/libs-release/org/springframework/data/spring-data-mongodb/1.2.2.RELEASE/&quot;&gt;Artifacts&lt;/a&gt; - &lt;a href=&quot;http://static.springsource.org/spring-data/mongodb/docs/1.2.2.RELEASE/api/&quot;&gt;JavaDocs&lt;/a&gt; - &lt;a href=&quot;http://static.springsource.org/spring-data/mongodb/docs/1.2.2.RELEASE/reference/html/&quot;&gt;Documentation&lt;/a&gt; - &lt;a href=&quot;http://static.springsource.org/spring-data/mongodb/docs/1.2.2.RELEASE/changelog.txt&quot;&gt;Changelog&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Spring Data Neo4j 2.2.2 - &lt;a href=&quot;http://repo.springsource.org/libs-release/org/springframework/data/spring-data-neo4j/2.2.2.RELEASE/&quot;&gt;Artifacts&lt;/a&gt; - &lt;a href=&quot;http://static.springsource.org/spring-data/neo4j/docs/2.2.2.RELEASE/api/&quot;&gt;JavaDocs&lt;/a&gt; - &lt;a href=&quot;http://static.springsource.org/spring-data/neo4j/docs/2.2.2.RELEASE/reference/html/&quot;&gt;Documentation&lt;/a&gt; - &lt;a href=&quot;http://static.springsource.org/spring-data/neo4j/docs/2.2.2.RELEASE/changelog.txt&quot;&gt;Changelog&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The artifacts are also available in Maven central. You find a comprehensive list of the 46 tickets resolved in our &lt;a href=&quot;https://jira.springsource.org/issues/?filter=14367&quot;&gt;JIRA&lt;/a&gt;. The next release is going to be a release candidate for the Babbage release train in early August. You can find details for this release in the Spring Data Commons &lt;a href=&quot;https://github.com/SpringSource/spring-data-commons/wiki/Release-Train-Babbage&quot;&gt;wiki&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;If you want to learn more about the Spring Data family of projects, the best event to do is &lt;a href=&quot;http://www.springone2gx.com/&quot;&gt;SpringOne 2013&lt;/a&gt; being held in Santa Clara early September. Hope to see you there!&lt;/p&gt;
+</description>
+ <comments>http://www.springsource.org/node/22654#comments</comments>
+ <category domain="http://www.springsource.org/taxonomy/term/4">News and Announcements</category>
+ <pubDate>Mon, 22 Jul 2013 09:50:57 +0000</pubDate>
+ <dc:creator>ogierke</dc:creator>
+ <guid isPermaLink="false">22654 at http://www.springsource.org</guid>
+</item>
+<item>
  <title>This Week in Spring - July 15, 2013</title>
  <link>http://www.springsource.org/node/22653</link>
  <description>
@@ -257,91 +276,6 @@ The SpringSource tooling team&lt;/p&gt;
  <pubDate>Tue, 02 Jul 2013 18:41:10 +0000</pubDate>
  <dc:creator>jhickey</dc:creator>
  <guid isPermaLink="false">22642 at http://www.springsource.org</guid>
-</item>
-<item>
- <title>SpringSource Training Schedule: August 2013</title>
- <link>http://www.springsource.org/springsource-training-schedule-august-2013</link>
- <description>&lt;p&gt;If you are a Java developer looking to increase your Spring knowledge, vFabric Education by SpringSource is the place to start. We are providing several Spring trainings across the globe closely connected to your needs as a professional developer. This month SpringSource is offering a special &lt;a href=&quot;http://mylearn.vmware.com/portals/www/search/results.cfm?ui=www_edu&amp;menu=search-results&amp;searchtype=simple&amp;category=schedule&amp;id_subject=18470&quot;&gt;Hyperic Administrator&lt;/a&gt; class in Minneapolis. SpringSource is also offering several &lt;a href=&quot;http://mylearn.vmware.com/portals/www/search/results.cfm?ui=www_edu&amp;category=schedule&amp;searchtype=advanced&amp;keyword=&amp;subjectID=0&amp;startDateStartOperator=%3E%3D&amp;startDateStart=07%2F02%2F2013&amp;startDateEndOperator=%3C%3D&amp;startDateEnd=&amp;max_dateHolder2=&amp;countryID=0&amp;currencyID=0&amp;deliveryType=16&amp;languageID=0&amp;hostID=0&amp;tzID=0&amp;betaClass=2&amp;productID=0&amp;roleID=79&quot;&gt;Online Enterprise Integration with Spring classes&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;The complete Spring training schedule for August, 2013 can be found below:&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Step 1: Core Spring&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;i&gt;Americas&lt;/i&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;August 06 - 09: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=181822&quot;&gt;Core Spring in Phoenix, AZ&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;August 06 - 09: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=181801&quot;&gt;Core Spring Live Online in the US&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;August 06 - 09: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=181823&quot;&gt;Core Spring in Sacramento, CA&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;August 06 - 09: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=181824&quot;&gt;Core Spring in San Francisco, CA&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;August 06 - 09: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=181825&quot;&gt;Core Spring in San Jose, CA&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;August 06 - 09: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=177958&quot;&gt;Core Spring in Boston, MA&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;August 06 - 09: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=176261&quot;&gt;Core Spring in Philadelphia, PA&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;August 06 - 09: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=177959&quot;&gt;Core Spring in Austin, TX&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;August 13 - 16: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=177960&quot;&gt;Core Spring in Atlanta, GA&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;August 13 - 16: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=181993&quot;&gt;Core Spring in New York, NY&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;August 19 - 22: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=182127&quot;&gt;Core Spring Live Online in Latin America&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;August 20 - 23: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=177961&quot;&gt;Core Spring in Chicago, IL&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;August 20 - 23: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=177962&quot;&gt;Core Spring in Minneapolis, MN&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;August 20 - 23: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=177963&quot;&gt;Core Spring in Omaha, NE&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;August 27 - 30: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=182000&quot;&gt;Core Spring in Ottawa, ON&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;August 27 - 30: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=182001&quot;&gt;Core Spring in Toronto, ON&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;August 27 - 30: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=181999&quot;&gt;Core Spring in Montreal, QC&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;August 27 - 30: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=181803&quot;&gt;Core Spring Live Online in the US&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;August 27 - 30: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=177965&quot;&gt;Core Spring in Stamford, CT&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;August 27 - 30: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=181998&quot;&gt;Core Spring in Edison, NJ&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;August 27 - 30: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=177966&quot;&gt;Core Spring in Houston, TX&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;
-
-&lt;p&gt;&lt;i&gt;Asia Pacific&lt;/i&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;August 05 - 08: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=174873&quot;&gt;Core Spring in Melbourne, Australia&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;August 05 - 08: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=158769&quot;&gt;Core Spring in Bangalore, India&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;August 19 - 22: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=174878&quot;&gt;Core Spring in Wellington, New Zealand&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;August 21 - 24: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=158766&quot;&gt;Core Spring in Pune, India&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;i&gt;Europe, Middle East &amp; Africa&lt;/i&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;August 05 - 08: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=177377&quot;&gt;Core Spring in Paris, France&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;August 06 - 09: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=181180&quot;&gt;Core Spring Live Online in EMEA&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;August 13 - 16: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=140834&quot;&gt;Core Spring in Berlin, Germany&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;August 20 - 23: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=181552&quot;&gt;Core Spring in Dublin, Ireland&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;Step 2: Spring Web / Enterprise Integration with Spring / Hibernate with Spring&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;i&gt;Americas&lt;/i&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;August 07 - 09: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=173203&quot;&gt;Hibernate with Spring Live Online in the US&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;August 12 - 15: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=181071&quot;&gt;Spring Web Live Online in the US&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;August 13 - 15: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=181988&quot;&gt;Hibernate with Spring in Ottawa, ON&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;August 13 - 15: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=181989&quot;&gt;Hibernate with Spring in Toronto, ON&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;August 13 - 15: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=181986&quot;&gt;Hibernate with Spring in Montreal, QC&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;August 13 - 15: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=181812&quot;&gt;Hibernate with Spring Live Online in the US&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;August 13 - 15: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=181984&quot;&gt;Hibernate with Spring in Edison, NJ&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;August 13 - 16: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=177967&quot;&gt;Spring Web in Washington, DC&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;August 19 - 22: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=181323&quot;&gt;Enterprise Integration with Spring Live Online in the US&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;August 20 - 23: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=181996&quot;&gt;Enterprise Integration with Spring in Ottawa, ON&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;August 20 - 23: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=181997&quot;&gt;Enterprise Integration with Spring in Toronto, ON&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;August 20 - 23: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=181995&quot;&gt;Enterprise Integration with Spring in Montreal, QC&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;August 20 - 23: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=181809&quot;&gt;Enterprise Integration with Spring Live Online in the US&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;August 20 - 23: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=181994&quot;&gt;Enterprise Integration with Spring in Edison, NJ&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;i&gt;Europe, Middle East &amp; Africa&lt;/i&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;August 06 - 09: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=171422&quot;&gt;Enterprise Integration with Spring in London, UK&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;August 20 - 23: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=154784&quot;&gt;Spring Web in Berlin, Germany&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;August 26 - 29: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=181521&quot;&gt;Spring Web Live Online in EMEA&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;August 27 - 30: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=181736&quot;&gt;Enterprise Integration with Spring in Prague, Czech Republic&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;August 27 - 30: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=140857&quot;&gt;Enterprise Integration with Spring in Berlin, Germany&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;August 27 - 30: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=176659&quot;&gt;Enterprise Integration with Spring in Oslo, Norway&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;If you cannot find a professional training near you, you can always request an &lt;a href=http://mylearn.vmware.com/mgrReg/message.cfm?ui=www&amp;subject=Onsite%20Training&gt;onsite SpringSource training&lt;/a&gt;&lt;/p&gt;</description>
- <comments>http://www.springsource.org/springsource-training-schedule-august-2013#comments</comments>
- <category domain="http://www.springsource.org/taxonomy/term/4">News and Announcements</category>
- <pubDate>Tue, 02 Jul 2013 09:53:50 +0000</pubDate>
- <dc:creator>Mark Baars</dc:creator>
- <guid isPermaLink="false">22641 at http://www.springsource.org</guid>
 </item>
 </channel>
 </rss>
