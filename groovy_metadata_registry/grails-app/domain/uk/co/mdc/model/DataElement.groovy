@@ -14,13 +14,16 @@ class DataElement {
 	
 	DataElement parent
 	
+	DataElementConcept dataElementConcept
+	
 	static hasMany = [subElements: DataElement, dataElementValueDomains: DataElementValueDomain]
 	
-	static belongsTo = [parent: DataElement]
+	static belongsTo = [parent: DataElement, dataElementConcept: DataElementConcept]
 	
     static constraints = {
 		refId unique: true
 		parent nullable: true
+		dataElementConcept: nullable: true
     }
 	
 	

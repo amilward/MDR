@@ -6,13 +6,48 @@
  <description>Welcome to the home of Spring, the leading platform to build and run enterprise Java applications. Led and sustained by SpringSource, Spring delivers significant benefits for many projects, increasing development productivity and runtime performance while improving test coverage and application quality.</description>
  <language>en</language>
 <item>
+ <title>This Week in Spring - July 23, 2013</title>
+ <link>http://www.springsource.org/node/22655</link>
+ <description>&lt;p&gt;Hey everyone! Remember that SpringOne 2GX 2013 early bird expires August 9th, &lt;a href=&quot;http://www.springone2gx.com/conference/santa_clara/2013/09/register&quot;&gt;so hurry&lt;/a&gt; to secure the discounted rate! Also, make sure to check the agenda as new sessions have been added. This week I&amp;#39;m at &lt;a href=&quot;http://www.oscon.com&quot;&gt;OSCON&lt;/a&gt; talking to developers in the wonderful city of Portland, OR about Spring 4, REST and joining my colleagues at &lt;a href=&quot;http://gopivotal.com&quot;&gt;Pivotal&lt;/a&gt; to talk about Cloud Foundry, big data, and much more! If you&amp;#39;d like to chat, I hope you&amp;#39;ll come to the talks that we&amp;#39;re putting on and visit us at the Pivotal booth in the exhibition hall!  It&#039;s been a big week for both Spring and Pivotal:&lt;/p&gt;
+
+&lt;ol&gt;
+
+&lt;li&gt;&lt;a href=&quot;http://blog.gopivotal.com/products/pivotal-hd-ga&quot;&gt; Pivotal HD 1.0&lt;/a&gt;, the world&#039;s fastest Hadoop distribution, was released in two flavors - Community Edition, and a Pivotal Single Node Edition (VM), a Virtual Machine download. Head over to gopivotal.com and give it a test drive - Community Edition deploys up to a 50 node cluster!&lt;/li&gt;
+&lt;li&gt;We&#039;re celebrating Project Reactor&#039;s &lt;a href=&quot;http://blog.springsource.org/2013/07/18/reactor-1-0-0-m1-a-foundation-for-asynchronous-fast-data-applications-on-the-jvm/&quot;&gt;initial milestone release&lt;/a&gt; - 1.0.0M1 - which &lt;em&gt;already&lt;/em&gt;  benchmarked  &lt;a href=&quot;http://www.dzone.com/links/project_reactor_tcp_on_netty_is_300_faster_than_n.html&quot;&gt;TCP on Netty at 300% faster than Netty alone&lt;/a&gt;! When integrated into key Spring technologies, the possibilities of Fast Data are going to blow people&#039;s hair back. Congrats to &lt;a href=&quot;https://twitter.com/j_brisbin&quot;&gt;Jon Brisbin&lt;/a&gt;! &lt;/li&gt;
+&lt;li&gt;Spring Data Arora Service Release 2 is available for &lt;a href=&quot;http://www.springsource.org/node/22654&quot;&gt;download&lt;/a&gt;. &lt;/li&gt;
+&lt;li&gt;Martin Lippert published an excellent blog on &lt;a href=&quot;http://blog.springsource.org/2013/07/18/javaconfig-support-in-the-spring-tool-suite/&quot;&gt;Annotations and Java Config support&lt;/a&gt; that are available in Spring Tool Suite 3.3.0. Support of JavaConfig as an XML alternative across the Spring ecosystem is nearing a pervasive  level.&lt;/li&gt;
+&lt;li&gt;Join Hemant Joshi as he introduces how to use Spring and the &lt;a href=&quot;https://www.springsource.org/node/22644&quot;&gt;Cucumber BDD testing framework in a webinar on July 30th, 2013&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Hadoop hungry? Join us for a Webinar series --  “What You Can Do with Hadoop” on the first Thursday of every month. The first webinar on August 1st, 2013 will provide in-depth details about the features and tutorials included in the Pivotal HD Single Node (VM).
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href=&quot;http://mkto-sj050137.com/trk?t=2&amp;mid=NjI1LUlVSi0wMDk6MDoxMTk5OjgzNTowOjExMjE6Nzo0ODA3LTE6bnVsbA%3D%3D&amp;&amp;&amp;http://play.gopivotal.com/PivotalHDLaunchWebinarSession1.html?mkt_tok=3RkMMJWWfF9wsRonuqXAZKXonjHpfsX84%2BwqT%2Frn28M3109ad%2BrmPBy%2B2YEAWp8na%2BqWCgseOrQ8ll4NV8mgVs0Qqqw%3D&quot;&gt;Register today&lt;/a&gt; for the 9 AM PT session &lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;http://mkto-sj050137.com/trk?t=2&amp;mid=NjI1LUlVSi0wMDk6MDoxMTk5OjgzNTowOjExMjE6Nzo0ODA3LTE6bnVsbA%3D%3D&amp;&amp;&amp;http://play.gopivotal.com/GlobalPivotalHDLaunch2.html?mkt_tok=3RkMMJWWfF9wsRonuqXAZKXonjHpfsX84%2BwqT%2Frn28M3109ad%2BrmPBy%2B2YEAWp8na%2BqWCgseOrQ8ll4NV8mgVs0Qqqw%3D&quot;&gt;Register today&lt;/a&gt; for the 7 PM session&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt; My buddy &lt;a href=&quot;http://twitter.com/andypiper&quot;&gt;Andy Piper (@andypiper)&lt;/a&gt; puts together a wonderful roundup of &lt;a href=&quot;http://cloudfoundry.com/&quot;&gt;Cloud Foundry&lt;/a&gt; called &lt;em&gt;&lt;a href=&quot;http://www.thisweekincf.com/&quot;&gt;This Week in Cloud Foundry&lt;/a&gt;&lt;/em&gt;. I can&amp;#39;t recommend it enough! He just started, and he&amp;#39;s doing a heckuva job! &lt;/li&gt;
+&lt;li&gt;The Zenika blog has a very nice post on how to document a REST API with &lt;a href=&quot;http://blog.zenika.com/index.php?post/2013/07/11/Documenting-a-REST-API-with-Swagger-and-Spring-MVC&quot;&gt;Swagger, which you can transparently layer on top of your Spring MVC API&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Matt Stine also has a great post on &lt;a href=&quot;http://www.mattstine.com/2013/07/10/blue-green-deployments-on-cloudfoundry/&quot;&gt;Spring, Continuous Integration and CloudFoundry&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;The JavaCode Geeks blog has a nice post on how &lt;a href=&quot;http://www.javacodegeeks.com/2013/05/spring-from-the-trenches-adding-validation-to-a-rest-api.html&quot;&gt;to add validation to a REST API&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;The &lt;code&gt;Pivotal&lt;/code&gt; blog has a &lt;a href=&quot;http://blog.gopivotal.com/products/part-one-comparing-tomcat-and-pivotal-tc-server&quot;&gt;&lt;em&gt;really&lt;/em&gt; great post on how Tomcat compares to Pivotal&amp;#39;s tcServer&lt;/a&gt;, a binary-compatible distribution of Tomcat that we support and augment for deployment&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Also&lt;/em&gt; on the &lt;code&gt;Pivotal&lt;/code&gt; blog, a fantastic post on &lt;a href=&quot;http://blog.gopivotal.com/products/run-spring-apps-60x-faster-with-spring-data-pivotal-gemfire&quot;&gt;how Spring Data GemFire (and GemFire) can &lt;em&gt;really&lt;/em&gt; boost your application&amp;#39;s performance&lt;/a&gt;! &lt;/li&gt;
+&lt;li&gt;Xavier Padró&amp;#39;s has a really &lt;a href=&quot;http://xpadro.blogspot.com.es/2013/07/introduction-to-messaging-with-spring.html&quot;&gt;nice introduction to messaging with Spring&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;This week at OSCON, I found affixed to all the bulletin boards and on the entry-doors into the conference a notice advertising a hackathon being run by &lt;a href=&quot;http://inBloom.org&quot;&gt;inBloom&lt;/a&gt;, which is a nonprofit data and content services company working to support school districts as they implement great personalized learning tools for kids, teachers, and parents.  inBloom is sponsoring a 2-day hackathon at OSCON to work on their open source content services. Check &lt;a href=&quot;https://support.inbloom.org/secure/BrowseProjects.jspa#all&quot;&gt;out the projects&lt;/a&gt; and the &lt;a href=&quot;https://github.com/inbloom&quot;&gt;code&lt;/a&gt;! I really enjoyed meeting these fine people and encourage any Spring ninjas out there to raise your hands and contribute! &lt;br/&gt;&lt;img width = &quot;400&quot; src =&quot;http://www.springsource.org/files/inbloom.jpg&quot; /&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+ <comments>http://www.springsource.org/node/22655#comments</comments>
+ <category domain="http://www.springsource.org/taxonomy/term/14">This Week in Spring</category>
+ <enclosure url="http://www.springsource.org/files/inbloom.jpg" length="91569" type="image/jpeg" />
+ <pubDate>Wed, 24 Jul 2013 02:40:00 +0000</pubDate>
+ <dc:creator>Josh Long</dc:creator>
+ <guid isPermaLink="false">22655 at http://www.springsource.org</guid>
+</item>
+<item>
  <title>Spring Data Arora Service Release 2 available</title>
  <link>http://www.springsource.org/node/22654</link>
  <description>&lt;p&gt;I am pleased to announce the availability of the second service release of the Spring Data Arora release train. It includes quite a few significant bug fixes that we have already released in the first milestone for the Babbage release train. To makethem available in an official release, we backported them into this one here. The modules included are:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Spring Data Commons 1.5.2 - &lt;a href=&quot;http://repo.springsource.org/libs-release/org/springframework/data/spring-data-commons/1.5.2.RELEASE/&quot;&gt;Artifacts&lt;/a&gt; - &lt;a href=&quot;http://static.springsource.org/spring-data/commons/docs/1.5.2.RELEASE/api/&quot;&gt;JavaDocs&lt;/a&gt; - &lt;a href=&quot;http://static.springsource.org/spring-data/commons/docs/1.5.2.RELEASE/reference/html/&quot;&gt;Documentation&lt;/a&gt; - &lt;a href=&quot;http://static.springsource.org/spring-data/commons/docs/1.5.2.RELEASE/changelog.txt&quot;&gt;Changelog&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Spring Data JPA 1.3.3 - &lt;a href=&quot;http://repo.springsource.org/libs-release/org/springframework/data/spring-data-jpa/1.3.3.RELEASE/&quot;&gt;Artifacts&lt;/a&gt; - &lt;a href=&quot;http://static.springsource.org/spring-data/jpa/docs/1.3.3.RELEASE/api/&quot;&gt;JavaDocs&lt;/a&gt; - &lt;a href=&quot;http://static.springsource.org/spring-data/jpa/docs/1.3.3.RELEASE/reference/html/&quot;&gt;Documentation&lt;/a&gt; - &lt;a href=&quot;http://static.springsource.org/spring-data/jpa/docs/1.3.3.RELEASE/changelog.txt&quot;&gt;Changelog&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Spring Data MongoDB 1.2 - &lt;a href=&quot;http://repo.springsource.org/libs-release/org/springframework/data/spring-data-mongodb/1.2.2.RELEASE/&quot;&gt;Artifacts&lt;/a&gt; - &lt;a href=&quot;http://static.springsource.org/spring-data/mongodb/docs/1.2.2.RELEASE/api/&quot;&gt;JavaDocs&lt;/a&gt; - &lt;a href=&quot;http://static.springsource.org/spring-data/mongodb/docs/1.2.2.RELEASE/reference/html/&quot;&gt;Documentation&lt;/a&gt; - &lt;a href=&quot;http://static.springsource.org/spring-data/mongodb/docs/1.2.2.RELEASE/changelog.txt&quot;&gt;Changelog&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Spring Data JPA 1.3.4 - &lt;a href=&quot;http://repo.springsource.org/libs-release/org/springframework/data/spring-data-jpa/1.3.4.RELEASE/&quot;&gt;Artifacts&lt;/a&gt; - &lt;a href=&quot;http://static.springsource.org/spring-data/jpa/docs/1.3.4.RELEASE/api/&quot;&gt;JavaDocs&lt;/a&gt; - &lt;a href=&quot;http://static.springsource.org/spring-data/jpa/docs/1.3.4.RELEASE/reference/html/&quot;&gt;Documentation&lt;/a&gt; - &lt;a href=&quot;http://static.springsource.org/spring-data/jpa/docs/1.3.4.RELEASE/changelog.txt&quot;&gt;Changelog&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Spring Data MongoDB 1.2.3 - &lt;a href=&quot;http://repo.springsource.org/libs-release/org/springframework/data/spring-data-mongodb/1.2.3.RELEASE/&quot;&gt;Artifacts&lt;/a&gt; - &lt;a href=&quot;http://static.springsource.org/spring-data/mongodb/docs/1.2.3.RELEASE/api/&quot;&gt;JavaDocs&lt;/a&gt; - &lt;a href=&quot;http://static.springsource.org/spring-data/mongodb/docs/1.2.3.RELEASE/reference/html/&quot;&gt;Documentation&lt;/a&gt; - &lt;a href=&quot;http://static.springsource.org/spring-data/mongodb/docs/1.2.3.RELEASE/changelog.txt&quot;&gt;Changelog&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Spring Data Neo4j 2.2.2 - &lt;a href=&quot;http://repo.springsource.org/libs-release/org/springframework/data/spring-data-neo4j/2.2.2.RELEASE/&quot;&gt;Artifacts&lt;/a&gt; - &lt;a href=&quot;http://static.springsource.org/spring-data/neo4j/docs/2.2.2.RELEASE/api/&quot;&gt;JavaDocs&lt;/a&gt; - &lt;a href=&quot;http://static.springsource.org/spring-data/neo4j/docs/2.2.2.RELEASE/reference/html/&quot;&gt;Documentation&lt;/a&gt; - &lt;a href=&quot;http://static.springsource.org/spring-data/neo4j/docs/2.2.2.RELEASE/changelog.txt&quot;&gt;Changelog&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;The artifacts are also available in Maven central. You find a comprehensive list of the 46 tickets resolved in our &lt;a href=&quot;https://jira.springsource.org/issues/?filter=14367&quot;&gt;JIRA&lt;/a&gt;. The next release is going to be a release candidate for the Babbage release train in early August. You can find details for this release in the Spring Data Commons &lt;a href=&quot;https://github.com/SpringSource/spring-data-commons/wiki/Release-Train-Babbage&quot;&gt;wiki&lt;/a&gt;.&lt;/p&gt;
@@ -252,30 +287,6 @@ The SpringSource tooling team&lt;/p&gt;
  <pubDate>Wed, 03 Jul 2013 06:40:07 +0000</pubDate>
  <dc:creator>Josh Long</dc:creator>
  <guid isPermaLink="false">22646 at http://www.springsource.org</guid>
-</item>
-<item>
- <title>Spring Data Redis 1.1 M1 and 1.0.5 Released</title>
- <link>http://www.springsource.org/node/22642</link>
- <description>&lt;p&gt;Dear Spring Community,&lt;/p&gt;
-&lt;p&gt;I am pleased to announce the first milestone release of Spring Data Redis 1.1!&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;http://www.springsource.com/download/community?project=Spring%20Data%20Redis&amp;amp;version=1.1.0.M1&quot;&gt;Downloads&lt;/a&gt; | &lt;a href=&quot;http://static.springsource.org/spring-data/data-redis/docs/milestone/api/&quot;&gt;JavaDocs&lt;/a&gt; | &lt;a href=&quot;http://static.springsource.org/spring-data/data-redis/docs/milestone/reference/html&quot;&gt;Reference Documentation&lt;/a&gt; | &lt;a href=&quot;http://static.springframework.org/spring-data/data-redis/docs/milestone/changelog.txt&quot;&gt;Changelog&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Highlights include:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Support for several new Redis 2.6 commands and options&lt;/li&gt;
-&lt;li&gt;Support for Redis 2.6 scripting&lt;/li&gt;
-&lt;li&gt;Connection pool enhancements&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;There is also a new GA release, Spring Data Redis 1.0.5!&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;http://www.springsource.com/download/community?project=Spring%20Data%20Redis&amp;amp;version=1.0.5.RELEASE&quot;&gt;Downloads&lt;/a&gt; | &lt;a href=&quot;http://static.springsource.org/spring-data/data-redis/docs/current/api/&quot;&gt;JavaDocs&lt;/a&gt; | &lt;a href=&quot;http://static.springsource.org/spring-data/data-redis/docs/current/reference/html&quot;&gt;Reference Documentation&lt;/a&gt; | &lt;a href=&quot;http://static.springframework.org/spring-data/data-redis/docs/current/changelog.txt&quot;&gt;Changelog&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Spring Data Redis 1.0.5 is a maintenance release containing a few bug fixes and minor enhancements. See the &lt;a href=&quot;http://static.springframework.org/spring-data/data-redis/docs/current/changelog.txt&quot;&gt;Changelog&lt;/a&gt; for more information.&lt;/p&gt;
-&lt;p&gt;For more information about Spring Data Redis please see the &lt;a href=&quot;http://www.springsource.org/spring-data/redis&quot;&gt;home page&lt;/a&gt; for a live sample and webinar recording.&lt;/p&gt;
-&lt;p&gt;We look forward to your feedback on the &lt;a href=&quot;http://forum.springsource.org/forumdisplay.php?80-NoSQL&quot;&gt;forum&lt;/a&gt; or in the &lt;a href=&quot;https://jira.springsource.org/browse/DATAREDIS&quot;&gt;issue tracker&lt;/a&gt;.&lt;/p&gt;
-</description>
- <comments>http://www.springsource.org/node/22642#comments</comments>
- <category domain="http://www.springsource.org/taxonomy/term/4">News and Announcements</category>
- <pubDate>Tue, 02 Jul 2013 18:41:10 +0000</pubDate>
- <dc:creator>jhickey</dc:creator>
- <guid isPermaLink="false">22642 at http://www.springsource.org</guid>
 </item>
 </channel>
 </rss>

@@ -1,6 +1,8 @@
 import uk.co.mdc.*
 import uk.co.mdc.model.ValueDomain
 import uk.co.mdc.model.DataElement
+import uk.co.mdc.model.DataType
+import uk.co.mdc.model.DataElementConcept
 import uk.co.mdc.model.ConceptualDomain
 import org.codehaus.groovy.grails.plugins.springsecurity.SecurityFilterPosition
 import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils
@@ -44,6 +46,16 @@ class BootStrap {
 		if (!ValueDomain.count()) {
 			new ValueDomain(name:"mph", refId:1, description:"speed measured in miles per hour", unitOfMeasure:"mph", regexDef:"sss").save(failOnError: true)
 			new ValueDomain(name:"cm3", refId:2, description:"volume measured in centimeters cubed", unitOfMeasure:"cm3", regexDef:"sss").save(failOnError: true)
+		}
+		
+		if (!DataType.count()) {
+			new DataType(dataType:"String", enumerated: false).save(failOnError: true)
+			new DataType(dataType:"Integer", enumerated: false).save(failOnError: true)
+		}
+		
+		if (!DataElementConcept.count()) {
+			new DataElementConcept(name:"CORE", description: "Core data set").save(failOnError: true)
+			new DataElementConcept(name:"HAEMATOLOGY", description: "Core data set").save(failOnError: true)
 		}
 		
 		
