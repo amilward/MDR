@@ -55,6 +55,7 @@
 								<li><strong>metadata registry</strong></li>
 								<li><g:link controller="ConceptualDomain">conceptual domains </g:link></li>
 								<li><g:link controller="ValueDomain">value domains </g:link></li>
+								<li><g:link controller="DataElementConcept">section (data element concept)</g:link></li>
 								<li><g:link controller="DataElement">data elements </g:link></li>
 								<li><g:link controller="DataType">data types </g:link></li>
 								<li><g:link controller="UmlModel">uml </g:link></li>
