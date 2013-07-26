@@ -25,21 +25,29 @@
 		<r:layoutResources />
 	</head>
 	<body>
-	  <div id="maincontainer">
+	
+	
+	
+	<div id="maincontainer">
 
-			<div id="contentwrapper">
-				<div id="contentcolumn">
-
-					<g:layoutBody/>
-				</div>
+		<!-- <div id="topsection"><div class="innertube"><h1>CSS Liquid Layout #2.1- (Fixed-Fluid)</h1></div></div>-->
+		
+		<div id="contentwrapper">
+			<div id="contentcolumn">
+				<g:layoutBody/>
 			</div>
-
-			<div id="leftcolumn">
-					<div id="left_menu">
+		</div>
+		
+		<div id="leftcolumn">
+			<div id="left_menu">
 						<div class="left_menu" id="user_menu">
 							<sec:ifLoggedIn>
-								        Welcome <sec:loggedInUserInfo field="username" /> </br>
-								        <g:link controller="Logout">Logout</g:link>
+								<table>
+									<tr><td><img src='${fam.icon(name: 'user_suit')}'/></td><td><sec:loggedInUserInfo field="username" /></td></tr>
+									<tr><td><img src='${fam.icon(name: 'cog')}'/></td><td><g:link controller="Logout">Logout</g:link></td></tr>
+								</table>
+
+								        
 								<!-- END #login -->
 							</sec:ifLoggedIn>
 							<sec:ifNotLoggedIn>
@@ -51,29 +59,34 @@
 						
 						<sec:ifLoggedIn>
 						<div class="left_menu" id="mdr_menu">
-							<ul>
-								<li><strong>metadata registry</strong></li>
-								<li><g:link controller="ConceptualDomain">conceptual domains </g:link></li>
-								<li><g:link controller="ValueDomain">value domains </g:link></li>
-								<li><g:link controller="DataElementConcept">section (data element concept)</g:link></li>
-								<li><g:link controller="DataElement">data elements </g:link></li>
-								<li><g:link controller="DataType">data types </g:link></li>
-								<li><g:link controller="UmlModel">uml </g:link></li>
-								<li><g:link controller="Document">documents </g:link></li>
-							</ul>
+						
+							<table>
+								<tr><td><img src='${fam.icon(name: 'folder_database')}'/></td><td><g:link controller="Collection">collections </g:link></td></tr>
+							
+								<tr><td><img src='${fam.icon(name: 'brick')}'/></td><td><g:link controller="ConceptualDomain">conceptual domains</g:link></td></tr>
+								
+								<tr><td><img src='${fam.icon(name: 'bricks')}'/></td><td><g:link controller="ValueDomain">value domains </g:link></td></tr>
+								
+								<tr><td><img src='${fam.icon(name: 'table')}'/></td><td><g:link controller="DataElementConcept">data element sections / concepts</g:link></td></tr>
+								
+								<tr><td><img src='${fam.icon(name: 'table_row_insert')}'/></td><td><g:link controller="DataElement">data elements </g:link></td></tr>
+								
+								<tr><td><img src='${fam.icon(name: 'textfield_key')}'/></td><td><g:link controller="DataType">data types </g:link></td></tr>
+								
+								<tr><td><img src='${fam.icon(name: 'page_white_stack')}'/></td><td><g:link controller="Document">documents </g:link></td></tr>
+							
+							</table>
 						</div>
 						</sec:ifLoggedIn>
 						
-					</div>
 			</div>
+		</div>
+		
+		<!--  <div id="footer"><a href="#">MDC</a></div>-->
 
-			<div id="rightcolumn">
-				<div class="innertube"></div>
-			</div>
-
-			<div id="footer"><a href="#">MDC</a></div>
-
-		</div>	
+	</div>
+	
+	
 		<div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>
 		<g:javascript library="application"/>
 		<r:layoutResources />

@@ -18,6 +18,8 @@ class ValueDomain {
  	
 	Set dataElementValueDomains = []
 	
+	static searchable = true
+	
 	static hasMany = [dataElementValueDomains: DataElementValueDomain]
 	
 	static belongsTo = [conceptualDomain: ConceptualDomain]
@@ -27,6 +29,12 @@ class ValueDomain {
 		conceptualDomain nullable:true
 		dataType nullable:true
     }
+	
+	
+	/******************************************************************************************************************/
+	/**************functions for linking data elements and value domains using dataElementValueDomains class*************************/
+	/******************************************************************************************************************/
+	
 	
 	List dataElementValueDomains() {
 		return dataElementValueDomains.collect{it.dataElement}
@@ -47,19 +55,18 @@ class ValueDomain {
 		return dataElementValueDomains()
 	}
 	
-	def removeDataElement() {
-		ValueDomain valueDomain = ValueDomain.get(params.valueDomainId)
-		DataElement dataElement = DataElement.get(params.dataElementId)
-		if(valueDomain && dataElement){
-			dataElement.removeFromDataElementValueDomains(valueDomain)
-		}
-		redirect(action: 'edit', id: params.dataElementId)
-	}
+	
+	/******************************************************************************************************************/
+	/*********************remove all the associated valueDomains and collections before deleting data element*****************************/
+	/******************************************************************************************************************/
 	
 	def prepareForDelete(){
 		if(this.dataElementValueDomains.size()!=0){
-			this.dataElementValueDomains.each{ p->
-				this.removeFromDataElementValueDomains(p.dataElement)
+			
+			def dataForDelete = this.dataElementValueDomains()
+			
+			dataForDelete.each{ dataElement->
+				this.removeFromDataElementValueDomains(dataElement)
 			}
 		}
 	}

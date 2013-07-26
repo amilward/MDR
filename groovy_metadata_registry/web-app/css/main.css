@@ -49,6 +49,7 @@ body {
 }*/
 
 a:link, a:visited, a:hover {
+	z-index: 15;
 	color: #48802c;
 }
 
@@ -627,48 +628,52 @@ a.skip {
 #maincontainer{
 			height:100%;
 		}
+		
+		#topsection{
+		background: #EAEAEA;
+		height: 90px; /*Height of top section*/
+		}
+		
+		#topsection h1{
+		margin: 0;
+		padding-top: 15px;
+		}
+				
 			
 		#contentwrapper{
 		float: left;
 		width: 100%;
-		height:95%;
-		padding-bottom:30px;
+		background-color:white;
+		height:100%;
 		}
 
 		#contentcolumn{
-		margin: 0 20% 0 20%; /*Margins for content column. Should be "0 RightColumnWidth 0 LeftColumnWidth*/
-		background-color: white;
-		width:75%;
-		padding-bottom:30px;
+		margin-left: 210px; /*Set left margin to LeftColumnWidth*/
 		}
 
 		#leftcolumn{
+		border-right: 1px solid grey;
 		float: left;
-		width: 20%; /*Width of left column in percentage*/
+		width: 210px; /*Width of left column*/
 		margin-left: -100%;
-		height:95%;
-		font-size: 16px;
-		text-align:right;
-		padding-top:25px;
+		height:100%;
+		background: rgb(50,52,61); /* Old browsers */
+		background: -moz-linear-gradient(left, rgba(50,52,61,1) 1%, rgba(68,69,81,1) 53%, rgba(50,52,61,1) 100%); /* FF3.6+ */
+		background: -webkit-gradient(linear, left top, right top, color-stop(1%,rgba(50,52,61,1)), color-stop(53%,rgba(68,69,81,1)), color-stop(100%,rgba(50,52,61,1))); /* Chrome,Safari4+ */
+		background: -webkit-linear-gradient(left, rgba(50,52,61,1) 1%,rgba(68,69,81,1) 53%,rgba(50,52,61,1) 100%); /* Chrome10+,Safari5.1+ */
+		background: -o-linear-gradient(left, rgba(50,52,61,1) 1%,rgba(68,69,81,1) 53%,rgba(50,52,61,1) 100%); /* Opera 11.10+ */
+		background: -ms-linear-gradient(left, rgba(50,52,61,1) 1%,rgba(68,69,81,1) 53%,rgba(50,52,61,1) 100%); /* IE10+ */
+		background: linear-gradient(to right, rgba(50,52,61,1) 1%,rgba(68,69,81,1) 53%,rgba(50,52,61,1) 100%); /* W3C */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#32343d', endColorstr='#32343d',GradientType=1 ); /* IE6-9 */
 		}
-
-		#rightcolumn{
-		float: left;
-		width: 5%; /*Width of right column in pixels*/
-		margin-left: -20%; /*Set margin to that of -(RightColumnWidth)*/
-		height:95%;
-		}
-
+		
 		#footer{
-		position:fixed;
-		bottom:0;
 		clear: left;
 		width: 100%;
 		background: black;
 		color: #FFF;
-		text-align: right;
+		text-align: center;
 		padding: 4px 0;
-		height:20px;
 		}
 
 		#footer a{
@@ -692,22 +697,48 @@ a.skip {
 				}
 
 		#left_menu{
-			margin-right:20px;
 			padding-top: 10px;
+			text-align:center;
+			width:100%
 		}	
 
 		#left_menu a{
-			color: #000000;
+			color: white;
 			text-decoration:none;
 		}
 		
+		#left_menu table{
+		width:210px;
+		border-top:none;
+		
+		}	
+		
 		#left_menu ul{
 			 list-style-type: none;
+			 width:100%;
+			 padding-left:0;
 		}
+		
 		
 		.left_menu{
 		margin-bottom:20px;
-		}			
+		color: white;
+		}	
+		
+		#mdr_menu {
+			width:100%
+		}
+		
+		
+		#user_menu {
+		    border-bottom: 1px solid black;
+		}
+		
+		#mdr_menu li{
+			border-bottom: solid #000000 1px ;
+		}
+		
+			
 				
 		p{
 		padding:20px;

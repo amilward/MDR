@@ -32,6 +32,25 @@
 	<g:textField name="definition" value="${dataElementInstance?.definition}"/>
 </div>
 
+
+<div class="fieldcontain ${hasErrors(bean: dataElementInstance, field: 'dataElementConcept', 'error')} ">
+	<label for="dataElementConcept">
+		<g:message code="dataElement.dataElementConcept.label" default="Data Element Concept" />
+		
+	</label>
+	<g:select 
+			id="dataElementConcept" 
+			name="dataElementConcept.id" 
+			from="${uk.co.mdc.model.DataElementConcept.list()}" 
+			optionKey="id" 
+			optionValue="name"
+			value="${dataElementInstance?.dataElementConcept?.id}" 
+			class="many-to-one" 
+			noSelection="${[null:'Select One...']}"
+			/>
+</div>
+
+
 <div class="fieldcontain ${hasErrors(bean: dataElementInstance, field: 'parent', 'error')} ">
 	<label for="parent">
 		<g:message code="dataElement.parent.label" default="Parent" />
