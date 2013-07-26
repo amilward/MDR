@@ -24,10 +24,10 @@ class DataElementController {
 		
 		//validate the parent child relationship
 		
-		Boolean valid = validate()
+		Boolean valid = validateDataElement()
 		
 		if(!valid){
-			render(view: "edit", model: [valueDomains: ValueDomain.list(), dataElements: DataElement.list(), dataElementInstance: new DataElement(params)])
+			render(view: "create", model: [valueDomains: ValueDomain.list(), dataElements: DataElement.list(), dataElementInstance: new DataElement(params)])
 			return
 		}
 
@@ -76,7 +76,7 @@ class DataElementController {
 		
 		//validate the update a params
 		
-		Boolean valid = validate()
+		Boolean valid = validateDataElement()
 		
 		if(!valid){
 			redirect(action: "edit", id: params.id)
@@ -184,7 +184,7 @@ class DataElementController {
 		}
 	}
 		
-	Boolean validate(){
+	Boolean validateDataElement(){
 		
 		
 		ArrayList children

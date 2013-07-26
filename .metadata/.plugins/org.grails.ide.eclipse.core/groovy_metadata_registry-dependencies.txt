@@ -1,5 +1,5 @@
 #dependencies
-124
+132
 C:\\Users\\Adam Milward\\.grails\\ivy-cache\\org.springframework.uaa\\org.springframework.uaa.client\\bundles\\org.springframework.uaa.client-1.0.1.RELEASE.jar
 C:\\Users\\Adam Milward\\.grails\\ivy-cache\\com.google.protobuf\\protobuf-java\\jars\\protobuf-java-2.4.1.jar
 C:\\Users\\Adam Milward\\.grails\\ivy-cache\\com.googlecode.json-simple\\json-simple\\jars\\json-simple-1.1.jar
@@ -123,9 +123,17 @@ C:\\Users\\Adam Milward\\.grails\\ivy-cache\\junit\\junit\\jars\\junit-4.10.jar
 C:\\Users\\Adam Milward\\.grails\\ivy-cache\\org.grails\\grails-plugin-testing\\jars\\grails-plugin-testing-2.2.1.jar
 C:\\Users\\Adam Milward\\.grails\\ivy-cache\\org.grails\\grails-test\\jars\\grails-test-2.2.1.jar
 C:\\Users\\Adam Milward\\.grails\\ivy-cache\\org.springframework\\spring-test\\jars\\spring-test-3.1.4.RELEASE.jar
+C:\\Users\\Adam Milward\\.grails\\2.2.1\\projects\\groovy_metadata_registry\\plugins\\searchable-0.6.4\\lib\\compass-2.2.1-src.jar
+C:\\Users\\Adam Milward\\.grails\\2.2.1\\projects\\groovy_metadata_registry\\plugins\\searchable-0.6.4\\lib\\compass-2.2.1.jar
+C:\\Users\\Adam Milward\\.grails\\2.2.1\\projects\\groovy_metadata_registry\\plugins\\searchable-0.6.4\\lib\\lucene-analyzers.jar
+C:\\Users\\Adam Milward\\.grails\\2.2.1\\projects\\groovy_metadata_registry\\plugins\\searchable-0.6.4\\lib\\lucene-core.jar
+C:\\Users\\Adam Milward\\.grails\\2.2.1\\projects\\groovy_metadata_registry\\plugins\\searchable-0.6.4\\lib\\lucene-highlighter.jar
+C:\\Users\\Adam Milward\\.grails\\2.2.1\\projects\\groovy_metadata_registry\\plugins\\searchable-0.6.4\\lib\\lucene-queries.jar
+C:\\Users\\Adam Milward\\.grails\\2.2.1\\projects\\groovy_metadata_registry\\plugins\\searchable-0.6.4\\lib\\lucene-snowball.jar
+C:\\Users\\Adam Milward\\.grails\\2.2.1\\projects\\groovy_metadata_registry\\plugins\\searchable-0.6.4\\lib\\lucene-spellchecker.jar
 C:\\Users\\Adam Milward\\.grails\\2.2.1\\projects\\groovy_metadata_registry\\plugins\\jaxrs-0.8\\lib\\org.restlet.ext.jaxrs-2.0.0.jar
 #sources
-51
+58
 C:\\Users\\Adam Milward\\.grails\\2.2.1\\projects\\groovy_metadata_registry\\plugins\\cache-1.0.1\\grails-app\\conf
 C:\\Users\\Adam Milward\\.grails\\2.2.1\\projects\\groovy_metadata_registry\\plugins\\cache-1.0.1\\grails-app\\services
 C:\\Users\\Adam Milward\\.grails\\2.2.1\\projects\\groovy_metadata_registry\\plugins\\cache-1.0.1\\grails-app\\taglib
@@ -162,6 +170,13 @@ C:\\Users\\Adam Milward\\.grails\\2.2.1\\projects\\groovy_metadata_registry\\plu
 C:\\Users\\Adam Milward\\.grails\\2.2.1\\projects\\groovy_metadata_registry\\plugins\\resources-1.1.6\\grails-app\\taglib
 C:\\Users\\Adam Milward\\.grails\\2.2.1\\projects\\groovy_metadata_registry\\plugins\\resources-1.1.6\\src\\groovy
 C:\\Users\\Adam Milward\\.grails\\2.2.1\\projects\\groovy_metadata_registry\\plugins\\resources-1.1.6\\src\\java
+C:\\Users\\Adam Milward\\.grails\\2.2.1\\projects\\groovy_metadata_registry\\plugins\\searchable-0.6.4\\grails-app\\conf
+C:\\Users\\Adam Milward\\.grails\\2.2.1\\projects\\groovy_metadata_registry\\plugins\\searchable-0.6.4\\grails-app\\controllers
+C:\\Users\\Adam Milward\\.grails\\2.2.1\\projects\\groovy_metadata_registry\\plugins\\searchable-0.6.4\\grails-app\\i18n
+C:\\Users\\Adam Milward\\.grails\\2.2.1\\projects\\groovy_metadata_registry\\plugins\\searchable-0.6.4\\grails-app\\services
+C:\\Users\\Adam Milward\\.grails\\2.2.1\\projects\\groovy_metadata_registry\\plugins\\searchable-0.6.4\\grails-app\\views
+C:\\Users\\Adam Milward\\.grails\\2.2.1\\projects\\groovy_metadata_registry\\plugins\\searchable-0.6.4\\src\\groovy
+C:\\Users\\Adam Milward\\.grails\\2.2.1\\projects\\groovy_metadata_registry\\plugins\\searchable-0.6.4\\src\\java
 C:\\Users\\Adam Milward\\.grails\\2.2.1\\projects\\groovy_metadata_registry\\plugins\\spring-security-core-1.2.7.3\\grails-app\\conf
 C:\\Users\\Adam Milward\\.grails\\2.2.1\\projects\\groovy_metadata_registry\\plugins\\spring-security-core-1.2.7.3\\grails-app\\i18n
 C:\\Users\\Adam Milward\\.grails\\2.2.1\\projects\\groovy_metadata_registry\\plugins\\spring-security-core-1.2.7.3\\grails-app\\services
@@ -180,12 +195,13 @@ C:\\Users\\Adam Milward\\.grails\\2.2.1\\projects\\groovy_metadata_registry\\plu
 #workDir
 C:\\Users\\Adam Milward\\.grails\\2.2.1
 #plugin descriptors
-14
+15
 C:\\Users\\Adam Milward\\.grails\\2.2.1\\projects\\groovy_metadata_registry\\plugins\\webxml-1.4.1\\plugin.xml
 C:\\Users\\Adam Milward\\.grails\\2.2.1\\projects\\groovy_metadata_registry\\plugins\\tomcat-2.2.1\\plugin.xml
 C:\\Users\\Adam Milward\\.grails\\2.2.1\\projects\\groovy_metadata_registry\\plugins\\spring-security-ui-0.2\\plugin.xml
 C:\\Users\\Adam Milward\\.grails\\2.2.1\\projects\\groovy_metadata_registry\\plugins\\spring-security-core-1.2.7.3\\plugin.xml
 C:\\Users\\Adam Milward\\.grails\\2.2.1\\projects\\groovy_metadata_registry\\plugins\\spock-0.7\\plugin.xml
+C:\\Users\\Adam Milward\\.grails\\2.2.1\\projects\\groovy_metadata_registry\\plugins\\searchable-0.6.4\\plugin.xml
 C:\\Users\\Adam Milward\\.grails\\2.2.1\\projects\\groovy_metadata_registry\\plugins\\resources-1.1.6\\plugin.xml
 C:\\Users\\Adam Milward\\.grails\\2.2.1\\projects\\groovy_metadata_registry\\plugins\\mail-1.0.1\\plugin.xml
 C:\\Users\\Adam Milward\\.grails\\2.2.1\\projects\\groovy_metadata_registry\\plugins\\jquery-ui-1.8.24\\plugin.xml

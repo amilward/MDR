@@ -32,6 +32,8 @@
 						<g:sortableColumn property="definition" title="${message(code: 'dataElement.definition.label', default: 'Definition')}" />
 					
 						<g:sortableColumn property="parent" title="${message(code: 'dataElement.parent.label', default: 'Parent')}" />
+						
+						<g:sortableColumn property="dataElementConcept" title="${message(code: 'dataElement.dataElementConcept.label', default: 'Data Element Concept')}" />
 
 					</tr>
 				</thead>
@@ -47,7 +49,9 @@
 					
 						<td>${fieldValue(bean: dataElementInstance, field: "definition")}</td>					
 						
-						<td>${dataElementInstance?.parent?.name}</td>
+						<td><g:link action="show" id="${dataElementInstance?.parent?.id}">${dataElementInstance?.parent?.name}</g:link></td>
+						
+						<td><g:link contoller="dataElementConcept" action="show" id="${dataElementInstance?.dataElementConcept?.id}">${dataElementInstance?.dataElementConcept?.name}</g:link></td>
 					
 					</tr>
 				</g:each>

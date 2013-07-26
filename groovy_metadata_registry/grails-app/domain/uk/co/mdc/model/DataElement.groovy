@@ -16,29 +16,34 @@ class DataElement {
 	
 	DataElementConcept dataElementConcept
 	
-	static hasMany = [subElements: DataElement, dataElementValueDomains: DataElementValueDomain]
+	static searchable = true
+	
+	static hasMany = [subElements: DataElement, dataElementValueDomains: DataElementValueDomain, dataElementCollections: DataElementCollection]
 	
 	static belongsTo = [parent: DataElement, dataElementConcept: DataElementConcept]
 	
     static constraints = {
 		refId unique: true
 		parent nullable: true
-		dataElementConcept: nullable: true
+		dataElementConcept nullable: true
     }
 	
+	/******************************************************************************************************************/
+	/**************functions for linking data elements and value domains using dataElementValueDomains class*************************/
+	/******************************************************************************************************************/
 	
 	List dataElementValueDomains() {
 		return dataElementValueDomains.collect{it.valueDomain}
 	}
 
-	//add a valueDomain to list of valueDomains who have signed up the game
+	//add a valueDomain to list of valueDomains 
 	
 	List addToDataElementValueDomains(ValueDomain valueDomain) {
 		DataElementValueDomain.link(this, valueDomain)
 		return dataElementValueDomains()
 	}
 
-	//remove a valueDomain from list of valueDomains who have signed up to the game
+	//remove a valueDomain from list of valueDomains 
 	
 	List removeFromDataElementValueDomains(ValueDomain valueDomain) {
 		
@@ -46,14 +51,57 @@ class DataElement {
 		return dataElementValueDomains()
 	}
 	
-	//remove all the valueDomains who have signed up to the game before deleting the game
+	/******************************************************************************************************************/
+	/****************functions for linking dataElements and Collections using dataElementCollections class***************************/
+	/******************************************************************************************************************/
+
+	
+	List dataElementCollections() {
+		return dataElementCollections.collect{it.collection}
+	}
+
+	//add a Collection to list of Collections 
+	
+	List addToDataElementCollections(Collection collection) {
+		DataElementCollection.link(this, collection)
+		return dataElementCollections()
+	}
+
+	//remove a Collection from list of Collections 
+	
+	List removeFromDataElementCollections(Collection collection) {
+		
+		DataElementCollection.unlink(this, collection)
+		return dataElementCollections()
+	}
+	
+	/******************************************************************************************************************/
+	/*********************remove all the associated valueDomains and collections before deleting data element*****************************/
+	/******************************************************************************************************************/
+	
 	
 	def prepareForDelete(){
+		
+		def dataForDelete
+		
 		if(this.dataElementValueDomains.size()!=0){
-			this.dataElementValueDomains.each{ p->
-				this.removeFromDataElementValueDomains(p.valueDomain)
+			
+			dataForDelete = this.dataElementValueDomains()
+			
+			dataForDelete.each{ valueDomain->
+				this.removeFromDataElementValueDomains(valueDomain)
 			}
 		}
+		
+		if(this.dataElementCollections.size()!=0){
+		
+			dataForDelete = this.dataElementCollections()
+			
+			dataForDelete.each{ collection->
+				this.removeFromDataElementCollections(collection)
+			}
+		}
+		
 	}
 	
 	static final String HELP = "A data element describes a logical unit of data that has precise meaning or precise semantics." + 

@@ -1,5 +1,6 @@
 <grails>
   <resources>
+    <resource>grails.plugin.searchable.SearchableService</resource>
     <resource>org.grails.jaxrs.JaxrsController</resource>
     <resource>DefaultWebXmlConfig</resource>
     <resource>grails.plugins.springsecurity.ui.SpringSecurityUiService</resource>
@@ -15,11 +16,13 @@
     <resource>grails.plugins.springsecurity.ui.AclClassController</resource>
     <resource>grails.plugin.cache.GrailsCacheAdminService</resource>
     <resource>grails.plugin.databasemigration.DbdocController</resource>
+    <resource>grails.plugin.searchable.SearchableController</resource>
     <resource>org.grails.plugin.resource.CSSRewriterResourceMapper</resource>
     <resource>JqueryUiPluginResources</resource>
     <resource>grails.plugins.springsecurity.ui.AclObjectIdentityController</resource>
     <resource>DefaultUiSecurityConfig</resource>
     <resource>grails.plugins.springsecurity.ui.AclEntryController</resource>
+    <resource>SearchableUrlMappings</resource>
     <resource>DbdocUrlMappings</resource>
     <resource>JQueryTagLib</resource>
     <resource>grails.plugins.springsecurity.SecurityTagLib</resource>
@@ -55,6 +58,7 @@
     <resource>LoginController</resource>
     <resource>LogoutController</resource>
     <resource>uk.co.mdc.IndexController</resource>
+    <resource>uk.co.mdc.model.CollectionController</resource>
     <resource>uk.co.mdc.model.ConceptualDomainController</resource>
     <resource>uk.co.mdc.model.DataElementConceptController</resource>
     <resource>uk.co.mdc.model.DataElementController</resource>
@@ -62,8 +66,10 @@
     <resource>uk.co.mdc.model.DocumentController</resource>
     <resource>uk.co.mdc.model.UmlModelController</resource>
     <resource>uk.co.mdc.model.ValueDomainController</resource>
+    <resource>uk.co.mdc.model.Collection</resource>
     <resource>uk.co.mdc.model.ConceptualDomain</resource>
     <resource>uk.co.mdc.model.DataElement</resource>
+    <resource>uk.co.mdc.model.DataElementCollection</resource>
     <resource>uk.co.mdc.model.DataElementConcept</resource>
     <resource>uk.co.mdc.model.DataElementValueDomain</resource>
     <resource>uk.co.mdc.model.DataType</resource>
@@ -90,17 +96,18 @@
   </resources>
   <plugins>
     <plugin>JaxrsGrailsPlugin</plugin>
+    <plugin>WebxmlGrailsPlugin</plugin>
+    <plugin>FamfamfamGrailsPlugin</plugin>
+    <plugin>SpringSecurityUiGrailsPlugin</plugin>
+    <plugin>SearchableGrailsPlugin</plugin>
+    <plugin>DatabaseMigrationGrailsPlugin</plugin>
     <plugin>HibernateGrailsPlugin</plugin>
     <plugin>SpringSecurityCoreGrailsPlugin</plugin>
     <plugin>MailGrailsPlugin</plugin>
-    <plugin>WebxmlGrailsPlugin</plugin>
-    <plugin>FamfamfamGrailsPlugin</plugin>
     <plugin>SpockGrailsPlugin</plugin>
-    <plugin>SpringSecurityUiGrailsPlugin</plugin>
-    <plugin>JqueryUiGrailsPlugin</plugin>
     <plugin>CacheGrailsPlugin</plugin>
-    <plugin>DatabaseMigrationGrailsPlugin</plugin>
-    <plugin>ResourcesGrailsPlugin</plugin>
+    <plugin>JqueryUiGrailsPlugin</plugin>
     <plugin>JqueryGrailsPlugin</plugin>
+    <plugin>ResourcesGrailsPlugin</plugin>
   </plugins>
 </grails>

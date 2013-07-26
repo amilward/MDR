@@ -41,6 +41,15 @@
 					
 				</li>
 				</g:if>
+				
+				<g:if test="${dataElementInstance?.dataElementConcept}">
+				<li class="fieldcontain">
+					<span id="dataElementConcept-label" class="property-label"><g:message code="dataElement.dataElementConcept.label" default="Data Element Concept" /></span>
+					
+						<span class="property-value" aria-labelledby="dataElementConcept-label"><g:link controller="dataElementConcept" action="show" id="${dataElementInstance?.dataElementConcept?.id}">${dataElementInstance?.dataElementConcept?.name?.encodeAsHTML()}</g:link></span>
+					
+				</li>
+				</g:if>
 			
 				<g:if test="${dataElementInstance?.parent}">
 				<li class="fieldcontain">
