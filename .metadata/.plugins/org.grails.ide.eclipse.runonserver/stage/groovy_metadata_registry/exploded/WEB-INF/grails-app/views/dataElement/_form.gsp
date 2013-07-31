@@ -13,7 +13,7 @@
 		<g:message code="dataElement.refId.label" default="Ref Id" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:field name="refId" type="number" value="${dataElementInstance.refId}" required=""/>
+	<g:textField name="refId" value="${dataElementInstance.refId}" required=""/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: dataElementInstance, field: 'description', 'error')} ">
@@ -21,7 +21,7 @@
 		<g:message code="dataElement.description.label" default="Description" />
 		
 	</label>
-	<g:textField name="description" value="${dataElementInstance?.description}"/>
+	<g:textArea rows="5" cols="40" name="description" value="${dataElementInstance?.description}"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: dataElementInstance, field: 'definition', 'error')} ">
@@ -29,7 +29,7 @@
 		<g:message code="dataElement.definition.label" default="Definition" />
 		
 	</label>
-	<g:textField name="definition" value="${dataElementInstance?.definition}"/>
+	<g:textArea rows="5" cols="40" name="definition" value="${dataElementInstance?.definition}"/>
 </div>
 
 
@@ -105,4 +105,26 @@
     />
 
 </div>
+
+<div class="fieldcontain ${hasErrors(bean: dataElementInstance, field: 'externalSynonyms', 'error')} ">
+	<label for="subElements">
+		<g:message code="dataElement.externalSynonyms.label" default="External Synonyms" />
+		
+	</label>
+	
+   <g:select
+            name="externalSynonyms"
+            noSelection="${['':'Select One...']}"
+            from="${externalSynonyms}"
+            value="${params.list('externalSynonyms')}"
+            optionKey="id"
+            optionValue="name"
+            multiple="true"
+            size="6"
+    />
+
+</div>
+
+
+
 

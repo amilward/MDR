@@ -16,7 +16,7 @@ class ValueDomainController {
     }
 
     def create() {
-        [dataElements: DataElement.list(), dataTypes: DataType.list(), valueDomainInstance: new ValueDomain(params)]
+        [dataElements: DataElement.list(), dataTypes: DataType.list(), externalSynonyms: ExternalSynonym.list(), valueDomainInstance: new ValueDomain(params)]
     }
 
     def save() {
@@ -58,7 +58,7 @@ class ValueDomainController {
             return
         }
 
-        [dataElements: DataElement.list(), dataTypes: DataType.list(), valueDomainInstance: valueDomainInstance]
+        [dataElements: DataElement.list(), dataTypes: DataType.list(), externalSynonyms: ExternalSynonym.list(), valueDomainInstance: valueDomainInstance]
     }
 
     def update(Long id, Long version) {
@@ -128,6 +128,18 @@ class ValueDomainController {
 		if(valueDomain && dataElement){
 			valueDomain.removeFromDataElementValueDomains(dataElement)
 		}
+		redirect(action: 'edit', id: params.valueDomainId)
+	}
+	
+	
+	def removeSynonym(){
+		ValueDomain valueDomain = ValueDomain.get(params.valueDomainId)
+		ExternalSynonym externalSynonym = ExternalSynonym.get(params.synonymId)
+		
+		if(valueDomain && externalSynonym){
+			valueDomain.removeFromExternalSynonyms(externalSynonym)
+		}
+		
 		redirect(action: 'edit', id: params.valueDomainId)
 	}
 	

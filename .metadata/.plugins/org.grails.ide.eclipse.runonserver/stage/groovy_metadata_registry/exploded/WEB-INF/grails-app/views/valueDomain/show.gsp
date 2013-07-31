@@ -117,6 +117,25 @@
 				</table>
 			</g:if>	
 			
+			<g:if test="${valueDomainInstance?.externalSynonyms}">
+					<h1>External Synonyms:</h1>
+						<table>
+							<thead>
+								<tr>
+									<th>Name</th>
+									<th>URL</th>
+									<th>Attributes</th>
+								</tr>
+							</thead>
+							<g:each var="externalSynonym" in="${valueDomainInstance.externalSynonyms}">
+								<tr>
+									<td><g:link action="show" controller="ExternalSynonym" id="${externalSynonym?.id}">${externalSynonym?.name} </g:link></td>
+									<td>${externalSynonym?.url}</td>
+									<td>${externalSynonym?.attributes} </td>
+								</tr>
+							</g:each>
+					</table>
+				</g:if>	
 			
 			<g:form>
 				<fieldset class="buttons">

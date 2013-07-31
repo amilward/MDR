@@ -64,6 +64,7 @@
     <resource>uk.co.mdc.model.DataElementController</resource>
     <resource>uk.co.mdc.model.DataTypeController</resource>
     <resource>uk.co.mdc.model.DocumentController</resource>
+    <resource>uk.co.mdc.model.ExternalSynonymController</resource>
     <resource>uk.co.mdc.model.UmlModelController</resource>
     <resource>uk.co.mdc.model.ValueDomainController</resource>
     <resource>uk.co.mdc.model.Collection</resource>
@@ -74,6 +75,7 @@
     <resource>uk.co.mdc.model.DataElementValueDomain</resource>
     <resource>uk.co.mdc.model.DataType</resource>
     <resource>uk.co.mdc.model.Document</resource>
+    <resource>uk.co.mdc.model.ExternalSynonym</resource>
     <resource>uk.co.mdc.model.UmlModel</resource>
     <resource>uk.co.mdc.model.ValueDomain</resource>
     <resource>uk.co.mdc.SecAuth</resource>

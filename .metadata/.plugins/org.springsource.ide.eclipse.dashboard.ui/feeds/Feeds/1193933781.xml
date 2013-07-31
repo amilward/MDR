@@ -13,7 +13,7 @@
 	<atom:link href="http://blog.springsource.org/feed/" rel="self" type="application/rss+xml" />
 	<link>http://blog.springsource.org</link>
 	<description>The voice of SpringSource</description>
-	<lastBuildDate>Wed, 24 Jul 2013 22:03:31 +0000</lastBuildDate>
+	<lastBuildDate>Fri, 26 Jul 2013 13:41:23 +0000</lastBuildDate>
 	<language>en</language>
 	<sy:updatePeriod>hourly</sy:updatePeriod>
 	<sy:updateFrequency>1</sy:updateFrequency>
@@ -30,7 +30,7 @@
 		<guid isPermaLink="false">http://blog.springsource.org/?p=13986</guid>
 		<description><![CDATA[Overview As I wrote previously, a WebSocket API is only the starting point for WebSocket-style messaging applications. Many practical challenges remain. As one Tomcat mailing list user mused recently: it does seem to me that websockets is still not really &#034;production-ready&#034;, (I am not talking about the Tomcat implementation per se, but more generally) &#8230;  <a href="http://blog.springsource.org/2013/07/24/spring-framework-4-0-m2-websocket-messaging-architectures/"><em>Read more...</em></a>]]></description>
 		<wfw:commentRss>http://blog.springsource.org/2013/07/24/spring-framework-4-0-m2-websocket-messaging-architectures/feed/</wfw:commentRss>
-		<slash:comments>1</slash:comments>
+		<slash:comments>10</slash:comments>
 		</item>
 		<item>
 		<title>Reactor 1.0.0.M1 &#8211; a foundation for asynchronous fast-data applications on the JVM</title>
@@ -87,7 +87,7 @@
 		<guid isPermaLink="false">http://blog.springsource.org/?p=13600</guid>
 		<description><![CDATA[Are you an Eclipse user? Do you want a fast and easy way to search for text snippets and patterns in your workspace? Then read on! A new &#034;Quick Search&#034; is included in Spring ToolSuite (STS) 3.3.0 and Groovy Gails Tool Suite (GGTS) 3.3.0 which have just been released. Even if you are not a  <a href="http://blog.springsource.org/2013/07/11/eclipse-quick-search/"><em>Read more...</em></a>]]></description>
 		<wfw:commentRss>http://blog.springsource.org/2013/07/11/eclipse-quick-search/feed/</wfw:commentRss>
-		<slash:comments>10</slash:comments>
+		<slash:comments>14</slash:comments>
 		</item>
 		<item>
 		<title>Spring Security Java Config Preview: OAuth</title>
@@ -142,7 +142,7 @@
 		<guid isPermaLink="false">http://blog.springsource.org/?p=13625</guid>
 		<description><![CDATA[Yesterday I announced the release of Spring Security Java Configuration support and the release of Spring Security 3.2.0.M2 which contains Java Configuration support. Spring Security&#039;s Java Configuration support is intended to provide a complete replacement of the XML namespace configuration. It is also designed to be extensible, so that Spring Security&#039;s extension projects can work  <a href="http://blog.springsource.org/2013/07/02/spring-security-java-config-preview-introduction/"><em>Read more...</em></a>]]></description>
 		<wfw:commentRss>http://blog.springsource.org/2013/07/02/spring-security-java-config-preview-introduction/feed/</wfw:commentRss>
-		<slash:comments>3</slash:comments>
+		<slash:comments>5</slash:comments>
 		</item>
 		<item>
 		<title>Spring XD 1.0 Milestone 1 Released</title>

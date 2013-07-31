@@ -42,7 +42,7 @@
 					
 						<td><g:link action="show" id="${documentInstance.id}">${fieldValue(bean: documentInstance, field: "name")}</g:link></td>
 					
-						<td>${fieldValue(bean: documentInstance, field: "description")}</td>
+						<td><div class="limit_row_height">${fieldValue(bean: documentInstance, field: "description")}</div></td>
 					
 						<td>
 						<g:link controller="Document" action="download" id="${documentInstance?.id}"> download </g:link>

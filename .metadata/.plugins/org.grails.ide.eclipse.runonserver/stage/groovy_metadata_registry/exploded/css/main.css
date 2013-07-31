@@ -132,11 +132,7 @@ img {
 /* NAVIGATION MENU */
 
 .nav {
-	background-color: #efefef;
 	padding: 0.5em 0.75em;
-	   -moz-box-shadow: 0 0 3px 1px #aaaaaa;
-	-webkit-box-shadow: 0 0 3px 1px #aaaaaa;
-	        box-shadow: 0 0 3px 1px #aaaaaa;
 	zoom: 1;
 }
 
@@ -247,10 +243,16 @@ input, select, textarea {
 	border: 1px solid #cccccc;
 	font-size: 1em;
 	padding: 0.2em 0.4em;
+	
+}
+
+input[type="text"], textarea{
+	width:400px;
 }
 
 select {
 	padding: 0.2em 0.2em 0.2em 0;
+	width:415px;
 }
 
 select[multiple] {
@@ -258,7 +260,7 @@ select[multiple] {
 }
 
 textarea {
-	width: 250px;
+	width: 400px;
 	height: 150px;
 	overflow: auto; /* IE always renders vertical scrollbar without this */
 	vertical-align: top;
@@ -644,18 +646,18 @@ a.skip {
 		float: left;
 		width: 100%;
 		background-color:white;
-		height:100%;
+		min-height: 100%;
 		}
 
 		#contentcolumn{
-		margin-left: 210px; /*Set left margin to LeftColumnWidth*/
+		margin-left: 211px; /*Set left margin to LeftColumnWidth*/
 		}
 
 		#leftcolumn{
-		float: left;
+		border-right: 1px solid grey;
 		width: 210px; /*Width of left column*/
-		margin-left: -100%;
 		height:100%;
+		position:fixed;
 		background: rgb(50,52,61); /* Old browsers */
 		background: -moz-linear-gradient(left, rgba(50,52,61,1) 1%, rgba(68,69,81,1) 53%, rgba(50,52,61,1) 100%); /* FF3.6+ */
 		background: -webkit-gradient(linear, left top, right top, color-stop(1%,rgba(50,52,61,1)), color-stop(53%,rgba(68,69,81,1)), color-stop(100%,rgba(50,52,61,1))); /* Chrome,Safari4+ */
@@ -728,6 +730,11 @@ a.skip {
 			width:100%
 		}
 		
+		
+		#user_menu {
+		    border-bottom: 1px solid black;
+		}
+		
 		#mdr_menu li{
 			border-bottom: solid #000000 1px ;
 		}
@@ -737,6 +744,155 @@ a.skip {
 		p{
 		padding:20px;
 		}
+		
+		
+		.limit_row_height{
+			max-height: 30px;
+			overflow:hidden;
+		
+		}
+		
+		#header {
+    		margin-left: 15px;
+		}
+		
+		#main{
+			margin-left: 15px;
+		}
+		
+/* searchbox */
+
+   /*-------------------------------------*/
+    
+    .cf:before, .cf:after{
+      content:"";
+      display:table;
+    }
+    
+    .cf:after{
+      clear:both;
+    }
+
+    .cf{
+      zoom:1;
+    }
+
+    /*-------------------------------------*/	
+    
+    .searchform {
+    	float:right;
+    	margin-right: 15px;
+    	margin-top: 15px;
+        width: 380px;
+        padding: 15px;
+        background: #444;
+        background: rgba(0,0,0,.2);
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        border-radius: 10px;
+        -moz-box-shadow: 0 1px 1px rgba(0,0,0,.4) inset, 0 1px 0 rgba(255,255,255,.2);
+        -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.4) inset, 0 1px 0 rgba(255,255,255,.2);
+        box-shadow: 0 1px 1px rgba(0,0,0,.4) inset, 0 1px 0 rgba(255,255,255,.2);
+    }
+    
+    .searchform input {
+        width: 330px;
+        height: 20px;
+        padding: 10px 5px;
+        float: left;    
+        font: bold 15px 'lucida sans', 'trebuchet MS', 'Tahoma';
+        border: 0;
+        background: #eee;
+        -moz-border-radius: 3px 0 0 3px;
+        -webkit-border-radius: 3px 0 0 3px;
+        border-radius: 3px 0 0 3px;      
+    }
+    
+    .searchform input:focus {
+        outline: 0;
+        background: #fff;
+        -moz-box-shadow: 0 0 2px rgba(0,0,0,.8) inset;
+        -webkit-box-shadow: 0 0 2px rgba(0,0,0,.8) inset;
+        box-shadow: 0 0 2px rgba(0,0,0,.8) inset;
+    }
+    
+    .searchform input::-webkit-input-placeholder {
+       color: #999;
+       font-weight: normal;
+       font-style: italic;
+    }
+    
+    .searchform input:-moz-placeholder {
+        color: #999;
+        font-weight: normal;
+        font-style: italic;
+    }
+    
+    .searchform input:-ms-input-placeholder {
+        color: #999;
+        font-weight: normal;
+        font-style: italic;
+    }    
+    
+      .searchform input[type="submit"] {
+		overflow: visible;
+        position: relative;
+        float: right;
+        border: 0;
+        padding: 0;
+        cursor: pointer;
+        height: 40px;
+        width: 40px;
+        font: bold 15px/40px 'lucida sans', 'trebuchet MS', 'Tahoma';
+        color: #fff;
+        text-transform: uppercase;
+        background: #d83c3c;
+        -moz-border-radius: 0 3px 3px 0;
+        -webkit-border-radius: 0 3px 3px 0;
+        border-radius: 0 3px 3px 0;      
+        text-shadow: 0 -1px 0 rgba(0, 0 ,0, .3);
+		background-repeat: no-repeat;
+		background-image: url('../images/search-icon-white-one.png');
+		background-position: 2px 2px;
+
+	}    
+      
+    .searchform input[type="submit"]{		
+        background: #e54040;
+        background-repeat: no-repeat;
+        background-image: url('../images/search-icon-white-one.png');
+        background-position: 2px 2px;
+    }	
+      
+    .searchform input[type="submit"],
+    .searchform  input[type="submit"]{   
+        background: #c42f2f;    
+        background-repeat: no-repeat;
+        background-image: url('../images/search-icon-white-one.png');
+        background-position: 2px 2px;
+    }
+    
+    .searchform input[type="submit"] {
+        content: '';
+        border-width: 8px 8px 8px 0;
+        border-style: solid solid solid none;
+        border-color: transparent #d83c3c transparent;
+    }
+    
+    .searchform input[type="submit"]{
+        border-right-color: #e54040;
+    }
+    
+    .searchform input[type="submit"]{
+        border-right-color: #c42f2f;
+    }    
+    
+    .searchform button::-moz-focus-inner {
+        border: 0;
+        padding: 0;
+    }
+
+		
 		
 		
 /*  register   */
