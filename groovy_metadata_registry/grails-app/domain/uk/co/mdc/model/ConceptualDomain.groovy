@@ -2,9 +2,9 @@ package uk.co.mdc.model
 
 class ConceptualDomain {
 	
+	String refId
+	
 	String name
-
-	Integer refId
 	
 	String description
 	
@@ -23,4 +23,7 @@ class ConceptualDomain {
 		}
 	}
 	
+	static mapping = {
+		description type: 'text'
+	}
 }

@@ -34,7 +34,15 @@
 		
 		<div id="contentwrapper">
 			<div id="contentcolumn">
-				<g:layoutBody/>
+			<sec:ifLoggedIn>
+						
+						<div class="search" id="searchbox">
+						<g:form url='[controller: "searchable", action: "index"]' class="searchform cf" id="searchableForm" name="searchableForm" method="get">
+					        <g:textField name="q" value="${params.q}" size="50"/> <input type="submit" value="" />
+					    </g:form>
+						</div>
+			</sec:ifLoggedIn>
+			<g:layoutBody/>
 			</div>
 		</div>
 		
@@ -44,20 +52,30 @@
 							<sec:ifLoggedIn>
 								<table>
 									<tr><td><img src='${fam.icon(name: 'user_suit')}'/></td><td><sec:loggedInUserInfo field="username" /></td></tr>
-									<tr><td><img src='${fam.icon(name: 'cog')}'/></td><td><g:link controller="Logout">Logout</g:link></td></tr>
+									<tr><td><img src='${fam.icon(name: 'cog')}'/></td><td><g:link controller="Logout">logout</g:link></td></tr>
 								</table>
 
 								        
 								<!-- END #login -->
 							</sec:ifLoggedIn>
 							<sec:ifNotLoggedIn>
-								<g:link controller="Login">login </g:link> || <a href="#"><g:link controller="Register">register </g:link> </a>
+							<table>
+							<tr>
+								<td><img src='${fam.icon(name: 'lock_open')}'/></td>
+								<td><g:link controller="Login">login </g:link></td>
+							</tr>
+							<tr>
+								<td><img src='${fam.icon(name: 'user_suit')}'/></td>
+								<td><g:link controller="Register">register </g:link></td>
+							</tr>
+							</table>
 							</sec:ifNotLoggedIn>
 						</div>
 						
 						
 						
 						<sec:ifLoggedIn>
+						
 						<div class="left_menu" id="mdr_menu">
 						
 							<table>
@@ -74,6 +92,8 @@
 								<tr><td><img src='${fam.icon(name: 'textfield_key')}'/></td><td><g:link controller="DataType">data types </g:link></td></tr>
 								
 								<tr><td><img src='${fam.icon(name: 'page_white_stack')}'/></td><td><g:link controller="Document">documents </g:link></td></tr>
+								
+								<tr><td><img src='${fam.icon(name: 'database_link')}'/></td><td><g:link controller="ExternalSynonym">external synonyms </g:link></td></tr>
 							
 							</table>
 						</div>

@@ -48,7 +48,7 @@
 						
 						<td>${fieldValue(bean: valueDomainInstance, field: "refId")}</td>
 						
-						<td>${fieldValue(bean: valueDomainInstance, field: "description")}</td>						
+						<td><div class="limit_row_height">${fieldValue(bean: valueDomainInstance, field: "description")}</div></td>						
 						
 						<td><g:link controller="DataType" action="show" id="${valueDomainInstance?.dataType?.id}">${valueDomainInstance?.dataType?.dataType}</g:link></td>
 					

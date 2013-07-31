@@ -6,7 +6,7 @@ class ValueDomain {
 	
 	String name
 
-	Integer refId
+	String refId
 
 	String unitOfMeasure
 	
@@ -20,7 +20,7 @@ class ValueDomain {
 	
 	static searchable = true
 	
-	static hasMany = [dataElementValueDomains: DataElementValueDomain]
+	static hasMany = [dataElementValueDomains: DataElementValueDomain, externalSynonyms: ExternalSynonym]
 	
 	static belongsTo = [conceptualDomain: ConceptualDomain]
 	
@@ -29,6 +29,10 @@ class ValueDomain {
 		conceptualDomain nullable:true
 		dataType nullable:true
     }
+	
+	static mapping = {
+		description type: 'text'
+	}
 	
 	
 	/******************************************************************************************************************/

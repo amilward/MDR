@@ -101,7 +101,7 @@
 									<td><g:link action="show" controller="ValueDomain" id="${valueDomain?.id}">${valueDomain?.name} </g:link></td>
 									<td>${valueDomain?.refId}</td>
 									<td>${valueDomain?.description}</td>
-									<td>${valueDomain?.dataType} </td>
+									<td><g:link action="show" controller="DataType" id="${valueDomain?.dataType?.id}">${valueDomain?.dataType?.dataType}</g:link></td>
 									<td>${valueDomain?.unitOfMeasure} </td>
 									<td>${valueDomain?.regexDef} </td>
 								</tr>
@@ -132,6 +132,29 @@
 							</g:each>
 					</table>
 				</g:if>	
+				
+				
+			<g:if test="${dataElementInstance?.externalSynonyms}">
+					<h1>External Synonyms:</h1>
+						<table>
+							<thead>
+								<tr>
+									<th>Name</th>
+									<th>URL</th>
+									<th>Attributes</th>
+								</tr>
+							</thead>
+							<g:each var="externalSynonym" in="${dataElementInstance.externalSynonyms}">
+								<tr>
+									<td><g:link action="show" controller="ExternalSynonym" id="${externalSynonym?.id}">${externalSynonym?.name} </g:link></td>
+									<td>${externalSynonym?.url}</td>
+									<td>${externalSynonym?.attributes} </td>
+								</tr>
+							</g:each>
+					</table>
+				</g:if>	
+				
+				
 			
 			
 			<g:form>

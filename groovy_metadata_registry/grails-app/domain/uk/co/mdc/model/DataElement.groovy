@@ -4,9 +4,9 @@ import org.codehaus.groovy.grails.web.servlet.mvc.GrailsParameterMap
 
 class DataElement {
 	
+	String refId
+	
 	String name
-
-	Integer refId
 	
 	String description
 	
@@ -18,7 +18,7 @@ class DataElement {
 	
 	static searchable = true
 	
-	static hasMany = [subElements: DataElement, dataElementValueDomains: DataElementValueDomain, dataElementCollections: DataElementCollection]
+	static hasMany = [subElements: DataElement, dataElementValueDomains: DataElementValueDomain, dataElementCollections: DataElementCollection, externalSynonyms: ExternalSynonym]
 	
 	static belongsTo = [parent: DataElement, dataElementConcept: DataElementConcept]
 	
@@ -27,6 +27,11 @@ class DataElement {
 		parent nullable: true
 		dataElementConcept nullable: true
     }
+	
+	static mapping = {
+		description type: 'text'
+		definition type: 'text'
+	}
 	
 	/******************************************************************************************************************/
 	/**************functions for linking data elements and value domains using dataElementValueDomains class*************************/

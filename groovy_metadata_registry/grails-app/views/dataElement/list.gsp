@@ -45,9 +45,9 @@
 					
 						<td>${fieldValue(bean: dataElementInstance, field: "refId")}</td>
 						
-						<td>${fieldValue(bean: dataElementInstance, field: "description")}</td>
+						<td><div class="limit_row_height">${fieldValue(bean: dataElementInstance, field: "description")}</div></td>
 					
-						<td>${fieldValue(bean: dataElementInstance, field: "definition")}</td>					
+						<td><div class="limit_row_height">${fieldValue(bean: dataElementInstance, field: "definition")}</div></td>					
 						
 						<td><g:link action="show" id="${dataElementInstance?.parent?.id}">${dataElementInstance?.parent?.name}</g:link></td>
 						

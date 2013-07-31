@@ -14,7 +14,7 @@
 		
 	</label>
 	
-	<g:textArea name="description" value="${conceptualDomainInstance?.description}" rows="5" cols="40"/>
+	<g:textArea rows="5" cols="40" name="description" value="${conceptualDomainInstance?.description}" rows="5" cols="40"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: conceptualDomainInstance, field: 'refId', 'error')} required">
@@ -22,7 +22,7 @@
 		<g:message code="conceptualDomain.refId.label" default="Ref Id" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:field name="refId" type="number" value="${conceptualDomainInstance.refId}" required=""/>
+	<g:textField name="refId" value="${conceptualDomainInstance.refId}" required=""/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: conceptualDomainInstance, field: 'valueDomains', 'error')} ">

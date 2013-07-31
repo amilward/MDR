@@ -38,7 +38,7 @@
 					
 						<td><g:link action="show" id="${conceptualDomainInstance.id}">${fieldValue(bean: conceptualDomainInstance, field: "name")}</g:link></td>
 					
-						<td>${fieldValue(bean: conceptualDomainInstance, field: "description")}</td>
+						<td><div class="limit_row_height">${fieldValue(bean: conceptualDomainInstance, field: "description")}</div></td>
 					
 						<td>${fieldValue(bean: conceptualDomainInstance, field: "refId")}</td>
 					

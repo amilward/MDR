@@ -63,6 +63,27 @@
 					
 				</g:if>
 				
+				<g:if test="${valueDomainInstance?.externalSynonyms}">
+					<h1>External Synonyms:</h1>
+						<table>
+							<thead>
+								<tr>
+									<th>Name</th>
+									<th>URL</th>
+									<th>Attributes</th>
+									<th>&nbsp;</th>
+								</tr>
+							</thead>
+							<g:each var="externalSynonym" in="${valueDomainInstance.externalSynonyms}">
+								<tr>
+									<td><g:link action="show" controller="ExternalSynonym" id="${externalSynonym?.id}">${externalSynonym?.name} </g:link></td>
+									<td>${externalSynonym?.url}</td>
+									<td>${externalSynonym?.attributes} </td>
+									<td><g:link params="[synonymId: "${externalSynonym?.id}", valueDomainId: "${valueDomainInstance?.id}"]" action="removeSynonym" controller="ValueDomain">Remove</g:link></td>		
+								</tr>
+							</g:each>
+					</table>
+				</g:if>	
 				
 				<fieldset class="buttons">
 					<g:actionSubmit class="save" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" />
