@@ -54,7 +54,7 @@
 												<td><g:link action="show" controller="ValueDomain" id="${valueDomain?.id}">${valueDomain?.name} </g:link></td>
 												<td>${valueDomain?.refId}</td>
 												<td>${valueDomain?.description}</td>
-												<td>${valueDomain?.dataType} </td>
+												<td>${valueDomain?.dataType?.name} </td>
 												<td>${valueDomain?.unitOfMeasure} </td>
 												<td>${valueDomain?.regexDef} </td>
 												<td><g:link params="[valueDomainId: "${valueDomain?.id}", dataElementId: "${dataElementInstance?.id}"]" action="removeValueDomain" controller="DataElement">Remove</g:link></td>

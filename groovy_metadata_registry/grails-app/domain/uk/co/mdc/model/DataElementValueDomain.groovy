@@ -7,6 +7,7 @@ class DataElementValueDomain {
 	ValueDomain valueDomain
 
     static constraints = {
+		
     }
 	
 	static DataElementValueDomain link(DataElement, ValueDomain) {

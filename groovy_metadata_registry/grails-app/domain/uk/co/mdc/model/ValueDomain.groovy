@@ -28,6 +28,10 @@ class ValueDomain {
 		refId unique: true
 		conceptualDomain nullable:true
 		dataType nullable:true
+		description nullable:true
+		unitOfMeasure nullable:true
+		regexDef nullable:true
+		name blank: false
     }
 	
 	static mapping = {

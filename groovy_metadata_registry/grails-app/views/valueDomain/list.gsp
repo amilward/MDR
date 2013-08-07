@@ -20,19 +20,15 @@
 			<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
-			<table>
+			<table class="tableList">
 				<thead>
 					<tr>
 					
-						<g:sortableColumn property="name" title="${message(code: 'valueDomain.name.label', default: 'Name')}" />
+						<g:sortableColumn class="name" property="name" title="${message(code: 'valueDomain.name.label', default: 'Name')}" />
 						
 						<g:sortableColumn property="refId" title="${message(code: 'valueDomain.refId.label', default: 'Ref Id')}" />
 						
-						<g:sortableColumn property="description" title="${message(code: 'valueDomain.description.label', default: 'Description')}" />						
-						
 						<g:sortableColumn property="dataType" title="${message(code: 'valueDomain.dataType.label', default: 'Data Type')}" />
-					
-						<g:sortableColumn property="unitOfMeasure" title="${message(code: 'valueDomain.dataType.label', default: 'Unit of Measure')}" />
 					
 						<g:sortableColumn property="regexDef" title="${message(code: 'valueDomain.regexDef.label', default: 'Regex Def')}" />
 						
@@ -44,15 +40,11 @@
 				<g:each in="${valueDomainInstanceList}" status="i" var="valueDomainInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
-						<td><g:link action="show" id="${valueDomainInstance.id}">${fieldValue(bean: valueDomainInstance, field: "name")}</g:link></td>
+						<td class="name"><g:link action="show" id="${valueDomainInstance.id}">${fieldValue(bean: valueDomainInstance, field: "name")}</g:link></td>
 						
 						<td>${fieldValue(bean: valueDomainInstance, field: "refId")}</td>
 						
-						<td><div class="limit_row_height">${fieldValue(bean: valueDomainInstance, field: "description")}</div></td>						
-						
-						<td><g:link controller="DataType" action="show" id="${valueDomainInstance?.dataType?.id}">${valueDomainInstance?.dataType?.dataType}</g:link></td>
-					
-						<td>${fieldValue(bean: valueDomainInstance, field: "unitOfMeasure")}</td>
+						<td><g:link controller="DataType" action="show" id="${valueDomainInstance?.dataType?.id}">${valueDomainInstance?.dataType?.name}</g:link></td>
 					
 						<td>${fieldValue(bean: valueDomainInstance, field: "regexDef")}</td>
 						
