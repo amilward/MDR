@@ -1,0 +1,176 @@
+package uk.co.mdc.model
+
+import org.springframework.dao.DataIntegrityViolationException
+
+class DataTypeController {
+
+    static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
+
+    def index() {
+        redirect(action: "list", params: params)
+    }
+
+    def list(Integer max) {
+        params.max = Math.min(max ?: 10, 100)
+        [dataTypeInstanceList: DataType.list(params), dataTypeInstanceTotal: DataType.count()]
+    }
+
+    def create() {
+        [dataTypeInstance: new DataType(params)]
+    }
+
+    def save() {
+		
+		params.enumerations = getEnumerations()
+
+        def dataTypeInstance = new DataType(params)
+		
+        if (!dataTypeInstance.save(flush: true)) {
+            render(view: "create", model: [dataTypeInstance: dataTypeInstance])
+            return
+        }
+
+        flash.message = message(code: 'default.created.message', args: [message(code: 'dataType.label', default: 'DataType'), dataTypeInstance.id])
+        redirect(action: "show", id: dataTypeInstance.id)
+    }
+
+    def show(Long id) {
+        def dataTypeInstance = DataType.get(id)
+        if (!dataTypeInstance) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'dataType.label', default: 'DataType'), id])
+            redirect(action: "list")
+            return
+        }
+
+        [dataTypeInstance: dataTypeInstance]
+    }
+
+    def edit(Long id) {
+        def dataTypeInstance = DataType.get(id)
+        if (!dataTypeInstance) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'dataType.label', default: 'DataType'), id])
+            redirect(action: "list")
+            return
+        }
+
+        [dataTypeInstance: dataTypeInstance]
+    }
+
+    def update(Long id, Long version) {
+		
+        def dataTypeInstance = DataType.get(id)
+        if (!dataTypeInstance) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'dataType.label', default: 'DataType'), id])
+            redirect(action: "list")
+            return
+        }
+
+        if (version != null) {
+            if (dataTypeInstance.version > version) {
+                dataTypeInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
+                          [message(code: 'dataType.label', default: 'DataType')] as Object[],
+                          "Another user has updated this DataType while you were editing")
+                render(view: "edit", model: [dataTypeInstance: dataTypeInstance])
+                return
+            }
+        }
+		
+		
+		
+		params.enumerations = getEnumerations()
+		
+		if(params.enumerations==null){
+			params.enumerations= new HashMap()
+		}
+		
+		if(dataTypeInstance.enumerations){
+			params.enumerations.putAll(dataTypeInstance.enumerations)
+		}
+		
+        dataTypeInstance.properties = params
+
+        if (!dataTypeInstance.save(flush: true)) {
+            render(view: "edit", model: [dataTypeInstance: dataTypeInstance])
+            return
+        }
+
+        flash.message = message(code: 'default.updated.message', args: [message(code: 'dataType.label', default: 'DataType'), dataTypeInstance.id])
+        redirect(action: "show", id: dataTypeInstance.id)
+    }
+
+    def delete(Long id) {
+        def dataTypeInstance = DataType.get(id)
+        if (!dataTypeInstance) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'dataType.label', default: 'DataType'), id])
+            redirect(action: "list")
+            return
+        }
+
+        try {
+            dataTypeInstance.delete(flush: true)
+            flash.message = message(code: 'default.deleted.message', args: [message(code: 'dataType.label', default: 'DataType'), id])
+            redirect(action: "list")
+        }
+        catch (DataIntegrityViolationException e) {
+            flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'dataType.label', default: 'DataType'), id])
+            redirect(action: "show", id: id)
+        }
+    }
+	
+	def removeEnumeratedValue(){
+		DataType dataType = DataType.get(params.dataTypeId)
+		
+		if(dataType){
+			dataType.enumerations.remove(params.enumeratedValue)
+		}
+		
+		redirect(action: 'edit', id: params.dataTypeId)
+
+	}
+
+	
+	def getEnumerations(){
+
+		if(params?.enumerated=='on'){
+		
+			if(params?.map_key){
+				
+				Map enumerations = new HashMap()
+				def counter = 0
+				
+				//if there is more than one enumeration
+				if(params.map_key.class.isArray()){
+					
+					//iterate through values and insert them into map
+					params?.map_key?.each{ val->
+						
+						
+						if(val!=''){
+							
+							def desc = ''
+							desc = params?.map_value[counter]
+							
+							enumerations.put(val, desc)
+							
+						}
+						
+						counter++
+					}
+				
+				}else{
+
+					enumerations.put(params.map_key, params?.map_value)
+					
+				}
+		
+				return enumerations
+			}
+		}else{
+			String empty = ''
+			return empty
+		}
+		
+		
+	}	
+	
+}
