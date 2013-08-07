@@ -32,8 +32,11 @@ environments {
     production {
         dataSource {
             dbCreate = "update"
-            url = "jdbc:h2:prodDb;MVCC=TRUE;LOCK_TIMEOUT=10000"
-	//		url = "jdbc:mysql://localhost/mdr_v0_4?useUnicode=yes&characterEncoding=UTF-8"
+            driverClassName = "com.mysql.jdbc.Driver"
+			username = "mdradmin"
+		    password = "mdradmin123"
+			dialect = "org.hibernate.dialect.MySQL5InnoDBDialect"
+			url = "jdbc:mysql://localhost/mdr_v0_4?useUnicode=yes&characterEncoding=UTF-8"
             pooled = true
             properties {
                maxActive = -1
