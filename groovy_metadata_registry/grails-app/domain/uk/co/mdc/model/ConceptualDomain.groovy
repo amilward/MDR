@@ -13,6 +13,7 @@ class ConceptualDomain {
     static constraints = {
 		valueDomains nullable:true
 		refId unique:true
+		name blank: false
     }
 	
 	def prepareForDelete(){

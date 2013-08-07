@@ -132,7 +132,7 @@ img {
 /* NAVIGATION MENU */
 
 .nav {
-	padding: 0.5em 0.75em;
+	padding: 15px 0.5em 0.75em;
 	zoom: 1;
 }
 
@@ -598,33 +598,6 @@ a.skip {
 	left: -9999px;
 }
 
-/*expandable*/
-
-
-
-/* tabindex="1" in the link code to fix the 'focus persist' problem in safari and chrome */
-		html {-webkit-animation: safariSelectorFix infinite 1s;}
-		@-webkit-keyframes safariSelectorFix {
-		0% {zoom:1;} 
-		100% {zoom:1;}
-		}
-		
-		div.exp {font:normal 0.9em/1.5em arial, sans-serif; color:#666;}
-		a.exp {display:block;margin: 1em 0 0 0;text-decoration:none;background:#hhhhhh;padding:10px;text-align:right}
-		a.exp::after {content:"»";float:right;}
-		a.exp:focus {border-width: 1px 1px 0 1px;border-radius:4px 4px 0 0}
-		a.exp + div {display:none;}
-		a.exp:focus + div {display:block;border-width: 0 1px 1px 1px;border-style:solid; border-radius:0 0 4px 4px;border-color:black;}
-		a.exp:focus::after {content:"";}
-		div.exp *{padding:0.3em 10px 0em 10px;}
-		div.exp *:last-child::after {content:"«";float:right;}
-		div.exp *:first-child {margin-top:0;}
-		
-		div.exp ul {margin-bottom: 2em;}
-		div.exp ul li {list-style-position: inside;}
-		div.exp ul li:last-child::after{content:'' !important;}
-
-
 /* my custom styles*/
 
 #maincontainer{
@@ -694,6 +667,7 @@ a.skip {
 				color: #ce265d;
 				padding-top:15px;
 				padding-right:25px;
+				padding-left:10px;
 				font-family: 'Orbitron', sans-serif;
 				}
 
@@ -760,6 +734,16 @@ a.skip {
 			margin-left: 15px;
 		}
 		
+		table .name{
+			width:200px;
+		}
+		
+		table .tableList{
+		
+			font-size: 12px;
+		
+		}
+		
 /* searchbox */
 
    /*-------------------------------------*/
@@ -784,25 +768,25 @@ a.skip {
     	margin-right: 15px;
     	margin-top: 15px;
         width: 380px;
-        padding: 15px;
+        padding: 10px;
         background: #444;
         background: rgba(0,0,0,.2);
         -moz-border-radius: 10px;
         -webkit-border-radius: 10px;
         border-radius: 10px;
-        -moz-box-shadow: 0 1px 1px rgba(0,0,0,.4) inset, 0 1px 0 rgba(255,255,255,.2);
+        -moz-box-shadow: 0 1px 1px rgba(0,0,0,.4) inset, 0 1px 0 rgba(255,255,255,.05);
         -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.4) inset, 0 1px 0 rgba(255,255,255,.2);
         box-shadow: 0 1px 1px rgba(0,0,0,.4) inset, 0 1px 0 rgba(255,255,255,.2);
     }
     
     .searchform input {
         width: 330px;
-        height: 20px;
+        height: 15px;
         padding: 10px 5px;
         float: left;    
         font: bold 15px 'lucida sans', 'trebuchet MS', 'Tahoma';
         border: 0;
-        background: #eee;
+        background: #ffffff;
         -moz-border-radius: 3px 0 0 3px;
         -webkit-border-radius: 3px 0 0 3px;
         border-radius: 3px 0 0 3px;      
@@ -841,16 +825,12 @@ a.skip {
         border: 0;
         padding: 0;
         cursor: pointer;
-        height: 40px;
+        height: 35px;
         width: 40px;
         font: bold 15px/40px 'lucida sans', 'trebuchet MS', 'Tahoma';
         color: #fff;
         text-transform: uppercase;
-        background: #d83c3c;
-        -moz-border-radius: 0 3px 3px 0;
-        -webkit-border-radius: 0 3px 3px 0;
-        border-radius: 0 3px 3px 0;      
-        text-shadow: 0 -1px 0 rgba(0, 0 ,0, .3);
+        background: #d83c3c;    
 		background-repeat: no-repeat;
 		background-image: url('../images/search-icon-white-one.png');
 		background-position: 2px 2px;
@@ -861,7 +841,7 @@ a.skip {
         background: #e54040;
         background-repeat: no-repeat;
         background-image: url('../images/search-icon-white-one.png');
-        background-position: 2px 2px;
+        background-position: 1px 1px;
     }	
       
     .searchform input[type="submit"],
@@ -873,9 +853,7 @@ a.skip {
     }
     
     .searchform input[type="submit"] {
-        content: '';
-        border-width: 8px 8px 8px 0;
-        border-style: solid solid solid none;
+        content: ''
         border-color: transparent #d83c3c transparent;
     }
     
@@ -892,7 +870,11 @@ a.skip {
         padding: 0;
     }
 
-		
+/* help box */
+
+.help p{
+	display:none;
+}
 		
 		
 /*  register   */

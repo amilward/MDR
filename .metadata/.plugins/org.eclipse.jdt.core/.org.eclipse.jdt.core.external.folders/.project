@@ -10,9 +10,14 @@
 	</natures>
 	<linkedResources>
 		<link>
-			<name>.link0</name>
+			<name>.link1</name>
 			<type>2</type>
-			<location>C:/Users/Adam Milward/Downloads/springsource/ggts-3.2.0.RELEASE/plugins/org.grails.ide.eclipse.resources_3.2.0.201303060657-RELEASE/dsl-support</location>
+			<location>C:/Users/Adam Milward/Downloads/springsource/ggts-3.2.0.RELEASE/plugins/org.codehaus.groovy_2.0.7.xx-20130703-1700-e42-RELEASE/plugin_dsld_support</location>
+		</link>
+		<link>
+			<name>.link2</name>
+			<type>2</type>
+			<location>C:/Users/Adam Milward/Downloads/springsource/ggts-3.2.0.RELEASE/plugins/org.grails.ide.eclipse.resources_3.3.0.201307040647-RELEASE/dsl-support</location>
 		</link>
 		<link>
 			<name>.link3</name>
@@ -28,11 +33,6 @@
 			<name>.link5</name>
 			<type>2</type>
 			<location>C:/Users/Adam Milward/.groovy/greclipse/global_dsld_support</location>
-		</link>
-		<link>
-			<name>.link6</name>
-			<type>2</type>
-			<location>C:/Users/Adam Milward/Downloads/springsource/ggts-3.2.0.RELEASE/plugins/org.codehaus.groovy_2.0.7.xx-20130304-1200-e42/plugin_dsld_support</location>
 		</link>
 	</linkedResources>
 </projectDescription>

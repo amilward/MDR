@@ -50,7 +50,7 @@
                         from="${dataTypes}"
                         value="${params.list('dataTypes')}"
                         optionKey="id"
-                        optionValue="dataType"
+                        optionValue="name"
                         size="6"
       />
 	

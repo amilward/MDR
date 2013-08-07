@@ -20,16 +20,14 @@
 			<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
-			<table>
+			<table class="tableList">
 				<thead>
 					<tr>
-						<g:sortableColumn property="name" title="${message(code: 'dataElement.name.label', default: 'Name')}" />
+						<g:sortableColumn class="name" property="name" title="${message(code: 'dataElement.name.label', default: 'Name')}" />
 					
 						<g:sortableColumn property="refId" title="${message(code: 'dataElement.refId.label', default: 'Ref Id')}" />
 						
 						<g:sortableColumn property="description" title="${message(code: 'dataElement.description.label', default: 'Description')}" />
-					
-						<g:sortableColumn property="definition" title="${message(code: 'dataElement.definition.label', default: 'Definition')}" />
 					
 						<g:sortableColumn property="parent" title="${message(code: 'dataElement.parent.label', default: 'Parent')}" />
 						
@@ -41,14 +39,12 @@
 				<g:each in="${dataElementInstanceList}" status="i" var="dataElementInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
-						<td><g:link action="show" id="${dataElementInstance.id}">${fieldValue(bean: dataElementInstance, field: "name")}</g:link></td>
+						<td class="name"><g:link action="show" id="${dataElementInstance.id}">${fieldValue(bean: dataElementInstance, field: "name")}</g:link></td>
 					
 						<td>${fieldValue(bean: dataElementInstance, field: "refId")}</td>
 						
 						<td><div class="limit_row_height">${fieldValue(bean: dataElementInstance, field: "description")}</div></td>
 					
-						<td><div class="limit_row_height">${fieldValue(bean: dataElementInstance, field: "definition")}</div></td>					
-						
 						<td><g:link action="show" id="${dataElementInstance?.parent?.id}">${dataElementInstance?.parent?.name}</g:link></td>
 						
 						<td><g:link contoller="dataElementConcept" action="show" id="${dataElementInstance?.dataElementConcept?.id}">${dataElementInstance?.dataElementConcept?.name}</g:link></td>

@@ -16,10 +16,12 @@
 		</div>
 		<div id="create-dataElement" class="content scaffold-create" role="main">
 			<h1><g:message code="default.create.label" args="[entityName]" /></h1>
-			<a class="exp" href="#url" tabindex="1">Help</a>
-			<div class="exp">
+			
+			<div class="help">
+				<a href="#" >Help �</a>
 				<p>${DataElement.HELP}</p>
 			</div>
+			
 			<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>

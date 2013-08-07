@@ -30,7 +30,7 @@
 		<guid isPermaLink="false">http://blog.springsource.org/?p=13986</guid>
 		<description><![CDATA[Overview As I wrote previously, a WebSocket API is only the starting point for WebSocket-style messaging applications. Many practical challenges remain. As one Tomcat mailing list user mused recently: it does seem to me that websockets is still not really &#034;production-ready&#034;, (I am not talking about the Tomcat implementation per se, but more generally) &#8230;  <a href="http://blog.springsource.org/2013/07/24/spring-framework-4-0-m2-websocket-messaging-architectures/"><em>Read more...</em></a>]]></description>
 		<wfw:commentRss>http://blog.springsource.org/2013/07/24/spring-framework-4-0-m2-websocket-messaging-architectures/feed/</wfw:commentRss>
-		<slash:comments>10</slash:comments>
+		<slash:comments>13</slash:comments>
 		</item>
 		<item>
 		<title>Reactor 1.0.0.M1 &#8211; a foundation for asynchronous fast-data applications on the JVM</title>
@@ -46,7 +46,7 @@
 		<guid isPermaLink="false">http://blog.springsource.org/?p=13965</guid>
 		<description><![CDATA[I&#039;m super excited to announce the first milestone release of Project Reactor! Project Reactor is a foundational framework for building asynchronous, FastData applications on the JVM. Some of the goodness in Reactor 1.0.0.M1 includes: reactive composition helpers Stream and Promise, a TcpServer and TcpClient, and Groovy and Spring support. Inspired by Reactive Extenstions, RxJava, the  <a href="http://blog.springsource.org/2013/07/18/reactor-1-0-0-m1-a-foundation-for-asynchronous-fast-data-applications-on-the-jvm/"><em>Read more...</em></a>]]></description>
 		<wfw:commentRss>http://blog.springsource.org/2013/07/18/reactor-1-0-0-m1-a-foundation-for-asynchronous-fast-data-applications-on-the-jvm/feed/</wfw:commentRss>
-		<slash:comments>5</slash:comments>
+		<slash:comments>6</slash:comments>
 		</item>
 		<item>
 		<title>JavaConfig support in the Spring Tool Suite</title>
@@ -73,7 +73,7 @@
 		<guid isPermaLink="false">http://blog.springsource.org/?p=13894</guid>
 		<description><![CDATA[In this post, I will discuss how to make your Spring Security Java configuration more readable. The post is intended to elaborate on a point from Spring Security Java Config Preview: Web Security where I stated: By formatting our Java configuration code it is much easier to read. It can be read similar to the  <a href="http://blog.springsource.org/2013/07/11/spring-security-java-config-preview-readability/"><em>Read more...</em></a>]]></description>
 		<wfw:commentRss>http://blog.springsource.org/2013/07/11/spring-security-java-config-preview-readability/feed/</wfw:commentRss>
-		<slash:comments>6</slash:comments>
+		<slash:comments>8</slash:comments>
 		</item>
 		<item>
 		<title>Eclipse Quick Search</title>
@@ -87,7 +87,7 @@
 		<guid isPermaLink="false">http://blog.springsource.org/?p=13600</guid>
 		<description><![CDATA[Are you an Eclipse user? Do you want a fast and easy way to search for text snippets and patterns in your workspace? Then read on! A new &#034;Quick Search&#034; is included in Spring ToolSuite (STS) 3.3.0 and Groovy Gails Tool Suite (GGTS) 3.3.0 which have just been released. Even if you are not a  <a href="http://blog.springsource.org/2013/07/11/eclipse-quick-search/"><em>Read more...</em></a>]]></description>
 		<wfw:commentRss>http://blog.springsource.org/2013/07/11/eclipse-quick-search/feed/</wfw:commentRss>
-		<slash:comments>14</slash:comments>
+		<slash:comments>15</slash:comments>
 		</item>
 		<item>
 		<title>Spring Security Java Config Preview: OAuth</title>
@@ -128,7 +128,7 @@
 		<guid isPermaLink="false">http://blog.springsource.org/?p=13769</guid>
 		<description><![CDATA[In my previous post, I introduced Spring Security Java configuration and discussed some of the logistics of the project. In this post, we will start off by walking through a very simple web security configuration. We will then spice things up a bit with configuration that has been customized some. Hello Web Security In this  <a href="http://blog.springsource.org/2013/07/03/spring-security-java-config-preview-web-security/"><em>Read more...</em></a>]]></description>
 		<wfw:commentRss>http://blog.springsource.org/2013/07/03/spring-security-java-config-preview-web-security/feed/</wfw:commentRss>
-		<slash:comments>13</slash:comments>
+		<slash:comments>15</slash:comments>
 		</item>
 		<item>
 		<title>Spring Security Java Config Preview: Introduction</title>

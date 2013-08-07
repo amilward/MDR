@@ -20,7 +20,7 @@
 			<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
-			<table>
+			<table class="tableList">
 				<thead>
 					<tr>
 						<g:sortableColumn property="name" title="${message(code: 'dataElement.name.label', default: 'Name')}" />

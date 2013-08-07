@@ -26,6 +26,8 @@ class DataElement {
 		refId unique: true
 		parent nullable: true
 		dataElementConcept nullable: true
+		definition nullable: true
+		name blank: false
     }
 	
 	static mapping = {
