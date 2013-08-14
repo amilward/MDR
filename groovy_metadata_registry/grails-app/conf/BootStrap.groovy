@@ -8,6 +8,8 @@ import uk.co.mdc.model.DataElementValueDomain
 import org.codehaus.groovy.grails.plugins.springsecurity.SecurityFilterPosition
 import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils
 import grails.util.DomainBuilder
+import org.springframework.web.context.support.WebApplicationContextUtils
+
 
 
 class BootStrap {
@@ -15,7 +17,22 @@ class BootStrap {
 	def springSecurityService
 	
     def init = { servletContext ->
+		
+		def springContext = WebApplicationContextUtils.getWebApplicationContext( servletContext )
+		
+		
+		//register custom marshallers
+		
+		springContext.getBean('customObjectMarshallers').register()
+		
+		
+		//register rest api security filter
+		
+		SpringSecurityUtils.clientRegisterFilter('apiAuthFilter', SecurityFilterPosition.SECURITY_CONTEXT_FILTER.order + 10)
+		
 	
+		//create user if none exists
+		
 		def userAuth = SecAuth.findByAuthority('ROLE_USER') ?: new SecAuth(authority: 'ROLE_USER').save(failOnError: true)
 		def adminAuth = SecAuth.findByAuthority('ROLE_ADMIN') ?: new SecAuth(authority: 'ROLE_ADMIN').save(failOnError: true)
 
@@ -29,9 +46,7 @@ class BootStrap {
 			SecUserSecAuth.create adminUser, adminAuth
 		}
 		
-		//register rest api security filter
 		
-		SpringSecurityUtils.clientRegisterFilter('apiAuthFilter', SecurityFilterPosition.SECURITY_CONTEXT_FILTER.order + 10)
 			
 		//populate with test data
 		
@@ -102,7 +117,7 @@ class BootStrap {
 				"92":"referral from a GENERAL DENTAL PRACTITIONER",
 				"12":"referral from a GENERAL PRACTITIONER with a Special Interest (GPwSI) or dentist with a Special Interest (DwSI)",
 				"04":"referral from an Accident And Emergency Department (including Minor Injuries Units and Walk In Centres)",
-				"05":"referral from a CONSULTANT, other than in an Accident And Emergency Department",
+				"05":"referral from a CONSULTANT other than in an Accident And Emergency Department",
 				"06":"self-referral",
 				"07":"referral from a Prosthetist",
 				"13":"referral from a Specialist NURSE (Secondary Care)",

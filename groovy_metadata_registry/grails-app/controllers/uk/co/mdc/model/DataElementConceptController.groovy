@@ -188,7 +188,7 @@ class DataElementConceptController {
 				children = getChildren()
 			}
 			
-			if(!validateChildParentRelationship(params.parent.id.value.toString(), children)){
+			if(!ChildParentValid(params.parent.id.value.toString(), children)){
 				params.subConcepts = ''
 				flash.message = 'Error: Sub elements must not contain the parent element'
 				return false
@@ -199,7 +199,7 @@ class DataElementConceptController {
 	
 	
 	
-	Boolean validateChildParentRelationship(String parent, ArrayList children){
+	Boolean ChildParentValid(String parent, ArrayList children){
 		
 		if(children.contains(parent)){
 			return false

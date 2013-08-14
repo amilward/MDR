@@ -6,6 +6,10 @@ class ExternalSynonym {
 	String url
 	Map attributes
 	
+	static searchable = {
+		content: spellCheck 'include'
+	}
+	
     static constraints = {
 		attributes nullable:true
 		name blank: false

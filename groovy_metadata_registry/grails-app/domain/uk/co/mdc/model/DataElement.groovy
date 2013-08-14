@@ -16,7 +16,9 @@ class DataElement {
 	
 	DataElementConcept dataElementConcept
 	
-	static searchable = true
+	static searchable = {
+        content: spellCheck 'include'
+    } 
 	
 	static hasMany = [subElements: DataElement, dataElementValueDomains: DataElementValueDomain, dataElementCollections: DataElementCollection, externalSynonyms: ExternalSynonym]
 	

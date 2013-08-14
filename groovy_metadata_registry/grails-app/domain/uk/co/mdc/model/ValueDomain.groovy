@@ -18,7 +18,9 @@ class ValueDomain {
  	
 	Set dataElementValueDomains = []
 	
-	static searchable = true
+	static searchable = {
+        content: spellCheck 'include'
+    } 
 	
 	static hasMany = [dataElementValueDomains: DataElementValueDomain, externalSynonyms: ExternalSynonym]
 	

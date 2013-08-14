@@ -1,10 +1,11 @@
 package uk.co.mdc.model
 
+import grails.converters.JSON
 import org.springframework.dao.DataIntegrityViolationException
 
 class DataElementController {
 
-    static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
+    static allowedMethods = [listJSON: "GET",save: "POST", update: "POST", delete: "POST"]
 
     def index() {
         redirect(action: "list", params: params)
@@ -14,6 +15,13 @@ class DataElementController {
         params.max = Math.min(max ?: 10, 100)
         [dataElementInstanceList: DataElement.list(params), dataElementInstanceTotal: DataElement.count()]
     }
+	
+	def listJSON(){
+		
+		def model = [sEcho: 1, iTotalRecords: DataElement.count(), iTotalDisplayRecords:DataElement.count(), aaData: DataElement.list()]
+				
+		render model as JSON
+	}
 
     def create() {
         [valueDomains: ValueDomain.list(), dataElements: DataElement.list(), externalSynonyms: ExternalSynonym.list(), dataElementInstance: new DataElement(params)]
@@ -233,7 +241,7 @@ class DataElementController {
 				children = getChildren()
 			}
 			
-			if(!validateChildParentRelationship(params.parent.id.value.toString(), children)){
+			if(!ChildParentValid(params.parent.id.value.toString(), children)){
 				params.subElements = ''
 				flash.message = 'Error: Sub elements must not contain the parent element'
 				return false
@@ -243,7 +251,7 @@ class DataElementController {
 	}
 
 	
-	Boolean validateChildParentRelationship(String parent, ArrayList children){
+	Boolean ChildParentValid(String parent, ArrayList children){
 		
 		if(children.contains(parent)){
 			return false

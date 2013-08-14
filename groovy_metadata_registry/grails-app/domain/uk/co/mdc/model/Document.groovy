@@ -9,6 +9,11 @@ class Document {
 	String fileName
 	byte[] content
 	
+	static searchable = {
+		only=['name', 'refId', 'fileName']
+		content: spellCheck 'include'
+	}
+	
     static constraints = {
 		name blank: false, nullable: false, size: 2..20
 		description blank: false, nullable: false, size: 2..500

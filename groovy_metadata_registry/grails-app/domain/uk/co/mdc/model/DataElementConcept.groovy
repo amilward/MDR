@@ -10,7 +10,9 @@ class DataElementConcept {
 	
 	DataElementConcept parent
 	
-	static searchable = true
+	static searchable = {
+        content: spellCheck 'include'
+    } 
 	
 	static hasMany = [subConcepts: DataElementConcept, dataElements: DataElement]
 	

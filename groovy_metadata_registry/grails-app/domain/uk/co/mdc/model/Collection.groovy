@@ -2,6 +2,7 @@ package uk.co.mdc.model
 
 import java.util.List;
 import java.util.Set;
+import uk.co.mdc.forms.FormSpecification
 
 class Collection {
 	
@@ -12,8 +13,14 @@ class Collection {
 	String description
 	
 	Set dataElementCollections = []
+	
+	Set formSpecifications = []
 	 
-	static hasMany = [dataElementCollections: DataElementCollection]
+	static searchable = {
+		content: spellCheck 'include'
+	}
+	
+	static hasMany = [dataElementCollections: DataElementCollection, formSpecifications: FormSpecification]
 	 
     static constraints = {
 		refId unique: true
@@ -35,7 +42,7 @@ class Collection {
 	
 	List mandatoryDataElementCollections() {
 		
-		def mandatoryDataElementCollection = dataElementCollections.find{it.schemaSpecification==SchemaSpecification.MANDATORY}
+		def mandatoryDataElementCollection = dataElementCollections.findAll{it.schemaSpecification==SchemaSpecification.MANDATORY}
 		
 		if(mandatoryDataElementCollection){
 			return mandatoryDataElementCollection.collect{it.dataElement}
