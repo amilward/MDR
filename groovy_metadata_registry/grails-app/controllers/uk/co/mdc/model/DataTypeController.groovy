@@ -1,5 +1,6 @@
 package uk.co.mdc.model
 
+import grails.converters.JSON
 import org.springframework.dao.DataIntegrityViolationException
 
 class DataTypeController {
@@ -10,10 +11,16 @@ class DataTypeController {
         redirect(action: "list", params: params)
     }
 
-    def list(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
-        [dataTypeInstanceList: DataType.list(params), dataTypeInstanceTotal: DataType.count()]
+    def list() {
+        [dataTypeInstanceTotal: DataType.count()]
     }
+	
+	def listJSON(){
+
+		def model = [sEcho: 1, iTotalRecords: DataType.count(), iTotalDisplayRecords:DataType.count(), aaData: DataType.list()]
+		
+		render model as JSON
+	}
 
     def create() {
         [dataTypeInstance: new DataType(params)]

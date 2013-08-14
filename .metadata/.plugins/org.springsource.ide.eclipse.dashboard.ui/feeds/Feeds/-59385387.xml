@@ -6,6 +6,278 @@
  <description>Welcome to the home of Spring, the leading platform to build and run enterprise Java applications. Led and sustained by SpringSource, Spring delivers significant benefits for many projects, increasing development productivity and runtime performance while improving test coverage and application quality.</description>
  <language>en</language>
 <item>
+ <title>SpringSource Training Schedule: September 2013</title>
+ <link>http://www.springsource.org/spring-training-september-2013</link>
+ <description>&lt;p&gt;If you are a Java developer looking to increase your Spring knowledge, Spring Training by Pivotal is the place to start. We are providing several Spring trainings across the globe closely connected to your needs as a professional developer. This month we provide the new &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=187574&quot;&gt;4-day Groovy &amp; Grails class&lt;/a&gt; in Boston, MA. SpringSource has also started offering new &lt;a href=&quot;http://mylearn.vmware.com/portals/www/search/results.cfm?ui=www_edu&amp;menu=search-results&amp;searchtype=simple&amp;category=schedule&amp;id_subject=18355&quot;&gt;Hibernate with Spring Classes&lt;/a&gt; in the Bay Area, Germany, London (GB) and the United States (Online Courses)&lt;/p&gt;
+
+&lt;p&gt;The complete Spring training schedule for September, 2013 can be found below:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Step 1: Core Spring&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;i&gt;Americas&lt;/i&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;September 03 - 06: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=187563&quot;&gt;Core Spring in Dallas, TX&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;September 10 - 13: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=187567&quot;&gt;Core Spring in Washington, DC&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;September 10 - 13: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=187566&quot;&gt;Core Spring in Los Angeles, CA&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;September 17 - 20: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=181804&quot;&gt;Core Spring Live Online in the United States&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;September 17 - 20: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=182006&quot;&gt;Core Spring in Phoenix, AZ&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;September 17 - 20: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=182007&quot;&gt;Core Spring in Sacramento, CA&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;September 17 - 20: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=182008&quot;&gt;Core Spring in San Francisco, CA&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;September 17 - 20: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=182009&quot;&gt;Core Spring in San Jose, CA&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;September 17 - 20: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=187569&quot;&gt;Core Spring in Seattle, WA&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;September 17 - 20: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=182006&quot;&gt;Core Spring in Phoenix, AZ&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;September 24 - 27: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=187578&quot;&gt;Core Spring in San Diego, CA&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;September 24 - 27: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=187576&quot;&gt;Core Spring in Stamford, CT&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;September 24 - 27: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=187577&quot;&gt;Core Spring in Orlando, FL&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;i&gt;Asia Pacific&lt;/i&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;September 02 - 05: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=158771&quot;&gt;Core Spring in Bangalore, India&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;September 09 - 12: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=180574&quot;&gt;Core Spring in Hong Kong, Hong Kong&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;September 17 - 20: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=186224&quot;&gt;Core Spring in Singapore, Singapore&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;September 25 - 28: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=158772&quot;&gt;Core Spring in New Delhi, India&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;i&gt;Europe, Middle East &amp; Africa&lt;/i&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;September 03 - 06: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=181734&quot;&gt;Core Spring in Prague, Czech Republic&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;September 03 - 06: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=181556&quot;&gt;Core Spring Amsterdam, Netherlands&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;September 09 - 12: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=177378&quot;&gt;Core Spring in Paris, France&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;September 09 - 12: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=140849&quot;&gt;Core Spring in München, Germany&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;September 10 - 13: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=172337&quot;&gt;Core Spring in Wien, Austria&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;September 10 - 13: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=181560&quot;&gt;Core Spring in Brussels, Belgium&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;September 10 - 13: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=186226&quot;&gt;Core Spring in Moscow, Russia&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;September 10 - 13: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=176660&quot;&gt;Core Spring in Stockholm, Sweden&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;September 10 - 13: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=172355&quot;&gt;Core Spring in Zürich, Switzerland&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;September 16 - 19: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=171416&quot;&gt;Core Spring in London, United Kingdom&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;September 17 - 20: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=183032&quot;&gt;Core Spring in Zagreb, Croatia&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;September 17 - 20: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=181182&quot;&gt;Core Spring Live Online in Europe&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;September 23 - 26: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=184571&quot;&gt;Core Spring in München, Germany&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;September 24 - 27: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=176663&quot;&gt;Core Spring in Oslo, Norway&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;September 24 - 27: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=185526&quot;&gt;Core Spring in Madrid, Spain&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Step 2: Spring Web / Enterprise Integration with Spring / Hibernate with Spring&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;i&gt;Americas&lt;/i&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;September 03 - 06: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=187564&quot;&gt;Enterprise Integration with Spring in Boston, MA&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;September 14 - 22: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=184492&quot;&gt;Enterprise Integration with Spring Live Online in South America&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;September 17 - 20: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=187498&quot;&gt;Enterprise Integration with Spring Live Online in the United States&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;September 24 - 26: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=181813&quot;&gt;Hibernate with Spring Live Online in the United States&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;September 24 - 26: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=182010&quot;&gt;Hibernate with Spring in Phoenix, AZ&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;September 24 - 26: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=182011&quot;&gt;Hibernate with Spring in Sacramento, CA&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;September 24 - 26: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=182012&quot;&gt;Hibernate with Spring in San Francisco, CA&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;September 24 - 26: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=182013&quot;&gt;Hibernate with Spring in San Jose, CA&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;i&gt;Asia Pacific&lt;/i&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;September 02 - 05: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=174870&quot;&gt;Enterprise Integration with Spring in Sydney, Australia&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;i&gt;Europe, Middle East &amp; Africa&lt;/i&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;September 03 - 06: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=182759&quot;&gt;Enterprise Integration with Spring Live Online in Europe&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;September 10 - 13: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=181558&quot;&gt;Enterprise Integration with Spring in Amsterdam, Netherlands&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;September 17 - 20: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=181554&quot;&gt;Enterprise Integration with Spring in Dublin, Ireland&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;September 24 - 27: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=172346&quot;&gt;Enterprise Integration with Spring in Wien, Austria&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;September 24 - 27: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=140864&quot;&gt;Enterprise Integration with Spring in München, Germany&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;September 24 - 27: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=175082&quot;&gt;Enterprise Integration with Spring in Zürich, Switzerland&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;September 04 - 06: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=140870&quot;&gt;Hibernate with Spring in Berlin, Germany&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;September 23 - 25: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=175666&quot;&gt;Hibernate with Spring in London, United Kingdom&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;September 30 - October 02: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=172349&quot;&gt;Hibernate with Spring in Wien, Austria&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;September 30 - October 02: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=140877&quot;&gt;Hibernate with Spring in München, Germany&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;September 30 - October 02: &lt;a href=&quot;http://mylearn.vmware.com/mgrreg/courses.cfm?ui=www_edu&amp;a=det&amp;id_course=172362&quot;&gt;Hibernate with Spring in Zürich, Switzerland&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;If you cannot find a professional training near you, you can always request an &lt;a href=http://mylearn.vmware.com/mgrReg/message.cfm?ui=www&amp;subject=Onsite%20Training&gt;onsite SpringSource training&lt;/a&gt;&lt;/p&gt;</description>
+ <comments>http://www.springsource.org/spring-training-september-2013#comments</comments>
+ <category domain="http://www.springsource.org/taxonomy/term/4">News and Announcements</category>
+ <pubDate>Fri, 09 Aug 2013 09:49:57 +0000</pubDate>
+ <dc:creator>Mark Baars</dc:creator>
+ <guid isPermaLink="false">22671 at http://www.springsource.org</guid>
+</item>
+<item>
+ <title>Webinar: Getting Agile with Pivotal Tracker</title>
+ <link>http://www.springsource.org/node/22670</link>
+ <description>&lt;div class=&quot;event-nodeapi&quot;&gt;
+  &lt;div class=&quot;event-start dtstart&quot; title=&quot;2013-09-05T17:00:00Z&quot;&gt;&lt;label&gt;Start:  &lt;/label&gt; 2013-09-05 10:00 &lt;/div&gt;
+&lt;/div&gt;
+  &lt;div class=&quot;event-nodeapi&quot;&gt;
+    &lt;div class=&quot;event-end dtend&quot; title=&quot;2013-09-05T18:00:00Z&quot;&gt;&lt;label&gt;End: &lt;/label&gt; 2013-09-05 11:00 &lt;/div&gt;
+  &lt;/div&gt;
+ &lt;div class=&quot;event-nodeapi&quot;&gt;
+   &lt;div class=&quot;event-tz&quot;&gt;&lt;label&gt;Timezone: &lt;/label&gt;US/Pacific &lt;/div&gt;
+  &lt;/div&gt;
+&lt;div class=&quot;event-nodeapi&quot;&gt;
+  &lt;div class=&quot;event-start dtstart&quot; title=&quot;2013-09-05T17:00:00Z&quot;&gt;&lt;label&gt;Start:  &lt;/label&gt; 2013-09-05 10:00 &lt;/div&gt;
+&lt;/div&gt;
+  &lt;div class=&quot;event-nodeapi&quot;&gt;
+    &lt;div class=&quot;event-end dtend&quot; title=&quot;2013-09-05T18:00:00Z&quot;&gt;&lt;label&gt;End: &lt;/label&gt; 2013-09-05 11:00 &lt;/div&gt;
+  &lt;/div&gt;
+ &lt;div class=&quot;event-nodeapi&quot;&gt;
+   &lt;div class=&quot;event-tz&quot;&gt;&lt;label&gt;Timezone: &lt;/label&gt;US/Pacific &lt;/div&gt;
+  &lt;/div&gt;
+&lt;style type=&quot;text/css&quot;&gt;
+.event-nodeapi, .submitted {display:none}
+&lt;/style&gt;
+&lt;p&gt;Speaker: Davis W. Frank&lt;/p&gt;
+&lt;p&gt;&quot;Agile Software Development&quot; is an ambiguous term. It&#039;s an umbrella term. It&#039;s a controversial term. But what does it really mean? The first principle of agile development is to keep feedback loops small to allow a team to make frequent, small corrections on the way to delivery. 
+&lt;/p&gt;
+&lt;p&gt;
+Pivotal Labs practices this every day, coaching our clients on how to re-view their problems and approach from first principles. We wrote Pivotal Tracker - the Agile project management app - to work the way we think
+&lt;/p&gt;
+&lt;p&gt;
+Come learn about tight feedback loops, how to use them in software, and how Pivotal Tracker can keep your backlog sane.
+&lt;/p&gt;
+&lt;p&gt; Europe: Thursday, September 5&lt;br&gt;
+  3:00pm GMT Summer Time (London, GMT+01:00)&lt;br&gt;
+&lt;a href=&quot;https://vmwareevents.webex.com/vmwareevents/onstage/g.php?t=a&amp;d=664375369&quot; target=&quot;_blank&quot;&gt;Register&lt;/a&gt; &lt;/p&gt;
+&lt;p&gt; North America: Thursday, September 5&lt;br&gt;
+  10:00am Pacific Daylight (San Francisco, GMT-07:00)&lt;br&gt;
+&lt;a href=&quot;https://vmwareevents.webex.com/vmwareevents/onstage/g.php?t=a&amp;d=665766780&quot; target=&quot;_blank&quot;&gt;Register&lt;/a&gt; &lt;/p&gt;</description>
+ <comments>http://www.springsource.org/node/22670#comments</comments>
+ <pubDate>Thu, 08 Aug 2013 22:15:00 +0000</pubDate>
+ <dc:creator>Chloe Jackson</dc:creator>
+ <guid isPermaLink="false">22670 at http://www.springsource.org</guid>
+</item>
+<item>
+ <title>This Week in Spring - Aug 6th, 2013</title>
+ <link>http://www.springsource.org/node/22667</link>
+ <description>&lt;p&gt;Welcome back to another installment of &lt;em&gt;This Week in Spring&lt;/em&gt;. On August 1, I celebrated my third year at &lt;a href=&quot;http://twitter.com/Starbuxman&quot;&gt;SpringSource&lt;/a&gt;. I continue to enjoy the ride of my life and a huge part of that is my interaction with you, the most amazing community ever. Thanks for that, folks.&lt;/p&gt;
+
+&lt;p&gt;Have you booked your tickets for &lt;strong&gt;&lt;a href=&quot;http://www.springone2gx.com/conference/santa_clara/2013/09/home&quot;&gt;SpringOne2GX&lt;/a&gt;&lt;/strong&gt;?  This year&amp;#39;s show is a special one. In my work as the Spring Developer Advocate, I speak at &lt;em&gt;many&lt;/em&gt; conferences all around the world. Ask any developer with a pulse, and they&amp;#39;ll confirm that big data (and Hadoop), reactive web applications, REST, mobile application development, and cloud computing are sizzling hot topics today. Pivotal, and Spring, support today&#039;s developers, and SpringOne2GX&#039;s agenda represents in my estimation the perfect blend of content for today&amp;#39;s developers. Check out &lt;a href=&quot;https://springone2gx.com/conference/santa_clara/2013/09/springone/event_schedule&quot;&gt;the agenda&lt;/a&gt;. We&amp;#39;ve just recently added talks on &lt;a href=&quot;http://www.springone2gx.com/conference/santa_clara/2013/09/session?id=29165&quot;&gt;big data&lt;/a&gt;, and &lt;a href=&quot;http://www.springone2gx.com/conference/santa_clara/2013/09/session?id=29425&quot;&gt;REST service security with OAuth&lt;/a&gt;. This will be our first show under &lt;a href=&quot;http://gopivotal.com&quot;&gt;Pivotal&lt;/a&gt;, and it&amp;#39;s the only place where you can talk to the developers working on the technologies you care about both at SpringSource and in the community. As you know, we&amp;#39;ve just announced our Cloud Foundry conference, &lt;a href=&quot;http://platformcf.com&quot;&gt;Platform&lt;/a&gt;, and SpringOne2GX full pass ticket holders may register for that show - which is at the same venue as SpringOne2GX just two days earlier - for free! If I had to pay for just one show a year, this would be that show.  Hurry the early bird rate expires this friday!&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Major news&lt;/strong&gt;: Phil Webb and Dr. David Syer have &lt;a href=&quot;http://blog.springsource.org/2013/08/06/spring-boot-simplifying-spring-for-everyone/&quot;&gt;just announced Spring Boot&lt;/a&gt;, which simplifies Spring application development. Spring Boot provides an opinionated layer on top of Spring and in so doing makes it dead simple to get an application up and running with a minimum of fuss.  Seriously, this stuff will blow your mind. Do not read any further until you&amp;#39;ve read this short and sweet post! Give it a go and be sure to &lt;a href=&quot;http://twitter.com/SpringSource&quot;&gt;let us know about your experiences&lt;/a&gt;!&lt;/li&gt;
+&lt;li&gt;Spring Framework 3.2.4 maintenance release &lt;a href=&quot;http://www.springsource.org/node/22666&quot;&gt;is now available&lt;/a&gt;, with an important security fix for SpringOXM.. &lt;/li&gt;
+&lt;li&gt;Spring Data Redis-lead and ninja Jennifer Hickey just announced the availability &lt;a href=&quot;http://www.springsource.org/node/22665&quot;&gt;of two Spring Data releases&lt;/a&gt;. Spring Data Redis 1.1,  M2, featuring a &lt;em&gt;lot&lt;/em&gt; of new features, including enhanced data pipelining, Redis 2.6 scripting, and more. Spring Data Redis 1.0.6 is also available, and features bug fixes and smaller improvements. &lt;/li&gt;
+&lt;li&gt;Spring Mobile and Android lead Roy Clarkson just announced &lt;a href=&quot;http://www.springsource.org/spring-mobile/news/1.1.0.rc1-released&quot;&gt;Spring Mobile 1.1.0.RC1&lt;/a&gt;, which features improvements to device detection and view resolution in Spring Mobile. Roy also announced a new cut of the stable line of Spring Mobile, 1.0.2, which features similar improvements, some backported.&lt;/li&gt;
+&lt;li&gt;Spring Data ninja Oliver Gierke has just announced that the final release candidate for   &lt;a href=&quot;http://www.springsource.org/node/22662&quot;&gt;Spring Data Babbage&lt;/a&gt; is now available. This release is named for &lt;a href=&quot;http://en.wikipedia.org/wiki/Charles_Babbage&quot;&gt;Charles Babbage&lt;/a&gt;. This release features support for the MongoDB Aggregation Framework and improved the execution of polymorphic queries, support to use SpEL expressions in manually defined queries with JPA, improved handling of entities using @IdClass, a &lt;code&gt;countBy(..)&lt;/code&gt; method for Neo4j repositories, and &lt;em&gt;much&lt;/em&gt; more. &lt;/li&gt;
+&lt;li&gt;The replay for the webinars &lt;a href=&quot;http://www.springsource.org/node/22660&quot;&gt;&lt;em&gt;Functional Programming without Lamba&lt;/em&gt;&lt;/a&gt;  and &lt;a href=&quot;http://www.springsource.org/node/22661&quot;&gt;&lt;em&gt;Spring with Cucumber for Automation&lt;/em&gt;&lt;/a&gt; are now available online. Be sure to check them out! &lt;/li&gt;
+&lt;li&gt;A few weeks ago, our friend Johnathan Mark Smith put together a video introducing how to use &lt;a href=&quot;https://www.youtube.com/watch?v=aY_JsfJM2eU&amp;amp;feature=share&amp;amp;list=UULXuFBD0Ik8VH10azZ--6Jg&quot;&gt;Spring Data MongoDB  and Java configuration&lt;/a&gt;. Check it out! And, if you&amp;#39;re doing awesome videos, feel free to share. I&amp;#39;d love to post them on &lt;em&gt;This Week in Spring&lt;/em&gt;, too!&lt;/li&gt;
+&lt;li&gt;I smiled when I saw a &lt;a href=&quot;https://twitter.com/j_brisbin/status/364774255826698243&quot;&gt;tweet&lt;/a&gt; by the &lt;a href=&quot;http://github.com/reactor&quot;&gt;Reactor&lt;/a&gt; project lead Jonathan Brisbin in which he says, &amp;quot;Processor throughput: 90M ops/sec on a laptop. 1 thread + @LMAX Disruptor. Not #fastdata, #uberfastdata&amp;quot; and then links to a &lt;a href=&quot;https://github.com/reactor/reactor/blob/master/reactor-core/src/test/java/reactor/core/processor/ProcessorThroughputTests.java#L71&quot;&gt;test case in the code&lt;/a&gt;. Needless to say, &lt;a href=&quot;http://blog.springsource.org/2013/05/13/reactor-a-foundation-for-asynchronous-applications-on-the-jvm/&quot;&gt;Reactor&lt;/a&gt; is going to shake things up big time! (And, of course, we&amp;#39;ll have more content on Reactor at &lt;a href=&quot;http://springone2gx.com&quot;&gt;SpringOne2GX&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;The latest release of Tomcat, &lt;a href=&quot;HTTP://ow.ly/nGwEo&quot;&gt;Apache Tomcat 8.0.0-RC1 (alpha)&lt;/a&gt;, is now available! There are a lot of new features. Notably, Tomcat 8 will be the first Tomcat to support JSR 356, web sockets. This is the perfect compliment to Spring 4&amp;#39;s &lt;a href=&quot;http://blog.springsource.org/2013/07/24/spring-framework-4-0-m2-websocket-messaging-architectures/&quot;&gt;recently announced web socket support&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Mohan Srihari Kantipudi has put together a nice post on &lt;a href=&quot;http://mohansrihari.wordpress.com/2013/08/05/ajax-request-processing-using-spring-mvc-3-x/&quot;&gt;Spring&amp;#39;s basic REST capabilities&lt;/a&gt; &lt;/li&gt;
+&lt;li&gt;I liked Gregor Riegler&amp;#39;s post on &lt;a href=&quot;http://babdev.blogspot.com/2013/08/good-bye-redeployment-spring-loaded.html&quot;&gt;Spring Loaded&lt;/a&gt;, the best kept secret in open source. Spring Loaded is a Java agent that lets you reload code as you&amp;#39;re working on it (no need to redeploy!). This is a &lt;em&gt;very&lt;/em&gt; cool post and I hope you&amp;#39;ll consider using Spring Loaded, too.&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+ <comments>http://www.springsource.org/node/22667#comments</comments>
+ <category domain="http://www.springsource.org/taxonomy/term/14">This Week in Spring</category>
+ <pubDate>Wed, 07 Aug 2013 02:55:52 +0000</pubDate>
+ <dc:creator>Josh Long</dc:creator>
+ <guid isPermaLink="false">22667 at http://www.springsource.org</guid>
+</item>
+<item>
+ <title>Spring Framework 3.2.4 Released</title>
+ <link>http://www.springsource.org/node/22666</link>
+ <description>&lt;p&gt;The fourth maintenance release in the Spring 3.2.x line is now available via &lt;a href=&quot;http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22org.springframework%22&quot;&gt;Maven Central&lt;/a&gt;, the &lt;a href=&quot;https://github.com/SpringSource/spring-framework/wiki/Downloading-Spring-artifacts#wiki-resolving-spring-artifacts&quot;&gt;SpringSource repository&lt;/a&gt;, or for direct download from our &lt;a target=&quot;_blank&quot; href=&quot;http://www.springsource.com/download/community?project=Spring%20Framework&amp;amp;version=3.2.4.RELEASE&quot;&gt;community download page&lt;/a&gt;.  This release includes numerous &lt;a href=&quot;https://jira.springsource.org/secure/ReleaseNote.jspa?projectId=10000&amp;amp;version=14143&quot;&gt;bugfixes and improvements&lt;/a&gt; including an &lt;a href=&quot;https://jira.springsource.org/browse/SPR-10806&quot;&gt;important security fix&lt;/a&gt; for Spring OXM. We recommend that all all users upgrade.&lt;/p&gt;
+&lt;p&gt;&lt;a target=&quot;_blank&quot; href=&quot;http://www.springsource.com/download/community?project=Spring%20Framework&amp;amp;version=3.2.4.RELEASE&quot;&gt;Download&lt;/a&gt; | &lt;a href=&quot;http://static.springsource.org/spring/docs/3.2.4.RELEASE/spring-framework-reference/html/&quot;&gt;Documentation&lt;/a&gt; | &lt;a target=&quot;_blank&quot; href=&quot;http://static.springsource.org/spring/docs/3.2.4.RELEASE/javadoc-api/&quot;&gt;Javadoc API&lt;/a&gt; | &lt;a target=&quot;_blank&quot; href=&quot;http://static.springsource.org/spring/docs/3.2.4.RELEASE/changelog.txt&quot;&gt;Change Log&lt;/a&gt; | &lt;a href=&quot;http://jira.springframework.org/browse/SPR&quot;&gt;JIRA&lt;/a&gt;&lt;/p&gt;
+</description>
+ <comments>http://www.springsource.org/node/22666#comments</comments>
+ <pubDate>Wed, 07 Aug 2013 01:53:17 +0000</pubDate>
+ <dc:creator>Phil Webb</dc:creator>
+ <guid isPermaLink="false">22666 at http://www.springsource.org</guid>
+</item>
+<item>
+ <title>Spring Data Redis 1.1 M2 and 1.0.6 Released</title>
+ <link>http://www.springsource.org/node/22665</link>
+ <description>&lt;p&gt;Dear Spring Community,&lt;/p&gt;
+&lt;p&gt;I am pleased to announce the second milestone release of Spring Data Redis 1.1!&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.springsource.com/download/community?project=Spring%20Data%20Redis&amp;amp;version=1.1.0.M2&quot;&gt;Downloads&lt;/a&gt; | &lt;a href=&quot;http://static.springsource.org/spring-data/data-redis/docs/milestone/api/&quot;&gt;JavaDocs&lt;/a&gt; | &lt;a href=&quot;http://static.springsource.org/spring-data/data-redis/docs/milestone/reference/html&quot;&gt;Reference Documentation&lt;/a&gt; | &lt;a href=&quot;http://static.springframework.org/spring-data/data-redis/docs/milestone/changelog.txt&quot;&gt;Changelog&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Highlights include:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Significant enhancements to &lt;a href=&quot;http://static.springsource.org/spring-data/data-redis/docs/milestone/reference/html/redis.html#pipeline&quot;&gt;pipelining functionality&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Data type conversion and deserialization of &lt;a href=&quot;http://static.springsource.org/spring-data/data-redis/docs/milestone/reference/html/redis.html#tx&quot;&gt;Redis transaction&lt;/a&gt; results&lt;/li&gt;
+&lt;li&gt;High level support for Redis 2.6 scripting through RedisTemplate&lt;/li&gt;
+&lt;li&gt;Modified API for adding or removing multiple List, Set, and Hash elements in one call&lt;/li&gt;
+&lt;li&gt;Support for using RedisTemplate without serialization&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;There is also a new GA release, Spring Data Redis 1.0.6!&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.springsource.com/download/community?project=Spring%20Data%20Redis&amp;amp;version=1.0.6.RELEASE&quot;&gt;Downloads&lt;/a&gt; | &lt;a href=&quot;http://static.springsource.org/spring-data/data-redis/docs/current/api/&quot;&gt;JavaDocs&lt;/a&gt; | &lt;a href=&quot;http://static.springsource.org/spring-data/data-redis/docs/current/reference/html&quot;&gt;Reference Documentation&lt;/a&gt; | &lt;a href=&quot;http://static.springframework.org/spring-data/data-redis/docs/current/changelog.txt&quot;&gt;Changelog&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Spring Data Redis 1.0.6 is a maintenance release containing a few bug fixes and minor enhancements. See the &lt;a href=&quot;http://static.springframework.org/spring-data/data-redis/docs/current/changelog.txt&quot;&gt;Changelog&lt;/a&gt; for more information.&lt;/p&gt;
+&lt;p&gt;For more information about Spring Data Redis please see the &lt;a href=&quot;http://www.springsource.org/spring-data/redis&quot;&gt;home page&lt;/a&gt; for a live sample and webinar recording.&lt;/p&gt;
+&lt;p&gt;We look forward to your feedback on the &lt;a href=&quot;http://forum.springsource.org/forumdisplay.php?80-NoSQL&quot;&gt;forum&lt;/a&gt; or in the &lt;a href=&quot;https://jira.springsource.org/browse/DATAREDIS&quot;&gt;issue tracker&lt;/a&gt;. We hope to see you at the upcoming &lt;a href=&quot;http://www.springone.com/&quot;&gt;SpringOne conference&lt;/a&gt; in Santa Clara, CA. Checkout the &lt;a href=&quot;http://www.springone2gx.com/conference/santa_clara/2013/09/schedule&quot;&gt;schedule&lt;/a&gt; and register!&lt;/p&gt;
+</description>
+ <comments>http://www.springsource.org/node/22665#comments</comments>
+ <category domain="http://www.springsource.org/taxonomy/term/4">News and Announcements</category>
+ <pubDate>Tue, 06 Aug 2013 19:29:06 +0000</pubDate>
+ <dc:creator>jhickey</dc:creator>
+ <guid isPermaLink="false">22665 at http://www.springsource.org</guid>
+</item>
+<item>
+ <title>Spring Mobile 1.1.0.RC1 Released</title>
+ <link>http://www.springsource.org/spring-mobile/news/1.1.0.rc1-released</link>
+ <description>&lt;p&gt;Dear Spring Community,&lt;/p&gt;
+
+&lt;p&gt;
+We are happy to announce the release of &lt;a href=&quot;http://www.springsource.org/spring-mobile&quot;&gt;Spring Mobile&lt;/a&gt; 1.1.0.RC1! Spring Mobile provides extensions to Spring MVC that aid in the development of cross-platform mobile web applications. This release includes the following:&lt;/p&gt;
+
+&lt;ul&gt;
+    &lt;li&gt;Firefox OS now detected as mobile device&lt;/li&gt;
+    &lt;li&gt;Corrected an issue with redirects and forwards when using LiteDeviceDelegatingViewResolver&lt;/li&gt;
+    &lt;li&gt;Additional bug fixes and improvements&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;See the &lt;a href=&quot;http://static.springsource.org/spring-mobile/docs/1.1.0.RC1/changelog.txt&quot;&gt;changelog&lt;/a&gt; and &lt;a href=&quot;http://static.springsource.org/spring-mobile/docs/1.1.0.RC1/reference/html/&quot;&gt;reference manual&lt;/a&gt; for more information.
+&lt;/p&gt;
+
+&lt;p&gt;To retrieve the software, 
+&lt;a href=&quot;http://www.springsource.com/download/community?project=Spring%20Mobile&quot;&gt;download&lt;/a&gt; the release distribution, or add the &lt;a href=&quot;http://static.springsource.org/spring-mobile/docs/1.1.0.RC1/reference/html/device.html#spring-mobile-device-howtoget&quot;&gt;maven artifacts&lt;/a&gt; to your project. &lt;a href=&quot;https://github.com/SpringSource/spring-mobile-samples&quot;&gt;Sample apps&lt;/a&gt; are available to help you get started.  If you are building a mobile web app, we encourage you try Spring Mobile 1.1.0.RC1 and &lt;a href=&quot;http://forum.springsource.org/forumdisplay.php?f=85&quot;&gt;collaborate&lt;/a&gt; with us on the next iteration of the project.&lt;/p&gt;</description>
+ <comments>http://www.springsource.org/spring-mobile/news/1.1.0.rc1-released#comments</comments>
+ <category domain="http://www.springsource.org/taxonomy/term/4">News and Announcements</category>
+ <pubDate>Tue, 06 Aug 2013 14:27:52 +0000</pubDate>
+ <dc:creator>Roy Clarkson</dc:creator>
+ <guid isPermaLink="false">22664 at http://www.springsource.org</guid>
+</item>
+<item>
+ <title>Spring Mobile 1.0.2 Released</title>
+ <link>http://www.springsource.org/spring-mobile/news/1.0.2-released</link>
+ <description>&lt;p&gt;Dear Spring Community,&lt;/p&gt;
+
+&lt;p&gt;
+We are happy to announce the release of &lt;a href=&quot;http://www.springsource.org/spring-mobile&quot;&gt;Spring Mobile&lt;/a&gt; 1.0.2! Spring Mobile provides extensions to Spring MVC that aid in the development of cross-platform mobile web applications. This release includes the following:&lt;/p&gt;
+
+&lt;ul&gt;
+    &lt;li&gt;Firefox OS now detected as mobile device&lt;/li&gt;
+    &lt;li&gt;Kindle devices are now detected as tablets&lt;/li&gt;
+    &lt;li&gt;Kindle Fire devices are detected as tablet if they are in Silk Desktop mode or Android WebView, and as mobile when in Silk Mobile mode&lt;/li&gt;
+    &lt;li&gt;Additional bug fixes and improvements&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;See the &lt;a href=&quot;http://static.springsource.org/spring-mobile/docs/1.0.2.RELEASE/changelog.txt&quot;&gt;changelog&lt;/a&gt; and &lt;a href=&quot;http://static.springsource.org/spring-mobile/docs/1.0.2.RELEASE/reference/html/&quot;&gt;reference manual&lt;/a&gt; for more information.
+&lt;/p&gt;
+
+&lt;p&gt;To retrieve the software, 
+&lt;a href=&quot;http://www.springsource.com/download/community?project=Spring%20Mobile&quot;&gt;download&lt;/a&gt; the release distribution, or add the &lt;a href=&quot;http://static.springsource.org/spring-mobile/docs/1.0.2.RELEASE/reference/html/device.html#spring-mobile-device-howtoget&quot;&gt;maven artifacts&lt;/a&gt; to your project. &lt;a href=&quot;https://github.com/SpringSource/spring-mobile-samples&quot;&gt;Sample apps&lt;/a&gt; are available to help you get started.  If you are building a mobile web app, we encourage you try Spring Mobile 1.0.2 and &lt;a href=&quot;http://forum.springsource.org/forumdisplay.php?f=85&quot;&gt;collaborate&lt;/a&gt; with us on the next iteration of the project.&lt;/p&gt;</description>
+ <comments>http://www.springsource.org/spring-mobile/news/1.0.2-released#comments</comments>
+ <category domain="http://www.springsource.org/taxonomy/term/4">News and Announcements</category>
+ <pubDate>Tue, 06 Aug 2013 13:59:12 +0000</pubDate>
+ <dc:creator>Roy Clarkson</dc:creator>
+ <guid isPermaLink="false">22663 at http://www.springsource.org</guid>
+</item>
+<item>
+ <title>Spring Data Babbage RC1 released</title>
+ <link>http://www.springsource.org/node/22662</link>
+ <description>&lt;p&gt;I am pleased to announce the first and final release candidate of the Babbage episode of the Spring Data release train. I consists of the following modules:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Spring Data Commons 1.6 RC1 - &lt;a href=&quot;http://repo.springsource.org/libs-milestone/org/springframework/data/spring-data-commons/1.6.0.RC1/&quot;&gt;Artifacts&lt;/a&gt; - &lt;a href=&quot;http://static.springsource.org/spring-data/commons/docs/1.6.0.RC1/api/&quot;&gt;JavaDocs&lt;/a&gt; - &lt;a href=&quot;http://static.springsource.org/spring-data/commons/docs/1.6.0.RC1/reference/html/&quot;&gt;Documentation&lt;/a&gt; - &lt;a href=&quot;http://static.springsource.org/spring-data/commons/docs/1.6.0.RC1/changelog.txt&quot;&gt;Changelog&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Spring Data JPA 1.4 RC1 - &lt;a href=&quot;http://repo.springsource.org/libs-milestone/org/springframework/data/spring-data-jpa/1.4.0.RC1/&quot;&gt;Artifacts&lt;/a&gt; - &lt;a href=&quot;http://static.springsource.org/spring-data/jpa/docs/1.4.0.RC1/api/&quot;&gt;JavaDocs&lt;/a&gt; - &lt;a href=&quot;http://static.springsource.org/spring-data/jpa/docs/1.4.0.RC1/reference/html/&quot;&gt;Documentation&lt;/a&gt; - &lt;a href=&quot;http://static.springsource.org/spring-data/jpa/docs/1.4.0.RC1/changelog.txt&quot;&gt;Changelog&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Spring Data MongoDB 1.3 RC1 - &lt;a href=&quot;http://repo.springsource.org/libs-milestone/org/springframework/data/spring-data-mongodb/1.3.0.RC1/&quot;&gt;Artifacts&lt;/a&gt; - &lt;a href=&quot;http://static.springsource.org/spring-data/mongodb/docs/1.3.0.RC1/api/&quot;&gt;JavaDocs&lt;/a&gt; - &lt;a href=&quot;http://static.springsource.org/spring-data/mongodb/docs/1.3.0.RC1/reference/html/&quot;&gt;Documentation&lt;/a&gt; - &lt;a href=&quot;http://static.springsource.org/spring-data/mongodb/docs/1.3.0.RC1/changelog.txt&quot;&gt;Changelog&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Spring Data Neo4j 2.3 RC1 - &lt;a href=&quot;http://repo.springsource.org/libs-milestone/org/springframework/data/spring-data-neo4j/2.3.0.RC1/&quot;&gt;Artifacts&lt;/a&gt; - &lt;a href=&quot;http://static.springsource.org/spring-data/neo4j/docs/2.3.0.RC1/api/&quot;&gt;JavaDocs&lt;/a&gt; - &lt;a href=&quot;http://static.springsource.org/spring-data/neo4j/docs/2.3.0.RC1/reference/html/&quot;&gt;Documentation&lt;/a&gt; - &lt;a href=&quot;http://static.springsource.org/spring-data/neo4j/docs/2.3.0.RC1/changelog.txt&quot;&gt;Changelog&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The release forms a significant milestone towards the GA releases expected around SpringOne this year. We added support for the &lt;a href=&quot;http://static.springsource.org/spring-data/mongodb/docs/1.3.0.RC1/reference/html/mongo.core.html#mongo.aggregation&quot;&gt;MongoDB Aggregation Framework&lt;/a&gt; and improved the execution of polymorphic queries. On the JPA side of things we introduced support to use SpEL expressions in manually defined queries, improved the handling of entities using  &lt;code&gt;@IdClass&lt;/code&gt; and now allow to define the &lt;code&gt;Date&lt;/code&gt; binding for repository query parameters using &lt;code&gt;@TemporalType&lt;/code&gt;. The Neo4j module added support for &lt;code&gt;countBy(…)&lt;/code&gt; queries and type safe query execution for repositories. You can find a more detailed list of features at the &lt;a href=&quot;https://github.com/SpringSource/spring-data-commons/wiki/Release-Train-Babbage&quot;&gt;wiki page&lt;/a&gt; summarizing the Babbage content.&lt;/p&gt;
+&lt;p&gt;This release is the perfect time to play with the new features and report back your experiences before we turn it to a GA release in a few weeks. We&#039;d be happy to hear your opinions in the &lt;a href=&quot;http://forum.springsource.org/forumdisplay.php?27-Data&quot;&gt;forums&lt;/a&gt; or in the &lt;a href=&quot;jira.springsource.org&quot;&gt;bug tracker&lt;/a&gt; in case you run into any issues.&lt;/p&gt;
+&lt;p&gt;If you want to learn more about Spring Data or the Spring eco-system in general, the upcoming &lt;a href=&quot;http://www.springone.com/&quot;&gt;SpringOne conference&lt;/a&gt; in Santa Clara, CA is the perfect time and place to be. Checkout the &lt;a href=&quot;http://www.springone2gx.com/conference/santa_clara/2013/09/schedule&quot;&gt;schedule&lt;/a&gt; and register!&lt;/p&gt;
+</description>
+ <comments>http://www.springsource.org/node/22662#comments</comments>
+ <category domain="http://www.springsource.org/taxonomy/term/4">News and Announcements</category>
+ <pubDate>Mon, 05 Aug 2013 17:03:22 +0000</pubDate>
+ <dc:creator>ogierke</dc:creator>
+ <guid isPermaLink="false">22662 at http://www.springsource.org</guid>
+</item>
+<item>
  <title>Webinar Replay: Spring with Cucumber for Automation</title>
  <link>http://www.springsource.org/node/22661</link>
  <description>&lt;div&gt;
@@ -101,183 +373,6 @@ Speaker: Hemant Joshi
  <pubDate>Thu, 01 Aug 2013 21:14:18 +0000</pubDate>
  <dc:creator>Pieter Humphrey</dc:creator>
  <guid isPermaLink="false">22660 at http://www.springsource.org</guid>
-</item>
-<item>
- <title>This Week in Spring - July 30, 2013</title>
- <link>http://www.springsource.org/node/22659</link>
- <description>&lt;p&gt;Welcome back to another installment of &lt;em&gt;This Week in Spring&lt;/em&gt;! As usual, we&amp;#39;ve got a lot to cover so let&amp;#39;s get to it. Don&#039;t forget that SpringOne 2GX 2013 early bird expires August 9th, &lt;a href=&quot;http://www.springone2gx.com/conference/santa_clara/2013/09/register&quot;&gt;so hurry&lt;/a&gt; to secure the discounted rate! &lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Spring framework committer  Rossen Stoyanchev has a great post on &lt;a href=&quot;http://blog.springsource.org/2013/07/24/spring-framework-4-0-m2-websocket-messaging-architectures/&quot;&gt;Spring Framework 4.0 M2&amp;#39;s support for WebSocket Messaging Architectures&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;Spring Shell lead Dr. Mark Pollack has announced that &lt;a href=&quot;http://www.springsource.org/node/22656&quot;&gt;Spring Shell 1.0.1.M1&lt;/a&gt; has just been released. &lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://www.springsource.org/node/22658&quot;&gt;Spring Batch 2.2.1.RELEASE&lt;/a&gt; is now available. This release is mostly bug fixes and documentation improvements.&lt;/li&gt;
-&lt;li&gt; I don&amp;#39;t know if you&amp;#39;ve been following along, but we&amp;#39;re starting to really &lt;a href=&quot;https://springone2gx.com/conference/santa_clara/2013/09/schedule&quot;&gt;flesh out the SpringOne2GX 2013 schedule&lt;/a&gt;! I&amp;#39;m looking forward to both seeing, and presenting, at many different talks this year. One talk I&amp;#39;d like to see is &lt;a href=&quot;http://www.springone2gx.com/conference/santa_clara/2013/09/session?id=29453&quot;&gt;Thymeleaf: improving your Spring view layer with natural templates&lt;/a&gt;. I expect this year will be a &lt;em&gt;very&lt;/em&gt; exciting year for a number of reasons, and I hope you&amp;#39;ll share the experience with us. &lt;/li&gt;
-&lt;li&gt;We&#039;ve added some more SpringOne talks recently:&lt;/li&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;http://www.springone2gx.com/conference/santa_clara/2013/09/session?id=29824&quot;&gt;Spring and Web Content Management&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://www.springone2gx.com/conference/santa_clara/2013/09/session?id=29836&quot;&gt;Spring Data Community Lightning Talks&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://www.springone2gx.com/conference/santa_clara/2013/09/session?id=29837&quot;&gt;Application Security Pitfalls&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://www.springone2gx.com/conference/santa_clara/2013/09/session?id=29835&quot;&gt;Hadoop - Just the Basics for Big Data Rookies&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt; &lt;a href=&quot;http://www.springone2gx.com/conference/santa_clara/2013/09/session?id=29823&quot;&gt;Spring Integration Internals&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;li&gt;Our pal  Tobias Flohre has put together a &lt;a href=&quot;Tobias%20Flohre&quot;&gt;nice post comparing how the JSR 352 API compares to the Spring Batch&lt;/a&gt;. Spring Batch 3.0 will be fully JSR 352 API compliant this fall by SpringOne, but was the&lt;a href=&quot;http://www.infoq.com/news/2013/06/ee7-spring-batch&quot;&gt; inspiration for the JSR in the first place&lt;/a&gt; -- Spring Batch 1.0 was released in 2008 and has been gathering steam ever since.&lt;/li&gt;
-&lt;li&gt;Want to learn more about &lt;a href=&quot;http://github.com/SpringSource/Spring-Scala&quot;&gt;Spring Scala&lt;/a&gt;? Watch Spring Scala lead talk about &lt;a href=&quot;http://parleys.com/play/51c1ad7ee4b0d38b54f4621e/chapter0/about&quot;&gt;it at ScalaDays New York&lt;/a&gt;. &lt;/li&gt;
-&lt;li&gt;As I mentioned last week, you&amp;#39;d do well to also follow &lt;a href=&quot;http://www.thisweekincf.com/blog/2013/07/28/this-week-in-cloud-foundry-july-28/&quot;&gt;&lt;em&gt;This Week in Cloud Foundry&lt;/em&gt;&lt;/a&gt;, which has a lot of great content following last week&amp;#39;s large &lt;a href=&quot;http://blog.cloudfoundry.com/2013/07/24/cloud-foundry-is-open-and-pivotal-part-2/&quot;&gt;announcement of a partnership between Pivotal and IBM&lt;/a&gt;.&lt;br&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/reactor/reactor&quot;&gt;The Reactor project&lt;/a&gt; lead by &lt;a href=&quot;http://twitter.com/jbrisbin&quot;&gt;John Brisbin&lt;/a&gt; has just &lt;a href=&quot;https://twitter.com/j_brisbin/status/362007966938959872&quot;&gt;announced&lt;/a&gt; support for a &lt;a href=&quot;https://github.com/reactor/reactor-spring/blob/master/reactor-spring-context/src/test/groovy/reactor/spring/context/config/ReactorBeanDefinitionRegistrarSpec.groovy&quot;&gt;&lt;code&gt;@EnableReactor&lt;/code&gt; annotation for Spring Java configuration&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;..Speaking of &lt;a href=&quot;http://www.thymeleaf.org/&quot;&gt;Thymeleaf&lt;/a&gt; (the open source, Spring MVC, HTML5 and Tiles-friendly view and templating engine), version 2.1 will have &lt;a href=&quot;https://github.com/thymeleaf/thymeleaf/issues/181&quot;&gt;parameterizable fragments&lt;/a&gt;. Do you want to test them? Try the &lt;code&gt;2.1.0-SNAPSHOT&lt;/code&gt; version when specifying your Maven repository-compatible coordinates.&lt;/li&gt;
-&lt;LI&gt; 
-Our friend Johnathan Mark Smith is at it again, this time with  &lt;A href=&quot;https://www.youtube.com/watch?v=aY_JsfJM2eU&quot;&gt;a video on using Spring Data MongoDB&lt;/a&gt;. Definitely worth a look.
-&lt;/LI&gt;
-&lt;li&gt;Check out a webinar next month &lt;EM&gt; &lt;A href=&quot;https://www.springsource.org/node/22645&quot;&gt; taming  coupling &amp; cohesive problems with modularity and Spring&lt;/a&gt;  &lt;/EM&gt; with Param Rengaiah. &lt;/li&gt;
-
- &lt;/ol&gt; </description>
- <comments>http://www.springsource.org/node/22659#comments</comments>
- <category domain="http://www.springsource.org/taxonomy/term/14">This Week in Spring</category>
- <pubDate>Wed, 31 Jul 2013 04:59:49 +0000</pubDate>
- <dc:creator>Josh Long</dc:creator>
- <guid isPermaLink="false">22659 at http://www.springsource.org</guid>
-</item>
-<item>
- <title>Spring Batch 2.2.1.RELEASE is now available</title>
- <link>http://www.springsource.org/node/22658</link>
- <description>&lt;p&gt;We are pleased to announce that Spring Batch 2.2.1.RELEASE is now available via Maven Central, Github and the SpringSource download repository.  This release addresses a number of bugs and documentation updates.  Many thanks to all of those who submitted the many &lt;a href=&quot;https://github.com/springsource/spring-batch/pulls&quot;&gt;pull requests&lt;/a&gt; that went into this release.&lt;br /&gt;
-&lt;a href=&quot;http://www.springsource.org/spring-batch&quot;&gt;Spring Batch Home&lt;/a&gt; | &lt;a href=&quot;https://github.com/SpringSource/spring-batch&quot;&gt;Source on GitHub&lt;/a&gt; | &lt;a href=&quot;http://static.springsource.org/spring-batch/&quot;&gt;Reference Documentation&lt;/a&gt;&lt;br /&gt;
-We look forward to your feedback in the forum and issue tracker.&lt;/p&gt;
-</description>
- <comments>http://www.springsource.org/node/22658#comments</comments>
- <pubDate>Fri, 26 Jul 2013 20:57:08 +0000</pubDate>
- <dc:creator>Michael Minella</dc:creator>
- <guid isPermaLink="false">22658 at http://www.springsource.org</guid>
-</item>
-<item>
- <title>Spring Shell 1.1.0.M1 Released</title>
- <link>http://www.springsource.org/node/22656</link>
- <description>&lt;p&gt;Dear Spring Community,&lt;/p&gt;
-&lt;p&gt;I am pleased to announce the first milestone release Spring Shell 1.1. Spring Shell is an interactive shell that can be easily extended with commands using a Spring based programming model.  This release adds support for &lt;a href=&quot;http://static.springsource.org/spring-shell/docs/1.1.0.M1/reference/html/dev-shell.html#d4e249&quot;&gt;testing of commands&lt;/a&gt; as well as several bug fixes and general improvements.  Many thanks to to those who &lt;a href=&quot;https://github.com/springsource/spring-shell/pulls&quot;&gt;submitted pull-requests&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;http://repo.springsource.org/libs-milestone-local/org/springframework/shell/spring-shell/1.1.0.M1/spring-shell-1.1.0.M1-dist.zip&quot;&gt;Downloads&lt;/a&gt; | &lt;a href=&quot;http://static.springsource.org/spring-shell/docs/1.1.0.M1/api/&quot;&gt;JavaDocs&lt;/a&gt; | &lt;a href=&quot;http://static.springsource.org/spring-shell/docs/1.1.0.M1/reference/html&quot;&gt;Reference Documentation&lt;/a&gt; | &lt;a href=&quot;https://jira.springsource.org/secure/ReleaseNote.jspa?projectId=10361&amp;amp;version=13905&quot;&gt;Changelog&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;We look forward to your feedback on the forum or in the issue tracker.&lt;/p&gt;
-</description>
- <comments>http://www.springsource.org/node/22656#comments</comments>
- <pubDate>Fri, 26 Jul 2013 19:27:42 +0000</pubDate>
- <dc:creator>Mark Pollack</dc:creator>
- <guid isPermaLink="false">22656 at http://www.springsource.org</guid>
-</item>
-<item>
- <title>This Week in Spring - July 23, 2013</title>
- <link>http://www.springsource.org/node/22655</link>
- <description>&lt;p&gt;Hey everyone! Remember that SpringOne 2GX 2013 early bird expires August 9th, &lt;a href=&quot;http://www.springone2gx.com/conference/santa_clara/2013/09/register&quot;&gt;so hurry&lt;/a&gt; to secure the discounted rate! Also, make sure to check the agenda as new sessions have been added. This week I&amp;#39;m at &lt;a href=&quot;http://www.oscon.com&quot;&gt;OSCON&lt;/a&gt; talking to developers in the wonderful city of Portland, OR about Spring 4, REST and joining my colleagues at &lt;a href=&quot;http://gopivotal.com&quot;&gt;Pivotal&lt;/a&gt; to talk about Cloud Foundry, big data, and much more! If you&amp;#39;d like to chat, I hope you&amp;#39;ll come to the talks that we&amp;#39;re putting on and visit us at the Pivotal booth in the exhibition hall!  It&#039;s been a big week for both Spring and Pivotal:&lt;/p&gt;
-
-&lt;ol&gt;
-
-&lt;li&gt;&lt;a href=&quot;http://blog.gopivotal.com/products/pivotal-hd-ga&quot;&gt; Pivotal HD 1.0&lt;/a&gt;, the world&#039;s fastest Hadoop distribution, was released in two flavors - Community Edition, and a Pivotal Single Node Edition (VM), a Virtual Machine download. Head over to gopivotal.com and give it a test drive - Community Edition deploys up to a 50 node cluster!&lt;/li&gt;
-&lt;li&gt;We&#039;re celebrating Project Reactor&#039;s &lt;a href=&quot;http://blog.springsource.org/2013/07/18/reactor-1-0-0-m1-a-foundation-for-asynchronous-fast-data-applications-on-the-jvm/&quot;&gt;initial milestone release&lt;/a&gt; - 1.0.0M1 - which &lt;em&gt;already&lt;/em&gt;  benchmarked  &lt;a href=&quot;http://www.dzone.com/links/project_reactor_tcp_on_netty_is_300_faster_than_n.html&quot;&gt;TCP on Netty at 300% faster than Netty alone&lt;/a&gt;! When integrated into key Spring technologies, the possibilities of Fast Data are going to blow people&#039;s hair back. Congrats to &lt;a href=&quot;https://twitter.com/j_brisbin&quot;&gt;Jon Brisbin&lt;/a&gt;! &lt;/li&gt;
-&lt;li&gt;Spring Data Arora Service Release 2 is available for &lt;a href=&quot;http://www.springsource.org/node/22654&quot;&gt;download&lt;/a&gt;. &lt;/li&gt;
-&lt;li&gt;Martin Lippert published an excellent blog on &lt;a href=&quot;http://blog.springsource.org/2013/07/18/javaconfig-support-in-the-spring-tool-suite/&quot;&gt;Annotations and Java Config support&lt;/a&gt; that are available in Spring Tool Suite 3.3.0. Support of JavaConfig as an XML alternative across the Spring ecosystem is nearing a pervasive  level.&lt;/li&gt;
-&lt;li&gt;Join Hemant Joshi as he introduces how to use Spring and the &lt;a href=&quot;https://www.springsource.org/node/22644&quot;&gt;Cucumber BDD testing framework in a webinar on July 30th, 2013&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;Hadoop hungry? Join us for a Webinar series --  “What You Can Do with Hadoop” on the first Thursday of every month. The first webinar on August 1st, 2013 will provide in-depth details about the features and tutorials included in the Pivotal HD Single Node (VM).
-  &lt;ul&gt;
-    &lt;li&gt;&lt;a href=&quot;http://mkto-sj050137.com/trk?t=2&amp;mid=NjI1LUlVSi0wMDk6MDoxMTk5OjgzNTowOjExMjE6Nzo0ODA3LTE6bnVsbA%3D%3D&amp;&amp;&amp;http://play.gopivotal.com/PivotalHDLaunchWebinarSession1.html?mkt_tok=3RkMMJWWfF9wsRonuqXAZKXonjHpfsX84%2BwqT%2Frn28M3109ad%2BrmPBy%2B2YEAWp8na%2BqWCgseOrQ8ll4NV8mgVs0Qqqw%3D&quot;&gt;Register today&lt;/a&gt; for the 9 AM PT session &lt;/li&gt;
-    &lt;li&gt;&lt;a href=&quot;http://mkto-sj050137.com/trk?t=2&amp;mid=NjI1LUlVSi0wMDk6MDoxMTk5OjgzNTowOjExMjE6Nzo0ODA3LTE6bnVsbA%3D%3D&amp;&amp;&amp;http://play.gopivotal.com/GlobalPivotalHDLaunch2.html?mkt_tok=3RkMMJWWfF9wsRonuqXAZKXonjHpfsX84%2BwqT%2Frn28M3109ad%2BrmPBy%2B2YEAWp8na%2BqWCgseOrQ8ll4NV8mgVs0Qqqw%3D&quot;&gt;Register today&lt;/a&gt; for the 7 PM session&lt;/li&gt;
-  &lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt; My buddy &lt;a href=&quot;http://twitter.com/andypiper&quot;&gt;Andy Piper (@andypiper)&lt;/a&gt; puts together a wonderful roundup of &lt;a href=&quot;http://cloudfoundry.com/&quot;&gt;Cloud Foundry&lt;/a&gt; called &lt;em&gt;&lt;a href=&quot;http://www.thisweekincf.com/&quot;&gt;This Week in Cloud Foundry&lt;/a&gt;&lt;/em&gt;. I can&amp;#39;t recommend it enough! He just started, and he&amp;#39;s doing a heckuva job! &lt;/li&gt;
-&lt;li&gt;The Zenika blog has a very nice post on how to document a REST API with &lt;a href=&quot;http://blog.zenika.com/index.php?post/2013/07/11/Documenting-a-REST-API-with-Swagger-and-Spring-MVC&quot;&gt;Swagger, which you can transparently layer on top of your Spring MVC API&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;Matt Stine also has a great post on &lt;a href=&quot;http://www.mattstine.com/2013/07/10/blue-green-deployments-on-cloudfoundry/&quot;&gt;Spring, Continuous Integration and CloudFoundry&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;The JavaCode Geeks blog has a nice post on how &lt;a href=&quot;http://www.javacodegeeks.com/2013/05/spring-from-the-trenches-adding-validation-to-a-rest-api.html&quot;&gt;to add validation to a REST API&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;The &lt;code&gt;Pivotal&lt;/code&gt; blog has a &lt;a href=&quot;http://blog.gopivotal.com/products/part-one-comparing-tomcat-and-pivotal-tc-server&quot;&gt;&lt;em&gt;really&lt;/em&gt; great post on how Tomcat compares to Pivotal&amp;#39;s tcServer&lt;/a&gt;, a binary-compatible distribution of Tomcat that we support and augment for deployment&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;Also&lt;/em&gt; on the &lt;code&gt;Pivotal&lt;/code&gt; blog, a fantastic post on &lt;a href=&quot;http://blog.gopivotal.com/products/run-spring-apps-60x-faster-with-spring-data-pivotal-gemfire&quot;&gt;how Spring Data GemFire (and GemFire) can &lt;em&gt;really&lt;/em&gt; boost your application&amp;#39;s performance&lt;/a&gt;! &lt;/li&gt;
-&lt;li&gt;Xavier Padró&amp;#39;s has a really &lt;a href=&quot;http://xpadro.blogspot.com.es/2013/07/introduction-to-messaging-with-spring.html&quot;&gt;nice introduction to messaging with Spring&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;This week at OSCON, I found affixed to all the bulletin boards and on the entry-doors into the conference a notice advertising a hackathon being run by &lt;a href=&quot;http://inBloom.org&quot;&gt;inBloom&lt;/a&gt;, which is a nonprofit data and content services company working to support school districts as they implement great personalized learning tools for kids, teachers, and parents.  inBloom is sponsoring a 2-day hackathon at OSCON to work on their open source content services. Check &lt;a href=&quot;https://support.inbloom.org/secure/BrowseProjects.jspa#all&quot;&gt;out the projects&lt;/a&gt; and the &lt;a href=&quot;https://github.com/inbloom&quot;&gt;code&lt;/a&gt;! I really enjoyed meeting these fine people and encourage any Spring ninjas out there to raise your hands and contribute! &lt;br/&gt;&lt;img width = &quot;400&quot; src =&quot;http://www.springsource.org/files/inbloom.jpg&quot; /&gt;&lt;/li&gt;
-&lt;/ol&gt;
-</description>
- <comments>http://www.springsource.org/node/22655#comments</comments>
- <category domain="http://www.springsource.org/taxonomy/term/14">This Week in Spring</category>
- <enclosure url="http://www.springsource.org/files/inbloom.jpg" length="91569" type="image/jpeg" />
- <pubDate>Wed, 24 Jul 2013 02:40:00 +0000</pubDate>
- <dc:creator>Josh Long</dc:creator>
- <guid isPermaLink="false">22655 at http://www.springsource.org</guid>
-</item>
-<item>
- <title>Spring Data Arora Service Release 2 available</title>
- <link>http://www.springsource.org/node/22654</link>
- <description>&lt;p&gt;I am pleased to announce the availability of the second service release of the Spring Data Arora release train. It includes quite a few significant bug fixes that we have already released in the first milestone for the Babbage release train. To makethem available in an official release, we backported them into this one here. The modules included are:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Spring Data Commons 1.5.2 - &lt;a href=&quot;http://repo.springsource.org/libs-release/org/springframework/data/spring-data-commons/1.5.2.RELEASE/&quot;&gt;Artifacts&lt;/a&gt; - &lt;a href=&quot;http://static.springsource.org/spring-data/commons/docs/1.5.2.RELEASE/api/&quot;&gt;JavaDocs&lt;/a&gt; - &lt;a href=&quot;http://static.springsource.org/spring-data/commons/docs/1.5.2.RELEASE/reference/html/&quot;&gt;Documentation&lt;/a&gt; - &lt;a href=&quot;http://static.springsource.org/spring-data/commons/docs/1.5.2.RELEASE/changelog.txt&quot;&gt;Changelog&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Spring Data JPA 1.3.4 - &lt;a href=&quot;http://repo.springsource.org/libs-release/org/springframework/data/spring-data-jpa/1.3.4.RELEASE/&quot;&gt;Artifacts&lt;/a&gt; - &lt;a href=&quot;http://static.springsource.org/spring-data/jpa/docs/1.3.4.RELEASE/api/&quot;&gt;JavaDocs&lt;/a&gt; - &lt;a href=&quot;http://static.springsource.org/spring-data/jpa/docs/1.3.4.RELEASE/reference/html/&quot;&gt;Documentation&lt;/a&gt; - &lt;a href=&quot;http://static.springsource.org/spring-data/jpa/docs/1.3.4.RELEASE/changelog.txt&quot;&gt;Changelog&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Spring Data MongoDB 1.2.3 - &lt;a href=&quot;http://repo.springsource.org/libs-release/org/springframework/data/spring-data-mongodb/1.2.3.RELEASE/&quot;&gt;Artifacts&lt;/a&gt; - &lt;a href=&quot;http://static.springsource.org/spring-data/mongodb/docs/1.2.3.RELEASE/api/&quot;&gt;JavaDocs&lt;/a&gt; - &lt;a href=&quot;http://static.springsource.org/spring-data/mongodb/docs/1.2.3.RELEASE/reference/html/&quot;&gt;Documentation&lt;/a&gt; - &lt;a href=&quot;http://static.springsource.org/spring-data/mongodb/docs/1.2.3.RELEASE/changelog.txt&quot;&gt;Changelog&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Spring Data Neo4j 2.2.2 - &lt;a href=&quot;http://repo.springsource.org/libs-release/org/springframework/data/spring-data-neo4j/2.2.2.RELEASE/&quot;&gt;Artifacts&lt;/a&gt; - &lt;a href=&quot;http://static.springsource.org/spring-data/neo4j/docs/2.2.2.RELEASE/api/&quot;&gt;JavaDocs&lt;/a&gt; - &lt;a href=&quot;http://static.springsource.org/spring-data/neo4j/docs/2.2.2.RELEASE/reference/html/&quot;&gt;Documentation&lt;/a&gt; - &lt;a href=&quot;http://static.springsource.org/spring-data/neo4j/docs/2.2.2.RELEASE/changelog.txt&quot;&gt;Changelog&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;The artifacts are also available in Maven central. You find a comprehensive list of the 46 tickets resolved in our &lt;a href=&quot;https://jira.springsource.org/issues/?filter=14367&quot;&gt;JIRA&lt;/a&gt;. The next release is going to be a release candidate for the Babbage release train in early August. You can find details for this release in the Spring Data Commons &lt;a href=&quot;https://github.com/SpringSource/spring-data-commons/wiki/Release-Train-Babbage&quot;&gt;wiki&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;If you want to learn more about the Spring Data family of projects, the best event to do is &lt;a href=&quot;http://www.springone2gx.com/&quot;&gt;SpringOne 2013&lt;/a&gt; being held in Santa Clara early September. Hope to see you there!&lt;/p&gt;
-</description>
- <comments>http://www.springsource.org/node/22654#comments</comments>
- <category domain="http://www.springsource.org/taxonomy/term/4">News and Announcements</category>
- <pubDate>Mon, 22 Jul 2013 09:50:57 +0000</pubDate>
- <dc:creator>ogierke</dc:creator>
- <guid isPermaLink="false">22654 at http://www.springsource.org</guid>
-</item>
-<item>
- <title>This Week in Spring - July 15, 2013</title>
- <link>http://www.springsource.org/node/22653</link>
- <description>
-&lt;p&gt;Welcome back to another installation of &lt;em&gt;This Week in Spring.&lt;/em&gt; We&amp;#39;ve got a lot to cover, as usual, so let&amp;#39;s get right to it! This week I&amp;#39;m at SenchaCon, talking to developers about building RESTful applications and clients, and then I&amp;#39;m off to OSCON next week, where I&amp;#39;ll be hosting the Spring BOF, giving a talk on the latest and greatest in Spring 4, and helping to man the Pivotal booth. If you&amp;#39;re at SenchaCon or OSCON, &lt;a href=&quot;http://twitter.com/starbuxman&quot;&gt;don&amp;#39;t hesitate to ping me&lt;/a&gt; and we can talk &lt;a href=&quot;http://www.springsource.org&quot;&gt;Spring&lt;/a&gt;, &lt;a href=&quot;http://cloudfoundry.com&quot;&gt;Cloud Foundry&lt;/a&gt;, &lt;a href=&quot;http://www.springsource.org/spring-xd&quot;&gt;big-data&lt;/a&gt;, and more!&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;SpringOne 2GX 2013 early bird expires soon, &lt;a href=&quot;http://www.springone2gx.com/conference/santa_clara/2013/09/register&quot;&gt;register now&lt;/a&gt; to secure the discounted rate!&lt;/li&gt;
-&lt;li&gt;Spring Data ninja Thomas Risberg has announced that &lt;a href=&quot;http://www.springsource.org/node/22651&quot;&gt;Spring For Apache Hadoop 1.0.1.RC1 has been released&lt;/a&gt;. The new release supports Hadoop 2.0 and Pivotal HD, among other things.&lt;/li&gt;
-&lt;li&gt;Tool Suite ninja and lead Martin Lippert has announced that &lt;a href=&quot;http://www.springsource.org/node/22650&quot;&gt;Spring Tool Suite And Groovy/Grails Tool Suite 3.3.0 have been released&lt;/a&gt;. Very nice! &lt;/li&gt;
-&lt;li&gt;Gary Russell has announced that &lt;a href=&quot;http://www.springsource.org/node/22652&quot;&gt;Spring AMQP 1.2.0 has been released&lt;/a&gt;. Check out the &lt;a href=&quot;http://static.springsource.org/spring-amqp/reference/html/whats-new.html&quot;&gt;What&amp;#39;s New&lt;/a&gt; for details. &lt;/li&gt;
-&lt;li&gt;Join    	 Mattias Severson &amp;amp; Johan Haleby and learn about  &lt;a href=&quot;http://www.springsource.org/node/22643&quot;&gt;Functional Programming without Lambdas&lt;/a&gt; on     July 18, 2013&lt;/li&gt;
-&lt;li&gt;Join Hemant Joshi as he introduces how to use Spring and the &lt;a href=&quot;https://www.springsource.org/node/22644&quot;&gt;Cucumber BDD testing framework in a webinar on July 30th, 2013&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;Our friends at Skills Matter are throwing a Spring-centric conference (&lt;a href=&quot;https://plus.google.com/u/0/events/cuqrmfcosup8ghpdqs9j450ulso&quot;&gt;the Spring Exchange&lt;/a&gt;) in London on November 14 and November 15.  There are some killer speakers, and I highly encourage you to make it, if you can. &lt;/li&gt;
-&lt;li&gt;Are you using &lt;a href=&quot;http://www.springsource.org/Spring-Social&quot;&gt;Spring Social&lt;/a&gt; in the wild? &lt;a href=&quot;http://forum.springsource.org/showthread.php?139750-Spring-Social-in-the-Wild&quot;&gt;We want to hear about it&lt;/a&gt;! &lt;/li&gt;
-&lt;li&gt;Spring Security lead and ninja Rob Winch has put together a very nice post on &lt;em&gt;readability&lt;/em&gt; &lt;a href=&quot;http://blog.springsource.org/2013/07/11/spring-security-java-config-preview-readability/&quot;&gt;when using Spring Security Java configuration&lt;/a&gt;. &lt;/li&gt;
-&lt;li&gt;A new &amp;quot;Quick Search&amp;quot; is included in Spring ToolSuite (STS) 3.3.0 and Groovy Grails Tool Suite (GGTS) 3.3.0 which have just been released. Kris De Volder, a senior developer on the Spring and Groovy and Grails Tool Suites, has just put together &lt;a href=&quot;http://blog.springsource.org/2013/07/11/eclipse-quick-search/&quot;&gt;a nice post on this new feature&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;Our friend Johnathan Mark Smith is at it again! This time, he&amp;#39;s written a post, &lt;a href=&quot;http://johnathanmarksmith.com/spring/spring%20data/mongodb/fongo/java/javaconfig/programming/spring%20java%20configuration/2013/06/28/how-to-use-fongo-and-nosql-unit-to-test-spring-data-project-with-mongodb-junit-log4j/&quot;&gt;&lt;em&gt;How to use Fongo and nosql unit to test Spring Data project with MongoDB, JUnit, Log4J&lt;/em&gt;&lt;/a&gt;. Check it out!&lt;/li&gt;
-&lt;li&gt;Wow!  Amir Kibbar, at the &lt;em&gt;HP Software Developer&amp;#39;s blog&lt;/em&gt;, has put together a &lt;em&gt;really&lt;/em&gt; comprehensive look at how to develop a service tier, build a web tier, and then test both. The first post &lt;a href=&quot;http://h30499.www3.hp.com/t5/HP-Software-Developers-Blog/A-Comprehensive-Example-of-a-Spring-MVC-Application-Part-1/ba-p/6135439#.UeR36GRASIc&quot;&gt;on setting up a service tier&lt;/a&gt;, the second is an example &lt;a href=&quot;http://h30499.www3.hp.com/t5/HP-Software-Developers-Blog/A-Comprehensive-Example-of-a-Spring-MVC-Application-Part-2/ba-p/6135443#.UeR4GmRASIc&quot;&gt;of refining the service tier and testing it&lt;/a&gt;, the third post introduces how to &lt;a href=&quot;http://h30499.www3.hp.com/t5/HP-Software-Developers-Blog/A-Comprehensive-Example-of-a-Spring-MVC-Application-Part-3/ba-p/6135449#.UeR4HGRASIc&quot;&gt;setup a REST endpoint&lt;/a&gt;, and the fourth post &lt;a href=&quot;http://h30499.www3.hp.com/t5/HP-Software-Developers-Blog/A-Comprehensive-Example-of-a-Spring-MVC-Application-Part-4/ba-p/6135463#.UeR6TGRASIc&quot;&gt;talks about testing the REST service&lt;/a&gt;. Definitely worth a read (and a bookmark!) It&amp;#39;s possible to do everything demonstrated in these posts using straight Java configuration, also… &lt;/li&gt;
-&lt;li&gt;Igor Artamonov has a nice, abbreviated post on how &lt;a href=&quot;http://igorartamonov.com/2013/07/restful-using-spring-framework/&quot;&gt;to build a RESTful endpoint with Spring&lt;/a&gt;. &lt;/li&gt;
-&lt;LI&gt;
-  Our friend at the &lt;EM&gt;Baeldung&lt;/EM&gt; blog has put together a very nice post on
-  how to use &lt;a
-href=&quot;http://www.baeldung.com/spring-security-digest-authentication&quot;&gt;digest
-authentication with Spring Security&lt;/a&gt;.
-&lt;/LI&gt;
-&lt;/ol&gt;</description>
- <comments>http://www.springsource.org/node/22653#comments</comments>
- <category domain="http://www.springsource.org/taxonomy/term/14">This Week in Spring</category>
- <pubDate>Tue, 16 Jul 2013 04:39:55 +0000</pubDate>
- <dc:creator>Josh Long</dc:creator>
- <guid isPermaLink="false">22653 at http://www.springsource.org</guid>
-</item>
-<item>
- <title>Spring AMQP 1.2.0 for Java Released</title>
- <link>http://www.springsource.org/node/22652</link>
- <description>&lt;p&gt;The Spring AMQP project applies core Spring concepts to the development of AMQP-based messaging solutions.&lt;/p&gt;
-&lt;p&gt;We are pleased to announce that the 1.2.0.RELEASE is now available for Java.&lt;/p&gt;
-&lt;p&gt;Following the &lt;a href=&quot;http://www.springsource.org/node/22635&quot;&gt;Release Candidate&lt;/a&gt;, this GA release includes a minor bug fix and updates the default &lt;a href=&quot;http://www.rabbitmq.com/&quot;&gt;RabbitMQ client&lt;/a&gt; to 3.1.3. See the &lt;a href=&quot;https://jira.springsource.org/secure/ReleaseNote.jspa?projectId=10450&amp;amp;version=13906&quot;&gt;Release Notes&lt;/a&gt; for details of these changes.&lt;/p&gt;
-&lt;p&gt;Major changes over and above the 1.1.x release are highlighted in the &lt;a href=&quot;http://static.springsource.org/spring-amqp/reference/html/whats-new.html&quot;&gt;What&#039;s New section of the reference manual&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Please see the &lt;a href=&quot;http://www.springsource.org/spring-amqp&quot;&gt;Project page&lt;/a&gt; for more information including links to documentation and downloads.&lt;/p&gt;
-</description>
- <comments>http://www.springsource.org/node/22652#comments</comments>
- <category domain="http://www.springsource.org/taxonomy/term/4">News and Announcements</category>
- <pubDate>Mon, 15 Jul 2013 12:57:08 +0000</pubDate>
- <dc:creator>Gary Russell</dc:creator>
- <guid isPermaLink="false">22652 at http://www.springsource.org</guid>
-</item>
-<item>
- <title>Spring for Apache Hadoop 1.0.1.RC1 released - adding Hadoop 2.0 and Pivotal HD 1.0 support</title>
- <link>http://www.springsource.org/node/22651</link>
- <description>&lt;p&gt;We are happy to announce a new release candidate 1.0.1.RC1 for the Spring for Apache Hadoop project. This release candidate introduces support for Apache Hadoop 1.1.2, Hortonworks HDP 1.2, Apache Hadoop 2.0.3-alpha as well as support for Pivotal HD 1.0. The support for these versions are in addition to the already supported versions of Apache Hadoop 1.0.4 and Cloudera CDH 3 and CDH 4. This brings us to support for no less than 7 different Hadoop versions. &lt;/p&gt;
-&lt;p&gt;To make it easier to configure project builds using these varying versions we will be introducing specific flavors of the Maven artifacts and POMs with their respective transitive dependencies. For this 1.0.1.RC1 release we are introducing three additional artifact versions -- 1.0.1.RC1-cdh4 (Cloudera CDH 4), 1.0.1.RC1-pdh1 (Pivotal HD 1.0) and 1.0.1.RC1-hadoop11 (Apache Hadoop 1.1.2 and Hortonworks HDP 1.2). By using these versions as your dependency you will be pulling in their respective transitive dependencies instead of the dependencies from the Apache Hadoop 1.0.4 release that you would get when using the plain 1.0.1.RC1 version.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;http://www.springsource.com/download/community?project=Spring%20Data%20Hadoop&amp;amp;version=1.0.1.RC1&quot;&gt;Downloads&lt;/a&gt; | &lt;a href=&quot;http://static.springsource.org/spring-data/hadoop/docs/1.0.1.RC1/api/&quot;&gt;JavaDocs&lt;/a&gt; | &lt;a href=&quot;http://static.springsource.org/spring-data/hadoop/docs/1.0.1.RC1/reference/html/&quot;&gt;Reference Documentation&lt;/a&gt; | &lt;a href=&quot;http://static.springframework.org/spring-data/hadoop/docs/1.0.1.RC1/changelog.txt&quot;&gt;Changelog&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;For more information on Spring for Apache Hadoop, see the project &lt;a href=&quot;http://www.springsource.org/spring-data/hadoop&quot;&gt;home page&lt;/a&gt; for reference documentation and the sample applications.&lt;/p&gt;
-&lt;p&gt;We look forward to your feedback on the &lt;a href=&quot;http://forum.springsource.org/forumdisplay.php?87-Hadoop&quot;&gt;forum&lt;/a&gt; or in the  &lt;a href=&quot;https://jira.springsource.org/browse/SHDP&quot;&gt;issue tracker&lt;/a&gt;.&lt;/p&gt;
-</description>
- <comments>http://www.springsource.org/node/22651#comments</comments>
- <category domain="http://www.springsource.org/taxonomy/term/4">News and Announcements</category>
- <pubDate>Thu, 11 Jul 2013 19:48:46 +0000</pubDate>
- <dc:creator>Thomas Risberg</dc:creator>
- <guid isPermaLink="false">22651 at http://www.springsource.org</guid>
 </item>
 </channel>
 </rss>

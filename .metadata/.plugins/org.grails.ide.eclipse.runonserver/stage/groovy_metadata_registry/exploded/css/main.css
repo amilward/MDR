@@ -662,6 +662,10 @@ a.skip {
 
 		}
 		
+		.floatright{
+			float:right;
+		}
+		
 		#welcome{
 				font-size: 40px;
 				color: #ce265d;
@@ -743,6 +747,24 @@ a.skip {
 			font-size: 12px;
 		
 		}
+		
+		#collection_basket_list {
+			font-size:12px;
+			
+		}
+		
+		#collection_basket_list a{
+			color:black
+		}
+		
+		.dataElementTable tr{
+			z-index:100;
+		}
+		
+		.cart ol li{
+			text-align:left;
+		}
+		
 		
 /* searchbox */
 

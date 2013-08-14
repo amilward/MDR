@@ -1,6 +1,13 @@
 <%@ page import="uk.co.mdc.model.Document" %>
 
 
+<div class="fieldcontain ${hasErrors(bean: documentInstance, field: 'description', 'error')} required">
+	<label for="refId">
+		<g:message code="document.refId.label" default="refId" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:textArea name="refId" cols="40" rows="5" maxlength="500" required="" value="${documentInstance?.refId}"/>
+</div>
 
 <div class="fieldcontain ${hasErrors(bean: documentInstance, field: 'name', 'error')} required">
 	<label for="name">

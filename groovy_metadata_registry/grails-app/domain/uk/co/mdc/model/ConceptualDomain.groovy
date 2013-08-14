@@ -8,6 +8,10 @@ class ConceptualDomain {
 	
 	String description
 	
+	static searchable = {
+		content: spellCheck 'include'
+	}
+	
 	static hasMany = [valueDomains: ValueDomain]
 	
     static constraints = {

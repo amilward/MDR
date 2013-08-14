@@ -1,6 +1,7 @@
 package uk.co.mdc.model
 
 import org.springframework.dao.DataIntegrityViolationException
+import uk.co.mdc.CollectionBasket
 
 class CollectionController {
 
@@ -18,6 +19,51 @@ class CollectionController {
     def create() {
         [dataElements: DataElement.list(), collectionInstance: new Collection(params)]
     }
+	
+	def saveBasketCollection(){
+
+		def collectionInstance = new Collection(refId: params.refId, name: params?.name, description: params?.description)
+		
+		if (!collectionInstance.save(flush: true)) {
+			render(view: "create", model: [dataElements: DataElement.list(), collectionInstance: collectionInstance])
+			return
+		}
+		
+		
+		
+		params.dataElementIds.each{ de ->
+			
+			def dataElement = DataElement.get(de)
+			
+			def dataElementSchemaInfo = params["dataElement_" + de]
+			
+			def schemaSpecification = SchemaSpecification.MANDATORY
+			
+			if(dataElementSchemaInfo=='required'){
+			
+				schemaSpecification = SchemaSpecification.REQUIRED
+			
+			}else if(dataElementSchemaInfo=='optional'){
+			
+				schemaSpecification = SchemaSpecification.OPTIONAL
+			
+			}else if(dataElementSchemaInfo=='reference'){
+			
+				schemaSpecification = SchemaSpecification.X
+			
+			}
+			
+			DataElementCollection.link(dataElement, collectionInstance, schemaSpecification)
+			
+			def collectionBasket = CollectionBasket.get(params.collection_basket_id)
+			
+			collectionBasket.dataElements.clear();
+			collectionBasket.save(flush: true)
+			
+		}
+		
+		redirect(action: "show", id: collectionInstance.id)
+	}
 
     def save() {
 		
@@ -52,6 +98,44 @@ class CollectionController {
 
         [collectionInstance: collectionInstance]
     }
+	
+	/*
+	 * OLD FORM STUFF ------ JUST KEEPING IT FOR REFERENCE
+	 * 
+	 * def generateForm(Long id){
+		def collectionInstance = Collection.get(id)
+		if (!collectionInstance) {
+			flash.message = message(code: 'default.not.found.message', args: [message(code: 'collection.label', default: 'Collection'), id])
+			redirect(action: "list")
+			return
+		}
+
+		[collectionInstance: collectionInstance]
+		
+	}
+	
+	def saveForm(){
+		
+		def collectionInstance = Collection.get(params.collectionId)
+		
+		def dataMap = new HashMap() 
+				
+		params.each { name, value ->
+			
+			if(name!='collectionId' && name!='create' && name!='action' && name!='controller'){
+				dataMap.put(name, value)
+				}
+			}
+		
+		def form = new Form(collection: collectionInstance, data: dataMap)
+		
+		if (!form.save(flush: true)) {
+			flash.message = message(code: 'default.not.found.message', args: [message(code: 'collection.label', default: 'Collection'), id])
+			redirect(action: "generateForm")
+		}
+
+		redirect(controller: 'form', action: "list")
+	}*/
 
     def edit(Long id) {
         def collectionInstance = Collection.get(id)
@@ -264,8 +348,4 @@ class CollectionController {
 	}
 	
 
-	
-	
-	
-	
 }

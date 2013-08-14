@@ -1,5 +1,6 @@
 package uk.co.mdc
 
+
 class SecUser {
 
 	transient springSecurityService
@@ -10,6 +11,8 @@ class SecUser {
 	boolean accountExpired
 	boolean accountLocked
 	boolean passwordExpired
+	CollectionBasket collectionBasket = new CollectionBasket();
+	
 
 	static constraints = {
 		username blank: false, unique: true
@@ -19,6 +22,8 @@ class SecUser {
 	static mapping = {
 		password column: '`password`'
 	}
+	
+	static hasOne = {collectionBasket: CollectionBasket}
 
 	Set<SecAuth> getAuthorities() {
 		SecUserSecAuth.findAllBySecUser(this).collect { it.secAuth } as Set

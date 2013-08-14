@@ -6,7 +6,9 @@ class DataType {
 	Boolean enumerated
 	Map enumerations
 
-	static searchable = true
+	static searchable = {
+        content: spellCheck 'include'
+    } 
 	
     static constraints = {
 		enumerations nullable: true

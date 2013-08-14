@@ -3,17 +3,41 @@
 	<section name="OptionalMessageDialog.hide.">
 		<item value="true" key="org.eclipse.jdt.ui.typecomment.deprecated"/>
 	</section>
+	<section name="org.eclipse.jdt.internal.ui.dialogs.FilteredTypesSelectionDialog">
+		<item value="true" key="ShowStatusLine"/>
+		<item value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#x0D;&#x0A;&lt;History/&gt;" key="History"/>
+		<section name="DialogBoundsSettings">
+			<item value="600" key="DIALOG_WIDTH"/>
+			<item value="-14" key="DIALOG_Y_ORIGIN"/>
+			<item value="3" key="DIALOG_X_ORIGIN"/>
+			<item value="500" key="DIALOG_HEIGHT"/>
+			<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
+		</section>
+	</section>
 	<section name="completion_proposal_size">
 		<item value="723" key="size.x"/>
 		<item value="564" key="size.y"/>
 	</section>
 	<section name="JavaElementSearchActions">
 	</section>
-	<section name="NewClassWizardPage">
-		<item value="false" key="create_constructor"/>
-		<item value="true" key="create_unimplemented"/>
-		<item value="false" key="create_main"/>
+	<section name="RefactoringWizard.preview">
+		<item value="400" key="height"/>
+		<item value="600" key="width"/>
+	</section>
+	<section name="org.eclipse.ltk.ui.refactoring.settings">
+		<item value="*" key="patterns"/>
+		<item value="false" key="updateQualifiedNames"/>
+		<item value="false" key="renameSubpackages"/>
+		<item value="false" key="updateTextualMatches"/>
 	</section>
 	<section name="quick_assist_proposal_size">
+	</section>
+	<section name="NewClassWizardPage">
+		<item value="false" key="create_constructor"/>
+		<item value="false" key="create_main"/>
+		<item value="true" key="create_unimplemented"/>
+	</section>
+	<section name="NewPackageWizardPage">
+		<item value="false" key="create_package_info_java"/>
 	</section>
 </section>

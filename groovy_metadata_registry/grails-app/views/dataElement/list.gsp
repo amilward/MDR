@@ -16,46 +16,14 @@
 			</ul>
 		</div>
 		<div id="list-dataElement" class="content scaffold-list" role="main">
-			<h1><g:message code="default.list.label" args="[entityName]" /></h1>
+			<h1>Data Elements</h1>
 			<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
-			<table class="tableList">
-				<thead>
-					<tr>
-						<g:sortableColumn class="name" property="name" title="${message(code: 'dataElement.name.label', default: 'Name')}" />
-					
-						<g:sortableColumn property="refId" title="${message(code: 'dataElement.refId.label', default: 'Ref Id')}" />
-						
-						<g:sortableColumn property="description" title="${message(code: 'dataElement.description.label', default: 'Description')}" />
-					
-						<g:sortableColumn property="parent" title="${message(code: 'dataElement.parent.label', default: 'Parent')}" />
-						
-						<g:sortableColumn property="dataElementConcept" title="${message(code: 'dataElement.dataElementConcept.label', default: 'Data Element Concept')}" />
-
-					</tr>
-				</thead>
-				<tbody>
-				<g:each in="${dataElementInstanceList}" status="i" var="dataElementInstance">
-					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-					
-						<td class="name"><g:link action="show" id="${dataElementInstance.id}">${fieldValue(bean: dataElementInstance, field: "name")}</g:link></td>
-					
-						<td>${fieldValue(bean: dataElementInstance, field: "refId")}</td>
-						
-						<td><div class="limit_row_height">${fieldValue(bean: dataElementInstance, field: "description")}</div></td>
-					
-						<td><g:link action="show" id="${dataElementInstance?.parent?.id}">${dataElementInstance?.parent?.name}</g:link></td>
-						
-						<td><g:link contoller="dataElementConcept" action="show" id="${dataElementInstance?.dataElementConcept?.id}">${dataElementInstance?.dataElementConcept?.name}</g:link></td>
-					
-					</tr>
-				</g:each>
-				</tbody>
-			</table>
-			<div class="pagination">
-				<g:paginate total="${dataElementInstanceTotal}" />
-			</div>
+			<div id="dataElementList" ></div>
+			
+			<g:javascript src="jquery.dataTables.min.js" />
+			<g:javascript src="dataElementList.js" />
 		</div>
 	</body>
 </html>

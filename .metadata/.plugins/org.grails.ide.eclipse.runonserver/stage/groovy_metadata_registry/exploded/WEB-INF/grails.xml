@@ -57,6 +57,9 @@
     <resource>UrlMappings</resource>
     <resource>LoginController</resource>
     <resource>LogoutController</resource>
+    <resource>uk.co.mdc.CollectionBasketController</resource>
+    <resource>uk.co.mdc.forms.FieldController</resource>
+    <resource>uk.co.mdc.forms.FormSpecificationController</resource>
     <resource>uk.co.mdc.IndexController</resource>
     <resource>uk.co.mdc.model.CollectionController</resource>
     <resource>uk.co.mdc.model.ConceptualDomainController</resource>
@@ -67,6 +70,9 @@
     <resource>uk.co.mdc.model.ExternalSynonymController</resource>
     <resource>uk.co.mdc.model.UmlModelController</resource>
     <resource>uk.co.mdc.model.ValueDomainController</resource>
+    <resource>uk.co.mdc.CollectionBasket</resource>
+    <resource>uk.co.mdc.forms.Field</resource>
+    <resource>uk.co.mdc.forms.FormSpecification</resource>
     <resource>uk.co.mdc.model.Collection</resource>
     <resource>uk.co.mdc.model.ConceptualDomain</resource>
     <resource>uk.co.mdc.model.DataElement</resource>

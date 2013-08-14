@@ -12,9 +12,10 @@
 		<link rel="shortcut icon" href="${resource(dir: 'images', file: 'favicon.ico')}" type="image/x-icon">
 		<link rel="apple-touch-icon" href="${resource(dir: 'images', file: 'apple-touch-icon.png')}">
 		<link rel="apple-touch-icon" sizes="114x114" href="${resource(dir: 'images', file: 'apple-touch-icon-retina.png')}">
-		<link href='http://fonts.googleapis.com/css?family=Michroma' rel='stylesheet' type='text/css'>
-		<link href='http://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
+		<!-- <link href='http://fonts.googleapis.com/css?family=Michroma' rel='stylesheet' type='text/css'> -->
+		<!-- <link href='http://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'> -->
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'main.css')}" type="text/css">
+		<link rel="stylesheet" href="${resource(dir: 'css', file: 'jquery.dataTables.css')}" type="text/css">
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'mobile.css')}" type="text/css">
 		<g:javascript>
 		    window.appContext = '${request.contextPath}';
@@ -76,6 +77,18 @@
 						
 						<sec:ifLoggedIn>
 						
+						<div class="left_menu">
+							<div id="cart" class="cart">
+								<table>
+									<tr><td><img src='${fam.icon(name: 'basket_put')}'/></td><td><g:link action="show" params="[id: 1]" controller="CollectionBasket">collection basket </g:link></td></tr>		
+								</table>
+									<div class="ui-widget-content">
+										<ol id="collection_basket_list">
+										</ol>
+								</div>
+							</div>	
+						</div>
+						
 						<div class="left_menu" id="mdr_menu">
 						
 							<table>
@@ -108,7 +121,7 @@
 	
 	
 		<div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>
-		<g:javascript library="application"/>
+		<sec:ifLoggedIn><g:javascript library="application"/></sec:ifLoggedIn>
 		<r:layoutResources />
 	</body>
 </html>

@@ -13,11 +13,24 @@
 	<atom:link href="http://blog.springsource.org/feed/" rel="self" type="application/rss+xml" />
 	<link>http://blog.springsource.org</link>
 	<description>The voice of SpringSource</description>
-	<lastBuildDate>Fri, 26 Jul 2013 13:41:23 +0000</lastBuildDate>
+	<lastBuildDate>Tue, 06 Aug 2013 21:27:30 +0000</lastBuildDate>
 	<language>en</language>
 	<sy:updatePeriod>hourly</sy:updatePeriod>
 	<sy:updateFrequency>1</sy:updateFrequency>
 	<generator>http://wordpress.org/?v=3.1.1</generator>
+		<item>
+		<title>Spring Boot – Simplifying Spring for Everyone</title>
+		<link>http://blog.springsource.org/2013/08/06/spring-boot-simplifying-spring-for-everyone/</link>
+		<comments>http://blog.springsource.org/2013/08/06/spring-boot-simplifying-spring-for-everyone/#comments</comments>
+		<pubDate>Tue, 06 Aug 2013 21:26:45 +0000</pubDate>
+		<dc:creator>Phil Webb</dc:creator>
+				<category><![CDATA[Spring]]></category>
+
+		<guid isPermaLink="false">http://blog.springsource.org/?p=14126</guid>
+		<description><![CDATA[(This blog post was written jointly by Phil Webb and Dave Syer). We are pleased to announce the first milestone release of a new project called Spring Boot. Spring Boot aims to make it easy to create Spring-powered, production-grade applications and services with minimum fuss. It takes an opinionated view of the Spring platform so  <a href="http://blog.springsource.org/2013/08/06/spring-boot-simplifying-spring-for-everyone/"><em>Read more...</em></a>]]></description>
+		<wfw:commentRss>http://blog.springsource.org/2013/08/06/spring-boot-simplifying-spring-for-everyone/feed/</wfw:commentRss>
+		<slash:comments>19</slash:comments>
+		</item>
 		<item>
 		<title>Spring Framework 4.0 M2: WebSocket Messaging Architectures</title>
 		<link>http://blog.springsource.org/2013/07/24/spring-framework-4-0-m2-websocket-messaging-architectures/</link>
@@ -30,7 +43,7 @@
 		<guid isPermaLink="false">http://blog.springsource.org/?p=13986</guid>
 		<description><![CDATA[Overview As I wrote previously, a WebSocket API is only the starting point for WebSocket-style messaging applications. Many practical challenges remain. As one Tomcat mailing list user mused recently: it does seem to me that websockets is still not really &#034;production-ready&#034;, (I am not talking about the Tomcat implementation per se, but more generally) &#8230;  <a href="http://blog.springsource.org/2013/07/24/spring-framework-4-0-m2-websocket-messaging-architectures/"><em>Read more...</em></a>]]></description>
 		<wfw:commentRss>http://blog.springsource.org/2013/07/24/spring-framework-4-0-m2-websocket-messaging-architectures/feed/</wfw:commentRss>
-		<slash:comments>13</slash:comments>
+		<slash:comments>18</slash:comments>
 		</item>
 		<item>
 		<title>Reactor 1.0.0.M1 &#8211; a foundation for asynchronous fast-data applications on the JVM</title>
@@ -87,7 +100,7 @@
 		<guid isPermaLink="false">http://blog.springsource.org/?p=13600</guid>
 		<description><![CDATA[Are you an Eclipse user? Do you want a fast and easy way to search for text snippets and patterns in your workspace? Then read on! A new &#034;Quick Search&#034; is included in Spring ToolSuite (STS) 3.3.0 and Groovy Gails Tool Suite (GGTS) 3.3.0 which have just been released. Even if you are not a  <a href="http://blog.springsource.org/2013/07/11/eclipse-quick-search/"><em>Read more...</em></a>]]></description>
 		<wfw:commentRss>http://blog.springsource.org/2013/07/11/eclipse-quick-search/feed/</wfw:commentRss>
-		<slash:comments>15</slash:comments>
+		<slash:comments>16</slash:comments>
 		</item>
 		<item>
 		<title>Spring Security Java Config Preview: OAuth</title>
@@ -128,7 +141,7 @@
 		<guid isPermaLink="false">http://blog.springsource.org/?p=13769</guid>
 		<description><![CDATA[In my previous post, I introduced Spring Security Java configuration and discussed some of the logistics of the project. In this post, we will start off by walking through a very simple web security configuration. We will then spice things up a bit with configuration that has been customized some. Hello Web Security In this  <a href="http://blog.springsource.org/2013/07/03/spring-security-java-config-preview-web-security/"><em>Read more...</em></a>]]></description>
 		<wfw:commentRss>http://blog.springsource.org/2013/07/03/spring-security-java-config-preview-web-security/feed/</wfw:commentRss>
-		<slash:comments>15</slash:comments>
+		<slash:comments>18</slash:comments>
 		</item>
 		<item>
 		<title>Spring Security Java Config Preview: Introduction</title>
@@ -142,26 +155,6 @@
 		<guid isPermaLink="false">http://blog.springsource.org/?p=13625</guid>
 		<description><![CDATA[Yesterday I announced the release of Spring Security Java Configuration support and the release of Spring Security 3.2.0.M2 which contains Java Configuration support. Spring Security&#039;s Java Configuration support is intended to provide a complete replacement of the XML namespace configuration. It is also designed to be extensible, so that Spring Security&#039;s extension projects can work  <a href="http://blog.springsource.org/2013/07/02/spring-security-java-config-preview-introduction/"><em>Read more...</em></a>]]></description>
 		<wfw:commentRss>http://blog.springsource.org/2013/07/02/spring-security-java-config-preview-introduction/feed/</wfw:commentRss>
-		<slash:comments>5</slash:comments>
-		</item>
-		<item>
-		<title>Spring XD 1.0 Milestone 1 Released</title>
-		<link>http://blog.springsource.org/2013/06/12/spring-xd-1-0-milestone-1-released/</link>
-		<comments>http://blog.springsource.org/2013/06/12/spring-xd-1-0-milestone-1-released/#comments</comments>
-		<pubDate>Wed, 12 Jun 2013 14:36:25 +0000</pubDate>
-		<dc:creator>Mark Pollack</dc:creator>
-				<category><![CDATA[Big Data]]></category>
-		<category><![CDATA[Enterprise Integration]]></category>
-		<category><![CDATA[Hadoop]]></category>
-		<category><![CDATA[Open Source]]></category>
-		<category><![CDATA[Spring]]></category>
-		<category><![CDATA[Spring Batch]]></category>
-		<category><![CDATA[Spring Data]]></category>
-		<category><![CDATA[Spring Integration]]></category>
-
-		<guid isPermaLink="false">http://blog.springsource.org/?p=13524</guid>
-		<description><![CDATA[Today we are pleased to announce the 1.0 M1 release of Spring XD  (download).Spring XD is a unified, distributed, and extensible system for data ingestion, real time analytics, batch processing, and data export.  The project’s goal is to simplify the development of big data applications. From the 10,000 foot view, big data applications share many  <a href="http://blog.springsource.org/2013/06/12/spring-xd-1-0-milestone-1-released/"><em>Read more...</em></a>]]></description>
-		<wfw:commentRss>http://blog.springsource.org/2013/06/12/spring-xd-1-0-milestone-1-released/feed/</wfw:commentRss>
 		<slash:comments>5</slash:comments>
 		</item>
 	</channel>
