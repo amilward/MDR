@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="80" version="2.0">
+<workbench progressCount="104" version="2.0">
 <workbenchAdvisor/>
 <window height="760" maximized="true" width="1024" x="182" y="0">
 <fastViewData fastViewLocation="1024">
@@ -29,7 +29,7 @@
 <coolItem id="org.eclipse.wst.jsdt.ui.CompilationUnitEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
 <coolItem id="org.eclipse.wst.css.core.csssource.source" itemType="typePlaceholder" x="-1" y="-1"/>
 <coolItem id="org.grails.ide.eclipse.editor.gsp.editor" itemType="typeToolBarContribution" x="-1" y="-1"/>
-<coolItem id="org.eclipse.wst.server.ui.editor" itemType="typePlaceholder" x="-1" y="-1"/>
+<coolItem id="org.eclipse.wst.server.ui.editor" itemType="typeToolBarContribution" x="-1" y="-1"/>
 <coolItem id="org.eclipse.jdt.ui.PropertiesFileEditor" itemType="typePlaceholder" x="-1" y="-1"/>
 <coolItem id="org.eclipse.jdt.ui.CompilationUnitEditor" itemType="typePlaceholder" x="-1" y="-1"/>
 <coolItem id="org.codehaus.groovy.eclipse.editor.GroovyEditor" itemType="typeToolBarContribution" x="130" y="22"/>
@@ -43,54 +43,58 @@
 <info part="DefaultEditorWorkbook">
 <folder appearance="1" expanded="2">
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+<part id="1"/>
 <part id="2"/>
 <part id="3"/>
 <part id="4"/>
-<part id="1"/>
-<part id="0"/>
 <part id="5"/>
 <part id="6"/>
 <part id="7"/>
 <part id="8"/>
+<part id="9"/>
 </presentation>
 </folder>
 </info>
 </editorArea>
-<editor id="org.codehaus.groovy.eclipse.editor.GroovyEditor" name="FormSpecification.groovy" partName="FormSpecification.groovy" path="C:/Users/Adam Milward/git/groovy_metadata/groovy_metadata_registry/grails-app/domain/uk/co/mdc/forms/FormSpecification.groovy" title="FormSpecification.groovy" tooltip="groovy_metadata_registry/grails-app/domain/uk/co/mdc/forms/FormSpecification.groovy" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/groovy_metadata_registry/grails-app/domain/uk/co/mdc/forms/FormSpecification.groovy"/>
-<editorState selectionHorizontalPixel="0" selectionLength="76" selectionOffset="95" selectionTopPixel="0"/>
-</editor>
-<editor id="org.codehaus.groovy.eclipse.editor.GroovyEditor" name="Field.groovy" partName="Field.groovy" path="C:/Users/Adam Milward/git/groovy_metadata/groovy_metadata_registry/grails-app/domain/uk/co/mdc/forms/Field.groovy" title="Field.groovy" tooltip="groovy_metadata_registry/grails-app/domain/uk/co/mdc/forms/Field.groovy" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/groovy_metadata_registry/grails-app/domain/uk/co/mdc/forms/Field.groovy"/>
-<editorState selectionHorizontalPixel="0" selectionLength="172" selectionOffset="46" selectionTopPixel="0"/>
-</editor>
-<editor id="org.codehaus.groovy.eclipse.editor.GroovyEditor" name="FieldType.groovy" partName="FieldType.groovy" path="C:/Users/Adam Milward/git/groovy_metadata/groovy_metadata_registry/src/groovy/uk/co/mdc/forms/FieldType.groovy" title="FieldType.groovy" tooltip="groovy_metadata_registry/src/groovy/uk/co/mdc/forms/FieldType.groovy" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/groovy_metadata_registry/src/groovy/uk/co/mdc/forms/FieldType.groovy"/>
-<editorState selectionHorizontalPixel="0" selectionLength="9" selectionOffset="39" selectionTopPixel="0"/>
-</editor>
-<editor id="org.codehaus.groovy.eclipse.editor.GroovyEditor" name="FieldController.groovy" partName="FieldController.groovy" path="C:/Users/Adam Milward/git/groovy_metadata/groovy_metadata_registry/grails-app/controllers/uk/co/mdc/forms/FieldController.groovy" title="FieldController.groovy" tooltip="groovy_metadata_registry/grails-app/controllers/uk/co/mdc/forms/FieldController.groovy" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/groovy_metadata_registry/grails-app/controllers/uk/co/mdc/forms/FieldController.groovy"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="559" selectionTopPixel="150"/>
-</editor>
-<editor id="org.codehaus.groovy.eclipse.editor.GroovyEditor" name="DataElementController.groovy" partName="DataElementController.groovy" path="C:/Users/Adam Milward/git/groovy_metadata/groovy_metadata_registry/grails-app/controllers/uk/co/mdc/model/DataElementController.groovy" title="DataElementController.groovy" tooltip="groovy_metadata_registry/grails-app/controllers/uk/co/mdc/model/DataElementController.groovy" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/groovy_metadata_registry/grails-app/controllers/uk/co/mdc/model/DataElementController.groovy"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="687" selectionTopPixel="0"/>
-</editor>
-<editor id="org.codehaus.groovy.eclipse.editor.GroovyEditor" name="FormSpecificationController.groovy" partName="FormSpecificationController.groovy" path="C:/Users/Adam Milward/git/groovy_metadata/groovy_metadata_registry/grails-app/controllers/uk/co/mdc/forms/FormSpecificationController.groovy" title="FormSpecificationController.groovy" tooltip="groovy_metadata_registry/grails-app/controllers/uk/co/mdc/forms/FormSpecificationController.groovy" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/groovy_metadata_registry/grails-app/controllers/uk/co/mdc/forms/FormSpecificationController.groovy"/>
-<editorState selectionHorizontalPixel="0" selectionLength="12" selectionOffset="2537" selectionTopPixel="1275"/>
-</editor>
-<editor activePart="true" focus="true" id="org.grails.ide.eclipse.editor.gsp.editor" name="show.gsp" partName="show.gsp" path="C:/Users/Adam Milward/git/groovy_metadata/groovy_metadata_registry/grails-app/views/formSpecification/show.gsp" title="show.gsp" tooltip="groovy_metadata_registry/grails-app/views/formSpecification/show.gsp" workbook="DefaultEditorWorkbook">
+<editor id="org.grails.ide.eclipse.editor.gsp.editor" name="show.gsp" partName="show.gsp" path="C:/Users/Adam Milward/git/groovy_metadata/groovy_metadata_registry/grails-app/views/formSpecification/show.gsp" title="show.gsp" tooltip="groovy_metadata_registry/grails-app/views/formSpecification/show.gsp" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/groovy_metadata_registry/grails-app/views/formSpecification/show.gsp"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="3115" selectionTopPixel="443"/>
-</editor>
-<editor id="org.grails.ide.eclipse.editor.gsp.editor" name="list.gsp" partName="list.gsp" path="C:/Users/Adam Milward/git/groovy_metadata/groovy_metadata_registry/grails-app/views/dataElement/list.gsp" title="list.gsp" tooltip="groovy_metadata_registry/grails-app/views/dataElement/list.gsp" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/groovy_metadata_registry/grails-app/views/dataElement/list.gsp"/>
-<editorState selectionHorizontalPixel="0" selectionLength="92" selectionOffset="986" selectionTopPixel="0"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="3148" selectionTopPixel="747"/>
 </editor>
 <editor id="org.eclipse.wst.jsdt.ui.CompilationUnitEditor" name="formspec.js" partName="formspec.js" path="C:/Users/Adam Milward/git/groovy_metadata/groovy_metadata_registry/web-app/js/formspec.js" title="formspec.js" tooltip="groovy_metadata_registry/web-app/js/formspec.js" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/groovy_metadata_registry/web-app/js/formspec.js"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="179" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.wst.jsdt.ui.CompilationUnitEditor" name="dataElementList.js" partName="dataElementList.js" path="C:/Users/Adam Milward/git/groovy_metadata/groovy_metadata_registry/web-app/js/dataElementList.js" title="dataElementList.js" tooltip="groovy_metadata_registry/web-app/js/dataElementList.js" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/groovy_metadata_registry/web-app/js/dataElementList.js"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="1200"/>
+</editor>
+<editor id="org.eclipse.wst.jsdt.ui.CompilationUnitEditor" name="application.js" partName="application.js" path="C:/Users/Adam Milward/git/groovy_metadata/groovy_metadata_registry/web-app/js/application.js" title="application.js" tooltip="groovy_metadata_registry/web-app/js/application.js" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/groovy_metadata_registry/web-app/js/application.js"/>
+<editorState selectionHorizontalPixel="0" selectionLength="30" selectionOffset="334" selectionTopPixel="0"/>
+</editor>
+<editor id="org.codehaus.groovy.eclipse.editor.GroovyEditor" name="FormSpecificationController.groovy" partName="FormSpecificationController.groovy" path="C:/Users/Adam Milward/git/groovy_metadata/groovy_metadata_registry/grails-app/controllers/uk/co/mdc/forms/FormSpecificationController.groovy" title="FormSpecificationController.groovy" tooltip="groovy_metadata_registry/grails-app/controllers/uk/co/mdc/forms/FormSpecificationController.groovy" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/groovy_metadata_registry/grails-app/controllers/uk/co/mdc/forms/FormSpecificationController.groovy"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="590" selectionTopPixel="1164"/>
+</editor>
+<editor id="org.codehaus.groovy.eclipse.editor.GroovyEditor" name="FieldMarshaller.groovy" partName="FieldMarshaller.groovy" path="C:/Users/Adam Milward/git/groovy_metadata/groovy_metadata_registry/src/groovy/uk/co/mdc/model/FieldMarshaller.groovy" title="FieldMarshaller.groovy" tooltip="groovy_metadata_registry/src/groovy/uk/co/mdc/model/FieldMarshaller.groovy" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/groovy_metadata_registry/src/groovy/uk/co/mdc/model/FieldMarshaller.groovy"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="308" selectionTopPixel="0"/>
+</editor>
+<editor id="org.codehaus.groovy.eclipse.editor.GroovyEditor" name="FieldType.groovy" partName="FieldType.groovy" path="C:/Users/Adam Milward/git/groovy_metadata/groovy_metadata_registry/src/groovy/uk/co/mdc/forms/FieldType.groovy" title="FieldType.groovy" tooltip="groovy_metadata_registry/src/groovy/uk/co/mdc/forms/FieldType.groovy" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/groovy_metadata_registry/src/groovy/uk/co/mdc/forms/FieldType.groovy"/>
+<editorState selectionHorizontalPixel="0" selectionLength="5" selectionOffset="102" selectionTopPixel="0"/>
+</editor>
+<editor id="org.codehaus.groovy.eclipse.editor.GroovyEditor" name="FieldController.groovy" partName="FieldController.groovy" path="C:/Users/Adam Milward/git/groovy_metadata/groovy_metadata_registry/grails-app/controllers/uk/co/mdc/forms/FieldController.groovy" title="FieldController.groovy" tooltip="groovy_metadata_registry/grails-app/controllers/uk/co/mdc/forms/FieldController.groovy" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/groovy_metadata_registry/grails-app/controllers/uk/co/mdc/forms/FieldController.groovy"/>
 <editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
+</editor>
+<editor id="org.codehaus.groovy.eclipse.editor.GroovyEditor" name="Field.groovy" partName="Field.groovy" path="C:/Users/Adam Milward/git/groovy_metadata/groovy_metadata_registry/grails-app/domain/uk/co/mdc/forms/Field.groovy" title="Field.groovy" tooltip="groovy_metadata_registry/grails-app/domain/uk/co/mdc/forms/Field.groovy" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/groovy_metadata_registry/grails-app/domain/uk/co/mdc/forms/Field.groovy"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
+</editor>
+<editor activePart="true" focus="true" id="org.eclipse.wst.server.ui.editor" name="VMware vFabric tc Server Developer Edition v2.8" partName="VMware vFabric tc Server Developer Edition v2.8" title="VMware vFabric tc Server Developer Edition v2.8" tooltip="VMware vFabric tc Server Developer Edition v2.8" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.wst.server.ui.editor.input.factory" server-id="VMware vFabric tc Server Developer Edition v2.8"/>
 </editor>
 </editors>
 <views>
@@ -116,8 +120,7 @@
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
 <viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
 <expanded>
-<category IMemento.internal.id="Warnings (46 items)"/>
-<category IMemento.internal.id="Errors"/>
+<category IMemento.internal.id="Warnings (8 items)"/>
 </expanded>
 <columnWidths org.eclipse.ui.ide.locationField="90" org.eclipse.ui.ide.markerType="90" org.eclipse.ui.ide.pathField="120" org.eclipse.ui.ide.resourceField="90" org.eclipse.ui.ide.severityAndDescriptionField="530"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.severityAndDescriptionField"/>
@@ -248,7 +251,7 @@
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
 </folder>
 </info>
-<info folder="true" part="bottom" ratio="0.73834443" ratioLeft="776" ratioRight="275" relationship="4" relative="org.eclipse.ui.editorss">
+<info folder="true" part="bottom" ratio="0.7250384" ratioLeft="472" ratioRight="179" relationship="4" relative="org.eclipse.ui.editorss">
 <folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">
 <page content="org.eclipse.ui.views.ProblemView" label="Problems"/>
 <page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
@@ -283,170 +286,167 @@
 <workingSets/>
 <navigationHistory>
 <editors>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.codehaus.groovy.eclipse.editor.GroovyEditor" path="/groovy_metadata_registry/grails-app/controllers/uk/co/mdc/model/DataElementController.groovy"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.codehaus.groovy.eclipse.editor.GroovyEditor" path="/groovy_metadata_registry/src/groovy/util/marshalling/CustomObjectMarshallers.groovy"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.codehaus.groovy.eclipse.editor.GroovyEditor" path="/groovy_metadata_registry/src/groovy/uk/co/mdc/model/DataElementMarshaller.groovy"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.codehaus.groovy.eclipse.editor.GroovyEditor" path="/groovy_metadata_registry/src/groovy/uk/co/mdc/model/FieldMarshaller.groovy"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.codehaus.groovy.eclipse.editor.GroovyEditor" path="/groovy_metadata_registry/grails-app/conf/spring/resources.groovy"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.codehaus.groovy.eclipse.editor.GroovyEditor" path="/groovy_metadata_registry/src/groovy/uk/co/mdc/forms/FormSpecMarshaller.groovy"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.codehaus.groovy.eclipse.editor.GroovyEditor" path="/groovy_metadata_registry/grails-app/controllers/uk/co/mdc/forms/FormSpecificationController.groovy"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.grails.ide.eclipse.editor.gsp.editor" path="/groovy_metadata_registry/grails-app/views/formSpecification/show.gsp"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.codehaus.groovy.eclipse.editor.GroovyEditor" path="/groovy_metadata_registry/grails-app/domain/uk/co/mdc/model/DataElement.groovy"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.codehaus.groovy.eclipse.editor.GroovyEditor" path="/groovy_metadata_registry/grails-app/domain/uk/co/mdc/forms/FormSpecification.groovy"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.grails.ide.eclipse.editor.gsp.editor" path="/groovy_metadata_registry/grails-app/views/dataElement/list.gsp"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.wst.jsdt.ui.CompilationUnitEditor" path="/groovy_metadata_registry/web-app/js/formspec.js"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.wst.jsdt.ui.CompilationUnitEditor" path="/groovy_metadata_registry/web-app/js/form_map.js"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.wst.jsdt.ui.CompilationUnitEditor" path="/groovy_metadata_registry/web-app/js/formspec.js"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.wst.jsdt.ui.CompilationUnitEditor" path="/groovy_metadata_registry/web-app/js/dataElementList.js"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.wst.jsdt.ui.CompilationUnitEditor" path="/groovy_metadata_registry/web-app/js/application.js"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.codehaus.groovy.eclipse.editor.GroovyEditor" path="/groovy_metadata_registry/grails-app/controllers/uk/co/mdc/forms/FormSpecificationController.groovy"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.codehaus.groovy.eclipse.editor.GroovyEditor" path="/groovy_metadata_registry/src/groovy/uk/co/mdc/model/FieldMarshaller.groovy"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.codehaus.groovy.eclipse.editor.GroovyEditor" path="/groovy_metadata_registry/src/groovy/uk/co/mdc/forms/FieldType.groovy"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.codehaus.groovy.eclipse.editor.GroovyEditor" path="/groovy_metadata_registry/grails-app/controllers/uk/co/mdc/forms/FieldController.groovy"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.codehaus.groovy.eclipse.editor.GroovyEditor" path="/groovy_metadata_registry/grails-app/domain/uk/co/mdc/forms/Field.groovy"/>
+<editor factoryID="org.eclipse.wst.server.ui.editor.input.factory" id="org.eclipse.wst.server.ui.editor" server-id="VMware vFabric tc Server Developer Edition v2.8"/>
 </editors>
-<item historyLabel="FormSpecificationController.groovy" index="6">
-<position info="not_deleted" x="695" y="0"/>
-</item>
-<item historyLabel="DataElementController.groovy" index="0">
-<position info="not_deleted" x="527" y="156"/>
-</item>
-<item historyLabel="show.gsp" index="7">
+<item historyLabel="form_map.js" index="2">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="DataElementController.groovy" index="0">
-<position info="not_deleted" x="527" y="156"/>
-</item>
-<item historyLabel="DataElement.groovy" index="8">
-<position info="not_deleted" x="684" y="0"/>
-</item>
-<item historyLabel="DataElementController.groovy" index="0">
-<position info="not_deleted" x="687" y="0"/>
-</item>
-<item historyLabel="CustomObjectMarshallers.groovy" index="1">
+<item historyLabel="formspec.js" index="1">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="resources.groovy" index="4">
-<position info="not_deleted" x="576" y="0"/>
+<item historyLabel="show.gsp" index="0">
+<position info="not_deleted" x="3115" y="0"/>
 </item>
-<item historyLabel="DataElementMarshaller.groovy" index="2">
-<position info="not_deleted" x="113" y="0"/>
-</item>
-<item historyLabel="FieldMarshaller.groovy" index="3">
-<position info="not_deleted" x="458" y="0"/>
-</item>
-<item historyLabel="FormSpecMarshaller.groovy" index="5">
-<position info="not_deleted" x="245" y="0"/>
-</item>
-<item historyLabel="FormSpecification.groovy" index="9">
-<position info="not_deleted" x="95" y="76"/>
-</item>
-<item historyLabel="FormSpecificationController.groovy" index="6">
-<position info="not_deleted" x="695" y="0"/>
-</item>
-<item historyLabel="FormSpecMarshaller.groovy" index="5">
-<position info="not_deleted" x="245" y="0"/>
-</item>
-<item historyLabel="FormSpecMarshaller.groovy" index="5">
-<position info="not_deleted" x="396" y="0"/>
-</item>
-<item historyLabel="DataElementMarshaller.groovy" index="2">
-<position info="not_deleted" x="113" y="0"/>
-</item>
-<item historyLabel="DataElementController.groovy" index="0">
-<position info="not_deleted" x="687" y="0"/>
-</item>
-<item historyLabel="DataElementMarshaller.groovy" index="2">
-<position info="not_deleted" x="113" y="0"/>
-</item>
-<item historyLabel="FormSpecificationController.groovy" index="6">
-<position info="not_deleted" x="2622" y="0"/>
-</item>
-<item historyLabel="FormSpecMarshaller.groovy" index="5">
-<position info="not_deleted" x="168" y="0"/>
-</item>
-<item historyLabel="FormSpecificationController.groovy" index="6">
-<position info="not_deleted" x="2622" y="0"/>
-</item>
-<item historyLabel="FormSpecificationController.groovy" index="6">
-<position info="not_deleted" x="2742" y="0"/>
-</item>
-<item historyLabel="FormSpecification.groovy" index="9">
-<position info="not_deleted" x="95" y="76"/>
-</item>
-<item historyLabel="FormSpecificationController.groovy" index="6">
-<position info="not_deleted" x="2559" y="0"/>
-</item>
-<item historyLabel="FormSpecMarshaller.groovy" index="5">
-<position info="not_deleted" x="168" y="0"/>
-</item>
-<item historyLabel="FormSpecificationController.groovy" index="6">
-<position info="not_deleted" x="2625" y="0"/>
-</item>
-<item historyLabel="CustomObjectMarshallers.groovy" index="1">
+<item historyLabel="show.gsp" index="0">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="FormSpecificationController.groovy" index="6">
-<position info="not_deleted" x="2625" y="0"/>
+<item historyLabel="formspec.js" index="3">
+<position info="not_deleted" x="30" y="0"/>
 </item>
-<item historyLabel="show.gsp" index="7">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="list.gsp" index="10">
-<position info="not_deleted" x="986" y="92"/>
-</item>
-<item historyLabel="show.gsp" index="7">
-<position info="not_deleted" x="3210" y="0"/>
-</item>
-<item historyLabel="formspec.js" index="11">
-<position info="not_deleted" x="159" y="0"/>
-</item>
-<item historyLabel="FormSpecificationController.groovy" index="6">
-<position info="not_deleted" x="2719" y="0"/>
-</item>
-<item historyLabel="formspec.js" index="11">
+<item historyLabel="formspec.js" index="3">
 <position/>
 </item>
-<item historyLabel="show.gsp" index="7">
-<position info="not_deleted" x="2722" y="0"/>
+<item historyLabel="dataElementList.js" index="4">
+<position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="formspec.js" index="11">
-<position info="not_deleted" x="126" y="4"/>
+<item historyLabel="application.js" index="5">
+<position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="list.gsp" index="10">
-<position info="not_deleted" x="986" y="92"/>
+<item historyLabel="application.js" index="5">
+<position info="not_deleted" x="1293" y="0"/>
+</item>
+<item historyLabel="application.js" index="5">
+<position info="not_deleted" x="1295" y="0"/>
+</item>
+<item historyLabel="formspec.js" index="3">
+<position info="not_deleted" x="189" y="0"/>
+</item>
+<item historyLabel="dataElementList.js" index="4">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="application.js" index="5">
+<position info="not_deleted" x="334" y="30"/>
+</item>
+<item historyLabel="formspec.js" index="3">
+<position/>
+</item>
+<item historyLabel="show.gsp" index="0">
+<position info="not_deleted" x="3128" y="11"/>
+</item>
+<item historyLabel="application.js" index="5">
+<position info="not_deleted" x="334" y="30"/>
+</item>
+<item historyLabel="dataElementList.js" index="4">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="formspec.js" index="3">
+<position/>
+</item>
+<item historyLabel="show.gsp" index="0">
+<position info="not_deleted" x="3164" y="0"/>
+</item>
+<item historyLabel="application.js" index="5">
+<position info="not_deleted" x="334" y="30"/>
+</item>
+<item historyLabel="formspec.js" index="3">
+<position/>
+</item>
+<item historyLabel="show.gsp" index="0">
+<position info="not_deleted" x="3198" y="0"/>
+</item>
+<item historyLabel="application.js" index="5">
+<position info="not_deleted" x="334" y="30"/>
+</item>
+<item historyLabel="formspec.js" index="3">
+<position/>
+</item>
+<item historyLabel="show.gsp" index="0">
+<position/>
+</item>
+<item historyLabel="formspec.js" index="3">
+<position info="not_deleted" x="195" y="0"/>
+</item>
+<item historyLabel="show.gsp" index="0">
+<position info="not_deleted" x="3236" y="0"/>
+</item>
+<item historyLabel="formspec.js" index="3">
+<position info="not_deleted" x="184" y="0"/>
+</item>
+<item historyLabel="show.gsp" index="0">
+<position info="not_deleted" x="3236" y="0"/>
+</item>
+<item historyLabel="formspec.js" index="3">
+<position info="not_deleted" x="184" y="0"/>
+</item>
+<item historyLabel="show.gsp" index="0">
+<position info="not_deleted" x="3236" y="0"/>
+</item>
+<item historyLabel="formspec.js" index="3">
+<position info="not_deleted" x="193" y="0"/>
+</item>
+<item historyLabel="show.gsp" index="0">
+<position info="not_deleted" x="2553" y="0"/>
 </item>
 <item historyLabel="FormSpecificationController.groovy" index="6">
-<position info="not_deleted" x="2719" y="0"/>
+<position info="not_deleted" x="590" y="0"/>
 </item>
-<item historyLabel="FormSpecification.groovy" index="9">
-<position info="not_deleted" x="95" y="76"/>
+<item historyLabel="FieldMarshaller.groovy" index="7">
+<position info="not_deleted" x="307" y="0"/>
 </item>
-<item historyLabel="FormSpecificationController.groovy" index="6">
-<position info="not_deleted" x="2537" y="12"/>
+<item historyLabel="FieldType.groovy" index="8">
+<position info="not_deleted" x="113" y="9"/>
 </item>
-<item historyLabel="formspec.js" index="11">
-<position info="not_deleted" x="14" y="0"/>
+<item historyLabel="FieldMarshaller.groovy" index="7">
+<position info="not_deleted" x="307" y="0"/>
 </item>
-<item historyLabel="show.gsp" index="7">
-<position info="not_deleted" x="2722" y="0"/>
+<item historyLabel="FieldType.groovy" index="8">
+<position info="not_deleted" x="113" y="9"/>
 </item>
-<item historyLabel="list.gsp" index="10">
-<position info="not_deleted" x="986" y="92"/>
+<item historyLabel="FieldMarshaller.groovy" index="7">
+<position info="not_deleted" x="302" y="5"/>
 </item>
-<item historyLabel="show.gsp" index="7">
-<position info="not_deleted" x="2722" y="0"/>
+<item historyLabel="FieldType.groovy" index="8">
+<position info="not_deleted" x="113" y="9"/>
 </item>
-<item historyLabel="formspec.js" index="11">
-<position info="not_deleted" x="14" y="0"/>
+<item historyLabel="FieldMarshaller.groovy" index="7">
+<position info="not_deleted" x="302" y="5"/>
 </item>
-<item historyLabel="show.gsp" index="7">
-<position info="not_deleted" x="2722" y="0"/>
+<item historyLabel="FieldType.groovy" index="8">
+<position info="not_deleted" x="102" y="5"/>
 </item>
-<item historyLabel="formspec.js" index="11">
+<item historyLabel="FieldMarshaller.groovy" index="7">
+<position info="not_deleted" x="308" y="0"/>
+</item>
+<item historyLabel="show.gsp" index="0">
+<position info="not_deleted" x="3236" y="0"/>
+</item>
+<item historyLabel="formspec.js" index="3">
+<position info="not_deleted" x="184" y="0"/>
+</item>
+<item historyLabel="show.gsp" index="0">
+<position info="not_deleted" x="3148" y="0"/>
+</item>
+<item historyLabel="formspec.js" index="3">
+<position info="not_deleted" x="179" y="0"/>
+</item>
+<item historyLabel="FieldController.groovy" index="9">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="form_map.js" index="12">
+<item historyLabel="Field.groovy" index="10">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="formspec.js" index="11">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item active="true" historyLabel="show.gsp" index="7">
-<position info="not_deleted" x="2722" y="0"/>
-</item>
+<item active="true" historyLabel="VMware vFabric tc Server Developer Edition v2.8" index="11"/>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
 </page>
@@ -465,47 +465,50 @@
 </trimLayout>
 </window>
 <mruList>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.wst.jsdt.ui.CompilationUnitEditor" name="form_map.js" tooltip="groovy_metadata_registry/web-app/js/form_map.js">
-<persistable path="/groovy_metadata_registry/web-app/js/form_map.js"/>
+<file factoryID="org.eclipse.wst.server.ui.editor.input.factory" id="org.eclipse.wst.server.ui.editor" name="VMware vFabric tc Server Developer Edition v2.8" tooltip="VMware vFabric tc Server Developer Edition v2.8">
+<persistable server-id="VMware vFabric tc Server Developer Edition v2.8"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.wst.jsdt.ui.CompilationUnitEditor" name="formspec.js" tooltip="groovy_metadata_registry/web-app/js/formspec.js">
-<persistable path="/groovy_metadata_registry/web-app/js/formspec.js"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.codehaus.groovy.eclipse.editor.GroovyEditor" name="Field.groovy" tooltip="groovy_metadata_registry/grails-app/domain/uk/co/mdc/forms/Field.groovy">
+<persistable path="/groovy_metadata_registry/grails-app/domain/uk/co/mdc/forms/Field.groovy"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.grails.ide.eclipse.editor.gsp.editor" name="list.gsp" tooltip="groovy_metadata_registry/grails-app/views/dataElement/list.gsp">
-<persistable path="/groovy_metadata_registry/grails-app/views/dataElement/list.gsp"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.codehaus.groovy.eclipse.editor.GroovyEditor" name="FieldController.groovy" tooltip="groovy_metadata_registry/grails-app/controllers/uk/co/mdc/forms/FieldController.groovy">
+<persistable path="/groovy_metadata_registry/grails-app/controllers/uk/co/mdc/forms/FieldController.groovy"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.grails.ide.eclipse.editor.gsp.editor" name="show.gsp" tooltip="groovy_metadata_registry/grails-app/views/formSpecification/show.gsp">
-<persistable path="/groovy_metadata_registry/grails-app/views/formSpecification/show.gsp"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.codehaus.groovy.eclipse.editor.GroovyEditor" name="DataElement.groovy" tooltip="groovy_metadata_registry/grails-app/domain/uk/co/mdc/model/DataElement.groovy">
-<persistable path="/groovy_metadata_registry/grails-app/domain/uk/co/mdc/model/DataElement.groovy"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.codehaus.groovy.eclipse.editor.GroovyEditor" name="FormSpecificationController.groovy" tooltip="groovy_metadata_registry/grails-app/controllers/uk/co/mdc/forms/FormSpecificationController.groovy">
-<persistable path="/groovy_metadata_registry/grails-app/controllers/uk/co/mdc/forms/FormSpecificationController.groovy"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.codehaus.groovy.eclipse.editor.GroovyEditor" name="resources.groovy" tooltip="groovy_metadata_registry/grails-app/conf/spring/resources.groovy">
-<persistable path="/groovy_metadata_registry/grails-app/conf/spring/resources.groovy"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.codehaus.groovy.eclipse.editor.GroovyEditor" name="CustomObjectMarshallers.groovy" tooltip="groovy_metadata_registry/src/groovy/util/marshalling/CustomObjectMarshallers.groovy">
-<persistable path="/groovy_metadata_registry/src/groovy/util/marshalling/CustomObjectMarshallers.groovy"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.codehaus.groovy.eclipse.editor.GroovyEditor" name="FieldType.groovy" tooltip="groovy_metadata_registry/src/groovy/uk/co/mdc/forms/FieldType.groovy">
+<persistable path="/groovy_metadata_registry/src/groovy/uk/co/mdc/forms/FieldType.groovy"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.codehaus.groovy.eclipse.editor.GroovyEditor" name="FieldMarshaller.groovy" tooltip="groovy_metadata_registry/src/groovy/uk/co/mdc/model/FieldMarshaller.groovy">
 <persistable path="/groovy_metadata_registry/src/groovy/uk/co/mdc/model/FieldMarshaller.groovy"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.codehaus.groovy.eclipse.editor.GroovyEditor" name="DataElementMarshaller.groovy" tooltip="groovy_metadata_registry/src/groovy/uk/co/mdc/model/DataElementMarshaller.groovy">
-<persistable path="/groovy_metadata_registry/src/groovy/uk/co/mdc/model/DataElementMarshaller.groovy"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.codehaus.groovy.eclipse.editor.GroovyEditor" name="FormSpecificationController.groovy" tooltip="groovy_metadata_registry/grails-app/controllers/uk/co/mdc/forms/FormSpecificationController.groovy">
+<persistable path="/groovy_metadata_registry/grails-app/controllers/uk/co/mdc/forms/FormSpecificationController.groovy"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.codehaus.groovy.eclipse.editor.GroovyEditor" name="DataElementController.groovy" tooltip="groovy_metadata_registry/grails-app/controllers/uk/co/mdc/model/DataElementController.groovy">
-<persistable path="/groovy_metadata_registry/grails-app/controllers/uk/co/mdc/model/DataElementController.groovy"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.wst.jsdt.ui.CompilationUnitEditor" name="application.js" tooltip="groovy_metadata_registry/web-app/js/application.js">
+<persistable path="/groovy_metadata_registry/web-app/js/application.js"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.grails.ide.eclipse.editor.gsp.editor" name="_form.gsp" tooltip="groovy_metadata_registry/grails-app/views/dataType/_form.gsp">
-<persistable path="/groovy_metadata_registry/grails-app/views/dataType/_form.gsp"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.wst.jsdt.ui.CompilationUnitEditor" name="dataElementList.js" tooltip="groovy_metadata_registry/web-app/js/dataElementList.js">
+<persistable path="/groovy_metadata_registry/web-app/js/dataElementList.js"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.grails.ide.eclipse.editor.gsp.editor" name="create.gsp" tooltip="groovy_metadata_registry/grails-app/views/formSpecification/create.gsp">
-<persistable path="/groovy_metadata_registry/grails-app/views/formSpecification/create.gsp"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.wst.jsdt.ui.CompilationUnitEditor" name="formspec.js" tooltip="groovy_metadata_registry/web-app/js/formspec.js">
+<persistable path="/groovy_metadata_registry/web-app/js/formspec.js"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.codehaus.groovy.eclipse.editor.GroovyEditor" name="DataTypeController.groovy" tooltip="groovy_metadata_registry/grails-app/controllers/uk/co/mdc/model/DataTypeController.groovy">
-<persistable path="/groovy_metadata_registry/grails-app/controllers/uk/co/mdc/model/DataTypeController.groovy"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.grails.ide.eclipse.editor.gsp.editor" name="show.gsp" tooltip="groovy_metadata_registry/grails-app/views/formSpecification/show.gsp">
+<persistable path="/groovy_metadata_registry/grails-app/views/formSpecification/show.gsp"/>
+</file>
+<file factoryID="org.springsource.ide.eclipse.dashboard.ui.dashboard.elementFactory" id="com.springsource.sts.internal.ide.ui.editors.MultiPageDashboardEditor" name="Dashboard" tooltip="Dashboard">
+<persistable openDashboard="true"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.wst.jsdt.ui.CompilationUnitEditor" name="form_map.js" tooltip="groovy_metadata_registry/web-app/js/form_map.js">
+<persistable path="/groovy_metadata_registry/web-app/js/form_map.js"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.grails.ide.eclipse.editor.gsp.editor" name="list.gsp" tooltip="groovy_metadata_registry/grails-app/views/dataElement/list.gsp">
+<persistable path="/groovy_metadata_registry/grails-app/views/dataElement/list.gsp"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.codehaus.groovy.eclipse.editor.GroovyEditor" name="DataElement.groovy" tooltip="groovy_metadata_registry/grails-app/domain/uk/co/mdc/model/DataElement.groovy">
+<persistable path="/groovy_metadata_registry/grails-app/domain/uk/co/mdc/model/DataElement.groovy"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.codehaus.groovy.eclipse.editor.GroovyEditor" name="resources.groovy" tooltip="groovy_metadata_registry/grails-app/conf/spring/resources.groovy">
+<persistable path="/groovy_metadata_registry/grails-app/conf/spring/resources.groovy"/>
 </file>
 </mruList>
 </workbench>

@@ -1,3 +1,2 @@
 #Tomcat publish data
-#Wed Aug 14 10:20:08 BST 2013
-org.grails.ide.eclipse.runonserver.GrailsAppModuleFactory\:groovy_metadata_registry=C\:\\Users\\Adam Milward\\Downloads\\springsource\\vfabric-tc-server-developer-2.8.2.RELEASE\\base-instance\\wtpwebapps\\groovy_metadata_registry
+#Wed Aug 14 16:26:09 BST 2013
