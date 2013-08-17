@@ -1,4 +1,4 @@
-package uk.co.mdc.model
+package uk.co.mdc.forms
 import java.util.Map;
 import grails.converters.JSON
 import uk.co.mdc.forms.*
