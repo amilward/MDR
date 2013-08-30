@@ -665,6 +665,9 @@ a.skip {
 		.floatright{
 			float:right;
 		}
+		.labelCol{
+			width:10%;
+		}
 		
 		#welcome{
 				font-size: 40px;

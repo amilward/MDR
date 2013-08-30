@@ -6,24 +6,27 @@
 		<meta name="layout" content="main">
 		<g:set var="entityName" value="${message(code: 'dataElement.label', default: 'DataElement')}" />
 		<title><g:message code="default.list.label" args="[entityName]" /></title>
+		<parameter name="name" value="Data Elements" />
 	</head>
 	<body>
-		<a href="#list-dataElement" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-		<div class="nav" role="navigation">
-			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-			</ul>
-		</div>
-		<div id="list-dataElement" class="content scaffold-list" role="main">
-			<h1>Data Elements</h1>
+		
+		<div class="box">
+            <div id="list-dataElement" class="content scaffold-list" role="main">
 			<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
 			<div id="dataElementList" ></div>
-			
-			<g:javascript src="jquery.dataTables.min.js" />
-			<g:javascript src="dataElementList.js" />
+			<g:javascript library="dataTables"/>
+			<r:script disposition="defer">
+
+			$(function() {
+				dataElementList();
+				dataElementDragStart();
+            });
+				
+			</r:script>
 		</div>
+                                                         
+        </div>                
 	</body>
 </html>

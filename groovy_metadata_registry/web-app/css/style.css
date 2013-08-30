@@ -566,9 +566,10 @@ body.fixed .pattern-switcher {
   }
 }
 .box {
-  margin-bottom: 10px;
-  position: relative;
-  width: 100%;
+ 	margin-bottom: 40px;
+    margin-top: 10px;
+    position: relative;
+    width: 100%;
 }
 .box header {
   background-color: #fafafa;
@@ -1189,3 +1190,24 @@ body.fixed .pattern-switcher {
 }
 /*COMMENTS*/
 /* --------------- END Component Styles -------------------- */
+
+
+/* My Extra Styles*/
+
+.floatright {
+    float: right;
+}
+
+.left_col_show{
+	width:20%;
+}
+
+.right_col_show{
+	width:80%;
+}
+
+#enumerations{
+	display:none;
+}
+
+

@@ -1,85 +1,94 @@
 <%@ page import="uk.co.mdc.model.DataElementConcept" %>
 
 
+<table class="table table-hovered">
+				<tbody>
+					<tr class="${hasErrors(bean: dataElementConceptInstance, field: 'refId', 'error')} ">
+						<td class="left_col_show"><span id="name-label" class="label"><g:message code="dataElementConcept.refId.label" default="Reference ID" /></span></td>
+						<td class="right_col_show"><g:textField title="${g.message(code:'tooltip.dataElementConcept.refId')}" class="input-large input-block-level" name="refId" value="${dataElementConceptInstance.refId}" required=""/></td>
+					</tr>
+					<tr class="${hasErrors(bean: dataElementConceptInstance, field: 'name', 'error')} ">
+						<td class="left_col_show"><span id="name-label" class="label"><g:message code="dataElementConcept.name.label" default="Name" /></span></td>
+						<td class="right_col_show"><g:textField title="tooltip.dataElementConcept.name" class="input-large input-block-level"  name="name" value="${dataElementConceptInstance?.name}"/></td>
+					</tr>
+					<tr class="${hasErrors(bean: dataElementConceptInstance, field: 'description', 'error')} ">
+						<td class="left_col_show"><span id="name-label" class="label"><g:message code="dataElementConcept.description.label" default="Description" /></span></td>
+						<td class="right_col_show"><g:textArea title="tooltip.dataElementConcept.description" class="input-block-level" name="description" value="${dataElementConceptInstance?.description}"/></td>
+					</tr>
+					<tr>
+						<td class="left_col_show"><span id="parent-label" class="label"><g:message code="dataElementConcept.parent.label" default="Parent" /></span></td>
+						<td>
+						<g:select
+						title="tooltip.dataElementConcept.parent"
+                        id="parent"
+						name="parent.id" 
+			            noSelection="${['':'Select One...']}"
+			            from="${dataElementConcepts.minus(dataElementConceptInstance)}"
+			            value="${dataElementConceptInstance?.parent?.id}"
+			            optionKey="id"
+			            optionValue="name" 
+						class="many-to-one"
+      					/>
+						</td>
+					</tr>
+					<tr>
+						<td class="left_col_show"><span id="subConcepts-label" class="label">Sub Concepts</span></td>
+						<td class="right_col_show">
+							<g:select
+								title="tooltip.dataElementConcept.subConcepts"
+							 	name="subConcepts"
+							 	id="subConcepts"
+					            noSelection="${['':'Select One...']}"
+					            from="${dataElementConcepts.minus(dataElementConceptInstance)}"
+					            value="${params.list('dataElementConcepts')}"
+					            optionKey="id"
+					            optionValue="name"
+					            multiple="true"
+					            size="6"
+							/>
+						</td>
+					</tr>
+					<tr>
+						<td class="left_col_show"><span id="dataElement-label" class="label">Data Elements</span></td>
+						<td class="right_col_show">
+						<g:select
+								title="tooltip.dataElementConcept.dataElements"
+								name="dataElements"
+								id="dataElements"
+					            noSelection="${['':'Select One...']}"
+					            from="${dataElements}"
+					            value="${params.list('dataElements')}"
+					            optionKey="id"
+					            optionValue="name"
+					            multiple="true"
+					            size="6"
+					    />
+						</td>
+					</tr>
+				</tbody>
+			</table>
+<g:javascript library="dualListBox"/>	
+<r:script disposition="defer">
 
-<div class="fieldcontain ${hasErrors(bean: dataElementConceptInstance, field: 'parent', 'error')} ">
-	<label for="parent">
-		<g:message code="dataElementConcept.parent.label" default="Parent" />
-		
-	</label>
-	<g:select 
-			id="parent"
-			name="parent.id" 
-            noSelection="${['':'Select One...']}"
-            from="${dataElementConcepts.minus(dataElementConceptInstance)}"
-            value="${dataElementConceptInstance?.parent?.id}"
-            optionKey="id"
-            optionValue="name" 
-			class="many-to-one"
-	/>
-</div>
+	<g:if test="${!dataElementConceptInstance?.dataElements}">
+		selectedDataElements = ' '
+	</g:if>
+	<g:else>
+		selectedDataElements = ${dataElementConceptInstance?.dataElements*.id}
+	</g:else>
 
-<div class="fieldcontain ${hasErrors(bean: dataElementConceptInstance, field: 'name', 'error')} ">
-	<label for="name">
-		<g:message code="dataElementConcept.name.label" default="Name" />
-		
-	</label>
-	<g:textField name="name" value="${dataElementConceptInstance?.name}"/>
-</div>
+	<g:if test="${!dataElementConceptInstance?.subConcepts}">
+		subConcepts = ' '
+	</g:if>
+	<g:else>
+		subConcepts = ${dataElementConceptInstance?.subConcepts*.id}
+	</g:else>
 
-<div class="fieldcontain ${hasErrors(bean: collectionInstance, field: 'refId', 'error')} ">
-	<label for="refId">
-		<g:message code="dataElementConcept.refId.label" default="Reference ID" />
-	</label>
-	<g:textField name="refId" value="${dataElementConceptInstance?.refId}" />
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: dataElementConceptInstance, field: 'description', 'error')} ">
-	<label for="description">
-		<g:message code="dataElementConcept.description.label" default="Description" />
-		
-	</label>
-	<g:textArea rows="5" cols="40" name="description" value="${dataElementConceptInstance?.description}"/>
-</div>
-
-
-<div class="fieldcontain ${hasErrors(bean: dataElementConceptInstance, field: 'subConcepts', 'error')} ">
-	<label for="subConcepts">
-		<g:message code="dataElementConcept.subConcepts.label" default="Sub Concepts" />
-		
-	</label>
-	
-   <g:select
-            name="subConcepts"
-            noSelection="${['':'Select One...']}"
-            from="${dataElementConcepts.minus(dataElementConceptInstance)}"
-            value="${params.list('dataElementConcepts')}"
-            optionKey="id"
-            optionValue="name"
-            multiple="true"
-            size="6"
-    />
-    
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: dataElementConceptInstance, field: 'dataElements', 'error')} ">
-	<label for="dataElements">
-		<g:message code="dataElementConcept.dataElements.label" default="Data Elements" />
-		
-	</label>
-	
-   <g:select
-            name="dataElements"
-            noSelection="${['':'Select One...']}"
-            from="${dataElements}"
-            value="${params.list('dataElements')}"
-            optionKey="id"
-            optionValue="name"
-            multiple="true"
-            size="6"
-    />
-    
-</div>
+	$(document).ready(function() {
+		dataElementConceptForm(selectedDataElements, subConcepts);
+    });
+				
+</r:script>
 
 
 

@@ -1,7 +1,7 @@
 package uk.co.mdc.model
 import grails.converters.JSON
 
-class ConceptualDomainMarshaller {
+class ConceptualDomainMarshaller extends CustomMarshaller{
 	
 	void register() {
 		JSON.registerObjectMarshaller(ConceptualDomain) { ConceptualDomain conceptualDomain ->
@@ -11,7 +11,7 @@ class ConceptualDomainMarshaller {
 			'refId' : conceptualDomain.refId,
 			'name' : conceptualDomain.name,
 			'description' : conceptualDomain.description,
-			'valueDomains' : conceptualDomain.valueDomains
+			'valueDomains' : limitRender(conceptualDomain.valueDomains)
 			]
 		}
 	}

@@ -6,44 +6,45 @@
 		<meta name="layout" content="main">
 		<g:set var="entityName" value="${message(code: 'dataType.label', default: 'DataType')}" />
 		<title><g:message code="default.show.label" args="[entityName]" /></title>
+		<parameter name="name" value=" DATA TYPE - ${dataTypeInstance?.name}" />
 	</head>
 	<body>
-		<a href="#show-dataType" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-		<div class="nav" role="navigation">
-			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-			</ul>
-		</div>
-		<div id="show-dataType" class="content scaffold-show" role="main">
-			<h1><g:message code="default.show.label" args="[entityName]" /></h1>
-			<g:if test="${flash.message}">
-			<div class="message" role="status">${flash.message}</div>
-			</g:if>
-			<ol class="property-list dataType">
-			
+		<header>
+			<g:form id="deleteForm" url="[action:'delete',controller:'dataType']">
+				<g:hiddenField name="id" value="${dataTypeInstance?.id}" />
+			    	<div class="navbar">
+					    <div class="navbar-inner">
+						    <ul class="nav">
+						  		<li class="active"><g:link action="show" id="${dataTypeInstance?.id}"><g:message code="default.button.show.label" default="Show" /></g:link></li>
+							    <li><g:link action="edit" id="${dataTypeInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link></li>
+							    <li><g:link action="create" id="${dataTypeInstance?.id}"><g:message code="default.button.create.label" default="Create" /></g:link></li>
+							    <li><a href="#" onclick="deleteItem('${dataTypeInstance?.name}')">Delete</a></li>
+							</ul>
+					    </div>
+			    	</div>
+			   </g:form>
+		</header>
+		<div class="box">
+			<table class="table table-hovered">
+				<tbody>
 				<g:if test="${dataTypeInstance?.name}">
-				<li class="fieldcontain">
-					<span id="name-label" class="property-label"><g:message code="dataType.name.label" default="Name" /></span>
-					
-						<span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${dataTypeInstance}" field="name"/></span>
-					
-				</li>
+					<tr>
+						<td class="left_col_show"><span id="name-label" class="label"><g:message code="dataType.name.label" default="Name" /></span></td>
+						<td class="right_col_show"><g:fieldValue bean="${dataTypeInstance}" field="name"/></td>
+					</tr>
 				</g:if>
-				
 				<g:if test="${dataTypeInstance?.enumerated}">
-				<li class="fieldcontain">
-					<span id="enumerated-label" class="property-label"><g:message code="dataType.enumerated.label" default="Enumerated" /></span>
-					
-						<span class="property-value" aria-labelledby="enumerated-label"><g:formatBoolean boolean="${dataTypeInstance?.enumerated}" /></span>
-					
-				</li>
+					<tr>
+						<td class="left_col_show"><span id="name-label" class="label"><g:message code="dataType.enumerated.label" default="Enumerated" /></span></td>
+						<td class="right_col_show"><g:formatBoolean boolean="${dataTypeInstance?.enumerated}" /></td>
+					</tr>
 				</g:if>
 				
 				<g:if test="${dataTypeInstance?.enumerations}">
-					<h1>Enumerations:</h1>
-						<table>
+					<tr>
+						<td class="left_col_show"><span id="name-label" class="label">Enumerations</span></td>
+						<td class="right_col_show">
+							<table>
 							<thead>
 								<tr>
 									<th>Value / Code</th>
@@ -56,17 +57,12 @@
 									<td>${enumeratedValue?.value}</td>
 								</tr>
 							</g:each>
-					</table>
+							</table>
+						</td>
+					</tr>
 				</g:if>
-			
-			</ol>
-			<g:form>
-				<fieldset class="buttons">
-					<g:hiddenField name="id" value="${dataTypeInstance?.id}" />
-					<g:link class="edit" action="edit" id="${dataTypeInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
-					<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
-				</fieldset>
-			</g:form>
+				</tbody>
+			</table>
 		</div>
 	</body>
 </html>

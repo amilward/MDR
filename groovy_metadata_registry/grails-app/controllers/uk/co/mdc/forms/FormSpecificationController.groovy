@@ -23,7 +23,7 @@ class FormSpecificationController {
 
     def create() {
 		
-		def collectionInstance = Collection.get(params.collectionId)
+		def collectionInstance = Collection.get(params.collectionId.toInteger())
 		def dataElements = collectionInstance.dataElementCollections()
 		
 		def Fields = []

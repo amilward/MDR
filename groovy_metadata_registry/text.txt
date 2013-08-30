@@ -1,28 +1,230 @@
-<a href="#create-valueDomain" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-		<div class="nav" role="navigation">
-			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-			</ul>
-		</div>
-		<div id="create-valueDomain" class="content scaffold-create" role="main">
-			<h1><g:message code="default.create.label" args="[entityName]" /></h1>
-			<g:if test="${flash.message}">
+
+<%@ page import="uk.co.mdc.CollectionBasket" %>
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="layout" content="main">
+		<g:set var="entityName" value="${message(code: 'collectionBasket.label', default: 'CollectionBasket')}" />
+		<title><g:message code="default.show.label" args="[entityName]" /></title>
+		<parameter name="name" value=" COLLECTION BASKET" />
+	</head>
+	<body>
+		<div class="box">
+		<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>
-			</g:if>
-			<g:hasErrors bean="${valueDomainInstance}">
-			<ul class="errors" role="alert">
-				<g:eachError bean="${valueDomainInstance}" var="error">
-				<li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
-				</g:eachError>
-			</ul>
-			</g:hasErrors>
-			<g:form action="save" >
-				<fieldset class="form">
-					<g:render template="form"/>
-				</fieldset>
-				<fieldset class="buttons">
-					<g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
-				</fieldset>
-			</g:form>
+		</g:if>
+		<g:if test="${collectionBasketInstance?.dataElements}">
+		<table class="table table-hovered">
+				<tbody>
+				<g:if test="${collectionInstance?.refId}">
+					<tr>
+						<td class="left_col_show"><span id="name-label" class="label"><g:message code="collection.collectionConcept.label" default="Reference Id" /></span></td>
+						<td class="right_col_show"><g:fieldValue bean="${collectionInstance}" field="refId"/></td>
+					</tr>
+				</g:if>
+			</tbody>
+		</table>
+		<div id="show-collectionBasket" class="content scaffold-show" role="main">
+			
+			
+			
+			<g:form action="saveBasketCollection" controller="Collection">
+			
+			<table class="table table-hovered">
+				<tbody>
+					<tr class="${hasErrors(bean: dataTypeInstance, field: 'name', 'error')} ">
+						<td class="left_col_show"><span id="name-label" class="label"><g:message code="collection.refId.label" default="Reference ID" /></span></td>
+						<td class="right_col_show"><g:textField name="refId" value="" required=""/></td>
+					</tr>
+					<tr class="${hasErrors(bean: dataTypeInstance, field: 'enumerated', 'error')} ">
+						<td class="left_col_show"><span id="enumerated-label" class="label"><g:message code="dataType.enumerated.label" default="Enumerated" /></span></td>
+						<td class="right_col_show"><g:checkBox name="enumerated" id="isEnumerated" value="${dataTypeInstance?.enumerated}" /></td>
+					</tr>
+				
+				</tbody>
+			</table>
+					<fieldset class="form">
+						<div class="fieldcontain required">
+							<label for="refId">
+								<g:message code="collection.refId.label" default="Reference ID" />
+								<span class="required-indicator">*</span>
+							</label>
+							<g:textField name="refId" value="" required=""/>
+						</div>
+						
+						<div class="fieldcontain">
+							<label for="name">
+								<g:message code="collection.name.label" default="Name" />
+								
+							</label>
+							<g:textField name="name" value=""/>
+						</div>
+						
+						<div class="fieldcontain">
+							<label for="description">
+								<g:message code="collection.description.label" default="Description" />
+								
+							</label>
+							<g:textArea rows="5" cols="40" name="description" value=""/>
+						</div>
+
+						<table>
+							<tr><th>Data Element</th><th>Mandatory</th><th>Required</th><th>Optional</th><th>Reference</th></tr>
+							<g:each in="${collectionBasketInstance.dataElements}" var="d">
+							<tr>
+								<td><span class="property-value" aria-labelledby="dataElements-label"><g:link controller="dataElement" action="show" id="${d.id}">${d?.name?.encodeAsHTML()}</g:link></span>
+								<g:hiddenField name="dataElementIds" value="${d.id}" /> </td>
+								<td><g:radio name="dataElement_${d.id}" value="mandatory"/></td>
+								<td><g:radio name="dataElement_${d.id}" value="required"/></td>
+								<td><g:radio name="dataElement_${d.id}" value="optional"/></td>
+								<td><g:radio name="dataElement_${d.id}" value="reference"/></td>
+							</tr>
+							</g:each>
+						</table>
+					</fieldset>
+					<fieldset class="buttons">
+						<g:hiddenField name="collection_basket_id" value="${collectionBasketInstance?.id}" />
+						<g:submitButton name="saveBasketCollection" class="save" value="Save Collection" />
+					</fieldset>
+				</g:form>
+				</g:if>
 		</div>
+		</div>
+	</body>
+</html>
+	
+				<g:if test="${collectionInstance?.dataElementCollections}">
+			
+				<h1>Data Elements in collection:</h1>
+				<table>
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>Reference ID</th>
+								<th>Description</th>
+								<th>Definition</th>
+								<th>Parent</th>
+								<th>&nbsp;</th>
+							</tr>
+						</thead>
+						<g:each var="dataElement" in="${collectionInstance.dataElementCollections()}">
+							<tr>
+								<td><g:link action="show" controller="DataElement" id="${dataElement?.id}">${dataElement?.name} </g:link></td>
+								<td>${dataElement?.refId}</td>
+								<td>${dataElement?.description}</td>
+								<td>${dataElement?.definition} </td>
+								<td><g:link action="show" controller="DataElement" id="${dataElement?.parent?.id}">${dataElement?.parent?.name} </g:link> </td>
+								<td><g:link params="[dataElementId: "${dataElement?.id}",collectionId: "${collectionInstance?.id}"]" action="removeDataElement" controller="collection">Remove</g:link></td>
+							</tr>
+						</g:each>
+				</table>
+			</g:if>	
+				
+				
+				
+				
+				
+				
+				
+			
+<div class="fieldcontain ${hasErrors(bean: collectionInstance, field: 'refId', 'error')} required">
+	<label for="refId">
+		<g:message code="collection.refId.label" default="Reference ID" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:textField name="refId" value="${collectionInstance?.refId}" required=""/>
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: collectionInstance, field: 'name', 'error')} ">
+	<label for="name">
+		<g:message code="collection.name.label" default="Name" />
+		
+	</label>
+	<g:textField name="name" value="${collectionInstance?.name}"/>
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: collectionInstance, field: 'description', 'error')} ">
+	<label for="description">
+		<g:message code="collection.description.label" default="Description" />
+		
+	</label>
+	<g:textArea rows="5" cols="40" name="description" value="${collectionInstance?.description}"/>
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: collectionInstance, field: 'dataElementCollections', 'error')} ">
+        <label for="dataElementCollections">
+                <g:message code="collection.dataElementCollections.label" default="Add Mandatory Data Elements" />
+                
+        </label>
+        
+        <g:select
+                        name="mandatoryDataElements"
+                        noSelection="${['':'Select One...']}"
+                        from="${dataElements}"
+                        value="${params.list('dataElements')}"
+                        optionKey="id"
+                        optionValue="name"
+                        multiple="true"
+                        size="6"
+                />
+
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: collectionInstance, field: 'dataElementCollections', 'error')} ">
+        <label for="dataElementCollections">
+                <g:message code="collection.dataElementCollections.label" default="Add Required Data Elements" />
+                
+        </label>
+        
+        <g:select
+                        name="requiredDataElements"
+                        noSelection="${['':'Select One...']}"
+                        from="${dataElements}"
+                        value="${params.list('dataElements')}"
+                        optionKey="id"
+                        optionValue="name"
+                        multiple="true"
+                        size="6"
+                />
+
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: collectionInstance, field: 'dataElementCollections', 'error')} ">
+        <label for="dataElementCollections">
+                <g:message code="collection.dataElementCollections.label" default="Add Optional Data Elements" />
+                
+        </label>
+        
+        <g:select
+                        name="optionalDataElements"
+                        noSelection="${['':'Select One...']}"
+                        from="${dataElements}"
+                        value="${params.list('dataElements')}"
+                        optionKey="id"
+                        optionValue="name"
+                        multiple="true"
+                        size="6"
+                />
+
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: collectionInstance, field: 'dataElementCollections', 'error')} ">
+        <label for="dataElementCollections">
+                <g:message code="collection.dataElementCollections.label" default="Add Reference (X) Data Elements" />
+                
+        </label>
+        
+        <g:select
+                        name="referenceDataElements"
+                        noSelection="${['':'Select One...']}"
+                        from="${dataElements}"
+                        value="${params.list('dataElements')}"
+                        optionKey="id"
+                        optionValue="name"
+                        multiple="true"
+                        size="6"
+                />
+
+</div>		
+				
+		

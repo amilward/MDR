@@ -29,4 +29,24 @@ class DataElementConcept {
 	static mapping = {
 		description type: 'text'
 	}
+	
+	/******************************************************************************************************************/
+	/*********************remove all the associated data elements before deleting**************************************/
+	/******************************************************************************************************************/
+	
+	
+	def prepareForDelete(){
+		
+		def dataForDelete = []
+		
+		if(this.dataElements.size()!=0){
+			
+			dataForDelete.addAll(this.dataElements)
+			
+			dataForDelete.each{ dataElement->
+				this.removeFromDataElements(dataElement)
+			}
+		}
+	}
+	
 }

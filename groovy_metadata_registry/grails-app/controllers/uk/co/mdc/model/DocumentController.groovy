@@ -1,5 +1,7 @@
 package uk.co.mdc.model
 
+import grails.converters.JSON
+
 import org.springframework.dao.DataIntegrityViolationException
 
 class DocumentController {
@@ -18,6 +20,50 @@ class DocumentController {
     def create() {
         [documentInstance: new Document(params)]
     }
+	
+	
+	def dataTables(){
+		
+		def data
+		def total
+		def displayTotal
+		def order
+		def sortCol
+		def sortColName
+		
+
+		if(params?.sSearch!='' && params?.sSearch!=null){
+			
+			def searchResults = Document.search(params.sSearch, [max:params.iDisplayLength])
+			
+			total = searchResults.total
+			displayTotal = searchResults.total
+			
+			if(total>0){
+				data = searchResults.results
+			}else{
+				data=[]
+			}
+			
+			
+			
+		}else{
+		
+			order = params?.sSortDir_0
+			sortColName = getSortField(params?.iSortCol_0.toInteger())
+			
+			data = Document.list(max: params.iDisplayLength, offset: params.iDisplayStart, sort: sortColName, order: order)
+			total = Document.count()
+			displayTotal = Document.count()
+			
+		}
+		
+		
+		def model = [sEcho: params.sEcho, iTotalRecords: total, iTotalDisplayRecords: displayTotal, aaData: data]
+				
+		render model as JSON
+	}
+	
 
     def save() {
         def documentInstance = new Document(params)
@@ -110,6 +156,41 @@ class DocumentController {
 		response.setHeader("Content-disposition", "attachment;filename=${docName}")
 		response.outputStream << document.content
 		return
+	}
+	
+	String getSortField(Integer column){
+		
+		def field
+		
+		switch(column){
+			
+			case 0:
+				field = "refId"
+			break
+			
+			case 1:
+				field = "name"
+			break
+			
+			case 2:
+				field = "description"
+			break
+			
+			case 3:
+				field = "fileName"
+			break
+			
+			case 4:
+				field = "contentType"
+			break
+			
+			default:
+				field = "refId"
+			break
+		}
+		
+		return field
+		
 	}
 	
 }

@@ -1,11 +1,16 @@
 package uk.co.mdc.model
 
+import grails.converters.JSON
+
 import org.springframework.dao.DataIntegrityViolationException
+
 import uk.co.mdc.CollectionBasket
 
 class CollectionController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
+	
+	def messageSource
 
     def index() {
         redirect(action: "list", params: params)
@@ -20,12 +25,69 @@ class CollectionController {
         [dataElements: DataElement.list(), collectionInstance: new Collection(params)]
     }
 	
+	
+	def dataTables(){
+		
+		def data
+		def total
+		def displayTotal
+		def order
+		def sortCol
+		def sortColName
+		
+
+		if(params?.sSearch!='' && params?.sSearch!=null){
+			
+			def searchResults = Collection.search(params.sSearch, [max:params.iDisplayLength])
+			
+			total = searchResults.total
+			displayTotal = searchResults.total
+			
+			if(total>0){
+				data = searchResults.results
+			}else{
+				data=[]
+			}
+			
+			
+			
+		}else{
+		
+			order = params?.sSortDir_0
+			sortColName = getSortField(params?.iSortCol_0.toInteger())
+			
+			data = Collection.list(max: params.iDisplayLength, offset: params.iDisplayStart, sort: sortColName, order: order)
+			total = Collection.count()
+			displayTotal = Collection.count()
+			
+		}
+		
+		
+		def model = [sEcho: params.sEcho, iTotalRecords: total, iTotalDisplayRecords: displayTotal, aaData: data]
+				
+		render model as JSON
+	}
+	
+	
 	def saveBasketCollection(){
 
 		def collectionInstance = new Collection(refId: params.refId, name: params?.name, description: params?.description)
 		
 		if (!collectionInstance.save(flush: true)) {
-			render(view: "create", model: [dataElements: DataElement.list(), collectionInstance: collectionInstance])
+			
+			def errors = []
+			
+			if(collectionInstance.errors){
+				
+				def locale = Locale.getDefault()
+				
+				for (fieldErrors in collectionInstance.errors) {
+					for (error in fieldErrors.allErrors) {
+					   errors.add(messageSource.getMessage(error, locale))
+					}
+				 }
+			}
+			redirect(controller: "CollectionBasket", action:"show", id: params?.collection_basket_id, params: ['errors': errors, refId: params?.refId, name: params?.name, description: params?.description])
 			return
 		}
 		
@@ -145,7 +207,7 @@ class CollectionController {
             return
         }
 
-        [dataElements: DataElement.list(), collectionInstance: collectionInstance]
+        [dataElements: DataElement.list(), mandatoryDataElements: collectionInstance.mandatoryDataElementCollections(), requiredDataElements: collectionInstance.requiredDataElementCollections(), optionalDataElements: collectionInstance.optionalDataElementCollections(), referenceDataElements: collectionInstance.referenceDataElementCollections(), collectionInstance: collectionInstance]
     }
 
     def update(Long id, Long version) {
@@ -153,7 +215,7 @@ class CollectionController {
 		Boolean valid = validateLinkedDataTypes()
 		
 		if(!valid){
-			render(view: "edit", model: [dataElements: DataElement.list(), collectionInstance: new Collection(params)])
+			redirect(action: "edit", id: id)
 			return
 		}
 		
@@ -231,94 +293,171 @@ class CollectionController {
 		
 		def referenceDataElements = params.referenceDataElements
 		
-	
 		if(mandatoryDataElements && requiredDataElements){
-			
-			if(mandatoryDataElements.contains(requiredDataElements)){
+			if(parameterContains(mandatoryDataElements, requiredDataElements)){
 				
 				flash.message = 'Added data elements must either be mandatory or required for any given collection, not both'
+				
 				return false
 			}
 		}
 		
+	
 		if(mandatoryDataElements && optionalDataElements){
-			
-			if(mandatoryDataElements.contains(optionalDataElements)){
-				
+			if(parameterContains(mandatoryDataElements, optionalDataElements)){
 				flash.message = 'Added data elements must either be mandatory or optional for any given collection, not both.'
 				return false
 			}
 		}
 		
-		if(mandatoryDataElements && referenceDataElements){
-			
-			if(mandatoryDataElements.contains(referenceDataElements)){
-				
-				flash.message = 'Added data elements must either be mandatory or reference for any given collection, not both'
-				return false
-			}
-			
-		}
-		
-		
-		if(requiredDataElements && optionalDataElements){
-			
 
-			if(requiredDataElements.contains(optionalDataElements)){
-				
-				flash.message = 'Added data elements must either be required or optional for any given collection, not both'
+		if(mandatoryDataElements && referenceDataElements){
+			if(parameterContains(mandatoryDataElements, referenceDataElements)){
+				flash.message = 'Added data elements must either be mandatory or reference for any given collection, not both'
 				return false
 			}
 		}
 		
 		if(requiredDataElements && referenceDataElements){
-			if(requiredDataElements.contains(referenceDataElements)){
-				
-				flash.message = 'Added data elements must either be required or reference for any given collection, not both'
+			if(parameterContains(requiredDataElements, referenceDataElements)){
+				flash.message = 'Added data elements must either be mandatory or reference for any given collection, not both'
 				return false
 			}
-			
+		}
+		
+		if(requiredDataElements && optionalDataElements){
+			if(parameterContains(requiredDataElements, optionalDataElements)){
+				flash.message = 'Added data elements must either be required or optional for any given collection, not both'
+				return false
+			}
 		}
 		
 		if(optionalDataElements && referenceDataElements){
-			
-			if(optionalDataElements.contains(referenceDataElements)){
-				
-				flash.message = 'Added data elements must either be reference or optional for any given collection, not both'
+			if(parameterContains(optionalDataElements, referenceDataElements)){
+				flash.message = 'Added data elements must either be required or reference for any given collection, not both'
 				return false
 			}
-			
 		}
+		
 		
 		return true
 	
 	}
 	
+	def parameterContains(dataElements1, dataElements2){
+			
+			if(dataElements1 instanceof String[] && dataElements2 instanceof String[]){
+				
+				dataElements2.each{ dataElement->
+					
+					if(dataElements1.contains(dataElement)){
+						return true
+					}
+					
+				}
+				
+			}else if(dataElements1 instanceof String[] && dataElements2 instanceof String){
+			
+				if(dataElements1.contains(dataElements2)){
+					return true
+				}
+			
+			}else if(dataElements1 instanceof String && dataElements2 instanceof String[]){
+			
+				if(dataElements2.contains(dataElements1)){
+					return true
+				}
+			
+			}else{
+				if(dataElements1==dataElements2){
+					return true
+				}
+			}
+			
+			return false		
+	}
 	
 	def linkDataElements(collectionInstance){
 		
+		def currentMandatoryElements = collectionInstance.mandatoryDataElementCollections()
 		def mandatoryDataElements = params?.mandatoryDataElements
 		
-		if(mandatoryDataElements){
-			linkDataElementType(collectionInstance, mandatoryDataElements, SchemaSpecification.MANDATORY)
-		}
+		extDataElementChecker(mandatoryDataElements, currentMandatoryElements, collectionInstance)
 		
+		def currentRequiredElements = collectionInstance.requiredDataElementCollections()
 		def requiredDataElements = params?.requiredDataElements
 		
-		if(requiredDataElements){
-			linkDataElementType(collectionInstance, requiredDataElements, SchemaSpecification.REQUIRED)
-		}
+		extDataElementChecker(requiredDataElements, currentRequiredElements, collectionInstance)
 		
+		def currentOptionalElements = collectionInstance.optionalDataElementCollections()
 		def optionalDataElements = params?.optionalDataElements
 		
-		if(optionalDataElements){
-			linkDataElementType(collectionInstance, optionalDataElements, SchemaSpecification.OPTIONAL)
-		}
+		extDataElementChecker(optionalDataElements, currentOptionalElements, collectionInstance)
 			
+		def currentReferenceElements = collectionInstance.referenceDataElementCollections()
 		def referenceDataElements = params?.referenceDataElements
 		
-		if(referenceDataElements){
-			linkDataElementType(collectionInstance, referenceDataElements, SchemaSpecification.X)
+		extDataElementChecker(referenceDataElements, currentReferenceElements, collectionInstance)
+		
+		
+		if(mandatoryDataElements && mandatoryDataElements!=null){
+			
+				linkDataElementType(collectionInstance, mandatoryDataElements, SchemaSpecification.MANDATORY)
+			
+		}
+		
+		if(requiredDataElements && requiredDataElements!=null){
+			
+				linkDataElementType(collectionInstance, requiredDataElements, SchemaSpecification.REQUIRED)
+			
+		}
+		
+		if(optionalDataElements && optionalDataElements!=null){
+			
+				linkDataElementType(collectionInstance, optionalDataElements, SchemaSpecification.OPTIONAL)
+			
+		}
+		
+		if(referenceDataElements && referenceDataElements!=null){
+			
+				linkDataElementType(collectionInstance, referenceDataElements, SchemaSpecification.X)
+			
+		}
+		
+	}
+	
+	def extDataElementChecker(newDataElements, currentElements, collectionInstance){
+		
+		if(newDataElements!=null){
+			
+		if (newDataElements instanceof String) {
+			
+			//remove all the mandatory data elements that aren't this one
+			currentElements.each{ de ->
+				if(newDataElements!=de.id.toString()){
+						collectionInstance.removeFromDataElementCollections(de)
+				}
+			}
+			
+		}
+		
+		if (newDataElements instanceof String[]) {
+			
+			//remove all the mandatory data elements that aren't this one
+			currentElements.each{ de ->
+				if(!newDataElements.contains(de.id.toString())){
+						collectionInstance.removeFromDataElementCollections(de)
+				}
+			}
+		
+		}
+			
+		}else{
+		
+			//remove all the madatory data elements
+			currentElements.each{ de ->
+						collectionInstance.removeFromDataElementCollections(de)
+			}
 		}
 		
 	}
@@ -346,6 +485,35 @@ class CollectionController {
 			
 		}
 	}
+	
+	
+	String getSortField(Integer column){
+		
+		def field
+		
+		switch(column){
+			
+			case 0:
+				field = "refId"
+			break
+			
+			case 1:
+				field = "name"
+			break
+			
+			case 2:
+				field = "description"
+			break
+			
+			default:
+				field = "refId"
+			break
+		}
+		
+		return field
+		
+	}
+	
 	
 
 }

@@ -1,6 +1,7 @@
 $(function() {
 
     $('a[rel=tooltip]').tooltip();
+    $().tooltip();
 
     // make code pretty
     window.prettyPrint && prettyPrint();
@@ -66,7 +67,7 @@ function getObjectTable(jsonArray, classname){
 		table = '<table>';
 		
 		$.each(jsonArray, function(key, value) {
-			table = table + '<tr><td><a href="/groovy_metadata_registry/' + classname +  '/show/' + value.id +'">'+ value.name +'</a></td></tr>';
+			table = table + '<tr><td><a href="' + root +'/' + classname +  '/show/' + value.id +'">'+ value.name +'</a></td></tr>';
 		});
 		
 		table = table + '</table>' 
@@ -81,6 +82,53 @@ function getObjectTable(jsonArray, classname){
 	return table;
 
 }
+
+function deleteItem(item){
+	 $( "#dialog-confirm" ).text('Delete ' + item + '?');
+	 $( "#dialog-confirm" ).dialog({
+		 resizable: false,
+		 height:140,
+		 modal: true,
+		 title: 'delete',
+		 buttons: {
+		 "Delete Item": function() {
+			$( this ).dialog( "close" );
+			$('#deleteForm').submit();
+		 },
+		 Cancel: function() {
+			 $( this ).dialog( "close" );
+		 }
+		 }
+	 });
+}
+
+function updateForm(){
+	 
+	$('#updateForm').submit();
+
+}
+
+function saveCreate(){
+	$('#createForm').submit();
+}
+
+function formMap(){
+		$('#add').button().click(function(event){
+				event.preventDefault();
+				$('.mapTable tbody').append('<tr><td><input type="text" name="map_key" /></td><td><input type="text" name="map_value" /></td></tr>');
+			});
+			
+			$('#remove').button().click(function(event){
+				event.preventDefault();
+				if( $('.mapTable tr').size()<=2) {
+				    alert('cannot delete last row');
+				}
+				else {
+				    $('.mapTable tr:last').remove();
+				}
+			});
+}
+
 
 /*--------------------------------------------------------
 END SHARED FUNCTIONS
@@ -109,11 +157,11 @@ function startCollectionCart() {
 	
 	$.ajax({
 		type: "GET",
-		url: "/groovy_metadata_registry/collectionBasket/dataElementsAsJSON",
+		url: root + "/collectionBasket/dataElementsAsJSON",
 		success: function(result){
 			if(result!=null){
 				$.each(result.dataElements, function(){
-					$( "<li></li>" ).html('<a id="' + this.id + '" href="/groovy_metadata_registry/dataElement/show/' + this.id + '" >' + this.refId + ' - ' + this.name + '</a>').appendTo($( ".cart ul" )).draggable({
+					$( "<li></li>" ).html('<a id="' + this.id + '" href="' + root +'/dataElement/show/' + this.id + '" >' + this.refId + ' - ' + this.name + '</a>').prependTo($( ".cart ul" )).draggable({
 				        helper: "clone",
 				        start: function(event, ui) {
 				            c.li = this;
@@ -162,7 +210,7 @@ function dataElementDragStart(){
 		var link = $(c.name);
 		link.text(c.refId + ' - ' + $(c.name).text());
 
-		$( "<li></li>" ).html(link).appendTo($( ".cart ul" )).draggable({
+		$( "<li></li>" ).html(link).prependTo($( ".cart ul" )).draggable({
 	        helper: "clone",
 	        start: function(event, ui) {
 	            c.li = this;
@@ -185,7 +233,7 @@ function addToCollectionBasket(dataElementId){
 	
 	$.ajax({
 		type: "POST",
-		url: "http://localhost:8080/groovy_metadata_registry/collectionBasket/addElement",
+		url: root + "/collectionBasket/addElement",
 		data: data,
 		success: function(e){
 		},
@@ -207,7 +255,7 @@ function removeFromCollectionBasket(dataElementId){
 		
 		$.ajax({
 			type: "POST",
-			url: "http://localhost:8080/groovy_metadata_registry/collectionBasket/removeElement",
+			url: root + "/collectionBasket/removeElement",
 			data: data,
 			success: function(e){
 			},
@@ -266,7 +314,7 @@ function dataElementList(){
 	//and server side processing
 	//and draggable columns - so that the data elements within the table can be dragged onto the collection cart
 	
-	$('#dataElementList').html( '<table cellpadding="0" cellspacing="0" border="0" class="display" id="dataElementTable"></table>' );
+	$('#dataElementList').html( '<table cellpadding="0" cellspacing="0" border="0" class="table table-bordered table-condensed table-hover table-striped" id="dataElementTable"></table>' );
 	oTable = $('#dataElementTable').dataTable( {
 	    "bProcessing": true,
 	    "bServerSide": true,
@@ -281,7 +329,7 @@ function dataElementList(){
 				    // defaults to the column being worked with, in this case is the first
 				    // Using `row[0]` is equivalent.
 				"mRender": function ( data, type, row ) {		
-					return '<a id="'+ row.id + '" href="/groovy_metadata_registry/dataElement/show/' + row.id + '">' + data + '</a>'
+					return '<a id="'+ row.id + '" href="' + root +'/dataElement/show/' + row.id + '">' + data + '</a>'
 			    },
 			    "mDataProp": "name",
 			    "sWidth":"30%",
@@ -293,7 +341,7 @@ function dataElementList(){
 			    // Using `row[0]` is equivalent.
 				"mRender": function ( data, type, row ) {	
 					if(data!=null){
-						return '<a href="/groovy_metadata_registry/dataElement/show/' + row.parent_id + '">' + data + '</a>'
+						return '<a href="' + root +'/dataElement/show/' + row.parent_id + '">' + data + '</a>'
 					}else{
 						return ''
 					}
@@ -308,7 +356,7 @@ function dataElementList(){
 			    // defaults to the column being worked with, in this case is the first
 			    // Using `row[0]` is equivalent.
 			"mRender": function ( data, type, row ) {		
-				return '<a href="/groovy_metadata_registry/dataElementConcept/show/' + data + '">' + row.dataElementConcept_name + '</a>' + '<img class="floatright" src="../images/details_open.png" />'
+				return '<a href="' + root +'/dataElementConcept/show/' + data + '">' + row.dataElementConcept_name + '</a>' + '<img class="floatright" src="../images/details_open.png" />'
 		    },
 		   "mDataProp": "dataElementConcept_id", 
 		   "sWidth":"30%",
@@ -348,7 +396,7 @@ function dataElementList(){
 		{
 		/* Open this row */
 		this.src = "../images/details_close.png";
-		oTable.fnOpen( nTr, fnFormatDetails(nTr), 'details' );
+		oTable.fnOpen( nTr, formatDataElementDetails(nTr), 'details' );
 		}
 	} );
 
@@ -358,7 +406,7 @@ function dataElementList(){
 /* Formating function for row details - this is for the description and definition columns.....
  * potentially need to add more info from the data elements class
  *  */
-function fnFormatDetails ( nTr )
+function formatDataElementDetails ( nTr )
 {
 	var aData = oTable.fnGetData( nTr );
 	var description = aData.description;
@@ -386,6 +434,938 @@ function fnFormatDetails ( nTr )
 
 /*--------------------------------------------------------
 END DATAELEMENT LIST  SCRIPTS
+---------------------------------------------------------*/
+
+
+/*--------------------------------------------------------
+START VALUEDOMAIN LIST  SCRIPTS
+---------------------------------------------------------*/
+
+function valueDomainList(){
+	
+	$('#valueDomainList').html( '<table cellpadding="0" cellspacing="0" border="0" class="table table-bordered table-condensed table-hover table-striped" id="documentTable"></table>' );
+	oTable = $('#documentTable').dataTable( {
+        "bProcessing": true,
+        "bServerSide": true,
+        "sAjaxSource": "dataTables",
+        "sEmptyTable": "Loading data from server",
+        "bAutoWidth": false,
+        "aaSorting": [[ 4, "asc" ]],
+		"aoColumns": [
+		    { "mDataProp": "refId", "sTitle":"Ref ID", "sWidth":"10%"},
+			{
+				    // `data` refers to the data for the cell (defined by `mData`, which
+				    // defaults to the column being worked with, in this case is the first
+				    // Using `row[0]` is equivalent.
+				"mRender": function ( data, type, row ) {		
+					return '<a id="'+ row.id + '" href="' + root +'/valueDomain/show/' + row.id + '">' + data + '</a>'
+			    },
+			    "mDataProp": "name",
+			    "sWidth":"30%",
+			    "sTitle":"name"
+			},
+			{
+			    // `data` refers to the data for the cell (defined by `mData`, which
+			    // defaults to the column being worked with, in this case is the first
+			    // Using `row[0]` is equivalent.
+				"mRender": function ( data, type, row ) {	
+					if(data!=null){
+						return '<a href="' + root +'/dataType/show/' + row.dataType_id + '">' + data + '</a>'
+					}else{
+						return ''
+					}
+				
+				},
+		    	"mDataProp": "dataType_name", 
+		    	"sWidth":"25%",
+		    	"sTitle":"dataType"
+			},
+			{ "mDataProp": "format", "sTitle":"Format", "sWidth":"10%"},
+			{
+			    // `data` refers to the data for the cell (defined by `mData`, which
+			    // defaults to the column being worked with, in this case is the first
+			    // Using `row[0]` is equivalent.
+			"mRender": function ( data, type, row ) {		
+				return '<a href="' + root +'/conceptualDomain/show/' + row.conceptualDomain_id + '">' + data + '</a>' + '<img class="floatright" src="../images/details_open.png" />'
+		    },
+		   "mDataProp": "conceptualDomain_name", 
+		   "sWidth":"25%",
+		   "sTitle":"Conceptual Domain"
+			}
+		]
+	} );	
+	
+
+	oTable.fnSetFilteringDelay(1000);
+	
+	//bind the click handler to the + image within the datatable to show information that is too long for data columns i.e. description/definition
+	
+	
+	$('#documentTable tbody td img').live( 'click', function () {
+		var nTr = $(this).parents('tr')[0];
+		if ( oTable.fnIsOpen(nTr) )
+		{
+		/* This row is already open - close it */
+		this.src = "../images/details_open.png";
+		oTable.fnClose( nTr );
+		}
+		else
+		{
+		/* Open this row */
+		this.src = "../images/details_close.png";
+		oTable.fnOpen( nTr, formatValueDomainDetails(nTr), 'details' );
+		}
+	} );
+
+	
+}
+
+
+/* Formating function for row details - this is for the description and definition columns.....
+ * potentially need to add more info from the data elements class
+ *  */
+function formatValueDomainDetails ( nTr )
+{
+	var aData = oTable.fnGetData( nTr );
+	var description = aData.description;
+	var unitOfMeasure = aData.unitOfMeasure;
+	var regexDef = aData.regexDef;
+	var dataElements = getObjectTable(aData.dataElements, "dataElement");
+	var externalSynonyms = getObjectTable(aData.externalSynonyms, "externalSynonym");
+	
+	var sOut = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
+	
+	if(description!=null){sOut += '<tr><td class="labelCol">Description: </td><td>' + description + '</td></tr>'}
+	if(unitOfMeasure!=null){sOut += '<tr><td class="labelCol">Unit Of Measure: </td><td>' + unitOfMeasure + '</td></tr>'}
+	if(regexDef!=null){sOut += '<tr><td class="labelCol">Regex: </td><td>' + subElements + '</td></tr>'}
+	if(dataElements!=null){sOut += '<tr><td class="labelCol">Data Elements: </td><td>' + dataElements + '</td></tr>'}
+	if(externalSynonyms!=null){sOut += '<tr><td class="labelCol">External Synonyms: </td><td>' + externalSynonyms + '</td></tr>'}
+
+	sOut += '</table>';
+	 
+	return sOut;
+}
+
+
+
+/*--------------------------------------------------------
+END VALUEDOMAIN LIST  SCRIPTS
+---------------------------------------------------------*/
+
+/*--------------------------------------------------------
+START DATAELEMENTCONCEPT LIST  SCRIPTS
+---------------------------------------------------------*/
+
+function dataElementConceptList(){
+	
+	
+	$('#dataElementConceptList').html( '<table cellpadding="0" cellspacing="0" border="0" class="table table-bordered table-condensed table-hover table-striped" id="dataElementConceptTable"></table>' );
+	oTable = $('#dataElementConceptTable').dataTable( {
+        "bProcessing": true,
+        "bServerSide": true,
+        "sAjaxSource": "dataTables",
+        "sEmptyTable": "Loading data from server",
+        "bAutoWidth": false,
+        "aaSorting": [[ 1, "asc" ]],
+		"aoColumns": [
+		    { "mDataProp": "refId", "sTitle":"Ref ID", "sWidth":"20%"},
+			{
+				    // `data` refers to the data for the cell (defined by `mData`, which
+				    // defaults to the column being worked with, in this case is the first
+				    // Using `row[0]` is equivalent.
+				"mRender": function ( data, type, row ) {		
+					return '<a id="'+ row.id + '" href="' + root +'/dataElementConcept/show/' + row.id + '">' + data + '</a>'
+			    },
+			    "mDataProp": "name",
+			    "sWidth":"40%",
+			    "sTitle":"name"
+			},
+			{
+			    // `data` refers to the data for the cell (defined by `mData`, which
+			    // defaults to the column being worked with, in this case is the first
+			    // Using `row[0]` is equivalent.
+				"mRender": function ( data, type, row ) {	
+					if(data!=null){
+						return '<a href="' + root +'/dataType/show/' + row.parent_id + '">' + data + '</a> <img class="floatright" src="../images/details_open.png" />'
+					}else{
+						return ''
+					}
+				
+				},
+		    	"mDataProp": "parent_name", 
+		    	"sWidth":"40%",
+		    	"sTitle":"parent"
+			}
+		]
+	} );	
+	
+
+	oTable.fnSetFilteringDelay(1000);
+	
+	//bind the click handler to the + image within the datatable to show information that is too long for data columns i.e. description/definition
+	
+	
+	$('#dataElementConceptTable tbody td img').live( 'click', function () {
+		var nTr = $(this).parents('tr')[0];
+		if ( oTable.fnIsOpen(nTr) )
+		{
+		/* This row is already open - close it */
+		this.src = "../images/details_open.png";
+		oTable.fnClose( nTr );
+		}
+		else
+		{
+		/* Open this row */
+		this.src = "../images/details_close.png";
+		oTable.fnOpen( nTr, formatConceptDetails(nTr), 'details' );
+		}
+	} );
+}
+
+
+function formatConceptDetails ( nTr )
+{
+	var aData = oTable.fnGetData( nTr );
+	var description = aData.description;
+	var subConcepts = getObjectTable(aData.subConcepts, "dataElementConcept");
+	var dataElements = getObjectTable(aData.dataElements, "dataElement");
+	
+	var sOut = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
+	
+	if(description!=null){sOut += '<tr><td class="labelCol">Description: </td><td>' + description + '</td></tr>'}
+	if(subConcepts!=null){sOut += '<tr><td class="labelCol">Subconcepts: </td><td>' + subConcepts + '</td></tr>'}
+	if(dataElements!=null){sOut += '<tr><td class="labelCol">Data Elements: </td><td>' + dataElements + '</td></tr>'}
+
+	sOut += '</table>';
+	 
+	return sOut;
+}
+
+
+/*--------------------------------------------------------
+END DATAELEMENTCONCEPT LIST  SCRIPTS
+---------------------------------------------------------*/
+
+/*--------------------------------------------------------
+START CONCEPTUALDOMAIN LIST  SCRIPTS
+---------------------------------------------------------*/
+
+function conceptualDomainList(){
+	
+	//initialise datatable with custom hide/show columns
+	//and server side processing
+	//and draggable columns - so that the data elements within the table can be dragged onto the collection cart
+	
+	$('#conceptualDomainList').html( '<table cellpadding="0" cellspacing="0" border="0" class="table table-bordered table-condensed table-hover table-striped" id="conceptualDomainTable"></table>' );
+	oTable = $('#conceptualDomainTable').dataTable( {
+        "bProcessing": true,
+        "bServerSide": true,
+        "sAjaxSource": "dataTables",
+        "sEmptyTable": "Loading data from server",
+        "bAutoWidth": false,
+        "aaSorting": [[ 1, "asc" ]],
+		"aoColumns": [
+			{ "mDataProp": "refId", "sTitle":"Ref ID", "sWidth":"10%"},
+			{
+				    // `data` refers to the data for the cell (defined by `mData`, which
+				    // defaults to the column being worked with, in this case is the first
+				    // Using `row[0]` is equivalent.
+				"mRender": function ( data, type, row ) {		
+					return '<a id="'+ row.id + '" href="' + root +'/conceptualDomain/show/' + row.id + '">' + data + '</a>'
+			    },
+			    "mDataProp": "name",
+			    "sWidth":"30%",
+			    "sTitle":"name"
+			},
+			{
+			    // `data` refers to the data for the cell (defined by `mData`, which
+			    // defaults to the column being worked with, in this case is the first
+			    // Using `row[0]` is equivalent.
+			"mRender": function ( data, type, row ) {		
+				return data + '<img class="floatright" src="../images/details_open.png" />'
+		    },
+		   "mDataProp": "description", 
+		   "sWidth":"60%",
+		   "sTitle":"Description"
+			}
+		]
+	} );	
+	
+
+	oTable.fnSetFilteringDelay(1000);
+	
+	//bind the click handler to the + image within the datatable to show information that is too long for data columns i.e. description/definition
+	
+	
+	$('#conceptualDomainTable tbody td img').live( 'click', function () {
+		var nTr = $(this).parents('tr')[0];
+		if ( oTable.fnIsOpen(nTr) )
+		{
+		/* This row is already open - close it */
+		this.src = "../images/details_open.png";
+		oTable.fnClose( nTr );
+		}
+		else
+		{
+		/* Open this row */
+		this.src = "../images/details_close.png";
+		oTable.fnOpen( nTr, formatConceptualDomainDetails(nTr), 'details' );
+		}
+	} );
+
+}
+
+function formatConceptualDomainDetails ( nTr )
+{
+	var aData = oTable.fnGetData( nTr );
+	var valueDomains = getObjectTable(aData.valueDomains, "valueDomain");
+
+	
+	var sOut = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
+	
+	if(valueDomains!=null){sOut += '<tr><td class="labelCol">Value Domains: </td><td>' + valueDomains + '</td></tr>'}
+
+	sOut += '</table>';
+	 
+	return sOut;
+}
+
+
+/*--------------------------------------------------------
+END CONCEPTUALDOMAIN LIST  SCRIPTS
+---------------------------------------------------------*/
+
+
+/*--------------------------------------------------------
+START DATATYPE EDIT/CREATE SCRIPTS
+---------------------------------------------------------*/
+
+
+
+/*--------------------------------------------------------
+START DATATYPE FORM SCRIPTS
+---------------------------------------------------------*/
+
+function dataTypeForm(){
+	
+	  if($('#isEnumerated').is(':checked')){
+		  $('#enumerations').toggle('slow', function() {
+			    // Animation complete.
+			  });  
+	  }
+
+
+		$('#isEnumerated').click(function() {
+			  $('#enumerations').toggle('slow', function() {
+			    // Animation complete.
+			  });
+			});
+	
+}
+
+/*--------------------------------------------------------
+END  DATATYPE FORM  SCRIPTS
+---------------------------------------------------------*/
+
+
+
+
+function dataTypeList(){
+	
+	$('#dataTypeList').html( '<table cellpadding="0" cellspacing="0" border="0" class="table table-bordered table-condensed table-hover table-striped" id="dataTypeTable"></table>' );
+	oTable = $('#dataTypeTable').dataTable( {
+        "bProcessing": true,
+        "bServerSide": true,
+        "sAjaxSource": "dataTables",
+        "sEmptyTable": "Loading data from server",
+        "bAutoWidth": false,
+		"aoColumns": [
+			
+			{
+				    // `data` refers to the data for the cell (defined by `mData`, which
+				    // defaults to the column being worked with, in this case is the first
+				    // Using `row[0]` is equivalent.
+				    "mRender": function ( data, type, row ) {
+				    		
+				    		var link = '<a href="' + root +'/dataType/show/' + row.id + '">' + data + '</a>'
+				    		
+							if(row.enumerated){
+								return link + '<img class="floatright" src="../images/details_open.png" />'
+							}else{
+								return link
+							}
+
+				    },
+				    "mDataProp": "name", 
+				    "sWidth":"100%",
+				    "sTitle":"Data Type"
+				}
+		]
+	} );	
+	
+	
+	oTable.fnSetFilteringDelay(1000);
+
+
+	$('#dataTypeTable tbody td img').live( 'click', function () {
+		var nTr = $(this).parents('tr')[0];
+		if ( oTable.fnIsOpen(nTr) )
+		{
+		/* This row is already open - close it */
+		this.src = "../images/details_open.png";
+		oTable.fnClose( nTr );
+		}
+		else
+		{
+		/* Open this row */
+		this.src = "../images/details_close.png";
+		oTable.fnOpen( nTr, formatDataTypeDetails(nTr), 'details' );
+		}
+		} );
+	
+}
+
+function formatDataTypeDetails ( nTr )
+{
+	var aData = oTable.fnGetData( nTr );
+	var enumerations = aData.enumerations;
+	
+	var sOut = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
+	
+	$.each(enumerations, function( key, value ) {
+	sOut += '<tr><td>' + key + '</td><td>' + value + '</td></tr>';
+	});
+	
+	sOut += '</table>';
+	 
+	return sOut;
+}
+
+
+/*--------------------------------------------------------
+END DATATYPE LIST  SCRIPTS
+---------------------------------------------------------*/
+
+
+/*--------------------------------------------------------
+START COLLECTION LIST  SCRIPTS
+---------------------------------------------------------*/
+
+function collectionList(){
+	
+	$('#collectionList').html( '<table cellpadding="0" cellspacing="0" border="0" class="table table-bordered table-condensed table-hover table-striped" id="collectionTable"></table>' );
+	oTable = $('#collectionTable').dataTable( {
+        "bProcessing": true,
+        "bServerSide": true,
+        "sAjaxSource": "dataTables",
+        "sEmptyTable": "Loading data from server",
+        "bAutoWidth": false,
+        "aaSorting": [[ 1, "asc" ]],
+		"aoColumns": [
+		    { "mDataProp": "refId", "sTitle":"Ref ID", "sWidth":"10%"},
+			{
+				    // `data` refers to the data for the cell (defined by `mData`, which
+				    // defaults to the column being worked with, in this case is the first
+				    // Using `row[0]` is equivalent.
+				"mRender": function ( data, type, row ) {		
+					return '<a id="'+ row.id + '" href="' + root +'/collection/show/' + row.id + '">' + data + '</a>'
+			    },
+			    "mDataProp": "name",
+			    "sWidth":"20%",
+			    "sTitle":"name"
+			},
+			{
+			    // `data` refers to the data for the cell (defined by `mData`, which
+			    // defaults to the column being worked with, in this case is the first
+			    // Using `row[0]` is equivalent.
+			    "mRender": function ( data, type, row ) {
+			    	
+							return data + '<img class="floatright" src="../images/details_open.png" />'
+
+			    },
+			    "mDataProp": "description", 
+			    "sWidth":"70%",
+			    "sTitle":"Description"
+			}
+		]
+	} );	
+	
+
+	oTable.fnSetFilteringDelay(1000);
+	
+	//bind the click handler to the + image within the datatable to show information that is too long for data columns i.e. description/definition
+	
+	
+	$('#collectionTable tbody td img').live( 'click', function () {
+		var nTr = $(this).parents('tr')[0];
+		if ( oTable.fnIsOpen(nTr) )
+		{
+		/* This row is already open - close it */
+		this.src = "../images/details_open.png";
+		oTable.fnClose( nTr );
+		}
+		else
+		{
+		/* Open this row */
+		this.src = "../images/details_close.png";
+		oTable.fnOpen( nTr, formatCollectionDetails(nTr), 'details' );
+		}
+	} );
+
+	
+}
+
+
+/* Formating function for row details - this is for the description and definition columns.....
+ * potentially need to add more info from the data elements class
+ *  */
+function formatCollectionDetails ( nTr )
+{
+	var aData = oTable.fnGetData( nTr );
+	var dataElements = getObjectTable(aData.dataElements, "dataElement");
+	var formSpecifications = getObjectTable(aData.formSpecifications, "formSpecifications");
+	
+	var sOut = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
+	
+	if(dataElements!=null){sOut += '<tr><td class="labelCol">Data Elements: </td><td>' + dataElements + '</td></tr>'}
+	if(formSpecifications!=null){sOut += '<tr><td class="labelCol">External Synonyms: </td><td>' + formSpecifications + '</td></tr>'}
+
+	sOut += '</table>';
+	 
+	return sOut;
+}
+
+
+
+/*--------------------------------------------------------
+END COLLECTION LIST  SCRIPTS
+---------------------------------------------------------*/
+
+/*--------------------------------------------------------
+START DOCUMENT LIST  SCRIPTS
+---------------------------------------------------------*/
+
+function documentList(){
+	
+	$('#documentList').html( '<table cellpadding="0" cellspacing="0" border="0" class="table table-bordered table-condensed table-hover table-striped" id="documentTable"></table>' );
+	oTable = $('#documentTable').dataTable( {
+        "bProcessing": true,
+        "bServerSide": true,
+        "sAjaxSource": "dataTables",
+        "sEmptyTable": "Loading data from server",
+        "bAutoWidth": false,
+        "aaSorting": [[ 1, "asc" ]],
+		"aoColumns": [
+		    { "mDataProp": "refId", "sTitle":"Ref ID", "sWidth":"10%"},
+			{
+				    // `data` refers to the data for the cell (defined by `mData`, which
+				    // defaults to the column being worked with, in this case is the first
+				    // Using `row[0]` is equivalent.
+				"mRender": function ( data, type, row ) {		
+					return '<a id="'+ row.id + '" href="' + root +'/document/show/' + row.id + '">' + data + '</a>'
+			    },
+			    "mDataProp": "name",
+			    "sWidth":"15%",
+			    "sTitle":"name"
+			},
+			{ "mDataProp": "description", "sTitle":"Description", "sWidth":"50%"},
+			{
+			    // `data` refers to the data for the cell (defined by `mData`, which
+			    // defaults to the column being worked with, in this case is the first
+			    // Using `row[0]` is equivalent.
+			"mRender": function ( data, type, row ) {		
+				return '<a id="'+ row.id + '" href="' + root +'/document/download/' + row.id + '">download ' + data + '</a>'
+			    },
+			    "mDataProp": "fileName",
+			    "sWidth":"15%",
+			    "sTitle":"content"
+			},
+			{ "mDataProp": "contentType", "sTitle":"File Type", "sWidth":"10%"},
+		]
+	} );	
+	
+
+	oTable.fnSetFilteringDelay(1000);
+
+}
+
+
+/*--------------------------------------------------------
+END DOCUMENT LIST  SCRIPTS
+---------------------------------------------------------*/
+
+/*--------------------------------------------------------
+START EXTERNAL SYNONYM LIST  SCRIPTS
+---------------------------------------------------------*/
+
+function externalSynonymList(){
+	
+	$('#externalSynonymList').html( '<table cellpadding="0" cellspacing="0" border="0" class="table table-bordered table-condensed table-hover table-striped" id="externalSynonymTable"></table>' );
+	oTable = $('#externalSynonymTable').dataTable( {
+        "bProcessing": true,
+        "bServerSide": true,
+        "sAjaxSource": "dataTables",
+        "sEmptyTable": "Loading data from server",
+        "bAutoWidth": false,
+        "aaSorting": [[ 1, "asc" ]],
+		"aoColumns": [
+			{
+				    // `data` refers to the data for the cell (defined by `mData`, which
+				    // defaults to the column being worked with, in this case is the first
+				    // Using `row[0]` is equivalent.
+				"mRender": function ( data, type, row ) {		
+					return '<a id="'+ row.id + '" href="' + root +'/externalSynonym/show/' + row.id + '">' + data + '</a>'
+			    },
+			    "mDataProp": "name",
+			    "sWidth":"50%",
+			    "sTitle":"name"
+			},
+			{
+			    // `data` refers to the data for the cell (defined by `mData`, which
+			    // defaults to the column being worked with, in this case is the first
+			    // Using `row[0]` is equivalent.
+			    "mRender": function ( data, type, row ) {
+			    	
+							return data + '<img class="floatright" src="../images/details_open.png" />'
+
+			    },
+			    "mDataProp": "url", 
+			    "sWidth":"50%",
+			    "sTitle":"Url"
+			}
+		]
+	} );	
+	
+
+	oTable.fnSetFilteringDelay(1000);
+
+//bind the click handler to the + image within the datatable to show information that is too long for data columns i.e. description/definition
+
+
+$('#externalSynonymTable tbody td img').live( 'click', function () {
+	var nTr = $(this).parents('tr')[0];
+	if ( oTable.fnIsOpen(nTr) )
+	{
+	/* This row is already open - close it */
+	this.src = "../images/details_open.png";
+	oTable.fnClose( nTr );
+	}
+	else
+	{
+	/* Open this row */
+	this.src = "../images/details_close.png";
+	oTable.fnOpen( nTr, formatExtSynonymDetails(nTr), 'details' );
+	}
+} );
+
+}
+
+/* Formating function for row details - this is for the description and definition columns.....
+* potentially need to add more info from the data elements class
+*  */
+function formatExtSynonymDetails ( nTr )
+{
+	var aData = oTable.fnGetData( nTr );
+	var attributes = aData.attributes;
+	
+	var sOut = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
+	
+	$.each(attributes, function( key, value ) {
+	sOut += '<tr><td>' + key + '</td><td>' + value + '</td></tr>';
+	});
+	
+	sOut += '</table>';
+	 
+	return sOut;
+}
+
+
+/*--------------------------------------------------------
+END EXTERNAL SYNONYM LIST  SCRIPTS
+---------------------------------------------------------*/
+
+
+
+/*--------------------------------------------------------
+START EDIT DATAELEMENT  SCRIPTS
+---------------------------------------------------------*/
+
+function dataElementForm(selectedValueDomains, subElements, externalSynonyms){
+	
+	//change options to selected for valueDomains, subElements and external Synonyms
+	if(selectedValueDomains.length==1){
+		$('select[name="valueDomains"]').find('option[value="'+selectedValueDomains+'"]').attr("selected",true);
+	}else if(selectedValueDomains.length>1){
+		$.each(selectedValueDomains, function(index, item) {
+			$('select[name="valueDomains"]').find('option[value="'+item+'"]').attr("selected",true);
+		});
+	}
+	
+	if(subElements.length==1){
+		$('select[name="subElements"]').find('option[value="'+subElements+'"]').attr("selected",true);
+	}else if(subElements.length>1){
+		$.each(subElements, function(index, item) {
+			$('select[name="subElements"]').find('option[value="'+item+'"]').attr("selected",true);
+		});
+	}
+	
+	if(externalSynonyms.length==1){
+		$('select[name="externalSynonyms"]').find('option[value="'+externalSynonyms+'"]').attr("selected",true);
+	}else if(externalSynonyms.length>1){
+		$.each(externalSynonyms, function(index, item) {
+			$('select[name="externalSynonyms"]').find('option[value="'+item+'"]').attr("selected",true);
+		});
+	}
+	
+	
+	
+	//set up dual list box for valueDomains, subElements and external Synonyms
+	
+		$('#valueDomains').bootstrapDualListbox({
+		    nonselectedlistlabel: 'Available Value Domains',
+		    selectedlistlabel: 'Associated Value Domains',
+		    preserveselectiononmove: 'moved',
+		    moveonselect: false
+		});
+		
+		$('#subElements').bootstrapDualListbox({
+		    nonselectedlistlabel: 'Choose SubElements',
+		    selectedlistlabel: 'SubElements',
+		    preserveselectiononmove: 'moved',
+		    moveonselect: false
+		});
+		
+		$('#externalSynonyms').bootstrapDualListbox({
+		    nonselectedlistlabel: 'Choose External Synonyms',
+		    selectedlistlabel: 'External Synonyms',
+		    preserveselectiononmove: 'moved',
+		    moveonselect: false
+		});
+}
+
+/*--------------------------------------------------------
+END EDIT DATAELEMENT  SCRIPTS
+---------------------------------------------------------*/
+
+
+
+
+
+
+/*--------------------------------------------------------
+START EDIT VALUE DOMAIN SCRIPTS
+---------------------------------------------------------*/
+
+function valueDomainForm(selectedDataElements, externalSynonyms){
+	
+	//change options to selected for valueDomains, subElements and external Synonyms
+	if(selectedDataElements.length==1){
+		$('select[name="dataElements"]').find('option[value="'+selectedDataElements+'"]').attr("selected",true);
+	}else if(selectedDataElements.length>1){
+		$.each(selectedDataElements, function(index, item) {
+			$('select[name="dataElements"]').find('option[value="'+item+'"]').attr("selected",true);
+		});
+	}
+	
+	if(externalSynonyms.length==1){
+		$('select[name="externalSynonyms"]').find('option[value="'+externalSynonyms+'"]').attr("selected",true);
+	}else if(externalSynonyms.length>1){
+		$.each(externalSynonyms, function(index, item) {
+			$('select[name="externalSynonyms"]').find('option[value="'+item+'"]').attr("selected",true);
+		});
+	}
+	
+	//set up dual list box for valueDomains, subElements and external Synonyms
+	
+		$('#dataElements').bootstrapDualListbox({
+		    nonselectedlistlabel: 'Available Data Elements',
+		    selectedlistlabel: 'Associated Data Elements',
+		    preserveselectiononmove: 'moved',
+		    moveonselect: false
+		});
+		
+		
+		$('#externalSynonyms').bootstrapDualListbox({
+		    nonselectedlistlabel: 'Choose External Synonyms',
+		    selectedlistlabel: 'External Synonyms',
+		    preserveselectiononmove: 'moved',
+		    moveonselect: false
+		});
+}
+
+/*--------------------------------------------------------
+END EDIT VALUE DOMAIN SCRIPTS
+---------------------------------------------------------*/
+
+
+
+
+/*--------------------------------------------------------
+START CONCEPTUALDOMAIN  SCRIPTS
+---------------------------------------------------------*/
+
+function conceptualDomainForm(selectedValueDomains){
+	
+	//change options to selected for valueDomains, subElements and external Synonyms
+	if(selectedValueDomains.length==1){
+		$('select[name="valueDomains"]').find('option[value="'+selectedValueDomains+'"]').attr("selected",true);
+	}else if(selectedValueDomains.length>1){
+		$.each(selectedValueDomains, function(index, item) {
+			$('select[name="valueDomains"]').find('option[value="'+item+'"]').attr("selected",true);
+		});
+	}
+	
+	//set up dual list box for valueDomains, subElements and external Synonyms
+	
+		$('#valueDomains').bootstrapDualListbox({
+		    nonselectedlistlabel: 'Available Value Domains',
+		    selectedlistlabel: 'Associated Value Domains',
+		    preserveselectiononmove: 'moved',
+		    moveonselect: false
+		});
+		
+}
+
+/*--------------------------------------------------------
+END EDIT CONCEPTUALDOMAIN  SCRIPTS
+---------------------------------------------------------*/
+
+
+
+/*--------------------------------------------------------
+START dataElementConcept  SCRIPTS
+---------------------------------------------------------*/
+
+function dataElementConceptForm(selectedDataElements, subConcepts){
+	
+	//change options to selected for DataElements, subElements and external Synonyms
+	if(selectedDataElements.length==1){
+		$('select[name="dataElements"]').find('option[value="'+selectedDataElements+'"]').attr("selected",true);
+	}else if(selectedDataElements.length>1){
+		$.each(selectedDataElements, function(index, item) {
+			$('select[name="dataElements"]').find('option[value="'+item+'"]').attr("selected",true);
+		});
+	}
+	
+	//change options to selected for DataElements, subElements and external Synonyms
+	if(subConcepts.length==1){
+		$('select[name="subConcepts"]').find('option[value="'+subConcepts+'"]').attr("selected",true);
+	}else if(subConcepts.length>1){
+		$.each(subConcepts, function(index, item) {
+			$('select[name="subConcepts"]').find('option[value="'+item+'"]').attr("selected",true);
+		});
+	}
+	
+	//set up dual list box for DataElements, subElements and external Synonyms
+	
+		$('#dataElements').bootstrapDualListbox({
+		    nonselectedlistlabel: 'Available Data Elements',
+		    selectedlistlabel: 'Associated Data Elements',
+		    preserveselectiononmove: 'moved',
+		    moveonselect: false
+		});
+		
+	//set up dual list box for DataElements, subElements and external Synonyms
+		
+		$('#subConcepts').bootstrapDualListbox({
+		    nonselectedlistlabel: 'Available Sub Concepts',
+		    selectedlistlabel: 'Associated Sub Concepts',
+		    preserveselectiononmove: 'moved',
+		    moveonselect: false
+		});
+		
+}
+
+/*--------------------------------------------------------
+END EDIT dataElementConcept  SCRIPTS
+---------------------------------------------------------*/
+
+/*--------------------------------------------------------
+START collection  SCRIPTS
+---------------------------------------------------------*/
+
+function collectionForm(mandatoryDataElements, requiredDataElements, optionalDataElements, referenceDataElements){
+	
+	//change options to selected for DataElements, subElements and external Synonyms
+	if(mandatoryDataElements.length==1){
+		$('select[name="mandatoryDataElements"]').find('option[value="'+mandatoryDataElements+'"]').attr("selected",true);
+	}else if(mandatoryDataElements.length>1){
+		$.each(mandatoryDataElements, function(index, item) {
+			$('select[name="mandatoryDataElements"]').find('option[value="'+item+'"]').attr("selected",true);
+		});
+	}
+	
+	//change options to selected for DataElements, subElements and external Synonyms
+	if(requiredDataElements.length==1){
+		$('select[name="requiredDataElements"]').find('option[value="'+requiredDataElements+'"]').attr("selected",true);
+	}else if(requiredDataElements.length>1){
+		$.each(requiredDataElements, function(index, item) {
+			$('select[name="requiredDataElements"]').find('option[value="'+item+'"]').attr("selected",true);
+		});
+	}
+	
+	//change options to selected for DataElements, subElements and external Synonyms
+	if(optionalDataElements.length==1){
+		$('select[name="optionalDataElements"]').find('option[value="'+optionalDataElements+'"]').attr("selected",true);
+	}else if(optionalDataElements.length>1){
+		$.each(optionalDataElements, function(index, item) {
+			$('select[name="optionalDataElements"]').find('option[value="'+item+'"]').attr("selected",true);
+		});
+	}
+	
+	//change options to selected for DataElements, subElements and external Synonyms
+	if(referenceDataElements.length==1){
+		$('select[name="referenceDataElements"]').find('option[value="'+referenceDataElements+'"]').attr("selected",true);
+	}else if(mandatoryDataElements.length>1){
+		$.each(referenceDataElements, function(index, item) {
+			$('select[name="referenceDataElements"]').find('option[value="'+item+'"]').attr("selected",true);
+		});
+	}
+	
+
+	
+	//set up dual list box for DataElements, subElements and external Synonyms
+	
+		$('#mandatoryDataElements').bootstrapDualListbox({
+		    nonselectedlistlabel: 'Available Data Elements',
+		    selectedlistlabel: 'Mandatory Data Elements',
+		    preserveselectiononmove: 'moved',
+		    moveonselect: false
+		});
+		
+		//set up dual list box for DataElements, subElements and external Synonyms
+		
+		$('#requiredDataElements').bootstrapDualListbox({
+		    nonselectedlistlabel: 'Available Data Elements',
+		    selectedlistlabel: 'Required Data Elements',
+		    preserveselectiononmove: 'moved',
+		    moveonselect: false
+		});
+		
+		//set up dual list box for DataElements, subElements and external Synonyms
+		
+		$('#optionalDataElements').bootstrapDualListbox({
+		    nonselectedlistlabel: 'Available Data Elements',
+		    selectedlistlabel: 'Optional Data Elements',
+		    preserveselectiononmove: 'moved',
+		    moveonselect: false
+		});
+		
+		//set up dual list box for DataElements, subElements and external Synonyms
+		
+		$('#referenceDataElements').bootstrapDualListbox({
+		    nonselectedlistlabel: 'Available Data Elements',
+		    selectedlistlabel: 'Reference Data Elements',
+		    preserveselectiononmove: 'moved',
+		    moveonselect: false
+		});
+		
+
+		
+}
+
+/*--------------------------------------------------------
+END EDIT collection  SCRIPTS
 ---------------------------------------------------------*/
 
 

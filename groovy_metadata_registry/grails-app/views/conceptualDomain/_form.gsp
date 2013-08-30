@@ -1,46 +1,51 @@
 <%@ page import="uk.co.mdc.model.ConceptualDomain" %>
 
-<div class="fieldcontain ${hasErrors(bean: conceptualDomainInstance, field: 'name', 'error')} ">
-	<label for="name">
-		<g:message code="conceptualDomain.name.label" default="Name" />
-		
-	</label>
-	<g:textField name="name" value="${conceptualDomainInstance?.name}"/>
-</div>
 
-<div class="fieldcontain ${hasErrors(bean: conceptualDomainInstance, field: 'description', 'error')} ">
-	<label for="description">
-		<g:message code="conceptualDomain.description.label" default="Description" />
-		
-	</label>
-	
-	<g:textArea rows="5" cols="40" name="description" value="${conceptualDomainInstance?.description}" rows="5" cols="40"/>
-</div>
+<table class="table table-hovered">
+				<tbody>
+					<tr class="${hasErrors(bean: conceptualDomainInstance, field: 'refId', 'error')} ">
+						<td class="left_col_show"><span id="name-label" class="label"><g:message code="conceptualDomain.refId.label" default="Reference ID" /></span></td>
+						<td class="right_col_show"><g:textField title="${g.message(code:'tooltip.conceptualDomain.refId')}" class="input-large input-block-level" name="refId" value="${conceptualDomainInstance.refId}" required=""/></td>
+					</tr>
+					<tr class="${hasErrors(bean: conceptualDomainInstance, field: 'name', 'error')} ">
+						<td class="left_col_show"><span id="name-label" class="label"><g:message code="conceptualDomain.name.label" default="Name" /></span></td>
+						<td class="right_col_show"><g:textField title="tooltip.conceptualDomain.name" class="input-large input-block-level"  name="name" value="${conceptualDomainInstance?.name}"/></td>
+					</tr>
+					<tr class="${hasErrors(bean: conceptualDomainInstance, field: 'description', 'error')} ">
+						<td class="left_col_show"><span id="name-label" class="label"><g:message code="conceptualDomain.description.label" default="Description" /></span></td>
+						<td class="right_col_show"><g:textArea title="tooltip.conceptualDomain.description" class="input-block-level" name="description" value="${conceptualDomainInstance?.description}"/></td>
+					</tr>
+					<tr>
+						<td class="left_col_show"><span id="name-label" class="label">Value Domains</span></td>
+						<td class="right_col_show">
+							<g:select
+								title="tooltip.conceptualDomain.ValueDomains"
+								name="valueDomains"
+								id="valueDomains"
+								noSelection="${['':'Select One...']}"
+								from="${valueDomains}"
+								value="${params.list('valueDomains')}"
+								optionKey="id"
+								optionValue="name"
+								multiple="true"
+								size="6"
+							/>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+<g:javascript library="dualListBox"/>	
+<r:script disposition="defer">
 
-<div class="fieldcontain ${hasErrors(bean: conceptualDomainInstance, field: 'refId', 'error')} required">
-	<label for="refId">
-		<g:message code="conceptualDomain.refId.label" default="Ref Id" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:textField name="refId" value="${conceptualDomainInstance.refId}" required=""/>
-</div>
+	<g:if test="${!selectedValueDomains*.id}">
+		selectedValueDomains = ' '
+	</g:if>
+	<g:else>
+		selectedValueDomains = ${selectedValueDomains*.id}
+	</g:else>
 
-<div class="fieldcontain ${hasErrors(bean: conceptualDomainInstance, field: 'valueDomains', 'error')} ">
-	<label for="valueDomains">
-		<g:message code="conceptualDomain.valueDomains.label" default="Value Domains" />
-		
-	</label>
-	
-	<g:select
-		name="valueDomains"
-		noSelection="['': 'select one...']"
-		from="${valueDomains}"
-		value="${params.list('valueDomains')}"
-		optionKey="id"
-		optionValue="name"
-		multiple="true"
-		size="6"
-	/>
-
-</div>
-
+	$(document).ready(function() {
+		conceptualDomainForm(selectedValueDomains);
+    });
+				
+</r:script>

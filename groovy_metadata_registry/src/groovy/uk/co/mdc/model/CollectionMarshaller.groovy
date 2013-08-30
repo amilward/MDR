@@ -1,7 +1,7 @@
 package uk.co.mdc.model
 import grails.converters.JSON
 
-class CollectionMarshaller {
+class CollectionMarshaller extends CustomMarshaller {
 	
 	void register() {
 		JSON.registerObjectMarshaller(Collection) { Collection collection ->
@@ -11,7 +11,7 @@ class CollectionMarshaller {
 			'refId' : collection.refId,
 			'name' : collection.name,
 			'description' : collection.description,
-			'dataElements': collection.dataElementCollections(),
+			'dataElements': limitRender(collection.dataElementCollections()),
 			'formSpecifications': collection?.formSpecifications
 			]
 		}

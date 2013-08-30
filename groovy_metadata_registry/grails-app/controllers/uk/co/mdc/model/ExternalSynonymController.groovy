@@ -1,5 +1,6 @@
 package uk.co.mdc.model
 
+import grails.converters.JSON
 import org.springframework.dao.DataIntegrityViolationException
 
 class ExternalSynonymController {
@@ -14,6 +15,49 @@ class ExternalSynonymController {
         params.max = Math.min(max ?: 10, 100)
         [externalSynonymInstanceList: ExternalSynonym.list(params), externalSynonymInstanceTotal: ExternalSynonym.count()]
     }
+	
+	
+	def dataTables(){
+		
+				def data
+				def total
+				def displayTotal
+				def order
+				def sortCol
+				
+		
+				if(params?.sSearch!='' && params?.sSearch!=null){
+					
+					def searchResults = ExternalSynonym.search(params.sSearch, [max:params.iDisplayLength])
+					
+					total = searchResults.total
+					displayTotal = searchResults.total
+					
+					if(total>0){
+						data = searchResults.results
+					}else{
+						data=[]
+					}
+					
+					
+					
+				}else{
+				
+					order = params?.sSortDir_0
+					sortCol = "name"
+					
+					data = ExternalSynonym.list(max: params.iDisplayLength, offset: params.iDisplayStart, sort: sortCol, order: order)
+					total = ExternalSynonym.count()
+					displayTotal = ExternalSynonym.count()
+					
+				}
+				
+				
+		
+				def model = [sEcho: params.sEcho, iTotalRecords: total, iTotalDisplayRecords: displayTotal, aaData: data]
+				
+				render model as JSON
+			}
 
     def create() {
         [externalSynonymInstance: new ExternalSynonym(params)]
@@ -75,10 +119,6 @@ class ExternalSynonymController {
         }
 		
 		params.attributes = getAttributes()
-		
-		if(externalSynonymInstance.attributes){
-			params.attributes.putAll(externalSynonymInstance.attributes)
-		}
 
         externalSynonymInstance.properties = params
 

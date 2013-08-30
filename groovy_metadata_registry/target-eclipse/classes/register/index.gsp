@@ -1,8 +1,8 @@
 <html>
 
 <head>
-	<meta name='layout' content='main'/>
-	<title><g:message code='spring.security.ui.register.title'/></title>	
+	<meta name='layout' content='register'/>
+	<title><g:message code='spring.security.ui.register.title'/></title>
 </head>
 
 <body>
@@ -53,10 +53,6 @@ $(document).ready(function() {
 	$('#username').focus();
 });
 </script>
-
-<g:javascript src='jquery/jquery.jgrowl.js' plugin='spring-security-ui'/>
-<g:javascript src='jquery/jquery.checkbox.js' plugin='spring-security-ui'/>
-<g:javascript src='spring-security-ui.js' plugin='spring-security-ui'/>
 
 </body>
 </html>

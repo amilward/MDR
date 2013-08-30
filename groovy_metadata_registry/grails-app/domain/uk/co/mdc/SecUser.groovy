@@ -11,12 +11,14 @@ class SecUser {
 	boolean accountExpired
 	boolean accountLocked
 	boolean passwordExpired
+	Date lastLoginDate
 	CollectionBasket collectionBasket = new CollectionBasket();
 	
 
 	static constraints = {
 		username blank: false, unique: true
 		password blank: false
+		lastLoginDate nullable: true
 	}
 
 	static mapping = {

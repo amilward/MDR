@@ -1,4 +1,5 @@
 import uk.co.mdc.*
+import uk.co.mdc.model.ExternalSynonym
 import uk.co.mdc.model.ValueDomain
 import uk.co.mdc.model.DataElement
 import uk.co.mdc.model.DataType
@@ -49,6 +50,14 @@ class BootStrap {
 		
 			
 		//populate with test data
+		
+		
+		if (!ExternalSynonym.count()) {
+			new ExternalSynonym(name:"test external synonym 1", url:"www.testSite1.com").save(failOnError: true)
+			new ExternalSynonym(name:"test external synonym 2", url:"www.testSite2.com").save(failOnError: true)
+			new ExternalSynonym(name:"test external synonym 3", url:"www.testSite3.com").save(failOnError: true)
+			
+		}
 		
 		if (!ConceptualDomain.count()) {
 			ConceptualDomain COSD = new ConceptualDomain(name:"COSD", refId:1, description:"Cancer Outcomes and Services Dataset").save(failOnError: true)			
@@ -152,7 +161,7 @@ class BootStrap {
 																	description:"", 
 																	dataType: OP_REF, 
 																	conceptualDomain: COSD,
-																	regexDef:"an2").save(failOnError: true))
+																	format:"an2").save(failOnError: true))
 						
 						
 						DataElementValueDomain.link(new DataElement(name:"ETHNIC CATEGORY",
@@ -164,7 +173,7 @@ class BootStrap {
 																	description:"",
 																	dataType: ETH_CAT,
 																	conceptualDomain: COSD,
-																	regexDef:"an2").save(failOnError: true))
+																	format:"an2").save(failOnError: true))
 						
 						DataElementValueDomain.link(new DataElement(name:"PERSON FAMILY NAME (AT BIRTH)",
 																	refId:"CR0140",
@@ -175,7 +184,7 @@ class BootStrap {
 																	description:"",
 																	dataType: string,
 																	conceptualDomain: COSD,
-																	regexDef:"max 35 characters").save(failOnError: true))
+																	format:"max 35 characters").save(failOnError: true))
 					
 						DataElementValueDomain.link(new DataElement(name:"GENERAL MEDICAL PRACTICE CODE (PATIENT REGISTRATION)",
 																	refId:"CR0120",
@@ -186,7 +195,7 @@ class BootStrap {
 																	description:"",
 																	dataType: string,
 																	conceptualDomain: COSD,
-																	regexDef:"an6").save(failOnError: true))
+																	format:"an6").save(failOnError: true))
 						}
 
 			}

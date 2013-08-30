@@ -2,6 +2,7 @@ package uk.co.mdc.model
 
 import grails.converters.JSON
 import org.springframework.dao.DataIntegrityViolationException
+import org.codehaus.groovy.grails.plugins.searchable.*
 
 class DataElementController {
 
@@ -16,9 +17,43 @@ class DataElementController {
         [dataElementInstanceList: DataElement.list(params), dataElementInstanceTotal: DataElement.count()]
     }
 	
-	def listJSON(){
+	def dataTables(){
 		
-		def model = [sEcho: 1, iTotalRecords: DataElement.count(), iTotalDisplayRecords:DataElement.count(), aaData: DataElement.list()]
+		def data 
+		def total
+		def displayTotal
+		def order
+		def sortCol
+		
+
+		if(params?.sSearch!='' && params?.sSearch!=null){
+			
+			def searchResults = DataElement.search(params.sSearch, [max:params.iDisplayLength])
+			
+			total = searchResults.total
+			displayTotal = searchResults.total
+			
+			if(total>0){				
+				data = searchResults.results
+			}else{
+				data=[]
+			}
+			
+			
+			
+		}else{
+		
+			order = params?.sSortDir_0
+			sortCol = getSortField(params?.iSortCol_0.toInteger())
+			
+			data = DataElement.list(max: params.iDisplayLength, offset: params.iDisplayStart, sort: sortCol, order: order)
+			total = DataElement.count()
+			displayTotal = DataElement.count()
+			
+		}
+		
+		
+		def model = [sEcho: params.sEcho, iTotalRecords: total, iTotalDisplayRecords: displayTotal, aaData: data]
 				
 		render model as JSON
 	}
@@ -77,12 +112,12 @@ class DataElementController {
             return
         }
 
-        [valueDomains: ValueDomain.list(), dataElements: DataElement.list(), externalSynonyms: ExternalSynonym.list(), dataElementInstance: dataElementInstance]
+        [valueDomains: ValueDomain.list(), selectedValueDomains: dataElementInstance.dataElementValueDomains() , dataElements: DataElement.list(), externalSynonyms: ExternalSynonym.list(), dataElementInstance: dataElementInstance]
     }
 
     def update(Long id, Long version) {
 		
-		//validate the update a params
+		//validate the params i.e. the parent isn't a subelement etc.
 		
 		Boolean valid = validateDataElement()
 		
@@ -110,16 +145,25 @@ class DataElementController {
             }
         }
 
+		// remove subelements
+		
+		unLinkSubElements(dataElementInstance)
+		
+		//remove external synonyms
+		
+		unLinkExternalSynonyms(dataElementInstance)
+
         dataElementInstance.properties = params
+		
 
         if (!dataElementInstance.save(flush: true)) {
             render(view: "edit", model: [dataElementInstance: dataElementInstance],valueDomains: ValueDomain.list(), dataElements: DataElement.list())
             return
         }
 		
+		// add/remove value domains
+		linkValueDomains(dataElementInstance)	
 		
-		linkValueDomains(dataElementInstance)
-	
         flash.message = message(code: 'default.updated.message', args: [message(code: 'dataElement.label', default: 'DataElement'), dataElementInstance.id])
         redirect(action: "show", id: dataElementInstance.id)
     }
@@ -178,28 +222,156 @@ class DataElementController {
 	}
 	
 	
+	def unLinkSubElements(dataElementInstance){
+		
+		//if all data elements need to be removed or only a few elements need to be removed
+		
+			if(params?.subElements==null && dataElementInstance?.subElements.size()>0){
+				
+				def subElements = []
+				subElements += dataElementInstance?.subElements
+				
+				subElements.each{ subElement->
+					dataElementInstance.removeFromSubElements(subElement)
+				}
+				
+	
+			}else if(params?.subElements){
+		
+			if(params?.subElements.size() < dataElementInstance?.subElements.size()){
+			
+				def subElements = []
+				
+				subElements += dataElementInstance?.subElements
+				
+				subElements.each{ subElement->
+					
+	
+					if(params?.subElements instanceof String){
+						
+							if(params?.subElements!=subElement){
+						
+								dataElementInstance.removeFromSubElements(subElement)
+							
+							}
+						
+						}else{
+							
+							if(!params?.subElements.contains(subElement)){
+								
+								dataElementInstance.removeFromSubElements(subElement)
+								
+							}
+						
+						}
+					}
+			}
+			
+		}
+	}
+	
+	
+	def unLinkExternalSynonyms(dataElementInstance){
+		
+			//if all data elements need to be removed or only a few elements need to be removed
+			
+			if(params?.externalSynonyms==null && dataElementInstance?.externalSynonyms.size()>0){
+				
+				def externalSynonyms = []
+				externalSynonyms += dataElementInstance?.externalSynonyms
+				
+				externalSynonyms.each{ externalSynonym->
+					dataElementInstance.removeFromExternalSynonyms(externalSynonym)
+				}
+				
+	
+			}else if(params.externalSynonyms){
+		
+				if(params?.externalSynonyms.size() < dataElementInstance?.externalSynonyms.size()){
+			
+				def externalSynonyms = []
+				
+				externalSynonyms += dataElementInstance?.externalSynonyms
+				
+				externalSynonyms.each{ externalSynonym->
+					
+	
+					if(params?.externalSynonyms instanceof String){
+						
+							if(params?.externalSynonyms!=externalSynonym){
+						
+								dataElementInstance.removeFromExternalSynonyms(externalSynonym)
+							
+							}
+						
+						}else{
+							
+							if(!params?.externalSynonyms.contains(externalSynonym)){
+								
+								dataElementInstance.removeFromExternalSynonyms(externalSynonym)
+								
+							}
+						
+						}
+					}
+			}
+			}	
+	}	
+	
+	
+	
 	
 	def linkValueDomains(dataElementInstance){
 		
+		def associatedValueDomains = dataElementInstance.dataElementValueDomains()
 		def valueDomains = params.valueDomains
+		
 		if(valueDomains!=null){
 			
 			if (valueDomains instanceof String) {
+				
 				ValueDomain valueDomain =  ValueDomain.get(valueDomains)
+				
+				//remove all the value domains that aren't this one
+				associatedValueDomains.each{ vd ->
+					if(valueDomains!=vd.id.toString()){
+							dataElementInstance.removeFromDataElementValueDomains(vd)
+					}
+				}
+				
 				if(valueDomain){
+					
 					DataElementValueDomain.link(dataElementInstance, valueDomain)
 				}
+				
 			}
 			
 			if (valueDomains instanceof String[]) {
+				
+				//remove all the value domains that aren't this one
+				associatedValueDomains.each{ vd ->
+					if(!valueDomains.contains(vd.id.toString())){
+							dataElementInstance.removeFromDataElementValueDomains(vd)
+					}
+				}
+				
 				  for (valueDomainID in valueDomains){
 					  ValueDomain valueDomain =  ValueDomain.get(valueDomainID)
 					  if(valueDomain){
 							DataElementValueDomain.link(dataElementInstance, valueDomain)
 						}
 				  }
+  
+				  
 			}
 
+		}else{
+		
+		//remove all the value domains that aren't this one
+		associatedValueDomains.each{ vd ->
+					dataElementInstance.removeFromDataElementValueDomains(vd)
+		}
+		
 		}
 	}
 		
@@ -272,7 +444,39 @@ class DataElementController {
 		}
 		
 		return children
+
+	}
+	
+	String getSortField(Integer column){
+		
+		def field
+		
+		switch(column){
+			
+			case 0:
+				field = "refId"
+			break
+			
+			case 1:
+				field = "name"
+			break
+			
+			case 2:
+				field = "parent"
+			break
+			
+			case 3:
+				field = "dataElementConcept"
+			break
+			
+			default:
+				field = "dataElementConcept"
+			break
+		}
+		
+		return field
 		
 	}
+	
 	
 }

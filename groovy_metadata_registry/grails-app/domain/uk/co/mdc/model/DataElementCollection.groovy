@@ -52,7 +52,7 @@ class DataElementCollection {
 		{
 			DataElement?.removeFromDataElementCollections(m)
 			Collection?.removeFromDataElementCollections(m)
-			m.delete()
+			m.delete(flush:true)
 		}
 	}
 	
