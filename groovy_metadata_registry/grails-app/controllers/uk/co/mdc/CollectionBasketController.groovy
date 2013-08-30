@@ -95,7 +95,7 @@ class CollectionBasketController {
             return
         }
 
-        [collectionBasketInstance: collectionBasketInstance]
+        [collectionBasketInstance: collectionBasketInstance, errors: params?.errors, refId: params?.refId, name: params?.name, description: params?.description]
     }
 
     def edit(Long id) {

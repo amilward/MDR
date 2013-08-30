@@ -33,7 +33,7 @@ grails.mime.types = [
 //grails.urlmapping.cache.maxsize = 1000
 
 // What URL patterns should be processed by the resources plugin
-grails.resources.adhoc.patterns = ['/images/*', '/css/*','/js/*', '/plugins/*']
+grails.resources.adhoc.patterns = ['/images/*','/img/*', '/css/*','/js/*', '/plugins/*']
 
 // The default codec used to encode data with ${}
 grails.views.default.codec = "none" // none, html, base64
@@ -117,10 +117,10 @@ import grails.plugins.springsecurity.SecurityConfigType
 
 grails.plugins.springsecurity.securityConfigType = SecurityConfigType.InterceptUrlMap
 grails.plugins.springsecurity.interceptUrlMap = [
-	'/':    ['IS_AUTHENTICATED_ANONYMOUSLY'],
-	'/index/*':    ['IS_AUTHENTICATED_ANONYMOUSLY'],
 	'/login/*':    ['IS_AUTHENTICATED_ANONYMOUSLY'],
 	'/register/*':    ['IS_AUTHENTICATED_ANONYMOUSLY'],
+	'/':    ["hasAnyRole('ROLE_USER', 'ROLE_ADMIN')", 'IS_AUTHENTICATED_FULLY'],
+	'/index/*':    ["hasAnyRole('ROLE_USER', 'ROLE_ADMIN')", 'IS_AUTHENTICATED_FULLY'],
 	'/conceptualDomain/*':         ["hasAnyRole('ROLE_USER', 'ROLE_ADMIN')", 'IS_AUTHENTICATED_FULLY'],
 	'/valueDomain/*':         ["hasAnyRole('ROLE_USER', 'ROLE_ADMIN')", 'IS_AUTHENTICATED_FULLY'],
 	'/dataElement/*':         ["hasAnyRole('ROLE_USER', 'ROLE_ADMIN')", 'IS_AUTHENTICATED_FULLY'],
@@ -137,6 +137,16 @@ grails.plugins.springsecurity.interceptUrlMap = [
 	'/post/addPostAjax': ['ROLE_USER', 'IS_AUTHENTICATED_FULLY'],
 	'/**':               ['IS_AUTHENTICATED_ANONYMOUSLY']*/
 ]
+
+grails.plugins.springsecurity.useSecurityEventListener = true
+
+grails.plugins.springsecurity.onInteractiveAuthenticationSuccessEvent = { e, appCtx ->
+   uk.co.mdc.SecUser.withTransaction {
+	   def user = uk.co.mdc.SecUser.get(appCtx.springSecurityService.currentUser.id)
+	   user.lastLoginDate = new Date()
+	   user.save()
+   }
+}
 
 
 //custom REST JAX RS XML READER

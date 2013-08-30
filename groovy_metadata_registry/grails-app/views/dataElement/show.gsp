@@ -6,85 +6,70 @@
 		<meta name="layout" content="main">
 		<g:set var="entityName" value="${message(code: 'dataElement.label', default: 'DataElement')}" />
 		<title><g:message code="default.show.label" args="[entityName]" /></title>
+		<parameter name="name" value=" DATA ELEMENT - ${dataElementInstance?.name}" />
 	</head>
 	<body>
-		<a href="#show-dataElement" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-		<div class="nav" role="navigation">
-			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-			</ul>
-		</div>
-		<div id="show-dataElement" class="content scaffold-show" role="main">
-			<h1><g:message code="default.show.label" args="[entityName]" /></h1>
-			<g:if test="${flash.message}">
-			<div class="message" role="status">${flash.message}</div>
-			</g:if>
-			<ol class="property-list dataElement">
-			
-				<g:if test="${dataElementInstance?.name}">
-				<li class="fieldcontain">
-					<span id="name-label" class="property-label"><g:message code="dataElement.name.label" default="Name" /></span>
-					
-						<span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${dataElementInstance}" field="name"/></span>
-					
-				</li>
-				</g:if>
-			
-			
+		<header>
+			<g:form id="deleteForm" url="[action:'delete',controller:'dataElement']">
+				<g:hiddenField name="id" value="${dataElementInstance?.id}" />
+			    	<div class="navbar">
+					    <div class="navbar-inner">
+						    <ul class="nav">
+						  		<li class="active"><g:link action="show" id="${dataElementInstance?.id}"><g:message code="default.button.show.label" default="Show" /></g:link></li>
+							    <li><g:link action="edit" id="${dataElementInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link></li>
+							    <li><g:link action="create" id="${dataElementInstance?.id}"><g:message code="default.button.create.label" default="Create" /></g:link></li>
+							    <li><a href="#" onclick="deleteItem('${dataElementInstance?.name}')">Delete</a></li>
+							</ul>
+					    </div>
+			    	</div>
+			   </g:form>
+		</header>
+		<div class="box">
+			<table class="table table-hovered">
+				<tbody>
 				<g:if test="${dataElementInstance?.refId}">
-				<li class="fieldcontain">
-					<span id="refId-label" class="property-label"><g:message code="dataElement.refId.label" default="Ref Id" /></span>
-					
-						<span class="property-value" aria-labelledby="refId-label"><g:fieldValue bean="${dataElementInstance}" field="refId"/></span>
-					
-				</li>
+					<tr>
+						<td class="left_col_show"><span id="name-label" class="label"><g:message code="dataElement.refId.label" default="Reference ID" /></span></td>
+						<td class="right_col_show"><g:fieldValue bean="${dataElementInstance}" field="refId"/></td>
+					</tr>
 				</g:if>
-				
-				<g:if test="${dataElementInstance?.dataElementConcept}">
-				<li class="fieldcontain">
-					<span id="dataElementConcept-label" class="property-label"><g:message code="dataElement.dataElementConcept.label" default="Data Element Concept" /></span>
-					
-						<span class="property-value" aria-labelledby="dataElementConcept-label"><g:link controller="dataElementConcept" action="show" id="${dataElementInstance?.dataElementConcept?.id}">${dataElementInstance?.dataElementConcept?.name?.encodeAsHTML()}</g:link></span>
-					
-				</li>
+				<g:if test="${dataElementInstance?.name}">
+					<tr>
+						<td class="left_col_show"><span id="name-label" class="label"><g:message code="dataElement.name.label" default="Data Element" /></span></td>
+						<td class="right_col_show"><g:fieldValue bean="${dataElementInstance}" field="name"/></td>
+					</tr>
 				</g:if>
-			
-				<g:if test="${dataElementInstance?.parent}">
-				<li class="fieldcontain">
-					<span id="parent-label" class="property-label"><g:message code="dataElement.parent.label" default="Parent" /></span>
-					
-						<span class="property-value" aria-labelledby="parent-label"><g:link controller="dataElement" action="show" id="${dataElementInstance?.parent?.id}">${dataElementInstance?.parent?.name?.encodeAsHTML()}</g:link></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${dataElementInstance?.definition}">
-				<li class="fieldcontain">
-					<span id="definition-label" class="property-label"><g:message code="dataElement.definition.label" default="Definition" /></span>
-					
-						<span class="property-value" aria-labelledby="definition-label"><g:fieldValue bean="${dataElementInstance}" field="definition"/></span>
-					
-				</li>
-				</g:if>
-			
 				<g:if test="${dataElementInstance?.description}">
-				<li class="fieldcontain">
-					<span id="description-label" class="property-label"><g:message code="dataElement.description.label" default="Description" /></span>
-					
-						<span class="property-value" aria-labelledby="description-label"><g:fieldValue bean="${dataElementInstance}" field="description"/></span>
-					
-				</li>
+					<tr>
+						<td class="left_col_show"><span id="name-label" class="label"><g:message code="dataElement.description.label" default="Description" /></span></td>
+						<td class="right_col_show"><g:fieldValue bean="${dataElementInstance}" field="description"/></td>
+					</tr>
 				</g:if>
-			
-				
-			</ol>
-			
-			<g:if test="${dataElementInstance?.dataElementValueDomains}">
-			
-				<h1>Associated Value Domains:</h1>
-					<table>
+				<g:if test="${dataElementInstance?.definition}">
+					<tr>
+						<td class="left_col_show"><span id="name-label" class="label"><g:message code="dataElement.definition.label" default="Definition" /></span></td>
+						<td class="right_col_show"><g:fieldValue bean="${dataElementInstance}" field="definition"/></td>
+					</tr>
+				</g:if>
+				<g:if test="${dataElementInstance?.dataElementConcept}">
+					<tr>
+						<td class="left_col_show"><span id="name-label" class="label"><g:message code="dataElement.dataElementConcept.label" default="Data Element Concept" /></span></td>
+						<td class="right_col_show"><g:link controller="dataElementConcept" action="show" id="${dataElementInstance?.dataElementConcept?.id}">${dataElementInstance?.dataElementConcept?.name?.encodeAsHTML()}</g:link></td>
+					</tr>
+				</g:if>
+				<g:if test="${dataElementInstance?.parent}">
+					<tr>
+						<td class="left_col_show"><span id="name-label" class="label"><g:message code="dataElement.parent.label" default="Parent" /></span></td>
+						<td class="right_col_show"><g:link controller="dataElement" action="show" id="${dataElementInstance?.parent?.id}">${dataElementInstance?.parent?.name?.encodeAsHTML()}</g:link></td>
+					</tr>
+				</g:if>
+				<g:if test="${dataElementInstance?.dataElementValueDomains}">
+					<tr>
+							<td colspan="2"><span id="name-label" class="label">Associated Value Domains</span></td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<table>
 							<thead>
 								<tr>
 									<th>Name</th>
@@ -106,14 +91,17 @@
 									<td>${valueDomain?.regexDef} </td>
 								</tr>
 							</g:each>
-					</table>
-		
-			</g:if>
-
-				
-			<g:if test="${dataElementInstance?.subElements}">
-					<h1>Sub Elements:</h1>
-						<table>
+						</table>
+						</td>
+					</tr>
+				</g:if>
+				<g:if test="${dataElementInstance?.subElements}">
+					<tr>
+						<td colspan="2"><span id="name-label" class="label">Sub Elements</span></td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<table>
 							<thead>
 								<tr>
 									<th>Name</th>
@@ -130,13 +118,15 @@
 									<td>${dataElement?.definition} </td>
 								</tr>
 							</g:each>
-					</table>
-				</g:if>	
-				
-				
-			<g:if test="${dataElementInstance?.externalSynonyms}">
-					<h1>External Synonyms:</h1>
-						<table>
+						</table>
+						</td>
+					</tr>
+				</g:if>
+				<g:if test="${dataElementInstance?.externalSynonyms}">
+					<tr>
+						<td class="left_col_show"><span id="name-label" class="label">External Synonyms</span></td>
+						<td class="right_col_show">
+							<table>
 							<thead>
 								<tr>
 									<th>Name</th>
@@ -151,19 +141,12 @@
 									<td>${externalSynonym?.attributes} </td>
 								</tr>
 							</g:each>
-					</table>
-				</g:if>	
-				
-				
-			
-			
-			<g:form>
-				<fieldset class="buttons">
-					<g:hiddenField name="id" value="${dataElementInstance?.id}" />
-					<g:link class="edit" action="edit" id="${dataElementInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
-					<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
-				</fieldset>
-			</g:form>
+						</table>
+						</td>
+					</tr>
+				</g:if>
+				</tbody>
+			</table>
 		</div>
 	</body>
 </html>

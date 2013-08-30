@@ -4,18 +4,26 @@
 	<head>
 		<meta name="layout" content="main">
 		<g:set var="entityName" value="${message(code: 'dataElementConcept.label', default: 'DataElementConcept')}" />
+		<link rel="stylesheet" href="${resource(dir: 'css', file: 'bootstrap-duallistbox.css')}" type="text/css">
 		<title><g:message code="default.create.label" args="[entityName]" /></title>
+		<parameter name="name" value=" CREATE DATA ELEMENT CONCEPT " />
 	</head>
 	<body>
-		<a href="#create-dataElementConcept" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-		<div class="nav" role="navigation">
-			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-			</ul>
-		</div>
+		<header>
+			<g:form url="[action:'save',controller:'dataElementConcept']">
+				<g:hiddenField name="id" value="${dataElementInstance?.id}" />
+			    	<div class="navbar">
+					    <div class="navbar-inner">
+						    <ul class="nav">
+							    <li class="active"><g:link action="create" ><g:message code="default.button.create.label" default="Create" /></g:link></li>
+							    <li><a href="#" onclick="saveCreate()">Save</a></li>
+							   </ul>
+					    </div>
+			    	</div>
+			   </g:form>
+		</header>
+		<div class="box">
 		<div id="create-dataElementConcept" class="content scaffold-create" role="main">
-			<h1><g:message code="default.create.label" args="[entityName]" /></h1>
 			<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
@@ -26,7 +34,7 @@
 				</g:eachError>
 			</ul>
 			</g:hasErrors>
-			<g:form action="save" >
+			<g:form id="createForm" method="post" url="[action:'save',controller:'dataElementConcept']">
 				<fieldset class="form">
 					<g:render template="form"/>
 				</fieldset>
@@ -34,6 +42,7 @@
 					<g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
 				</fieldset>
 			</g:form>
+		</div>
 		</div>
 	</body>
 </html>

@@ -1,7 +1,7 @@
 package uk.co.mdc.model
 import grails.converters.JSON
 
-class ValueDomainMarshaller {
+class ValueDomainMarshaller extends CustomMarshaller{
 
 	void register() {
 		JSON.registerObjectMarshaller(ValueDomain) { ValueDomain valueDomain ->
@@ -17,7 +17,7 @@ class ValueDomainMarshaller {
 			'dataType_id' : valueDomain?.dataType?.id,
 			'dataType_name' : valueDomain?.dataType?.name,
 			'unitOfMeasure': valueDomain?.unitOfMeasure,
-			'dataElements': valueDomain.dataElementValueDomains(),
+			'dataElements': limitRender(valueDomain.dataElementValueDomains()),
 			'regexDef': valueDomain.regexDef,
 			'externalSynonyms': valueDomain?.externalSynonyms?.name,
 			]

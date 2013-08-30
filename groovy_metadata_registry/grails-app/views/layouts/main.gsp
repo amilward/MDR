@@ -9,19 +9,28 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<title><g:layoutTitle default="Grails"/></title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="shortcut icon" href="${resource(dir: 'images', file: 'favicon.ico')}" type="image/x-icon">
-		<link rel="apple-touch-icon" href="${resource(dir: 'images', file: 'apple-touch-icon.png')}">
-		<link rel="apple-touch-icon" sizes="114x114" href="${resource(dir: 'images', file: 'apple-touch-icon-retina.png')}">
-		<!-- <link href='http://fonts.googleapis.com/css?family=Michroma' rel='stylesheet' type='text/css'> -->
-		<!-- <link href='http://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'> -->
-		<link rel="stylesheet" href="${resource(dir: 'css', file: 'main.css')}" type="text/css">
-		<link rel="stylesheet" href="${resource(dir: 'css', file: 'jquery.dataTables.css')}" type="text/css">
-		<link rel="stylesheet" href="${resource(dir: 'css', file: 'mobile.css')}" type="text/css">
+		<link rel="stylesheet" href="${resource(dir: 'css', file: 'bootstrap.min.css')}" type="text/css">
+        <link rel="stylesheet" href="${resource(dir: 'css', file: 'bootstrap-responsive.min.css')}" type="text/css">
+        <link rel="stylesheet" href="${resource(dir: 'css', file: 'style.css')}" type="text/css">
+        <link rel="stylesheet" href="${resource(dir: 'css', file: 'theme.css')}" type="text/css">
+		<link rel="stylesheet" href="${resource(dir: 'css', file: 'datatable/jquery.dataTables.css')}" type="text/css">
+		
+		<g:javascript src="modernizr-2.6.2-respond-1.1.0.min.js" />
+		
 		<g:javascript>
 		    window.appContext = '${request.contextPath}';
+		    var root = location.protocol + '//' + location.host + window.appContext;
 		</g:javascript>
+		
 		<g:javascript library="jquery" plugin="jquery" />
 		<r:require module="jquery-ui"/>
+
+		<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->	
+        
+        <g:set var="activeNavItem" value="${pageProperty(name: 'page.name')}"/>
+        
 		<g:layoutHead/>
 		<r:layoutResources />
 	</head>
@@ -29,99 +38,295 @@
 	
 	
 	
-	<div id="maincontainer">
+	<!-- BEGIN WRAP -->
+        <div id="wrap">
 
-		<!-- <div id="topsection"><div class="innertube"><h1>CSS Liquid Layout #2.1- (Fixed-Fluid)</h1></div></div>-->
-		
-		<div id="contentwrapper">
-			<div id="contentcolumn">
-			<sec:ifLoggedIn>
-						
-						<div class="search" id="searchbox">
-						<g:form url='[controller: "searchable", action: "index"]' class="searchform cf" id="searchableForm" name="searchableForm" method="get">
-					        <g:textField name="q" value="${params.q}" size="50"/> <input type="submit" value="" />
-					    </g:form>
-						</div>
-			</sec:ifLoggedIn>
-			<g:layoutBody/>
-			</div>
-		</div>
-		
-		<div id="leftcolumn">
-			<div id="left_menu">
-						<div class="left_menu" id="user_menu">
-							<sec:ifLoggedIn>
-								<table>
-									<tr><td><img src='${fam.icon(name: 'user_suit')}'/></td><td><sec:loggedInUserInfo field="username" /></td></tr>
-									<tr><td><img src='${fam.icon(name: 'cog')}'/></td><td><g:link controller="Logout">logout</g:link></td></tr>
-								</table>
 
-								        
-								<!-- END #login -->
-							</sec:ifLoggedIn>
-							<sec:ifNotLoggedIn>
-							<table>
-							<tr>
-								<td><img src='${fam.icon(name: 'lock_open')}'/></td>
-								<td><g:link controller="Login">login </g:link></td>
-							</tr>
-							<tr>
-								<td><img src='${fam.icon(name: 'user_suit')}'/></td>
-								<td><g:link controller="Register">register </g:link></td>
-							</tr>
-							</table>
-							</sec:ifNotLoggedIn>
-						</div>
-						
-						
-						
-						<sec:ifLoggedIn>
-						
-						<div class="left_menu">
-							<div id="cart" class="cart">
-								<table>
-									<tr><td><img src='${fam.icon(name: 'basket_put')}'/></td><td><g:link action="show" params="[id: 1]" controller="CollectionBasket">collection basket </g:link></td></tr>		
-								</table>
-									<div class="ui-widget-content">
-										<ol id="collection_basket_list">
-										</ol>
-								</div>
-							</div>	
-						</div>
-						
-						<div class="left_menu" id="mdr_menu">
-						
-							<table>
-								<tr><td><img src='${fam.icon(name: 'folder_database')}'/></td><td><g:link controller="Collection">collections </g:link></td></tr>
-							
-								<tr><td><img src='${fam.icon(name: 'brick')}'/></td><td><g:link controller="ConceptualDomain">conceptual domains</g:link></td></tr>
-								
-								<tr><td><img src='${fam.icon(name: 'bricks')}'/></td><td><g:link controller="ValueDomain">value domains </g:link></td></tr>
-								
-								<tr><td><img src='${fam.icon(name: 'table')}'/></td><td><g:link controller="DataElementConcept">data element sections / concepts</g:link></td></tr>
-								
-								<tr><td><img src='${fam.icon(name: 'table_row_insert')}'/></td><td><g:link controller="DataElement">data elements </g:link></td></tr>
-								
-								<tr><td><img src='${fam.icon(name: 'textfield_key')}'/></td><td><g:link controller="DataType">data types </g:link></td></tr>
-								
-								<tr><td><img src='${fam.icon(name: 'page_white_stack')}'/></td><td><g:link controller="Document">documents </g:link></td></tr>
-								
-								<tr><td><img src='${fam.icon(name: 'database_link')}'/></td><td><g:link controller="ExternalSynonym">external synonyms </g:link></td></tr>
-							
-							</table>
-						</div>
-						</sec:ifLoggedIn>
-						
-			</div>
-		</div>
-		
-		<!--  <div id="footer"><a href="#">MDC</a></div>-->
+            <!-- BEGIN TOP BAR -->
+            <div id="top">
+                <!-- .navbar -->
+                <div class="navbar navbar-inverse navbar-static-top">
+                    <div class="navbar-inner">
+                        <div class="container-fluid">
+                            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </a>
+                            <a class="brand" href="${createLink(uri: '/')}">MDC</a>
+                            <!-- .topnav -->
+                            <div class="btn-toolbar topnav">
+                            
+                           		<div class="btn-group">
+                                    <a id="changeSidebarPos" class="btn btn-success" rel="tooltip"
+                                       data-original-title="Show / Hide Sidebar" data-placement="bottom">
+                                        <i class="icon-resize-horizontal"></i>
+                                    </a>
+                                </div>
+                                <div class="btn-group">
+                                    <a class="btn btn-inverse" rel="tooltip" href="#" data-original-title="Document"
+                                       data-placement="bottom">
+                                        <i class="icon-file"></i>
+                                    </a>
+                                    <a href="#helpModal" class="btn btn-inverse" rel="tooltip" data-placement="bottom"
+                                       data-original-title="Help" data-toggle="modal">
+                                        <i class="icon-question-sign"></i>
+                                    </a>
+                                </div>
+                                <div class="btn-group">
+                                <g:link data-placement="bottom" class="btn btn-inverse" data-original-title="Logout" rel="tooltip" controller="logout"><i class="icon-angle-right"></i> <i class="icon-off"></i></g:link>
+                                </div>
+                            </div>
+                            
+                            <div class="search-bar">
+				                    <div class="row-fluid">
+				                        <div class="span12">
+				                            <div class="search-bar-inner">
+				                                <a id="menu-toggle" href="#menu" data-toggle="collapse"
+				                                   class="accordion-toggle btn btn-inverse visible-phone"
+				                                   rel="tooltip" data-placement="bottom" data-original-title="Show/Hide Menu">
+				                                    <i class="icon-sort"></i>
+				                                </a>                                
+												<g:form url='[controller: "searchable", action: "index"]' class="main-search" id="searchableForm" name="searchableForm" method="get">
+											        <g:textField name="q" class="input-block-level" placeholder="Search Registry..." value="${params.q}"  /> 
+											        <button id="searchBtn" type="submit" class="btn btn-inverse"><i class="icon-search"></i>
+										            </button>
+											    </g:form>
+				                            </div>
+				                        </div>
+				                    </div>
+				                </div>
+                            
+                            <!-- /.topnav -->
+                            <div class="nav-collapse collapse">
+                                <!-- .nav -->
+                                <ul class="nav">
+                                    <li class="active"><a href="index.html">Dashboard</a></li>
+                                    <li class="dropdown">
+                                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                            Profile <b class="caret"></b>
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="#">Options</a></li>
+                                            <li><a href="#">My Collections</a></li>
+                                            <li><a href="#">My Forms</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <!-- /.nav -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.navbar -->
+            </div>
+            <!-- END TOP BAR -->
 
-	</div>
+
+           
+
+            <!-- BEGIN LEFT  -->
+            <div id="left">
+                <!-- .user-media -->
+                <div class="media user-media hidden-phone">
+                    <a href="" class="user-link">
+                   		 <g:img dir="img" file="user.gif" alt="" class="media-object img-polaroid user-img"/>
+                        <span class="label user-label">16</span>
+                    </a>
+
+                    <div class="media-body hidden-tablet">
+                        <h5 class="media-heading"><sec:ifLoggedIn><sec:loggedInUserInfo field="username" /></sec:ifLoggedIn></h5>
+                        <ul class="unstyled user-info">
+                            <li><sec:ifLoggedIn><sec:ifAnyGranted roles="ROLE_ADMIN">Administrator</sec:ifAnyGranted></sec:ifLoggedIn></li>
+                            <!--  <li>Last Access : <br/>
+                                <small><i class="icon-calendar"></i></small>
+                            </li>-->
+                        </ul>
+                    </div>
+                </div>
+                <!-- /.user-media -->
+
+                <!-- BEGIN MAIN NAVIGATION -->
+                <ul id="menu" class="unstyled accordion collapse in">
+                    <li id="cart" class="accordion-group cart">
+                        <a data-parent="#menu" data-toggle="collapse" class="accordion-toggle cart" data-target="#collection_basket_list">
+                            <i class="icon-shopping-cart icon-large cart"></i> Collection Basket <span
+                                class="label label-inverse pull-right">0</span>
+                        </a>
+                        <ul class="collapse cart" id="collection_basket_list">
+                        <li><g:link action="show" params="[id: 1]" controller="CollectionBasket"><i class="icon-angle-right"></i> view collection </g:link></li>
+                        </ul>
+                    </li>
+                    <li class="accordion-group ">
+                        <a data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#collections-nav">
+                            <i class="icon-list-ol icon-large"></i> Collections 
+                        </a>
+                        <ul class="collapse" id="collections-nav">
+                            <li><g:link action="list" controller="Collection"><i class="icon-angle-right"></i> List </g:link></li>
+                            <li><g:link action="create" controller="Collection"><i class="icon-angle-right"></i> Create </g:link></li>
+                        </ul>
+                    </li>
+                    <li class="accordion-group ">
+                        <a data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#dataElements-nav">
+                            <i class="icon-tasks icon-large"></i> Data Elements 
+                        </a>
+                        <ul class="collapse " id="dataElements-nav">
+                            <li><g:link action="list" controller="DataElement"><i class="icon-angle-right"></i> List </g:link></li>
+                            <li><g:link action="create" controller="DataElement"><i class="icon-angle-right"></i> Create </g:link></li>
+                        </ul>
+                    </li>
+                    <li class="accordion-group ">
+                        <a data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#valueDomains-nav">
+                            <i class="icon-th-large icon-large"></i> Value Domains 
+                        </a>
+                        <ul class="collapse " id="valueDomains-nav">
+                            <li><g:link action="list" controller="ValueDomain"><i class="icon-angle-right"></i> List </g:link></li>
+                            <li><g:link action="create" controller="ValueDomain"><i class="icon-angle-right"></i> Create </g:link></li>
+                        </ul>
+                    </li>    
+                    <li class="accordion-group ">
+                        <a data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#dataElementConcepts-nav">
+                            <i class="icon-sitemap icon-large"></i> Data Element Concepts 
+                        </a>
+                        <ul class="collapse " id="dataElementConcepts-nav">
+                           <li><g:link action="list" controller="DataElementConcept"><i class="icon-angle-right"></i> List </g:link></li>
+                            <li><g:link action="create" controller="DataElementConcept"><i class="icon-angle-right"></i> Create </g:link></li>
+                        </ul>
+                    </li>
+                    <li class="accordion-group ">
+                        <a data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#conceptualDomains-nav">
+                            <i class="icon-th icon-large"></i> Conceptual Domains 
+                        </a>
+                        <ul class="collapse " id="conceptualDomains-nav">
+                            <li><g:link action="list" controller="ConceptualDomain"><i class="icon-angle-right"></i> List </g:link></li>
+                            <li><g:link action="create" controller="ConceptualDomain"><i class="icon-angle-right"></i> Create </g:link></li>
+                        </ul>
+                    </li>                    
+                    <li class="accordion-group ">
+                        <a data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#dataTypes-nav">
+                            <i class="icon-subscript icon-large"></i> Data Types
+                        </a>
+                        <ul class="collapse " id="dataTypes-nav">
+                            <li><g:link action="list" controller="DataType"><i class="icon-angle-right"></i> List </g:link></li>
+                            <li><g:link action="create" controller="DataType"><i class="icon-angle-right"></i> Create </g:link></li>
+                        </ul>
+                    </li>
+                    <li class="accordion-group ">
+                        <a data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#documents-nav">
+                            <i class="icon-book icon-large"></i> Documents 
+                        </a>
+                        <ul class="collapse " id="documents-nav">
+                            <li><g:link action="list" controller="Document"><i class="icon-angle-right"></i> List </g:link></li>
+                            <li><g:link action="create" controller="Document"><i class="icon-angle-right"></i> Create </g:link></li>
+                        </ul>
+                    </li>
+                    <li class="accordion-group ">
+                        <a data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#externalSynonyms-nav">
+                            <i class="icon-external-link icon-large"></i> External Synonyms 
+                        </a>
+                        <ul class="collapse " id="externalSynonyms-nav">
+                            <li><g:link action="list" controller="ExternalSynonym"><i class="icon-angle-right"></i> List </g:link></li>
+                            <li><g:link action="create" controller="ExternalSynonym"><i class="icon-angle-right"></i> Create </g:link></li>
+                        </ul>
+                    </li>  
+                    <li class="accordion-group ">
+                        <a data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#formSpecs-nav">
+                            <i class="icon-file-text-alt icon-large"></i> Form Specs 
+                        </a>
+                        <ul class="collapse " id="formSpecs-nav">
+                            <li><g:link action="list" controller="FormSpecification"><i class="icon-angle-right"></i> List </g:link></li>
+                            <li><g:link action="create" controller="FormSpecification"><i class="icon-angle-right"></i> Create </g:link></li>
+                        </ul>
+                    </li>                                                      
+                </ul>
+                <!-- END MAIN NAVIGATION -->
+
+            </div>
+            <!-- END LEFT -->
+
+            <!-- BEGIN MAIN CONTENT -->
+            <div id="content">
+            
+				 <!-- BEGIN HEADER.head -->
+	            <header class="head">
+	                <!-- ."main-bar -->
+	                <div class="main-bar">
+	                    <div>
+	                                <h3>${activeNavItem}</h3>
+	                    </div>
+	                    
+	                </div>
+	                <!-- /.main-bar -->
+	            </header>
+	            <!-- END HEADER.head -->            
+                <!-- .outer -->
+                <div class="container-fluid outer">
+                    <div class="row-fluid">
+                        <!-- .inner -->
+                        <div class="span12 inner">
+                            <g:layoutBody/>
+                            <!-- /.row-fluid -->
+                            <!--END LATEST COMMENT-->
+                        </div>
+                        <!-- /.inner -->
+                    </div>
+                    <!-- /.row-fluid -->
+                </div>
+                <!-- /.outer -->
+            </div>
+            <!-- END CONTENT -->
+
+
+            <!-- #push do not remove -->
+            <div id="push"></div>
+            <!-- /#push -->
+        </div>
+        <!-- END WRAP -->
+
+        <div class="clearfix"></div>
+
+        <!-- BEGIN FOOTER -->
+        <div id="footer">
+            <p>2013 © The Metadata Registry</p>
+        </div>
+        <!-- END FOOTER -->
+
+        <!-- #helpModal -->
+        <div id="helpModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="helpModalLabel"
+             aria-hidden="true">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 id="helpModalLabel"><i class="icon-external-link"></i> Help</h3>
+            </div>
+            <div class="modal-body">
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+                    ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                    nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+                    anim id est laborum.
+                </p>
+            </div>
+            <div class="modal-footer">
+
+                <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+            </div>
+        </div>
+        <!-- /#helpModal -->
 	
 	
 		<div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>
-		<sec:ifLoggedIn><g:javascript library="application"/></sec:ifLoggedIn>
+		
+		<g:javascript library="application"/>
+	<sec:ifLoggedIn>
+       <r:script>
+            $(function() {
+                dashboard();
+            });
+        </r:script>
+	</sec:ifLoggedIn>
+		<div id="dialog-confirm" style="display:none">
+		</div>
 		<r:layoutResources />
 	</body>
 </html>

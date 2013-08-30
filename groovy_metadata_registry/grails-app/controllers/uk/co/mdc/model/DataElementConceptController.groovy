@@ -1,5 +1,7 @@
 package uk.co.mdc.model
 
+import grails.converters.JSON
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +19,50 @@ class DataElementConceptController {
         params.max = Math.min(max ?: 10, 100)
         [dataElementConceptInstanceList: DataElementConcept.list(params), dataElementConceptInstanceTotal: DataElementConcept.count()]
     }
+	
+	def dataTables(){
+		
+		def data
+		def total
+		def displayTotal
+		def order
+		def sortCol
+		def sortColName
+		
+
+		if(params?.sSearch!='' && params?.sSearch!=null){
+			
+			def searchResults = DataElementConcept.search(params.sSearch, [max:params.iDisplayLength])
+			
+			total = searchResults.total
+			displayTotal = searchResults.total
+			
+			if(total>0){
+				data = searchResults.results
+			}else{
+				data=[]
+			}
+			
+			
+			
+		}else{
+		
+			order = params?.sSortDir_0
+			sortColName = getSortField(params?.iSortCol_0.toInteger())
+			
+			data = DataElementConcept.list(max: params.iDisplayLength, offset: params.iDisplayStart, sort: sortColName, order: order)
+			total = DataElementConcept.count()
+			displayTotal = DataElementConcept.count()
+			
+		}
+		
+		
+		def model = [sEcho: params.sEcho, iTotalRecords: total, iTotalDisplayRecords: displayTotal, aaData: data]
+				
+		render model as JSON
+	}
+	
+	
 
     def create() {
         [dataElementConcepts: DataElementConcept.list(), dataElements: DataElement.list(), dataElementConceptInstance: new DataElementConcept(params)]
@@ -94,6 +140,14 @@ class DataElementConceptController {
             }
         }
 
+		//remove data elements (if needed)
+		
+		unLinkDataElements(dataElementConceptInstance)
+		
+		//remove sub concepts (if needed)
+		
+		unLinkSubConcepts(dataElementConceptInstance)
+		
         dataElementConceptInstance.properties = params
 
         if (!dataElementConceptInstance.save(flush: true)) {
@@ -112,8 +166,9 @@ class DataElementConceptController {
             redirect(action: "list")
             return
         }
-
+		
         try {
+			dataElementConceptInstance.prepareForDelete()
             dataElementConceptInstance.delete(flush: true)
             flash.message = message(code: 'default.deleted.message', args: [message(code: 'dataElementConcept.label', default: 'DataElementConcept'), id])
             redirect(action: "list")
@@ -222,6 +277,131 @@ class DataElementConceptController {
 		return children
 		
 	}
+	
+	String getSortField(Integer column){
+		
+		def field
+		
+		switch(column){
+			
+			case 0:
+				field = "refId"
+			break
+			
+			case 1:
+				field = "name"
+			break
+			
+			case 2:
+				field = "parent"
+			break
+			
+			default:
+				field = "name"
+			break
+		}
+		
+		return field
+		
+	}
+	
+	
+	
+	def unLinkDataElements(dataElementConceptInstance){
+		
+			//if all data elements need to be removed or only a few elements need to be removed
+			
+			if(params?.dataElements==null && dataElementConceptInstance?.dataElements.size()>0){
+				
+				def dataElements = []
+				dataElements += dataElementConceptInstance?.dataElements
+				
+				dataElements.each{ dataElement->
+					dataElementConceptInstance.removeFromDataElements(dataElement)
+				}
+				
+	
+			}else if(params.dataElements){
+		
+				if(params?.dataElements.size() < dataElementConceptInstance?.dataElements.size()){
+			
+				def dataElements = []
+				
+				dataElements += dataElementConceptInstance?.dataElements
+				
+				dataElements.each{ dataElement->
+					
+	
+					if(params?.dataElements instanceof String){
+						
+							if(params?.dataElements!=dataElement){
+						
+								dataElementConceptInstance.removeFromDataElements(dataElement)
+							
+							}
+						
+						}else{
+							
+							if(!params?.dataElements.contains(dataElement)){
+								
+								dataElementConceptInstance.removeFromDataElements(dataElement)
+								
+							}
+						
+						}
+					}
+			}
+			}
+	}
+	
+	
+	def unLinkSubConcepts(subConceptConceptInstance){
+		
+			//if all data elements need to be removed or only a few elements need to be removed
+			
+			if(params?.subConcepts==null && subConceptConceptInstance?.subConcepts.size()>0){
+				
+				def subConcepts = []
+				subConcepts += subConceptConceptInstance?.subConcepts
+				
+				subConcepts.each{ subConcept->
+					subConceptConceptInstance.removeFromSubConcepts(subConcept)
+				}
+				
+	
+			}else if(params.subConcepts){
+		
+				if(params?.subConcepts.size() < subConceptConceptInstance?.subConcepts.size()){
+			
+				def subConcepts = []
+				
+				subConcepts += subConceptConceptInstance?.subConcepts
+				
+				subConcepts.each{ subConcept->
+					
+	
+					if(params?.subConcepts instanceof String){
+						
+							if(params?.subConcepts!=subConcept){
+						
+								subConceptConceptInstance.removeFromSubConcepts(subConcept)
+							
+							}
+						
+						}else{
+							
+							if(!params?.subConcepts.contains(subConcept)){
+								
+								subConceptConceptInstance.removeFromSubConcepts(subConcept)
+								
+							}
+						
+						}
+					}
+			}
+			}
+	}
+	
 	
 	
 }

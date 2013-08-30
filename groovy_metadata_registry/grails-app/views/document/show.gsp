@@ -6,74 +6,66 @@
 		<meta name="layout" content="main">
 		<g:set var="entityName" value="${message(code: 'document.label', default: 'Document')}" />
 		<title><g:message code="default.show.label" args="[entityName]" /></title>
+		<parameter name="name" value=" DOCUMENT - ${documentInstance?.name}" />
 	</head>
 	<body>
-		<a href="#show-document" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-		<div class="nav" role="navigation">
-			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-			</ul>
-		</div>
-		<div id="show-document" class="content scaffold-show" role="main">
-			<h1><g:message code="default.show.label" args="[entityName]" /></h1>
-			<g:if test="${flash.message}">
-			<div class="message" role="status">${flash.message}</div>
-			</g:if>
-			<ol class="property-list document">
-			
+	<header>
+			<g:form id="deleteForm" url="[action:'delete',controller:'document']">
+				<g:hiddenField name="id" value="${documentInstance?.id}" />
+			    	<div class="navbar">
+					    <div class="navbar-inner">
+						    <ul class="nav">
+						  		<li class="active"><g:link action="show" id="${documentInstance?.id}"><g:message code="default.button.show.label" default="Show" /></g:link></li>
+							    <li><g:link action="edit" id="${documentInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link></li>
+							    <li><g:link action="create" id="${documentInstance?.id}"><g:message code="default.button.create.label" default="Create" /></g:link></li>
+							    <li><a href="#" onclick="deleteItem('${documentInstance?.name}')">Delete</a></li>
+							</ul>
+					    </div>
+			    	</div>
+			   </g:form>
+		</header>
+		<div class="box">
+			<table class="table table-hovered">
+				<tbody>
+				<g:if test="${documentInstance?.refId}">
+					<tr>
+						<td class="left_col_show"><span id="name-label" class="label"><g:message code="document.refId.label" default="Reference Id" /></span></td>
+						<td class="right_col_show"><g:fieldValue bean="${documentInstance}" field="refId"/></td>
+					</tr>
+				</g:if>
 				<g:if test="${documentInstance?.name}">
-				<li class="fieldcontain">
-					<span id="name-label" class="property-label"><g:message code="document.name.label" default="Name" /></span>
-					
-						<span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${documentInstance}" field="name"/></span>
-					
-				</li>
+					<tr>
+						<td class="left_col_show"><span id="name-label" class="label"><g:message code="document.name.label" default="Name" /></span></td>
+						<td class="right_col_show"><g:fieldValue bean="${documentInstance}" field="name"/></td>
+					</tr>
 				</g:if>
-			
 				<g:if test="${documentInstance?.description}">
-				<li class="fieldcontain">
-					<span id="description-label" class="property-label"><g:message code="document.description.label" default="Description" /></span>
-					
-						<span class="property-value" aria-labelledby="description-label"><g:fieldValue bean="${documentInstance}" field="description"/></span>
-					
-				</li>
+					<tr>
+						<td class="left_col_show"><span id="name-label" class="label"><g:message code="document.description.label" default="Description" /></span></td>
+						<td class="right_col_show"><g:fieldValue bean="${documentInstance}" field="description"/></td>
+					</tr>
 				</g:if>
-			
 				<g:if test="${documentInstance?.content}">
-				<li class="fieldcontain">
-					<span id="content-label" class="property-label"><g:message code="document.content.label" default="Content" /></span>
-					<g:link controller="Document" action="download" id="${documentInstance?.id}"> download </g:link>
-				</li>
+					<tr>
+						<td class="left_col_show"><span id="name-label" class="label"><g:message code="document.content.label" default="Content" /></span></td>
+						<td class="right_col_show"><g:link controller="Document" action="download" id="${documentInstance?.id}"> download </g:link></td>
+					</tr>
 				</g:if>
-			
 				<g:if test="${documentInstance?.contentType}">
-				<li class="fieldcontain">
-					<span id="contentType-label" class="property-label"><g:message code="document.contentType.label" default="Content Type" /></span>
-					
-						<span class="property-value" aria-labelledby="contentType-label"><g:fieldValue bean="${documentInstance}" field="contentType"/></span>
-					
-				</li>
+					<tr>
+						<td class="left_col_show"><span id="name-label" class="label"><g:message code="document.contentType.label" default="Content Type" /></span></td>
+						<td class="right_col_show"><g:fieldValue bean="${documentInstance}" field="contentType"/></td>
+					</tr>
 				</g:if>
-			
 				<g:if test="${documentInstance?.fileName}">
-				<li class="fieldcontain">
-					<span id="fileName-label" class="property-label"><g:message code="document.fileName.label" default="File Name" /></span>
-					
-						<span class="property-value" aria-labelledby="fileName-label"><g:fieldValue bean="${documentInstance}" field="fileName"/></span>
-					
-				</li>
+					<tr>
+						<td class="left_col_show"><span id="name-label" class="label"><g:message code="document.fileName.label" default="File Name" /></span></td>
+						<td class="right_col_show"><g:fieldValue bean="${documentInstance}" field="fileName"/></td>
+					</tr>
 				</g:if>
-			
-			</ol>
-			<g:form>
-				<fieldset class="buttons">
-					<g:hiddenField name="id" value="${documentInstance?.id}" />
-					<g:link class="edit" action="edit" id="${documentInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
-					<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
-				</fieldset>
-			</g:form>
+				
+				</tbody>
+			</table>
 		</div>
 	</body>
 </html>

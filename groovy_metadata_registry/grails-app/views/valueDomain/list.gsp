@@ -6,57 +6,23 @@
 		<meta name="layout" content="main">
 		<g:set var="entityName" value="${message(code: 'valueDomain.label', default: 'ValueDomain')}" />
 		<title><g:message code="default.list.label" args="[entityName]" /></title>
+		<parameter name="name" value="Value Domain" />
 	</head>
 	<body>
-		<a href="#list-valueDomain" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-		<div class="nav" role="navigation">
-			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-			</ul>
-		</div>
-		<div id="list-valueDomain" class="content scaffold-list" role="main">
-			<h1><g:message code="default.list.label" args="[entityName]" /></h1>
-			<g:if test="${flash.message}">
-			<div class="message" role="status">${flash.message}</div>
-			</g:if>
-			<table class="tableList">
-				<thead>
-					<tr>
+		<div class="box">
+			<div id="list-valueDomain" class="content scaffold-list" role="main">
+				<g:if test="${flash.message}">
+				<div class="message" role="status">${flash.message}</div>
+				</g:if>
+				<div id="valueDomainList" ></div>
+				<g:javascript library="dataTables"/>
+				<r:script disposition="defer">
+	
+				$(function() {
+					valueDomainList();
+	            });
 					
-						<g:sortableColumn class="name" property="name" title="${message(code: 'valueDomain.name.label', default: 'Name')}" />
-						
-						<g:sortableColumn property="refId" title="${message(code: 'valueDomain.refId.label', default: 'Ref Id')}" />
-						
-						<g:sortableColumn property="dataType" title="${message(code: 'valueDomain.dataType.label', default: 'Data Type')}" />
-					
-						<g:sortableColumn property="regexDef" title="${message(code: 'valueDomain.regexDef.label', default: 'Regex Def')}" />
-						
-						<g:sortableColumn property="valueDomain.conceptualDomain" title="${message(code: 'valueDomain.conceptualDomain.label', default: 'Conceptual Domain')}" />
-					
-					</tr>
-				</thead>
-				<tbody>
-				<g:each in="${valueDomainInstanceList}" status="i" var="valueDomainInstance">
-					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-					
-						<td class="name"><g:link action="show" id="${valueDomainInstance.id}">${fieldValue(bean: valueDomainInstance, field: "name")}</g:link></td>
-						
-						<td>${fieldValue(bean: valueDomainInstance, field: "refId")}</td>
-						
-						<td><g:link controller="DataType" action="show" id="${valueDomainInstance?.dataType?.id}">${valueDomainInstance?.dataType?.name}</g:link></td>
-					
-						<td>${fieldValue(bean: valueDomainInstance, field: "regexDef")}</td>
-						
-						<td><g:link controller="ConceptualDomain" action="show" id="${valueDomainInstance?.conceptualDomain?.id}">${valueDomainInstance?.conceptualDomain?.name}</g:link></td>
-					
-					
-					</tr>
-				</g:each>
-				</tbody>
-			</table>
-			<div class="pagination">
-				<g:paginate total="${valueDomainInstanceTotal}" />
+				</r:script>
 			</div>
 		</div>
 	</body>

@@ -1,38 +1,28 @@
 <%@ page import="uk.co.mdc.model.Collection" %>
 
 
-<div class="fieldcontain ${hasErrors(bean: collectionInstance, field: 'refId', 'error')} required">
-	<label for="refId">
-		<g:message code="collection.refId.label" default="Reference ID" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:textField name="refId" value="${collectionInstance?.refId}" required=""/>
-</div>
+<table class="table table-hovered">
+				<tbody>
+					<tr class="${hasErrors(bean: collectionInstance, field: 'refId', 'error')} ">
+						<td class="left_col_show"><span id="name-label" class="label"><g:message code="collection.refId.label" default="Reference ID" /></span></td>
+						<td class="right_col_show"><g:textField title="${g.message(code:'tooltip.collection.refId')}" class="input-large input-block-level" name="refId" value="${collectionInstance.refId}" required=""/></td>
+					</tr>
+					<tr class="${hasErrors(bean: collectionInstance, field: 'name', 'error')} ">
+						<td class="left_col_show"><span id="name-label" class="label"><g:message code="collection.name.label" default="Name" /></span></td>
+						<td class="right_col_show"><g:textField title="tooltip.collection.name" class="input-large input-block-level"  name="name" value="${collectionInstance?.name}"/></td>
+					</tr>
+					<tr class="${hasErrors(bean: collectionInstance, field: 'description', 'error')} ">
+						<td class="left_col_show"><span id="name-label" class="label"><g:message code="collection.description.label" default="Description" /></span></td>
+						<td class="right_col_show"><g:textArea title="tooltip.collection.description" class="input-block-level" name="description" value="${collectionInstance?.description}"/></td>
+					</tr>
 
-<div class="fieldcontain ${hasErrors(bean: collectionInstance, field: 'name', 'error')} ">
-	<label for="name">
-		<g:message code="collection.name.label" default="Name" />
-		
-	</label>
-	<g:textField name="name" value="${collectionInstance?.name}"/>
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: collectionInstance, field: 'description', 'error')} ">
-	<label for="description">
-		<g:message code="collection.description.label" default="Description" />
-		
-	</label>
-	<g:textArea rows="5" cols="40" name="description" value="${collectionInstance?.description}"/>
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: collectionInstance, field: 'dataElementCollections', 'error')} ">
-        <label for="dataElementCollections">
-                <g:message code="collection.dataElementCollections.label" default="Add Mandatory Data Elements" />
-                
-        </label>
-        
-        <g:select
+					<tr>
+						<td class="left_col_show"><span id="name-label" class="label"><g:message code="collection.collectionConcept.label" default="Mandatory Data Elements" /></span></td>
+						<td class="right_col_show">
+						<g:select
+						title="tooltip.collection.mandatoryElements"
                         name="mandatoryDataElements"
+                        id="mandatoryDataElements"
                         noSelection="${['':'Select One...']}"
                         from="${dataElements}"
                         value="${params.list('dataElements')}"
@@ -40,18 +30,16 @@
                         optionValue="name"
                         multiple="true"
                         size="6"
-                />
-
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: collectionInstance, field: 'dataElementCollections', 'error')} ">
-        <label for="dataElementCollections">
-                <g:message code="collection.dataElementCollections.label" default="Add Required Data Elements" />
-                
-        </label>
-        
-        <g:select
+               			/>
+						</td>
+					</tr>
+					<tr>
+						<td class="left_col_show"><span id="name-label" class="label"><g:message code="collection.collectionConcept.label" default="Required Data Elements" /></span></td>
+						<td class="right_col_show">
+						<g:select
+						title="tooltip.collection.requiredElements"
                         name="requiredDataElements"
+                        id="requiredDataElements"
                         noSelection="${['':'Select One...']}"
                         from="${dataElements}"
                         value="${params.list('dataElements')}"
@@ -59,18 +47,16 @@
                         optionValue="name"
                         multiple="true"
                         size="6"
-                />
-
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: collectionInstance, field: 'dataElementCollections', 'error')} ">
-        <label for="dataElementCollections">
-                <g:message code="collection.dataElementCollections.label" default="Add Optional Data Elements" />
-                
-        </label>
-        
-        <g:select
+               			/>
+						</td>
+					</tr>
+					<tr>
+						<td class="left_col_show"><span id="name-label" class="label"><g:message code="collection.collectionConcept.label" default="Optional Data Elements" /></span></td>
+						<td class="right_col_show">
+						<g:select
+						title="tooltip.collection.optionalElements"
                         name="optionalDataElements"
+                        id="optionalDataElements"
                         noSelection="${['':'Select One...']}"
                         from="${dataElements}"
                         value="${params.list('dataElements')}"
@@ -78,18 +64,16 @@
                         optionValue="name"
                         multiple="true"
                         size="6"
-                />
-
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: collectionInstance, field: 'dataElementCollections', 'error')} ">
-        <label for="dataElementCollections">
-                <g:message code="collection.dataElementCollections.label" default="Add Reference (X) Data Elements" />
-                
-        </label>
-        
-        <g:select
+               			/>
+						</td>
+					</tr>
+					<tr>
+						<td class="left_col_show"><span id="name-label" class="label"><g:message code="collection.collectionConcept.label" default="Reference Data Elements" /></span></td>
+						<td class="right_col_show">
+						<g:select
+						title="tooltip.collection.referenceElements"
                         name="referenceDataElements"
+                        id="referenceDataElements"
                         noSelection="${['':'Select One...']}"
                         from="${dataElements}"
                         value="${params.list('dataElements')}"
@@ -97,8 +81,47 @@
                         optionValue="name"
                         multiple="true"
                         size="6"
-                />
+               			/>
+						</td>
+					</tr>
+					
+				</tbody>
+			</table>
+<g:javascript library="dualListBox"/>	
+<r:script disposition="defer">
 
-</div>
+	<g:if test="${!mandatoryDataElements*.id}">
+		mandatoryDataElements = ' '
+	</g:if>
+	<g:else>
+		mandatoryDataElements = ${mandatoryDataElements*.id}
+	</g:else>
+	
+	<g:if test="${!requiredDataElements*.id}">
+		requiredDataElements = ' '
+	</g:if>
+	<g:else>
+		requiredDataElements = ${requiredDataElements*.id}
+	</g:else>
+	
+	<g:if test="${!optionalDataElements*.id}">
+		optionalDataElements = ' '
+	</g:if>
+	<g:else>
+		optionalDataElements = ${optionalDataElements*.id}
+	</g:else>
+	
+	<g:if test="${!referenceDataElements*.id}">
+		referenceDataElements = ' '
+	</g:if>
+	<g:else>
+		referenceDataElements = ${referenceDataElements*.id}
+	</g:else>
+	
+	$(document).ready(function() {
+		collectionForm(mandatoryDataElements, requiredDataElements, optionalDataElements, referenceDataElements);
+    });
+				
+</r:script>
 
 

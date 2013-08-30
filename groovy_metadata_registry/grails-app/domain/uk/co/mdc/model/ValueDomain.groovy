@@ -12,11 +12,15 @@ class ValueDomain {
 	
 	String regexDef
 	
+	String format
+	
 	String description
 	
 	DataType dataType
  	
 	Set dataElementValueDomains = []
+	
+	ConceptualDomain conceptualDomain
 	
 	static searchable = {
         content: spellCheck 'include'
@@ -34,6 +38,7 @@ class ValueDomain {
 		unitOfMeasure nullable:true
 		regexDef nullable:true
 		name blank: false
+		format nullable:true
     }
 	
 	static mapping = {

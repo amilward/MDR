@@ -1,5 +1,7 @@
 package uk.co.mdc.model
 
+import grails.converters.JSON
+
 import org.springframework.dao.DataIntegrityViolationException
 import org.apache.commons.lang.StringUtils
 
@@ -15,6 +17,50 @@ class ConceptualDomainController {
         params.max = Math.min(max ?: 10, 100)
         [conceptualDomainInstanceList: ConceptualDomain.list(params), conceptualDomainInstanceTotal: ConceptualDomain.count()]
     }
+	
+	
+	def dataTables(){
+		
+		def data
+		def total
+		def displayTotal
+		def order
+		def sortCol
+		def sortColName
+		
+
+		if(params?.sSearch!='' && params?.sSearch!=null){
+			
+			def searchResults = ConceptualDomain.search(params.sSearch, [max:params.iDisplayLength])
+			
+			total = searchResults.total
+			displayTotal = searchResults.total
+			
+			if(total>0){
+				data = searchResults.results
+			}else{
+				data=[]
+			}
+			
+			
+			
+		}else{
+		
+			order = params?.sSortDir_0
+			sortColName = getSortField(params?.iSortCol_0.toInteger())
+			
+			data = ConceptualDomain.list(max: params.iDisplayLength, offset: params.iDisplayStart, sort: sortColName, order: order)
+			total = ConceptualDomain.count()
+			displayTotal = ConceptualDomain.count()
+			
+		}
+		
+		
+		def model = [sEcho: params.sEcho, iTotalRecords: total, iTotalDisplayRecords: displayTotal, aaData: data]
+				
+		render model as JSON
+	}
+	
 
     def create() {
         [valueDomains: ValueDomain.list(), conceptualDomainInstance: new ConceptualDomain(params)]
@@ -50,7 +96,7 @@ class ConceptualDomainController {
             return
         }
 
-        [valueDomains: ValueDomain.list(), conceptualDomainInstance: conceptualDomainInstance]
+        [valueDomains: ValueDomain.list(), selectedValueDomains: conceptualDomainInstance.valueDomains , conceptualDomainInstance: conceptualDomainInstance]
     }
 
     def update(Long id, Long version) {
@@ -71,6 +117,10 @@ class ConceptualDomainController {
             }
         }	
 
+		// remove valueDomains (if needed)
+		
+		unLinkValueDomains(conceptualDomainInstance)
+		
         conceptualDomainInstance.properties = params
 		
         if (!conceptualDomainInstance.save(flush: true)) {
@@ -112,4 +162,81 @@ class ConceptualDomainController {
 		redirect(action: 'edit', id: params.conceptualDomainId)
 
 	}
+	
+	def unLinkValueDomains(conceptualDomainInstance){
+		
+		//if all data elements need to be removed or only a few elements need to be removed
+		
+			if(params?.valueDomains==null && conceptualDomainInstance?.valueDomains.size()>0){
+				
+				def valueDomains = []
+				valueDomains += conceptualDomainInstance?.valueDomains
+				
+				valueDomains.each{ valueDomain->
+					conceptualDomainInstance.removeFromValueDomains(valueDomain)
+				}
+				
+	
+			}else if(params?.valueDomains){
+		
+			if(params?.valueDomains.size() < conceptualDomainInstance?.valueDomains.size()){
+			
+				def valueDomains = []
+				
+				valueDomains += conceptualDomainInstance?.valueDomains
+				
+				valueDomains.each{ valueDomain->
+					
+	
+					if(params?.valueDomains instanceof String){
+						
+							if(params?.valueDomains!=valueDomain){
+						
+								conceptualDomainInstance.removeFromValueDomains(valueDomain)
+							
+							}
+						
+						}else{
+							
+							if(!params?.valueDomains.contains(valueDomain)){
+								
+								conceptualDomainInstance.removeFromValueDomains(valueDomain)
+								
+							}
+						
+						}
+					}
+			}
+			
+		}
+	}
+
+	
+	String getSortField(Integer column){
+		
+		def field
+		
+		switch(column){
+			
+			case 0:
+				field = "refId"
+			break
+			
+			case 1:
+				field = "name"
+			break
+			
+			case 2:
+				field = "description"
+			break
+			
+			default:
+				field = "name"
+			break
+		}
+		
+		return field
+		
+	}
+	
 }

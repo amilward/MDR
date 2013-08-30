@@ -15,9 +15,44 @@ class DataTypeController {
         [dataTypeInstanceTotal: DataType.count()]
     }
 	
-	def listJSON(){
+	def dataTables(){
 
-		def model = [sEcho: 1, iTotalRecords: DataType.count(), iTotalDisplayRecords:DataType.count(), aaData: DataType.list()]
+		def data
+		def total
+		def displayTotal
+		def order
+		def sortCol
+		
+
+		if(params?.sSearch!='' && params?.sSearch!=null){
+			
+			def searchResults = DataType.search(params.sSearch, [max:params.iDisplayLength])
+			
+			total = searchResults.total
+			displayTotal = searchResults.total
+			
+			if(total>0){
+				data = searchResults.results
+			}else{
+				data=[]
+			}
+			
+			
+			
+		}else{
+		
+			order = params?.sSortDir_0
+			sortCol = "name"
+			
+			data = DataType.list(max: params.iDisplayLength, offset: params.iDisplayStart, sort: sortCol, order: order)
+			total = DataType.count()
+			displayTotal = DataType.count()
+			
+		}
+		
+		
+
+		def model = [sEcho: params.sEcho, iTotalRecords: total, iTotalDisplayRecords: displayTotal, aaData: data]
 		
 		render model as JSON
 	}
@@ -88,10 +123,6 @@ class DataTypeController {
 		
 		if(params.enumerations==null){
 			params.enumerations= new HashMap()
-		}
-		
-		if(dataTypeInstance.enumerations){
-			params.enumerations.putAll(dataTypeInstance.enumerations)
 		}
 		
         dataTypeInstance.properties = params

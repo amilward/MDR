@@ -6,179 +6,105 @@
 		<meta name="layout" content="main">
 		<g:set var="entityName" value="${message(code: 'collection.label', default: 'Collection')}" />
 		<title><g:message code="default.show.label" args="[entityName]" /></title>
+		<parameter name="name" value=" COLLECTION - ${collectionInstance?.name}" />
 	</head>
 	<body>
-		<a href="#show-collection" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-		<div class="nav" role="navigation">
-			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-			</ul>
-		</div>
-		<div id="show-collection" class="content scaffold-show" role="main">
-			<h1><g:message code="default.show.label" args="[entityName]" /></h1>
-			<g:if test="${flash.message}">
-			<div class="message" role="status">${flash.message}</div>
-			</g:if>
-			<ol class="property-list collection">
-			
-			<g:if test="${collectionInstance?.refId}">
-				<li class="fieldcontain">
-					<span id="refId-label" class="property-label"><g:message code="collection.refId.label" default="Reference Id" /></span>
-					
-						<span class="property-value" aria-labelledby="refId-label"><g:fieldValue bean="${collectionInstance}" field="refId"/></span>
-					
-				</li>
+		<header>
+			<g:form id="deleteForm" url="[action:'delete',controller:'collection']">
+				<g:hiddenField name="id" value="${collectionInstance?.id}" />
+			    	<div class="navbar">
+					    <div class="navbar-inner">
+						    <ul class="nav">
+						  		<li class="active"><g:link action="show" id="${collectionInstance?.id}"><g:message code="default.button.show.label" default="Show" /></g:link></li>
+							    <li><g:link action="edit" id="${collectionInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link></li>
+							    <li><g:link action="create" id="${collectionInstance?.id}"><g:message code="default.button.create.label" default="Create" /></g:link></li>
+							    <li><a href="#" onclick="deleteItem('${collectionInstance?.name}')">Delete</a></li>
+							    <li><g:link action="create" controller="FormSpecification" params='["collectionId": "${collectionInstance?.id}"]'>Generate Form Spec</g:link></li>
+							</ul>
+					    </div>
+			    	</div>
+			   </g:form>
+		</header>
+		<div class="box">
+			<table class="table table-hovered">
+				<tbody>
+				<g:if test="${collectionInstance?.refId}">
+					<tr>
+						<td class="left_col_show"><span id="name-label" class="label"><g:message code="collection.collectionConcept.label" default="Reference Id" /></span></td>
+						<td class="right_col_show"><g:fieldValue bean="${collectionInstance}" field="refId"/></td>
+					</tr>
 				</g:if>
-			
 				<g:if test="${collectionInstance?.name}">
-				<li class="fieldcontain">
-					<span id="name-label" class="property-label"><g:message code="collection.name.label" default="Name" /></span>
-					
-						<span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${collectionInstance}" field="name"/></span>
-					
-				</li>
+					<tr>
+						<td class="left_col_show"><span id="name-label" class="label"><g:message code="collection.name.label" default="Name" /></span></td>
+						<td class="right_col_show"><g:fieldValue bean="${collectionInstance}" field="name"/></td>
+					</tr>
 				</g:if>
-			
 				<g:if test="${collectionInstance?.description}">
-				<li class="fieldcontain">
-					<span id="description-label" class="property-label"><g:message code="collection.description.label" default="Description" /></span>
-					
-						<span class="property-value" aria-labelledby="description-label"><g:fieldValue bean="${collectionInstance}" field="description"/></span>
-					
-				</li>
+					<tr>
+						<td class="left_col_show"><span id="name-label" class="label"><g:message code="collection.description.label" default="Description" /></span></td>
+						<td class="right_col_show"><g:fieldValue bean="${collectionInstance}" field="description"/></td>
+					</tr>
 				</g:if>
-			
-				
-			
-			</ol>
-			
-			<g:if test="${collectionInstance.mandatoryDataElementCollections()!=null}">
-			
-				<h1>Mandatory Data Elements in collection:</h1>
-				<table>
-						<thead>
-							<tr>
-								<th>Name</th>
-								<th>Reference ID</th>
-								<th>Description</th>
-								<th>Definition</th>
-								<th>SubElements</th>
-	
-							</tr>
-						</thead>
-						<g:each var="dataElement" in="${collectionInstance.mandatoryDataElementCollections()}">
+				<g:if test="${collectionInstance?.dataElementCollections()}">
+					<tr>
+						<td colspan="2"><span id="name-label" class="label">Data Elements</span></td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<table>
+							<thead>
+								<tr>
+									<th>Name</th>
+									<th>Reference ID</th>
+									<th>Description</th>
+									<th>Parent</th>
+									<th>Schema Specification</th>
+		
+								</tr>
+							</thead>
+							<g:each var="dataElement" in="${collectionInstance.mandatoryDataElementCollections()}">
 							<tr>
 								<td><g:link action="show" controller="DataElement" id="${dataElement?.id}">${dataElement?.name} </g:link></td>
 								<td>${dataElement?.refId}</td>
 								<td>${dataElement?.description}</td>
-								<td>${dataElement?.definition} </td>
-								<td><g:each var="subElement" in="${dataElement.subElements}">
-										<g:link action="show" controller="DataElement" id="${subElement?.id}">${subElement?.name} </g:link> </br>
-								</g:each></td>
+								<td><g:link action="show" controller="DataElement" id="${dataElement?.parent?.id}">${dataElement?.parent?.name} </g:link> </td>
+								<td>Mandatory</td>
 							</tr>
-						</g:each>
-				</table>
-			</g:if>	
-			
-			<g:if test="${collectionInstance.requiredDataElementCollections()!=null}">
-			
-				<h1>Required Data Elements in collection:</h1>
-				<table>
-						<thead>
-							<tr>
-								<th>Name</th>
-								<th>Reference ID</th>
-								<th>Description</th>
-								<th>Definition</th>
-								<th>SubElements</th>
-	
-							</tr>
-						</thead>
-						<g:each var="dataElement" in="${collectionInstance.requiredDataElementCollections()}">
+							</g:each>
+							<g:each var="dataElement" in="${collectionInstance.requiredDataElementCollections()}">
 							<tr>
 								<td><g:link action="show" controller="DataElement" id="${dataElement?.id}">${dataElement?.name} </g:link></td>
 								<td>${dataElement?.refId}</td>
 								<td>${dataElement?.description}</td>
-								<td>${dataElement?.definition} </td>
-								<td>
-								<ul>
-									<g:each var="subElement" in="${dataElement.subElements}">
-										<li><g:link action="show" controller="DataElement" id="${subElement?.id}">${subElement?.name} </g:link></li>
-									</g:each>
-								</ul>
-								</td>
+								<td><g:link action="show" controller="DataElement" id="${dataElement?.parent?.id}">${dataElement?.parent?.name} </g:link> </td>
+								<td>Required</td>
 							</tr>
-						</g:each>
-				</table>
-			</g:if>	
-			
-			<g:if test="${collectionInstance.optionalDataElementCollections()!=null}">
-			
-				<h1>Optional Data Elements in collection:</h1>
-				<table>
-						<thead>
-							<tr>
-								<th>Name</th>
-								<th>Reference ID</th>
-								<th>Description</th>
-								<th>Definition</th>
-								<th>SubElements</th>
-	
-							</tr>
-						</thead>
-						<g:each var="dataElement" in="${collectionInstance.optionalDataElementCollections()}">
+							</g:each>
+							<g:each var="dataElement" in="${collectionInstance.optionalDataElementCollections()}">
 							<tr>
 								<td><g:link action="show" controller="DataElement" id="${dataElement?.id}">${dataElement?.name} </g:link></td>
 								<td>${dataElement?.refId}</td>
 								<td>${dataElement?.description}</td>
-								<td>${dataElement?.definition} </td>
-								<td><g:each var="subElement" in="${dataElement.subElements}">
-										<g:link action="show" controller="DataElement" id="${subElement?.id}">${subElement?.name} </g:link> </br>
-								</g:each></td>
+								<td><g:link action="show" controller="DataElement" id="${dataElement?.parent?.id}">${dataElement?.parent?.name} </g:link> </td>
+								<td>Optional</td>
 							</tr>
-						</g:each>
-				</table>
-			</g:if>	
-			
-			<g:if test="${collectionInstance.referenceDataElementCollections()!=null}">
-			
-				<h1>Reference (x) Data Elements in collection:</h1>
-				<table>
-						<thead>
-							<tr>
-								<th>Name</th>
-								<th>Reference ID</th>
-								<th>Description</th>
-								<th>Definition</th>
-								<th>SubElements</th>
-	
-							</tr>
-						</thead>
-						<g:each var="dataElement" in="${collectionInstance.referenceDataElementCollections()}">
+							</g:each>
+							<g:each var="dataElement" in="${collectionInstance.referenceDataElementCollections()}">
 							<tr>
 								<td><g:link action="show" controller="DataElement" id="${dataElement?.id}">${dataElement?.name} </g:link></td>
 								<td>${dataElement?.refId}</td>
 								<td>${dataElement?.description}</td>
-								<td>${dataElement?.definition} </td>
-								<td><g:each var="subElement" in="${dataElement.subElements}">
-										<g:link action="show" controller="DataElement" id="${subElement?.id}">${subElement?.name} </g:link> </br>
-								</g:each></td>
+								<td><g:link action="show" controller="DataElement" id="${dataElement?.parent?.id}">${dataElement?.parent?.name} </g:link> </td>
+								<td>Reference (X)</td>
 							</tr>
-						</g:each>
-				</table>
-			</g:if>	
-			
-			
-			<g:form>
-				<fieldset class="buttons">
-					<g:hiddenField name="id" value="${collectionInstance?.id}" />
-					<g:link class="create" action="create" controller="FormSpecification" params="[collectionId: "${collectionInstance?.id}"]">Generate Form</g:link>
-					<g:link class="edit" action="edit" id="${collectionInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
-					<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
-				</fieldset>
-			</g:form>
-		</div>
+							</g:each>
+						</table>
+						</td>
+					</tr>
+				</g:if>
+				</tbody>
+			</table>
+			</div>
 	</body>
 </html>
