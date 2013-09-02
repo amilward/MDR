@@ -118,24 +118,15 @@ import grails.plugins.springsecurity.SecurityConfigType
 grails.plugins.springsecurity.securityConfigType = SecurityConfigType.InterceptUrlMap
 grails.plugins.springsecurity.interceptUrlMap = [
 	'/login/*':    ['IS_AUTHENTICATED_ANONYMOUSLY'],
+	'/logout/*':    ['IS_AUTHENTICATED_ANONYMOUSLY'],
 	'/register/*':    ['IS_AUTHENTICATED_ANONYMOUSLY'],
-	'/':    ["hasAnyRole('ROLE_USER', 'ROLE_ADMIN')", 'IS_AUTHENTICATED_FULLY'],
-	'/index/*':    ["hasAnyRole('ROLE_USER', 'ROLE_ADMIN')", 'IS_AUTHENTICATED_FULLY'],
+	'/*':    ["hasAnyRole('ROLE_USER', 'ROLE_ADMIN')", 'IS_AUTHENTICATED_FULLY'],
 	'/conceptualDomain/*':         ["hasAnyRole('ROLE_USER', 'ROLE_ADMIN')", 'IS_AUTHENTICATED_FULLY'],
 	'/valueDomain/*':         ["hasAnyRole('ROLE_USER', 'ROLE_ADMIN')", 'IS_AUTHENTICATED_FULLY'],
 	'/dataElement/*':         ["hasAnyRole('ROLE_USER', 'ROLE_ADMIN')", 'IS_AUTHENTICATED_FULLY'],
 	'/umlModel/*':         ["hasAnyRole('ROLE_USER', 'ROLE_ADMIN')", 'IS_AUTHENTICATED_FULLY'],
 	'/document/*':         ["hasAnyRole('ROLE_USER', 'ROLE_ADMIN')", 'IS_AUTHENTICATED_FULLY'],
-	'/**':         ["hasAnyRole('ROLE_ADMIN')", 'IS_AUTHENTICATED_FULLY'],
-	
-	/*'/DataElement/*':         ["hasAnyRole('ROLE_USER', 'ROLE_ADMIN')", 'IS_AUTHENTICATED_FULLY'],
-	'/Document/*':         ["hasAnyRole('ROLE_USER', 'ROLE_ADMIN')", 'IS_AUTHENTICATED_FULLY'],
-	'/UmlModel/*':         ["hasAnyRole('ROLE_USER', 'ROLE_ADMIN')", 'IS_AUTHENTICATED_FULLY'],
-	'/ValueDomain/*':         ["hasAnyRole('ROLE_USER', 'ROLE_ADMIN')", 'IS_AUTHENTICATED_FULLY']
-	'/person/*':         ['IS_AUTHENTICATED_REMEMBERED'],
-	'/post/followAjax':  ['ROLE_USER'],
-	'/post/addPostAjax': ['ROLE_USER', 'IS_AUTHENTICATED_FULLY'],
-	'/**':               ['IS_AUTHENTICATED_ANONYMOUSLY']*/
+	'/**':         ["hasAnyRole('ROLE_ADMIN')", 'IS_AUTHENTICATED_FULLY']
 ]
 
 grails.plugins.springsecurity.useSecurityEventListener = true
@@ -148,14 +139,7 @@ grails.plugins.springsecurity.onInteractiveAuthenticationSuccessEvent = { e, app
    }
 }
 
-// stamp for the audit trails to use
 
-stamp{
-	audit{
-		//the created and edited fields should be present or they won't get added during AST
-		createdBy="createdBy" //id who created
-		createdDate="createdDate" // if you want a date stamp that is not the grails default dateCreated
-		editedBy="updatedBy" //id who updated/edited
-		editedDate="editedDate"//use this field instead of the grails default lastUpdate
-	}
-}
+//spring security ui - disable double encrypting passwords
+
+grails.plugins.springsecurity.ui.encodePassword = false

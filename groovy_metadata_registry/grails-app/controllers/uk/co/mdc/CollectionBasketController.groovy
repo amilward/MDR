@@ -9,16 +9,14 @@ class CollectionBasketController {
 	
 	SpringSecurityService springSecurityService
 
-    static allowedMethods = [listJSON: "GET",addElement: "POST", save: "POST", update: "POST", delete: "POST"]
-
-    def index() {
-        redirect(action: "list", params: params)
-    }
-
-    def list(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
-        [collectionBasketInstanceList: CollectionBasket.list(params), collectionBasketInstanceTotal: CollectionBasket.count()]
-    }
+    static allowedMethods = [listJSON: "GET", addElement: "POST", removeElement: "POST"]
+	
+	
+	
+	/* This method is called from the dashboard template (main.js - collection basket scripts)
+	 *  ajax to render the data elements that have been included
+	 *  in the collection basket i.e. they have been added by dragging the data elements over the collection basket
+	 * */
 	
 	def dataElementsAsJSON() {
 		def current_user = SecUser.get(springSecurityService.currentUser.id)
@@ -32,10 +30,9 @@ class CollectionBasketController {
 		
 		render model as JSON
 	}
-
-    def create() {
-        [collectionBasketInstance: new CollectionBasket(params)]
-    }
+	
+	/* This method is called from the dashboard template (main.js - collection basket scripts)
+	 * when the user drags a data element over the collection basket to add the element*/
 	
 	def addElement(){
 		def current_user = SecUser.get(springSecurityService.currentUser.id)
@@ -56,6 +53,8 @@ class CollectionBasketController {
 		render model as JSON
 	}
 	
+	/* This method is called from the dashboard template (main.js - collection basket scripts)
+	 *  when the user drags a data element out of the collection basket to remove the element */
 	
 	def removeElement(){
 		def current_user = SecUser.get(springSecurityService.currentUser.id)
@@ -76,84 +75,20 @@ class CollectionBasketController {
 		render model as JSON
 	}
 
-    def save() {
-        def collectionBasketInstance = new CollectionBasket(params)
-        if (!collectionBasketInstance.save(flush: true)) {
-            render(view: "create", model: [collectionBasketInstance: collectionBasketInstance])
-            return
-        }
-
-        flash.message = message(code: 'default.created.message', args: [message(code: 'collectionBasket.label', default: 'CollectionBasket'), collectionBasketInstance.id])
-        redirect(action: "show", id: collectionBasketInstance.id)
-    }
+	
+	/* This method renders the collection basket view where the user can view the data elements they have added as well as submit extra information such as whether
+	 * the data element is mandatory/required in the collection. Finally the user can then save the collection which created a collection object and clears all the 
+	 * data elements in the collection basket*/
 
     def show(Long id) {
         def collectionBasketInstance = CollectionBasket.get(id)
         if (!collectionBasketInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'collectionBasket.label', default: 'CollectionBasket'), id])
-            redirect(action: "list")
+            redirect(controller: "index")
             return
         }
 
         [collectionBasketInstance: collectionBasketInstance, errors: params?.errors, refId: params?.refId, name: params?.name, description: params?.description]
     }
 
-    def edit(Long id) {
-        def collectionBasketInstance = CollectionBasket.get(id)
-        if (!collectionBasketInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'collectionBasket.label', default: 'CollectionBasket'), id])
-            redirect(action: "list")
-            return
-        }
-
-        [collectionBasketInstance: collectionBasketInstance]
-    }
-
-    def update(Long id, Long version) {
-        def collectionBasketInstance = CollectionBasket.get(id)
-        if (!collectionBasketInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'collectionBasket.label', default: 'CollectionBasket'), id])
-            redirect(action: "list")
-            return
-        }
-
-        if (version != null) {
-            if (collectionBasketInstance.version > version) {
-                collectionBasketInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
-                          [message(code: 'collectionBasket.label', default: 'CollectionBasket')] as Object[],
-                          "Another user has updated this CollectionBasket while you were editing")
-                render(view: "edit", model: [collectionBasketInstance: collectionBasketInstance])
-                return
-            }
-        }
-
-        collectionBasketInstance.properties = params
-
-        if (!collectionBasketInstance.save(flush: true)) {
-            render(view: "edit", model: [collectionBasketInstance: collectionBasketInstance])
-            return
-        }
-
-        flash.message = message(code: 'default.updated.message', args: [message(code: 'collectionBasket.label', default: 'CollectionBasket'), collectionBasketInstance.id])
-        redirect(action: "show", id: collectionBasketInstance.id)
-    }
-
-    def delete(Long id) {
-        def collectionBasketInstance = CollectionBasket.get(id)
-        if (!collectionBasketInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'collectionBasket.label', default: 'CollectionBasket'), id])
-            redirect(action: "list")
-            return
-        }
-
-        try {
-            collectionBasketInstance.delete(flush: true)
-            flash.message = message(code: 'default.deleted.message', args: [message(code: 'collectionBasket.label', default: 'CollectionBasket'), id])
-            redirect(action: "list")
-        }
-        catch (DataIntegrityViolationException e) {
-            flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'collectionBasket.label', default: 'CollectionBasket'), id])
-            redirect(action: "show", id: id)
-        }
-    }
 }

@@ -27,12 +27,6 @@
 		<div class="box">
 			<table class="table table-hovered">
 				<tbody>
-				<g:if test="${dataElementInstance?.createdBy}">
-					<tr>
-						<td class="left_col_show"><span id="name-label" class="label">Audit Info</span></td>
-						<td class="right_col_show">Created By: ${dataElementInstance?.createdBy} | Created Date: ${dataElementInstance?.createdDate} ${dataElementInstance} | Edited By: ${dataElementInstance?.editedBy} | Edited Date: ${dataElementInstance?.editedDate}</td>
-					</tr>
-				</g:if>
 				<g:if test="${dataElementInstance?.refId}">
 					<tr>
 						<td class="left_col_show"><span id="name-label" class="label"><g:message code="dataElement.refId.label" default="Reference ID" /></span></td>

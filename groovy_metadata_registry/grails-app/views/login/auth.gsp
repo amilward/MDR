@@ -18,7 +18,7 @@
 
 				<g:if test='${flash.message}'>
 					<div class='login_message'>
-						${flash.message}
+						<p class="muted text-center">${flash.message}</p>
 					</div>
 				</g:if>
 
@@ -36,7 +36,7 @@
 							id='remember_me'
 							<g:if test='${hasCookie}'>checked='checked'</g:if> /> <label
 							for='remember_me'><g:message
-								code="springSecurity.login.remember.me.label" class="muted"/></label>
+								code="springSecurity.login.remember.me.label" class="muted pull-right"/></label>
 					</p>
 
 					<p>
@@ -68,10 +68,9 @@
 		</div>
 		<div class="text-center">
 			<ul class="inline">
-				<li><a class="muted" href="#login" data-toggle="tab">Login</a></li>
-				<li><a class="muted" href="#forgot" data-toggle="tab">Forgot
+				<li><a class="muted" href="../forgotPassword/" data-toggle="tab">Forgot
 						Password</a></li>
-				<li><a class="muted" href="#signup" data-toggle="tab">Signup</a></li>
+				<li><a class="muted" href="../register/" data-toggle="tab">Signup</a></li>
 			</ul>
 		</div>
 
