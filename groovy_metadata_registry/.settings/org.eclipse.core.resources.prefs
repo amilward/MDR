@@ -1,4 +1,6 @@
 eclipse.preferences.version=1
+encoding//.link_to_grails_plugins/csv-0.3.1/grails-app/i18n=UTF-8
+encoding//.link_to_grails_plugins/csv-0.3.1/grails-app/i18n/messages.properties=UTF-8
 encoding//.link_to_grails_plugins/hibernate-2.2.1/grails-app/i18n=UTF-8
 encoding//.link_to_grails_plugins/hibernate-2.2.1/grails-app/i18n/messages.properties=UTF-8
 encoding//.link_to_grails_plugins/jaxrs-0.8/grails-app/i18n=UTF-8
