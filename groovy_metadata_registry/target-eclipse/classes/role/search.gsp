@@ -1,16 +1,14 @@
 <html>
 
 <head>
-	<meta name='layout' content='springSecurityUI'/>
+	<meta name='layout' content='main'/>
 	<title><g:message code='spring.security.ui.role.search'/></title>
+	<parameter name="name" value=" SEARCH ROLES " />
 </head>
 
 <body>
 
 <div>
-
-	<s2ui:form width='100%' height='200' elementId='formContainer'
-	           titleCode='spring.security.ui.role.search'>
 
 	<g:form action='roleSearch' name='roleSearchForm'>
 
@@ -24,13 +22,17 @@
 			</tr>
 			<tr><td colspan='2'>&nbsp;</td></tr>
 			<tr>
-				<td colspan='2'><s2ui:submitButton elementId='search' form='roleSearchForm' messageCode='spring.security.ui.search'/></td>
+				<td colspan='2'>
+				
+				<fieldset class="buttons">
+				<g:submitButton elementId='search' form='roleSearchForm' name="search" class="btn" value="search" />
+				</fieldset>
+				</td>
 			</tr>
 			</tbody>
 		</table>
 	</g:form>
 
-	</s2ui:form>
 
 	<g:if test='${searched}'>
 

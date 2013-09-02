@@ -1,8 +1,9 @@
 <html>
 
 <head>
-	<meta name='layout' content='springSecurityUI'/>
+	<meta name='layout' content='main'/>
 	<title>Current Auth</title>
+	<parameter name="name" value=" CURRENT AUTHORISATION " />
 </head>
 
 <body>

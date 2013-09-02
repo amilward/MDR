@@ -1,16 +1,14 @@
 <html>
 
 <head>
-	<meta name='layout' content='springSecurityUI'/>
-	<title>Mappings</title>
+	<meta name='layout' content='main'/>
+	<title>Voters</title>
+	<parameter name="name" value=" VOTERS " />
 </head>
 
 <body>
 
 <table>
-	<thead>
-	<tr><th>Voters</th></tr>
-	</thead>
 	<tbody>
 	<g:each var='voter' in='${voters}'>
 	<tr><td>${voter.getClass().name}</td></tr>

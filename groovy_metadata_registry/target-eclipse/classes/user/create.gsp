@@ -1,14 +1,13 @@
 <html>
 
 <head>
-	<meta name='layout' content='springSecurityUI'/>
+	<meta name="layout" content="main">
 	<g:set var="entityName" value="${message(code: 'user.label', default: 'User')}"/>
 	<title><g:message code="default.create.label" args="[entityName]"/></title>
+	<parameter name="name" value=" CREATE USER " />
 </head>
 
 <body>
-
-<h3><g:message code="default.create.label" args="[entityName]"/></h3>
 
 <g:form action="save" name='userCreateForm'>
 
@@ -57,7 +56,9 @@ tabData << [name: 'roles',    icon: 'icon_role', messageCode: 'spring.security.u
 </s2ui:tabs>
 
 <div style='float:left; margin-top: 10px; '>
-<s2ui:submitButton elementId='create' form='userCreateForm' messageCode='default.button.create.label'/>
+	<fieldset class="buttons">
+		<g:submitButton elementId='create' form='userCreateForm' name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+	</fieldset>
 </div>
 
 </g:form>

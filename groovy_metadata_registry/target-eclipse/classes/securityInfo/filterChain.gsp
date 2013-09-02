@@ -1,8 +1,9 @@
 <html>
 
 <head>
-	<meta name='layout' content='springSecurityUI'/>
-	<title>Mappings</title>
+	<meta name='layout' content='main'/>
+	<title>FILTER CHAIN</title>
+	<parameter name="name" value=" FILTER CHAIN " />
 </head>
 
 <body>

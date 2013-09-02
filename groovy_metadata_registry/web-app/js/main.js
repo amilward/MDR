@@ -140,7 +140,7 @@ END SHARED FUNCTIONS
  ---------------------------------------------------------*/
 function dashboard() {
 
-	startCollectionCart();
+	startCollectionBasket();
 	
 	
 }
@@ -149,12 +149,22 @@ function dashboard() {
  ---------------------------------------------------------*/
 
 /*--------------------------------------------------------
-BEGIN COLLECTION CART SCRIPTS
+BEGIN COLLECTION BASKET SCRIPTS
 ---------------------------------------------------------*/
-function startCollectionCart() {
 
-//ajax request to get the items in the collections cart and display them
-	
+/* The collection basket  is like a traditional shopping cart. When a user is created a corresponding collection cart is created which belongs to that user. 
+ * The collection basket is persisted across sessions and allows users to add data elements via drag and drop on the dashboard using javascript and ajax
+ * (please see the collectionBasket model and controller
+ *  Once they have added all the data elements needed they can view their data elements and then create a collection from them.
+ * */
+
+
+/* this function starts the collection basket on the dashboard
+ * it makes an ajax request to the controller to get the data elements in the collections cart for the current user
+ * and displays them */
+
+function startCollectionBasket() {
+
 	$.ajax({
 		type: "GET",
 		url: root + "/collectionBasket/dataElementsAsJSON",
@@ -179,8 +189,11 @@ function startCollectionCart() {
 	
 	
 	
-	//bind the droppable behaviour to the whole page so that the user can drag a dataelement out of the collections cart anywhere on the page to remove it from the basket
-	
+	/* bind the droppable behaviour for the data elements in the collection basket
+	* This allows you to drag data elements out of the collection basket. This in bound
+	* to the whole page so that the user can drag a data element out of the collections cart 
+	* anywhere on the page to remove them
+	*/
 	
 	$("#wrap").droppable({
         drop: function(event, ui) {
@@ -193,7 +206,10 @@ function startCollectionCart() {
 }
 
 
-//initialise dataElement Drag and drop cart behaviour
+/* This function is called when the user is looking at the data elements list page 
+ * This binds droppable functionality to the cart (i.e. when you are on the data elements list page
+ * you can drag the data elements that you want and DROP them onto the collections basket to add them to your basket)
+ * */
 
 function dataElementDragStart(){
 	
@@ -206,7 +222,7 @@ function dataElementDragStart(){
 		greedy: true,
 		drop: function( event, ui ) {
 		
-		// change the data element link text to include the reference id
+		// change the data element link text to include the reference id...this will be useful when we are trying to create a collection from the cart
 		var link = $(c.name);
 		link.text(c.refId + ' - ' + $(c.name).text());
 
@@ -224,8 +240,10 @@ function dataElementDragStart(){
 }
 
 
-/* ajax request to collection basket controller to add the dataElement to the basket......this is 
- *  */
+/* This function is called when the user drops a data element onto the cart
+ * This is an ajax request to collection basket controller to add the dataElement to the basket
+ * is passes the information via json and should receive a json success message
+ */
 
 function addToCollectionBasket(dataElementId){
 	
@@ -244,8 +262,10 @@ function addToCollectionBasket(dataElementId){
 	
 }
 
-
-//ajax request to the collection basket controller to remove dataelement from basket  
+/* This function is called when the user drags and drops a data element out of the collection basket that they no longer want
+ * This is an ajax request to collection basket controller to remove the dataElement from the basket
+ * is passes the information via json and should receive a json success message
+ */
 
 function removeFromCollectionBasket(dataElementId){
 	
@@ -266,17 +286,13 @@ function removeFromCollectionBasket(dataElementId){
 	updateCartCount();
 }
 
-//function to display the number of data elements in the cart
+//function to display the number of data elements in the cart on the dashboard
 
 function updateCartCount(){
 	
 	$("#cart a span").text($(".cart ul li" ).size()-1);
 	
 }
-
-
-
-
 
 
 /*--------------------------------------------------------

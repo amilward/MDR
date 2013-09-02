@@ -1,7 +1,7 @@
 <html>
 
 <head>
-	<meta name='layout' content='springSecurityUI'/>
+	<meta name='layout' content='main'/>
 	<g:set var="entityName" value="${message(code: 'aclSid.label', default: 'AclSid')}"/>
 	<title><g:message code="default.create.label" args="[entityName]"/></title>
 </head>

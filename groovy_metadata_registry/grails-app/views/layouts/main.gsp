@@ -1,3 +1,7 @@
+<%@ page import="org.codehaus.groovy.grails.plugins.PluginManagerHolder" %>
+<%@ page import="org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils" %>
+<%@ page import="grails.plugins.springsecurity.SecurityConfigType" %>
+
 <!DOCTYPE html>
 <!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
 <!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
@@ -112,6 +116,117 @@
                                             <li><a href="#">My Forms</a></li>
                                         </ul>
                                     </li>
+                                    <sec:ifLoggedIn>
+                                    
+	                                    <sec:ifAnyGranted roles="ROLE_ADMIN">
+	                                    
+											<li class="dropdown">
+		                                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+		                                            <g:message code="spring.security.ui.menu.users"/> <b class="caret"></b>
+		                                        </a>
+		                                        <ul class="dropdown-menu">
+		                                            <li><g:link controller="user" action='search'><g:message code="spring.security.ui.search"/></g:link></li>
+													<li><g:link controller="user" action='create'><g:message code="spring.security.ui.create"/></g:link></li>
+													<li><g:link controller="registrationCode" action='search'><g:message code="spring.security.ui.menu.registrationCode"/></g:link></li>
+		                                        </ul>
+		                                    </li>
+		                                    <li class="dropdown">
+		                                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+		                                            <g:message code="spring.security.ui.menu.roles"/> <b class="caret"></b>
+		                                        </a>
+		                                        <ul class="dropdown-menu">
+		                                            <li><g:link controller="role" action='search'><g:message code="spring.security.ui.search"/></g:link></li>
+													<li><g:link controller="role" action='create'><g:message code="spring.security.ui.create"/></g:link></li>
+		                                        </ul>
+		                                    </li>
+		                                    
+		                                    <g:if test='${SpringSecurityUtils.securityConfig.securityConfigType == SecurityConfigType.Requestmap}'>
+		                                    
+			                                    <li class="dropdown">
+			                                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+			                                            <g:message code="spring.security.ui.menu.requestmaps"/><b class="caret"></b>
+			                                        </a>
+			                                        <ul class="dropdown-menu">
+			                                            <li><g:link controller="requestmap" action='search'><g:message code="spring.security.ui.search"/></g:link></li>
+														<li><g:link controller="requestmap" action='create'><g:message code="spring.security.ui.create"/></g:link></li>
+			                                        </ul>
+			                                    </li>
+											
+											</g:if>
+											
+											<g:if test='${SpringSecurityUtils.securityConfig.rememberMe.persistent}'>
+												<li class="dropdown">
+			                                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+			                                            <g:message code="spring.security.ui.menu.persistentLogins"/><b class="caret"></b>
+			                                        </a>
+			                                        <ul class="dropdown-menu">
+			                                            <li><g:link controller="persistentLogin" action='search'><g:message code="spring.security.ui.search"/></g:link></li>
+			                                        </ul>
+			                                    </li>
+											</g:if>
+		                                    
+		                                    <li class="dropdown">
+		                                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+		                                           <g:message code="spring.security.ui.menu.appinfo"/><b class="caret"></b>
+		                                        </a>
+		                                        <ul class="dropdown-menu">
+		                                            <li><g:link action='config' controller='securityInfo'><g:message code='spring.security.ui.menu.appinfo.config'/></g:link></li>
+													<li><g:link action='mappings' controller='securityInfo'><g:message code='spring.security.ui.menu.appinfo.mappings'/></g:link></li>
+													<li><g:link action='currentAuth' controller='securityInfo'><g:message code='spring.security.ui.menu.appinfo.auth'/></g:link></li>
+													<li><g:link action='usercache' controller='securityInfo'><g:message code='spring.security.ui.menu.appinfo.usercache'/></g:link></li>
+													<li><g:link action='filterChain' controller='securityInfo'><g:message code='spring.security.ui.menu.appinfo.filters'/></g:link></li>
+													<li><g:link action='logoutHandler' controller='securityInfo'><g:message code='spring.security.ui.menu.appinfo.logout'/></g:link></li>
+													<li><g:link action='voters' controller='securityInfo'><g:message code='spring.security.ui.menu.appinfo.voters'/></g:link></li>
+													<li><g:link action='providers' controller='securityInfo'><g:message code='spring.security.ui.menu.appinfo.providers'/></g:link></li>
+		                                        </ul>
+		                                    </li>
+		                                    
+		                                    <g:if test="${PluginManagerHolder.pluginManager.hasGrailsPlugin('springSecurityAcl')}">
+		                                    
+		                                    	<li class="dropdown">
+			                                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+			                                            ACL - <g:message code="spring.security.ui.menu.aclClass"/><b class="caret"></b>
+			                                        </a>
+			                                        <ul class="dropdown-menu">
+			                                            <li><g:link controller="aclClass" action='search'><g:message code="spring.security.ui.search"/></g:link></li>
+														<li><g:link controller="aclClass" action='create'><g:message code="spring.security.ui.create"/></g:link></li>
+			                                        </ul>
+			                                    </li>
+			                                    
+			                                    <li class="dropdown">
+			                                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+			                                          ACL -  <g:message code="spring.security.ui.menu.aclSid" /><b class="caret"></b>
+			                                        </a>
+			                                        <ul class="dropdown-menu">
+			                                            <li><g:link controller="aclSid" action='search'><g:message code="spring.security.ui.search"/></g:link></li>
+														<li><g:link controller="aclSid" action='create'><g:message code="spring.security.ui.create"/></g:link></li>
+			                                        </ul>
+			                                    </li>
+			                                    
+			                                     <li class="dropdown">
+			                                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+			                                          ACL - <g:message code="spring.security.ui.menu.aclObjectIdentity" /><b class="caret"></b>
+			                                        </a>
+			                                        <ul class="dropdown-menu">
+			                                            <li><g:link controller="aclObjectIdentity" action='search'><g:message code="spring.security.ui.search"/></g:link></li>
+																<li><g:link controller="aclObjectIdentity" action='create'><g:message code="spring.security.ui.create"/></g:link></li>
+			                                        </ul>
+			                                    </li>
+			                                    
+			                                    <li class="dropdown">
+			                                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+			                                          ACL - <g:message code="spring.security.ui.menu.aclEntry" /><b class="caret"></b>
+			                                        </a>
+			                                        <ul class="dropdown-menu">
+			                                            <li><g:link controller="aclEntry" action='search'><g:message code="spring.security.ui.search"/></g:link></li>
+														<li><g:link controller="aclEntry" action='create'><g:message code="spring.security.ui.create"/></g:link></li>
+													</ul>
+			                                    </li>
+											</g:if>
+
+										</sec:ifAnyGranted> 
+										
+									</sec:ifLoggedIn>
                                 </ul>
                                 <!-- /.nav -->
                             </div>
