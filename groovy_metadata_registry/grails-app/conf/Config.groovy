@@ -148,8 +148,14 @@ grails.plugins.springsecurity.onInteractiveAuthenticationSuccessEvent = { e, app
    }
 }
 
+// stamp for the audit trails to use
 
-//custom REST JAX RS XML READER
-//org.grails.jaxrs.doreader.disable=true
-//org.grails.jaxrs.provider.extra.paths='uk.co.mdc.model'
-
+stamp{
+	audit{
+		//the created and edited fields should be present or they won't get added during AST
+		createdBy="createdBy" //id who created
+		createdDate="createdDate" // if you want a date stamp that is not the grails default dateCreated
+		editedBy="updatedBy" //id who updated/edited
+		editedDate="editedDate"//use this field instead of the grails default lastUpdate
+	}
+}
