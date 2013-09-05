@@ -8,6 +8,8 @@ class ConceptualDomain {
 	
 	String description
 	
+	static auditable = true
+	
 	static searchable = {
 		content: spellCheck 'include'
 	}

@@ -22,6 +22,8 @@ class ValueDomain {
 	
 	ConceptualDomain conceptualDomain
 	
+	static auditable = true
+	
 	static searchable = {
         content: spellCheck 'include'
     } 

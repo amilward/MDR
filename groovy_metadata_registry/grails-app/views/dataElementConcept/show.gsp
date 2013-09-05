@@ -103,6 +103,7 @@
 				</g:if>
 				</tbody>
 			</table>
+			<sec:ifAnyGranted roles="ROLE_ADMIN"><g:objectHistory persistedObjectId="${dataElementConceptInstance.id}" /></sec:ifAnyGranted>
 		</div>
 	</body>
 </html>

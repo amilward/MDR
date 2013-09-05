@@ -1106,7 +1106,7 @@ END EXTERNAL SYNONYM LIST  SCRIPTS
 START EDIT DATAELEMENT  SCRIPTS
 ---------------------------------------------------------*/
 
-function dataElementForm(selectedValueDomains, subElements, externalSynonyms){
+function dataElementForm(selectedValueDomains, synonyms, subElements, externalSynonyms){
 	
 	//change options to selected for valueDomains, subElements and external Synonyms
 	if(selectedValueDomains.length==1){
@@ -1114,6 +1114,14 @@ function dataElementForm(selectedValueDomains, subElements, externalSynonyms){
 	}else if(selectedValueDomains.length>1){
 		$.each(selectedValueDomains, function(index, item) {
 			$('select[name="valueDomains"]').find('option[value="'+item+'"]').attr("selected",true);
+		});
+	}
+	
+	if(synonyms.length==1){
+		$('select[name="synonyms"]').find('option[value="'+synonyms+'"]').attr("selected",true);
+	}else if(synonyms.length>1){
+		$.each(synonyms, function(index, item) {
+			$('select[name="synonyms"]').find('option[value="'+item+'"]').attr("selected",true);
 		});
 	}
 	
@@ -1135,11 +1143,18 @@ function dataElementForm(selectedValueDomains, subElements, externalSynonyms){
 	
 	
 	
-	//set up dual list box for valueDomains, subElements and external Synonyms
+	//set up dual list box for valueDomains, synonyms, subElements and external Synonyms
 	
 		$('#valueDomains').bootstrapDualListbox({
 		    nonselectedlistlabel: 'Available Value Domains',
 		    selectedlistlabel: 'Associated Value Domains',
+		    preserveselectiononmove: 'moved',
+		    moveonselect: false
+		});
+		
+		$('#synonyms').bootstrapDualListbox({
+		    nonselectedlistlabel: 'Choose synonyms',
+		    selectedlistlabel: 'synonyms',
 		    preserveselectiononmove: 'moved',
 		    moveonselect: false
 		});

@@ -6,6 +6,8 @@ class DataElement {
 	
 	String refId
 	
+	String externalIdentifier
+	
 	String name
 	
 	String description
@@ -16,11 +18,13 @@ class DataElement {
 	
 	DataElementConcept dataElementConcept
 	
+	static auditable = true
+	
 	static searchable = {
         content: spellCheck 'include'
     } 
 	
-	static hasMany = [subElements: DataElement, dataElementValueDomains: DataElementValueDomain, dataElementCollections: DataElementCollection, externalSynonyms: ExternalSynonym]
+	static hasMany = [synonyms: DataElementDataElement, subElements: DataElement, dataElementValueDomains: DataElementValueDomain, dataElementCollections: DataElementCollection, externalSynonyms: ExternalSynonym]
 	
 	static belongsTo = [parent: DataElement, dataElementConcept: DataElementConcept]
 	
@@ -58,6 +62,30 @@ class DataElement {
 		
 		DataElementValueDomain.unlink(this, valueDomain)
 		return dataElementValueDomains()
+	}
+	
+	
+	/******************************************************************************************************************/
+	/****functions for linking data elements to other data elements (synonyms) using DataElementDataElement class************/
+	/******************************************************************************************************************/
+	
+	List synonyms() {
+		return synonyms.collect{it.synonym}
+	}
+
+	//add a valueDomain to list of valueDomains
+	
+	List addToSynonyms(DataElement dataElement) {
+		DataElementDataElement.link(this, dataElement)
+		return synonyms()
+	}
+
+	//remove a valueDomain from list of valueDomains
+	
+	List removeFromSynonyms(DataElement dataElement) {
+		
+		DataElementDataElement.unlink(this, dataElement)
+		return synonyms()
 	}
 	
 	/******************************************************************************************************************/
@@ -99,6 +127,16 @@ class DataElement {
 			
 			dataForDelete.each{ valueDomain->
 				this.removeFromDataElementValueDomains(valueDomain)
+			}
+		}
+		
+		
+		if(this.synonyms.size()!=0){
+			
+			dataForDelete = this.synonyms()
+			
+			dataForDelete.each{ synonym->
+				this.removeFromSynonyms(synonym)
 			}
 		}
 		

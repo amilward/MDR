@@ -27,6 +27,12 @@
 		<div class="box">
 			<table class="table table-hovered">
 				<tbody>
+				<g:if test="${externalSynonymInstance?.externalIdentifier}">
+					<tr>
+						<td class="left_col_show"><span id="name-label" class="label"><g:message code="externalSynonym.externalIdentifier.label" default="Name" /></span></td>
+						<td class="right_col_show"><g:fieldValue bean="${externalSynonymInstance}" field="externalIdentifier"/></td>
+					</tr>
+				</g:if>
 				<g:if test="${externalSynonymInstance?.name}">
 					<tr>
 						<td class="left_col_show"><span id="name-label" class="label"><g:message code="externalSynonym.name.label" default="Name" /></span></td>
@@ -52,6 +58,7 @@
 				</g:if>
 				</tbody>
 			</table>
+			<sec:ifAnyGranted roles="ROLE_ADMIN"><g:objectHistory persistedObjectId="${externalSynonymInstance.id}" /></sec:ifAnyGranted>
 		</div>
 	</body>
 </html>

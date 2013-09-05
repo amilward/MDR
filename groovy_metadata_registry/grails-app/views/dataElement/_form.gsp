@@ -69,6 +69,23 @@
 						</td>
 					</tr>
 					<tr>
+						<td class="left_col_show"><span id="name-label" class="label">Synonyms</span></td>
+						<td class="right_col_show">
+							<g:select
+									title="tooltip.dataElement.synonyms"
+						            name="synonyms"
+						            id="synonyms"
+						            noSelection="${['':'Select One...']}"
+						            from="${dataElements.minus(dataElementInstance)}"
+						            value="${params.list('dataElements')}"
+						            optionKey="id"
+						            optionValue="name"
+						            multiple="true"
+						            size="6"
+						    />
+						</td>
+					</tr>
+					<tr>
 						<td class="left_col_show"><span id="name-label" class="label">SubElements</span></td>
 						<td class="right_col_show">
 							<g:select
@@ -114,6 +131,13 @@
 		selectedValueDomains = ${selectedValueDomains*.id}
 	</g:else>
 	
+	<g:if test="${!dataElementInstance?.synonyms()*.id}">
+		synonyms = ' '
+	</g:if>
+	<g:else>
+		synonyms =${dataElementInstance?.synonyms()*.id}
+	</g:else>
+	
 	<g:if test="${!dataElementInstance?.subElements*.id}">
 		subElements = ' '
 	</g:if>
@@ -129,7 +153,7 @@
 	</g:else>
 
 	$(document).ready(function() {
-		dataElementForm(selectedValueDomains, subElements, externalSynonyms);
+		dataElementForm(selectedValueDomains, synonyms, subElements, externalSynonyms);
     });
 				
 </r:script>

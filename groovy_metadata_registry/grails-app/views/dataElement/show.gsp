@@ -95,6 +95,33 @@
 						</td>
 					</tr>
 				</g:if>
+				<g:if test="${dataElementInstance?.synonyms}">
+					<tr>
+						<td colspan="2"><span id="name-label" class="label">Synonyms</span></td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<table>
+							<thead>
+								<tr>
+									<th>Name</th>
+									<th>Reference ID</th>
+									<th>Description</th>
+									<th>Definition</th>
+								</tr>
+							</thead>
+							<g:each var="dataElement" in="${dataElementInstance.synonyms()}">
+								<tr>
+									<td><g:link action="show" controller="DataElement" id="${dataElement?.id}">${dataElement?.name} </g:link></td>
+									<td>${dataElement?.refId}</td>
+									<td>${dataElement?.description}</td>
+									<td>${dataElement?.definition} </td>
+								</tr>
+							</g:each>
+						</table>
+						</td>
+					</tr>
+				</g:if>
 				<g:if test="${dataElementInstance?.subElements}">
 					<tr>
 						<td colspan="2"><span id="name-label" class="label">Sub Elements</span></td>
@@ -147,6 +174,7 @@
 				</g:if>
 				</tbody>
 			</table>
+			 <sec:ifAnyGranted roles="ROLE_ADMIN"><g:objectHistory persistedObjectId="${dataElementInstance.id}" /></sec:ifAnyGranted>
 		</div>
 	</body>
 </html>

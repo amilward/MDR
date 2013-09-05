@@ -16,6 +16,8 @@ class Collection {
 	
 	Set formSpecifications = []
 	 
+	static auditable = true
+	
 	static searchable = {
 		content: spellCheck 'include'
 	}

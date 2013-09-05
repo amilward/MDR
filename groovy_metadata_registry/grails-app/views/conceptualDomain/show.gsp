@@ -79,6 +79,7 @@
 				</g:if>
 				</tbody>
 			</table>
+			<sec:ifAnyGranted roles="ROLE_ADMIN"><g:objectHistory persistedObjectId="${conceptualDomainInstance.id}" /></sec:ifAnyGranted>
 		</div>
 	</body>
 </html>

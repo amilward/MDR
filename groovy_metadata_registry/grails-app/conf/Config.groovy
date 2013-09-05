@@ -140,6 +140,26 @@ grails.plugins.springsecurity.onInteractiveAuthenticationSuccessEvent = { e, app
 }
 
 
-//spring security ui - disable double encrypting passwords
+//spring security ui - disable to prevent double encryption of passwords
 
 grails.plugins.springsecurity.ui.encodePassword = false
+
+//get username and add to audit logging
+
+import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils
+
+auditLog {
+	actorClosure = { request, session ->
+		if (request.applicationContext.springSecurityService.principal instanceof java.lang.String){
+			return request.applicationContext.springSecurityService.principal
+		}
+		def username = request.applicationContext.springSecurityService.principal?.username
+		if (SpringSecurityUtils.isSwitched()){
+			username = SpringSecurityUtils.switchedUserOriginalUsername+" AS "+username
+		}
+		return username
+	}
+}
+
+
+

@@ -253,7 +253,7 @@ class ValueDomainController {
 				
 				associatedDataElements.each{ vd ->
 					if(dataElements!=vd.id.toString()){
-							valueDomainInstance.removeFromDataElementValueDomains(vd)
+							DataElementValueDomain.unlink(vd, valueDomainInstance)
 					}
 				}
 
@@ -269,7 +269,7 @@ class ValueDomainController {
 				//remove all the value domains that aren't this one
 				associatedDataElements.each{ vd ->
 					if(!dataElements.contains(vd.id.toString())){
-							valueDomainInstance.removeFromDataElementValueDomains(vd)
+							DataElementValueDomain.unlink(vd, valueDomainInstance)
 					}
 				}
 			
@@ -285,7 +285,7 @@ class ValueDomainController {
 			
 			//remove all the data elements that aren't this one
 			associatedDataElements.each{ vd ->
-						valueDomainInstance.removeFromDataElementValueDomains(vd)
+						DataElementValueDomain.unlink(vd, valueDomainInstance)
 			}
 			
 		}

@@ -10,6 +10,8 @@ class DataElementConcept {
 	
 	DataElementConcept parent
 	
+	static auditable = true
+	
 	static searchable = {
         content: spellCheck 'include'
     } 
