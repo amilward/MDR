@@ -15,6 +15,7 @@ class DataElementValueDomain {
 		if (!m)
 		{
 			m = new DataElementValueDomain()
+			
 			DataElement?.addToDataElementValueDomains(m)
 			ValueDomain?.addToDataElementValueDomains(m)
 			m.save()

@@ -435,7 +435,7 @@ class CollectionController {
 			//remove all the mandatory data elements that aren't this one
 			currentElements.each{ de ->
 				if(newDataElements!=de.id.toString()){
-						collectionInstance.removeFromDataElementCollections(de)
+					DataElementCollection.unlink(de, collectionInstance)
 				}
 			}
 			
@@ -446,7 +446,7 @@ class CollectionController {
 			//remove all the mandatory data elements that aren't this one
 			currentElements.each{ de ->
 				if(!newDataElements.contains(de.id.toString())){
-						collectionInstance.removeFromDataElementCollections(de)
+						DataElementCollection.unlink(de, collectionInstance)
 				}
 			}
 		
@@ -456,7 +456,7 @@ class CollectionController {
 		
 			//remove all the madatory data elements
 			currentElements.each{ de ->
-						collectionInstance.removeFromDataElementCollections(de)
+						DataElementCollection.unlink(de, collectionInstance)
 			}
 		}
 		

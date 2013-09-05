@@ -105,6 +105,7 @@
 				</g:if>
 				</tbody>
 			</table>
+			<sec:ifAnyGranted roles="ROLE_ADMIN"><g:objectHistory persistedObjectId="${collectionInstance.id}" /></sec:ifAnyGranted>
 			</div>
 	</body>
 </html>

@@ -66,6 +66,7 @@
 				
 				</tbody>
 			</table>
+			<sec:ifAnyGranted roles="ROLE_ADMIN"><g:objectHistory persistedObjectId="${documentInstance.id}" /></sec:ifAnyGranted>
 		</div>
 	</body>
 </html>

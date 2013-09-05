@@ -9,6 +9,8 @@ class Document {
 	String fileName
 	byte[] content
 	
+	static auditable = true
+	
 	static searchable = {
 		only=['name', 'refId', 'fileName']
 		content: spellCheck 'include'

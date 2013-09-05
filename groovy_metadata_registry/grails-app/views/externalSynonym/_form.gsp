@@ -2,6 +2,10 @@
 
 <table class="table table-hovered">
 				<tbody>
+					<tr class="${hasErrors(bean: externalSynonymInstance, field: 'externalIdentifier', 'error')} ">
+						<td class="left_col_show"><span id="name-label" class="label"><g:message code="externalSynonym.externalIdentifier.label" default="externalIdentifier" /></span></td>
+						<td class="right_col_show"><g:textField title="tooltip.externalSynonym.externalIdentifier" class="input-large input-block-level"  name="externalIdentifier" value="${externalSynonymInstance?.externalIdentifier}"/></td>
+					</tr>
 					<tr class="${hasErrors(bean: externalSynonymInstance, field: 'name', 'error')} ">
 						<td class="left_col_show"><span id="name-label" class="label"><g:message code="externalSynonym.name.label" default="Name" /></span></td>
 						<td class="right_col_show"><g:textField title="tooltip.externalSynonym.name" class="input-large input-block-level"  name="name" value="${externalSynonymInstance?.name}"/></td>

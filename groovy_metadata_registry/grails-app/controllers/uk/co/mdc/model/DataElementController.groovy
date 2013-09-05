@@ -3,19 +3,71 @@ package uk.co.mdc.model
 import grails.converters.JSON
 import org.springframework.dao.DataIntegrityViolationException
 import org.codehaus.groovy.grails.plugins.searchable.*
+import org.springframework.security.acls.model.Permission
+import grails.plugins.springsecurity.Secured
 
 class DataElementController {
 
     static allowedMethods = [listJSON: "GET",save: "POST", update: "POST", delete: "POST"]
+	
+	def dataElementService
+	
+	/*
+	 * default redirect to list dataElement page 
+	 * */
+	
+	def index() {
+		redirect(action: "list", params: params)
+	}
 
-    def index() {
-        redirect(action: "list", params: params)
-    }
+	def list(Integer max) {
+		params.max = Math.min(max ?: 10, 100)
+		[dataElementInstanceList: DataElement.list(params), dataElementInstanceTotal: DataElement.count()]
+	}
+	
+	def create() {
+		[valueDomains: ValueDomain.list(), dataElements: DataElement.list(), externalSynonyms: ExternalSynonym.list(), dataElementInstance: new DataElement(params)]
+	}
 
-    def list(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
-        [dataElementInstanceList: DataElement.list(params), dataElementInstanceTotal: DataElement.count()]
-    }
+	def save() {
+		
+		//validate the parent child relationship
+		
+		Boolean valid = validateDataElement()
+		
+		if(!valid){
+			render(view: "create", model: [valueDomains: ValueDomain.list(), dataElements: DataElement.list(), dataElementInstance: new DataElement(params)])
+			return
+		}
+	   
+		def dataElement = dataElementService.create(params)
+		
+		if (!renderWithErrors('create', dataElement)) {
+			redirectShow "DataElement $dataElement.id created", dataElement.id
+		}
+		
+	}
+	
+	private void redirectShow(message, id) {
+		flash.message = message
+		
+		redirect action: show, id: id
+	}
+
+	private boolean renderWithErrors(String view, DataElement dataElement) {
+		if (dataElement.hasErrors()) {
+			render view: view, model: [dataElementInstance: dataElement]
+			return true
+		}
+		false
+	}
+	
+	
+	
+	
+	/*OLD CODE FROM HERE ON*/
+
+    
 	
 	def dataTables(){
 		
@@ -58,40 +110,7 @@ class DataElementController {
 		render model as JSON
 	}
 
-    def create() {
-        [valueDomains: ValueDomain.list(), dataElements: DataElement.list(), externalSynonyms: ExternalSynonym.list(), dataElementInstance: new DataElement(params)]
-    }
-
-    def save() {
-       
-		
-		//validate the parent child relationship
-		
-		Boolean valid = validateDataElement()
-		
-		if(!valid){
-			render(view: "create", model: [valueDomains: ValueDomain.list(), dataElements: DataElement.list(), dataElementInstance: new DataElement(params)])
-			return
-		}
-
-		//save the dataElement
-		
-		DataElement dataElementInstance = new DataElement(params)
-		
-        if (!dataElementInstance.save(flush: true)) {
-            render(view: "create", model: [dataElementInstance: dataElementInstance, valueDomains: ValueDomain.list(), dataElements: DataElement.list()])
-            return
-        }
-		
-		//link selected value domains with  data element
-		
-		linkValueDomains(dataElementInstance)
-		
-		//redirect with message
-
-        flash.message = message(code: 'default.created.message', args: [message(code: 'dataElement.label', default: 'DataElement'), dataElementInstance.id])
-        redirect(action: "show", id: dataElementInstance.id, model: [valueDomains: ValueDomain.list()])
-    }
+    
 
     def show(Long id) {
         def dataElementInstance = DataElement.get(id)
@@ -129,6 +148,7 @@ class DataElementController {
 		//save the updates
 		
         def dataElementInstance = DataElement.get(id)
+		
         if (!dataElementInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'dataElement.label', default: 'DataElement'), id])
             redirect(action: "list")
@@ -152,6 +172,9 @@ class DataElementController {
 		//remove external synonyms
 		
 		unLinkExternalSynonyms(dataElementInstance)
+		
+		//add remove synonyms
+		linkSynonyms(dataElementInstance)
 
         dataElementInstance.properties = params
 		
@@ -163,6 +186,7 @@ class DataElementController {
 		
 		// add/remove value domains
 		linkValueDomains(dataElementInstance)	
+		
 		
         flash.message = message(code: 'default.updated.message', args: [message(code: 'dataElement.label', default: 'DataElement'), dataElementInstance.id])
         redirect(action: "show", id: dataElementInstance.id)
@@ -320,6 +344,61 @@ class DataElementController {
 	
 	
 	
+	def linkSynonyms(dataElementInstance){
+		
+		def associatedSynonyms = dataElementInstance.synonyms()
+		def synonyms = params.synonyms
+		
+		
+		if(synonyms!=null){
+			
+			if (synonyms instanceof String) {
+				
+				DataElement synonym =  DataElement.get(synonyms)
+				
+				//remove all the value domains that aren't this one
+				associatedSynonyms.each{ vd ->
+					if(synonyms!=vd.id.toString()){
+							dataElementInstance.removeFromSynonyms(vd)
+					}
+				}
+				
+				if(synonym){
+					dataElementInstance.addToSynonyms(synonym)
+				}
+				
+			}
+			
+			if (synonyms instanceof String[]) {
+				
+				//remove all the value domains that aren't this one
+				associatedSynonyms.each{ vd ->
+					if(!synonyms.contains(vd.id.toString())){
+							dataElementInstance.removeFromSynonyms(vd)
+					}
+				}
+				
+				  for (synonymID in synonyms){
+					  DataElement synonym =  DataElement.get(synonymID)
+					  if(synonym){
+							dataElementInstance.addToSynonyms(synonym)
+						}
+				  }
+  
+				  
+			}
+
+		}else{
+		
+		//remove all the value domains that aren't this one
+		associatedSynonyms.each{ vd ->
+					dataElementInstance.removeFromSynonyms(vd)
+		}
+		
+		}
+		
+	}
+	
 	
 	def linkValueDomains(dataElementInstance){
 		
@@ -335,7 +414,7 @@ class DataElementController {
 				//remove all the value domains that aren't this one
 				associatedValueDomains.each{ vd ->
 					if(valueDomains!=vd.id.toString()){
-							dataElementInstance.removeFromDataElementValueDomains(vd)
+							DataElementValueDomain.unlink(dataElementInstance, vd)
 					}
 				}
 				
@@ -351,7 +430,7 @@ class DataElementController {
 				//remove all the value domains that aren't this one
 				associatedValueDomains.each{ vd ->
 					if(!valueDomains.contains(vd.id.toString())){
-							dataElementInstance.removeFromDataElementValueDomains(vd)
+							DataElementValueDomain.unlink(dataElementInstance, vd)
 					}
 				}
 				
@@ -369,7 +448,7 @@ class DataElementController {
 		
 		//remove all the value domains that aren't this one
 		associatedValueDomains.each{ vd ->
-					dataElementInstance.removeFromDataElementValueDomains(vd)
+					DataElementValueDomain.unlink(dataElementInstance, vd)
 		}
 		
 		}
@@ -419,6 +498,29 @@ class DataElementController {
 				return false
 			}
 		}
+		
+		//check if any synonyms are contained within the subelements or the parent element
+		
+		if(params.synonyms!=null){
+			if(params?.subElements!=null){
+				if(parameterContains(params.synonyms, params?.subElements)){
+					params.subElements = ''
+					flash.message = 'Error: Data Element Sub elements and Data Element Synonyms must be mutually exclusive'
+					return false
+				}
+			}
+			
+			if(params?.parent!=null){
+				if(parameterContains(params.synonyms, params?.parent)){
+					params.parent = ''
+					flash.message = 'Error: Data Element Parent Elements and Data Element Synonyms must be mutually exclusive'
+					return false
+				}
+			}
+
+		}
+		
+		
 		return true
 	}
 
@@ -476,6 +578,39 @@ class DataElementController {
 		
 		return field
 		
+	}
+	
+	def parameterContains(params1, params2){
+			
+			if(params1 instanceof String[] && params2 instanceof String[]){
+				
+				params2.each{ params->
+					
+					if(params1.contains(params)){
+						return true
+					}
+					
+				}
+				
+			}else if(params1 instanceof String[] && params2 instanceof String){
+			
+				if(params1.contains(params2)){
+					return true
+				}
+			
+			}else if(params1 instanceof String && params2 instanceof String[]){
+			
+				if(params2.contains(params1)){
+					return true
+				}
+			
+			}else{
+				if(params1==params2){
+					return true
+				}
+			}
+			
+			return false		
 	}
 	
 	
