@@ -50,6 +50,8 @@ class ValueDomainController {
 	
 	def dataTables(){
 		
+		// set the variables needed to pass back to the data tables plugin to render the value domains
+		
 		def data
 		def total
 		def displayTotal
@@ -57,7 +59,8 @@ class ValueDomainController {
 		def sortCol
 		def sortColName
 		
-
+		//if the user searches for a value domain return the search results using the data Element service
+		
 		if(params?.sSearch!='' && params?.sSearch!=null){
 			
 			def searchResults = valueDomainService.search(params.sSearch, [max:params.iDisplayLength])
@@ -71,7 +74,8 @@ class ValueDomainController {
 				data=[]
 			}
 			
-			
+			//otherwise list the value domains using the value domain service and pass the relevant data
+			//back to the data tables plugin request as json
 			
 		}else{
 		
@@ -87,8 +91,37 @@ class ValueDomainController {
 		
 		def model = [sEcho: params.sEcho, iTotalRecords: total, iTotalDisplayRecords: displayTotal, aaData: data]
 				
+		//NB. when the json is rendered it uses a custom json marshaller so that it includes the relevant
+		//information needed by the plugin the corresponding json marshaller is stored
+		//in src/groovy/uk/co/mdc/model/xxxxxxMarshaller.groovy
+		
 		render model as JSON
 	}
+	
+	/* **************************************************************************************
+	 * *********************************** SHOW *****************************************************
+	
+	 * show the data element in question using the find instance function and the dataElement service
+	 * ...presuming they have the appropriate permissions
+	 *************************************************************************************** */
+	
+	
+	def show(Long id) {
+		
+		//use the find instance method to get the value domain in question
+		def valueDomainInstance = findInstance()
+		
+		//if you can't find it or don't have permission go back to the list page
+		
+		if (!valueDomainInstance) {
+			flash.message = message(code: 'default.not.found.message', args: [message(code: 'valueDomain.label', default: 'ValueDomain'), id])
+			redirect(action: "list")
+			return
+		}
+
+		[valueDomainInstance: valueDomainInstance]
+	}
+	
 	
 	/* **************************************************************************************
 	 * ************************************* CREATE ***************************************************
@@ -128,7 +161,71 @@ class ValueDomainController {
 		}
     }
 
-    
+	/* **************************************************************************************
+	 * ************************************** EDIT ********************************************
+	
+	 * this function redirects to the edit value domain screen
+	 *********************************************************************************** */
+	
+	
+	
+	def edit(Long id) {
+		
+		//get the value domain in question
+		def valueDomainInstance = findInstance()
+		
+		//if it doesn't exist redirect to list page
+		
+		if (!valueDomainInstance) {
+				flash.message = message(code: 'default.not.found.message', args: [message(code: 'valueDomain.label', default: 'ValueDomain'), id])
+				redirect(action: "list")
+				return
+		}
+			
+		[dataElements: dataElementService.list(), selectedDataElements: valueDomainInstance.dataElementValueDomains(), dataTypes: DataType.list(), externalSynonyms: ExternalSynonym.list(), valueDomainInstance: valueDomainInstance]
+	}
+	
+	
+	/* **************************************************************************************
+	 * ************************************ UPDATE **********************************************
+	
+	 * this function updates the value domain using the value domain service
+	 *********************************************************************************** */
+	
+	def update(Long id, Long version) {
+		
+		//get the value domain 
+		def valueDomainInstance = findInstance()
+		
+		//if it doesn't exist then redirect
+		if (!valueDomainInstance) {
+			flash.message = message(code: 'default.not.found.message', args: [message(code: 'valueDomain.label', default: 'ValueDomain'), id])
+			redirect(action: "list")
+			return
+		}
+
+		//check that we have the right version i.e. no one else has updated the data element whilst we have been
+		//looking at it
+		
+		if (version != null) {
+			if (valueDomainInstance.version > version) {
+				valueDomainInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
+						  [message(code: 'valueDomain.label', default: 'ValueDomain')] as Object[],
+						  "Another user has updated this ValueDomain while you were editing")
+				render(view: "edit", model: [dataElements: DataElement.list(), dataTypes: DataType.list(), valueDomainInstance: valueDomainInstance])
+				return
+			}
+		}
+		
+		
+		valueDomainService.update(valueDomainInstance, params)
+		
+		if (!renderWithErrors('edit', valueDomainInstance)) {
+			redirectShow message(code: 'default.updated.message', args: [message(code: 'dataElement.label', default: 'DataElement'), dataElementInstance.id]), dataElementInstance.id
+		}
+		
+	}
+	
 	
 	
 	/* **************************************************************************************
@@ -204,68 +301,9 @@ class ValueDomainController {
 	 * */
 	
 	
-	def show(Long id) {
-		def valueDomainInstance = ValueDomain.get(id)
-		if (!valueDomainInstance) {
-			flash.message = message(code: 'default.not.found.message', args: [message(code: 'valueDomain.label', default: 'ValueDomain'), id])
-			redirect(action: "list")
-			return
-		}
 
-		[valueDomainInstance: valueDomainInstance]
-	}
-
-	def edit(Long id) {
-		def valueDomainInstance = ValueDomain.get(id)
-		if (!valueDomainInstance) {
-			flash.message = message(code: 'default.not.found.message', args: [message(code: 'valueDomain.label', default: 'ValueDomain'), id])
-			redirect(action: "list")
-			return
-		}
-
-		[dataElements: DataElement.list(), selectedDataElements: valueDomainInstance.dataElementValueDomains(), dataTypes: DataType.list(), externalSynonyms: ExternalSynonym.list(), valueDomainInstance: valueDomainInstance]
-	}
-
-	def update(Long id, Long version) {
-		def valueDomainInstance = ValueDomain.get(id)
-		if (!valueDomainInstance) {
-			flash.message = message(code: 'default.not.found.message', args: [message(code: 'valueDomain.label', default: 'ValueDomain'), id])
-			redirect(action: "list")
-			return
-		}
-
-		if (version != null) {
-			if (valueDomainInstance.version > version) {
-				valueDomainInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
-						  [message(code: 'valueDomain.label', default: 'ValueDomain')] as Object[],
-						  "Another user has updated this ValueDomain while you were editing")
-				render(view: "edit", model: [dataElements: DataElement.list(), dataTypes: DataType.list(), valueDomainInstance: valueDomainInstance])
-				return
-			}
-		}
-
-		if(params?.dataType){
-			DataType dataType = DataType.get(params?.dataType)
-			params.dataType = dataType
-		}
-		
-		//remove external synonyms
-		
-		unLinkExternalSynonyms(valueDomainInstance)
-		
-		valueDomainInstance.properties = params
-
-		if (!valueDomainInstance.save(flush: true)) {
-			render(view: "edit", model: [dataElements: DataElement.list(), dataTypes: DataType.list(), valueDomainInstance: valueDomainInstance])
-			return
-		}
 
 	
-		linkDataElements(valueDomainInstance)
-
-		flash.message = message(code: 'default.updated.message', args: [message(code: 'valueDomain.label', default: 'ValueDomain'), valueDomainInstance.id])
-		redirect(action: "show", id: valueDomainInstance.id)
-	}
 
 	def delete(Long id) {
 		def valueDomainInstance = ValueDomain.get(id)
@@ -313,58 +351,6 @@ class ValueDomainController {
 		
 		redirect(action: 'edit', id: params.valueDomainId)
 	}
-	
-	
-	def unLinkExternalSynonyms(valueDomainInstance){
-		
-			//if all data elements need to be removed or only a few elements need to be removed
-			
-			if(params?.externalSynonyms==null && valueDomainInstance?.externalSynonyms.size()>0){
-				
-				def externalSynonyms = []
-				externalSynonyms += valueDomainInstance?.externalSynonyms
-				
-				externalSynonyms.each{ externalSynonym->
-					valueDomainInstance.removeFromExternalSynonyms(externalSynonym)
-				}
-				
-	
-			}else if(params.externalSynonyms){
-		
-				if(params?.externalSynonyms.size() < valueDomainInstance?.externalSynonyms.size()){
-			
-				def externalSynonyms = []
-				
-				externalSynonyms += valueDomainInstance?.externalSynonyms
-				
-				externalSynonyms.each{ externalSynonym->
-					
-	
-					if(params?.externalSynonyms instanceof String){
-						
-							if(params?.externalSynonyms!=externalSynonym){
-						
-								valueDomainInstance.removeFromExternalSynonyms(externalSynonym)
-							
-							}
-						
-						}else{
-							
-							if(!params?.externalSynonyms.contains(externalSynonym)){
-								
-								valueDomainInstance.removeFromExternalSynonyms(externalSynonym)
-								
-							}
-						
-						}
-					}
-			}
-			}
-	}
-	
-	
-	
-	
 	
 	
 	String getSortField(Integer column){
