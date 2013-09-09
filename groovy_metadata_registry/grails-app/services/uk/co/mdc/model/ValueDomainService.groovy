@@ -130,48 +130,7 @@ class ValueDomainService {
 	
 	int count() { ValueDomain.count() }
 	
-	/* ************************* UPDATE DATA ELEMENTS***********************************************
-	 *  requires that the authenticated user have write or admin permission on the data element instance to edit it
-	 ******************************************************************************************** */
 	
-	@Transactional
-	@PreAuthorize("hasPermission(#valueDomainInstance, write) or hasPermission(#valueDomainInstance, admin)")
-	void update(ValueDomain valueDomainInstance, Map parameters) {
-		
-		if(parameters?.dataType){
-			DataType dataType = DataType.get(parameters?.dataType)
-			parameters.dataType = dataType
-		}
-	   
-	   //remove any external synonyms that have specified for removal
-	   unLinkExternalSynonyms(valueDomainInstance, parameters?.externalSynonyms)
-	   
-
-	   valueDomainInstance.properties = parameters
-	   
-	   valueDomainInstance.save(flush: true)
-	   
-	   // add/remove value domains
-	   linkDataElements(valueDomainInstance, parameters?.dataElements)
-	   
-	   ///////////////////
-	   
-	   
-	   
-	   valueDomainInstance.properties = params
-
-	   if (!valueDomainInstance.save(flush: true)) {
-		   render(view: "edit", model: [dataElements: DataElement.list(), dataTypes: DataType.list(), valueDomainInstance: valueDomainInstance])
-		   return
-	   }
-
-   
-	   linkDataElements(valueDomainInstance)
-
-	   flash.message = message(code: 'default.updated.message', args: [message(code: 'valueDomain.label', default: 'ValueDomain'), valueDomainInstance.id])
-	   redirect(action: "show", id: valueDomainInstance.id)
-	   
-	}
 	
 	/* ************************* VALUE DOMAIN LINK FUNCTIONS************************
 	 * links the value domain with the data element specified via a link table
@@ -226,66 +185,6 @@ class ValueDomainService {
 			}
 			
 		}
-	}
-	
-	/* ************************* VALUE DOMAIN LINK FUNCTIONS************************
-	 * unlinks the external sunonyms that have been removed during an update of the value domain
-	 ********************************************************************************* */
-	
-	def unLinkExternalSynonyms(valueDomainInstance, pExternalSynonyms){
-		
-		//if there are no external synonyms i.e. ALL external synonyms need to be removed 
-		//from the value domain after the edit (presuming there were external synonyms in the 
-		//data element before the edit)
-		
-			
-			if(pExternalSynonyms==null && valueDomainInstance?.externalSynonyms.size()>0){
-				
-				//pass all the objects external synonyms into a new array 
-				//otherwise we get all sorts or problems (link to object rather than a new object)
-				def externalSynonyms = []
-				externalSynonyms += valueDomainInstance?.externalSynonyms
-				
-				//remove ALL the external synonyms
-				externalSynonyms.each{ externalSynonym->
-					valueDomainInstance.removeFromExternalSynonyms(externalSynonym)
-				}
-				
-			//if there are some external synonyms (in the update)
-			}else if(pExternalSynonyms){
-		
-			//but there are also synonyms to remove
-				if(pExternalSynonyms.size() < valueDomainInstance?.externalSynonyms.size()){
-			
-				//pass all the objects external synonyms into a new array
-				//(otherwise we get all sorts or problems)
-				def externalSynonyms = []
-				externalSynonyms += valueDomainInstance?.externalSynonyms
-				
-				//remove the external synonyms that need removing
-				externalSynonyms.each{ externalSynonym->
-					
-	
-					if(pExternalSynonyms instanceof String){
-						
-							if(pExternalSynonyms!=externalSynonym){
-						
-								valueDomainInstance.removeFromExternalSynonyms(externalSynonym)
-							
-							}
-						
-						}else{
-							
-							if(!pExternalSynonyms.contains(externalSynonym)){
-								
-								valueDomainInstance.removeFromExternalSynonyms(externalSynonym)
-								
-							}
-						
-						}
-					}
-			}
-			}
 	}
 	
 }

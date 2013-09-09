@@ -101,13 +101,14 @@ class DataElementService {
 	
 	@PreAuthorize("hasRole('ROLE_USER')")
 	@PostFilter("hasPermission(filterObject, read) or hasPermission(filterObject, admin)")
-	List<DataElement> search(String sSearch, Integer iDisplayLength) {
-	   DataElement.search(sSearch, [max:iDisplayLength])
+	List<DataElement> search(String sSearch) {
+	   def searchResult = DataElement.search(sSearch)
+	   searchResult.results
 	   }
 	
 	
 	/* ************************* LIST DATA ELEMENTS***********************************************
-	 * requires that the authenticated user have ROLE_USER and read or admin permission on each 
+	 * requires that the authenticated user have ROLE_USER sand read or admin permission on each 
 	 * returned Data Element; instances that don't have granted permissions will be removed from the returned 
 	 * List
 	 ******************************************************************************************** */
@@ -406,15 +407,16 @@ class DataElementService {
 			//if there are some external synonyms
 			}else if(extSynonyms){
 			
-				//but there are also synonyms to remove
+				//but there are also sub elements to remove
 				if(extSynonyms.size() < dataElementInstance?.externalSynonyms.size()){
 			
-					//pass all the objects external synonyms into a new array 
-					//(otherwise we get all sorts or problems)	
+					//pass all the objects external synonyms into a new array (otherwise we get all sorts or problems)	
 					def externalSynonyms = []
 					externalSynonyms += dataElementInstance?.externalSynonyms
 				
+					
 					//remove the external synonyms that need removing
+					
 					externalSynonyms.each{ externalSynonym->
 					
 					if(extSynonyms instanceof String){						
