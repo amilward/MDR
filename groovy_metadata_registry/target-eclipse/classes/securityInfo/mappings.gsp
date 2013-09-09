@@ -1,14 +1,14 @@
 <html>
 
 <head>
-	<meta name='layout' content='springSecurityUI'/>
+	<meta name='layout' content='main'/>
 	<title>Mappings</title>
+	<parameter name="name" value=" MAPPINGS " />
 </head>
 
 <body>
 
 <table>
-	<caption>SecurityConfigType: ${securityConfigType}</caption>
 	<thead>
 	<tr>
 		<th>Name</th>

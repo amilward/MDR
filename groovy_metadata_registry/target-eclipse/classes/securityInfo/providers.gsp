@@ -1,16 +1,14 @@
 <html>
 
 <head>
-	<meta name='layout' content='springSecurityUI'/>
-	<title>Mappings</title>
+	<meta name='layout' content='main'/>
+	<title>Providers</title>
+	<parameter name="name" value=" PROVIDERS " />
 </head>
 
 <body>
 
 <table>
-	<thead>
-	<tr><th>Authentication Providers</th></tr>
-	</thead>
 	<tbody>
 	<g:each var='provider' in='${providers}'>
 	<tr><td>${provider.getClass().name}</td></tr>
