@@ -115,18 +115,31 @@ grails.plugins.springsecurity.authority.className = 'uk.co.mdc.SecAuth'
 
 import grails.plugins.springsecurity.SecurityConfigType
 
+
 grails.plugins.springsecurity.securityConfigType = SecurityConfigType.InterceptUrlMap
 grails.plugins.springsecurity.interceptUrlMap = [
 	'/login/*':    ['IS_AUTHENTICATED_ANONYMOUSLY'],
 	'/logout/*':    ['IS_AUTHENTICATED_ANONYMOUSLY'],
 	'/register/*':    ['IS_AUTHENTICATED_ANONYMOUSLY'],
-	'/*':    ["hasAnyRole('ROLE_USER', 'ROLE_ADMIN')", 'IS_AUTHENTICATED_FULLY'],
+	'/securityInfo/**':  ["hasAnyRole('ROLE_ADMIN')", 'IS_AUTHENTICATED_FULLY'],
+	'/role':  ["hasAnyRole('ROLE_ADMIN')", 'IS_AUTHENTICATED_FULLY'],
+	'/role/**':  ["hasAnyRole('ROLE_ADMIN')", 'IS_AUTHENTICATED_FULLY'],
+	'/user':  ["hasAnyRole('ROLE_ADMIN')", 'IS_AUTHENTICATED_FULLY'],
+	'/user/**':  ["hasAnyRole('ROLE_ADMIN')", 'IS_AUTHENTICATED_FULLY'],
+	'/aclClass':  ["hasAnyRole('ROLE_ADMIN')", 'IS_AUTHENTICATED_FULLY'],
+	'/aclClass/**':  ["hasAnyRole('ROLE_ADMIN')", 'IS_AUTHENTICATED_FULLY'],
+	'/aclSid':  ["hasAnyRole('ROLE_ADMIN')", 'IS_AUTHENTICATED_FULLY'],
+	'/aclSid/**':  ["hasAnyRole('ROLE_ADMIN')", 'IS_AUTHENTICATED_FULLY'],
+	'/aclEntry':  ["hasAnyRole('ROLE_ADMIN')", 'IS_AUTHENTICATED_FULLY'],
+	'/aclEntry/**':  ["hasAnyRole('ROLE_ADMIN')", 'IS_AUTHENTICATED_FULLY'],
+	'/aclObjectIdentity':  ["hasAnyRole('ROLE_ADMIN')", 'IS_AUTHENTICATED_FULLY'],
+	'/aclObjectIdentity/*':  ["hasAnyRole('ROLE_ADMIN')", 'IS_AUTHENTICATED_FULLY'],
 	'/conceptualDomain/*':         ["hasAnyRole('ROLE_USER', 'ROLE_ADMIN')", 'IS_AUTHENTICATED_FULLY'],
 	'/valueDomain/*':         ["hasAnyRole('ROLE_USER', 'ROLE_ADMIN')", 'IS_AUTHENTICATED_FULLY'],
 	'/dataElement/*':         ["hasAnyRole('ROLE_USER', 'ROLE_ADMIN')", 'IS_AUTHENTICATED_FULLY'],
 	'/umlModel/*':         ["hasAnyRole('ROLE_USER', 'ROLE_ADMIN')", 'IS_AUTHENTICATED_FULLY'],
 	'/document/*':         ["hasAnyRole('ROLE_USER', 'ROLE_ADMIN')", 'IS_AUTHENTICATED_FULLY'],
-	'/**':         ["hasAnyRole('ROLE_ADMIN')", 'IS_AUTHENTICATED_FULLY']
+	'/**':         ["hasAnyRole('ROLE_USER', 'ROLE_ADMIN')", 'IS_AUTHENTICATED_FULLY']
 ]
 
 grails.plugins.springsecurity.useSecurityEventListener = true

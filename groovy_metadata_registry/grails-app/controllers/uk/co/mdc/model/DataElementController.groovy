@@ -6,101 +6,83 @@ import org.codehaus.groovy.grails.plugins.searchable.*
 import org.springframework.security.acls.model.Permission
 import grails.plugins.springsecurity.Secured
 
+@Secured(['ROLE_USER']) 
+
 class DataElementController {
 
     static allowedMethods = [listJSON: "GET",save: "POST", update: "POST", delete: "POST"]
 	
 	def dataElementService
+	def valueDomainService
 	
-	/*
+	/* **************************************************************************************
+	 * ************************************* INDEX *********************************************************
+	 
 	 * default redirect to list dataElement page 
-	 * */
+	 ********************************************************************************************* */
 	
-	def index() {
+	def index =  {
 		redirect(action: "list", params: params)
 	}
+	
+	/* **************************************************************************************
+	 * ************************************* LIST ***************************************************
+	 
+	 *....only use this to render the list template as the datatables method is used instead
+	 * to list all the data elements
+	 *************************************************************************************** */
 
-	def list(Integer max) {
-		params.max = Math.min(max ?: 10, 100)
-		[dataElementInstanceList: DataElement.list(params), dataElementInstanceTotal: DataElement.count()]
-	}
-	
-	def create() {
-		[valueDomains: ValueDomain.list(), dataElements: DataElement.list(), externalSynonyms: ExternalSynonym.list(), dataElementInstance: new DataElement(params)]
-	}
-
-	def save() {
-		
-		//validate the parent child relationship
-		
-		Boolean valid = validateDataElement()
-		
-		if(!valid){
-			render(view: "create", model: [valueDomains: ValueDomain.list(), dataElements: DataElement.list(), dataElementInstance: new DataElement(params)])
-			return
-		}
-	   
-		def dataElement = dataElementService.create(params)
-		
-		if (!renderWithErrors('create', dataElement)) {
-			redirectShow "DataElement $dataElement.id created", dataElement.id
-		}
-		
-	}
-	
-	private void redirectShow(message, id) {
-		flash.message = message
-		
-		redirect action: show, id: id
-	}
-
-	private boolean renderWithErrors(String view, DataElement dataElement) {
-		if (dataElement.hasErrors()) {
-			render view: view, model: [dataElementInstance: dataElement]
-			return true
-		}
-		false
+	def list =  {
+		[]
 	}
 	
 	
+	/* **************************************************************************************
+	 * ********************************* DATA TABLES *************************************************
+	
+	 * this function is called when listing the data elements. It is called through ajax
+	 * using the the data tables plugin in the show.gsp view and the javascript that 
+	 * calls the code is in main.js
+	 *********************************************************************************** */
 	
 	
-	/*OLD CODE FROM HERE ON*/
-
-    
 	
 	def dataTables(){
 		
-		def data 
+		// set the variables needed to pass back to the data tables plugin to render the data elements
+		
+		def data
 		def total
 		def displayTotal
 		def order
 		def sortCol
 		
+		//if the user searches for a data element return the search results using the data Element service
+		
 
 		if(params?.sSearch!='' && params?.sSearch!=null){
 			
-			def searchResults = DataElement.search(params.sSearch, [max:params.iDisplayLength])
+			def searchResults = dataElementService.search(params.sSearch, [max:params.iDisplayLength])
 			
 			total = searchResults.total
 			displayTotal = searchResults.total
 			
-			if(total>0){				
+			if(total>0){
 				data = searchResults.results
 			}else{
 				data=[]
 			}
 			
-			
+			//otherwise 
 			
 		}else{
 		
 			order = params?.sSortDir_0
 			sortCol = getSortField(params?.iSortCol_0.toInteger())
 			
-			data = DataElement.list(max: params.iDisplayLength, offset: params.iDisplayStart, sort: sortCol, order: order)
-			total = DataElement.count()
-			displayTotal = DataElement.count()
+			data = dataElementService.list(max: params.iDisplayLength, offset: params.iDisplayStart, sort: sortCol, order: order)
+			total = dataElementService.count()
+			displayTotal = dataElementService.count()
 			
 		}
 		
@@ -109,34 +91,109 @@ class DataElementController {
 				
 		render model as JSON
 	}
-
-    
-
-    def show(Long id) {
-        def dataElementInstance = DataElement.get(id)
-        if (!dataElementInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'dataElement.label', default: 'DataElement'), id])
-            redirect(action: "list")
-            return
-        }
-
-        [dataElementInstance: dataElementInstance]
-    }
-
-    def edit(Long id) {
-        def dataElementInstance = DataElement.get(id)
-        if (!dataElementInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'dataElement.label', default: 'DataElement'), id])
-            redirect(action: "list")
-            return
-        }
-
-        [valueDomains: ValueDomain.list(), selectedValueDomains: dataElementInstance.dataElementValueDomains() , dataElements: DataElement.list(), externalSynonyms: ExternalSynonym.list(), dataElementInstance: dataElementInstance]
-    }
-
-    def update(Long id, Long version) {
+	
+	
+	/* **************************************************************************************
+	 * *********************************** SHOW *****************************************************
+	
+	 * show the data element in question using the find instance function and the dataElement service
+	 * ...presuming they have the appropriate permissions
+	 *************************************************************************************** */
+	
+	def show = {
+		def dataElementInstance = findInstance()
 		
-		//validate the params i.e. the parent isn't a subelement etc.
+		if (!dataElementInstance) {
+			flash.message = message(code: 'default.not.found.message', args: [message(code: 'dataElement.label', default: 'DataElement'), id])
+			redirect(action: "list")
+			return
+		}
+
+		[dataElementInstance: dataElementInstance]
+	}
+	
+	/* **************************************************************************************
+	 * ************************************* CREATE ***************************************************
+	 
+	 * renders the data element template so the user can create a data elements
+	 * N.B additionally will only display objects that user has permission to read
+	 *************************************************************************************** */
+	
+	def create = {
+		[valueDomains: valueDomainService.list(), dataElements: dataElementService.list(), externalSynonyms: ExternalSynonym.list(), dataElementInstance: new DataElement(params)]
+	}
+	
+	//NOTE TO SELF - NEED TO UPDATE WHEN RELEVANT SERVICES ARE CREATED
+	//IN ADDITION NEED TO THINK ABOUT HOW TO LINK OBJECTS AS BOTH SIDES OF LINK REQURE WRITE PERMISSION
+	//POTENTIALLY COULD CREATE A 'PARTIAL WRITE' PERMISSION THAT ALLOWS USERS TO LINK BUT NOT EDIT
+	
+	/* **************************************************************************************
+	 * ************************************ SAVE ****************************************************
+	 
+	 * calls the data element service to create a dataElement and  sets admin permissions
+	 * on that object for the user in question
+	 *************************************************************************************** */
+
+	def save = {
+		
+		/* ***
+		 * validate the data element looking at it's parent-children-synonyms and ensuring they are mutually exclusive
+		 * i.e. a dataElement cannot have a subElement that is the same as it's parent element
+		 * ****/
+		
+		Boolean valid = validateDataElement()
+		
+		if(!valid){
+			render(view: "create", model: [valueDomains: ValueDomain.list(), dataElements: DataElement.list(), dataElementInstance: new DataElement(params)])
+			return
+		}
+		
+		/* *****
+		 * create the data element using the data element service
+		 ******* */ 
+		
+		
+		def dataElementInstance = dataElementService.create(params)
+		
+		/* ******
+		 * check that the data element has been created without errors and render accordingly
+		 ***** */
+		
+		if (!renderWithErrors('create', dataElementInstance)) {
+			redirectShow(message(code: 'default.created.message', args: [message(code: 'dataElement.label', default: 'DataElement'), dataElementInstance.id]), dataElementInstance.id)
+		}
+		
+	}
+	
+	/* **************************************************************************************
+	 * ************************************** EDIT ********************************************
+	
+	 * this function redirects to the edit data element screen
+	 *********************************************************************************** */
+	
+	def edit(Long id) {
+		def dataElementInstance = findInstance()
+		if (!dataElementInstance) {
+			flash.message = message(code: 'default.not.found.message', args: [message(code: 'dataElement.label', default: 'DataElement'), id])
+			redirect(action: "list")
+			return
+		}
+
+		[valueDomains: ValueDomain.list(), selectedValueDomains: dataElementInstance.dataElementValueDomains() , dataElements: dataElementService.list(), externalSynonyms: ExternalSynonym.list(), dataElementInstance: dataElementInstance]
+	}
+	
+	/* **************************************************************************************
+	 * ************************************ UPDATE **********************************************
+	
+	 * this function updates the data element using the data element service
+	 *********************************************************************************** */
+	
+	def update(Long id, Long version) {
+		
+		/* ***
+		 * validate the data element looking at it's parent-children-synonyms and ensuring they are mutually exclusive
+		 * i.e. a dataElement cannot have a subElement that is the same as it's parent element
+		 * ******/
 		
 		Boolean valid = validateDataElement()
 		
@@ -145,315 +202,139 @@ class DataElementController {
 			return
 		}
 		
-		//save the updates
+		//get the data element
 		
-        def dataElementInstance = DataElement.get(id)
+		def dataElementInstance = findInstance()
 		
-        if (!dataElementInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'dataElement.label', default: 'DataElement'), id])
-            redirect(action: "list")
-            return
-        }
-
-        if (version != null) {
-            if (dataElementInstance.version > version) {
-                dataElementInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
-                          [message(code: 'dataElement.label', default: 'DataElement')] as Object[],
-                          "Another user has updated this DataElement while you were editing")
-                render(view: "edit", model: [dataElementInstance: dataElementInstance,valueDomains: ValueDomain.list(), dataElements: DataElement.list()])
-                return
-            }
-        }
-
-		// remove subelements
-		
-		unLinkSubElements(dataElementInstance)
-		
-		//remove external synonyms
-		
-		unLinkExternalSynonyms(dataElementInstance)
-		
-		//add remove synonyms
-		linkSynonyms(dataElementInstance)
-
-        dataElementInstance.properties = params
-		
-
-        if (!dataElementInstance.save(flush: true)) {
-            render(view: "edit", model: [dataElementInstance: dataElementInstance],valueDomains: ValueDomain.list(), dataElements: DataElement.list())
-            return
-        }
-		
-		// add/remove value domains
-		linkValueDomains(dataElementInstance)	
-		
-		
-        flash.message = message(code: 'default.updated.message', args: [message(code: 'dataElement.label', default: 'DataElement'), dataElementInstance.id])
-        redirect(action: "show", id: dataElementInstance.id)
-    }
-
-    def delete(Long id) {
-        def dataElementInstance = DataElement.get(id)
-        if (!dataElementInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'dataElement.label', default: 'DataElement'), id])
-            redirect(action: "list")
-            return
-        }
-
-        try {
-			dataElementInstance.prepareForDelete()
-            dataElementInstance.delete(flush: true)
-            flash.message = message(code: 'default.deleted.message', args: [message(code: 'dataElement.label', default: 'DataElement'), id])
-            redirect(action: "list")
-        }
-        catch (DataIntegrityViolationException e) {
-            flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'dataElement.label', default: 'DataElement'), id])
-            redirect(action: "show", id: id)
-        }
-    }
-	
-	
-	def removeValueDomain() {
-		ValueDomain valueDomain = ValueDomain.get(params.valueDomainId)
-		DataElement dataElement = DataElement.get(params.dataElementId)
-		if(valueDomain && dataElement){
-			dataElement.removeFromDataElementValueDomains(valueDomain)
+		if (!dataElementInstance) {
+			flash.message = message(code: 'default.not.found.message', args: [message(code: 'dataElement.label', default: 'DataElement'), id])
+			redirect(action: "list")
+			return
 		}
-		redirect(action: 'edit', id: params.dataElementId)
+		
+		//check that we have the right version i.e. no one else has updated the data element whilst we have been 
+		//looking at it
+
+		if (version != null) {
+			if (dataElementInstance.version > version) {
+				dataElementInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
+						  [message(code: 'dataElement.label', default: 'DataElement')] as Object[],
+						  "Another user has updated this DataElement while you were editing")
+				render(view: "edit", model: [dataElementInstance: dataElementInstance,valueDomains: ValueDomain.list(), dataElements: DataElement.list()])
+				return
+			}
+		}
+
+		dataElementService.update(dataElementInstance, params)
+		
+		if (!renderWithErrors('edit', dataElementInstance)) {
+			redirectShow message(code: 'default.updated.message', args: [message(code: 'dataElement.label', default: 'DataElement'), dataElementInstance.id]), dataElementInstance.id
+		}
+		 
+		
 	}
 	
+	/* **************************************************************************************
+	 * ********************************* DELETE *************************************************
 	
-	def removeSubElement(){
-		DataElement element = DataElement.get(params.elementId)
-		DataElement subElement = DataElement.get(params.subElementId)
+	 * this function deletes the data element using the data element service
+	 *********************************************************************************** */
+	
+	def delete(Long id) {
 		
-		if(element && subElement){
-			element.removeFromSubElements(subElement)
+		//get the data element in question
+		def dataElementInstance = findInstance()
+		
+		//if no element exists redirect
+		if (!dataElementInstance) {
+			flash.message = message(code: 'default.not.found.message', args: [message(code: 'dataElement.label', default: 'DataElement'), id])
+			redirect(action: "list")
+			return
 		}
-		
-		redirect(action: 'edit', id: params.elementId)
-	}
-	
-	def removeSynonym(){
-		DataElement element = DataElement.get(params.elementId)
-		ExternalSynonym externalSynonym = ExternalSynonym.get(params.synonymId)
-		
-		if(element && externalSynonym){
-			element.removeFromExternalSynonyms(externalSynonym)
-		}
-		
-		redirect(action: 'edit', id: params.elementId)
-	}
-	
-	
-	def unLinkSubElements(dataElementInstance){
-		
-		//if all data elements need to be removed or only a few elements need to be removed
-		
-			if(params?.subElements==null && dataElementInstance?.subElements.size()>0){
-				
-				def subElements = []
-				subElements += dataElementInstance?.subElements
-				
-				subElements.each{ subElement->
-					dataElementInstance.removeFromSubElements(subElement)
-				}
-				
-	
-			}else if(params?.subElements){
-		
-			if(params?.subElements.size() < dataElementInstance?.subElements.size()){
-			
-				def subElements = []
-				
-				subElements += dataElementInstance?.subElements
-				
-				subElements.each{ subElement->
-					
-	
-					if(params?.subElements instanceof String){
-						
-							if(params?.subElements!=subElement){
-						
-								dataElementInstance.removeFromSubElements(subElement)
-							
-							}
-						
-						}else{
-							
-							if(!params?.subElements.contains(subElement)){
-								
-								dataElementInstance.removeFromSubElements(subElement)
-								
-							}
-						
-						}
-					}
-			}
-			
-		}
-	}
-	
-	
-	def unLinkExternalSynonyms(dataElementInstance){
-		
-			//if all data elements need to be removed or only a few elements need to be removed
-			
-			if(params?.externalSynonyms==null && dataElementInstance?.externalSynonyms.size()>0){
-				
-				def externalSynonyms = []
-				externalSynonyms += dataElementInstance?.externalSynonyms
-				
-				externalSynonyms.each{ externalSynonym->
-					dataElementInstance.removeFromExternalSynonyms(externalSynonym)
-				}
-				
-	
-			}else if(params.externalSynonyms){
-		
-				if(params?.externalSynonyms.size() < dataElementInstance?.externalSynonyms.size()){
-			
-				def externalSynonyms = []
-				
-				externalSynonyms += dataElementInstance?.externalSynonyms
-				
-				externalSynonyms.each{ externalSynonym->
-					
-	
-					if(params?.externalSynonyms instanceof String){
-						
-							if(params?.externalSynonyms!=externalSynonym){
-						
-								dataElementInstance.removeFromExternalSynonyms(externalSynonym)
-							
-							}
-						
-						}else{
-							
-							if(!params?.externalSynonyms.contains(externalSynonym)){
-								
-								dataElementInstance.removeFromExternalSynonyms(externalSynonym)
-								
-							}
-						
-						}
-					}
-			}
-			}	
-	}	
-	
-	
-	
-	def linkSynonyms(dataElementInstance){
-		
-		def associatedSynonyms = dataElementInstance.synonyms()
-		def synonyms = params.synonyms
-		
-		
-		if(synonyms!=null){
-			
-			if (synonyms instanceof String) {
-				
-				DataElement synonym =  DataElement.get(synonyms)
-				
-				//remove all the value domains that aren't this one
-				associatedSynonyms.each{ vd ->
-					if(synonyms!=vd.id.toString()){
-							dataElementInstance.removeFromSynonyms(vd)
-					}
-				}
-				
-				if(synonym){
-					dataElementInstance.addToSynonyms(synonym)
-				}
-				
-			}
-			
-			if (synonyms instanceof String[]) {
-				
-				//remove all the value domains that aren't this one
-				associatedSynonyms.each{ vd ->
-					if(!synonyms.contains(vd.id.toString())){
-							dataElementInstance.removeFromSynonyms(vd)
-					}
-				}
-				
-				  for (synonymID in synonyms){
-					  DataElement synonym =  DataElement.get(synonymID)
-					  if(synonym){
-							dataElementInstance.addToSynonyms(synonym)
-						}
-				  }
-  
-				  
-			}
 
-		}else{
+		//call data element service to delete element
 		
-		//remove all the value domains that aren't this one
-		associatedSynonyms.each{ vd ->
-					dataElementInstance.removeFromSynonyms(vd)
+		try {
+			
+			dataElementService.delete(dataElementInstance)
+			flash.message = message(code: 'default.deleted.message', args: [message(code: 'dataElement.label', default: 'DataElement'), id])
+			redirect(action: "list")
 		}
-		
+		catch (DataIntegrityViolationException e) {
+			flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'dataElement.label', default: 'DataElement'), id])
+			redirect(action: "show", id: id)
 		}
 		
 	}
 	
+	/* **************************************************************************************
+	 * ********************************* GRANT *************************************************
 	
-	def linkValueDomains(dataElementInstance){
+	 * this function grant permission to the given data element
+	 *********************************************************************************** */
+	
+	
+	def grant = {
 		
-		def associatedValueDomains = dataElementInstance.dataElementValueDomains()
-		def valueDomains = params.valueDomains
+				def dataElement = findInstance()
+				
+				if (!dataElement) return
 		
-		if(valueDomains!=null){
-			
-			if (valueDomains instanceof String) {
-				
-				ValueDomain valueDomain =  ValueDomain.get(valueDomains)
-				
-				//remove all the value domains that aren't this one
-				associatedValueDomains.each{ vd ->
-					if(valueDomains!=vd.id.toString()){
-							DataElementValueDomain.unlink(dataElementInstance, vd)
-					}
+				if (!request.post) {
+					return [dataElementInstance: dataElement]
 				}
-				
-				if(valueDomain){
-					
-					DataElementValueDomain.link(dataElementInstance, valueDomain)
-				}
-				
+		
+				dataElementService.addPermission(dataElement, params.recipient, params.int('permission'))
+		
+				redirectShow "Permission $params.permission granted on Report $dataElement.id " + "to $params.recipient", dataElement.id
 			}
-			
-			if (valueDomains instanceof String[]) {
-				
-				//remove all the value domains that aren't this one
-				associatedValueDomains.each{ vd ->
-					if(!valueDomains.contains(vd.id.toString())){
-							DataElementValueDomain.unlink(dataElementInstance, vd)
-					}
-				}
-				
-				  for (valueDomainID in valueDomains){
-					  ValueDomain valueDomain =  ValueDomain.get(valueDomainID)
-					  if(valueDomain){
-							DataElementValueDomain.link(dataElementInstance, valueDomain)
-						}
-				  }
-  
-				  
-			}
-
-		}else{
-		
-		//remove all the value domains that aren't this one
-		associatedValueDomains.each{ vd ->
-					DataElementValueDomain.unlink(dataElementInstance, vd)
+	
+	/* **********************************************************************************
+	 * this function uses the dataElement service to get the data element so that 
+	 * the appropriate security considerations are adhered to
+	 *********************************************************************************** */
+	
+	private DataElement findInstance() {
+		def dataElement = dataElementService.get(params.long('id'))
+		if (!dataElement) {
+			flash.message = "DataElement not found with id $params.id"
+			redirect action: list
 		}
-		
-		}
+		dataElement
 	}
-		
+	
+	/* **********************************************************************************
+	 * this function redirects to the show data element screen 
+	 *********************************************************************************** */
+	
+	private void redirectShow(message, id) {
+		flash.message = message
+		//redirect with message
+				
+		redirect(action: "show", id: id, model: [valueDomains: ValueDomain.list()])
+	}
+	
+	/* **********************************************************************************
+	 * this function checks to see if the data element passed to it contains errors i.e. when a 
+	 * service returns the element. It either returns false (if no errors) or it redirects 
+	 * to the view specified by the caller
+	 *********************************************************************************** */
+
+	private boolean renderWithErrors(String view, DataElement dataElement) {
+		if (dataElement.hasErrors()) {
+			render view: view, model: [dataElementInstance: dataElement, valueDomains: ValueDomain.list(), dataElements: DataElement.list()]
+			return true
+			
+		}
+		false
+	}
+	
+	
+	
+	
+	
+
+	
 	Boolean validateDataElement(){
 		
 		

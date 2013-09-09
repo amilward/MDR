@@ -11,46 +11,142 @@ import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils
 import grails.util.DomainBuilder
 import org.springframework.web.context.support.WebApplicationContextUtils
 
+import static org.springframework.security.acls.domain.BasePermission.ADMINISTRATION
+import static org.springframework.security.acls.domain.BasePermission.DELETE
+import static org.springframework.security.acls.domain.BasePermission.READ
+import static org.springframework.security.acls.domain.BasePermission.WRITE
+
+import org.springframework.security.authentication. UsernamePasswordAuthenticationToken
+import org.springframework.security.core.authority.AuthorityUtils
+import org.springframework.security.core.context.SecurityContextHolder as SCH
+
 
 
 class BootStrap {
 
+	def aclService
+	def aclUtilService
+	def objectIdentityRetrievalStrategy
+	def sessionFactory
 	def springSecurityService
 	
     def init = { servletContext ->
 		
 		def springContext = WebApplicationContextUtils.getWebApplicationContext( servletContext )
 		
+		//register custom json Marshallers
+		registerJSONMarshallers(springContext)
+		
+		//register spring filters (in this case the rest api security filter)
+		registerSpringFilters()
+		
+		//create user if none exists
+		createUsers()
+		
+		//login as admin so you can create the prepopulated data
+		loginAsAdmin()
+		
+		grantPermissions()
+		
+		sessionFactory.currentSession.flush()
+
+		// logout
+		SCH.clearContext()
+		}
+		
+	
+	private registerSpringFilters(){
+		
+		SpringSecurityUtils.clientRegisterFilter('apiAuthFilter', SecurityFilterPosition.SECURITY_CONTEXT_FILTER.order + 10)
+
+	}
+	
+	private registerJSONMarshallers(springContext) {
 		
 		//register custom marshallers
 		
 		springContext.getBean('customObjectMarshallers').register()
-		
-		
-		//register rest api security filter
-		
-		SpringSecurityUtils.clientRegisterFilter('apiAuthFilter', SecurityFilterPosition.SECURITY_CONTEXT_FILTER.order + 10)
-		
+	}
 	
-		//create user if none exists
+	private void createUsers() {
+		def roleUser = SecAuth.findByAuthority('ROLE_USER') ?: new SecAuth(authority: 'ROLE_USER').save(failOnError: true)
+		def roleAdmin = SecAuth.findByAuthority('ROLE_ADMIN') ?: new SecAuth(authority: 'ROLE_ADMIN').save(failOnError: true)
+	
 		
-		def userAuth = SecAuth.findByAuthority('ROLE_USER') ?: new SecAuth(authority: 'ROLE_USER').save(failOnError: true)
-		def adminAuth = SecAuth.findByAuthority('ROLE_ADMIN') ?: new SecAuth(authority: 'ROLE_ADMIN').save(failOnError: true)
-
+		if(!SecUser.findByUsername('user1') ){
+			3.times {
+				long id = it + 1
+				def user = new SecUser(username: "user$id", enabled: true, password: "password$id").save(failOnError: true)
+				SecUserSecAuth.create user, roleUser
+				}
+		}
+	
+		def admin = SecUser.findByUsername('admin') ?: new SecUser(username: 'admin', enabled: true, password: 'admin123').save(failOnError: true)
 		
-		def adminUser = SecUser.findByUsername('admin') ?: new SecUser(
-			username: 'admin',
-			password: 'admin',
-			enabled: true).save(failOnError: true)
+		if (!admin.authorities.contains(roleAdmin)) {
+			SecUserSecAuth.create admin, roleUser
+			SecUserSecAuth.create admin, roleAdmin, true
+		}
 
-		if (!adminUser.authorities.contains(adminAuth)) {
-			SecUserSecAuth.create adminUser, adminAuth
+	
+	}
+	
+	
+	private void loginAsAdmin() { 
+		// have to be authenticated as an admin to create ACLs 
+		SCH.context.authentication = new UsernamePasswordAuthenticationToken( 'admin', 'admin123', AuthorityUtils.createAuthorityList('ROLE_ADMIN')) 
+		
+		}
+	
+	private void grantPermissions() {
+		def dataElements = []
+		100.times {
+			long id = it + 1
+			def dataElement = new DataElement(refId: "reference$id", name: "dataElement$id", description: 'test').save(failOnError:true)
+			dataElements << dataElement
+			aclService.createAcl( objectIdentityRetrievalStrategy.getObjectIdentity(dataElement))
+			}
+		
+		// grant user 1 admin on 11,12 and read on 1-67
+		aclUtilService.addPermission dataElements[10], 'user1', ADMINISTRATION
+		aclUtilService.addPermission dataElements[11], 'user1', ADMINISTRATION
+		67.times {
+			aclUtilService.addPermission dataElements[it], 'user1', READ
+			}
+		
+		// grant user 2 read on 1-5, write on 5
+		5.times {
+			aclUtilService.addPermission dataElements[it], 'user2', READ
+			}
+		
+		aclUtilService.addPermission dataElements[4], 'user2', WRITE
+		
+		// user 3 has no grants
+		
+		// grant admin admin on all
+		for (dataElement in dataElements) {
+			aclUtilService.addPermission dataElement, 'admin', ADMINISTRATION
 		}
 		
+		// grant user 1 ownership on 1,2 to allow the user to grant
+		aclUtilService.changeOwner dataElements[0], 'user1'
+		aclUtilService.changeOwner dataElements[1], 'user1'
+		}
 		
-			
+    def destroy = {
+    }
+	
+	
+	
+	/*
+	 *  ******************************************************
+	 * 
+	 * */
+
+	private poulateWithTestData(){
+		
+		
 		//populate with test data
-		
 		
 		if (!ExternalSynonym.count()) {
 			new ExternalSynonym(name:"test external synonym 1", url:"www.testSite1.com").save(failOnError: true)
@@ -60,14 +156,14 @@ class BootStrap {
 		}
 		
 		if (!ConceptualDomain.count()) {
-			ConceptualDomain COSD = new ConceptualDomain(name:"COSD", refId:1, description:"Cancer Outcomes and Services Dataset").save(failOnError: true)			
+			ConceptualDomain COSD = new ConceptualDomain(name:"COSD", refId:1, description:"Cancer Outcomes and Services Dataset").save(failOnError: true)
 		
 		if (!DataElementConcept.count()) {
 			DataElementConcept CORE  = new DataElementConcept(name:"CORE", refId:"CORE", description:"CORE data set").save(failOnError: true)
 			DataElementConcept HAEMA = new DataElementConcept(name:"HAEMATOLOGY", refId:"HAEMATOLOGY", description:"HAEMATOLOGY data set").save(failOnError: true)
 			new DataElementConcept(name:"CORE - DIAGNOSTIC DETAILS", refId:"DIAGNOSTIC DETAILS", parent: CORE).save(failOnError: true)
 			new DataElementConcept(name:"CORE - PATIENT IDENTITY DETAILS", refId:"PATIENT IDENTITY DETAILS", parent: CORE).save(failOnError: true)
-			DataElementConcept DEM = new DataElementConcept(name:"CORE - DEMOGRAPHICS", refId:"DEMOGRAPHICS", parent: CORE).save(failOnError: true)			
+			DataElementConcept DEM = new DataElementConcept(name:"CORE - DEMOGRAPHICS", refId:"DEMOGRAPHICS", parent: CORE).save(failOnError: true)
 			DataElementConcept REF = new DataElementConcept(name:"CORE - REFERRALS", refId:"REFERRALS", parent: CORE).save(failOnError: true)
 			new DataElementConcept(name:"CORE - IMAGING", refId:"IMAGING", parent: CORE).save(failOnError: true)
 			new DataElementConcept(name:"CORE - DIAGNOSIS", refId:"DIAGNOSIS", parent: CORE).save(failOnError: true)
@@ -152,14 +248,14 @@ class BootStrap {
 				
 				if (!DataElement.count()&&!ValueDomain.count()) {
 					
-						DataElementValueDomain.link(new DataElement(name:"SOURCE OF REFERRAL FOR OUT-PATIENTS", 
-																	refId:"C1600", 
+						DataElementValueDomain.link(new DataElement(name:"SOURCE OF REFERRAL FOR OUT-PATIENTS",
+																	refId:"C1600",
 																	description:"This identifies the source of referral of each Consultant Out-Patient Episode.",
-																	dataElementConcept: REF).save(failOnError: true), 
-													new ValueDomain(name:"NHS SOURCE OF REFERRAL FOR OUT-PATIENTS", 
-																	refId:"C1600", 
-																	description:"", 
-																	dataType: OP_REF, 
+																	dataElementConcept: REF).save(failOnError: true),
+													new ValueDomain(name:"NHS SOURCE OF REFERRAL FOR OUT-PATIENTS",
+																	refId:"C1600",
+																	description:"",
+																	dataType: OP_REF,
 																	conceptualDomain: COSD,
 																	format:"an2").save(failOnError: true))
 						
@@ -201,9 +297,8 @@ class BootStrap {
 			}
 
 		}
-	}
+		}
 		
-    }
-    def destroy = {
-    }
-}
+		}
+	
+	}
