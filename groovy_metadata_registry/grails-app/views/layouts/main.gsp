@@ -185,43 +185,25 @@
 		                                    
 		                                    	<li class="dropdown">
 			                                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-			                                            ACL - <g:message code="spring.security.ui.menu.aclClass"/><b class="caret"></b>
+			                                            ACL <b class="caret"></b>
 			                                        </a>
 			                                        <ul class="dropdown-menu">
+			                                            <li><g:message code="spring.security.ui.menu.aclClass"/></li>
 			                                            <li><g:link controller="aclClass" action='search'><g:message code="spring.security.ui.search"/></g:link></li>
 														<li><g:link controller="aclClass" action='create'><g:message code="spring.security.ui.create"/></g:link></li>
-			                                        </ul>
-			                                    </li>
-			                                    
-			                                    <li class="dropdown">
-			                                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-			                                          ACL -  <g:message code="spring.security.ui.menu.aclSid" /><b class="caret"></b>
-			                                        </a>
-			                                        <ul class="dropdown-menu">
+			                                            <li><g:message code="spring.security.ui.menu.aclSid" /></li>
 			                                            <li><g:link controller="aclSid" action='search'><g:message code="spring.security.ui.search"/></g:link></li>
 														<li><g:link controller="aclSid" action='create'><g:message code="spring.security.ui.create"/></g:link></li>
-			                                        </ul>
-			                                    </li>
-			                                    
-			                                     <li class="dropdown">
-			                                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-			                                          ACL - <g:message code="spring.security.ui.menu.aclObjectIdentity" /><b class="caret"></b>
-			                                        </a>
-			                                        <ul class="dropdown-menu">
-			                                            <li><g:link controller="aclObjectIdentity" action='search'><g:message code="spring.security.ui.search"/></g:link></li>
-																<li><g:link controller="aclObjectIdentity" action='create'><g:message code="spring.security.ui.create"/></g:link></li>
-			                                        </ul>
-			                                    </li>
-			                                    
-			                                    <li class="dropdown">
-			                                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-			                                          ACL - <g:message code="spring.security.ui.menu.aclEntry" /><b class="caret"></b>
-			                                        </a>
-			                                        <ul class="dropdown-menu">
+			                                         	<li><g:message code="spring.security.ui.menu.aclObjectIdentity" /></li>
+			                                         	<li><g:link controller="aclObjectIdentity" action='search'><g:message code="spring.security.ui.search"/></g:link></li>
+														<li><g:link controller="aclObjectIdentity" action='create'><g:message code="spring.security.ui.create"/></g:link></li>
+			                                            <li><g:message code="spring.security.ui.menu.aclEntry" /></li>
 			                                            <li><g:link controller="aclEntry" action='search'><g:message code="spring.security.ui.search"/></g:link></li>
 														<li><g:link controller="aclEntry" action='create'><g:message code="spring.security.ui.create"/></g:link></li>
-													</ul>
+													
+			                                        </ul>
 			                                    </li>
+	
 											</g:if>
 
 										</sec:ifAnyGranted> 

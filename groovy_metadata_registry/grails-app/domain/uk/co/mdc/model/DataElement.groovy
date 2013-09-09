@@ -33,6 +33,7 @@ class DataElement {
 		parent nullable: true
 		dataElementConcept nullable: true
 		definition nullable: true
+		externalIdentifier nullable:true
 		name blank: false
     }
 	
