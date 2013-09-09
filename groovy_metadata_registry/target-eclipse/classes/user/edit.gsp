@@ -10,13 +10,14 @@
 </sec:ifNotSwitched>
 
 <head>
-	<meta name="layout" content="main">
+	<meta name='layout' content='springSecurityUI'/>
 	<g:set var="entityName" value="${message(code: 'user.label', default: 'User')}"/>
 	<title><g:message code="default.edit.label" args="[entityName]"/></title>
-	<parameter name="name" value=" EDIT USER - ${user?.username}" />
 </head>
 
 <body>
+
+<h3><g:message code="default.edit.label" args="[entityName]"/></h3>
 
 <g:form action="update" name='userEditForm' class="button-style">
 <g:hiddenField name="id" value="${user?.id}"/>
@@ -86,17 +87,11 @@ if (isOpenId) {
 </s2ui:tabs>
 
 <div style='float:left; margin-top: 10px;'>
+<s2ui:submitButton elementId='update' form='userEditForm' messageCode='default.button.update.label'/>
 
-<fieldset class="buttons">
-		
-		<g:submitButton elementId='update' form='userEditForm' name="update" class="update" value="update" />
-
-
-		<g:if test='${user}'>
-		<s2ui:deleteButton />
-		</g:if>
-
-</fieldset>
+<g:if test='${user}'>
+<s2ui:deleteButton />
+</g:if>
 
 <g:if test='${canRunAs}'>
 <a id="runAsButton">${message(code:'spring.security.ui.runas.submit')}</a>

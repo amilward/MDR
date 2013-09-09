@@ -1,7 +1,7 @@
 <html>
 
 <head>
-	<meta name='layout' content='main'/>
+	<meta name='layout' content='springSecurityUI'/>
 	<title><g:message code='spring.security.ui.aclSid.search'/></title>
 </head>
 

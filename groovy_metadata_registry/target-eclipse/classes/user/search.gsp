@@ -1,14 +1,16 @@
 <html>
 
 <head>
-	<meta name="layout" content="main">
+	<meta name='layout' content='springSecurityUI'/>
 	<title><g:message code='spring.security.ui.user.search'/></title>
-	<parameter name="name" value=" SEARCH USERS " />
 </head>
 
 <body>
 
 <div>
+
+	<s2ui:form width='100%' height='375' elementId='formContainer'
+	           titleCode='spring.security.ui.user.search'>
 
 	<g:form action='userSearch' name='userSearchForm'>
 
@@ -53,15 +55,13 @@
 			</tr>
 			<tr><td colspan='4'>&nbsp;</td></tr>
 			<tr>
-				<td colspan='4'>
-				<fieldset class="buttons">
-				<g:submitButton elementId='search' form='userSearchForm' name="search" class="btn" value="search" />
-				</fieldset>
-				</td>
+				<td colspan='4'><s2ui:submitButton elementId='search' form='userSearchForm' messageCode='spring.security.ui.search'/></td>
 			</tr>
 			</tbody>
 		</table>
 	</g:form>
+
+	</s2ui:form>
 
 	<g:if test='${searched}'>
 

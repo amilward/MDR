@@ -1,14 +1,16 @@
 <html>
 
 <head>
-	<meta name='layout' content='main'/>
+	<meta name='layout' content='springSecurityUI'/>
 	<title><g:message code='spring.security.ui.registrationCode.search'/></title>
-	<parameter name="name" value=" REGISTRATION CODES " />
 </head>
 
 <body>
 
 <div>
+
+	<s2ui:form width='100%' height='200' elementId='formContainer'
+	           titleCode='spring.security.ui.registrationCode.search'>
 
 	<g:form action='registrationCodeSearch' name='registrationCodeSearchForm'>
 
@@ -26,15 +28,13 @@
 			</tr>
 			<tr><td colspan='2'>&nbsp;</td></tr>
 			<tr>
-				<td colspan='2'>
-				<fieldset class="buttons">
-				<g:submitButton elementId='search' form='registrationCodeSearchForm'  name="search" class="btn" value="search" />
-				</fieldset>
-				</td>
+				<td colspan='2'><s2ui:submitButton elementId='search' form='registrationCodeSearchForm' messageCode='spring.security.ui.search'/></td>
 			</tr>
 			</tbody>
 		</table>
 	</g:form>
+
+	</s2ui:form>
 
 	<g:if test='${searched}'>
 

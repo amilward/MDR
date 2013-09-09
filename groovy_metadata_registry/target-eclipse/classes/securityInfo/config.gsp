@@ -1,9 +1,8 @@
 <html>
 
 <head>
-	<meta name='layout' content='main'/>
+	<meta name='layout' content='springSecurityUI'/>
 	<title>Security Configuration</title>
-	<parameter name="name" value=" SECURITY CONFIGURATION " />
 
 <g:javascript>
 	$(document).ready(function() {
