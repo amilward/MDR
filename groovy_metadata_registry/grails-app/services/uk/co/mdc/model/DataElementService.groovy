@@ -406,16 +406,15 @@ class DataElementService {
 			//if there are some external synonyms
 			}else if(extSynonyms){
 			
-				//but there are also sub elements to remove
+				//but there are also synonyms to remove
 				if(extSynonyms.size() < dataElementInstance?.externalSynonyms.size()){
 			
-					//pass all the objects external synonyms into a new array (otherwise we get all sorts or problems)	
+					//pass all the objects external synonyms into a new array 
+					//(otherwise we get all sorts or problems)	
 					def externalSynonyms = []
 					externalSynonyms += dataElementInstance?.externalSynonyms
 				
-					
 					//remove the external synonyms that need removing
-					
 					externalSynonyms.each{ externalSynonym->
 					
 					if(extSynonyms instanceof String){						

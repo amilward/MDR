@@ -73,7 +73,8 @@ class DataElementController {
 				data=[]
 			}
 			
-			//otherwise 
+			//otherwise list the data elements using the data elements service and pass the relevant data
+			//back to the data tables plugin request as json
 			
 		}else{
 		
@@ -88,6 +89,10 @@ class DataElementController {
 		
 		
 		def model = [sEcho: params.sEcho, iTotalRecords: total, iTotalDisplayRecords: displayTotal, aaData: data]
+		
+		//NB. when the json is rendered it uses a custom json marshaller so that it includes the relevant 
+		//information (and doesn't return the whole database)
+		//the corresponding json marshaller is stored in src/groovy/uk/co/mdc/model/xxxxxxMarshaller.groovy
 				
 		render model as JSON
 	}
@@ -101,7 +106,12 @@ class DataElementController {
 	 *************************************************************************************** */
 	
 	def show = {
+		
+		//use the find instance method to get the data element in question
+		
 		def dataElementInstance = findInstance()
+		
+		//if you can't find it or don't have permission go back to the list page
 		
 		if (!dataElementInstance) {
 			flash.message = message(code: 'default.not.found.message', args: [message(code: 'dataElement.label', default: 'DataElement'), id])
@@ -172,7 +182,10 @@ class DataElementController {
 	 *********************************************************************************** */
 	
 	def edit(Long id) {
+		//get the data element in question
 		def dataElementInstance = findInstance()
+		
+		//if it doesn't exist then redirect to listpage
 		if (!dataElementInstance) {
 			flash.message = message(code: 'default.not.found.message', args: [message(code: 'dataElement.label', default: 'DataElement'), id])
 			redirect(action: "list")
