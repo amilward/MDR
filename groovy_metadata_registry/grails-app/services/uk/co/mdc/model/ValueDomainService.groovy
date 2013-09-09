@@ -109,9 +109,10 @@ class ValueDomainService {
 	
 	@PreAuthorize("hasRole('ROLE_USER')")
 	@PostFilter("hasPermission(filterObject, read) or hasPermission(filterObject, admin)")
-	List<ValueDomain> search(String sSearch, Integer iDisplayLength) {
-	   ValueDomain.search(sSearch, [max:iDisplayLength])
-	   }
+	List<ValueDomain> search(String sSearch) {
+		def searchResult = ValueDomain.search(sSearch)
+	    searchResult.results
+	}
 	
 	
 	/* ************************* LIST VALUED DOMAINS***********************************************
@@ -130,6 +131,67 @@ class ValueDomainService {
 	
 	int count() { ValueDomain.count() }
 	
+	
+	/* ************************* UPDATE VALUE DOMAINS***********************************************
+	 *  requires that the authenticated user have write or admin permission on the value domain instance to edit it
+	 ******************************************************************************************** */
+	
+	@Transactional
+	@PreAuthorize("hasPermission(#valueDomainInstance, write) or hasPermission(#valueDomainInstance, admin)")
+	void update(ValueDomain valueDomainInstance, Map parameters) {
+
+	   
+	   //remove any external synonyms that have specified for removal
+	   unLinkExternalSynonyms(valueDomainInstance, parameters?.externalSynonyms)
+	   
+	   valueDomainInstance.properties = parameters
+	   
+	   valueDomainInstance.save(flush: true)
+	   
+	   // add/remove value domains
+	   linkDataElements(valueDomainInstance, parameters?.dataElements)
+	      
+	   
+	}
+	
+	
+	/* ************************* DELETE DATA ELEMENTS***********************************************
+	 * requires that the authenticated user have delete or admin permission on the report instance to
+	 * edit it
+	 ******************************************************************************************** */
+
+	@Transactional @PreAuthorize("hasPermission(#valueDomainInstance, delete) or hasPermission(#valueDomainInstance, admin)")
+	void delete(ValueDomain valueDomainInstance) {
+		
+		valueDomainInstance.prepareForDelete()
+		valueDomainInstance.delete(flush: true)
+		
+		// Delete the ACL information as well
+		aclUtilService.deleteAcl valueDomainInstance
+   }
+	
+	
+	/* ************************* DELETE PERMISSIONS***********************************************
+	 * deletePermission requires that the authenticated user have admin permission on the report
+	 *  instance to delete a grant
+	 ******************************************************************************************** */
+	
+	@Transactional @PreAuthorize("hasPermission(#valueDomainInstance, admin)")
+	void deletePermission(ValueDomain valueDomainInstance, String username, Permission permission) {
+		def acl = aclUtilService.readAcl(valueDomainInstance)
+		
+		// Remove all permissions associated with this particular
+		// recipient (string equality to KISS)
+		
+		acl.entries.eachWithIndex {
+			entry, i -> if (entry.sid.equals(recipient) && entry.permission.equals(permission)) {
+				acl.deleteAce i
+				}
+			}
+		
+		aclService.updateAcl acl
+		
+		}
 	
 	
 	/* ************************* VALUE DOMAIN LINK FUNCTIONS************************
@@ -186,5 +248,57 @@ class ValueDomainService {
 			
 		}
 	}
+	
+	/* ************************* VALUE DOMAIN LINK FUNCTIONS************************
+	 * unlinks the external synonyms that have been removed from the value domain during an update
+	 ********************************************************************************* */
+	
+	def unLinkExternalSynonyms(valueDomainInstance, pExternalSynonyms){
+		
+			//if all data elements need to be removed or only a few elements need to be removed
+			
+			if(pExternalSynonyms==null && valueDomainInstance?.externalSynonyms.size()>0){
+				
+				def externalSynonyms = []
+				externalSynonyms += valueDomainInstance?.externalSynonyms
+				
+				externalSynonyms.each{ externalSynonym->
+					valueDomainInstance.removeFromExternalSynonyms(externalSynonym)
+				}
+				
+	
+			}else if(pExternalSynonyms){
+		
+				if(pExternalSynonyms.size() < valueDomainInstance?.externalSynonyms.size()){
+			
+				def externalSynonyms = []
+				
+				externalSynonyms += valueDomainInstance?.externalSynonyms
+				
+				externalSynonyms.each{ externalSynonym->
+					
+	
+					if(pExternalSynonyms instanceof String){
+						
+							if(pExternalSynonyms!=externalSynonym){
+						
+								valueDomainInstance.removeFromExternalSynonyms(externalSynonym)
+							
+							}
+						
+						}else{
+							
+							if(!pExternalSynonyms.contains(externalSynonym)){
+								
+								valueDomainInstance.removeFromExternalSynonyms(externalSynonym)
+								
+							}
+						
+						}
+					}
+			}
+			}
+	}
+	
 	
 }

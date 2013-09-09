@@ -46,6 +46,9 @@ class BootStrap {
 		//login as admin so you can create the prepopulated data
 		loginAsAdmin()
 		
+		//populate with some test data....there will be more
+		populateWithTestData()
+		
 		grantPermissions()
 		
 		sessionFactory.currentSession.flush()
@@ -123,15 +126,26 @@ class BootStrap {
 		
 		// user 3 has no grants
 		
-		// grant admin admin on all
-		for (dataElement in dataElements) {
-			aclUtilService.addPermission dataElement, 'admin', ADMINISTRATION
-		}
+		// grant admin admin on everything 
 		
+		grantAdminPermissions(DataElement.list())
+		grantAdminPermissions(ValueDomain.list())
+		grantAdminPermissions(DataElementConcept.list())
+		grantAdminPermissions(DataType.list())
+	
 		// grant user 1 ownership on 1,2 to allow the user to grant
 		aclUtilService.changeOwner dataElements[0], 'user1'
 		aclUtilService.changeOwner dataElements[1], 'user1'
 		}
+	
+	
+	def grantAdminPermissions(objectList){
+		
+		for (object in objectList) {
+			aclUtilService.addPermission object, 'admin', ADMINISTRATION
+		}
+		
+	}
 		
     def destroy = {
     }
@@ -143,7 +157,7 @@ class BootStrap {
 	 * 
 	 * */
 
-	private poulateWithTestData(){
+	private populateWithTestData(){
 		
 		
 		//populate with test data
