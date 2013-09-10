@@ -142,7 +142,7 @@ class ValueDomainService {
 
 	   
 	   //remove any external synonyms that have specified for removal
-	   unLinkExternalSynonyms(valueDomainInstance, parameters?.externalSynonyms)
+	   unLinkExternalReferences(valueDomainInstance, parameters?.externalReferences)
 	   
 	   valueDomainInstance.properties = parameters
 	   
@@ -253,44 +253,44 @@ class ValueDomainService {
 	 * unlinks the external synonyms that have been removed from the value domain during an update
 	 ********************************************************************************* */
 	
-	def unLinkExternalSynonyms(valueDomainInstance, pExternalSynonyms){
+	def unLinkExternalReferences(valueDomainInstance, pExternalReferences){
 		
 			//if all data elements need to be removed or only a few elements need to be removed
 			
-			if(pExternalSynonyms==null && valueDomainInstance?.externalSynonyms.size()>0){
+			if(pExternalReferences==null && valueDomainInstance?.externalReferences.size()>0){
 				
-				def externalSynonyms = []
-				externalSynonyms += valueDomainInstance?.externalSynonyms
+				def externalReferences = []
+				externalReferences += valueDomainInstance?.externalReferences
 				
-				externalSynonyms.each{ externalSynonym->
-					valueDomainInstance.removeFromExternalSynonyms(externalSynonym)
+				externalReferences.each{ externalReference->
+					valueDomainInstance.removeFromExternalReferences(externalReference)
 				}
 				
 	
-			}else if(pExternalSynonyms){
+			}else if(pExternalReferences){
 		
-				if(pExternalSynonyms.size() < valueDomainInstance?.externalSynonyms.size()){
+				if(pExternalReferences.size() < valueDomainInstance?.externalReferences.size()){
 			
-				def externalSynonyms = []
+				def externalReferences = []
 				
-				externalSynonyms += valueDomainInstance?.externalSynonyms
+				externalReferences += valueDomainInstance?.externalReferences
 				
-				externalSynonyms.each{ externalSynonym->
+				externalReferences.each{ externalReference->
 					
 	
-					if(pExternalSynonyms instanceof String){
+					if(pExternalReferences instanceof String){
 						
-							if(pExternalSynonyms!=externalSynonym){
+							if(pExternalReferences!=externalReference){
 						
-								valueDomainInstance.removeFromExternalSynonyms(externalSynonym)
+								valueDomainInstance.removeFromExternalReferences(externalReference)
 							
 							}
 						
 						}else{
 							
-							if(!pExternalSynonyms.contains(externalSynonym)){
+							if(!pExternalReferences.contains(externalReference)){
 								
-								valueDomainInstance.removeFromExternalSynonyms(externalSynonym)
+								valueDomainInstance.removeFromExternalReferences(externalReference)
 								
 							}
 						

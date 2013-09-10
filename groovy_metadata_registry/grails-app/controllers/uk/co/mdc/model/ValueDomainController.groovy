@@ -122,7 +122,7 @@ class ValueDomainController {
 	 *************************************************************************************** */
 
     def create() {
-        [dataElements: dataElementService.list(), dataTypes: DataType.list(), externalSynonyms: ExternalSynonym.list(), valueDomainInstance: new ValueDomain(params)]
+        [dataElements: dataElementService.list(), dataTypes: DataType.list(), externalReferences: ExternalReference.list(), valueDomainInstance: new ValueDomain(params)]
     }
 
 	/* **************************************************************************************
@@ -165,7 +165,7 @@ class ValueDomainController {
 			return
 		}
 
-		[dataElements: dataElementService.list(), selectedDataElements: valueDomainInstance.dataElementValueDomains(), dataTypes: DataType.list(), externalSynonyms: ExternalSynonym.list(), valueDomainInstance: valueDomainInstance]
+		[dataElements: dataElementService.list(), selectedDataElements: valueDomainInstance.dataElementValueDomains(), dataTypes: DataType.list(), externalSynonyms: ExternalReference.list(), valueDomainInstance: valueDomainInstance]
 	}
     
 	/* **************************************************************************************
@@ -301,7 +301,7 @@ class ValueDomainController {
 
 	private boolean renderWithErrors(String view, ValueDomain valueDomain) {
 		if (valueDomain.hasErrors()) {
-			render view: view, model: [valueDomainInstance: valueDomain, dataElements: dataElementService.list(), dataTypes: DataType.list(), externalSynonyms: ExternalSynonym.list()]
+			render view: view, model: [valueDomainInstance: valueDomain, dataElements: dataElementService.list(), dataTypes: DataType.list(), externalSynonyms: ExternalReference.list()]
 			return true
 			
 		}
