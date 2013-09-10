@@ -1,5 +1,6 @@
 package uk.co.mdc.model
 
+import grails.converters.JSON
 import org.springframework.dao.DataIntegrityViolationException
 
 class ExternalReferenceController {
@@ -14,6 +15,48 @@ class ExternalReferenceController {
         params.max = Math.min(max ?: 10, 100)
         [externalReferenceInstanceList: ExternalReference.list(params), externalReferenceInstanceTotal: ExternalReference.count()]
     }
+	
+	def dataTables(){
+		
+				def data
+				def total
+				def displayTotal
+				def order
+				def sortCol
+				
+		
+				if(params?.sSearch!='' && params?.sSearch!=null){
+					
+					def searchResults = ExternalReference.search(params.sSearch, [max:params.iDisplayLength])
+					
+					total = searchResults.total
+					displayTotal = searchResults.total
+					
+					if(total>0){
+						data = searchResults.results
+					}else{
+						data=[]
+					}
+					
+					
+					
+				}else{
+				
+					order = params?.sSortDir_0
+					sortCol = "name"
+					
+					data = ExternalReference.list(max: params.iDisplayLength, offset: params.iDisplayStart, sort: sortCol, order: order)
+					total = ExternalReference.count()
+					displayTotal = ExternalReference.count()
+					
+				}
+				
+				
+		
+				def model = [sEcho: params.sEcho, iTotalRecords: total, iTotalDisplayRecords: displayTotal, aaData: data]
+				
+				render model as JSON
+	}
 
     def create() {
         [externalReferenceInstance: new ExternalReference(params)]

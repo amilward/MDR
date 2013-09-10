@@ -57,7 +57,7 @@ SHARED FUNCTIONS
 var c = {};
 
 
-//global function that gets used by all the data table lists to render data table stuff
+//global func tion that gets used by all the data table lists to render data table stuff
 
 function getObjectTable(jsonArray, classname){
 	
@@ -1100,7 +1100,56 @@ function formatExtSynonymDetails ( nTr )
 END EXTERNAL SYNONYM LIST  SCRIPTS
 ---------------------------------------------------------*/
 
+/*--------------------------------------------------------
+START EXTERNAL REFERENCE LIST  SCRIPTS
+---------------------------------------------------------*/
 
+function externalReferenceList(){
+	
+	$('#externalReferenceList').html( '<table cellpadding="0" cellspacing="0" border="0" class="table table-bordered table-condensed table-hover table-striped" id="externalReferenceTable"></table>' );
+	oTable = $('#externalReferenceTable').dataTable( {
+        "bProcessing": true,
+        "bServerSide": true,
+        "sAjaxSource": "dataTables",
+        "sEmptyTable": "Loading data from server",
+        "bAutoWidth": false,
+        "aaSorting": [[ 1, "asc" ]],
+		"aoColumns": [
+			{
+				    // `data` refers to the data for the cell (defined by `mData`, which
+				    // defaults to the column being worked with, in this case is the first
+				    // Using `row[0]` is equivalent.
+				"mRender": function ( data, type, row ) {		
+					return '<a id="'+ row.id + '" href="' + root +'/externalReference/show/' + row.id + '">' + data + '</a>'
+			    },
+			    "mDataProp": "name",
+			    "sWidth":"50%",
+			    "sTitle":"name"
+			},
+			{
+			    // `data` refers to the data for the cell (defined by `mData`, which
+			    // defaults to the column being worked with, in this case is the first
+			    // Using `row[0]` is equivalent.
+			    "mRender": function ( data, type, row ) {
+			    	
+							return data + '<img class="floatright" src="../images/details_open.png" />'
+
+			    },
+			    "mDataProp": "url", 
+			    "sWidth":"50%",
+			    "sTitle":"Url"
+			}
+		]
+	} );	
+	
+	oTable.fnSetFilteringDelay(1000);
+	
+ }
+
+
+/*--------------------------------------------------------
+END EXTERNAL REFERENCE LIST  SCRIPTS
+---------------------------------------------------------*/
 
 /*--------------------------------------------------------
 START EDIT DATAELEMENT  SCRIPTS

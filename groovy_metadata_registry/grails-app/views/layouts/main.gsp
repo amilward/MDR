@@ -228,7 +228,6 @@
                 <div class="media user-media hidden-phone">
                     <a href="" class="user-link">
                    		 <g:img dir="img" file="user.gif" alt="" class="media-object img-polaroid user-img"/>
-                        <span class="label user-label">16</span>
                     </a>
 
                     <div class="media-body hidden-tablet">
@@ -318,12 +317,12 @@
                         </ul>
                     </li>
                     <li class="accordion-group ">
-                        <a data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#externalSynonyms-nav">
-                            <i class="icon-external-link icon-large"></i> External Synonyms 
+                        <a data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#externalReference-nav">
+                            <i class="icon-external-link icon-large"></i> External References 
                         </a>
-                        <ul class="collapse " id="externalSynonyms-nav">
-                            <li><g:link action="list" controller="ExternalSynonym"><i class="icon-angle-right"></i> List </g:link></li>
-                            <li><g:link action="create" controller="ExternalSynonym"><i class="icon-angle-right"></i> Create </g:link></li>
+                        <ul class="collapse " id="externalReference-nav">
+                            <li><g:link action="list" controller="ExternalReference"><i class="icon-angle-right"></i> List </g:link></li>
+                            <li><g:link action="create" controller="ExternalReference"><i class="icon-angle-right"></i> Create </g:link></li>
                         </ul>
                     </li>  
                     <li class="accordion-group ">
