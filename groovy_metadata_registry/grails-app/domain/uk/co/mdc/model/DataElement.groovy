@@ -24,7 +24,7 @@ class DataElement {
         content: spellCheck 'include'
     } 
 	
-	static hasMany = [synonyms: DataElementDataElement, subElements: DataElement, dataElementValueDomains: DataElementValueDomain, dataElementCollections: DataElementCollection, externalSynonyms: ExternalSynonym]
+	static hasMany = [synonyms: DataElementDataElement, subElements: DataElement, dataElementValueDomains: DataElementValueDomain, dataElementCollections: DataElementCollection, externalReferences: ExternalReference]
 	
 	static belongsTo = [parent: DataElement, dataElementConcept: DataElementConcept]
 	

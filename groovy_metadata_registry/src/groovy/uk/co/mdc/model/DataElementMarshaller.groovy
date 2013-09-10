@@ -20,7 +20,7 @@ class DataElementMarshaller extends CustomMarshaller{
 			'subElements': limitRender(dataElement?.subElements),
 			'valueDomains': limitRender(dataElement.dataElementValueDomains()),
 			'collections': limitRender(dataElement.dataElementCollections()),
-			'externalSynonyms': dataElement?.externalSynonyms?.name,
+			'externalReferences': dataElement?.externalReferences?.name,
 			]
 		}
 	}

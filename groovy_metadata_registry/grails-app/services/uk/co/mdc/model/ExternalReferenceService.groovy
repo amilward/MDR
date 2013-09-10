@@ -130,8 +130,8 @@ class ExternalReferenceService {
 	   // remove any subelements that have specified for removal
 	   unLinkSubElements(externalReferenceInstance, parameters?.subElements)
 	   
-	   //remove any external synonyms that have specified for removal
-	   unLinkExternalSynonyms(externalReferenceInstance, parameters?.externalSynonyms)
+	   //remove any external references that have specified for removal
+	   unLinkExternalReferences(externalReferenceInstance, parameters?.externalReferences)
 	   
 	   //add/remove synonyms that have specified for addition or removal
 	   linkSynonyms(externalReferenceInstance, parameters?.synonyms)
