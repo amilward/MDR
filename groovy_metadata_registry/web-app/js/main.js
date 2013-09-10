@@ -430,7 +430,7 @@ function formatDataElementDetails ( nTr )
 	var subElements = getObjectTable(aData.subElements, 'dataElement');
 	var valueDomains = getObjectTable(aData.valueDomains, 'valueDomain');
 	var collections = getObjectTable(aData.collections, 'collection');
-	var externalSynonyms = getObjectTable(aData.externalSynonyms, 'externalSynonym');
+	var externalReferences = getObjectTable(aData.externalReferences, 'externalReference');
 	
 	var sOut = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
 	
@@ -439,7 +439,7 @@ function formatDataElementDetails ( nTr )
 	if(subElements!=null){sOut += '<tr><td class="labelCol">Subelements: </td><td>' + subElements + '</td></tr>'}
 	if(valueDomains!=null){sOut += '<tr><td class="labelCol">Value Domains: </td><td>' + valueDomains + '</td></tr>'}
 	if(collections!=null){sOut += '<tr><td class="labelCol">Collections: </td><td>' + collections + '</td></tr>'}
-	if(externalSynonyms!=null){sOut += '<tr><td class="labelCol">External Synonyms: </td><td>' + externalSynonyms + '</td></tr>'}
+	if(externalReferences!=null){sOut += '<tr><td class="labelCol">External Reference: </td><td>' + externalReferences + '</td></tr>'}
 	
 	sOut += '</table>';
 	 
@@ -547,7 +547,7 @@ function formatValueDomainDetails ( nTr )
 	var unitOfMeasure = aData.unitOfMeasure;
 	var regexDef = aData.regexDef;
 	var dataElements = getObjectTable(aData.dataElements, "dataElement");
-	var externalSynonyms = getObjectTable(aData.externalSynonyms, "externalSynonym");
+	var externalReferences = getObjectTable(aData.externalReferences, "externalReference");
 	
 	var sOut = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
 	
@@ -555,7 +555,7 @@ function formatValueDomainDetails ( nTr )
 	if(unitOfMeasure!=null){sOut += '<tr><td class="labelCol">Unit Of Measure: </td><td>' + unitOfMeasure + '</td></tr>'}
 	if(regexDef!=null){sOut += '<tr><td class="labelCol">Regex: </td><td>' + subElements + '</td></tr>'}
 	if(dataElements!=null){sOut += '<tr><td class="labelCol">Data Elements: </td><td>' + dataElements + '</td></tr>'}
-	if(externalSynonyms!=null){sOut += '<tr><td class="labelCol">External Synonyms: </td><td>' + externalSynonyms + '</td></tr>'}
+	if(externalReferences!=null){sOut += '<tr><td class="labelCol">External Reference: </td><td>' + externalReferences + '</td></tr>'}
 
 	sOut += '</table>';
 	 
@@ -944,7 +944,7 @@ function formatCollectionDetails ( nTr )
 	var sOut = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
 	
 	if(dataElements!=null){sOut += '<tr><td class="labelCol">Data Elements: </td><td>' + dataElements + '</td></tr>'}
-	if(formSpecifications!=null){sOut += '<tr><td class="labelCol">External Synonyms: </td><td>' + formSpecifications + '</td></tr>'}
+	if(formSpecifications!=null){sOut += '<tr><td class="labelCol">External Reference: </td><td>' + formSpecifications + '</td></tr>'}
 
 	sOut += '</table>';
 	 
@@ -1014,10 +1014,10 @@ END DOCUMENT LIST  SCRIPTS
 START EXTERNAL SYNONYM LIST  SCRIPTS
 ---------------------------------------------------------*/
 
-function externalSynonymList(){
+function externalReferenceList(){
 	
-	$('#externalSynonymList').html( '<table cellpadding="0" cellspacing="0" border="0" class="table table-bordered table-condensed table-hover table-striped" id="externalSynonymTable"></table>' );
-	oTable = $('#externalSynonymTable').dataTable( {
+	$('#externalReferenceList').html( '<table cellpadding="0" cellspacing="0" border="0" class="table table-bordered table-condensed table-hover table-striped" id="externalReferenceTable"></table>' );
+	oTable = $('#externalReferenceTable').dataTable( {
         "bProcessing": true,
         "bServerSide": true,
         "sAjaxSource": "dataTables",
@@ -1030,7 +1030,7 @@ function externalSynonymList(){
 				    // defaults to the column being worked with, in this case is the first
 				    // Using `row[0]` is equivalent.
 				"mRender": function ( data, type, row ) {		
-					return '<a id="'+ row.id + '" href="' + root +'/externalSynonym/show/' + row.id + '">' + data + '</a>'
+					return '<a id="'+ row.id + '" href="' + root +'/externalReference/show/' + row.id + '">' + data + '</a>'
 			    },
 			    "mDataProp": "name",
 			    "sWidth":"50%",
@@ -1058,7 +1058,7 @@ function externalSynonymList(){
 //bind the click handler to the + image within the datatable to show information that is too long for data columns i.e. description/definition
 
 
-$('#externalSynonymTable tbody td img').live( 'click', function () {
+$('#externalReferenceTable tbody td img').live( 'click', function () {
 	var nTr = $(this).parents('tr')[0];
 	if ( oTable.fnIsOpen(nTr) )
 	{
@@ -1155,9 +1155,9 @@ END EXTERNAL REFERENCE LIST  SCRIPTS
 START EDIT DATAELEMENT  SCRIPTS
 ---------------------------------------------------------*/
 
-function dataElementForm(selectedValueDomains, synonyms, subElements, externalSynonyms){
+function dataElementForm(selectedValueDomains, synonyms, subElements, externalReferences){
 	
-	//change options to selected for valueDomains, subElements and external Synonyms
+	//change options to selected for valueDomains, subElements and external Reference
 	if(selectedValueDomains.length==1){
 		$('select[name="valueDomains"]').find('option[value="'+selectedValueDomains+'"]').attr("selected",true);
 	}else if(selectedValueDomains.length>1){
@@ -1182,17 +1182,17 @@ function dataElementForm(selectedValueDomains, synonyms, subElements, externalSy
 		});
 	}
 	
-	if(externalSynonyms.length==1){
-		$('select[name="externalSynonyms"]').find('option[value="'+externalSynonyms+'"]').attr("selected",true);
-	}else if(externalSynonyms.length>1){
-		$.each(externalSynonyms, function(index, item) {
-			$('select[name="externalSynonyms"]').find('option[value="'+item+'"]').attr("selected",true);
+	if(externalReferences.length==1){
+		$('select[name="externalReferences"]').find('option[value="'+externalReferences+'"]').attr("selected",true);
+	}else if(externalReferences.length>1){
+		$.each(externalReferences, function(index, item) {
+			$('select[name="externalReferences"]').find('option[value="'+item+'"]').attr("selected",true);
 		});
 	}
 	
 	
 	
-	//set up dual list box for valueDomains, synonyms, subElements and external Synonyms
+	//set up dual list box for valueDomains, synonyms, subElements and external Reference
 	
 		$('#valueDomains').bootstrapDualListbox({
 		    nonselectedlistlabel: 'Available Value Domains',
@@ -1215,9 +1215,9 @@ function dataElementForm(selectedValueDomains, synonyms, subElements, externalSy
 		    moveonselect: false
 		});
 		
-		$('#externalSynonyms').bootstrapDualListbox({
-		    nonselectedlistlabel: 'Choose External Synonyms',
-		    selectedlistlabel: 'External Synonyms',
+		$('#externalReferences').bootstrapDualListbox({
+		    nonselectedlistlabel: 'Choose External Reference',
+		    selectedlistlabel: 'External Reference',
 		    preserveselectiononmove: 'moved',
 		    moveonselect: false
 		});
@@ -1236,9 +1236,9 @@ END EDIT DATAELEMENT  SCRIPTS
 START EDIT VALUE DOMAIN SCRIPTS
 ---------------------------------------------------------*/
 
-function valueDomainForm(selectedDataElements, externalSynonyms){
+function valueDomainForm(selectedDataElements, externalReferences){
 	
-	//change options to selected for valueDomains, subElements and external Synonyms
+	//change options to selected for valueDomains, subElements and external Reference
 	if(selectedDataElements.length==1){
 		$('select[name="dataElements"]').find('option[value="'+selectedDataElements+'"]').attr("selected",true);
 	}else if(selectedDataElements.length>1){
@@ -1247,15 +1247,15 @@ function valueDomainForm(selectedDataElements, externalSynonyms){
 		});
 	}
 	
-	if(externalSynonyms.length==1){
-		$('select[name="externalSynonyms"]').find('option[value="'+externalSynonyms+'"]').attr("selected",true);
-	}else if(externalSynonyms.length>1){
-		$.each(externalSynonyms, function(index, item) {
-			$('select[name="externalSynonyms"]').find('option[value="'+item+'"]').attr("selected",true);
+	if(externalReferences.length==1){
+		$('select[name="externalReferences"]').find('option[value="'+externalReferences+'"]').attr("selected",true);
+	}else if(externalReferences.length>1){
+		$.each(externalReferences, function(index, item) {
+			$('select[name="externalReferences"]').find('option[value="'+item+'"]').attr("selected",true);
 		});
 	}
 	
-	//set up dual list box for valueDomains, subElements and external Synonyms
+	//set up dual list box for valueDomains, subElements and external Reference
 	
 		$('#dataElements').bootstrapDualListbox({
 		    nonselectedlistlabel: 'Available Data Elements',
@@ -1265,9 +1265,9 @@ function valueDomainForm(selectedDataElements, externalSynonyms){
 		});
 		
 		
-		$('#externalSynonyms').bootstrapDualListbox({
-		    nonselectedlistlabel: 'Choose External Synonyms',
-		    selectedlistlabel: 'External Synonyms',
+		$('#externalReferences').bootstrapDualListbox({
+		    nonselectedlistlabel: 'Choose External Reference',
+		    selectedlistlabel: 'External Reference',
 		    preserveselectiononmove: 'moved',
 		    moveonselect: false
 		});
@@ -1286,7 +1286,7 @@ START CONCEPTUALDOMAIN  SCRIPTS
 
 function conceptualDomainForm(selectedValueDomains){
 	
-	//change options to selected for valueDomains, subElements and external Synonyms
+	//change options to selected for valueDomains, subElements and external Reference
 	if(selectedValueDomains.length==1){
 		$('select[name="valueDomains"]').find('option[value="'+selectedValueDomains+'"]').attr("selected",true);
 	}else if(selectedValueDomains.length>1){
@@ -1295,7 +1295,7 @@ function conceptualDomainForm(selectedValueDomains){
 		});
 	}
 	
-	//set up dual list box for valueDomains, subElements and external Synonyms
+	//set up dual list box for valueDomains, subElements and external Reference
 	
 		$('#valueDomains').bootstrapDualListbox({
 		    nonselectedlistlabel: 'Available Value Domains',
@@ -1318,7 +1318,7 @@ START dataElementConcept  SCRIPTS
 
 function dataElementConceptForm(selectedDataElements, subConcepts){
 	
-	//change options to selected for DataElements, subElements and external Synonyms
+	//change options to selected for DataElements, subElements and external Reference
 	if(selectedDataElements.length==1){
 		$('select[name="dataElements"]').find('option[value="'+selectedDataElements+'"]').attr("selected",true);
 	}else if(selectedDataElements.length>1){
@@ -1327,7 +1327,7 @@ function dataElementConceptForm(selectedDataElements, subConcepts){
 		});
 	}
 	
-	//change options to selected for DataElements, subElements and external Synonyms
+	//change options to selected for DataElements, subElements and external Reference
 	if(subConcepts.length==1){
 		$('select[name="subConcepts"]').find('option[value="'+subConcepts+'"]').attr("selected",true);
 	}else if(subConcepts.length>1){
@@ -1336,7 +1336,7 @@ function dataElementConceptForm(selectedDataElements, subConcepts){
 		});
 	}
 	
-	//set up dual list box for DataElements, subElements and external Synonyms
+	//set up dual list box for DataElements, subElements and external Reference
 	
 		$('#dataElements').bootstrapDualListbox({
 		    nonselectedlistlabel: 'Available Data Elements',
@@ -1345,7 +1345,7 @@ function dataElementConceptForm(selectedDataElements, subConcepts){
 		    moveonselect: false
 		});
 		
-	//set up dual list box for DataElements, subElements and external Synonyms
+	//set up dual list box for DataElements, subElements and external Reference
 		
 		$('#subConcepts').bootstrapDualListbox({
 		    nonselectedlistlabel: 'Available Sub Concepts',
@@ -1366,7 +1366,7 @@ START collection  SCRIPTS
 
 function collectionForm(mandatoryDataElements, requiredDataElements, optionalDataElements, referenceDataElements){
 	
-	//change options to selected for DataElements, subElements and external Synonyms
+	//change options to selected for DataElements, subElements and external Reference
 	if(mandatoryDataElements.length==1){
 		$('select[name="mandatoryDataElements"]').find('option[value="'+mandatoryDataElements+'"]').attr("selected",true);
 	}else if(mandatoryDataElements.length>1){
@@ -1375,7 +1375,7 @@ function collectionForm(mandatoryDataElements, requiredDataElements, optionalDat
 		});
 	}
 	
-	//change options to selected for DataElements, subElements and external Synonyms
+	//change options to selected for DataElements, subElements and external Reference
 	if(requiredDataElements.length==1){
 		$('select[name="requiredDataElements"]').find('option[value="'+requiredDataElements+'"]').attr("selected",true);
 	}else if(requiredDataElements.length>1){
@@ -1384,7 +1384,7 @@ function collectionForm(mandatoryDataElements, requiredDataElements, optionalDat
 		});
 	}
 	
-	//change options to selected for DataElements, subElements and external Synonyms
+	//change options to selected for DataElements, subElements and external Reference
 	if(optionalDataElements.length==1){
 		$('select[name="optionalDataElements"]').find('option[value="'+optionalDataElements+'"]').attr("selected",true);
 	}else if(optionalDataElements.length>1){
@@ -1393,7 +1393,7 @@ function collectionForm(mandatoryDataElements, requiredDataElements, optionalDat
 		});
 	}
 	
-	//change options to selected for DataElements, subElements and external Synonyms
+	//change options to selected for DataElements, subElements and external Reference
 	if(referenceDataElements.length==1){
 		$('select[name="referenceDataElements"]').find('option[value="'+referenceDataElements+'"]').attr("selected",true);
 	}else if(mandatoryDataElements.length>1){
@@ -1404,7 +1404,7 @@ function collectionForm(mandatoryDataElements, requiredDataElements, optionalDat
 	
 
 	
-	//set up dual list box for DataElements, subElements and external Synonyms
+	//set up dual list box for DataElements, subElements and external Reference
 	
 		$('#mandatoryDataElements').bootstrapDualListbox({
 		    nonselectedlistlabel: 'Available Data Elements',
@@ -1413,7 +1413,7 @@ function collectionForm(mandatoryDataElements, requiredDataElements, optionalDat
 		    moveonselect: false
 		});
 		
-		//set up dual list box for DataElements, subElements and external Synonyms
+		//set up dual list box for DataElements, subElements and external Reference
 		
 		$('#requiredDataElements').bootstrapDualListbox({
 		    nonselectedlistlabel: 'Available Data Elements',
@@ -1422,7 +1422,7 @@ function collectionForm(mandatoryDataElements, requiredDataElements, optionalDat
 		    moveonselect: false
 		});
 		
-		//set up dual list box for DataElements, subElements and external Synonyms
+		//set up dual list box for DataElements, subElements and external Reference
 		
 		$('#optionalDataElements').bootstrapDualListbox({
 		    nonselectedlistlabel: 'Available Data Elements',
@@ -1431,7 +1431,7 @@ function collectionForm(mandatoryDataElements, requiredDataElements, optionalDat
 		    moveonselect: false
 		});
 		
-		//set up dual list box for DataElements, subElements and external Synonyms
+		//set up dual list box for DataElements, subElements and external Reference
 		
 		$('#referenceDataElements').bootstrapDualListbox({
 		    nonselectedlistlabel: 'Available Data Elements',

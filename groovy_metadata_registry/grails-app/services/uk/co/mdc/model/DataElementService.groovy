@@ -134,8 +134,8 @@ class DataElementService {
 	   // remove any subelements that have specified for removal
 	   unLinkSubElements(dataElementInstance, parameters?.subElements)
 	   
-	   //remove any external synonyms that have specified for removal
-	   unLinkExternalSynonyms(dataElementInstance, parameters?.externalSynonyms)
+	   //remove any external references that have specified for removal
+	   unLinkExternalReferences(dataElementInstance, parameters?.externalReferences)
 	   
 	   //add/remove synonyms that have specified for addition or removal
 	   linkSynonyms(dataElementInstance, parameters?.synonyms)
@@ -384,48 +384,48 @@ class DataElementService {
 	
 	
 	/* ************************* DATA ELEMENT LINKAGE FUNCTIONS************************
-	 * unlinks the external synonyms that have been removed from the data element during an update
+	 * unlinks the external references that have been removed from the data element during an update
 	 ********************************************************************************* */
 	
-	def unLinkExternalSynonyms(dataElementInstance, extSynonyms){
+	def unLinkExternalReferences(dataElementInstance, extReferences){
 		
-		//if there are no external synonyms i.e. ALL external synonyms need to be removed 
-		//from the data element after the edit (presuming there were external synonyms in the data element before the edit)
+		//if there are no external references i.e. ALL external references need to be removed 
+		//from the data element after the edit (presuming there were external references in the data element before the edit)
 		
-			if(extSynonyms==null && dataElementInstance?.externalSynonyms.size()>0){
+			if(extReferences==null && dataElementInstance?.externalReferences.size()>0){
 				
 				//pass all the objects external synonyms into a new array (otherwise we get all sorts or problems)
-				def externalSynonyms = []
-				externalSynonyms += dataElementInstance?.externalSynonyms
+				def externalReferences = []
+				externalReferences += dataElementInstance?.externalReferences
 				
-				//remove ALL the external synonyms
-				externalSynonyms.each{ externalSynonym->
-					dataElementInstance.removeFromExternalSynonyms(externalSynonym)
+				//remove ALL the external references
+				externalReferences.each{ externalReference->
+					dataElementInstance.removeFromExternalReferences(externalReference)
 				}
 				
 	
-			//if there are some external synonyms
-			}else if(extSynonyms){
+			//if there are some external references
+			}else if(extReferences){
 			
 				//but there are also sub elements to remove
-				if(extSynonyms.size() < dataElementInstance?.externalSynonyms.size()){
+				if(extReferences.size() < dataElementInstance?.externalReferences.size()){
 			
-					//pass all the objects external synonyms into a new array (otherwise we get all sorts or problems)	
-					def externalSynonyms = []
-					externalSynonyms += dataElementInstance?.externalSynonyms
+					//pass all the objects external references into a new array (otherwise we get all sorts or problems)	
+					def externalReferences = []
+					externalReferences += dataElementInstance?.externalReferences
 				
 					
-					//remove the external synonyms that need removing
+					//remove the external references that need removing
 					
-					externalSynonyms.each{ externalSynonym->
+					externalReferences.each{ externalReference->
 					
-					if(extSynonyms instanceof String){						
-							if(extSynonyms!=externalSynonym){						
-								dataElementInstance.removeFromExternalSynonyms(externalSynonym)							
+					if(extReferences instanceof String){						
+							if(extReferences!=externalReference){						
+								dataElementInstance.removeFromExternalReferences(externalReference)							
 							}						
 						}else{							
-							if(!extSynonyms.contains(externalSynonym)){								
-								dataElementInstance.removeFromExternalSynonyms(externalSynonym)								
+							if(!extReferences.contains(externalReference)){								
+								dataElementInstance.removeFromExternalReferences(externalReference)								
 							}						
 						}
 					}

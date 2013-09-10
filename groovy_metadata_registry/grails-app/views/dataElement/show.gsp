@@ -149,7 +149,7 @@
 						</td>
 					</tr>
 				</g:if>
-				<g:if test="${dataElementInstance?.externalSynonyms}">
+				<g:if test="${dataElementInstance?.externalReferences}">
 					<tr>
 						<td class="left_col_show"><span id="name-label" class="label">External Synonyms</span></td>
 						<td class="right_col_show">
@@ -161,11 +161,11 @@
 									<th>Attributes</th>
 								</tr>
 							</thead>
-							<g:each var="externalSynonym" in="${dataElementInstance.externalSynonyms}">
+							<g:each var="externalReference" in="${dataElementInstance.externalReferences}">
 								<tr>
-									<td><g:link action="show" controller="ExternalSynonym" id="${externalSynonym?.id}">${externalSynonym?.name} </g:link></td>
-									<td>${externalSynonym?.url}</td>
-									<td>${externalSynonym?.attributes} </td>
+									<td><g:link action="show" controller="ExternalReference" id="${externalReference?.id}">${externalReference?.name} </g:link></td>
+									<td>${externalReference?.url}</td>
+									<td>${externalReference?.attributes} </td>
 								</tr>
 							</g:each>
 						</table>

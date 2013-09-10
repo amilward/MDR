@@ -1,5 +1,5 @@
 import uk.co.mdc.*
-import uk.co.mdc.model.ExternalSynonym
+import uk.co.mdc.model.ExternalReference
 import uk.co.mdc.model.ValueDomain
 import uk.co.mdc.model.DataElement
 import uk.co.mdc.model.DataType
@@ -162,10 +162,10 @@ class BootStrap {
 		
 		//populate with test data
 		
-		if (!ExternalSynonym.count()) {
-			new ExternalSynonym(name:"test external synonym 1", url:"www.testSite1.com").save(failOnError: true)
-			new ExternalSynonym(name:"test external synonym 2", url:"www.testSite2.com").save(failOnError: true)
-			new ExternalSynonym(name:"test external synonym 3", url:"www.testSite3.com").save(failOnError: true)
+		if (!ExternalReference.count()) {
+			new ExternalReference(name:"test external reference 1", url:"www.testSite1.com").save(failOnError: true)
+			new ExternalReference(name:"test external reference 2", url:"www.testSite2.com").save(failOnError: true)
+			new ExternalReference(name:"test external reference 3", url:"www.testSite3.com").save(failOnError: true)
 			
 		}
 		

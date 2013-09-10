@@ -8,8 +8,7 @@
 		<title><g:message code="default.list.label" args="[entityName]" /></title>
 		<parameter name="name" value="External References" />
 	</head>
-	<body>
-		
+	<body>		
 		<div class="box">
             <div id="list-externalReference" class="content scaffold-list" role="main">
 			<g:if test="${flash.message}">

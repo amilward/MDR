@@ -97,9 +97,9 @@
 						</td>
 					</tr>
 				</g:if>
-				<g:if test="${valueDomainInstance?.externalSynonyms}">
+				<g:if test="${valueDomainInstance?.externalReferences}">
 					<tr>
-						<td class="left_col_show"><span id="name-label" class="label">External Synonyms</span></td>
+						<td class="left_col_show"><span id="name-label" class="label">External Reference</span></td>
 						<td class="right_col_show">
 							<table>
 							<thead>
@@ -109,11 +109,11 @@
 									<th>Attributes</th>
 								</tr>
 							</thead>
-							<g:each var="externalSynonym" in="${valueDomainInstance.externalSynonyms}">
+							<g:each var="externalReference" in="${valueDomainInstance.externalReferences}">
 								<tr>
-									<td><g:link action="show" controller="ExternalSynonym" id="${externalSynonym?.id}">${externalSynonym?.name} </g:link></td>
-									<td>${externalSynonym?.url}</td>
-									<td>${externalSynonym?.attributes} </td>
+									<td><g:link action="show" controller="ExternalReference" id="${externalReference?.id}">${externalReference?.name} </g:link></td>
+									<td>${externalReference?.url}</td>
+									<td>${externalReference?.attributes} </td>
 								</tr>
 							</g:each>
 						</table>
