@@ -19,7 +19,7 @@ class ValueDomainMarshaller extends CustomMarshaller{
 			'unitOfMeasure': valueDomain?.unitOfMeasure,
 			'dataElements': limitRender(valueDomain.dataElementValueDomains()),
 			'regexDef': valueDomain.regexDef,
-			'externalSynonyms': valueDomain?.externalSynonyms?.name,
+			'externalReferences': valueDomain?.externalReferences?.name,
 			]
 		}
 	}
