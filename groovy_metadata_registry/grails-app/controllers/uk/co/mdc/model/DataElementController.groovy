@@ -94,22 +94,6 @@ class DataElementController {
 		//NB. when the json is rendered it uses a custom json marshaller so that it includes the relevant
 		//information (and doesn't return the whole database)
 		//the corresponding json marshaller is stored in src/groovy/uk/co/mdc/model/xxxxxxMarshaller.groovy
-
-		//NB. when the json is rendered it uses a custom json marshaller so that it includes the relevant
-		//information (and doesn't return the whole database)
-		//the corresponding json marshaller is stored in src/groovy/uk/co/mdc/model/xxxxxxMarshaller.groovy
-
-		//NB. when the json is rendered it uses a custom json marshaller so that it includes the relevant
-		//information (and doesn't return the whole database)
-		//the corresponding json marshaller is stored in src/groovy/uk/co/mdc/model/xxxxxxMarshaller.groovy
-
-		//NB. when the json is rendered it uses a custom json marshaller so that it includes the relevant
-		//information (and doesn't return the whole database)
-		//the corresponding json marshaller is stored in src/groovy/uk/co/mdc/model/xxxxxxMarshaller.groovy
-
-		//NB. when the json is rendered it uses a custom json marshaller so that it includes the relevant
-		//information (and doesn't return the whole database)
-		//the corresponding json marshaller is stored in src/groovy/uk/co/mdc/model/xxxxxxMarshaller.groovy
 				
 		render model as JSON
 	}
@@ -338,7 +322,7 @@ class DataElementController {
 		flash.message = message
 		//redirect with message
 				
-		redirect(action: "show", id: id, model: [valueDomains: ValueDomain.list()])
+		redirect(action: "show", id: id)
 	}
 	
 	/* **********************************************************************************

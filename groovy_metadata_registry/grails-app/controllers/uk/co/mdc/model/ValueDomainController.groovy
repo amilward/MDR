@@ -50,6 +50,8 @@ class ValueDomainController {
 	
 	def dataTables(){
 		
+		// set the variables needed to pass back to the data tables plugin to render the value domains
+		
 		def data
 		def total
 		def displayTotal
@@ -57,7 +59,8 @@ class ValueDomainController {
 		def sortCol
 		def sortColName
 		
-
+		//if the user searches for a value domain return the search results using the value domain service
+		
 		if(params?.sSearch!='' && params?.sSearch!=null){
 			
 			List searchResults = valueDomainService.search(params.sSearch)
@@ -71,7 +74,8 @@ class ValueDomainController {
 				data=[]
 			}
 			
-			
+			//otherwise list the value domain using the data elements service and pass the relevant data
+			//back to the data tables plugin request as json
 			
 		}else{
 		
@@ -84,6 +88,9 @@ class ValueDomainController {
 			
 		}
 		
+		//NB. when the json is rendered it uses a custom json marshaller so that it includes the relevant
+		//information (and doesn't return the whole database)
+		//the corresponding json marshaller is stored in src/groovy/uk/co/mdc/model/xxxxxxMarshaller.groovy
 		
 		def model = [sEcho: params.sEcho, iTotalRecords: total, iTotalDisplayRecords: displayTotal, aaData: data]
 				
@@ -93,7 +100,7 @@ class ValueDomainController {
 	/* **************************************************************************************
 	 * *********************************** SHOW *****************************************************
 	
-	 * show the data element in question using the find instance function and the dataElement service
+	 * show the value domain in question using the find instance function and the dataElement service
 	 * ...presuming they have the appropriate permissions
 	 *************************************************************************************** */
 	
@@ -115,10 +122,10 @@ class ValueDomainController {
 	/* **************************************************************************************
 	 * ************************************* CREATE ***************************************************
 	 
-	 * renders the value domain template so the user can create a data elements
+	 * renders the value domain template so the user can create a value domains
 	 * N.B additionally will only display objects that user has permission to read i.e. if
-	 * you are going to link the value domain and data element you need read permission to see
-	 * the data element
+	 * you are going to link the value domain and value domain you need read permission to see
+	 * the value domain
 	 *************************************************************************************** */
 
     def create() {
@@ -269,7 +276,7 @@ class ValueDomainController {
 			}
 	
 	/* **********************************************************************************
-	 * this function uses the valueDomain service to get the data element so that
+	 * this function uses the valueDomain service to get the value domain so that
 	 * the appropriate security considerations are adhered to
 	 *********************************************************************************** */
 	
@@ -283,18 +290,18 @@ class ValueDomainController {
 	}
 	
 	/* **********************************************************************************
-	 * this function redirects to the show data element screen
+	 * this function redirects to the show value domain screen
 	 *********************************************************************************** */
 	
 	private void redirectShow(message, id) {
 		flash.message = message
 		//redirect with message
 				
-		redirect(action: "show", id: id, model: [valueDomains: ValueDomain.list()])
+		redirect(action: "show", id: id)
 	}
 	
 	/* **********************************************************************************
-	 * this function checks to see if the data element passed to it contains errors i.e. when a
+	 * this function checks to see if the value domain passed to it contains errors i.e. when a
 	 * service returns the element. It either returns false (if no errors) or it redirects
 	 * to the view specified by the caller
 	 *********************************************************************************** */

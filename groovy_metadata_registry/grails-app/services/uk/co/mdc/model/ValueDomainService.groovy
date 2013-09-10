@@ -11,8 +11,8 @@ import org.springframework.transaction.annotation.Transactional
 
 
 	/* *********************************************************************
-	 * This service allows the user to access the data element model
-	 * It will be called by the data element controller and is written with
+	 * This service allows the user to access the value domain model
+	 * It will be called by the value domain controller and is written with
 	 * security considerations in mind
 	 * *************************************************************** */
 
