@@ -28,7 +28,7 @@ class ValueDomain {
         content: spellCheck 'include'
     } 
 	
-	static hasMany = [dataElementValueDomains: DataElementValueDomain, externalSynonyms: ExternalSynonym]
+	static hasMany = [dataElementValueDomains: DataElementValueDomain, externalReferences: ExternalReference]
 	
 	static belongsTo = [conceptualDomain: ConceptualDomain]
 	

@@ -103,15 +103,15 @@
 						</td>
 					</tr>
 					<tr>
-						<td class="left_col_show"><span id="name-label" class="label">External Synonyms</span></td>
+						<td class="left_col_show"><span id="name-label" class="label">External References</span></td>
 						<td class="right_col_show">
 						<g:select
-								title="tooltip.dataElement.externalSynonyms"
-					            name="externalSynonyms"
-					            id="externalSynonyms"
+								title="tooltip.dataElement.externalReferences"
+					            name="externalReferences"
+					            id="externalReferences"
 					            noSelection="${['':'Select One...']}"
-					            from="${externalSynonyms}"
-					            value="${params.list('externalSynonyms')}"
+					            from="${externalReferences}"
+					            value="${params.list('externalReferences')}"
 					            optionKey="id"
 					            optionValue="name"
 					            multiple="true"
@@ -145,15 +145,15 @@
 		subElements =${dataElementInstance?.subElements*.id}
 	</g:else>
 
-	<g:if test="${!dataElementInstance?.externalSynonyms*.id}">
-		externalSynonyms = ' '
+	<g:if test="${!dataElementInstance?.externalReferences*.id}">
+		externalReferences = ' '
 	</g:if>
 	<g:else>
-		externalSynonyms = ${dataElementInstance?.externalSynonyms*.id}
+		externalReferences = ${dataElementInstance?.externalReferences*.id}
 	</g:else>
 
 	$(document).ready(function() {
-		dataElementForm(selectedValueDomains, synonyms, subElements, externalSynonyms);
+		dataElementForm(selectedValueDomains, synonyms, subElements, externalReferences);
     });
 				
 </r:script>
