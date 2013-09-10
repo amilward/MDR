@@ -1,17 +1,16 @@
 <html>
 
 <head>
-	<meta name='layout' content='springSecurityUI'/>
+	<meta name='layout' content='main'/>
 	<g:set var="entityName" value="${message(code: 'registrationCode.label', default: 'RegistrationCode')}" />
 	<title><g:message code="default.edit.label" args="[entityName]"/></title>
+	<parameter name="name" value=" EDIT REGISTRATION CODE - ${registrationCode?.username}" />
 </head>
 
 <body>
 
 <div class="body">
 
-	<s2ui:form width='100%' height='225' elementId='formContainer'
-	           titleCode='default.edit.label' titleCodeArgs='[entityName]'>
 
 	<g:form action='update' name='registrationCodeEditForm'>
 		<g:hiddenField name="id" value="${registrationCode?.id}"/>
@@ -53,7 +52,6 @@
 
 	</g:form>
 
-	</s2ui:form>
 
 	<g:if test='${registrationCode}'>
 	<s2ui:deleteButtonForm instanceId='${registrationCode.id}'/>

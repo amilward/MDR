@@ -1,89 +1,89 @@
 <html>
 
 <head>
-	<meta name='layout' content='springSecurityUI'/>
+	<meta name='layout' content='main'/>
 	<title>User Cache</title>
+	<parameter name="name" value=" USER CACHE " />
 </head>
 
 <body>
 
-<g:if test='${cache}'>
-<h4>UserCache: ${cache.getClass().name}</h4>
+<g:if test='${cacheUser}'>
 
 <table>
 	<tr>
 		<td>Size</td>
-		<td>${cache.size}</td>
+		<td>$ { cacheUser?.size}</td>
 	</tr>
 	<tr>
 		<td>Status</td>
-		<td>${cache.status}</td>
+		<td>${cacheUser?.status}</td>
 	</tr>
 	<tr>
 		<td>Name</td>
-		<td>${cache.name}</td>
+		<td>${cacheUser?.name}</td>
 	</tr>
 	<tr>
 		<td>GUID</td>
-		<td>${cache.guid}</td>
+		<td>${cacheUser?.guid}</td>
 	</tr>
 	<tr>
 		<td>Statistics</td>
 		<td>
 			<table>
 				<tr>
-					<td>Cache Hits</td>
-					<td>${cache.statistics.cacheHits}</td>
+					<td>cacheUser Hits</td>
+					<td>${cacheUser?.statistics?.cacheUserHits}</td>
 				</tr>
 				<tr>
 					<td>In-memory Hits</td>
-					<td>${cache.statistics.inMemoryHits}</td>
+					<td>${cacheUser?.statistics?.inMemoryHits}</td>
 				</tr>
 				<tr>
 					<td>On-disk Hits</td>
-					<td>${cache.statistics.onDiskHits}</td>
+					<td>${cacheUser?.statistics?.onDiskHits}</td>
 				</tr>
 				<tr>
-					<td>Cache Misses</td>
-					<td>${cache.statistics.cacheMisses}</td>
+					<td>cacheUser Misses</td>
+					<td>${cacheUser?.statistics?.cacheUserMisses}</td>
 				</tr>
 				<tr>
 					<td>Object Count</td>
-					<td>${cache.statistics.objectCount}</td>
+					<td>${cacheUser?.statistics?.objectCount}</td>
 				</tr>
 				<tr>
 					<td>Memory Store Object Count</td>
-					<td>${cache.statistics.memoryStoreObjectCount}</td>
+					<td>${cacheUser?.statistics?.memoryStoreObjectCount}</td>
 				</tr>
 				<tr>
 					<td>Disk Store Object Count</td>
-					<td>${cache.statistics.diskStoreObjectCount}</td>
+					<td>${cacheUser?.statistics?.diskStoreObjectCount}</td>
 				</tr>
 				<tr>
 					<td>Statistics Accuracy Description</td>
-					<td>${cache.statistics.statisticsAccuracyDescription}</td>
+					<td>${cacheUser?.statistics?.statisticsAccuracyDescription}</td>
 				</tr>
 				<tr>
 					<td>Average Get Time</td>
-					<td>${cache.statistics.averageGetTime}</td>
+					<td>${cacheUser?.statistics?.averageGetTime}</td>
 				</tr>
 				<tr>
 					<td>Eviction Count</td>
-					<td>${cache.statistics.evictionCount}</td>
+					<td>${cacheUser?.statistics?.evictionCount}</td>
 				</tr>
 			</table>
 		</td>
 	</tr>
 
-	<tr><th colspan='2'>${cache.size} user${cache.size == 1 ? '' : 's'}</th></tr>
+	<tr><th colspan='2'>${cacheUser?.size} user${cacheUser?.size == 1 ? '' : 's'}</th></tr>
 	<tr>
 		<th>Username</th>
 		<th>User</th>
 	</tr>
-	<g:each var='k' in='${cache.keys}'>
+	<g:each var='k' in='${cacheUser?.keys}'>
 	<tr>
 		<td>${k}</td>
-		<td>${cache.get(k)?.value}</td>
+		<td>${cacheUser.get(k)?.value}</td>
 	</tr>
 	</g:each>
 </table>
