@@ -167,7 +167,7 @@ class DataElementService {
    }
 	
 	
-	/* ************************* DELETE DATA ELEMENTS***********************************************
+	/* ************************* DELETE PERMISSIONS***********************************************
 	 * deletePermission requires that the authenticated user have admin permission on the report
 	 *  instance to delete a grant
 	 ******************************************************************************************** */

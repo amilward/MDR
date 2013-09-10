@@ -14,6 +14,7 @@ class DataElementController {
 	
 	def dataElementService
 	def valueDomainService
+	def MDRService
 	
 	/* **************************************************************************************
 	 * ************************************* INDEX *********************************************************
@@ -356,10 +357,14 @@ class DataElementController {
 	}
 	
 	
+	/* **********************************************************************************
+	 * this function validates the parameters submitted when creating or updating a data elements
+	 * in particular this validates the relationship between a data element and it's sub elements
+	 * and it's parent elements. i.e. a data element cannot have the same sub element and parent element
+	 * In addition it ensures that none of it's synonyms are subelements or parent elements as this 
+	 * would defeat the object of having a synonym
+	 *********************************************************************************** */
 	
-	
-	
-
 	
 	Boolean validateDataElement(){
 		
@@ -410,7 +415,7 @@ class DataElementController {
 		
 		if(params.synonyms!=null){
 			if(params?.subElements!=null){
-				if(parameterContains(params.synonyms, params?.subElements)){
+				if(MDRService.parameterContains(params.synonyms, params?.subElements)){
 					params.subElements = ''
 					flash.message = 'Error: Data Element Sub elements and Data Element Synonyms must be mutually exclusive'
 					return false
@@ -418,7 +423,7 @@ class DataElementController {
 			}
 			
 			if(params?.parent!=null){
-				if(parameterContains(params.synonyms, params?.parent)){
+				if(MDRService.parameterContains(params.synonyms, params?.parent)){
 					params.parent = ''
 					flash.message = 'Error: Data Element Parent Elements and Data Element Synonyms must be mutually exclusive'
 					return false
@@ -432,6 +437,8 @@ class DataElementController {
 	}
 
 	
+	/*check if the parent element is contained in any of data element's sub elements*/
+	
 	Boolean ChildParentValid(String parent, ArrayList children){
 		
 		if(children.contains(parent)){
@@ -441,6 +448,8 @@ class DataElementController {
 		return true
 	}
 	
+	
+	/* find all the subelements of a data element and return them*/
 	
 	List getChildren(){
 		
@@ -455,6 +464,8 @@ class DataElementController {
 		return children
 
 	}
+	
+	/*this function is used by the dataTables to map the column to the data*/
 	
 	String getSortField(Integer column){
 		
@@ -485,39 +496,6 @@ class DataElementController {
 		
 		return field
 		
-	}
-	
-	def parameterContains(params1, params2){
-			
-			if(params1 instanceof String[] && params2 instanceof String[]){
-				
-				params2.each{ params->
-					
-					if(params1.contains(params)){
-						return true
-					}
-					
-				}
-				
-			}else if(params1 instanceof String[] && params2 instanceof String){
-			
-				if(params1.contains(params2)){
-					return true
-				}
-			
-			}else if(params1 instanceof String && params2 instanceof String[]){
-			
-				if(params2.contains(params1)){
-					return true
-				}
-			
-			}else{
-				if(params1==params2){
-					return true
-				}
-			}
-			
-			return false		
 	}
 	
 	
