@@ -147,7 +147,7 @@ class DataElementController {
 	 *************************************************************************************** */
 	
 	def create = {
-		[valueDomains: valueDomainService.list(), dataElements: dataElementService.list(), externalSynonyms: ExternalSynonym.list(), dataElementInstance: new DataElement(params)]
+		[valueDomains: valueDomainService.list(), dataElements: dataElementService.list(), externalReferences: ExternalReference.list(), dataElementInstance: new DataElement(params)]
 	}
 	
 	//NOTE TO SELF - NEED TO UPDATE WHEN RELEVANT SERVICES ARE CREATED
@@ -206,7 +206,7 @@ class DataElementController {
 			return
 		}
 
-		[valueDomains: ValueDomain.list(), selectedValueDomains: dataElementInstance.dataElementValueDomains() , dataElements: dataElementService.list(), externalSynonyms: ExternalSynonym.list(), dataElementInstance: dataElementInstance]
+		[valueDomains: ValueDomain.list(), selectedValueDomains: dataElementInstance.dataElementValueDomains() , dataElements: dataElementService.list(), externalReferences: ExternalReference.list(), dataElementInstance: dataElementInstance]
 	}
 	
 	/* **************************************************************************************
