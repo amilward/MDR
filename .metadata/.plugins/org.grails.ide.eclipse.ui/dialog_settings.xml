@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
+	<item value="1" key="org.grails.ide.eclipse.ui.dialogsettings.sortColumn"/>
+	<item value="140" key="org.grails.ide.eclipse.ui.dialogsettings.columnWidth0"/>
+	<item value="280" key="org.grails.ide.eclipse.ui.dialogsettings.columnWidth1"/>
 	<list key="grails.import.location.hist">
+		<item value="C:\Users\david\groovy_metadata\groovy_metadata_registry"/>
 		<item value="C:\Users\Adam Milward\git\groovy_metadata\groovy_metadata_registry"/>
 	</list>
 	<section name="org.grails.ide.eclipse.ui.internal.inplace.GrailsInplaceDialog">

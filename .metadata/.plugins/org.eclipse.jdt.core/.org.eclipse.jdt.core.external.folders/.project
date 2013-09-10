@@ -15,6 +15,16 @@
 			<location>C:/Users/Adam Milward/Downloads/springsource/ggts-3.2.0.RELEASE/plugins/org.codehaus.groovy_2.0.7.xx-20130703-1700-e42-RELEASE/plugin_dsld_support</location>
 		</link>
 		<link>
+			<name>.link10</name>
+			<type>2</type>
+			<location>D:/Apache/grails-2.2.1/scripts</location>
+		</link>
+		<link>
+			<name>.link11</name>
+			<type>2</type>
+			<location>C:/Users/david/.grails/2.2.1/projects/groovy_metadata_registry/plugin-classes</location>
+		</link>
+		<link>
 			<name>.link2</name>
 			<type>2</type>
 			<location>C:/Users/Adam Milward/Downloads/springsource/ggts-3.2.0.RELEASE/plugins/org.grails.ide.eclipse.resources_3.3.0.201307040647-RELEASE/dsl-support</location>
@@ -33,6 +43,11 @@
 			<name>.link5</name>
 			<type>2</type>
 			<location>C:/Users/Adam Milward/.groovy/greclipse/global_dsld_support</location>
+		</link>
+		<link>
+			<name>.link9</name>
+			<type>2</type>
+			<location>C:/Spring/ggts-3.2.0.RELEASE/plugins/org.grails.ide.eclipse.resources_3.2.0.201303060657-RELEASE/dsl-support</location>
 		</link>
 	</linkedResources>
 </projectDescription>
