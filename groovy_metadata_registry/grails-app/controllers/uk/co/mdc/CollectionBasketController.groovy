@@ -11,8 +11,6 @@ class CollectionBasketController {
 
     static allowedMethods = [listJSON: "GET", addElement: "POST", removeElement: "POST"]
 	
-	
-	
 	/* This method is called from the dashboard template (main.js - collection basket scripts)
 	 *  ajax to render the data elements that have been included
 	 *  in the collection basket i.e. they have been added by dragging the data elements over the collection basket
@@ -80,8 +78,10 @@ class CollectionBasketController {
 	 * the data element is mandatory/required in the collection. Finally the user can then save the collection which created a collection object and clears all the 
 	 * data elements in the collection basket*/
 
-    def show(Long id) {
-        def collectionBasketInstance = CollectionBasket.get(id)
+    def show() {
+        def current_user = SecUser.get(springSecurityService.currentUser.id)
+		def collectionBasketInstance = current_user.collectionBasket
+		println(collectionBasketInstance)
         if (!collectionBasketInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'collectionBasket.label', default: 'CollectionBasket'), id])
             redirect(controller: "index")

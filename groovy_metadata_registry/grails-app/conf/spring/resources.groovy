@@ -2,6 +2,7 @@ import groovy_metadata_registry.APIAuthenticationFilters
 import util.marshalling.CustomObjectMarshallers
 import uk.co.mdc.model.DataElementMarshaller
 import uk.co.mdc.forms.FieldMarshaller
+import uk.co.mdc.forms.QuestionElementMarshaller
 import uk.co.mdc.model.ValueDomainMarshaller
 import uk.co.mdc.model.DataElementConceptMarshaller
 import uk.co.mdc.model.ConceptualDomainMarshaller
@@ -24,7 +25,8 @@ beans = {
 		new ValueDomainMarshaller(),
 		new DataElementConceptMarshaller(),
 		new CollectionMarshaller(),
-		new ConceptualDomainMarshaller()
+		new ConceptualDomainMarshaller(),
+		new QuestionElementMarshaller()
 		]
 	}
 }

@@ -19,7 +19,7 @@
 							    <li><g:link action="edit" id="${collectionInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link></li>
 							    <li><g:link action="create" id="${collectionInstance?.id}"><g:message code="default.button.create.label" default="Create" /></g:link></li>
 							    <li><a href="#" onclick="deleteItem('${collectionInstance?.name}')">Delete</a></li>
-							    <li><g:link action="create" controller="FormSpecification" params='["collectionId": "${collectionInstance?.id}"]'>Generate Form Spec</g:link></li>
+							    <li><g:link action="create" controller="FormDesign" params='["collectionId": "${collectionInstance?.id}","createFromCollection": "true"]'>Generate Form Design</g:link></li>
 							</ul>
 					    </div>
 			    	</div>
