@@ -1,5 +1,12 @@
 package uk.co.mdc.forms
 
+
+/* ******************************************************
+ * 
+ * THIS IS OLD CODE THAT WILL HAVE TO BE REMOVED
+ * 
+ * */
+
 class Field {
 	
 	String name
