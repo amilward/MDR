@@ -193,9 +193,9 @@ class FormDesignController {
 				def format = params?.questionFormats
 				def renderType = params?.questionRenderTypes
 						
-				if(!params?.questionOptions[counter].isEmpty()){	
+				if(!params?.questionOptions.isEmpty()){	
 							options = new HashMap()			
-							options.putAll(JSON.parse(params?.questionOptions[counter]))
+							options.putAll(JSON.parse(params?.questionOptions))
 				}else{
 							options = null
 						}

@@ -40,6 +40,7 @@ class DataElement {
 	static mapping = {
 		description type: 'text'
 		definition type: 'text'
+		subElements cascade: 'save-update'
 	}
 	
 	/******************************************************************************************************************/

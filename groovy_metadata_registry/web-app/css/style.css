@@ -1210,4 +1210,9 @@ body.fixed .pattern-switcher {
 	display:none;
 }
 
+#questionsTable{
+	width:100% !important;
+    max-width:100% !important;
+    overflow: auto;
+}
 

@@ -1144,8 +1144,44 @@ function externalReferenceList(){
 	
 	oTable.fnSetFilteringDelay(1000);
 	
+	
+	$('#externalReferenceTable tbody td img').live( 'click', function () {
+		var nTr = $(this).parents('tr')[0];
+		if ( oTable.fnIsOpen(nTr) )
+		{
+		/* This row is already open - close it */
+		this.src = "../images/details_open.png";
+		oTable.fnClose( nTr );
+		}
+		else
+		{
+		/* Open this row */
+		this.src = "../images/details_close.png";
+		oTable.fnOpen( nTr, formatExtSynonymDetails(nTr), 'details' );
+		}
+	} );
+
  }
 
+ 
+	/* Formating function for row details - this is for the description and definition columns.....
+	* potentially need to add more info from the data elements class
+	*  */
+	function formatExtSynonymDetails ( nTr )
+	{
+		var aData = oTable.fnGetData( nTr );
+		var attributes = aData.attributes;
+		
+		var sOut = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
+		
+		$.each(attributes, function( key, value ) {
+		sOut += '<tr><td>' + key + '</td><td>' + value + '</td></tr>';
+		});
+		
+		sOut += '</table>';
+		 
+		return sOut;
+	}
 
 /*--------------------------------------------------------
 END EXTERNAL REFERENCE LIST  SCRIPTS
@@ -1155,72 +1191,88 @@ END EXTERNAL REFERENCE LIST  SCRIPTS
 START EDIT DATAELEMENT  SCRIPTS
 ---------------------------------------------------------*/
 
-function dataElementForm(selectedValueDomains, synonyms, subElements, externalReferences){
-	
-	//change options to selected for valueDomains, subElements and external Reference
-	if(selectedValueDomains.length==1){
-		$('select[name="valueDomains"]').find('option[value="'+selectedValueDomains+'"]').attr("selected",true);
-	}else if(selectedValueDomains.length>1){
-		$.each(selectedValueDomains, function(index, item) {
-			$('select[name="valueDomains"]').find('option[value="'+item+'"]').attr("selected",true);
-		});
+function selectDataElementStuff(selectedValueDomains, synonyms, subElements, externalReferences){
+	// create a deferred object
+	  var r = $.Deferred();
+
+	  //change options to selected for valueDomains, subElements and external Reference
+		if(selectedValueDomains.length==1){
+			$('select[name="valueDomains"]').find('option[value="'+selectedValueDomains+'"]').attr("selected",true);
+		}else if(selectedValueDomains.length>1){
+			$.each(selectedValueDomains, function(index, item) {
+				$('select[name="valueDomains"]').find('option[value="'+item+'"]').attr("selected",true);
+			});
+		}
+		
+		if(synonyms.length==1){
+			$('select[name="synonyms"]').find('option[value="'+synonyms+'"]').attr("selected",true);
+		}else if(synonyms.length>1){
+			$.each(synonyms, function(index, item) {
+				$('select[name="synonyms"]').find('option[value="'+item+'"]').attr("selected",true);
+			});
+		}
+		
+		if(subElements.length==1){
+			$('select[name="subElements"]').find('option[value="'+subElements+'"]').attr("selected",true);
+		}else if(subElements.length>1){
+			$.each(subElements, function(index, item) {
+				$('select[name="subElements"]').find('option[value="'+item+'"]').attr("selected",true);
+			});
+		}
+		
+		if(externalReferences.length==1){
+			$('select[name="externalReferences"]').find('option[value="'+externalReferences+'"]').attr("selected",true);
+		}else if(externalReferences.length>1){
+			$.each(externalReferences, function(index, item) {
+				$('select[name="externalReferences"]').find('option[value="'+item+'"]').attr("selected",true);
+			});
+		}
+		r.resolve();
+		return r
+
 	}
-	
-	if(synonyms.length==1){
-		$('select[name="synonyms"]').find('option[value="'+synonyms+'"]').attr("selected",true);
-	}else if(synonyms.length>1){
-		$.each(synonyms, function(index, item) {
-			$('select[name="synonyms"]').find('option[value="'+item+'"]').attr("selected",true);
-		});
-	}
-	
-	if(subElements.length==1){
-		$('select[name="subElements"]').find('option[value="'+subElements+'"]').attr("selected",true);
-	}else if(subElements.length>1){
-		$.each(subElements, function(index, item) {
-			$('select[name="subElements"]').find('option[value="'+item+'"]').attr("selected",true);
-		});
-	}
-	
-	if(externalReferences.length==1){
-		$('select[name="externalReferences"]').find('option[value="'+externalReferences+'"]').attr("selected",true);
-	}else if(externalReferences.length>1){
-		$.each(externalReferences, function(index, item) {
-			$('select[name="externalReferences"]').find('option[value="'+item+'"]').attr("selected",true);
-		});
-	}
-	
-	
+
+function dataElementDualListBox(){
 	
 	//set up dual list box for valueDomains, synonyms, subElements and external Reference
 	
-		$('#valueDomains').bootstrapDualListbox({
-		    nonselectedlistlabel: 'Available Value Domains',
-		    selectedlistlabel: 'Associated Value Domains',
-		    preserveselectiononmove: 'moved',
-		    moveonselect: false
-		});
-		
-		$('#synonyms').bootstrapDualListbox({
-		    nonselectedlistlabel: 'Choose synonyms',
-		    selectedlistlabel: 'synonyms',
-		    preserveselectiononmove: 'moved',
-		    moveonselect: false
-		});
-		
-		$('#subElements').bootstrapDualListbox({
-		    nonselectedlistlabel: 'Choose SubElements',
-		    selectedlistlabel: 'SubElements',
-		    preserveselectiononmove: 'moved',
-		    moveonselect: false
-		});
-		
-		$('#externalReferences').bootstrapDualListbox({
-		    nonselectedlistlabel: 'Choose External Reference',
-		    selectedlistlabel: 'External Reference',
-		    preserveselectiononmove: 'moved',
-		    moveonselect: false
-		});
+	$('#valueDomains').bootstrapDualListbox({
+	    nonselectedlistlabel: 'Available Value Domains',
+	    selectedlistlabel: 'Associated Value Domains',
+	    preserveselectiononmove: 'moved',
+	    moveonselect: false
+	});
+	
+	$('#synonyms').bootstrapDualListbox({
+	    nonselectedlistlabel: 'Choose synonyms',
+	    selectedlistlabel: 'synonyms',
+	    preserveselectiononmove: 'moved',
+	    moveonselect: false
+	});
+	
+	$('#subElements').bootstrapDualListbox({
+	    nonselectedlistlabel: 'Choose SubElements',
+	    selectedlistlabel: 'SubElements',
+	    preserveselectiononmove: 'moved',
+	    moveonselect: false
+	});
+	
+	$('#externalReferences').bootstrapDualListbox({
+	    nonselectedlistlabel: 'Choose External Reference',
+	    selectedlistlabel: 'External Reference',
+	    preserveselectiononmove: 'moved',
+	    moveonselect: false
+	});
+	
+}
+
+
+function dataElementForm(selectedValueDomains, synonyms, subElements, externalReferences){
+	
+	//set up form selecting the data elements that have been included
+	//and when this is done set up the dual list boxes (otherwise it may miss some)
+	selectDataElementStuff(selectedValueDomains, synonyms, subElements, externalReferences).done(dataElementDualListBox())
+	
 }
 
 /*--------------------------------------------------------
@@ -1236,41 +1288,59 @@ END EDIT DATAELEMENT  SCRIPTS
 START EDIT VALUE DOMAIN SCRIPTS
 ---------------------------------------------------------*/
 
-function valueDomainForm(selectedDataElements, externalReferences){
-	
-	//change options to selected for valueDomains, subElements and external Reference
-	if(selectedDataElements.length==1){
-		$('select[name="dataElements"]').find('option[value="'+selectedDataElements+'"]').attr("selected",true);
-	}else if(selectedDataElements.length>1){
-		$.each(selectedDataElements, function(index, item) {
-			$('select[name="dataElements"]').find('option[value="'+item+'"]').attr("selected",true);
-		});
+function selectValueDomainStuff(selectedDataElements, externalReferences){
+	// create a deferred object
+	  var r = $.Deferred();
+
+
+		//change options to selected for valueDomains, subElements and external Reference
+		if(selectedDataElements.length==1){
+			$('select[name="dataElements"]').find('option[value="'+selectedDataElements+'"]').attr("selected",true);
+		}else if(selectedDataElements.length>1){
+			$.each(selectedDataElements, function(index, item) {
+				$('select[name="dataElements"]').find('option[value="'+item+'"]').attr("selected",true);
+			});
+		}
+		
+		if(externalReferences.length==1){
+			$('select[name="externalReferences"]').find('option[value="'+externalReferences+'"]').attr("selected",true);
+		}else if(externalReferences.length>1){
+			$.each(externalReferences, function(index, item) {
+				$('select[name="externalReferences"]').find('option[value="'+item+'"]').attr("selected",true);
+			});
+		}	  
+	  
+		r.resolve();
+		return r
+
 	}
-	
-	if(externalReferences.length==1){
-		$('select[name="externalReferences"]').find('option[value="'+externalReferences+'"]').attr("selected",true);
-	}else if(externalReferences.length>1){
-		$.each(externalReferences, function(index, item) {
-			$('select[name="externalReferences"]').find('option[value="'+item+'"]').attr("selected",true);
-		});
-	}
-	
+
+function valueDomainDualListBox(){
 	//set up dual list box for valueDomains, subElements and external Reference
 	
-		$('#dataElements').bootstrapDualListbox({
-		    nonselectedlistlabel: 'Available Data Elements',
-		    selectedlistlabel: 'Associated Data Elements',
-		    preserveselectiononmove: 'moved',
-		    moveonselect: false
-		});
-		
-		
-		$('#externalReferences').bootstrapDualListbox({
-		    nonselectedlistlabel: 'Choose External Reference',
-		    selectedlistlabel: 'External Reference',
-		    preserveselectiononmove: 'moved',
-		    moveonselect: false
-		});
+	$('#dataElements').bootstrapDualListbox({
+	    nonselectedlistlabel: 'Available Data Elements',
+	    selectedlistlabel: 'Associated Data Elements',
+	    preserveselectiononmove: 'moved',
+	    moveonselect: false
+	});
+	
+	
+	$('#externalReferences').bootstrapDualListbox({
+	    nonselectedlistlabel: 'Choose External Reference',
+	    selectedlistlabel: 'External Reference',
+	    preserveselectiononmove: 'moved',
+	    moveonselect: false
+	});
+}
+	
+
+
+function valueDomainForm(selectedDataElements, externalReferences){
+	
+	//set up form selecting the data elements that have been included
+	//and when this is done set up the dual list boxes (otherwise it may miss some)
+	selectValueDomainStuff(selectedDataElements, externalReferences).done(valueDomainDualListBox())
 }
 
 /*--------------------------------------------------------
@@ -1284,26 +1354,43 @@ END EDIT VALUE DOMAIN SCRIPTS
 START CONCEPTUALDOMAIN  SCRIPTS
 ---------------------------------------------------------*/
 
-function conceptualDomainForm(selectedValueDomains){
-	
+
+function selectConceptualDomainStuff(selectedValueDomains){
+	// create a deferred object
+	  var r = $.Deferred();
+
 	//change options to selected for valueDomains, subElements and external Reference
 	if(selectedValueDomains.length==1){
-		$('select[name="valueDomains"]').find('option[value="'+selectedValueDomains+'"]').attr("selected",true);
+			$('select[name="valueDomains"]').find('option[value="'+selectedValueDomains+'"]').attr("selected",true);
 	}else if(selectedValueDomains.length>1){
 		$.each(selectedValueDomains, function(index, item) {
-			$('select[name="valueDomains"]').find('option[value="'+item+'"]').attr("selected",true);
+				$('select[name="valueDomains"]').find('option[value="'+item+'"]').attr("selected",true);
 		});
 	}
+		
+	r.resolve();
+	return r
+
+}
+
+function conceptualDomainDualListBox(){
 	
 	//set up dual list box for valueDomains, subElements and external Reference
 	
-		$('#valueDomains').bootstrapDualListbox({
-		    nonselectedlistlabel: 'Available Value Domains',
-		    selectedlistlabel: 'Associated Value Domains',
-		    preserveselectiononmove: 'moved',
-		    moveonselect: false
-		});
-		
+	$('#valueDomains').bootstrapDualListbox({
+	    nonselectedlistlabel: 'Available Value Domains',
+	    selectedlistlabel: 'Associated Value Domains',
+	    preserveselectiononmove: 'moved',
+	    moveonselect: false
+	});
+}
+
+function conceptualDomainForm(selectedValueDomains){
+	
+	//set up form selecting the data elements that have been included 
+	//and when this is done set up the dual list boxes (otherwise it may miss some)
+	selectConceptualDomainStuff(selectedValueDomains).done(conceptualDomainDualListBox())
+
 }
 
 /*--------------------------------------------------------
@@ -1315,8 +1402,9 @@ END EDIT CONCEPTUALDOMAIN  SCRIPTS
 /*--------------------------------------------------------
 START dataElementConcept  SCRIPTS
 ---------------------------------------------------------*/
-
-function dataElementConceptForm(selectedDataElements, subConcepts){
+function selectConceptStuff(selectedDataElements, subConcepts){
+	// create a deferred object
+	  var r = $.Deferred();
 	
 	//change options to selected for DataElements, subElements and external Reference
 	if(selectedDataElements.length==1){
@@ -1336,8 +1424,15 @@ function dataElementConceptForm(selectedDataElements, subConcepts){
 		});
 	}
 	
-	//set up dual list box for DataElements, subElements and external Reference
+	r.resolve();
+	return r
 	
+}
+
+ function conceptDualListBox(){
+	 
+	//set up dual list box for DataElements, subElements and external Reference
+		
 		$('#dataElements').bootstrapDualListbox({
 		    nonselectedlistlabel: 'Available Data Elements',
 		    selectedlistlabel: 'Associated Data Elements',
@@ -1354,6 +1449,14 @@ function dataElementConceptForm(selectedDataElements, subConcepts){
 		    moveonselect: false
 		});
 		
+ }
+
+function dataElementConceptForm(selectedDataElements, subConcepts){
+	
+	//set up form selecting the data elements that have been included in the collection 
+	//and when this is done set up the dual list boxes (otherwise it may miss some)
+	selectConceptStuff(selectedDataElements, subConcepts).done(conceptDualListBox())
+
 }
 
 /*--------------------------------------------------------
@@ -1364,7 +1467,11 @@ END EDIT dataElementConcept  SCRIPTS
 START collection  SCRIPTS
 ---------------------------------------------------------*/
 
-function collectionForm(mandatoryDataElements, requiredDataElements, optionalDataElements, referenceDataElements){
+
+ function selectCollectionDataElements(mandatoryDataElements, requiredDataElements, optionalDataElements, referenceDataElements){
+	
+	// create a deferred object
+	  var r = $.Deferred();
 	
 	//change options to selected for DataElements, subElements and external Reference
 	if(mandatoryDataElements.length==1){
@@ -1392,56 +1499,68 @@ function collectionForm(mandatoryDataElements, requiredDataElements, optionalDat
 			$('select[name="optionalDataElements"]').find('option[value="'+item+'"]').attr("selected",true);
 		});
 	}
+
 	
 	//change options to selected for DataElements, subElements and external Reference
 	if(referenceDataElements.length==1){
 		$('select[name="referenceDataElements"]').find('option[value="'+referenceDataElements+'"]').attr("selected",true);
-	}else if(mandatoryDataElements.length>1){
+	}else if(referenceDataElements.length>1){
 		$.each(referenceDataElements, function(index, item) {
 			$('select[name="referenceDataElements"]').find('option[value="'+item+'"]').attr("selected",true);
 		});
 	}
 	
+	r.resolve();
+	return r
+	
+}
 
+ function collectionDualListBox(){
+	//set up dual list box for DataElements, subElements and external Reference
+	
+	
+	$('#mandatoryDataElements').bootstrapDualListbox({
+	    nonselectedlistlabel: 'Available Data Elements',
+	    selectedlistlabel: 'Mandatory Data Elements',
+	    preserveselectiononmove: 'moved',
+	    moveonselect: false
+	});
 	
 	//set up dual list box for DataElements, subElements and external Reference
 	
-		$('#mandatoryDataElements').bootstrapDualListbox({
-		    nonselectedlistlabel: 'Available Data Elements',
-		    selectedlistlabel: 'Mandatory Data Elements',
-		    preserveselectiononmove: 'moved',
-		    moveonselect: false
-		});
-		
-		//set up dual list box for DataElements, subElements and external Reference
-		
-		$('#requiredDataElements').bootstrapDualListbox({
-		    nonselectedlistlabel: 'Available Data Elements',
-		    selectedlistlabel: 'Required Data Elements',
-		    preserveselectiononmove: 'moved',
-		    moveonselect: false
-		});
-		
-		//set up dual list box for DataElements, subElements and external Reference
-		
-		$('#optionalDataElements').bootstrapDualListbox({
-		    nonselectedlistlabel: 'Available Data Elements',
-		    selectedlistlabel: 'Optional Data Elements',
-		    preserveselectiononmove: 'moved',
-		    moveonselect: false
-		});
-		
-		//set up dual list box for DataElements, subElements and external Reference
-		
-		$('#referenceDataElements').bootstrapDualListbox({
-		    nonselectedlistlabel: 'Available Data Elements',
-		    selectedlistlabel: 'Reference Data Elements',
-		    preserveselectiononmove: 'moved',
-		    moveonselect: false
-		});
-		
+	$('#requiredDataElements').bootstrapDualListbox({
+	    nonselectedlistlabel: 'Available Data Elements',
+	    selectedlistlabel: 'Required Data Elements',
+	    preserveselectiononmove: 'moved',
+	    moveonselect: false
+	});
+	
+	//set up dual list box for DataElements, subElements and external Reference
+	
+	$('#optionalDataElements').bootstrapDualListbox({
+	    nonselectedlistlabel: 'Available Data Elements',
+	    selectedlistlabel: 'Optional Data Elements',
+	    preserveselectiononmove: 'moved',
+	    moveonselect: false
+	});
+	
+	//set up dual list box for DataElements, subElements and external Reference
+	
+	$('#referenceDataElements').bootstrapDualListbox({
+	    nonselectedlistlabel: 'Available Data Elements',
+	    selectedlistlabel: 'Reference Data Elements',
+	    preserveselectiononmove: 'moved',
+	    moveonselect: false
+	});
+}
 
-		
+
+function collectionForm(mandatoryDataElements, requiredDataElements, optionalDataElements, referenceDataElements){
+	
+	//set up form selecting the data elements that have been included in the collection 
+	//and when this is done set up the dual list boxes (otherwise it may miss some)
+	selectCollectionDataElements(mandatoryDataElements, requiredDataElements, optionalDataElements, referenceDataElements).done(collectionDualListBox())
+
 }
 
 /*--------------------------------------------------------

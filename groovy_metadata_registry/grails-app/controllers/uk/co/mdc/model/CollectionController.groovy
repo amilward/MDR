@@ -11,22 +11,42 @@ class CollectionController {
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 	
 	def messageSource
+	def collectionService
+	def dataElementService
+	def MDRService
 
+	/* **************************************************************************************
+	 * ************************************* INDEX *********************************************************
+	 
+	 * default redirect to list page
+	 ********************************************************************************************* */
+	
     def index() {
         redirect(action: "list", params: params)
     }
+	
+	/* **************************************************************************************
+	 * ************************************* LIST ***************************************************
+	 
+	 *....only use this to render the list template as the datatables method is used instead
+	 * to list all the data collections
+	 *************************************************************************************** */
 
-    def list(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
-        [collectionInstanceList: Collection.list(params), collectionInstanceTotal: Collection.count()]
-    }
-
-    def create() {
-        [dataElements: DataElement.list(), collectionInstance: new Collection(params)]
+    def list() {
+        []
     }
 	
+	/* **************************************************************************************
+	 * ********************************* DATA TABLES *************************************************
+	
+	 * this function is called when listing the collections. It is called through ajax
+	 * using the the data tables plugin in the show.gsp view and the javascript that
+	 * calls the code is in main.js
+	 *********************************************************************************** */
 	
 	def dataTables(){
+		
+		// set the variables needed to pass back to the data tables plugin to render the collections
 		
 		def data
 		def total
@@ -35,20 +55,23 @@ class CollectionController {
 		def sortCol
 		def sortColName
 		
-
+		//if the user searches for a collection return the search results using the collection service
+		
 		if(params?.sSearch!='' && params?.sSearch!=null){
 			
-			def searchResults = Collection.search(params.sSearch, [max:params.iDisplayLength])
+			def searchResults = collectionService.search(params.sSearch)
 			
-			total = searchResults.total
-			displayTotal = searchResults.total
+			total = searchResults.size()
+			displayTotal = searchResults.size()
 			
 			if(total>0){
-				data = searchResults.results
+				data = searchResults
 			}else{
 				data=[]
 			}
 			
+			//otherwise list the collections using the collections service and pass the relevant data
+			//back to the data tables plugin request as json
 			
 			
 		}else{
@@ -56,116 +79,36 @@ class CollectionController {
 			order = params?.sSortDir_0
 			sortColName = getSortField(params?.iSortCol_0.toInteger())
 			
-			data = Collection.list(max: params.iDisplayLength, offset: params.iDisplayStart, sort: sortColName, order: order)
-			total = Collection.count()
-			displayTotal = Collection.count()
+			data = collectionService.list(max: params.iDisplayLength, offset: params.iDisplayStart, sort: sortColName, order: order)
+			total = collectionService.count()
+			displayTotal = collectionService.count()
 			
 		}
 		
-		
 		def model = [sEcho: params.sEcho, iTotalRecords: total, iTotalDisplayRecords: displayTotal, aaData: data]
+		
+		//NB. when the json is rendered it uses a custom json marshaller so that it includes the relevant
+		//information (and doesn't return the whole database)
+		//the corresponding json marshaller is stored in src/groovy/uk/co/mdc/model/xxxxxxMarshaller.groovy
 				
 		render model as JSON
 	}
 	
+	/* **************************************************************************************
+	 * *********************************** SHOW *****************************************************
 	
-	def saveBasketCollection(){
-
-		def collectionInstance = new Collection(refId: params.refId, name: params?.name, description: params?.description)
-		
-		if (!collectionInstance.save(flush: true)) {
-			
-			def errors = []
-			
-			if(collectionInstance.errors){
-				
-				def locale = Locale.getDefault()
-				
-				for (fieldErrors in collectionInstance.errors) {
-					for (error in fieldErrors.allErrors) {
-					   errors.add(messageSource.getMessage(error, locale))
-					}
-				 }
-			}
-			redirect(controller: "CollectionBasket", action:"show", id: params?.collection_basket_id, params: ['errors': errors, refId: params?.refId, name: params?.name, description: params?.description])
-			return
-		}
-		
-		
-		
-		params.dataElementIds.each{ de ->
-			
-			def dataElement = DataElement.get(de)
-			
-			def dataElementSchemaInfo = params["dataElement_" + de]
-			
-			def schemaSpecification = SchemaSpecification.MANDATORY
-			
-			if(dataElementSchemaInfo=='required'){
-			
-				schemaSpecification = SchemaSpecification.REQUIRED
-			
-			}else if(dataElementSchemaInfo=='optional'){
-			
-				schemaSpecification = SchemaSpecification.OPTIONAL
-			
-			}else if(dataElementSchemaInfo=='reference'){
-			
-				schemaSpecification = SchemaSpecification.X
-			
-			}
-			
-			DataElementCollection.link(dataElement, collectionInstance, schemaSpecification)
-			
-			def collectionBasket = CollectionBasket.get(params.collection_basket_id)
-			
-			collectionBasket.dataElements.clear();
-			collectionBasket.save(flush: true)
-			
-		}
-		
-		redirect(action: "show", id: collectionInstance.id)
-	}
-
-    def save() {
-		
-		//validate the parent child relationship
-		
-		Boolean valid = validateLinkedDataTypes()
-		
-		if(!valid){
-			render(view: "create", model: [dataElements: DataElement.list(), collectionInstance: new Collection(params)])
-			return
-		}
-		
-        def collectionInstance = new Collection(params)
-        if (!collectionInstance.save(flush: true)) {
-            render(view: "create", model: [dataElements: DataElement.list(), collectionInstance: collectionInstance])
-            return
-        }
-		
-		linkDataElements(collectionInstance)
-
-        flash.message = message(code: 'default.created.message', args: [message(code: 'collection.label', default: 'Collection'), collectionInstance.id])
-        redirect(action: "show", id: collectionInstance.id)
-    }
-
-    def show(Long id) {
-        def collectionInstance = Collection.get(id)
-        if (!collectionInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'collection.label', default: 'Collection'), id])
-            redirect(action: "list")
-            return
-        }
-
-        [collectionInstance: collectionInstance]
-    }
+	 * show the collection in question using the find instance function and the dataElement service
+	 * ...presuming they have the appropriate permissions
+	 *************************************************************************************** */
 	
-	/*
-	 * OLD FORM STUFF ------ JUST KEEPING IT FOR REFERENCE
-	 * 
-	 * def generateForm(Long id){
-		def collectionInstance = Collection.get(id)
+	def show(Long id) {
+		
+		//use the find instance method to get the collection in question
+		
+		def collectionInstance = findInstance()
+		
+		//if you can't find it or don't have permission go back to the list page otherwise show the collection
+		
 		if (!collectionInstance) {
 			flash.message = message(code: 'default.not.found.message', args: [message(code: 'collection.label', default: 'Collection'), id])
 			redirect(action: "list")
@@ -173,44 +116,128 @@ class CollectionController {
 		}
 
 		[collectionInstance: collectionInstance]
-		
 	}
 	
-	def saveForm(){
+
+	/* **************************************************************************************
+	 * ************************************* CREATE ***************************************************
+	 
+	 * renders the collection template so the user can create a collection
+	 * N.B additionally will only display objects that user has permission to read
+	 *************************************************************************************** */
+	
+    def create() {
+        [dataElements: dataElementService.list(), collectionInstance: new Collection(params)]
+    }
+	
+	/* **************************************************************************************
+	 * ************************************ SAVE BASKET COLLECTION **************************
+	 
+	 * calls the collection service to create a collection and from the data elements included in the users
+	 * collection basket. The service sets admin permissions
+	 * on that object for the user in question and creates the collection
+	 *************************************************************************************** */
+	
+	
+	
+	def saveBasketCollection(){
 		
-		def collectionInstance = Collection.get(params.collectionId)
 		
-		def dataMap = new HashMap() 
-				
-		params.each { name, value ->
+		//create the collection with the parameters passed from the collection basket
+		
+		def collectionInstance = collectionService.createFromBasket(params)
+		
+		//if there are any errors in the collection put them into a format
+		//that we can display and redirect
 			
-			if(name!='collectionId' && name!='create' && name!='action' && name!='controller'){
-				dataMap.put(name, value)
+		def errors = []
+		
+		if(collectionInstance.errors){
+				
+			def locale = Locale.getDefault()
+				
+			for (fieldErrors in collectionInstance.errors) {
+				for (error in fieldErrors.allErrors) {
+					   errors.add(messageSource.getMessage(error, locale))
 				}
 			}
-		
-		def form = new Form(collection: collectionInstance, data: dataMap)
-		
-		if (!form.save(flush: true)) {
-			flash.message = message(code: 'default.not.found.message', args: [message(code: 'collection.label', default: 'Collection'), id])
-			redirect(action: "generateForm")
+			if(errors.size()>0){
+				//redirect to the collection basket controller any errors displayed
+				redirect(controller: "CollectionBasket", action:"show", id: params?.collection_basket_id, params: ['errors': errors, refId: params?.refId, name: params?.name, description: params?.description])
+				return
+			}
 		}
+		
+		redirect(action: "show", id: collectionInstance.id)
+	}
+	
+	/* **************************************************************************************
+	 * ************************************ SAVE ****************************************************
+	 
+	 * calls the collection service to create a collection and  sets admin permissions
+	 * on that object for the user in question
+	 *************************************************************************************** */
 
-		redirect(controller: 'form', action: "list")
-	}*/
+    def save() {
+		
+		/* ***
+		 * validate the collection looking at it's schema specifications and ensuring they are mutually exclusive
+		 * i.e. a collection cannot have a data element that is both mandatory and optional
+		 * ****/
+		
+		Boolean valid = validateLinkedDataTypes()
+		
+		if(!valid){
+			render(view: "create", model: [dataElements: dataElementService.list(), collectionInstance: new Collection(params)])
+			return
+		}
+		
+		/* *****
+		 * create the data element using the data element service
+		 ******* */
+		
+		
+		def collectionInstance = collectionService.create(params)
+		
+		/* ******
+		 * check that the data element has been created without errors and render accordingly
+		 ***** */
+		
+		if (!renderWithErrors('create', collectionInstance)) {
+			redirectShow(message(code: 'default.created.message', args: [message(code: 'dataElement.label', default: 'DataElement'), collectionInstance.id]), collectionInstance.id)
+		}
+		
+    }
+	
+	/* **************************************************************************************
+	 * ************************************** EDIT ********************************************
+	
+	 * this function redirects to the edit collection screen
+	 *********************************************************************************** */
 
     def edit(Long id) {
-        def collectionInstance = Collection.get(id)
+        def collectionInstance = findInstance()
         if (!collectionInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'collection.label', default: 'Collection'), id])
             redirect(action: "list")
             return
         }
 
-        [dataElements: DataElement.list(), mandatoryDataElements: collectionInstance.mandatoryDataElementCollections(), requiredDataElements: collectionInstance.requiredDataElementCollections(), optionalDataElements: collectionInstance.optionalDataElementCollections(), referenceDataElements: collectionInstance.referenceDataElementCollections(), collectionInstance: collectionInstance]
+        [dataElements: dataElementService.list(), mandatoryDataElements: collectionInstance.mandatoryDataElementCollections(), requiredDataElements: collectionInstance.requiredDataElementCollections(), optionalDataElements: collectionInstance.optionalDataElementCollections(), referenceDataElements: collectionInstance.referenceDataElementCollections(), collectionInstance: collectionInstance]
     }
+	
+	/* **************************************************************************************
+	 * ************************************ UPDATE **********************************************
+	
+	 * this function updates the collection using the collection service
+	 *********************************************************************************** */
 
     def update(Long id, Long version) {
+		
+		/* ***
+		 * validate the collection looking at it's schema specifications and ensuring they are mutually exclusive
+		 * i.e. a collection cannot have a data element that is both mandatory and optional
+		 * ****/
 		
 		Boolean valid = validateLinkedDataTypes()
 		
@@ -219,12 +246,17 @@ class CollectionController {
 			return
 		}
 		
-        def collectionInstance = Collection.get(id)
+		//get the collection (redirect if you can't)
+		
+        def collectionInstance = findInstance()
         if (!collectionInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'collection.label', default: 'Collection'), id])
             redirect(action: "list")
             return
         }
+		
+		//check that we have the right version i.e. no one else has updated the collection whilst we have been
+		//looking at it
 
         if (version != null) {
             if (collectionInstance.version > version) {
@@ -235,33 +267,42 @@ class CollectionController {
                 return
             }
         }
-
-        collectionInstance.properties = params
-
-        if (!collectionInstance.save(flush: true)) {
-            render(view: "edit", model: [collectionInstance: collectionInstance])
-            return
-        }
 		
-		linkDataElements(collectionInstance)
+		
+		//update the collection using the collection service
+		
+		collectionService.update(collectionInstance, params)
+		
+		if (!renderWithErrors('edit', collectionInstance)) {
+			redirectShow message(code: 'default.updated.message', args: [message(code: 'dataElement.label', default: 'DataElement'), collectionInstance.id]), collectionInstance.id
+		}
+		
 
-        flash.message = message(code: 'default.updated.message', args: [message(code: 'collection.label', default: 'Collection'), collectionInstance.id])
-        redirect(action: "show", id: collectionInstance.id)
+        
     }
+	
+	/* **************************************************************************************
+	 * ********************************* DELETE *************************************************
+	
+	 * this function deletes the collection using the collection service
+	 *********************************************************************************** */
 
     def delete(Long id) {
-        def collectionInstance = Collection.get(id)
+		
+		//get the collection and redirect if it doesn't exist
+        def collectionInstance = findInstance()
         if (!collectionInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'collection.label', default: 'Collection'), id])
             redirect(action: "list")
             return
         }
+		
+		//call the collection service  to delete the collection
 
         try {
 			
-			collectionInstance.prepareForDelete()
+			collectionService.delete(collectionInstance)
 			
-            collectionInstance.delete(flush: true)
             flash.message = message(code: 'default.deleted.message', args: [message(code: 'collection.label', default: 'Collection'), id])
             redirect(action: "list")
         }
@@ -271,16 +312,91 @@ class CollectionController {
         }
     }
 	
+	/* **************************************************************************************
+	 * ********************************* DELETE *************************************************
 	
+	 * this function removes a data element from a collection
+	 *********************************************************************************** */
 	
 	def removeDataElement() {
-		Collection collection = Collection.get(params.collectionId)
-		DataElement dataElement = DataElement.get(params.dataElementId)
+		
+		Collection collection = collectionService.get(params.collectionId)
+		DataElement dataElement = dataElementService.get(params.dataElementId)
 		if(collection && dataElement){
-			collection.removeFromDataElementCollections(dataElement)
+			collectionService.removeDataElement(collection, dataElement)
 		}
 		redirect(action: 'edit', id: params.collectionId)
 	}
+	
+	
+	/* **************************************************************************************
+	 * ********************************* GRANT *************************************************
+	
+	 * this function grant permission to the given collection
+	 *********************************************************************************** */
+	
+	
+	def grant = {
+		
+				def collection = findInstance()
+				
+				if (!collection) return
+		
+				if (!request.post) {
+					return [collectionInstance: collection]
+				}
+		
+				collectionService.addPermission(collection, params.recipient, params.int('permission'))
+		
+				redirectShow "Permission $params.permission granted on Report $collection.id " + "to $params.recipient", collection.id
+			}
+	
+	/* **********************************************************************************
+	 * this function uses the collection service to get the collection so that
+	 * the appropriate security considerations are adhered to
+	 *********************************************************************************** */
+	
+	private Collection findInstance() {
+		def collection = collectionService.get(params.long('id'))
+		if (!collection) {
+			flash.message = "Collection not found with id $params.id"
+			redirect action: list
+		}
+		collection
+	}
+	
+	/* **********************************************************************************
+	 * this function redirects to the show collection screen
+	 *********************************************************************************** */
+	
+	private void redirectShow(message, id) {
+		flash.message = message
+		//redirect with message
+				
+		redirect(action: "show", id: id)
+	}
+	
+	/* **********************************************************************************
+	 * this function checks to see if the collection passed to it contains errors i.e. when a
+	 * service returns the element. It either returns false (if no errors) or it redirects
+	 * to the view specified by the caller
+	 *********************************************************************************** */
+
+	private boolean renderWithErrors(String view, Collection collection) {
+		if (collection.hasErrors()) {
+			render view: view, model: [dataElements: dataElementService.list(), collectionInstance: collection]
+			return true
+			
+		}
+		false
+	}
+	
+	
+	/* **********************************************************************************
+	 * this function validates the parameters submitted when creating or updating a collection
+	 * in particular this validates that the data element schemas are mutually exclusive
+	 * i.e. a data element cannot be both mandatory and optional within a given collection
+	 *********************************************************************************** */
 	
 	
 	def validateLinkedDataTypes(){
@@ -294,7 +410,7 @@ class CollectionController {
 		def referenceDataElements = params.referenceDataElements
 		
 		if(mandatoryDataElements && requiredDataElements){
-			if(parameterContains(mandatoryDataElements, requiredDataElements)){
+			if(MDRService.parameterContains(mandatoryDataElements, requiredDataElements)){
 				
 				flash.message = 'Added data elements must either be mandatory or required for any given collection, not both'
 				
@@ -304,7 +420,7 @@ class CollectionController {
 		
 	
 		if(mandatoryDataElements && optionalDataElements){
-			if(parameterContains(mandatoryDataElements, optionalDataElements)){
+			if(MDRService.parameterContains(mandatoryDataElements, optionalDataElements)){
 				flash.message = 'Added data elements must either be mandatory or optional for any given collection, not both.'
 				return false
 			}
@@ -312,28 +428,28 @@ class CollectionController {
 		
 
 		if(mandatoryDataElements && referenceDataElements){
-			if(parameterContains(mandatoryDataElements, referenceDataElements)){
+			if(MDRService.parameterContains(mandatoryDataElements, referenceDataElements)){
 				flash.message = 'Added data elements must either be mandatory or reference for any given collection, not both'
 				return false
 			}
 		}
 		
 		if(requiredDataElements && referenceDataElements){
-			if(parameterContains(requiredDataElements, referenceDataElements)){
+			if(MDRService.parameterContains(requiredDataElements, referenceDataElements)){
 				flash.message = 'Added data elements must either be mandatory or reference for any given collection, not both'
 				return false
 			}
 		}
 		
 		if(requiredDataElements && optionalDataElements){
-			if(parameterContains(requiredDataElements, optionalDataElements)){
+			if(MDRService.parameterContains(requiredDataElements, optionalDataElements)){
 				flash.message = 'Added data elements must either be required or optional for any given collection, not both'
 				return false
 			}
 		}
 		
 		if(optionalDataElements && referenceDataElements){
-			if(parameterContains(optionalDataElements, referenceDataElements)){
+			if(MDRService.parameterContains(optionalDataElements, referenceDataElements)){
 				flash.message = 'Added data elements must either be required or reference for any given collection, not both'
 				return false
 			}
@@ -344,149 +460,10 @@ class CollectionController {
 	
 	}
 	
-	def parameterContains(dataElements1, dataElements2){
-			
-			if(dataElements1 instanceof String[] && dataElements2 instanceof String[]){
-				
-				dataElements2.each{ dataElement->
-					
-					if(dataElements1.contains(dataElement)){
-						return true
-					}
-					
-				}
-				
-			}else if(dataElements1 instanceof String[] && dataElements2 instanceof String){
-			
-				if(dataElements1.contains(dataElements2)){
-					return true
-				}
-			
-			}else if(dataElements1 instanceof String && dataElements2 instanceof String[]){
-			
-				if(dataElements2.contains(dataElements1)){
-					return true
-				}
-			
-			}else{
-				if(dataElements1==dataElements2){
-					return true
-				}
-			}
-			
-			return false		
-	}
 	
-	def linkDataElements(collectionInstance){
-		
-		def currentMandatoryElements = collectionInstance.mandatoryDataElementCollections()
-		def mandatoryDataElements = params?.mandatoryDataElements
-		
-		extDataElementChecker(mandatoryDataElements, currentMandatoryElements, collectionInstance)
-		
-		def currentRequiredElements = collectionInstance.requiredDataElementCollections()
-		def requiredDataElements = params?.requiredDataElements
-		
-		extDataElementChecker(requiredDataElements, currentRequiredElements, collectionInstance)
-		
-		def currentOptionalElements = collectionInstance.optionalDataElementCollections()
-		def optionalDataElements = params?.optionalDataElements
-		
-		extDataElementChecker(optionalDataElements, currentOptionalElements, collectionInstance)
-			
-		def currentReferenceElements = collectionInstance.referenceDataElementCollections()
-		def referenceDataElements = params?.referenceDataElements
-		
-		extDataElementChecker(referenceDataElements, currentReferenceElements, collectionInstance)
-		
-		
-		if(mandatoryDataElements && mandatoryDataElements!=null){
-			
-				linkDataElementType(collectionInstance, mandatoryDataElements, SchemaSpecification.MANDATORY)
-			
-		}
-		
-		if(requiredDataElements && requiredDataElements!=null){
-			
-				linkDataElementType(collectionInstance, requiredDataElements, SchemaSpecification.REQUIRED)
-			
-		}
-		
-		if(optionalDataElements && optionalDataElements!=null){
-			
-				linkDataElementType(collectionInstance, optionalDataElements, SchemaSpecification.OPTIONAL)
-			
-		}
-		
-		if(referenceDataElements && referenceDataElements!=null){
-			
-				linkDataElementType(collectionInstance, referenceDataElements, SchemaSpecification.X)
-			
-		}
-		
-	}
+	/*this function is used by the dataTables function to map the column name to the data*/
 	
-	def extDataElementChecker(newDataElements, currentElements, collectionInstance){
-		
-		if(newDataElements!=null){
-			
-		if (newDataElements instanceof String) {
-			
-			//remove all the mandatory data elements that aren't this one
-			currentElements.each{ de ->
-				if(newDataElements!=de.id.toString()){
-					DataElementCollection.unlink(de, collectionInstance)
-				}
-			}
-			
-		}
-		
-		if (newDataElements instanceof String[]) {
-			
-			//remove all the mandatory data elements that aren't this one
-			currentElements.each{ de ->
-				if(!newDataElements.contains(de.id.toString())){
-						DataElementCollection.unlink(de, collectionInstance)
-				}
-			}
-		
-		}
-			
-		}else{
-		
-			//remove all the madatory data elements
-			currentElements.each{ de ->
-						DataElementCollection.unlink(de, collectionInstance)
-			}
-		}
-		
-	}
-	
-	def linkDataElementType(collectionInstance, dataElements, schemaSpecification){
-		
-		if(dataElements!=null){
-			
-			
-			if (dataElements instanceof String) {
-				DataElement dataElement =  DataElement.get(dataElements)
-				if(dataElement){
-					DataElementCollection.link(dataElement, collectionInstance, schemaSpecification)
-				}
-			} else if (dataElements instanceof String[]) {
-			
-			
-				  for (dataElementID in dataElements){
-					  DataElement dataElement =  DataElement.get(dataElementID)
-					  if(dataElement){
-						  DataElementCollection.link(dataElement, collectionInstance, schemaSpecification)
-					  }
-				  }
-			}
-			
-		}
-	}
-	
-	
+
 	String getSortField(Integer column){
 		
 		def field

@@ -1,9 +1,0 @@
-diff a/groovy_metadata_registry/grails-app/controllers/uk/co/mdc/model/DataElementController.groovy b/groovy_metadata_registry/grails-app/controllers/uk/co/mdc/model/DataElementController.groovy	(rejected hunks)
-@@ -14,6 +14,7 @@
- 	
- 	def dataElementService
- 	def valueDomainService
-+	def MDRService
- 	
- 	/* **************************************************************************************
- 	 * ************************************* INDEX *********************************************************

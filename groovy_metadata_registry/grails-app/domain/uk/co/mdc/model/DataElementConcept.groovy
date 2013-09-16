@@ -30,6 +30,8 @@ class DataElementConcept {
 	
 	static mapping = {
 		description type: 'text'
+		dataElements cascade: 'save-update'
+		subConcepts cascade: 'save-update'
 	}
 	
 	/******************************************************************************************************************/
