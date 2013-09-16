@@ -64,7 +64,9 @@ class DataElementConceptService {
 		
 		//save the dataElement
 		
-		dataElementConceptInstance.save(flush:true)
+		if(!dataElementConceptInstance.save(flush:true)){
+			return dataElementConceptInstance
+		}
 		
 		// Grant the current user principal administrative permission
 		
@@ -141,7 +143,7 @@ class DataElementConceptService {
 		
 	   dataElementConceptInstance.properties = parameters
 	   
-	   dataElementConceptInstance.save(flush: true, failOnError: true)   
+	   dataElementConceptInstance.save(flush: true)   
 	   
 	}
 	

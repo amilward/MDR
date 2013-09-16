@@ -58,7 +58,10 @@ class DataElementService {
 		//save the dataElement
 		
 		DataElement dataElementInstance = new DataElement(parameters) 
-		dataElementInstance.save(flush:true)
+		
+		if(!dataElementInstance.save(flush:true)){
+			return dataElementInstance
+		}
 		
 		//link any value domains that were selected with data element
 		
@@ -142,11 +145,10 @@ class DataElementService {
 
 	   dataElementInstance.properties = parameters
 	   
-	   dataElementInstance.save(flush: true)
-	   
-	   // add/remove value domains
-	   linkValueDomains(dataElementInstance, parameters?.valueDomains)
-	   
+	   if(dataElementInstance.save(flush: true)){
+		   // add/remove value domains
+		   linkValueDomains(dataElementInstance, parameters?.valueDomains)
+	   }
 	}
 	
 	

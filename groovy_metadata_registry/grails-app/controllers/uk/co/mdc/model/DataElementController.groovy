@@ -63,13 +63,13 @@ class DataElementController {
 
 		if(params?.sSearch!='' && params?.sSearch!=null){
 			
-			def searchResults = dataElementService.search(params.sSearch, [max:params.iDisplayLength])
+			def searchResults = dataElementService.search(params.sSearch)
 			
-			total = searchResults.total
-			displayTotal = searchResults.total
+			total = searchResults.size()	
+			displayTotal = searchResults.size()
 			
 			if(total>0){
-				data = searchResults.results
+				data = searchResults
 			}else{
 				data=[]
 			}
