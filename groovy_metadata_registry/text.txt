@@ -1,0 +1,17 @@
+"action":"index.html","method":"get","html":[
+{"id":2,
+"name":"PERSON FAMILY NAME (AT BIRTH)",
+"type":"TEXT",
+"caption":null,
+"placeholder":"PERSON FAMILY NAME (AT BIRTH)",
+"size":null,
+"options":{"D":"White and Black Caribbean","E":"White and Black African","F":"White and Asian","G":"Any other mixed background","A":"(White) British","B":"(White) Irish","C":"Any other White background","L":"Any other Asian background","M":"Caribbean","N":"African","H":"Indian","J":"Pakistani","K":"Bangladeshi","P":"Any other Black background","S":"Any other ethnic group","R":"Chinese","99":"Not Known","Z":"Not stated"},
+"field_class":null},
+{"id":1,
+"name":"ETHNIC CATEGORY",
+"type":"SELECT",
+"caption":null,
+"placeholder":"ETHNIC CATEGORY",
+"size":null,
+"options":{"D":"White and Black Caribbean","E":"White and Black African","F":"White and Asian","G":"Any other mixed background","A":"(White) British","B":"(White) Irish","C":"Any other White background","L":"Any other Asian background","M":"Caribbean","N":"African","H":"Indian","J":"Pakistani","K":"Bangladeshi","P":"Any other Black background","S":"Any other ethnic group","R":"Chinese","99":"Not Known","Z":"Not stated"},
+"field_class":null}]}
