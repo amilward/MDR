@@ -37,24 +37,29 @@ class BootStrap {
 		//register custom json Marshallers
 		registerJSONMarshallers(springContext)
 		
+		
 		//register spring filters (in this case the rest api security filter)
 		registerSpringFilters()
 		
-		//create user if none exists
-		createUsers()
+		if(!SecUser.findByUsername('user1') ){
+		//this if needs to be removed....only for development purposes
 		
-		//login as admin so you can create the prepopulated data
-		loginAsAdmin()
-		
-		//populate with some test data....there will be more
-		populateWithTestData()
-		
-		grantPermissions()
-		
-		sessionFactory.currentSession.flush()
-
-		// logout
-		SCH.clearContext()
+			//create user if none exists
+			createUsers()
+			
+			//login as admin so you can create the prepopulated data
+			loginAsAdmin()
+			
+			//populate with some test data....there will be more
+			populateWithTestData()
+			
+			grantPermissions()
+			
+			sessionFactory.currentSession.flush()
+	
+			// logout
+			SCH.clearContext()
+		}
 		}
 		
 	

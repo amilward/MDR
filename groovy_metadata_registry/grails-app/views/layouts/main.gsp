@@ -1,3 +1,6 @@
+<!-- --------------------------------------------------------------- -->
+<!-- ----- Build using the opensource METIS - twitter bootstrap dashboard----------- -->
+<!-- --------------------------------------------------------------- -->
 <%@ page import="org.codehaus.groovy.grails.plugins.PluginManagerHolder" %>
 <%@ page import="org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils" %>
 <%@ page import="grails.plugins.springsecurity.SecurityConfigType" %>
@@ -26,8 +29,7 @@
 		    var root = location.protocol + '//' + location.host + window.appContext;
 		</g:javascript>
 		
-		<g:javascript library="jquery" plugin="jquery" />
-		<r:require module="jquery-ui"/>
+		<g:javascript library="jquery_lib"/>
 
 		<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
         <!--[if lt IE 9]>
@@ -326,12 +328,12 @@
                         </ul>
                     </li>  
                     <li class="accordion-group ">
-                        <a data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#formSpecs-nav">
-                            <i class="icon-file-text-alt icon-large"></i> Form Specs 
+                        <a data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#formDesign-nav">
+                            <i class="icon-file-text-alt icon-large"></i> Form Design 
                         </a>
-                        <ul class="collapse " id="formSpecs-nav">
-                            <li><g:link action="list" controller="FormSpecification"><i class="icon-angle-right"></i> List </g:link></li>
-                            <li><g:link action="create" controller="FormSpecification"><i class="icon-angle-right"></i> Create </g:link></li>
+                        <ul class="collapse " id="formDesign-nav">
+                            <li><g:link action="list" controller="FormDesign"><i class="icon-angle-right"></i> List </g:link></li>
+                            <li><g:link action="create" controller="Form Design"><i class="icon-angle-right"></i> Create </g:link></li>
                         </ul>
                     </li>                                                      
                 </ul>

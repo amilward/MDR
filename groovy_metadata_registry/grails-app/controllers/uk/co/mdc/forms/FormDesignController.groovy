@@ -115,8 +115,7 @@ class FormDesignController {
 			label: params?.header.label,
 			title: params?.header.title,
 			style: params?.header.style,
-			preText: params?.header.preText,
-			designOrder: params?.header.designOrder.toInteger()
+			preText: params?.header.preText
 			)
 		
 		formDesignInstance.addToFormDesignElements(header)
@@ -173,7 +172,6 @@ class FormDesignController {
 								).save(flush:true, failOnError:true)
 								
 								
-						println(inputField.options)
 						questions.add(new QuestionElement(
 							label: questionLabel,
 							dataElement: dataElement, 
@@ -219,7 +217,7 @@ class FormDesignController {
 	}
 	
 	
-	def jsonFormDesign(Long id){
+	def jsonPreviewFormDesign(Long id){
 		
 		def formDesignInstance = FormDesign.get(id)
 		
@@ -230,6 +228,20 @@ class FormDesignController {
 		render model as JSON
 		
 	}
+	
+	
+	def jsonFormsBuilder(Long id){
+		
+		def formDesignInstance = FormDesign.get(id)
+		
+		def questions = formDesignInstance.getQuestions()
+		
+		def model = [questions: questions]
+		
+		render model as JSON
+		
+	}
+	
 	
 	def preview(Long id) {
 		
@@ -242,6 +254,20 @@ class FormDesignController {
 		
 
         [formDesignInstance: formDesignInstance]
+		
+	}
+	
+	
+	def formsBuilder(Long id) {
+		
+		def formDesignInstance = FormDesign.get(id)
+/*		if (!formDesignInstance) {
+			flash.message = message(code: 'default.not.found.message', args: [message(code: 'formDesign.label', default: 'FormDesign'), id])
+			redirect(action: "list")
+			return
+		}*/
+
+		[formDesignInstance: formDesignInstance]
 		
 	}
 

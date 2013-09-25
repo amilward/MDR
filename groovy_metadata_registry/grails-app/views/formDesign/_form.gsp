@@ -44,13 +44,6 @@
 									</tr>
 									<tr>
 										<td class="left_col_show"><span id="name-label" class="label">
-										<g:message code="formDesign.designOrder.label" default="Design Order" />
-										<td class="right_col_show">
-										<g:field type="number" name="header.designOrder" type="number" value="${formDesignInstance?.header?.designOrder}"/>
-										</td>
-									</tr>
-									<tr>
-										<td class="left_col_show"><span id="name-label" class="label">
 										<g:message code="formDesign.title.label" default="Title" /></span></td>
 										<td class="right_col_show">
 										<g:textField name="header.title" value="${formDesignInstance?.header?.title}"/>

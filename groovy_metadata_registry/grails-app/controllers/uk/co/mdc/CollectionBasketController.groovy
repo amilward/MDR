@@ -81,7 +81,6 @@ class CollectionBasketController {
     def show() {
         def current_user = SecUser.get(springSecurityService.currentUser.id)
 		def collectionBasketInstance = current_user.collectionBasket
-		println(collectionBasketInstance)
         if (!collectionBasketInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'collectionBasket.label', default: 'CollectionBasket'), id])
             redirect(controller: "index")
