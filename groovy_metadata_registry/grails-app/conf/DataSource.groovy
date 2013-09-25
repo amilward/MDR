@@ -1,12 +1,12 @@
 dataSource {
     pooled = true
-    driverClassName = "org.h2.Driver"
-	username = ""
-	password = ""
-	//driverClassName = "com.mysql.jdbc.Driver"
+    //driverClassName = "org.h2.Driver"
+	username = "root"
+	password = "root"
+	driverClassName = "com.mysql.jdbc.Driver"
 	//username = "mdradmin"
     //password = "mdradmin123"
-	//dialect = "org.hibernate.dialect.MySQL5InnoDBDialect"
+	dialect = "org.hibernate.dialect.MySQL5InnoDBDialect"
 }
 hibernate {
     cache.use_second_level_cache = true
@@ -16,11 +16,30 @@ hibernate {
 // environment specific settings
 environments {
     development {
-        dataSource {
+       /* dataSource {
             dbCreate = "create-drop" // one of 'create', 'create-drop', 'update', 'validate', ''
-            url = "jdbc:h2:mem:devDb;MVCC=TRUE;LOCK_TIMEOUT=10000"
-		//	url = "jdbc:mysql://localhost/mdr_v0_4?useUnicode=yes&characterEncoding=UTF-8" 
-        }
+        //    url = "jdbc:h2:mem:devDb;MVCC=TRUE;LOCK_TIMEOUT=10000"
+			url = "jdbc:mysql://localhost/mdr_v0_4?useUnicode=yes&characterEncoding=UTF-8" 
+        }*/
+		dataSource {
+			dbCreate = "update"
+			driverClassName = "com.mysql.jdbc.Driver"
+			username = "root"
+			password = "root"
+			dialect = "org.hibernate.dialect.MySQL5InnoDBDialect"
+			url = "jdbc:mysql://localhost:8889/mdr?useUnicode=yes&characterEncoding=UTF-8"
+			pooled = true
+			properties {
+			   maxActive = -1
+			   minEvictableIdleTimeMillis=1800000
+			   timeBetweenEvictionRunsMillis=1800000
+			   numTestsPerEvictionRun=3
+			   testOnBorrow=true
+			   testWhileIdle=true
+			   testOnReturn=true
+			   validationQuery="SELECT 1"
+			}
+		}
     }
     test {
         dataSource {

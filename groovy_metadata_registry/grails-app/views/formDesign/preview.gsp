@@ -23,8 +23,7 @@
 		</header>
 		<div class="box">
 			<form id="previewForm"></form>
-			<g:javascript src="jquery.dform-1.1.0.min.js" />
-			<g:javascript src="formDesign.js" />
+			<g:javascript disposition="defer" library="dForms"/>	
 		</div>
 	</body>
 </html>
