@@ -197,9 +197,11 @@ function startCollectionBasket() {
 	
 	$("#wrap").droppable({
         drop: function(event, ui) {
-            $(c.li).remove();
-            $(c.helper).remove();
-            removeFromCollectionBasket(c.id)
+        	if(c.id){
+	            $(c.li).remove();
+	            $(c.helper).remove();
+	            removeFromCollectionBasket(c.id)
+        	}
         }
 	});	
 	
@@ -381,6 +383,23 @@ function dataElementList(){
 			{ "mDataProp": "id", "bVisible":    false }
 		],
 		"fnDrawCallback": function () {
+			
+			$('#dataElementTable tbody td img').on( 'click', function () {
+				var nTr = $(this).parents('tr')[0];
+				if ( oTable.fnIsOpen(nTr) )
+				{
+				/* This row is already open - close it */
+				this.src = "../images/details_open.png";
+				oTable.fnClose( nTr );
+				}
+				else
+				{
+				/* Open this row */
+				this.src = "../images/details_close.png";
+				oTable.fnOpen( nTr, formatDataElementDetails(nTr), 'details' );
+				}
+			} );
+
 			$("#dataElementTable tr").draggable({
 		        helper: "clone",
 		        start: function(event, ui) {
@@ -400,21 +419,7 @@ function dataElementList(){
 	//bind the click handler to the + image within the datatable to show information that is too long for data columns i.e. description/definition
 	
 	
-	$('#dataElementTable tbody td img').live( 'click', function () {
-		var nTr = $(this).parents('tr')[0];
-		if ( oTable.fnIsOpen(nTr) )
-		{
-		/* This row is already open - close it */
-		this.src = "../images/details_open.png";
-		oTable.fnClose( nTr );
-		}
-		else
-		{
-		/* Open this row */
-		this.src = "../images/details_close.png";
-		oTable.fnOpen( nTr, formatDataElementDetails(nTr), 'details' );
-		}
-	} );
+	
 
 }
 
@@ -508,32 +513,32 @@ function valueDomainList(){
 		   "sWidth":"25%",
 		   "sTitle":"Conceptual Domain"
 			}
-		]
+		],
+		"fnDrawCallback": function () {
+			//bind the click handler to the + image within the datatable to show information that is too long for data columns i.e. description/definition
+			
+			
+			$('#documentTable tbody td img').on( 'click', function () {
+				var nTr = $(this).parents('tr')[0];
+				if ( oTable.fnIsOpen(nTr) )
+				{
+				/* This row is already open - close it */
+				this.src = "../images/details_open.png";
+				oTable.fnClose( nTr );
+				}
+				else
+				{
+				/* Open this row */
+				this.src = "../images/details_close.png";
+				oTable.fnOpen( nTr, formatValueDomainDetails(nTr), 'details' );
+				}
+			} );
+		}
 	} );	
 	
 
 	oTable.fnSetFilteringDelay(1000);
-	
-	//bind the click handler to the + image within the datatable to show information that is too long for data columns i.e. description/definition
-	
-	
-	$('#documentTable tbody td img').live( 'click', function () {
-		var nTr = $(this).parents('tr')[0];
-		if ( oTable.fnIsOpen(nTr) )
-		{
-		/* This row is already open - close it */
-		this.src = "../images/details_open.png";
-		oTable.fnClose( nTr );
-		}
-		else
-		{
-		/* Open this row */
-		this.src = "../images/details_close.png";
-		oTable.fnOpen( nTr, formatValueDomainDetails(nTr), 'details' );
-		}
-	} );
 
-	
 }
 
 
@@ -612,30 +617,31 @@ function dataElementConceptList(){
 		    	"sWidth":"40%",
 		    	"sTitle":"parent"
 			}
-		]
+		],
+		"fnDrawCallback": function () {
+
+			//bind the click handler to the + image within the datatable to show information that is too long for data columns i.e. description/definition
+
+			$('#dataElementConceptTable tbody td img').on( 'click', function () {
+				var nTr = $(this).parents('tr')[0];
+				if ( oTable.fnIsOpen(nTr) )
+				{
+				/* This row is already open - close it */
+				this.src = "../images/details_open.png";
+				oTable.fnClose( nTr );
+				}
+				else
+				{
+				/* Open this row */
+				this.src = "../images/details_close.png";
+				oTable.fnOpen( nTr, formatConceptDetails(nTr), 'details' );
+				}
+			} );
+		}
 	} );	
-	
 
 	oTable.fnSetFilteringDelay(1000);
-	
-	//bind the click handler to the + image within the datatable to show information that is too long for data columns i.e. description/definition
-	
-	
-	$('#dataElementConceptTable tbody td img').live( 'click', function () {
-		var nTr = $(this).parents('tr')[0];
-		if ( oTable.fnIsOpen(nTr) )
-		{
-		/* This row is already open - close it */
-		this.src = "../images/details_open.png";
-		oTable.fnClose( nTr );
-		}
-		else
-		{
-		/* Open this row */
-		this.src = "../images/details_close.png";
-		oTable.fnOpen( nTr, formatConceptDetails(nTr), 'details' );
-		}
-	} );
+
 }
 
 
@@ -704,31 +710,32 @@ function conceptualDomainList(){
 		   "sWidth":"60%",
 		   "sTitle":"Description"
 			}
-		]
+		],
+		"fnDrawCallback": function () {
+			//bind the click handler to the + image within the datatable to show information that is too long for data columns i.e. description/definition
+			
+			
+			$('#conceptualDomainTable tbody td img').on( 'click', function () {
+				var nTr = $(this).parents('tr')[0];
+				if ( oTable.fnIsOpen(nTr) )
+				{
+				/* This row is already open - close it */
+				this.src = "../images/details_open.png";
+				oTable.fnClose( nTr );
+				}
+				else
+				{
+				/* Open this row */
+				this.src = "../images/details_close.png";
+				oTable.fnOpen( nTr, formatConceptualDomainDetails(nTr), 'details' );
+				}
+			} );
+			
+		}
 	} );	
 	
-
 	oTable.fnSetFilteringDelay(1000);
 	
-	//bind the click handler to the + image within the datatable to show information that is too long for data columns i.e. description/definition
-	
-	
-	$('#conceptualDomainTable tbody td img').live( 'click', function () {
-		var nTr = $(this).parents('tr')[0];
-		if ( oTable.fnIsOpen(nTr) )
-		{
-		/* This row is already open - close it */
-		this.src = "../images/details_open.png";
-		oTable.fnClose( nTr );
-		}
-		else
-		{
-		/* Open this row */
-		this.src = "../images/details_close.png";
-		oTable.fnOpen( nTr, formatConceptualDomainDetails(nTr), 'details' );
-		}
-	} );
-
 }
 
 function formatConceptualDomainDetails ( nTr )
@@ -816,28 +823,30 @@ function dataTypeList(){
 				    "sWidth":"100%",
 				    "sTitle":"Data Type"
 				}
-		]
+		],
+		"fnDrawCallback": function () {
+
+
+			$('#dataTypeTable tbody td img').on( 'click', function () {
+				var nTr = $(this).parents('tr')[0];
+				if ( oTable.fnIsOpen(nTr) )
+				{
+				/* This row is already open - close it */
+				this.src = "../images/details_open.png";
+				oTable.fnClose( nTr );
+				}
+				else
+				{
+				/* Open this row */
+				this.src = "../images/details_close.png";
+				oTable.fnOpen( nTr, formatDataTypeDetails(nTr), 'details' );
+				}
+				} );
+			
+		}
 	} );	
 	
-	
 	oTable.fnSetFilteringDelay(1000);
-
-
-	$('#dataTypeTable tbody td img').live( 'click', function () {
-		var nTr = $(this).parents('tr')[0];
-		if ( oTable.fnIsOpen(nTr) )
-		{
-		/* This row is already open - close it */
-		this.src = "../images/details_open.png";
-		oTable.fnClose( nTr );
-		}
-		else
-		{
-		/* Open this row */
-		this.src = "../images/details_close.png";
-		oTable.fnOpen( nTr, formatDataTypeDetails(nTr), 'details' );
-		}
-		} );
 	
 }
 
@@ -903,31 +912,32 @@ function collectionList(){
 			    "sWidth":"70%",
 			    "sTitle":"Description"
 			}
-		]
+		],
+		"fnDrawCallback": function () {
+			//bind the click handler to the + image within the datatable to show information that is too long for data columns i.e. description/definition
+			
+			
+			$('#collectionTable tbody td img').on( 'click', function () {
+				var nTr = $(this).parents('tr')[0];
+				if ( oTable.fnIsOpen(nTr) )
+				{
+				/* This row is already open - close it */
+				this.src = "../images/details_open.png";
+				oTable.fnClose( nTr );
+				}
+				else
+				{
+				/* Open this row */
+				this.src = "../images/details_close.png";
+				oTable.fnOpen( nTr, formatCollectionDetails(nTr), 'details' );
+				}
+			} );
+			
+		}
 	} );	
 	
 
 	oTable.fnSetFilteringDelay(1000);
-	
-	//bind the click handler to the + image within the datatable to show information that is too long for data columns i.e. description/definition
-	
-	
-	$('#collectionTable tbody td img').live( 'click', function () {
-		var nTr = $(this).parents('tr')[0];
-		if ( oTable.fnIsOpen(nTr) )
-		{
-		/* This row is already open - close it */
-		this.src = "../images/details_open.png";
-		oTable.fnClose( nTr );
-		}
-		else
-		{
-		/* Open this row */
-		this.src = "../images/details_close.png";
-		oTable.fnOpen( nTr, formatCollectionDetails(nTr), 'details' );
-		}
-	} );
-
 	
 }
 
@@ -1049,30 +1059,34 @@ function externalReferenceList(){
 			    "sWidth":"50%",
 			    "sTitle":"Url"
 			}
-		]
+		],
+		"fnDrawCallback": function () {
+			
+			//bind the click handler to the + image within the datatable to show information that is too long for data columns i.e. description/definition
+
+
+			$('#externalReferenceTable tbody td img').on( 'click', function () {
+				var nTr = $(this).parents('tr')[0];
+				if ( oTable.fnIsOpen(nTr) )
+				{
+				/* This row is already open - close it */
+				this.src = "../images/details_open.png";
+				oTable.fnClose( nTr );
+				}
+				else
+				{
+				/* Open this row */
+				this.src = "../images/details_close.png";
+				oTable.fnOpen( nTr, formatExtSynonymDetails(nTr), 'details' );
+				}
+			} );
+		}
 	} );	
 	
 
 	oTable.fnSetFilteringDelay(1000);
 
-//bind the click handler to the + image within the datatable to show information that is too long for data columns i.e. description/definition
 
-
-$('#externalReferenceTable tbody td img').live( 'click', function () {
-	var nTr = $(this).parents('tr')[0];
-	if ( oTable.fnIsOpen(nTr) )
-	{
-	/* This row is already open - close it */
-	this.src = "../images/details_open.png";
-	oTable.fnClose( nTr );
-	}
-	else
-	{
-	/* Open this row */
-	this.src = "../images/details_close.png";
-	oTable.fnOpen( nTr, formatExtSynonymDetails(nTr), 'details' );
-	}
-} );
 
 }
 
@@ -1139,28 +1153,28 @@ function externalReferenceList(){
 			    "sWidth":"50%",
 			    "sTitle":"Url"
 			}
-		]
+		], 
+		"fnInitComplete": function() {
+		      $('#externalReferenceTable tbody td img').on('click', function () {
+		  		var nTr = $(this).parents('tr')[0];
+		  		if ( oTable.fnIsOpen(nTr) )
+		  		{
+		  		/* This row is already open - close it */
+		  		this.src = "../images/details_open.png";
+		  		oTable.fnClose( nTr );
+		  		}
+		  		else
+		  		{
+		  		/* Open this row */
+		  		this.src = "../images/details_close.png";
+		  		oTable.fnOpen( nTr, formatExtSynonymDetails(nTr), 'details' );
+		  		}
+		  	} );
+		}
 	} );	
 	
 	oTable.fnSetFilteringDelay(1000);
 	
-	
-	$('#externalReferenceTable tbody td img').live( 'click', function () {
-		var nTr = $(this).parents('tr')[0];
-		if ( oTable.fnIsOpen(nTr) )
-		{
-		/* This row is already open - close it */
-		this.src = "../images/details_open.png";
-		oTable.fnClose( nTr );
-		}
-		else
-		{
-		/* Open this row */
-		this.src = "../images/details_close.png";
-		oTable.fnOpen( nTr, formatExtSynonymDetails(nTr), 'details' );
-		}
-	} );
-
  }
 
  
