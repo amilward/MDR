@@ -19,6 +19,7 @@
 							    <li><g:link action="edit" id="${dataElementInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link></li>
 							    <li><g:link action="create" id="${dataElementInstance?.id}"><g:message code="default.button.create.label" default="Create" /></g:link></li>
 							    <li><a href="#" onclick="deleteItem('${dataElementInstance?.name}')">Delete</a></li>
+							    <li><g:link action="list" ><g:message code="default.button.list.label" default="List" /></g:link></li>
 							</ul>
 					    </div>
 			    	</div>

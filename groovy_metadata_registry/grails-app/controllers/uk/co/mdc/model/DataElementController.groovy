@@ -80,8 +80,8 @@ class DataElementController {
 		}else{
 		
 			order = params?.sSortDir_0
-			sortCol = getSortField(params?.iSortCol_0.toInteger())
-			
+			sortCol = params?.iSortCol_0
+			sortCol = getSortField(sortCol)
 			data = dataElementService.list(max: params.iDisplayLength, offset: params.iDisplayStart, sort: sortCol, order: order)
 			total = dataElementService.count()
 			displayTotal = dataElementService.count()
@@ -451,25 +451,25 @@ class DataElementController {
 	
 	/*this function is used by the dataTables to map the column to the data*/
 	
-	String getSortField(Integer column){
+	String getSortField(String column){
 		
 		def field
 		
 		switch(column){
 			
-			case 0:
+			case '0':
 				field = "refId"
 			break
 			
-			case 1:
+			case '1':
 				field = "name"
 			break
 			
-			case 2:
+			case '2':
 				field = "parent"
 			break
 			
-			case 3:
+			case '3':
 				field = "dataElementConcept"
 			break
 			
