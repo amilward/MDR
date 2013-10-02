@@ -36,8 +36,12 @@
 /web-app/plugins
 /web-app/WEB-INF/classes
 
+/.link_to_grails_plugins
+
+
 # "temporary" build files
 /target
+/target-eclipse
 
 # other
 *.iws
