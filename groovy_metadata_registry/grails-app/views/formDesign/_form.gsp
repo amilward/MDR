@@ -19,9 +19,13 @@
 						<td class="left_col_show"><span id="name-label" class="label"><g:message code="formDesign.name.label" default="Name" /></span></td>
 						<td class="right_col_show"><g:textField name="name" title="tooltip.dataType.name" value="${formDesignInstance?.name}"/></td>
 					</tr>										
-					<tr class="${hasErrors(bean: dataTypeInstance, field: 'enumerated', 'error')} ">
+					<tr class="${hasErrors(bean: dataTypeInstance, field: 'description', 'error')} ">
 						<td class="left_col_show"><span id="enumerated-label" class="label"><g:message code="formDesign.description.label" default="Description" /></span></td>
 						<td class="right_col_show"><g:textField name="description" value="${formDesignInstance?.description}"/></td>
+					</tr>
+					<tr class="${hasErrors(bean: dataTypeInstance, field: 'version', 'error')} ">
+						<td class="left_col_show"><span id="version-label" class="label"><g:message code="formDesign.version.label" default="Version" /></span></td>
+						<td class="right_col_show"><g:textField name="version" value="${formDesignInstance?.version}"/></td>
 					</tr>
 					<tr id="header">
 						<td class="left_col_show"><span id="name-label" class="label"><g:message code="formDesign.header.label" default="Header" /></span></td>

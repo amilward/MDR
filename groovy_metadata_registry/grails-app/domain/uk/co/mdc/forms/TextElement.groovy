@@ -1,6 +1,6 @@
 package uk.co.mdc.forms
 
-class TextElement {
+class TextElement extends PresentationElement{
 	
 	String text
 

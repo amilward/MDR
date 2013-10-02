@@ -51,9 +51,9 @@ class BootStrap {
 			loginAsAdmin()
 			
 			//populate with some test data....there will be more
-		//	populateWithTestData()
+			populateWithTestData()
 			
-		//	grantPermissions()
+			grantPermissions()
 			
 			sessionFactory.currentSession.flush()
 	

@@ -6,10 +6,12 @@ class FormDesign {
 	
 	String refId
 	String name 
+	String version
+	Boolean isDraft
 	//n.b. description is just for storage purposes not displayed when the form is rendered
 	String description
 	FormDesignElement header
-	SectionElement footer
+	FormDesignElement footer
 	//collection - link to the metadata registry model
 	Collection collection
 	

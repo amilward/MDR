@@ -5,9 +5,13 @@ import uk.co.mdc.model.ValueDomain
 
 class QuestionElement extends FormDesignElement {
 
+	//N.B. Potentially build in mapping class QuestionElement_DataElement rather than storing here
 	DataElement dataElement
 	ValueDomain valueDomain
 
+	String questionNumber
+	String prompt 
+	String additionalInstructions
 	InputField inputField
 	
     static constraints = {

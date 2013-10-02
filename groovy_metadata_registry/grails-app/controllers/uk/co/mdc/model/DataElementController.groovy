@@ -370,8 +370,9 @@ class DataElementController {
 		}
 		
 		//check if parent elements contain the given element
+		//asd
 		
-		if(!params?.parent?.id.isEmpty() &&  params?.id!=null){
+		if((!params?.parent?.id || !params?.parent?.id.isEmpty()) &&  params?.id!=null){			
 			if(params.parent.id == params.id){
 				params.parent = ''
 				flash.message = 'Error: Parent elements must not contain the element itself'

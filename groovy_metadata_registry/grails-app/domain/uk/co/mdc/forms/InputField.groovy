@@ -12,10 +12,6 @@ class InputField {
 	String unitOfMeasure
 	DataType dataType
 	String format
-	Map options
-	String instructions
-	///maybe turn this into an enumeration
-	String renderType
 	
     static constraints = {
 		 defaultValue nullable:true
@@ -24,9 +20,6 @@ class InputField {
 		 unitOfMeasure nullable:true
 		 dataType nullable:true
 		 format nullable:true
-		 options nullable:true
-		 instructions nullable:true
-		 renderType nullable:false
 		}
 
 	

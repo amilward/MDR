@@ -4,15 +4,14 @@ class FormDesignElement {
 	
 	String label
 	String style
-	String title
-	String preText
 	
-	//I'm assuming that cardinality is the order of the design elements within the design
+	
+	//I'm assuming
 	Integer designOrder
 	
-	//Rule rule .............I'm leaving this for the next iteration - I'm assuming this 
-	//has something to do with conditionality etc. but will have to double check
+	//N.B. At present rules contains the hide/show logic for the given element
 	
+	static hasMany = [rules: Rule]
 	static belongsTo = [formDesign: FormDesign]
 	
     static constraints = {
