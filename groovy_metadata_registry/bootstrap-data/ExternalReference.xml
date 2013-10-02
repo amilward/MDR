@@ -1,6 +1,0 @@
-<externalReferences>
-	<externalReference name="test external reference 1" url="www.testSite1.com"/>
-	<externalReference name="test external reference 2" url="www.testSite2.com"/>
-	<externalReference name="test external reference 3" url="www.testSite3.com"/>
-	<externalReference name="test external reference 4" url="www.testSite4.com"/>
-</externalReferences>
