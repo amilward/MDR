@@ -18,7 +18,5 @@ class FormDesignElement {
 		label nullable: true
 		style nullable:true
 		designOrder nullable:true
-		title nullable: true
-		preText nullable:true
     }
 }

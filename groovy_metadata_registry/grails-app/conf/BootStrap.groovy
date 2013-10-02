@@ -20,6 +20,7 @@ import org.springframework.security.authentication. UsernamePasswordAuthenticati
 import org.springframework.security.core.authority.AuthorityUtils
 import org.springframework.security.core.context.SecurityContextHolder as SCH
 
+import org.grails.plugins.csv.CSVMapReader
 
 
 class BootStrap {
@@ -137,6 +138,7 @@ class BootStrap {
 		grantAdminPermissions(ValueDomain.list())
 		grantAdminPermissions(DataElementConcept.list())
 		grantAdminPermissions(DataType.list())
+		grantAdminPermissions(ExternalReference.list())
 	
 		// grant user 1 ownership on 1,2 to allow the user to grant
 		aclUtilService.changeOwner dataElements[0], 'user1'
@@ -167,12 +169,19 @@ class BootStrap {
 		
 		//populate with test data
 		
+		//assumes the first line of the file has the field names
+		
+		new XmlSlurper();
+		
 		if (!ExternalReference.count()) {
-			new ExternalReference(name:"test external reference 1", url:"www.testSite1.com").save(failOnError: true)
-			new ExternalReference(name:"test external reference 2", url:"www.testSite2.com").save(failOnError: true)
-			new ExternalReference(name:"test external reference 3", url:"www.testSite3.com").save(failOnError: true)
-			
+			def externalReferences = new XmlSlurper().parse( new File("bootstrap-data/ExternalReference.xml"))
+			externalReferences.externalReference.each() { e ->
+				new ExternalReference(e.attributes()).save(failOnError: true) //assumes the keys match the ExternalReference properties
+			} 
+				
 		}
+		
+		
 		
 		if (!ConceptualDomain.count()) {
 			ConceptualDomain COSD = new ConceptualDomain(name:"COSD", refId:1, description:"Cancer Outcomes and Services Dataset").save(failOnError: true)
