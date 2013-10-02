@@ -18,9 +18,7 @@ class FormDesignElement {
 		label nullable: true
 		style nullable:true
 		designOrder nullable:true
-<<<<<<< HEAD
 		formDesign nullable:true
-=======
->>>>>>> d505f6ee532f505456612806dd0738e66254d6a5
+
     }
 }

@@ -12,6 +12,7 @@ import uk.co.mdc.model.DataElementValueDomain
 import org.codehaus.groovy.grails.plugins.springsecurity.SecurityFilterPosition
 import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils
 
+import org.codehaus.groovy.grails.commons.ApplicationHolder
 import grails.util.DomainBuilder
 
 import org.springframework.web.context.support.WebApplicationContextUtils
@@ -35,6 +36,7 @@ class BootStrap {
 	def objectIdentityRetrievalStrategy
 	def sessionFactory
 	def springSecurityService
+	def grailsApplication
 	
     def init = { servletContext ->
 		
@@ -181,13 +183,16 @@ class BootStrap {
 		
 		
 		//populate with test data
+		def applicationContext = grailsApplication.mainContext
+		String basePath = applicationContext.getResource("/").getFile().toString()
+
 		
 		//assumes the first line of the file has the field names
 		
 		new XmlSlurper();
 		
 		if (!ExternalReference.count()) {
-			def externalReferences = new XmlSlurper().parse( new File("bootstrap-data/ExternalReference.xml"))
+			def externalReferences = new XmlSlurper().parse( new File("${basePath}/WEB-INF/bootstrap-data/ExternalReference.xml"))
 			externalReferences.externalReference.each() { e ->
 				new ExternalReference(e.attributes()).save(failOnError: true) //assumes the keys match the ExternalReference properties
 			} 

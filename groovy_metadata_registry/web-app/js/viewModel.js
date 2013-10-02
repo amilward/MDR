@@ -392,8 +392,6 @@ function openForms(formDesignId){
 var viewModel = new FormsModel();
 viewModel.addForm('refId','formName','',[]);
 
-ko.applyBindings(viewModel);
-
 //ajax call to formDesign controller to get form design JSON	
 $.getJSON('../jsonFormsBuilder/' + formDesignId, function(data) {
 	$.each(data.questions, function( index, value ){
@@ -409,9 +407,14 @@ $.getJSON('../jsonFormsBuilder/' + formDesignId, function(data) {
 		
 	//alert()
 	newComponent(element)
+	
+	
 	});
+	
+	
 });
 
+ko.applyBindings(viewModel);
 
 }
 
