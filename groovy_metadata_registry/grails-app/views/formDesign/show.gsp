@@ -120,7 +120,6 @@
 									<th>Unit Of Measure</th>
 									<th>Data Type</th>
 									<th>Format</th>
-									<th>RenderType</th>
 									<th>Options</th>
 								</tr>
 							<tbody>
@@ -133,8 +132,7 @@
 											<td>${question?.inputField?.unitOfMeasure}</td>
 											<td>${question?.inputField?.dataType}</td>
 											<td>${question?.inputField?.format}</td>
-											<td>${question?.inputField?.renderType}</td>
-											<td>${question?.inputField?.options}</td>
+											<td>${question?.inputField?.dataType?.enumerations}</td>
 										</tr>
 								</g:if>
 							</g:each>

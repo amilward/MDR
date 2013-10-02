@@ -19,7 +19,11 @@ class QuestionElement extends FormDesignElement {
 		dataElement nullable: true
 		valueDomain nullable: true
 		inputField nullable: true
-    }
+		prompt nullable: true
+		additionalInstructions nullable: true
+		questionNumber nullable: true
+    
+	}
 	
 	//this function will create the chosen input field from the value domain and data type
 	//and store it

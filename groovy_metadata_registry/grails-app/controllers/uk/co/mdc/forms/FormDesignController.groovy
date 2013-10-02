@@ -279,7 +279,7 @@ class FormDesignController {
             return
         }
 		
-
+	
         [formDesignInstance: formDesignInstance]
     }
 

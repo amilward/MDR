@@ -1,4 +1,6 @@
 import uk.co.mdc.*
+import uk.co.mdc.forms.*
+import uk.co.mdc.model.Collection;
 import uk.co.mdc.model.ExternalReference
 import uk.co.mdc.model.ValueDomain
 import uk.co.mdc.model.DataElement
@@ -6,9 +8,12 @@ import uk.co.mdc.model.DataType
 import uk.co.mdc.model.DataElementConcept
 import uk.co.mdc.model.ConceptualDomain
 import uk.co.mdc.model.DataElementValueDomain
+
 import org.codehaus.groovy.grails.plugins.springsecurity.SecurityFilterPosition
 import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils
+
 import grails.util.DomainBuilder
+
 import org.springframework.web.context.support.WebApplicationContextUtils
 
 import static org.springframework.security.acls.domain.BasePermission.ADMINISTRATION
@@ -52,6 +57,7 @@ class BootStrap {
 			
 			//populate with some test data....there will be more
 			populateWithTestData()
+			
 			
 			grantPermissions()
 			
@@ -137,6 +143,7 @@ class BootStrap {
 		grantAdminPermissions(ValueDomain.list())
 		grantAdminPermissions(DataElementConcept.list())
 		grantAdminPermissions(DataType.list())
+		grantAdminPermissions(ExternalReference.list())
 	
 		// grant user 1 ownership on 1,2 to allow the user to grant
 		aclUtilService.changeOwner dataElements[0], 'user1'
@@ -156,9 +163,16 @@ class BootStrap {
     }
 	
 	
+	/*
+	 *  **********************POPULATE WITH FORMS TEST DATA********************************
+	 *
+	 * */
+	
+
+	
 	
 	/*
-	 *  ******************************************************
+	 *  **********************POPULATE WITH MODEL TEST DATA********************************
 	 * 
 	 * */
 
@@ -311,13 +325,75 @@ class BootStrap {
 																	dataType: string,
 																	conceptualDomain: COSD,
 																	format:"an6").save(failOnError: true))
+						
+						
+						
+						
+						//populate with forms data
+						
+						if(!FormDesign.count()){
+							
+							def inputField1 = new InputField(
+								
+								 defaultValue: 'test default',
+								 placeholder: 'test placeholder',
+								 maxCharacters: 11,
+								 unitOfMeasure: 'test UOM',
+								 dataType: string,
+								 format: 'test format',
+								
+								).save(failOnError: true)
+								
+							def inputField2 = new InputField(
+									
+									 defaultValue: 'test default',
+									 placeholder: 'test placeholder',
+									 maxCharacters: 20,
+									 unitOfMeasure: 'test2 UOM',
+									 dataType: OP_REF,
+									 format: 'test format2',
+									
+									).save(failOnError: true)
+							
+							def question1  = new QuestionElement(
+								questionNumber: '1',
+								prompt: 'this is the first question',
+								additionalInstructions: 'more instructions',
+								inputField: inputField1
+								).save(failOnError: true)
+								
+							def question2  = new QuestionElement(
+									questionNumber: '2',
+									prompt: 'operation reference',
+									additionalInstructions: 'more instructions2 ',
+									inputField: inputField2
+									).save(failOnError: true)
+									
+							def question3  = new QuestionElement(
+										questionNumber: '3',
+										prompt: 'this is the thirs question',
+										additionalInstructions: 'more instructions',
+										inputField: inputField1
+										).save(failOnError: true)
+							
+							def formDesignInstance = new FormDesign(refId: 'testForm1',
+								name:'formDesignName1',
+								versionNo:'V0.1',
+								isDraft:true,
+								description:'test description 1'
+								).save(failOnError: true)	
+								
+							formDesignInstance.addToFormDesignElements(question1)	
+							formDesignInstance.addToFormDesignElements(question2)
+							formDesignInstance.addToFormDesignElements(question3)
+						}
+
 						}
 
 			}
 
 		}
-		}
-		
+		}	
 		}
 	
 	}

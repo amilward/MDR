@@ -11,11 +11,9 @@ class QuestionElementMarshaller {
 			return [
 			'id' : questionElement.id,
 			'name' : questionElement.label,
-			'type' : questionElement.inputField.renderType,
 			'caption' : questionElement?.label,
 			'placeholder' : questionElement?.label,
 			'size' : questionElement?.inputField?.maxCharacters,
-			'options' : questionElement?.inputField?.options,
 			'field_class' : questionElement?.style,
 			]
 		}

@@ -6,7 +6,7 @@ class FormDesign {
 	
 	String refId
 	String name 
-	String version
+	String versionNo
 	Boolean isDraft
 	//n.b. description is just for storage purposes not displayed when the form is rendered
 	String description
@@ -31,6 +31,9 @@ class FormDesign {
 		Set elements = this.formDesignElements
 		Set questions =  [];
 		elements.each{ formDesignElement ->
+			
+			println(formDesignElement)
+			
 			if(formDesignElement instanceof uk.co.mdc.forms.QuestionElement){
 				questions.add(formDesignElement)
 			}
