@@ -37,6 +37,13 @@ $(document).ready(function () {
 	});
 
 
+	
+	$('#changeSidebarPos').on('click', function(e) {		
+		setTimeout(function(){
+			mainLayout.resizeAll()
+		}, 500);
+		
+    });
 
 	$(window).resize(function(){
 		resizeWindows();
@@ -46,21 +53,24 @@ $(document).ready(function () {
 		$('#container').height($('html').height() - 105);
 	}
 
-	//initializePalette();
-
-
-	$( "#accordion" ).accordion({
-		collapsible: true,
-		beforeActivate: function( event, ui ) {
-			ui.oldHeader.children('i').removeClass("icon-angle-down").addClass("icon-angle-right");
-			ui.newHeader.children('i').removeClass("icon-angle-right").addClass("icon-angle-down");
-			ui.oldHeader.blur();
-			ui.newHeader.blur();
-		}
-	});
 
 
 });
+
+function initializePalette(){
+	$( "#accordion" ).accordion({
+		collapsible: true,
+		autoHeight: true,
+		beforeActivate: function( event, ui ) {
+			alert('test');
+			ui.oldHeader.blur();
+			ui.newHeader.blur();
+		}, 
+		
+	});
+}
+
+
 	function refreshFormPanelViews(){
 		
 		$( ".sortable" ).disableSelection();

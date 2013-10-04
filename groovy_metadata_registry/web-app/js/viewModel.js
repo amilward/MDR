@@ -101,10 +101,81 @@ var dataTypeTemplates = [
 		 previewRender: function(){
 			 return "<h4>My form control here.</h4>";
 		 }
-	 }
-	 
-	 
+	 } 
  ];
+
+var paletteItems = [
+                    {
+                 	   name: "Simple Questions",
+                 	   elements: [
+                 	              {
+                 	            	  id: 4,
+                 	            	  name: "Numeric Input",
+                 	            	  icon: "icon-pencil",
+                 	            	  type: "question",
+                 	            	  datatype: "numeric",
+                 	            	  properties: []
+                 	              },
+                 	              {
+                 	            	  id: 5,
+                 	            	  name: "String Input",
+                 	            	  icon: "icon-pencil",
+                 	            	  type: "question",
+                 	            	  datatype: "string",
+                 	            	  properties: []
+                 	              },
+                 	              {
+                 	            	  id: 6,
+                 	            	  name: "Boolean Input",
+                 	            	  icon: "icon-check",
+                 	            	  type: "question",
+                 	            	  datatype: "boolean",
+                 	            	  properties: []
+                 	              },
+                 	              {
+                 	            	  id: 7,
+                 	            	  name: "Date Input",
+                 	            	  icon: "icon-calendar",
+                 	            	  type: "question",
+                 	            	  datatype: "date",
+                 	            	  properties: []
+                 	              },
+                 	              {
+                 	            	  id: 8,
+                 	            	  name: "Date / Time Input",
+                 	            	  icon: "icon-calendar",
+                 	            	  type: "question",
+                 	            	  datatype: "datetime",
+                 	            	  properties: []
+                 	              },
+                 	              {
+                 	            	  id: 9,
+                 	            	  name: "Time Input",
+                 	            	  icon: "icon-time",
+                 	            	  type: "question",
+                 	            	  datatype: "time",
+                 	            	  properties: []
+                 	              }]
+                    },
+                    {
+                 	   name: "Complex Questions",
+                 	   elements: [{
+                 	            	  id: 10,
+                 	            	  name: "Radio Select",
+                 	            	  icon: "icon-list-ul",
+                 	            	  type: "question",
+                 	            	  datatype: "enumeration",
+                 	            	  properties: []
+                 	              },{
+                 	            	  id: 11,
+                 	            	  name: "Dropdown Select",
+                 	            	  icon: "icon-reorder",
+                 	            	  type: "question",
+                 	            	  datatype: "enumeration",
+                 	            	  properties: []
+                 	              }]
+                    }];
+
 
 
 
@@ -241,131 +312,37 @@ function FormsModel() {
 
     
     self.addForm = function(id, fullName, shortName, components){
+    	//self.palette = paletteItems;
     	self.forms.push(new Form(id, fullName, shortName, components));
     	self.setActiveFormId(id);
+    	//self.palette = paletteItems;
+    	self.palette = paletteItems;
+    	
     };
     
-    self.palette = [
-                   {
-                	   name: "Structural Components",
-                	   elements: [
-                	              {
-                	            	  id: 1,
-                	            	  name: "Header Text",
-                	            	  icon: "icon-font",
-                	            	  type: "structural",
-                	            	  defaultView: "<h3>headerTitle</h3>",
-                	            	  properties: [{ename: "Heading title", iname: "headerTitle", value: "Heading"}]
-                	              },{
-                	            	  id: 2,
-                	            	  name: "Explanatory Text",
-                	            	  icon: "icon-align-justify",
-                	            	  type: "structural",
-                	            	  defaultView: "<p>text</p>",
-                	            	  properties: [{ename: "Text", iname: "text", value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque quis ipsum et metus consectetur malesuada vel eget diam. Vestibulum mi tortor, vulputate sed convallis non, elementum ut felis. Suspendisse suscipit libero eleifend velit consequat dictum. Morbi laoreet volutpat tortor, hendrerit posuere ante dapibus non. Pellentesque non fringilla dolor. Nulla ac sem ac dui semper commodo. Morbi at metus eu augue gravida ornare. Mauris porttitor sollicitudin nisl, gravida luctus nibh interdum in. "}]
-                	              },{
-                	            	  id: 3,
-                	            	  name: "Section",
-                	            	  icon: "icon-sitemap",
-                	            	  type: "structural",
-                	            	  defaultView: "<h4>Section</h4><p>This is a new form section</p>",
-                	            	  properties: []
-                	                  
-                	              }]
-                   },
-                   {
-                	   name: "Simple Questions",
-                	   elements: [
-                	              {
-                	            	  id: 4,
-                	            	  name: "Numeric Input",
-                	            	  icon: "icon-pencil",
-                	            	  type: "question",
-                	            	  datatype: "numeric",
-                	            	  properties: []
-                	              },
-                	              {
-                	            	  id: 5,
-                	            	  name: "String Input",
-                	            	  icon: "icon-pencil",
-                	            	  type: "question",
-                	            	  datatype: "string",
-                	            	  properties: []
-                	              },
-                	              {
-                	            	  id: 6,
-                	            	  name: "Boolean Input",
-                	            	  icon: "icon-check",
-                	            	  type: "question",
-                	            	  datatype: "boolean",
-                	            	  properties: []
-                	              },
-                	              {
-                	            	  id: 7,
-                	            	  name: "Date Input",
-                	            	  icon: "icon-calendar",
-                	            	  type: "question",
-                	            	  datatype: "date",
-                	            	  properties: []
-                	              },
-                	              {
-                	            	  id: 8,
-                	            	  name: "Date / Time Input",
-                	            	  icon: "icon-calendar",
-                	            	  type: "question",
-                	            	  datatype: "datetime",
-                	            	  properties: []
-                	              },
-                	              {
-                	            	  id: 9,
-                	            	  name: "Time Input",
-                	            	  icon: "icon-time",
-                	            	  type: "question",
-                	            	  datatype: "time",
-                	            	  properties: []
-                	              }]
-                   },
-                   {
-                	   name: "Complex Questions",
-                	   elements: [{
-                	            	  id: 10,
-                	            	  name: "Radio Select",
-                	            	  icon: "icon-list-ul",
-                	            	  type: "question",
-                	            	  datatype: "enumeration",
-                	            	  properties: []
-                	              },{
-                	            	  id: 11,
-                	            	  name: "Dropdown Select",
-                	            	  icon: "icon-reorder",
-                	            	  type: "question",
-                	            	  datatype: "enumeration",
-                	            	  properties: []
-                	              }]
-                   }];
-
+    
     
 }
 
 var lastComponentID = 0;
 
-function newComponent(paletteElement)
+function newComponent(element)
 {
 	lastComponentID++;
-	var iid = paletteElement.id + '-' + lastComponentID;
+	var iid = element.id + '-' + lastComponentID;
 	var eid = iid;
-	var properties = paletteElement.properties;
+	var properties = element.properties;
 	
-	//var html = paletteElement.defaultView;
+	//var html = element.defaultView;
 	var c = new Component(iid, eid, properties);
 	
 	
-	if(paletteElement.type == "question")
+	if(element.type == "question")
 	{
 		//console.log(dataTypeTemplates);
 		//console.log("something");
-		//console.log($.grep(dataTypeTemplates, function(n,i){ return n.name==paletteElement.datatype; })[0]);
-		var dt = $.grep(dataTypeTemplates, function(n,i){ return (n.name == paletteElement.datatype); })[0];
+		//console.log($.grep(dataTypeTemplates, function(n,i){ return n.name==element.datatype; })[0]);
+		var dt = $.grep(dataTypeTemplates, function(n,i){ return (n.name == element.datatype); })[0];
 		//return c;
 		var renderingOption = dt.prefRenderingOptions[0];
 		var restriction = "";
@@ -373,7 +350,21 @@ function newComponent(paletteElement)
 		var options = [];
 		var previewRender = dt.previewRender;
 		var dti = new DataTypeInstance(iid, eid, name, dt, renderingOption, restriction, selectMultiple, options, previewRender);
-		var question = new Question("no title set", "preText", "label", "", dti);
+		
+		if(element.prompt==null){
+			
+			var question = new Question("other prompt", "additionalInstructions", "label", "", dti, "no defaultValue", "no placeholder", "no unitOfMeasure test", "no maxCharacters", "no format", "no isEnumerated", "no enumerations");
+			
+			
+		}else{
+			
+
+			var question = new Question(element.prompt, element.additionalInstructions, element.label, element.style, 
+					dti, element.defaultValue, element.placeholder, 
+					element.unitOfMeasure,  element.maxCharacters, 
+					element.format, element.isEnumerated, element.enumerations);
+		}
+		
 		
 		c.setQuestion(question);
 		//console.log(ko.toJSON(question, null, 2));
@@ -383,64 +374,37 @@ function newComponent(paletteElement)
 	
 }
 
-function openForms(formDesignId){
-
-
-	
-// Activates knockout.js	
-	
-var viewModel = new FormsModel();
-viewModel.addForm('refId','formName','',[]);
-
-//ajax call to formDesign controller to get form design JSON	
-$.getJSON('../jsonFormsBuilder/' + formDesignId, function(data) {
-	$.each(data.questions, function( index, value ){
-		
-	var element = 	{
-      	  id: 5,
-    	  name: "String Input",
-    	  icon: "icon-pencil",
-    	  type: "question",
-    	  datatype: "string",
-    	  properties: [{ename: value.name, iname: value.name, value: value.name}]
-      }	
-		
-	//alert()
-	newComponent(element)
-	
-	
-	});
-	
-	
-});
-
-ko.applyBindings(viewModel);
-
-}
-
-
-function Question(title, preText, label, style, dataTypeInstance)
+function Question(prompt, additionalInstructions, label, style, dataTypeInstance, defaultValue, placeholder, unitOfMeasure, maxCharacters, format, isEnumerated, enumerations)
 {
 	var self = this;
-	self.title = ko.observable(title);
+	self.prompt = ko.observable(prompt);
 	
-	self.computedTitle = ko.computed({
+	self.computedPrompt = ko.computed({
     	read: function() {
-	    	if(self.title() == "no title set")
+	    	if(self.prompt() == "no prompt set")
 	    	{
 	    		return "Question n.";
 	    	}
-	    	else return self.title();
+	    	else return self.prompt();
 	    },
 	    write: function(value) {
-	    	self.title(value);
+	    	self.prompt(value);
 	    },
 	    owner: self
     });
-	self.preText = ko.observable(preText);
+	
+	
+	self.additionalInstructions = ko.observable(additionalInstructions);
 	self.label = ko.observable(label);
 	self.style = ko.observable(style);
 	self.dataTypeInstance = ko.observable(dataTypeInstance);
+	self.defaultValue = ko.observable(defaultValue);
+	self.placeholder = ko.observable(placeholder);
+	self.unitOfMeasure = ko.observable(unitOfMeasure);
+	self.maxCharacters = ko.observable(maxCharacters);
+	self.format = ko.observable(format);
+	self.isEnumerated = ko.observable(isEnumerated);
+	self.enumerations = ko.observable(JSON.stringify(enumerations));
 	
 	self.setDataTypeInstance = function(dti) {
 		self.dataTypeInstance(dti);
@@ -453,7 +417,7 @@ function Question(title, preText, label, style, dataTypeInstance)
 		{
 			dti = self.dataTypeInstance().clone();
 		}
-		var q = new Question(self.title(), self.preText(), self.label(), self.style(), dti);
+		var q = new Question(self.prompt(), self.additionalInstructions(), self.label(), self.style(), dti, self.defaultValue(), self.placeholder(), self.unitOfMeasure(), self.maxCharacters(), self.format(), self.isEnumerated(), self.enumerations());
 		//console.log(ko.toJSON(q, null, 2));
 		return q;
 	};
@@ -493,6 +457,82 @@ function SelectOption()
 	var self = this;
 	self.text = ko.observable();
 	self.value = ko.observable();
+}
+
+function getDataType(dataType, isEnumerated){
+
+	var dataType;
+	
+	if(isEnumerated){
+		dataType = 'enumeration';
+	}else{	
+		dataType = 'string';
+	}
+	
+	return dataType;
+	
+}
+
+function openForms(formDesignId){
+
+
+	
+	// Activates knockout.js	
+	/*	
+	var viewModel = new FormsModel();
+	viewModel.addForm('refId','formName','',[]);
+	ko.applyBindings(viewModel);
+	*/
+	
+	//set up defer object
+	var jsonDeferred = $.Deferred();
+
+	// Activates knockout.js	
+	
+	var viewModel = new FormsModel();
+		
+	var components = []
+		
+	//ajax call to formDesign controller to get form design JSON	
+	$.getJSON('../jsonFormsBuilder/' + formDesignId, function(data) {
+		$.each(data.questions, function( index, value ){
+		var element = 	{
+	      	  id: 5,
+	    	  name: "String Input",
+	    	  icon: "icon-pencil",
+	    	  type: "question",
+	    	  datatype: getDataType(value.dataType, value.isEnumerated),
+	    	  properties: [{ename: value.name, iname: value.name, value: value.name}],
+	    	  prompt: value.prompt,
+	    	  style: value.style, 
+	    	  defaultValue: value.defaultValue, 
+	    	  placeholder: value.placeholder,
+	    	  unitOfMeasure: value.unitOfMeasure, 
+	    	  maxCharacters: value.maxCharacters, 
+	    	  format: value.format,
+	    	  isEnumerated: value.isEnumerated, 
+	    	  enumerations: value.enumerations,
+	    	  additionalInstructions: value.additionalInstructions, 
+	    	  label: value.label
+	      }	
+
+		components.push((newComponent(element)))
+		
+		});
+		
+		jsonDeferred.resolve()
+			
+	});
+	
+	jsonDeferred.done(function(){
+		viewModel.addForm('refId','formName','',components);
+		setTimeout(function(){
+			initializePalette();
+		}, 500);
+
+		ko.applyBindings(viewModel);
+	});
+
 }
 
 
