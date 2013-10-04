@@ -371,6 +371,8 @@ class BootStrap {
 							def question1  = new QuestionElement(
 								questionNumber: '1',
 								prompt: 'this is the first question',
+								style: 'this style1',
+								label: 'this style2',
 								additionalInstructions: 'more instructions',
 								inputField: inputField1
 								).save(failOnError: true)
@@ -378,6 +380,8 @@ class BootStrap {
 							def question2  = new QuestionElement(
 									questionNumber: '2',
 									prompt: 'operation reference',
+									style: 'this style3',
+									label: 'this style4',
 									additionalInstructions: 'more instructions2 ',
 									inputField: inputField2
 									).save(failOnError: true)
@@ -385,6 +389,8 @@ class BootStrap {
 							def question3  = new QuestionElement(
 										questionNumber: '3',
 										prompt: 'this is the thirs question',
+										style: 'this style5',
+										label: 'this style6',
 										additionalInstructions: 'more instructions',
 										inputField: inputField1
 										).save(failOnError: true)

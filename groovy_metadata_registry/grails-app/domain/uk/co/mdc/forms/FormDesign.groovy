@@ -32,8 +32,6 @@ class FormDesign {
 		Set questions =  [];
 		elements.each{ formDesignElement ->
 			
-			println(formDesignElement)
-			
 			if(formDesignElement instanceof uk.co.mdc.forms.QuestionElement){
 				questions.add(formDesignElement)
 			}

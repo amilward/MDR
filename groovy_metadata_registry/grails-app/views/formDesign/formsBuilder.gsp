@@ -74,13 +74,20 @@
 										<!-- <td class="content" data-bind="html: computedHtml()">
 										</td> -->
 										<td class="content">
-											<h4 data-bind="text: question().title() == 'no title set'? 'Question ' + getQuestionNumber($index(), $parent.components()) : question().computedTitle()"></h4>
-											<p data-bind="text: question().preText()"></p>
+											<h4 data-bind="text: question().prompt() == 'no prompt set'? 'Question ' + getQuestionNumber($index(), $parent.components()) : question().computedPrompt()"></h4>
+											<p data-bind="text: question().additionalInstructions()"></p>
 											<p data-bind="html: question().dataTypeInstance().previewRender()">
 												<!-- <span data-bind="text: question().label()"></span> -->
 												
 											</p>
-											<p data-bind="text: question().style()"></p>
+											<!-- <p data-bind="text: question().style()"></p>
+											<p data-bind="text: question().defaultValue()"></p>
+											<p data-bind="text: question().placeholder()"></p>
+											<p data-bind="text: question().unitOfMeasure()"></p>
+											<p data-bind="text: question().maxCharacters()"></p>
+											<p data-bind="text: question().format()"></p>
+											<p data-bind="text: question().isEnumerated()"></p>
+											<p data-bind="text: question().enumerations()"></p> -->
 										
 										</td>
 										<td class="menu">
@@ -143,17 +150,17 @@
 							</td>
 						</tr>
 						<tr>
-							<td>Question Title</td>
+							<td>Prompt</td>
 							<td><span id="pencil"><i class="icon-pencil"></i></span></td>
 							<td>
-								<a data-bind="editable: question().computedTitle, editableOptions: { mode: 'inline' }"></a>
+								<a data-bind="editable: question().computedPrompt, editableOptions: { mode: 'inline' }"></a>
 							</td>
 						</tr>
 						<tr>
-							<td>Pre Text</td>
+							<td>Additional Instructions</td>
 							<td><span id="pencil"><i class="icon-pencil"></i></span></td>
 							<td>
-								<a data-bind="editable: question().preText, editableOptions: { mode: 'inline' }"></a>
+								<a data-bind="editable: question().additionalInstructions, editableOptions: { mode: 'inline' }"></a>
 							</td>
 						</tr>
 						<tr>
@@ -175,7 +182,56 @@
 							<td><span id="pencil"><i class="icon-pencil"></i></span></td>
 							<td>
 								<a data-type="select" data-bind="editable: question().dataTypeInstance().renderingOption, 
-								editableOptions: { value: question().dataTypeInstance().renderingOption, source: question().dataTypeInstance().renderingOptions(), mode: 'inline' }"></a>
+								editableOptions: {value: question().dataTypeInstance().renderingOption, source: question().dataTypeInstance().renderingOptions(), mode: 'inline' }"></a>
+							</td>
+						</tr>
+						<tr>
+							<td>Default Value</td>
+							<td><span id="pencil"><i class="icon-pencil"></i></span></td>
+							<td>
+								<a data-bind="editable: question().defaultValue, editableOptions: { mode: 'inline' }"></a>
+							</td>
+						</tr>
+						<tr>
+							<td>Placeholder</td>
+							<td><span id="pencil"><i class="icon-pencil"></i></span></td>
+							<td>
+								<a data-bind="editable: question().placeholder, editableOptions: { mode: 'inline' }"></a>
+							</td>
+						</tr>
+						<tr>
+							<td>Unit Of Measure</td>
+							<td><span id="pencil"><i class="icon-pencil"></i></span></td>
+							<td>
+								<a data-bind="editable: question().unitOfMeasure, editableOptions: { mode: 'inline' }"></a>
+							</td>
+						</tr>
+						<tr>
+							<td>Max Characters</td>
+							<td><span id="pencil"><i class="icon-pencil"></i></span></td>
+							<td>
+								<a data-bind="editable: question().maxCharacters, editableOptions: { mode: 'inline' }"></a>
+							</td>
+						</tr>
+						<tr>
+							<td>Format</td>
+							<td><span id="pencil"><i class="icon-pencil"></i></span></td>
+							<td>
+								<a data-bind="editable: question().format, editableOptions: { mode: 'inline' }"></a>
+							</td>
+						</tr>
+						<tr>
+							<td>Enumerated</td>
+							<td><span id="pencil"><i class="icon-pencil"></i></span></td>
+							<td>
+								<a data-bind="editable: question().isEnumerated, editableOptions: { mode: 'inline' }"></a>
+							</td>
+						</tr>
+												<tr>
+							<td>Enumerations</td>
+							<td><span id="pencil"><i class="icon-pencil"></i></span></td>
+							<td>
+								<a data-bind="editable: question().enumerations, editableOptions: { mode: 'inline' }"></a>
 							</td>
 						</tr>
 					</tbody>
@@ -186,7 +242,7 @@
 				<h4>Palette</h4>
 				<div id="accordion">
 					<!-- ko foreach: palette -->
-					<h5><i class="icon-angle-right"></i>&nbsp;&nbsp;<span data-bind="text: name"></span></h5>
+					<h5><span data-bind="text: name"></span></h5>
 					<ul data-bind="foreach: {data: elements, as: 'element'}">
 						<li class="palette-option" 
 							data-bind="draggable: { data: newComponent(element), options: { 
