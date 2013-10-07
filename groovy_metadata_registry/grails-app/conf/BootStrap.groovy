@@ -367,6 +367,17 @@ class BootStrap {
 									 format: 'test format2',
 									
 									).save(failOnError: true)
+									
+							def inputField3 = new InputField(
+										
+										 defaultValue: 'te3st default',
+										 placeholder: 'test3 placeholder',
+										 maxCharacters: 13,
+										 unitOfMeasure: 'tes3t UOM',
+										 dataType: string,
+										 format: 'test forma3t',
+										
+										).save(failOnError: true)
 							
 							def question1  = new QuestionElement(
 								questionNumber: '1',
@@ -392,7 +403,7 @@ class BootStrap {
 										style: 'this style5',
 										label: 'this style6',
 										additionalInstructions: 'more instructions',
-										inputField: inputField1
+										inputField: inputField3
 										).save(failOnError: true)
 							
 							def formDesignInstance = new FormDesign(refId: 'testForm1',

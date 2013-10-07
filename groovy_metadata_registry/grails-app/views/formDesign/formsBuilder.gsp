@@ -27,8 +27,8 @@
 					    <div class="navbar-inner">
 						    <ul class="nav">
 						   		<li class="active"><a class="brand" href="#"><i class="icon-edit"></i> FormsBuilder</a></li>
-						  		<li><g:link action="show" id="${formDesignInstance?.id}"><g:message code="default.button.show.label" default="Show" /></g:link></li>
-							    <li><g:link action="edit" id="${formDesignInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link></li>
+						   		<li><a href="#" onclick="saveForm('${formDesignInstance?.id}')">Save</a></li>
+						  		<li><g:link action="show" id="${formDesignInstance?.id}"><g:message code="default.button.show.label" default="Show" /></g:link></li>							   
 							    <li><g:link action="create" id="${formDesignInstance?.id}"><g:message code="default.button.create.label" default="Create" /></g:link></li>
 							    <li><a href="#" onclick="deleteItem('${formDesignInstance?.name}')">Delete</a></li>
 							    <li><g:link action="preview" id="${formDesignInstance?.id}"><g:message code="default.button.preview.label" default="Preview" /></g:link></li>
@@ -54,10 +54,53 @@
     			<!-- /ko -->
     			<!-- ko if: activeForm() != null -->
 				<!-- ko with: activeForm() -->
-				<div class="panel-title">
-					<span data-bind="text: formFullName()"></span>
-				</div>
+				<!--  <div class="panel-title">
+					<span data-bind="text: formDesignName()"></span>
+				</div>-->
 				<div class="large-rounded form-item form">
+
+									
+					<div class="form-info">
+					<table class="small-rounded">
+					
+						<tr>
+							<td>Ref Id:</td>
+							<td><span id="pencil"><i class="icon-pencil"></i></span></td>
+							<td>
+								<a data-bind="editable: formRefId, editableOptions: { mode: 'inline' }"></a>
+							</td>
+						</tr>
+						<tr>
+							<td>Form Name:</td>
+							<td><span id="pencil"><i class="icon-pencil"></i></span></td>
+							<td>
+								<a data-bind="editable: formDesignName, editableOptions: { mode: 'inline' }"></a>
+							</td>
+						</tr>
+						<tr>
+							<td>Description:</td>
+							<td><span id="pencil"><i class="icon-pencil"></i></span></td>
+							<td>
+								<a data-bind="editable: formDescription, editableOptions: { mode: 'inline' }"></a>
+							</td>
+						</tr>
+						<tr>
+							<td>Version Name:</td>
+							<td><span id="pencil"><i class="icon-pencil"></i></span></td>
+							<td>
+								<a data-bind="editable: versionNo, editableOptions: { mode: 'inline' }"></a>
+							</td>
+						</tr>
+						<tr>
+							<td>Is Draft:</td>
+							<td><span id="pencil"><i class="icon-pencil"></i></span></td>
+							<td>
+								<a data-bind="editable: isDraft, editableOptions: { mode: 'inline' }"></a>
+							</td>
+						</tr>
+					</table>
+					</div>
+					
 					<!-- ko if: components().length == 0 -->
 					<div class="alert alert-info">
         				<p><strong>Empty form: </strong> Your form is currently blank.  Drag a component from the palette on the right-hand side to start creating your form.</p>
@@ -141,6 +184,16 @@
 							<td>Date of creation</td>
 							<td></td>
 							<td data-bind="text: dateCreated"></td>
+						</tr>
+						<tr>
+							<td>Question Id</td>
+							<td></td>
+							<td data-bind="text: question().questionId"></td>
+						</tr>
+						<tr>
+							<td>Input Id</td>
+							<td></td>
+							<td data-bind="text: question().inputId"></td>
 						</tr>
 						<tr>
 							<td>External Identifier</td>
@@ -279,7 +332,43 @@
 			formInstanceId = ''
 		</g:else>
 		
-		openForms(formInstanceId);
+		<g:if test="${formDesignInstance?.id}">
+			formInstanceRefId = "${formDesignInstance.refId}"
+		</g:if>
+		<g:else>
+			formInstanceRefId = ''
+		</g:else>
+		
+		<g:if test="${formDesignInstance?.name}">
+			formInstanceName = "${formDesignInstance.name}"
+		</g:if>
+		<g:else>
+			formInstanceName = ''
+		</g:else>
+		
+		<g:if test="${formDesignInstance?.description}">
+			formInstanceDescription = "${formDesignInstance.description}"
+		</g:if>
+		<g:else>
+			formInstanceDescription = ''
+		</g:else>
+		
+		<g:if test="${formDesignInstance?.versionNo}">
+			versionNo = "${formDesignInstance.versionNo}"
+		</g:if>
+		<g:else>
+			versionNo = ''
+		</g:else>
+		
+		<g:if test="${formDesignInstance?.isDraft}">
+			isDraft = "${formDesignInstance.isDraft}"
+		</g:if>
+		<g:else>
+			isDraft = ''
+		</g:else>
+		
+		openForms(formInstanceId, formInstanceRefId, formInstanceName, formInstanceDescription, versionNo, isDraft);
+		
 	</r:script>
 		
 	</body>

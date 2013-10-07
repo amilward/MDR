@@ -230,6 +230,126 @@ class FormDesignController {
 	}
 	
 	
+	def saveForm(){
+		
+		
+		 def form = request.JSON
+		// println(form)
+		 def components = form.components
+		 
+		 if(form.formDesignId){
+			 
+			 def formDesignInstance = FormDesign.get(form.formDesignId)
+			 
+			 formDesignInstance.refId = form.formRefId
+			 formDesignInstance.name = form.formDesignName
+			 formDesignInstance.description = form.formDescription
+			 formDesignInstance.versionNo = form.versionNo
+			 formDesignInstance.isDraft= form.isDraft
+			
+			 components.each{ component->
+				 
+				 def question = component.question
+
+				 def questionInstance = QuestionElement.get(question.questionId)
+	
+				 if(questionInstance){
+					 
+					 questionInstance.prompt = question.prompt
+					 questionInstance.additionalInstructions = question.additionalInstructions
+					 
+				 
+					 def inputFieldInstance = InputField.get(question.inputId)
+					 
+					 inputFieldInstance.defaultValue = question.defaultValue
+					 inputFieldInstance.placeholder = question.placeholder
+					 inputFieldInstance.maxCharacters = question.maxCharacters
+					 inputFieldInstance.unitOfMeasure = question.unitOfMeasure
+					// inputField.dataType =  will fill this in later
+					 inputFieldInstance.format = question.format
+					 
+					 inputFieldInstance.save()
+				 
+				 }
+				 
+			 }
+			 
+			 formDesignInstance.save(flush:true)
+		
+		 }
+		
+		
+		/*
+		if(!FormDesign.count()){
+			
+			def inputField1 = new InputField(
+				
+				 defaultValue: 'test default',
+				 placeholder: 'test placeholder',
+				 maxCharacters: 11,
+				 unitOfMeasure: 'test UOM',
+				 dataType: string,
+				 format: 'test format',
+				
+				).save(failOnError: true)
+				
+			def inputField2 = new InputField(
+					
+					 defaultValue: 'test default',
+					 placeholder: 'test placeholder',
+					 maxCharacters: 20,
+					 unitOfMeasure: 'test2 UOM',
+					 dataType: OP_REF,
+					 format: 'test format2',
+					
+					).save(failOnError: true)
+			
+			def question1  = new QuestionElement(
+				questionNumber: '1',
+				prompt: 'this is the first question',
+				style: 'this style1',
+				label: 'this style2',
+				additionalInstructions: 'more instructions',
+				inputField: inputField1
+				).save(failOnError: true)
+				
+			def question2  = new QuestionElement(
+					questionNumber: '2',
+					prompt: 'operation reference',
+					style: 'this style3',
+					label: 'this style4',
+					additionalInstructions: 'more instructions2 ',
+					inputField: inputField2
+					).save(failOnError: true)
+					
+			def question3  = new QuestionElement(
+						questionNumber: '3',
+						prompt: 'this is the thirs question',
+						style: 'this style5',
+						label: 'this style6',
+						additionalInstructions: 'more instructions',
+						inputField: inputField1
+						).save(failOnError: true)
+			
+			def formDesignInstance = new FormDesign(refId: 'testForm1',
+				name:'formDesignName1',
+				versionNo:'V0.1',
+				isDraft:true,
+				description:'test description 1'
+				).save(failOnError: true)
+				
+			formDesignInstance.addToFormDesignElements(question1)
+			formDesignInstance.addToFormDesignElements(question2)
+			formDesignInstance.addToFormDesignElements(question3)
+		}
+		*/
+		
+		def model = [success: true]
+		
+		render model  as JSON
+	}
+	
+	
 	def jsonFormsBuilder(Long id){
 		
 		def formDesignInstance = FormDesign.get(id)
