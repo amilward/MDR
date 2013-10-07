@@ -177,6 +177,7 @@ var paletteItems = [
                     }];
 
 
+var viewModel;
 
 
 function Property(iname, ename, value){
@@ -228,11 +229,14 @@ function Component(iid, eid, properties) {
 	
 }
 
-function Form(id, fullName, shortName, components) {
+function Form(id, fullName, refId, description, versionNo, isDraft, components) {
 	var self = this;
 	self.formID = ko.observable(id);
-	self.formFullName = ko.observable(fullName);
-	self.formShortName = ko.observable(shortName);
+	self.formDesignName = ko.observable(fullName);
+	self.formRefId = ko.observable(refId);
+	self.formDescription = ko.observable(description);
+	self.versionNo = ko.observable(versionNo);
+	self.isDraft = ko.observable(isDraft);
 	self.components = ko.observableArray(components);
 	
 	
@@ -311,9 +315,9 @@ function FormsModel() {
 
 
     
-    self.addForm = function(id, fullName, shortName, components){
+    self.addForm = function(id, fullName, refId, description, versionNo, isDraft, components){
     	//self.palette = paletteItems;
-    	self.forms.push(new Form(id, fullName, shortName, components));
+    	self.forms.push(new Form(id, fullName, refId, description, versionNo, isDraft, components));
     	self.setActiveFormId(id);
     	//self.palette = paletteItems;
     	self.palette = paletteItems;
@@ -353,7 +357,7 @@ function newComponent(element)
 		
 		if(element.prompt==null){
 			
-			var question = new Question("other prompt", "additionalInstructions", "label", "", dti, "no defaultValue", "no placeholder", "no unitOfMeasure test", "no maxCharacters", "no format", "no isEnumerated", "no enumerations");
+			var question = new Question("no question prompt", "no additionalInstructions", "no label", "", dti, "no defaultValue", "no placeholder", "no unitOfMeasure test", "no maxCharacters", "no format", "no isEnumerated", "no enumerations", "no question id");
 			
 			
 		}else{
@@ -362,7 +366,7 @@ function newComponent(element)
 			var question = new Question(element.prompt, element.additionalInstructions, element.label, element.style, 
 					dti, element.defaultValue, element.placeholder, 
 					element.unitOfMeasure,  element.maxCharacters, 
-					element.format, element.isEnumerated, element.enumerations);
+					element.format, element.isEnumerated, element.enumerations, element.questionId, element.inputId);
 		}
 		
 		
@@ -374,7 +378,7 @@ function newComponent(element)
 	
 }
 
-function Question(prompt, additionalInstructions, label, style, dataTypeInstance, defaultValue, placeholder, unitOfMeasure, maxCharacters, format, isEnumerated, enumerations)
+function Question(prompt, additionalInstructions, label, style, dataTypeInstance, defaultValue, placeholder, unitOfMeasure, maxCharacters, format, isEnumerated, enumerations, questionId, inputId)
 {
 	var self = this;
 	self.prompt = ko.observable(prompt);
@@ -393,7 +397,8 @@ function Question(prompt, additionalInstructions, label, style, dataTypeInstance
 	    owner: self
     });
 	
-	
+	self.questionId = ko.observable(questionId);
+	self.inputId = ko.observable(inputId);
 	self.additionalInstructions = ko.observable(additionalInstructions);
 	self.label = ko.observable(label);
 	self.style = ko.observable(style);
@@ -417,7 +422,7 @@ function Question(prompt, additionalInstructions, label, style, dataTypeInstance
 		{
 			dti = self.dataTypeInstance().clone();
 		}
-		var q = new Question(self.prompt(), self.additionalInstructions(), self.label(), self.style(), dti, self.defaultValue(), self.placeholder(), self.unitOfMeasure(), self.maxCharacters(), self.format(), self.isEnumerated(), self.enumerations());
+		var q = new Question(self.prompt(), self.additionalInstructions(), self.label(), self.style(), dti, self.defaultValue(), self.placeholder(), self.unitOfMeasure(), self.maxCharacters(), self.format(), self.isEnumerated(), self.enumerations(), self.questionId(), self.inputId());
 		//console.log(ko.toJSON(q, null, 2));
 		return q;
 	};
@@ -473,7 +478,7 @@ function getDataType(dataType, isEnumerated){
 	
 }
 
-function openForms(formDesignId){
+function openForms(formDesignId, formDesignRefId, formDesignName, formDesignDescription, formVersionNo, formIsDraft){
 
 
 	
@@ -489,7 +494,7 @@ function openForms(formDesignId){
 
 	// Activates knockout.js	
 	
-	var viewModel = new FormsModel();
+	viewModel = new FormsModel();
 		
 	var components = []
 		
@@ -513,7 +518,9 @@ function openForms(formDesignId){
 	    	  isEnumerated: value.isEnumerated, 
 	    	  enumerations: value.enumerations,
 	    	  additionalInstructions: value.additionalInstructions, 
-	    	  label: value.label
+	    	  label: value.label, 
+	    	  questionId: value.id,
+	    	  inputId: value.inputId
 	      }	
 
 		components.push((newComponent(element)))
@@ -523,9 +530,9 @@ function openForms(formDesignId){
 		jsonDeferred.resolve()
 			
 	});
-	
+
 	jsonDeferred.done(function(){
-		viewModel.addForm('refId','formName','',components);
+		viewModel.addForm(formDesignId, formDesignName,formDesignRefId,formDesignDescription, formVersionNo, formIsDraft, components);
 		setTimeout(function(){
 			initializePalette();
 		}, 500);
@@ -533,6 +540,25 @@ function openForms(formDesignId){
 		ko.applyBindings(viewModel);
 	});
 
+}
+
+function saveForm(formDesignId){
+
+	var form = viewModel.activeForm()
+	
+	form.formDesignId = formDesignId
+
+	$.ajax({
+		type: "POST",
+		url: '../saveForm',
+		data: ko.toJSON(form),
+		success: function(){
+			alert('saved');
+		},
+		contentType: 'application/json',
+		dataType: 'json'
+		});
+	
 }
 
 

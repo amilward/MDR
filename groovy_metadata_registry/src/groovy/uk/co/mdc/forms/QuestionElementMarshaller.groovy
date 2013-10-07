@@ -14,13 +14,14 @@ class QuestionElementMarshaller {
 			'prompt' : questionElement?.prompt,
 			'style' : questionElement?.style,
 			'additionalInstructions' : questionElement?.additionalInstructions,
+			'inputId' : questionElement?.inputField?.id,
 			'defaultValue' : questionElement?.inputField?.defaultValue,
 			'placeholder' : questionElement?.inputField?.placeholder,
 			'unitOfMeasure' : questionElement?.inputField?.unitOfMeasure,
 			'maxCharacters' : questionElement?.inputField?.maxCharacters,
 			'format' : questionElement?.inputField?.format,
 			'dataType' : questionElement?.inputField?.dataType?.name,
-			'isEnumerated' : result = questionElement?.inputField?.dataType?.enumerated ? questionElement?.inputField?.dataType?.enumerated : false,
+			'isEnumerated' : questionElement?.inputField?.dataType?.enumerated ? questionElement?.inputField?.dataType?.enumerated : false,
 			'enumerations' : questionElement?.inputField?.dataType?.enumerations,
 			]
 		}
