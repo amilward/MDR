@@ -201,6 +201,14 @@ class BootStrap {
 				
 		}
 		
+		/*if (!PathwaysModel.count()) {
+			def pathways = new XmlSlurper().parse( new File("${basePath}/WEB-INF/bootstrap-data/Pathway.xml"))
+			pathways.pathway_model.each() { p ->
+				new PathwaysModel(p.attributes()).save(failOnError: true) //assumes the keys match the Pathway properties
+			}
+				
+		}*/
+		
 		
 		
 		if (!ConceptualDomain.count()) {
