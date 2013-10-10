@@ -8,11 +8,14 @@ import uk.co.mdc.model.DataType
 import uk.co.mdc.model.DataElementConcept
 import uk.co.mdc.model.ConceptualDomain
 import uk.co.mdc.model.DataElementValueDomain
+import uk.co.mdc.pathways.PathwaysModel
+import uk.co.mdc.pathways.Link
+import uk.co.mdc.pathways.Node
 
 import org.codehaus.groovy.grails.plugins.springsecurity.SecurityFilterPosition
 import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils
-
 import org.codehaus.groovy.grails.commons.ApplicationHolder
+
 import grails.util.DomainBuilder
 
 import org.springframework.web.context.support.WebApplicationContextUtils
@@ -25,7 +28,6 @@ import static org.springframework.security.acls.domain.BasePermission.WRITE
 import org.springframework.security.authentication. UsernamePasswordAuthenticationToken
 import org.springframework.security.core.authority.AuthorityUtils
 import org.springframework.security.core.context.SecurityContextHolder as SCH
-
 import org.grails.plugins.csv.CSVMapReader
 
 
@@ -288,6 +290,8 @@ class BootStrap {
 				new DataType(name:"Text", enumerated: false).save(failOnError: true)
 				new DataType(name:"Integer", enumerated: false).save(failOnError: true)
 				new DataType(name:"Date", enumerated: false).save(failOnError: true)
+				new DataType(name:"DateTime", enumerated: false).save(failOnError: true)
+				new DataType(name:"Time", enumerated: false).save(failOnError: true)
 				new DataType(name:"Float", enumerated: false).save(failOnError: true)
 				new DataType(name:"Boolean", enumerated: false).save(failOnError: true)
 				new DataType(name:"Blob", enumerated: false).save(failOnError: true)
@@ -417,7 +421,64 @@ class BootStrap {
 							formDesignInstance.addToFormDesignElements(question2)
 							formDesignInstance.addToFormDesignElements(question3)
 						}
-
+						
+						
+						//add a pathway
+						
+						
+						if(!PathwaysModel.count()){
+							def node1 = new Node(
+								refId: 'TM_N1',
+								name: 'transfer to O.R.',
+								description: 'transfer patient to the Operating Room'
+								).save(flush:true)
+							
+						
+							def node2 = new Node(
+								refId: 'TM_N2',
+								name: 'Anaesthesia and Operating Patient.',
+								description: 'perform the operation'
+								).save(flush:true)
+						
+				
+							def node3 = new Node(
+								refId: 'TM_N3',
+								name: 'Guarding Patient on recovery and transfer to nursing ward',
+								description: 'transfer patient to the Operating Room'
+								).save(flush:true)
+							
+						
+						
+							def link1 = new Link(
+								refId: 'TM_L1',
+								name: 'TM1',
+								source: node1,
+								target: node2,
+							).save(flush:true)
+							
+							def link2 = new Link(
+								refId: 'TM_L2',
+								name: 'TM2',
+								source: node2,
+								target: node3,
+							).save(flush:true)
+							
+							def pathway = new PathwaysModel(
+								refId: 'TM_P1',
+								name: 'Transplanting and Monitoring Pathway',
+								versionNo: '0.1',
+								isDraft: true
+								)
+							
+							pathway.addToPathwayElements(node1)
+							pathway.addToPathwayElements(node2)
+							pathway.addToPathwayElements(node3)
+							pathway.addToPathwayElements(link1)
+							pathway.addToPathwayElements(link2)
+							pathway.save(flush:true)
+							
+						}
+						
 						}
 
 			}

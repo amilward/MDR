@@ -43,6 +43,10 @@ class FormDesignController {
 			def options
 			def renderType
 			
+			//create form design
+			
+			def formDesignInstance = new FormDesign(collection: collectionInstance)
+			
 			dataElements.each{ dataElement->
 				
 				//N.B....need to change this so that the data elements in the collections can have more than one
@@ -69,7 +73,7 @@ class FormDesignController {
 				}
 				
 				//add the question data to the list
-				questions.add([
+				/*questions.add([
 					'dataElementId': dataElement.id,
 					'valueDomainId': valueDomain.id,
 					'label': label,
@@ -77,10 +81,26 @@ class FormDesignController {
 					'format': format,
 					'renderType': renderType,
 					'options': options,
-					 ])
+					 ])*/
+				
+				formDesignInstance.addToFormDesignElements(new QuestionElement(
+							label: label,
+							dataElement: dataElement, 
+							valueDomain: valueDomain,
+							inputField: new InputField(
+								unitOfMeasure: unitOfMeasure,
+								dataType: dataType,
+								format: format,
+								renderType: renderType,
+								options: options
+								)
+							)
+				)
 			}
 			
-			[formDesignInstance: new FormDesign(params), collectionId: collectionInstance.id, questions: questions]
+			println(formDesignInstance)
+			
+			[formDesignInstance: formDesignInstance as JSON]
 			
 		}else{
 		
@@ -232,7 +252,6 @@ class FormDesignController {
 	
 	def saveForm(){
 		
-		
 		 def form = request.JSON
 		// println(form)
 		 def components = form.components
@@ -247,29 +266,63 @@ class FormDesignController {
 			 formDesignInstance.versionNo = form.versionNo
 			 formDesignInstance.isDraft= form.isDraft
 			
+			 //update questions.
+
 			 components.each{ component->
 				 
 				 def question = component.question
 
-				 def questionInstance = QuestionElement.get(question.questionId)
-	
-				 if(questionInstance){
+				 if(question?.questionId){
+				 
+					 def questionInstance = QuestionElement.get(question.questionId)
+		
+					 if(questionInstance){
+						 
+						 questionInstance.prompt = question.prompt
+						 questionInstance.additionalInstructions = question.additionalInstructions
+
+						 def inputFieldInstance = InputField.get(question.inputId)
+						 inputFieldInstance.defaultValue = question.defaultValue
+						 inputFieldInstance.placeholder = question.placeholder
+						 inputFieldInstance.maxCharacters = question.maxCharacters
+						 inputFieldInstance.unitOfMeasure = question.unitOfMeasure
+						 // inputField.dataType =  will fill this in later
+						 inputFieldInstance.format = question.format
+						 inputFieldInstance.save()
 					 
-					 questionInstance.prompt = question.prompt
-					 questionInstance.additionalInstructions = question.additionalInstructions
+					 }
+					 
+				 }else{
+				 //create new question instance
+				 //get data type for new question
+				 def string = DataType.findByName('String')
+				 
+				 //create input field for new question
+				 def inputField = new InputField(
+					 
+					  defaultValue: component.question?.defaultValue,
+					  placeholder: component.question?.placeholder,
+					  maxCharacters: component.question?.maxCharacters,
+					  unitOfMeasure: component.question?.unitOfMeasure,
+					  dataType: string,
+					  format: component.question?.format,
+					 
+					 ).save(failOnError: true)
+					 
+				//create question	 
+				
+				def newQuestion  = new QuestionElement(
+						 questionNumber: '1',
+						 prompt: component.question?.prompt,
+						 style: component.question?.style,
+						 label: component.question?.label,
+						 additionalInstructions: component.question?.additionalInstructions,
+						 inputField: inputField
+						 ).save(failOnError: true)
 					 
 				 
-					 def inputFieldInstance = InputField.get(question.inputId)
-					 
-					 inputFieldInstance.defaultValue = question.defaultValue
-					 inputFieldInstance.placeholder = question.placeholder
-					 inputFieldInstance.maxCharacters = question.maxCharacters
-					 inputFieldInstance.unitOfMeasure = question.unitOfMeasure
-					// inputField.dataType =  will fill this in later
-					 inputFieldInstance.format = question.format
-					 
-					 inputFieldInstance.save()
-				 
+						 formDesignInstance.addToFormDesignElements(newQuestion)
+						 
 				 }
 				 
 			 }
@@ -461,4 +514,9 @@ class FormDesignController {
             redirect(action: "show", id: id)
         }
     }
+	
+	def getDataType(){
+		
+		
+	}
 }

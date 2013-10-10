@@ -189,7 +189,7 @@ function Property(iname, ename, value){
 }
 
 
-function Component(iid, eid, properties) {
+function Component(iid, eid, properties, icon) {
 	var self = this;
 	self.dateCreated = new Date();
 	self.internalIdentifier = ko.observable(iid);
@@ -218,7 +218,7 @@ function Component(iid, eid, properties) {
 
 		
 	self.clone = function(){
-		var c = new Component(lastComponentID++, self.externalIdentifier(), self.properties());
+		var c = new Component(lastComponentID++, self.externalIdentifier(), self.properties(), self.icon());
 		var q = self.question().clone();
 		c.setQuestion(q);
 		//console.log("cloning");
@@ -336,9 +336,10 @@ function newComponent(element)
 	var iid = element.id + '-' + lastComponentID;
 	var eid = iid;
 	var properties = element.properties;
+	var icon = element.icon;
 	
 	//var html = element.defaultView;
-	var c = new Component(iid, eid, properties);
+	var c = new Component(iid, eid, properties, icon);
 	
 	
 	if(element.type == "question")
@@ -357,7 +358,7 @@ function newComponent(element)
 		
 		if(element.prompt==null){
 			
-			var question = new Question("no question prompt", "no additionalInstructions", "no label", "", dti, "no defaultValue", "no placeholder", "no unitOfMeasure test", "no maxCharacters", "no format", "no isEnumerated", "no enumerations", "no question id");
+			var question = new Question("no question prompt", "no additionalInstructions", "no label", "", dti, "no defaultValue", "no placeholder", "no unitOfMeasure test", "", "no format", "false", "no enumerations", "");
 			
 			
 		}else{
@@ -475,6 +476,12 @@ function getDataType(dataType, isEnumerated){
 	}
 	
 	return dataType;
+	
+}
+
+function newForm(){
+	
+	
 	
 }
 

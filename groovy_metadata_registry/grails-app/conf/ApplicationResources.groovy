@@ -32,6 +32,24 @@ modules = {
 		
 	}
 	
+	formsRenderer{
+		
+		dependsOn "application"
+		resource url: "js/bootstrap-editable.js"
+		resource url: "js/form_model.js"
+		resource url: "js/constraint.js"
+		resource url: "js/frenderer-theme-bootstrap.js"
+		resource url: "js/frenderer.js"
+	}
+	
+	pathways{
+		dependsOn "application"
+		resource url: "js/bootstrap-editable.js"
+		resource url: "js/jquery.jsPlumb-1.5.2-min.js"
+		resource url: "js/pathway_model.js"
+		resource url: "js/pathway.js"
+	}
+
 	dForms{
 		dependsOn "application"
 		resource url: "js/jquery.dform-1.1.0.min.js"

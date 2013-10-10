@@ -62,7 +62,6 @@ function initializePalette(){
 		collapsible: true,
 		autoHeight: true,
 		beforeActivate: function( event, ui ) {
-			alert('test');
 			ui.oldHeader.blur();
 			ui.newHeader.blur();
 		}, 
