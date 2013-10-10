@@ -6,6 +6,8 @@ class ListField extends InputField{
 	Boolean ordered
 	Boolean fillIn
 	
+	static hasMany = [listItems: ListItem]
+	
     static constraints = {
     }
 }

@@ -335,7 +335,16 @@
                             <li><g:link action="list" controller="FormDesign"><i class="icon-angle-right"></i> List </g:link></li>
                             <li><g:link action="create" controller="Form Design"><i class="icon-angle-right"></i> Create </g:link></li>
                         </ul>
-                    </li>                                                      
+                    </li>    
+                    <li class="accordion-group ">
+                        <a data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#pathways-nav">
+                            <i class="icon-file-text-alt icon-large"></i> Pathways
+                        </a>
+                        <ul class="collapse " id="pathways-nav">
+                            <li><g:link action="list" controller="PathwaysModel"><i class="icon-angle-right"></i> List </g:link></li>
+                            <li><g:link action="create" controller="PathwaysModel"><i class="icon-angle-right"></i> Create </g:link></li>
+                        </ul>
+                    </li>                                                    
                 </ul>
                 <!-- END MAIN NAVIGATION -->
 

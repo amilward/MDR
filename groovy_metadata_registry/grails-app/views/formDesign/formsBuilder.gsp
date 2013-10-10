@@ -118,8 +118,10 @@
 										</td> -->
 										<td class="content">
 											<h4 data-bind="text: question().prompt() == 'no prompt set'? 'Question ' + getQuestionNumber($index(), $parent.components()) : question().computedPrompt()"></h4>
+											<i class="icon-large" data-bind="attr: {class: $parent.icon	 + ' icon-large'}"></i>
 											<p data-bind="text: question().additionalInstructions()"></p>
 											<p data-bind="html: question().dataTypeInstance().previewRender()">
+											
 												<!-- <span data-bind="text: question().label()"></span> -->
 												
 											</p>
@@ -155,7 +157,7 @@
     			<!-- /ko -->
 				
 			</div>
-			<div id="properties-panel" class="ui-layout-south large-rounded">
+			<div id="properties-panel" class="ui-layout-west large-rounded">
 				<div class="panel-title">
 					<span>Properties</span>
 				</div>
