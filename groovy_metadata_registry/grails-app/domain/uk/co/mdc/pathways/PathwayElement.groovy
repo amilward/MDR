@@ -4,16 +4,15 @@ import uk.co.mdc.model.Collection
 
 abstract class PathwayElement {
 	
-	Collection[] mandatoryInputs
-	Collection[] mandatoryOutputs
-	Collection[] optionalInputs
-	Collection[] optionalOutputs
-	
 	String refId
 	String name
 	String description
 	
-	static hasMany = [nodes: Node, links: Link]
+	static hasMany = [nodes: Node, links: Link, 
+					  mandatoryInputs: Collection,
+					  mandatoryOutputs: Collection,
+					  optionalInputs: Collection,
+					  optionalOutputs: Collection]
 
     static constraints = {
 		mandatoryInputs nullable:true
