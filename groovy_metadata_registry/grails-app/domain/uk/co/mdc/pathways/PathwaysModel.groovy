@@ -15,4 +15,36 @@ class PathwaysModel {
 		refId unique:true
 		description nullable: true
     }
+	
+	List getNodes(){
+		
+		def nodes = []
+				
+		this.pathwayElements.each{ element ->
+			
+			if(element.instanceOf(Node)){
+			
+				nodes.push(element)
+			}
+		}
+
+		return nodes
+		
+	}
+	
+	List getLinks(){
+		def links = []
+				
+		this.pathwayElements.each{ element ->
+			
+			if(element.instanceOf(Link)){
+				links.push(element)
+			}
+		}
+
+		return links
+		
+	}
+	
+	
 }

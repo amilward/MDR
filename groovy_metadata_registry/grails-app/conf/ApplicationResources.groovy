@@ -22,12 +22,12 @@ modules = {
 	
 	formsBuilder{
 		dependsOn "application"
-		resource url: "js/jquery.layout-1.3.0.min.js"
-		resource url: "js/bootstrap-editable.js"
-		resource url: "js/knockout-2.2.1.js"
-		resource url: "js/knockout-sortable.js"
-		resource url: "js/knockout-x-editable.js"
-		resource url: "js/viewModel.js"
+		resource url: "js/vendor/jquery.layout-1.3.0.min.js"
+		resource url: "js/vendor/bootstrap-editable.js"
+		resource url: "js/vendor/knockout-2.2.1.js"
+		resource url: "js/vendor/knockout-sortable.js"
+		resource url: "js/vendor/knockout-x-editable.js"
+		resource url: "js/forms/viewModel.js"
 		resource url: "js/custom.js"
 		
 	}
@@ -35,25 +35,29 @@ modules = {
 	formsRenderer{
 		
 		dependsOn "application"
-		resource url: "js/bootstrap-editable.js"
-		resource url: "js/form_model.js"
-		resource url: "js/constraint.js"
-		resource url: "js/frenderer-theme-bootstrap.js"
-		resource url: "js/frenderer.js"
+		resource url: "js/vendor/jquery.layout-1.3.0.min.js"
+		resource url: "js/vendor/bootstrap-editable.js"
+		resource url: "js/forms/form_model.js"
+		resource url: "js/forms/constraint.js"
+		resource url: "js/forms/frenderer-theme-bootstrap.js"
+		resource url: "js/forms/frenderer.js"
+		resource url: "js/custom.js"
 	}
 	
 	pathways{
 		dependsOn "application"
-		resource url: "js/bootstrap-editable.js"
-		resource url: "js/jquery.jsPlumb-1.5.2-min.js"
-		resource url: "js/pathway_model.js"
-		resource url: "js/pathway.js"
+		resource url: "js/vendor/jquery.layout-1.3.0.min.js"
+		resource url: "js/vendor/bootstrap-editable.js"
+		resource url: "js/pathways/jquery.jsPlumb-1.5.2-min.js"
+		resource url: "js/pathways/pathway_model.js"
+		resource url: "js/pathways/pathway.js"
+		resource url: "js/pathways/pathwaysLayout.js"
 	}
 
 	dForms{
 		dependsOn "application"
-		resource url: "js/jquery.dform-1.1.0.min.js"
-		resource url: "js/formDesign.js"
+		resource url: "js/vendor/jquery.dform-1.1.0.min.js"
+		resource url: "js/forms/formDesign.js"
 		}
 
 }

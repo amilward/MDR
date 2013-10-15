@@ -50,7 +50,7 @@ $(document).ready(function () {
 	});
 
 	function resizeWindows(){
-		$('#container').height($('html').height() - 105);
+		$('#container').height($('html').height() + 205);
 	}
 
 

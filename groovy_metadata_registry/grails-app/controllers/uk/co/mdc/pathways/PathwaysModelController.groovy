@@ -1,5 +1,6 @@
 package uk.co.mdc.pathways
 
+import grails.converters.JSON
 import org.springframework.dao.DataIntegrityViolationException
 
 class PathwaysModelController {
@@ -41,6 +42,20 @@ class PathwaysModelController {
         [pathwaysModelInstance: pathwaysModelInstance]
     }
 
+	def jsonPathways(Long id){
+		
+		def pathwaysModelInstance = PathwaysModel.get(id)
+		if (!pathwaysModelInstance) {
+			flash.message = message(code: 'default.not.found.message', args: [message(code: 'pathwaysModel.label', default: 'PathwaysModel'), id])
+			redirect(action: "list")
+			return
+		}
+
+		def model = [pathwaysModelInstance: pathwaysModelInstance]
+		
+		render model as JSON
+	}
+	
     def edit(Long id) {
         def pathwaysModelInstance = PathwaysModel.get(id)
         if (!pathwaysModelInstance) {
