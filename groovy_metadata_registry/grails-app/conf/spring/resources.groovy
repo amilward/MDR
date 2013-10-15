@@ -7,7 +7,9 @@ import uk.co.mdc.model.ValueDomainMarshaller
 import uk.co.mdc.model.DataElementConceptMarshaller
 import uk.co.mdc.model.ConceptualDomainMarshaller
 import uk.co.mdc.model.CollectionMarshaller
-
+import uk.co.mdc.pathways.PathwaysModelMarshaller
+import uk.co.mdc.pathways.LinkMarshaller
+import uk.co.mdc.pathways.NodeMarshaller
 // Place your Spring DSL code here
 beans = {
 	
@@ -26,7 +28,10 @@ beans = {
 		new DataElementConceptMarshaller(),
 		new CollectionMarshaller(),
 		new ConceptualDomainMarshaller(),
-		new QuestionElementMarshaller()
+		new QuestionElementMarshaller(),
+		new PathwaysModelMarshaller(),
+		new LinkMarshaller(), 
+		new NodeMarshaller()
 		]
 	}
 }

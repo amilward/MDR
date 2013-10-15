@@ -218,7 +218,7 @@ function Component(iid, eid, properties, icon) {
 
 		
 	self.clone = function(){
-		var c = new Component(lastComponentID++, self.externalIdentifier(), self.properties(), self.icon());
+		var c = new Component(lastComponentID++, self.externalIdentifier(), self.properties());
 		var q = self.question().clone();
 		c.setQuestion(q);
 		//console.log("cloning");
@@ -229,11 +229,12 @@ function Component(iid, eid, properties, icon) {
 	
 }
 
-function Form(id, fullName, refId, description, versionNo, isDraft, components) {
+function Form(id, fullName, refId, description, versionNo, isDraft, collectionId, components) {
 	var self = this;
 	self.formID = ko.observable(id);
 	self.formDesignName = ko.observable(fullName);
 	self.formRefId = ko.observable(refId);
+	self.formCollectionId = ko.observable(collectionId);
 	self.formDescription = ko.observable(description);
 	self.versionNo = ko.observable(versionNo);
 	self.isDraft = ko.observable(isDraft);
@@ -315,9 +316,9 @@ function FormsModel() {
 
 
     
-    self.addForm = function(id, fullName, refId, description, versionNo, isDraft, components){
+    self.addForm = function(id, fullName, refId, description, versionNo, isDraft, collectionId, components){
     	//self.palette = paletteItems;
-    	self.forms.push(new Form(id, fullName, refId, description, versionNo, isDraft, components));
+    	self.forms.push(new Form(id, fullName, refId, description, versionNo, isDraft, collectionId, components));
     	self.setActiveFormId(id);
     	//self.palette = paletteItems;
     	self.palette = paletteItems;
@@ -332,6 +333,7 @@ var lastComponentID = 0;
 
 function newComponent(element)
 {
+
 	lastComponentID++;
 	var iid = element.id + '-' + lastComponentID;
 	var eid = iid;
@@ -363,7 +365,6 @@ function newComponent(element)
 			
 		}else{
 			
-
 			var question = new Question(element.prompt, element.additionalInstructions, element.label, element.style, 
 					dti, element.defaultValue, element.placeholder, 
 					element.unitOfMeasure,  element.maxCharacters, 
@@ -375,6 +376,7 @@ function newComponent(element)
 		//console.log(ko.toJSON(question, null, 2));
 	}
 	//console.log(c.question());
+
 	return c; 
 	
 }
@@ -479,23 +481,60 @@ function getDataType(dataType, isEnumerated){
 	
 }
 
-function newForm(){
+function createFormFromCollection(collectionId, questions){
+
+	//set up defer object
+	var jsonDeferred = $.Deferred();
+
+	// Activates knockout.js	
+	
+	viewModel = new FormsModel();
+	
+	var components = []
+	
+	questions = JSON.parse(questions);
+	
+	$.each(questions, function(index, question){
+		var element = 	{
+	      	  id: 5,
+	    	  name: "String Input",
+	    	  icon: "icon-pencil",
+	    	  type: "question",
+	    	  datatype: getDataType(question.dataType.name, question.dataType.enumerated),
+	    	  properties: [{ename: question.name, iname: question.name, value: question.name}],
+	    	  prompt: question.label,
+	    	  style: '', 
+	    	  defaultValue: '', 
+	    	  placeholder: '',
+	    	  unitOfMeasure: question.unitOfMeasure, 
+	    	  maxCharacters: question.maxCharacters, 
+	    	  format: question.format,
+	    	  isEnumerated: question.isEnumerated, 
+	    	  enumerations: question.options,
+	    	  additionalInstructions: question.additionalInstructions, 
+	    	  label: question.label, 
+	    	  questionId: '',
+	    	  inputId: ''
+	      }	
+
+		components.push(newComponent(element));
+		jsonDeferred.resolve();
+	});
 	
 	
+	jsonDeferred.done(function(){
+		viewModel.addForm('', '','','', '', true,collectionId, components);
+		setTimeout(function(){
+			initializePalette();
+		}, 500);
+
+		ko.applyBindings(viewModel);
+	});
 	
 }
 
-function openForms(formDesignId, formDesignRefId, formDesignName, formDesignDescription, formVersionNo, formIsDraft){
+function openForms(formDesignId, formDesignRefId, formDesignName, formDesignDescription, formVersionNo, formIsDraft, formCollectionId){
 
-
-	
-	// Activates knockout.js	
-	/*	
-	var viewModel = new FormsModel();
-	viewModel.addForm('refId','formName','',[]);
-	ko.applyBindings(viewModel);
-	*/
-	
 	//set up defer object
 	var jsonDeferred = $.Deferred();
 
@@ -539,7 +578,7 @@ function openForms(formDesignId, formDesignRefId, formDesignName, formDesignDesc
 	});
 
 	jsonDeferred.done(function(){
-		viewModel.addForm(formDesignId, formDesignName,formDesignRefId,formDesignDescription, formVersionNo, formIsDraft, components);
+		viewModel.addForm(formDesignId, formDesignName,formDesignRefId,formDesignDescription, formVersionNo, formIsDraft, formCollectionId, components);
 		setTimeout(function(){
 			initializePalette();
 		}, 500);
@@ -549,15 +588,33 @@ function openForms(formDesignId, formDesignRefId, formDesignName, formDesignDesc
 
 }
 
-function saveForm(formDesignId){
+function saveForm(){
+	
+	var form = viewModel.activeForm()
 
+	$.ajax({
+		type: "POST",
+		url: 'saveForm',
+		data: ko.toJSON(form),
+		success: function(data){
+			alert('saved')
+			window.location.href = 'show/' + data.formDesignId
+		},
+		contentType: 'application/json',
+		dataType: 'json'
+		});
+	
+}
+
+function updateForm(formDesignId){
+	
 	var form = viewModel.activeForm()
 	
 	form.formDesignId = formDesignId
 
 	$.ajax({
 		type: "POST",
-		url: '../saveForm',
+		url: '../updateForm',
 		data: ko.toJSON(form),
 		success: function(){
 			alert('saved');
@@ -567,5 +624,6 @@ function saveForm(formDesignId){
 		});
 	
 }
+
 
 

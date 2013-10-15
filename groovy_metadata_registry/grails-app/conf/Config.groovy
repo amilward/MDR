@@ -33,7 +33,10 @@ grails.mime.types = [
 //grails.urlmapping.cache.maxsize = 1000
 
 // What URL patterns should be processed by the resources plugin
-grails.resources.adhoc.patterns = ['/images/*','/img/*', '/css/*','/js/*', '/plugins/*']
+grails.resources.adhoc.patterns = ['/images/*','/img/*', '/css/**','/js/*','/js/vendor/*', '/plugins/*']
+
+//NEED TO REMOVE IN PRODUCTION - DISABLING JAVASCRIPT BUNDLING 
+grails.resources.debug=true
 
 // The default codec used to encode data with ${}
 grails.views.default.codec = "none" // none, html, base64
@@ -118,6 +121,10 @@ import grails.plugins.springsecurity.SecurityConfigType
 
 grails.plugins.springsecurity.securityConfigType = SecurityConfigType.InterceptUrlMap
 grails.plugins.springsecurity.interceptUrlMap = [
+	'/js/vendor/**':  ['IS_AUTHENTICATED_ANONYMOUSLY'],
+	'/css/**': ['IS_AUTHENTICATED_ANONYMOUSLY'],
+	'/images/**': ['IS_AUTHENTICATED_ANONYMOUSLY'],
+	'/img/**': ['IS_AUTHENTICATED_ANONYMOUSLY'],
 	'/login/*':    ['IS_AUTHENTICATED_ANONYMOUSLY'],
 	'/logout/*':    ['IS_AUTHENTICATED_ANONYMOUSLY'],
 	'/register/*':    ['IS_AUTHENTICATED_ANONYMOUSLY'],

@@ -353,19 +353,7 @@
 
             <!-- BEGIN MAIN CONTENT -->
             <div id="content">
-            
-				 <!-- BEGIN HEADER.head -->
-	            <header class="head">
-	                <!-- ."main-bar -->
-	                <div class="main-bar">
-	                    <div>
-	                                <h3>${activeNavItem}</h3>
-	                    </div>
-	                    
-	                </div>
-	                <!-- /.main-bar -->
-	            </header>
-	            <!-- END HEADER.head -->            
+	                      
                 <!-- .outer -->
                 <div class="container-fluid outer">
                     <div class="row-fluid">

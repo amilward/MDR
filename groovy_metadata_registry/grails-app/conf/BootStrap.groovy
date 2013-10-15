@@ -1,11 +1,13 @@
 import uk.co.mdc.*
 import uk.co.mdc.forms.*
+import uk.co.mdc.model.SchemaSpecification;
 import uk.co.mdc.model.Collection;
 import uk.co.mdc.model.ExternalReference
 import uk.co.mdc.model.ValueDomain
 import uk.co.mdc.model.DataElement
 import uk.co.mdc.model.DataType
 import uk.co.mdc.model.DataElementConcept
+import uk.co.mdc.model.DataElementCollection
 import uk.co.mdc.model.ConceptualDomain
 import uk.co.mdc.model.DataElementValueDomain
 import uk.co.mdc.pathways.PathwaysModel
@@ -119,7 +121,7 @@ class BootStrap {
 	
 	private void grantPermissions() {
 		def dataElements = []
-		100.times {
+		/*100.times {
 			long id = it + 1
 			def dataElement = new DataElement(refId: "reference$id", name: "dataElement$id", description: 'test').save(failOnError:true)
 			dataElements << dataElement
@@ -138,7 +140,7 @@ class BootStrap {
 			aclUtilService.addPermission dataElements[it], 'user2', READ
 			}
 		
-		aclUtilService.addPermission dataElements[4], 'user2', WRITE
+		aclUtilService.addPermission dataElements[4], 'user2', WRITE*/
 		
 		// user 3 has no grants
 		
@@ -149,10 +151,14 @@ class BootStrap {
 		grantAdminPermissions(DataElementConcept.list())
 		grantAdminPermissions(DataType.list())
 		grantAdminPermissions(ExternalReference.list())
-	
+		grantAdminPermissions(Collection.list())
+		grantAdminPermissions(FormDesign.list())
+		grantAdminPermissions(QuestionElement.list())
+		grantAdminPermissions(InputField.list())
+		
 		// grant user 1 ownership on 1,2 to allow the user to grant
-		aclUtilService.changeOwner dataElements[0], 'user1'
-		aclUtilService.changeOwner dataElements[1], 'user1'
+		//aclUtilService.changeOwner dataElements[0], 'user1'
+		//aclUtilService.changeOwner dataElements[1], 'user1'
 		}
 	
 	
@@ -173,14 +179,6 @@ class BootStrap {
 	 *
 	 * */
 	
-
-	
-	
-	/*
-	 *  **********************POPULATE WITH MODEL TEST DATA********************************
-	 * 
-	 * */
-
 	private populateWithTestData(){
 		
 		
@@ -344,6 +342,11 @@ class BootStrap {
 																	format:"an6").save(failOnError: true))
 						
 						
+						def dataElement = DataElement.findByRefId("CR0120")
+						DataElementCollection.link(dataElement, 
+													new Collection(refId: 'Col1', 
+													name: 'TestCol', 
+													description: 'blah blah blah').save(failOnError: true), SchemaSpecification.MANDATORY)
 						
 						
 						//populate with forms data
@@ -430,6 +433,8 @@ class BootStrap {
 							def node1 = new Node(
 								refId: 'TM_N1',
 								name: 'transfer to O.R.',
+								x: '5',
+								y: '0',
 								description: 'transfer patient to the Operating Room'
 								).save(flush:true)
 							
@@ -437,6 +442,8 @@ class BootStrap {
 							def node2 = new Node(
 								refId: 'TM_N2',
 								name: 'Anaesthesia and Operating Patient.',
+								x: '15',
+								y: '10',
 								description: 'perform the operation'
 								).save(flush:true)
 						
@@ -444,6 +451,8 @@ class BootStrap {
 							def node3 = new Node(
 								refId: 'TM_N3',
 								name: 'Guarding Patient on recovery and transfer to nursing ward',
+								x: '25',
+								y: '30',
 								description: 'transfer patient to the Operating Room'
 								).save(flush:true)
 							

@@ -1,12 +1,13 @@
+function openPathways(pathway_model){
 		mainDiv = $('#main');
-		$.each(pathway_model.nodes, function(index, node) {
+		$.each(pathway_model.pathwaysModelInstance.nodes, function(index, node) {
 
 			$newNode = $('<div/>', {
 			    id: node.id,
 			    class: 'node',
 			    rel: 'popover',
 			    'data-trigger' : 'click',
-			    'data-content' : node.shortDescription,
+			    'data-content' : node.Description,
 			    'data-original-title' : node.name
 			});
 			/*$newNode.append("<p>" + node.name + "</p>") */
@@ -33,19 +34,22 @@
 				$sidebar = $('#sidebar');
 				$sidebar.html('');
 				$sidebar.append($('<h3>' + node.name + '</h3>'));
-				$sidebar.append($('<p>' + node.shortDescription + '</p>'));
+				$sidebar.append($('<p>' + node.Description + '</p>'));
 				$sidebar.append($('<h4>Data Elements</h4>'));
 				$sidebar.append($('<p>Below is a list of data elements collected at this stage in the pathway.</p>'));
 				$table = $('<table/>', {
 					class: 'table table-striped table-bordered'
 				});
-				$.each(node.dataElements, function(index, de){
-					$tr = $('<tr/>');
-					$tr.append("<td>" + de.id + "</td>");
-					$tr.append("<td>" + de.description + "</td>");
-					$table.append($tr);
-				});
-				$sidebar.append($table);
+
+				var dataElements = $.parseJSON(node.dataElements)
+				
+					$.each(dataElements, function(index, de){
+						$tr = $('<tr/>');
+						$tr.append("<td>" + de.id + "</td>");
+						$tr.append("<td>" + de.description + "</td>");
+						$table.append($tr);
+					});
+					$sidebar.append($table);
 			});	
 			
 			$newNode.contextmenu(function(e){
@@ -135,9 +139,9 @@
 			});
 
 			// and finally, make a couple of connections
-
+			
 			$("div").promise().done(function() {
-				$.each(pathway_model.links, function(index, link) {
+				$.each(pathway_model.pathwaysModelInstance.links, function(index, link) {
 					jsPlumb.connect({
 						source : link.source,
 						target : link.target,
@@ -150,10 +154,8 @@
 					
 					
 				});
-
 				// allow refresh again
 				jsPlumb.setSuspendDrawing(false, true);
-				
 				// Now we add the default label again
 				jsPlumb.importDefaults({
 					ConnectionOverlays : [ [ "Arrow", {
@@ -184,6 +186,7 @@
 			});
 		});
 		
+		}	
 function bindNode(n){
 
 

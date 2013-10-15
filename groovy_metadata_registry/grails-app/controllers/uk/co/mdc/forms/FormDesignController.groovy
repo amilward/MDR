@@ -11,14 +11,94 @@ class FormDesignController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
+	def formDesignService
+	
+	/* **************************************************************************************
+	 * ************************************* INDEX *********************************************************
+	 
+	 * default redirect to list page
+	 ********************************************************************************************* */
+	
     def index() {
         redirect(action: "list", params: params)
     }
+	
+	/* **************************************************************************************
+	 * ************************************* LIST ***************************************************
+	 
+	 *....only use this to render the list template as the datatables method is used instead
+	 * to list all the formDesigns
+	 *************************************************************************************** */
 
     def list(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
-        [formDesignInstanceList: FormDesign.list(params), formDesignInstanceTotal: FormDesign.count()]
+        []
     }
+	
+	
+	
+	/* **************************************************************************************
+	 * ********************************* DATA TABLES *************************************************
+	
+	 * this function is called when listing the data elements. It is called through ajax
+	 * using the the data tables plugin in the show.gsp view and the javascript that
+	 * calls the code is in main.js
+	 *********************************************************************************** */
+	
+	
+	
+	def dataTables(){
+		
+		// set the variables needed to pass back to the data tables plugin to render the data elements
+		
+		def data
+		def total
+		def displayTotal
+		def order
+		def sortCol
+		
+		//if the user searches for a data element return the search results using the data Element service
+		
+
+		if(params?.sSearch!='' && params?.sSearch!=null){
+			
+			def searchResults = formDesignService.search(params.sSearch)
+			
+			total = searchResults.size()
+			displayTotal = searchResults.size()
+			
+			if(total>0){
+				data = searchResults
+			}else{
+				data=[]
+			}
+			
+			//otherwise list the data elements using the data elements service and pass the relevant data
+			//back to the data tables plugin request as json
+			
+		}else{
+		
+			order = params?.sSortDir_0
+			sortCol = params?.iSortCol_0
+			sortCol = getSortField(sortCol)
+			data = formDesignService.list(max: params.iDisplayLength, offset: params.iDisplayStart, sort: sortCol, order: order)
+			total = formDesignService.count()
+			displayTotal = formDesignService.count()
+			
+		}
+		
+		
+		def model = [sEcho: params.sEcho, iTotalRecords: total, iTotalDisplayRecords: displayTotal, aaData: data]
+
+		//NB. when the json is rendered it uses a custom json marshaller so that it includes the relevant
+		//information (and doesn't return the whole database)
+		//the corresponding json marshaller is stored in src/groovy/uk/co/mdc/model/xxxxxxMarshaller.groovy
+				
+		render model as JSON
+	}
+	
+	
+	
+	
 	
     def create() {
 		
@@ -26,6 +106,7 @@ class FormDesignController {
 		
 			//get the collection fusing the id passed from collection show screen
 			def collectionInstance = Collection.get(params.collectionId.toInteger())
+			
 			def dataElements = collectionInstance.dataElementCollections()
 			
 			//set up the array to hold the information about questions
@@ -42,10 +123,8 @@ class FormDesignController {
 			def enumerated
 			def options
 			def renderType
+			def description
 			
-			//create form design
-			
-			def formDesignInstance = new FormDesign(collection: collectionInstance)
 			
 			dataElements.each{ dataElement->
 				
@@ -55,6 +134,7 @@ class FormDesignController {
 				valueDomain = valueDomains[0]
 				
 				label = dataElement?.name
+				description = dataElement?.description
 				unitOfMeasure = valueDomain?.unitOfMeasure
 				dataType = valueDomain?.dataType
 				format = valueDomain?.format
@@ -83,24 +163,22 @@ class FormDesignController {
 					'options': options,
 					 ])*/
 				
-				formDesignInstance.addToFormDesignElements(new QuestionElement(
+				questions.push(new HashMap(
 							label: label,
-							dataElement: dataElement, 
-							valueDomain: valueDomain,
-							inputField: new InputField(
-								unitOfMeasure: unitOfMeasure,
-								dataType: dataType,
-								format: format,
-								renderType: renderType,
-								options: options
-								)
+							dataElementId: dataElement.id, 
+							valueDomainId: valueDomain.id,
+							unitOfMeasure: unitOfMeasure,
+							dataType: dataType,
+							isEnumerated: dataType.enumerated,
+							format: format,
+							renderType: renderType,
+							additionalInstructions: description,
+							options: options	
 							)
 				)
 			}
 			
-			println(formDesignInstance)
-			
-			[formDesignInstance: formDesignInstance as JSON]
+			[collectionId: collectionInstance.id, questions: questions as JSON]
 			
 		}else{
 		
@@ -113,7 +191,7 @@ class FormDesignController {
     def save() {
 		
 		def collection = null
-		collection = Collection.get(params?.collection.id.toInteger())
+		collection = Collection.get(params?.formCollectionId.toInteger())
 		
 		def formDesignInstance = new FormDesign(
 			collection: collection,
@@ -141,10 +219,6 @@ class FormDesignController {
 		formDesignInstance.addToFormDesignElements(header)
 		formDesignInstance.header = header
 		formDesignElements.each{ designElement ->
-			/*if(designElement instanceof uk.co.mdc.forms.QuestionElement){
-				println(designElement.inputField)
-				println(designElement.inputField.options)
-			}*/
 			formDesignInstance.addToFormDesignElements(designElement)
 		}
 		
@@ -253,154 +327,39 @@ class FormDesignController {
 	def saveForm(){
 		
 		 def form = request.JSON
-		// println(form)
 		 def components = form.components
 		 
-		 if(form.formDesignId){
-			 
-			 def formDesignInstance = FormDesign.get(form.formDesignId)
-			 
-			 formDesignInstance.refId = form.formRefId
-			 formDesignInstance.name = form.formDesignName
-			 formDesignInstance.description = form.formDescription
-			 formDesignInstance.versionNo = form.versionNo
-			 formDesignInstance.isDraft= form.isDraft
-			
-			 //update questions.
+		 def formDesignInstance = formDesignService.create(form)
+		
 
-			 components.each{ component->
-				 
-				 def question = component.question
-
-				 if(question?.questionId){
-				 
-					 def questionInstance = QuestionElement.get(question.questionId)
-		
-					 if(questionInstance){
-						 
-						 questionInstance.prompt = question.prompt
-						 questionInstance.additionalInstructions = question.additionalInstructions
-
-						 def inputFieldInstance = InputField.get(question.inputId)
-						 inputFieldInstance.defaultValue = question.defaultValue
-						 inputFieldInstance.placeholder = question.placeholder
-						 inputFieldInstance.maxCharacters = question.maxCharacters
-						 inputFieldInstance.unitOfMeasure = question.unitOfMeasure
-						 // inputField.dataType =  will fill this in later
-						 inputFieldInstance.format = question.format
-						 inputFieldInstance.save()
-					 
-					 }
-					 
-				 }else{
-				 //create new question instance
-				 //get data type for new question
-				 def string = DataType.findByName('String')
-				 
-				 //create input field for new question
-				 def inputField = new InputField(
-					 
-					  defaultValue: component.question?.defaultValue,
-					  placeholder: component.question?.placeholder,
-					  maxCharacters: component.question?.maxCharacters,
-					  unitOfMeasure: component.question?.unitOfMeasure,
-					  dataType: string,
-					  format: component.question?.format,
-					 
-					 ).save(failOnError: true)
-					 
-				//create question	 
-				
-				def newQuestion  = new QuestionElement(
-						 questionNumber: '1',
-						 prompt: component.question?.prompt,
-						 style: component.question?.style,
-						 label: component.question?.label,
-						 additionalInstructions: component.question?.additionalInstructions,
-						 inputField: inputField
-						 ).save(failOnError: true)
-					 
-				 
-						 formDesignInstance.addToFormDesignElements(newQuestion)
-						 
-				 }
-				 
-			 }
-			 
-			 formDesignInstance.save(flush:true)
-		
-		 }
-		
-		
-		/*
-		if(!FormDesign.count()){
-			
-			def inputField1 = new InputField(
-				
-				 defaultValue: 'test default',
-				 placeholder: 'test placeholder',
-				 maxCharacters: 11,
-				 unitOfMeasure: 'test UOM',
-				 dataType: string,
-				 format: 'test format',
-				
-				).save(failOnError: true)
-				
-			def inputField2 = new InputField(
-					
-					 defaultValue: 'test default',
-					 placeholder: 'test placeholder',
-					 maxCharacters: 20,
-					 unitOfMeasure: 'test2 UOM',
-					 dataType: OP_REF,
-					 format: 'test format2',
-					
-					).save(failOnError: true)
-			
-			def question1  = new QuestionElement(
-				questionNumber: '1',
-				prompt: 'this is the first question',
-				style: 'this style1',
-				label: 'this style2',
-				additionalInstructions: 'more instructions',
-				inputField: inputField1
-				).save(failOnError: true)
-				
-			def question2  = new QuestionElement(
-					questionNumber: '2',
-					prompt: 'operation reference',
-					style: 'this style3',
-					label: 'this style4',
-					additionalInstructions: 'more instructions2 ',
-					inputField: inputField2
-					).save(failOnError: true)
-					
-			def question3  = new QuestionElement(
-						questionNumber: '3',
-						prompt: 'this is the thirs question',
-						style: 'this style5',
-						label: 'this style6',
-						additionalInstructions: 'more instructions',
-						inputField: inputField1
-						).save(failOnError: true)
-			
-			def formDesignInstance = new FormDesign(refId: 'testForm1',
-				name:'formDesignName1',
-				versionNo:'V0.1',
-				isDraft:true,
-				description:'test description 1'
-				).save(failOnError: true)
-				
-			formDesignInstance.addToFormDesignElements(question1)
-			formDesignInstance.addToFormDesignElements(question2)
-			formDesignInstance.addToFormDesignElements(question3)
-		}
-		*/
-		
-		def model = [success: true]
+		def model = [success: true, formDesignId: formDesignInstance.id]
 		
 		render model  as JSON
 	}
+
+	
+	def updateForm(){
+		
+		 def form = request.JSON
+		 def components = form.components
+
+		 def formDesignId = form.formDesignId
+		 
+		 def formDesignInstance = findInstance(formDesignId.toInteger())
+		 
+		 if (!formDesignInstance) {
+			 flash.message = message(code: 'default.not.found.message', args: [message(code: 'formDesignInstance.label', default: 'FormDesign'), id])
+			 redirect(action: "list")
+			 return
+		 }
+		 		 
+		 formDesignInstance = formDesignService.update(formDesignInstance, form)
+
+		def model = [success: true, formDesignId: formDesignInstance.id]
+		
+		render model  as JSON
+	}
+	
 	
 	
 	def jsonFormsBuilder(Long id){
@@ -430,20 +389,6 @@ class FormDesignController {
 		
 	}
 	
-	
-	def formsBuilder(Long id) {
-		
-		def formDesignInstance = FormDesign.get(id)
-/*		if (!formDesignInstance) {
-			flash.message = message(code: 'default.not.found.message', args: [message(code: 'formDesign.label', default: 'FormDesign'), id])
-			redirect(action: "list")
-			return
-		}*/
-
-		[formDesignInstance: formDesignInstance]
-		
-	}
-
     def show(Long id) {
         def formDesignInstance = FormDesign.get(id)
         if (!formDesignInstance) {
@@ -452,7 +397,6 @@ class FormDesignController {
             return
         }
 		
-	
         [formDesignInstance: formDesignInstance]
     }
 
@@ -519,4 +463,113 @@ class FormDesignController {
 		
 		
 	}
+	
+	
+	
+	String getSortField(String column){
+		
+		def field
+		
+		switch(column){
+			
+			case '0':
+				field = "refId"
+			break
+			
+			case '1':
+				field = "name"
+			break
+			
+			case '2':
+				field = "description"
+			break
+			
+			default:
+				field = "x"
+			break
+		}
+		
+		return field
+		
+	}
+	
+	
+	/* **************************************************************************************
+	 * ********************************* GRANT *************************************************
+	
+	 * this function grant permission to the given data element
+	 *********************************************************************************** */
+	
+	
+	def grant = {
+		
+				def formDesign = findInstance()
+				
+				if (!formDesign) return
+		
+				if (!request.post) {
+					return [formDesignInstance: formDesign]
+				}
+		
+				formDesignService.addPermission(formDesign, params.recipient, params.int('permission'))
+		
+				redirectShow "Permission $params.permission granted on Report $formDesign.id " + "to $params.recipient", formDesign.id
+			}
+	
+	/* **********************************************************************************
+	 * this function uses the formDesign service to get the data element so that
+	 * the appropriate security considerations are adhered to
+	 *********************************************************************************** */
+	
+	private FormDesign findInstance() {
+		def formDesign = formDesignService.get(params.long('id'))
+		if (!formDesign) {
+			flash.message = "FormDesign not found with id $params.id"
+			redirect action: list
+		}
+		formDesign
+	}
+	
+	private FormDesign findInstance(Long id) {
+		def formDesign = formDesignService.get(id)
+		if (!formDesign) {
+			flash.message = "FormDesign not found with id $params.id"
+			redirect action: list
+		}
+		formDesign
+	}
+	
+	
+	/* **********************************************************************************
+	 * this function redirects to the show data element screen
+	 *********************************************************************************** */
+	
+	private void redirectShow(message, id) {
+		flash.message = message
+		//redirect with message
+				
+		redirect(action: "show", id: id)
+	}
+	
+	/* **********************************************************************************
+	 * this function checks to see if the data element passed to it contains errors i.e. when a
+	 * service returns the element. It either returns false (if no errors) or it redirects
+	 * to the view specified by the caller
+	 *********************************************************************************** */
+
+	private boolean renderWithErrors(String view, FormDesign formDesign) {
+		if (formDesign.hasErrors()) {
+			render view: view, model: [formDesignInstance: formDesign]
+			return true
+			
+		}
+		false
+	}
+	
+	
+	
+	
+	
+	
+	
 }
