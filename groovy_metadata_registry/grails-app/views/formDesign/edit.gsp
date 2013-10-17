@@ -1,43 +1,111 @@
+
+<!-- --------------------------------------------------------------- -->
+<!-- Built using James Welch's Forms Builder ------------------------- -->
+<!-- --------------------------------------------------------------- -->
+
+
 <%@ page import="uk.co.mdc.forms.FormDesign" %>
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta name="layout" content="main">
 		<g:set var="entityName" value="${message(code: 'formDesign.label', default: 'FormDesign')}" />
-		<title><g:message code="default.edit.label" args="[entityName]" /></title>
+		<title><g:message code="default.show.label" args="[entityName]" /></title>
+		<parameter name="name" value=" FORM Builder - ${formDesignInstance?.name}" />
+		<link rel="stylesheet" href="${resource(dir: 'css', file: 'bootstrap-editable.css')}" type="text/css">
+		<link rel="stylesheet" href="${resource(dir: 'css', file: 'layout.css')}" type="text/css">
+		<link rel="stylesheet" href="${resource(dir: 'css', file: 'custom.css')}" type="text/css">
 	</head>
 	<body>
-		<a href="#edit-formDesign" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-		<div class="nav" role="navigation">
-			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-			</ul>
+		<header>
+			<g:form id="deleteForm" url="[action:'delete',controller:'formDesign']">
+				<g:hiddenField name="id" value="${collectionInstance?.id}" />
+			    	<div class="navbar">
+					    <div class="navbar-inner">
+						    <ul class="nav">
+						   		<li class="active"><a class="brand" href="#"><i class="icon-edit"></i> FormDesigner</a></li>
+						   		<li><a href="#" onclick="updateForm('${formDesignInstance?.id}')">Update</a></li>
+						  		 <li><g:link action="create" id="${formDesignInstance?.id}"><g:message code="default.button.create.label" default="Create" /></g:link></li>
+							    <li><a href="#" onclick="deleteItem('${formDesignInstance?.name}')">Delete</a></li>
+							    <li><g:link action="preview" id="${formDesignInstance?.id}"><g:message code="default.button.preview.label" default="Preview" /></g:link></li>
+							</ul>
+					    </div>
+			    	</div>
+			   </g:form>
+		</header>
+		<div class="box">
+		<div id="container">
+		<g:render template="form"/>
 		</div>
-		<div id="edit-formDesign" class="content scaffold-edit" role="main">
-			<h1><g:message code="default.edit.label" args="[entityName]" /></h1>
-			<g:if test="${flash.message}">
-			<div class="message" role="status">${flash.message}</div>
-			</g:if>
-			<g:hasErrors bean="${formDesignInstance}">
-			<ul class="errors" role="alert">
-				<g:eachError bean="${formDesignInstance}" var="error">
-				<li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
-				</g:eachError>
-			</ul>
-			</g:hasErrors>
-			<g:form method="post" >
-				<g:hiddenField name="id" value="${formDesignInstance?.id}" />
-				<g:hiddenField name="version" value="${formDesignInstance?.version}" />
-				<fieldset class="form">
-					<g:render template="form"/>
-				</fieldset>
-				<fieldset class="buttons">
-					<g:actionSubmit class="save" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" />
-					<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" formnovalidate="" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
-				</fieldset>
-			</g:form>
-		</div>
+	</div>
+			<!-- Le javascript
+    ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+
+	<g:javascript disposition="defer" library="formsBuilder"/>	
+	<r:script disposition="defer">
+		
+		<g:if test="${formDesignInstance?.collection}">
+			formInstanceCollectionId = ${formDesignInstance?.collection?.id}
+		</g:if>
+		<g:else>
+			formInstanceCollectionId = ''
+		</g:else>
+		
+		<g:if test="${formDesignInstance?.version}">
+			formVersionNo = ${formDesignInstance?.version}
+		</g:if>
+		<g:else>
+			formVersionNo = ''
+		</g:else>
+		
+		<g:if test="${formDesignInstance?.id}">
+			formInstanceId = ${formDesignInstance.id}
+		</g:if>
+		<g:else>
+			formInstanceId = ''
+		</g:else>
+		
+		<g:if test="${formDesignInstance?.id}">
+			formInstanceRefId = "${formDesignInstance.refId}"
+		</g:if>
+		<g:else>
+			formInstanceRefId = ''
+		</g:else>
+		
+		<g:if test="${formDesignInstance?.name}">
+			formInstanceName = "${formDesignInstance.name}"
+		</g:if>
+		<g:else>
+			formInstanceName = ''
+		</g:else>
+		
+		
+		
+		<g:if test="${formDesignInstance?.description}">
+			formInstanceDescription = "${formDesignInstance.description}"
+		</g:if>
+		<g:else>
+			formInstanceDescription = ''
+		</g:else>
+		
+		<g:if test="${formDesignInstance?.versionNo}">
+			versionNo = "${formDesignInstance.versionNo}"
+		</g:if>
+		<g:else>
+			versionNo = ''
+		</g:else>
+		
+		<g:if test="${formDesignInstance?.isDraft}">
+			isDraft = "${formDesignInstance.isDraft}"
+		</g:if>
+		<g:else>
+			isDraft = ''
+		</g:else>
+		
+		openForms(formInstanceId, formInstanceRefId, formInstanceName, formInstanceDescription, versionNo, isDraft, formInstanceCollectionId, formVersionNo);
+		
+	</r:script>
+		
 	</body>
 </html>

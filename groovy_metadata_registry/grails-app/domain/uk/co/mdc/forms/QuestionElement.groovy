@@ -25,6 +25,11 @@ class QuestionElement extends FormDesignElement {
     
 	}
 	
+	static mapping = {
+		additionalInstructions type: 'text'
+		prompt type: 'text'
+	}
+	
 	//this function will create the chosen input field from the value domain and data type
 	//and store it
 	def createInputField(){

@@ -23,13 +23,11 @@
 			    	<div class="navbar">
 					    <div class="navbar-inner">
 						    <ul class="nav">
-						   		<li class="active"><a class="brand" href="#"><i class="icon-edit"></i> FormsBuilder</a></li>
+						   		<li class="active"><a class="brand" href="#"><i class="icon-edit"></i> FormDesigner</a></li>
 						   		<li><a href="#" onclick="updateForm('${formDesignInstance?.id}')">Update</a></li>
-						  		<li><g:link action="show" id="${formDesignInstance?.id}"><g:message code="default.button.show.label" default="Show" /></g:link></li>							   
-							    <li><g:link action="create" id="${formDesignInstance?.id}"><g:message code="default.button.create.label" default="Create" /></g:link></li>
+						  		 <li><g:link action="create" id="${formDesignInstance?.id}"><g:message code="default.button.create.label" default="Create" /></g:link></li>
 							    <li><a href="#" onclick="deleteItem('${formDesignInstance?.name}')">Delete</a></li>
 							    <li><g:link action="preview" id="${formDesignInstance?.id}"><g:message code="default.button.preview.label" default="Preview" /></g:link></li>
-							    
 							</ul>
 					    </div>
 			    	</div>
@@ -54,6 +52,12 @@
 			formInstanceCollectionId = ''
 		</g:else>
 		
+		<g:if test="${formDesignInstance?.version}">
+			formVersionNo = ${formDesignInstance?.version}
+		</g:if>
+		<g:else>
+			formVersionNo = ''
+		</g:else>
 		
 		<g:if test="${formDesignInstance?.id}">
 			formInstanceId = ${formDesignInstance.id}
@@ -97,7 +101,7 @@
 			isDraft = ''
 		</g:else>
 		
-		openForms(formInstanceId, formInstanceRefId, formInstanceName, formInstanceDescription, versionNo, isDraft, formInstanceCollectionId);
+		openForms(formInstanceId, formInstanceRefId, formInstanceName, formInstanceDescription, versionNo, isDraft, formInstanceCollectionId, formVersionNo);
 		
 	</r:script>
 		

@@ -27,6 +27,10 @@ class FormDesign {
 		formDesignElements nullable:true
     }
 	
+	static mapping = {
+		description type: 'text'
+	}
+	
 	def getQuestions(){
 		Set elements = this.formDesignElements
 		Set questions =  [];
