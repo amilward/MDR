@@ -208,7 +208,7 @@ class DataElementConceptService {
 	
 			}else if(pDataElements){
 		
-				if(pDataElements.size() < dataElementConceptInstance?.dataElements.size()){
+			//	if(pDataElements.size() < dataElementConceptInstance?.dataElements.size()){
 			
 				def dataElements = []
 				
@@ -235,7 +235,7 @@ class DataElementConceptService {
 						
 						}
 					}
-			}
+			//}
 			}
 	}
 	
@@ -259,7 +259,7 @@ class DataElementConceptService {
 	
 			}else if(pSubConcepts){
 		
-				if(pSubConcepts.size() < subConceptConceptInstance?.subConcepts.size()){
+			//	if(pSubConcepts.size() < subConceptConceptInstance?.subConcepts.size()){
 			
 				def subConcepts = []
 				
@@ -286,7 +286,7 @@ class DataElementConceptService {
 						
 						}
 					}
-			}
+		//	}
 			}
 	}
 	

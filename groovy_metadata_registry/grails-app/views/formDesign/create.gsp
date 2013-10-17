@@ -25,10 +25,8 @@
 			    	<div class="navbar">
 					    <div class="navbar-inner">
 						    <ul class="nav">
-						   		<li class="active"><a class="brand" href="#"><i class="icon-edit"></i> FormsBuilder</a></li>
+						   		<li class="active"><a class="brand" href="#"><i class="icon-edit"></i> FormDesigner</a></li>
 						   		<li><a href="#" onclick="saveForm()">Save</a></li>
-							    <li><g:link action="preview" id=""><g:message code="default.button.preview.label" default="Preview" /></g:link></li>
-							    
 							</ul>
 					    </div>
 			    	</div>
@@ -65,6 +63,8 @@
 		
 		if(collectionId!=''){
 			createFormFromCollection(collectionId, questions);
+		}else{
+			createEmptyForm();
 		}
 	</r:script>
 		

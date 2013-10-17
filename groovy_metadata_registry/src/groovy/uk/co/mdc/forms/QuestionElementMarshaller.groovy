@@ -15,6 +15,8 @@ class QuestionElementMarshaller {
 			'style' : questionElement?.style,
 			'additionalInstructions' : questionElement?.additionalInstructions,
 			'inputId' : questionElement?.inputField?.id,
+			'dataElementId': questionElement?.dataElement?.id,
+			'valueDomainId': questionElement?.valueDomain?.id,
 			'defaultValue' : questionElement?.inputField?.defaultValue,
 			'placeholder' : questionElement?.inputField?.placeholder,
 			'unitOfMeasure' : questionElement?.inputField?.unitOfMeasure,

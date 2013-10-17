@@ -84,21 +84,29 @@
 										<!-- <td class="content" data-bind="html: computedHtml()">
 										</td> -->
 										<td class="content">
-											<h4 data-bind="text: question().prompt() == 'no prompt set'? 'Question ' + getQuestionNumber($index(), $parent.components()) : question().computedPrompt()"></h4>
-											<i class="icon-large" data-bind="attr: {class: $parent.icon	 + ' icon-large'}"></i>
-											<p data-bind="text: question().additionalInstructions()"></p>
-											<p data-bind="html: question().dataTypeInstance().previewRender()">
-											
-												<!-- <span data-bind="text: question().label()"></span> -->
-												
+											<p>
+											<i class="icon-large pull-left" data-bind="attr: {class: icon() + ' icon-large'}"></i>
+											<span class="lead" data-bind="text: question().prompt() == 'no prompt set'? 'Question ' + getQuestionNumber($index(), $parent.components()) : question().computedPrompt()">
+											</span>
+											(<span data-bind="text: question().dataTypeInstance().name()"></span>)
 											</p>
-											<!-- <p data-bind="text: question().style()"></p>
+											<p data-bind="text: question().additionalInstructions()"></p>
+											<p><span class="pull-left" data-bind="text: question().label()"></span>
+											<span class="pull-left"> &nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;</span> 
+											<span class="pull-left" data-bind="html: question().dataTypeInstance().previewRender()"></span>
+											<span class="pull-right" data-bind="text: question().maxCharacters()"></span>
+											</p>
+											
+											
+											
+											<!-- 
+											<p data-bind="text: question().dataElementId()"></p>
+											<p data-bind="text: question().valueDomainId()"></p>
+											<p data-bind="text: question().style()"></p>
 											<p data-bind="text: question().defaultValue()"></p>
 											<p data-bind="text: question().placeholder()"></p>
-											<p data-bind="text: question().unitOfMeasure()"></p>
-											<p data-bind="text: question().maxCharacters()"></p>
-											<p data-bind="text: question().format()"></p>
-											<p data-bind="text: question().isEnumerated()"></p>
+											
+											 <p data-bind="text: question().isEnumerated()"></p>
 											<p data-bind="text: question().enumerations()"></p> -->
 										
 										</td>
@@ -158,6 +166,16 @@
 							<td>Question Id</td>
 							<td></td>
 							<td data-bind="text: question().questionId"></td>
+						</tr>
+						<tr>
+							<td>Data Element Id</td>
+							<td></td>
+							<td data-bind="text: question().dataElementId"></td>
+						</tr>
+						<tr>
+							<td>Value Domain Id</td>
+							<td></td>
+							<td data-bind="text: question().valueDomainId"></td>
 						</tr>
 						<tr>
 							<td>Input Id</td>

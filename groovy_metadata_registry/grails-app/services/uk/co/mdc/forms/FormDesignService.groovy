@@ -10,9 +10,11 @@ import org.springframework.security.acls.model.Permission
 import org.springframework.transaction.annotation.Transactional
 
 import uk.co.mdc.model.DataElement;
+import uk.co.mdc.model.ValueDomain;
 import uk.co.mdc.model.DataType;
 import uk.co.mdc.model.Collection;
-
+import grails.converters.JSON
+import org.codehaus.groovy.grails.web.json.*;
 
 	/* *********************************************************************
 	 * This service allows the user to access the form design model
@@ -87,26 +89,25 @@ class FormDesignService {
 	
 	@Transactional 
 	@PreAuthorize("hasRole('ROLE_USER')") 
-	//need to change this from object
+	//!!!!!!!!!!!!!!!!need to change this from object
+	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	FormDesign create(Object form) { 
 		
 		def components = form.components
+		
 		def inputField
-		def question
-		
-		println(form?.formCollectionId)
-		
-		println(Collection.get(form?.formCollectionId.toInteger()))
+		def question		
+		def collection = (form?.formCollectionId) ? Collection.get(form?.formCollectionId.toInteger()) : null
 		
 		//create the form design
 		
 		FormDesign formDesignInstance = new FormDesign(
-			collection : Collection.get(form?.formCollectionId.toInteger()),
+			collection : collection,
 			refId : form?.formRefId,
 			name : form?.formDesignName,
 			description : form?.formDescription,
 			versionNo : form?.versionNo,
-			isDraft : form?.isDraft,
+			isDraft : form?.isDraft
 			).save(flush:true)
 		
 		//add questions to the form design
@@ -124,7 +125,7 @@ class FormDesignService {
 							  placeholder: component.question?.placeholder,
 							  maxCharacters: component.question?.maxCharacters,
 							  unitOfMeasure: component.question?.unitOfMeasure,
-							  dataType: getDataType(),
+							  dataType: getDataType(component.question?.dataTypeInstance?.name, component.question?.valueDomainId),
 							  format: component.question?.format,
 							 
 							 ).save(failOnError: true, flush:true)
@@ -139,14 +140,16 @@ class FormDesignService {
 							 
 							  
 						//create question
-						
+							 
 						question  = new QuestionElement(
 								 questionNumber: '1',
 								 prompt: component.question?.prompt,
 								 style: component.question?.style,
 								 label: component.question?.label,
 								 additionalInstructions: component.question?.additionalInstructions,
-								 inputField: inputField
+								 inputField: inputField,
+								 dataElement: (component.question?.dataElementId) ? DataElement.get(component.question?.dataElementId.toInteger()) : null,
+								 valueDomain: (component.question?.valueDomainId) ? ValueDomain.get(component.question?.valueDomainId.toInteger()) : null
 								 ).save(failOnError: true,flush:true)
 								
 								 // Grant the current user principal administrative permission
@@ -223,10 +226,16 @@ class FormDesignService {
 	
 	int count() { FormDesign.count() }
 	
-	def getDataType(){
-		
-		return DataType.findByName('String')
-		
+	//!!!!!!!!!!!!!!
+	//no restriction on the getDataType MEthod at the moment
+	
+	def getDataType(String dataType, Integer valueDomainId){
+		if(valueDomainId){
+			ValueDomain valueDomain = ValueDomain.get(valueDomainId);
+			return valueDomain.dataType
+		}else{
+			return DataType.findByName(dataType.capitalize())
+		}
 	}
 	
 	/* ************************* UPDATE FORM DESIGN***********************************************
@@ -248,6 +257,13 @@ class FormDesignService {
 		formDesignInstance.versionNo = form.versionNo
 		formDesignInstance.isDraft= form.isDraft
 	   
+		
+		//check to see if any components have been deleted
+		
+		// remove any questions that have specified for removal
+		removeRedundantQuestions(formDesignInstance, components)
+		
+		
 		//update questions.
 
 		components.each{ component->
@@ -256,20 +272,20 @@ class FormDesignService {
 
 			if(question?.questionId){
 			
-				def questionInstance = QuestionElement.get(question.questionId)
+				def questionInstance = QuestionElement.get(question?.questionId)
    
 				if(questionInstance){
 					
-					questionInstance.prompt = question.prompt
-					questionInstance.additionalInstructions = question.additionalInstructions
+					questionInstance.prompt = question?.prompt
+					questionInstance.additionalInstructions = question?.additionalInstructions
 
-					inputFieldInstance = InputField.get(question.inputId)
-					inputFieldInstance.defaultValue = question.defaultValue
-					inputFieldInstance.placeholder = question.placeholder
-					inputFieldInstance.maxCharacters = question.maxCharacters
-					inputFieldInstance.unitOfMeasure = question.unitOfMeasure
+					inputFieldInstance = InputField.get(question?.inputId)
+					inputFieldInstance.defaultValue = question?.defaultValue
+					inputFieldInstance.placeholder = question?.placeholder
+					inputFieldInstance.maxCharacters = (question?.maxCharacters) ? question?.maxCharacters : 20
+					inputFieldInstance.unitOfMeasure = question?.unitOfMeasure
 					// inputField.dataType =  will fill this in later
-					inputFieldInstance.format = question.format
+					inputFieldInstance.format = question?.format
 					inputFieldInstance.save()
 				
 				}
@@ -277,7 +293,7 @@ class FormDesignService {
 			}else{
 			//create new question instance
 			//get data type for new question
-			def string = DataType.findByName('String')
+			def dataType = getDataType(component.question?.dataTypeInstance?.name, component.question?.valueDomainId)
 			
 			//create input field for new question
 			def inputField = new InputField(
@@ -286,7 +302,7 @@ class FormDesignService {
 				 placeholder: component.question?.placeholder,
 				 maxCharacters: component.question?.maxCharacters,
 				 unitOfMeasure: component.question?.unitOfMeasure,
-				 dataType: string,
+				 dataType: dataType,
 				 format: component.question?.format,
 				
 				).save(failOnError: true)
@@ -311,6 +327,57 @@ class FormDesignService {
 		
 		return formDesignInstance
 		
+	}
+	
+	
+	/* ************************* DATA ELEMENT LINKAGE FUNCTIONS************************
+	 * unlinks the sub elements that have been removed during an update of the data element
+	 ********************************************************************************* */
+	
+	
+	def removeRedundantQuestions(FormDesign formDesignInstance, components){
+		
+		//if there are no components i.e. ALL components need to be removed
+		//from the form design after the edit
+		
+		def questionIds = []
+		
+		components.each{ component->
+			
+			questionIds.push(component.question.questionId.toString());
+			
+			}
+		
+			if(questionIds.size()==0 && formDesignInstance?.formDesignElements.size()>0){
+				
+				//pass all the objects  elements into a new array (otherwise we get all sorts or problems)
+				def formDesignElements = []
+				formDesignElements += formDesignInstance?.formDesignElements
+				
+				//remove ALL of the subelements
+				
+				formDesignElements.each{ element->
+					
+					formDesignInstance.removeFromFormDesignElements(element)
+				}
+				
+			//else if there are some  elements
+				
+			}else if(questionIds){
+			
+				//but there are also  elements to remove
+
+				//pass all the objects into a new array (otherwise we get all sorts or problems)
+				def formDesignElements = []
+				formDesignElements += formDesignInstance?.formDesignElements
+				
+				//remove the sub elements that need removing
+				formDesignElements.each{ element->
+							if(!questionIds.contains(element.id.toString())){
+								formDesignInstance.removeFromFormDesignElements(element)
+							}
+				}
+		}
 	}
 	
 	

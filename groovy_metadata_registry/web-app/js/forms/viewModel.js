@@ -55,7 +55,7 @@ var dataTypeTemplates = [
 		 allowMultiple: true,
 		 useOptions: false,
 		 previewRender: function(){
-			 return "<h4>My form control here.</h4>";
+			 return "<i class=\"icon-large pull-left icon-calendar\"></i>"
 		 }
 	 },
 	 {
@@ -99,8 +99,33 @@ var dataTypeTemplates = [
 		 allowMultiple: true,
 		 useOptions: true,
 		 previewRender: function(){
-			 return "<h4>My form control here.</h4>";
-		 }
+			 var self = this;
+			 var enumerations = "";
+			 if(self.renderingOption() == "checkbox"){
+					return "<span><input type=\"checkbox\"/></span>";
+					//return "<span><input type=\"text\"/></span>";
+			 }else if(self.renderingOption() == "radio"){
+					enumerations = " <ul id=\"ui-accordion-accordion-header-1\" class=\"unstyled accordion collapse in\">";
+					
+					enumerations += "<li class=\"accordion-group \">" ;
+					enumerations += "<a data-parent=\"#menu\" data-toggle=\"collapse\" class=\"accordion-toggle\" data-target=\"#enumerations-nav-"+self.iid() +"\">";
+					enumerations += "<i class=\"icon-list-ol icon-large\"></i> Enumerations  [Radio] ";
+					enumerations += "</a>";
+					enumerations += "<ul class=\"collapse\" id=\"enumerations-nav-"+self.iid() +"\">";
+					$.each(self.options(),function(index, value){
+						enumerations += "<input class=\"pull-left\" type=\"radio\"/><li>"+ value +" ["+index+"]</li>";
+
+					});
+					enumerations += "</ul>";
+					enumerations += "</li>";
+					enumerations += "</ul>";
+						 
+					return enumerations;
+					
+			 }else {
+				 return enumerations;
+			 }
+		}
 	 } 
  ];
 
@@ -194,9 +219,8 @@ function Component(iid, eid, properties, icon) {
 	self.dateCreated = new Date();
 	self.internalIdentifier = ko.observable(iid);
 	self.externalIdentifier = ko.observable(eid);
-	
 	self.question = ko.observable();
-	
+	self.icon = ko.observable(icon);
 	self.setQuestion = function(q) {
 		self.question(q);
 	};
@@ -218,7 +242,8 @@ function Component(iid, eid, properties, icon) {
 
 		
 	self.clone = function(){
-		var c = new Component(lastComponentID++, self.externalIdentifier(), self.properties());
+		var c = new Component(lastComponentID++, self.externalIdentifier(), self.properties(), self.icon());
+		
 		var q = self.question().clone();
 		c.setQuestion(q);
 		//console.log("cloning");
@@ -229,12 +254,13 @@ function Component(iid, eid, properties, icon) {
 	
 }
 
-function Form(id, fullName, refId, description, versionNo, isDraft, collectionId, components) {
+function Form(id, fullName, refId, description, versionNo, isDraft, collectionId, formVersionNo, components) {
 	var self = this;
 	self.formID = ko.observable(id);
 	self.formDesignName = ko.observable(fullName);
 	self.formRefId = ko.observable(refId);
 	self.formCollectionId = ko.observable(collectionId);
+	self.formVersionNo = formVersionNo;
 	self.formDescription = ko.observable(description);
 	self.versionNo = ko.observable(versionNo);
 	self.isDraft = ko.observable(isDraft);
@@ -316,9 +342,9 @@ function FormsModel() {
 
 
     
-    self.addForm = function(id, fullName, refId, description, versionNo, isDraft, collectionId, components){
+    self.addForm = function(id, fullName, refId, description, versionNo, isDraft, collectionId, formVersionNo, components){
     	//self.palette = paletteItems;
-    	self.forms.push(new Form(id, fullName, refId, description, versionNo, isDraft, collectionId, components));
+    	self.forms.push(new Form(id, fullName, refId, description, versionNo, isDraft, collectionId, formVersionNo, components));
     	self.setActiveFormId(id);
     	//self.palette = paletteItems;
     	self.palette = paletteItems;
@@ -352,9 +378,11 @@ function newComponent(element)
 		var dt = $.grep(dataTypeTemplates, function(n,i){ return (n.name == element.datatype); })[0];
 		//return c;
 		var renderingOption = dt.prefRenderingOptions[0];
+		var name = dt.name;
 		var restriction = "";
 		var selectMultiple = false;
-		var options = [];
+		var options = element.enumerations;
+		//var options = ['test','asddfsaafds'];
 		var previewRender = dt.previewRender;
 		var dti = new DataTypeInstance(iid, eid, name, dt, renderingOption, restriction, selectMultiple, options, previewRender);
 		
@@ -368,7 +396,8 @@ function newComponent(element)
 			var question = new Question(element.prompt, element.additionalInstructions, element.label, element.style, 
 					dti, element.defaultValue, element.placeholder, 
 					element.unitOfMeasure,  element.maxCharacters, 
-					element.format, element.isEnumerated, element.enumerations, element.questionId, element.inputId);
+					element.format, element.isEnumerated, element.enumerations, 
+					element.questionId, element.inputId, element.dataElementId, element.valueDomainId);
 		}
 		
 		
@@ -381,7 +410,7 @@ function newComponent(element)
 	
 }
 
-function Question(prompt, additionalInstructions, label, style, dataTypeInstance, defaultValue, placeholder, unitOfMeasure, maxCharacters, format, isEnumerated, enumerations, questionId, inputId)
+function Question(prompt, additionalInstructions, label, style, dataTypeInstance, defaultValue, placeholder, unitOfMeasure, maxCharacters, format, isEnumerated, enumerations, questionId, inputId, dataElementId, valueDomainId)
 {
 	var self = this;
 	self.prompt = ko.observable(prompt);
@@ -402,6 +431,8 @@ function Question(prompt, additionalInstructions, label, style, dataTypeInstance
 	
 	self.questionId = ko.observable(questionId);
 	self.inputId = ko.observable(inputId);
+	self.dataElementId = ko.observable(dataElementId);
+	self.valueDomainId = ko.observable(valueDomainId);
 	self.additionalInstructions = ko.observable(additionalInstructions);
 	self.label = ko.observable(label);
 	self.style = ko.observable(style);
@@ -413,6 +444,7 @@ function Question(prompt, additionalInstructions, label, style, dataTypeInstance
 	self.format = ko.observable(format);
 	self.isEnumerated = ko.observable(isEnumerated);
 	self.enumerations = ko.observable(JSON.stringify(enumerations));
+	self.icon = ko.observable()
 	
 	self.setDataTypeInstance = function(dti) {
 		self.dataTypeInstance(dti);
@@ -425,7 +457,20 @@ function Question(prompt, additionalInstructions, label, style, dataTypeInstance
 		{
 			dti = self.dataTypeInstance().clone();
 		}
-		var q = new Question(self.prompt(), self.additionalInstructions(), self.label(), self.style(), dti, self.defaultValue(), self.placeholder(), self.unitOfMeasure(), self.maxCharacters(), self.format(), self.isEnumerated(), self.enumerations(), self.questionId(), self.inputId());
+		var q = new Question(self.prompt(), 
+				self.additionalInstructions(), 
+				self.label(), self.style(), 
+				dti, self.defaultValue(), 
+				self.placeholder(), 
+				self.unitOfMeasure(), 
+				self.maxCharacters(), 
+				self.format(), 
+				self.isEnumerated(), 
+				self.enumerations(), 
+				self.questionId(), 
+				self.inputId(), 
+				self.dataElementId(),
+				self.valueDomainId());
 		//console.log(ko.toJSON(q, null, 2));
 		return q;
 	};
@@ -441,7 +486,7 @@ function DataTypeInstance(iid, eid, name, instanceOf, renderingOption, restricti
 	self.renderingOption = ko.observable(renderingOption);
 	self.restriction = ko.observable(restriction);
 	self.selectMultiple = ko.observable(selectMultiple);
-	self.options = ko.observableArray(options);
+	self.options = ko.observable(options);
 	self.previewRender = previewRender;
 	self.clone = function() {
 		return new DataTypeInstance( self.iid(), self.eid(), self.name(), 
@@ -468,18 +513,69 @@ function SelectOption()
 }
 
 function getDataType(dataType, isEnumerated){
-
-	var dataType;
 	
-	if(isEnumerated){
-		dataType = 'enumeration';
-	}else{	
-		dataType = 'string';
+	if(!isEnumerated){
+		dataType = dataType.toLowerCase();
+	}else{
+		dataType = 'enumeration'
 	}
 	
+	//console.log(dataType)
+
 	return dataType;
 	
 }
+
+function getIcon(dataType, isEnumerated){
+	
+	var icon
+	
+	if(!isEnumerated){
+		
+		switch(dataType)
+		{
+		case 'Date':
+			icon = 'icon-calendar'
+		  break;
+		case 'DateTime':
+			icon = 'icon-calendar'
+		  break;
+		case 'Time':
+			icon = 'icon-time'
+			  break;
+		case 'Boolean':
+			icon = 'icon-check'
+			  break;
+		default:
+			icon = 'icon-pencil'
+		}
+		
+	}else{
+		icon = 'icon-check'
+	}
+	
+	//console.log(dataType)
+
+	return icon;
+	
+}
+
+function createEmptyForm(){
+	
+	viewModel = new FormsModel();
+	var components = [];
+	
+	viewModel = new FormsModel();
+	
+	viewModel.addForm('', '','','', '', true,'','', components);
+	setTimeout(function(){
+		initializePalette();
+	}, 100);
+
+	ko.applyBindings(viewModel);
+	
+}
+
 
 function createFormFromCollection(collectionId, questions){
 
@@ -496,13 +592,13 @@ function createFormFromCollection(collectionId, questions){
 	
 	$.each(questions, function(index, question){
 		var element = 	{
-	      	  id: 5,
-	    	  name: "String Input",
-	    	  icon: "icon-pencil",
-	    	  type: "question",
+	      	  id: '',
+	    	  name: '',
+	    	  icon: getIcon(question.dataType.name, question.dataType.enumerated),
+	    	  type: 'question',
 	    	  datatype: getDataType(question.dataType.name, question.dataType.enumerated),
 	    	  properties: [{ename: question.name, iname: question.name, value: question.name}],
-	    	  prompt: question.label,
+	    	  prompt: escapeChar(question.label),
 	    	  style: '', 
 	    	  defaultValue: '', 
 	    	  placeholder: '',
@@ -511,10 +607,12 @@ function createFormFromCollection(collectionId, questions){
 	    	  format: question.format,
 	    	  isEnumerated: question.isEnumerated, 
 	    	  enumerations: question.options,
-	    	  additionalInstructions: question.additionalInstructions, 
-	    	  label: question.label, 
+	    	  additionalInstructions: escapeChar(question.additionalInstructions), 
+	    	  label: escapeChar(question.label), 
 	    	  questionId: '',
-	    	  inputId: ''
+	    	  inputId: '', 
+	    	  dataElementId: question.dataElementId,
+	    	  valueDomainId: question.valueDomainId
 	      }	
 
 		components.push(newComponent(element));
@@ -523,7 +621,7 @@ function createFormFromCollection(collectionId, questions){
 	
 	
 	jsonDeferred.done(function(){
-		viewModel.addForm('', '','','', '', true,collectionId, components);
+		viewModel.addForm('', '','','', '', true,collectionId,'', components);
 		setTimeout(function(){
 			initializePalette();
 		}, 500);
@@ -533,7 +631,7 @@ function createFormFromCollection(collectionId, questions){
 	
 }
 
-function openForms(formDesignId, formDesignRefId, formDesignName, formDesignDescription, formVersionNo, formIsDraft, formCollectionId){
+function openForms(formDesignId, formDesignRefId, formDesignName, formDesignDescription, formVersionNo, formIsDraft, formCollectionId, formVersionNo){
 
 	//set up defer object
 	var jsonDeferred = $.Deferred();
@@ -548,25 +646,27 @@ function openForms(formDesignId, formDesignRefId, formDesignName, formDesignDesc
 	$.getJSON('../jsonFormsBuilder/' + formDesignId, function(data) {
 		$.each(data.questions, function( index, value ){
 		var element = 	{
-	      	  id: 5,
-	    	  name: "String Input",
-	    	  icon: "icon-pencil",
+	      	  id: '',
+	    	  name: '',
+	    	  icon: getIcon(value.dataType, value.isEnumerated),
 	    	  type: "question",
 	    	  datatype: getDataType(value.dataType, value.isEnumerated),
 	    	  properties: [{ename: value.name, iname: value.name, value: value.name}],
-	    	  prompt: value.prompt,
+	    	  prompt: escapeChar(value.prompt),
 	    	  style: value.style, 
-	    	  defaultValue: value.defaultValue, 
-	    	  placeholder: value.placeholder,
+	    	  defaultValue: escapeChar(value.defaultValue), 
+	    	  placeholder: escapeChar(value.placeholder),
 	    	  unitOfMeasure: value.unitOfMeasure, 
 	    	  maxCharacters: value.maxCharacters, 
 	    	  format: value.format,
 	    	  isEnumerated: value.isEnumerated, 
 	    	  enumerations: value.enumerations,
-	    	  additionalInstructions: value.additionalInstructions, 
-	    	  label: value.label, 
+	    	  additionalInstructions: escapeChar(value.additionalInstructions), 
+	    	  label: escapeChar(value.label), 
 	    	  questionId: value.id,
-	    	  inputId: value.inputId
+	    	  inputId: value.inputId,
+	    	  dataElementId: value.dataElementId,
+	    	  valueDomainId: value.valueDomainId
 	      }	
 
 		components.push((newComponent(element)))
@@ -578,7 +678,7 @@ function openForms(formDesignId, formDesignRefId, formDesignName, formDesignDesc
 	});
 
 	jsonDeferred.done(function(){
-		viewModel.addForm(formDesignId, formDesignName,formDesignRefId,formDesignDescription, formVersionNo, formIsDraft, formCollectionId, components);
+		viewModel.addForm(formDesignId, formDesignName,formDesignRefId,formDesignDescription, formVersionNo, formIsDraft, formCollectionId, formVersionNo, components);
 		setTimeout(function(){
 			initializePalette();
 		}, 500);
@@ -591,10 +691,10 @@ function openForms(formDesignId, formDesignRefId, formDesignName, formDesignDesc
 function saveForm(){
 	
 	var form = viewModel.activeForm()
-
+	
 	$.ajax({
 		type: "POST",
-		url: 'saveForm',
+		url: 'save',
 		data: ko.toJSON(form),
 		success: function(data){
 			alert('saved')
@@ -614,15 +714,31 @@ function updateForm(formDesignId){
 
 	$.ajax({
 		type: "POST",
-		url: '../updateForm',
+		url: '../update',
 		data: ko.toJSON(form),
-		success: function(){
-			alert('saved');
+		success: function(data){
+			if(data.formVersion!=null){
+				form.formVersionNo = data.formVersion
+			}
+			alert(data.message);
 		},
 		contentType: 'application/json',
 		dataType: 'json'
 		});
 	
+}
+
+
+function escapeChar(text){
+	if(text!=null){
+		text =  text.replace("'", "/'");
+	}
+	
+	return text
+}
+
+String.prototype.capitalize = function() {
+    return this.charAt(0).toUpperCase() + this.slice(1);
 }
 
 

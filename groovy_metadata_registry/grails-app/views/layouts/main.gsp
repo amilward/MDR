@@ -333,7 +333,7 @@
                         </a>
                         <ul class="collapse " id="formDesign-nav">
                             <li><g:link action="list" controller="FormDesign"><i class="icon-angle-right"></i> List </g:link></li>
-                            <li><g:link action="create" controller="Form Design"><i class="icon-angle-right"></i> Create </g:link></li>
+                            <li><g:link action="create" controller="FormDesign"><i class="icon-angle-right"></i> Create </g:link></li>
                         </ul>
                     </li>    
                     <li class="accordion-group ">
@@ -382,7 +382,7 @@
 
         <!-- BEGIN FOOTER -->
         <div id="footer">
-            <p>2013 © The Metadata Registry</p>
+            <p>2013 © Model Catalog</p>
         </div>
         <!-- END FOOTER -->
 

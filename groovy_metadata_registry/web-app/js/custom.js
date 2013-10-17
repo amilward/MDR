@@ -48,6 +48,8 @@ $(document).ready(function () {
 	$(window).resize(function(){
 		resizeWindows();
 	});
+	
+	refreshFormPanelViews();
 
 	function resizeWindows(){
 		$('#container').height($('html').height() + 205);
@@ -70,7 +72,7 @@ function initializePalette(){
 }
 
 
-	function refreshFormPanelViews(){
+function refreshFormPanelViews(){
 		
 		$( ".sortable" ).disableSelection();
 
@@ -79,43 +81,31 @@ function initializePalette(){
 
 		$('.sortable input').prop('disabled', true);
 
-		$('.form .form-item').mouseover(function(){
-			$(this).addClass('hover');
-			$(this).find('.menu-content').show();
-		});
-
-		$('.form .form-item').mouseout(function(){
-			$(this).removeClass('hover');
-			$(this).find('.menu-content').hide();
-		});	
-
-
-		$('.menu-content li').mouseover(function(){
-			$(this).addClass('linkhover');
-		});
-
-		$('.menu-content li').mouseout(function(){
-			$(this).removeClass('linkhover');
-		});	
+		
+		setTimeout(function(){
+		
+			$('.form .form-item').mouseover(function(){
+				$(this).addClass('hover');
+				$(this).find('.menu-content').show();
+			});
+	
+			$('.form .form-item').mouseout(function(){
+				$(this).removeClass('hover');
+				$(this).find('.menu-content').hide();
+			});	
+		
+			$('.menu-content li').mouseover(function(){
+				$(this).addClass('linkhover');
+			});
+	
+			$('.menu-content li').mouseout(function(){
+				$(this).removeClass('linkhover');
+			});	
+			
+		}, 200);
 	}
-	refreshFormPanelViews();
 
-
-
-
-
-/*
-function newForm()
-{
-	var formID =  $('#newFormDialogFormID').val();
-	var formFullName = $('#newFormDialogFormFullName').val();
-	var formShortName = $('#newFormDialogFormShortName').val();
-	$('#newFormDialog').modal('hide');
-	viewModel.addForm(formID,formFullName,formShortName,[]);
-}
-*/
-
-// ---------------------------------------------------------- Generic Confirm  
+ //---------------------------------------------------------- Generic Confirm  
 
 function confirm(heading, question, cancelButtonTxt, okButtonTxt, callback) {
 
@@ -160,3 +150,17 @@ function getQuestionNumber(idx, data){
 	return num;
 		
 }
+
+
+/*
+function newForm()
+{
+	var formID =  $('#newFormDialogFormID').val();
+	var formFullName = $('#newFormDialogFormFullName').val();
+	var formShortName = $('#newFormDialogFormShortName').val();
+	$('#newFormDialog').modal('hide');
+	viewModel.addForm(formID,formFullName,formShortName,[]);
+}
+*/
+
+//

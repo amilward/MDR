@@ -270,7 +270,7 @@ class ValueDomainService {
 	
 			}else if(pExternalReferences){
 		
-				if(pExternalReferences.size() < valueDomainInstance?.externalReferences.size()){
+			//	if(pExternalReferences.size() < valueDomainInstance?.externalReferences.size()){
 			
 				def externalReferences = []
 				
@@ -297,7 +297,7 @@ class ValueDomainService {
 						
 						}
 					}
-			}
+			//}
 			}
 	}
 	

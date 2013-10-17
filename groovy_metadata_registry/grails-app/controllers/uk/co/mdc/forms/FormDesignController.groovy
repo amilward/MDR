@@ -1,17 +1,21 @@
 package uk.co.mdc.forms
 
 import org.springframework.dao.DataIntegrityViolationException
-
 import uk.co.mdc.model.*
 import grails.converters.*
-
+import org.springframework.security.acls.model.Permission
+import grails.plugins.springsecurity.Secured
 import org.codehaus.groovy.grails.web.json.*;
+
+@Secured(['ROLE_USER'])
 
 class FormDesignController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
 	def formDesignService
+	def collectionService
+	
 	
 	/* **************************************************************************************
 	 * ************************************* INDEX *********************************************************
@@ -97,15 +101,48 @@ class FormDesignController {
 	}
 	
 	
+	/* **************************************************************************************
+	 * *********************************** SHOW *****************************************************
+	
+	 * show the form design in question using the find instance function and the form design service
+	 * ...presuming they have the appropriate permissions
+	 *************************************************************************************** */
+	
+	def show(Long id) {
+		
+		//use the find instance method to get the form design in question
+		
+		def formDesignInstance = findInstance()
+		
+		//if you can't find it or don't have permission go back to the list page
+		
+		if (!formDesignInstance) {
+			flash.message = message(code: 'default.not.found.message', args: [message(code: 'formDesign.label', default: 'FormDesign'), id])
+			redirect(action: "list")
+			return
+		}
+		
+		[formDesignInstance: formDesignInstance]
+	}
 	
 	
+	
+	/* **************************************************************************************
+	 * ************************************* CREATE ***************************************************
+	 
+	 * renders the form design  so the user can create a form design
+	 * N.B additionally will only display objects that user has permission to read
+	 *************************************************************************************** */
 	
     def create() {
 		
+		//if the user has created the form design from a collection
+		//create questions based on relevant data elements and value domains
+		
 		if(params?.createFromCollection=='true'){
 		
-			//get the collection fusing the id passed from collection show screen
-			def collectionInstance = Collection.get(params.collectionId.toInteger())
+			//get the collection using the id passed from collection show screen
+			def collectionInstance = collectionService.get(params.collectionId.toInteger())
 			
 			def dataElements = collectionInstance.dataElementCollections()
 			
@@ -114,8 +151,8 @@ class FormDesignController {
 			
 			//define temporary variables that need to be stored in the questions array
 			//whilst looping through data elements (below)
-			def valueDomains
 			ValueDomain valueDomain
+			def valueDomains
 			def label
 			def unitOfMeasure
 			def dataType
@@ -125,24 +162,31 @@ class FormDesignController {
 			def renderType
 			def description
 			
+			//loop through the data elements in the collection
 			
 			dataElements.each{ dataElement->
 				
+				//!!!!!!!!!!!!!!!!CHANGE THIS
 				//N.B....need to change this so that the data elements in the collections can have more than one
 				//value domain however, how we will look at adding this in the ui later
+				// at present we can stick with the first value domain
+				
 				valueDomains = dataElement.dataElementValueDomains()
 				valueDomain = valueDomains[0]
-				
 				label = dataElement?.name
 				description = dataElement?.description
 				unitOfMeasure = valueDomain?.unitOfMeasure
 				dataType = valueDomain?.dataType
 				format = valueDomain?.format
 				
+				//ensure that the options variable is null
 				if(options!=null){
 					options = null
 				}
 				
+				
+				//!!!!!!!!!!!!!!!!CHANGE THIS
+				//!!!!!!!!!!!!!this needs to be improved there are more than two different data types
 				//add select options if the data type is enumerated
 				if(dataType?.enumerated){
 					renderType = 'select'
@@ -152,17 +196,7 @@ class FormDesignController {
 					options = null
 				}
 				
-				//add the question data to the list
-				/*questions.add([
-					'dataElementId': dataElement.id,
-					'valueDomainId': valueDomain.id,
-					'label': label,
-					'dataType': dataType,
-					'format': format,
-					'renderType': renderType,
-					'options': options,
-					 ])*/
-				
+				//add the question information to the questions array
 				questions.push(new HashMap(
 							label: label,
 							dataElementId: dataElement.id, 
@@ -178,56 +212,278 @@ class FormDesignController {
 				)
 			}
 			
+			//return the collection id and the questions needed to create a new form
+			//based on the data elements in a collection
+			
 			[collectionId: collectionInstance.id, questions: questions as JSON]
 			
 		}else{
 		
-			[formDesignInstance: new FormDesign(params)]
+			//create a blank form
+		
+			def questions = []
+		
+			[collectionId: '', questions: questions as JSON]
 		
 		}
 		
     }
+	
+	
+	/* **************************************************************************************
+	 * ************************************ SAVE ****************************************************
+	 
+	 * calls the data element service to create a dataElement and  sets admin permissions
+	 * on that object for the user in question
+	 *************************************************************************************** */
+	
 
     def save() {
 		
-		def collection = null
-		collection = Collection.get(params?.formCollectionId.toInteger())
+		def form = request.JSON
 		
-		def formDesignInstance = new FormDesign(
-			collection: collection,
-			refId: params?.refId,
-			name: params?.name,
-			description: params?.description
-			)
+		def formDesignInstance = formDesignService.create(form)
+	   
+	   def model = [success: true, formDesignId: formDesignInstance.id]
+	   
+	   render model  as JSON
 		
-		if (!formDesignInstance.save(flush: true)) {
-			render(view: "create", model: [formDesignInstance: formDesignInstance])
+    }
+	
+	
+	/* **************************************************************************************
+	 * ************************************** EDIT ********************************************
+	
+	 * this function redirects to the edit form design screen
+	 *********************************************************************************** */
+	
+	def edit(Long id) {
+		//use the find instance method to get the form design in question
+		
+		def formDesignInstance = findInstance()
+		
+		//if you can't find it or don't have permission go back to the list page
+		
+		if (!formDesignInstance) {
+			flash.message = message(code: 'default.not.found.message', args: [message(code: 'formDesign.label', default: 'FormDesign'), id])
+			redirect(action: "list")
 			return
 		}
 		
+		[formDesignInstance: formDesignInstance]
+	}
 
+	
+	
+
+	def update(){
 		
-		def formDesignElements = getFormDesignElements(formDesignInstance.id)
+		 def form = request.JSON
+		 
+		 def components = form.components
+
+		 def formDesignId = form.formDesignId
+		 
+		 def formDesignVersion = form.formVersionNo
+		 
+		 def formDesignInstance = findInstance(formDesignId.toInteger())
+		 
+		 if (!formDesignInstance) {
+			 flash.message = message(code: 'default.not.found.message', args: [message(code: 'formDesignInstance.label', default: 'FormDesign'), id])
+			 redirect(action: "list")
+			 return
+		 }
+		 
+		 
+		 //check that we have the right version i.e. no one else has updated the form design whilst we have been
+		 //looking at it
+ 
+		 if (formDesignVersion != null) {
+			 if (formDesignInstance.version > formDesignVersion) {
+				 formDesignInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
+						   [message(code: 'formDesign.label', default: 'DataElement')] as Object[],
+						   "Another user has updated this Form Design while you were editing")
+				 def model = [success: true, formDesignId: formDesignInstance.id, message: 'version number conflict, please reload page and try again']
+				 render model  as JSON
+			}
+		 }
+		 		 
+		formDesignInstance = formDesignService.update(formDesignInstance, form)
+	
+		def model = [success: true, formDesignId: formDesignInstance.id, formVersion: formDesignInstance.version, message: 'saved']
+		render model  as JSON
+	}
+	
+	
+	
+	def jsonFormsBuilder(Long id){
 		
-		def header = new SectionElement(
-			label: params?.header.label,
-			title: params?.header.title,
-			style: params?.header.style,
-			preText: params?.header.preText
-			)
+		def formDesignInstance = FormDesign.get(id)
 		
-		formDesignInstance.addToFormDesignElements(header)
-		formDesignInstance.header = header
-		formDesignElements.each{ designElement ->
-			formDesignInstance.addToFormDesignElements(designElement)
-		}
+		def questions = formDesignInstance.getQuestions()
+		
+		def model = [questions: questions]
+		
+		render model as JSON
+		
+	}
+	
+	
+	def preview(Long id) {
+		
+		def formDesignInstance = FormDesign.get(id)
+        if (!formDesignInstance) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'formDesign.label', default: 'FormDesign'), id])
+            redirect(action: "list")
+            return
+        }
 		
 
-        flash.message = message(code: 'default.created.message', args: [message(code: 'formDesign.label', default: 'FormDesign'), formDesignInstance.id])
-        redirect(action: "show", id: formDesignInstance.id)
+        [formDesignInstance: formDesignInstance]
+		
+	}
+	
+
+
+
+
+   
+
+    def delete(Long id) {
+        def formDesignInstance = FormDesign.get(id)
+        if (!formDesignInstance) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'formDesign.label', default: 'FormDesign'), id])
+            redirect(action: "list")
+            return
+        }
+
+        try {
+            formDesignInstance.delete(flush: true)
+            flash.message = message(code: 'default.deleted.message', args: [message(code: 'formDesign.label', default: 'FormDesign'), id])
+            redirect(action: "list")
+        }
+        catch (DataIntegrityViolationException e) {
+            flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'formDesign.label', default: 'FormDesign'), id])
+            redirect(action: "show", id: id)
+        }
     }
 	
-	def getFormDesignElements(formDesignId){
+	def getDataType(){
+		
+		
+	}
+	
+	
+	
+	String getSortField(String column){
+		
+		def field
+		
+		switch(column){
+			
+			case '0':
+				field = "refId"
+			break
+			
+			case '1':
+				field = "name"
+			break
+			
+			case '2':
+				field = "description"
+			break
+			
+			default:
+				field = "x"
+			break
+		}
+		
+		return field
+		
+	}
+	
+	
+	/* **************************************************************************************
+	 * ********************************* GRANT *************************************************
+	
+	 * this function grant permission to the given data element
+	 *********************************************************************************** */
+	
+	
+	def grant = {
+		
+				def formDesign = findInstance()
+				
+				if (!formDesign) return
+		
+				if (!request.post) {
+					return [formDesignInstance: formDesign]
+				}
+		
+				formDesignService.addPermission(formDesign, params.recipient, params.int('permission'))
+		
+				redirectShow "Permission $params.permission granted on Report $formDesign.id " + "to $params.recipient", formDesign.id
+			}
+	
+	/* **********************************************************************************
+	 * this function uses the formDesign service to get the form design so that
+	 * the appropriate security considerations are adhered to
+	 *********************************************************************************** */
+	
+	private FormDesign findInstance() {
+		def formDesign = formDesignService.get(params?.long('id'))
+		if (!formDesign) {
+			flash.message = "FormDesign not found with id $params.id"
+			redirect action: list
+		}
+		formDesign
+	}
+	
+	private FormDesign findInstance(Long id) {
+		def formDesign = formDesignService.get(id)
+		if (!formDesign) {
+			flash.message = "FormDesign not found with id $params.id"
+			redirect action: list
+		}
+		formDesign
+	}
+	
+	
+	/* **********************************************************************************
+	 * this function redirects to the show data element screen
+	 *********************************************************************************** */
+	
+	private void redirectShow(message, id) {
+		flash.message = message
+		//redirect with message
+				
+		redirect(action: "show", id: id)
+	}
+	
+	/* **********************************************************************************
+	 * this function checks to see if the data element passed to it contains errors i.e. when a
+	 * service returns the element. It either returns false (if no errors) or it redirects
+	 * to the view specified by the caller
+	 *********************************************************************************** */
+
+	private boolean renderWithErrors(String view, FormDesign formDesign) {
+		if (formDesign.hasErrors()) {
+			render view: view, model: [formDesignInstance: formDesign]
+			return true
+			
+		}
+		false
+	}
+	
+}
+
+
+
+
+/*
+ * 
+ * 
+ * def getFormDesignElements(formDesignId){
 		
 		def formDesignInstance = FormDesign.get(formDesignId)
 		
@@ -310,10 +566,9 @@ class FormDesignController {
 		}
 	}
 	
-	
 	def jsonPreviewFormDesign(Long id){
 		
-		def formDesignInstance = FormDesign.get(id)
+		def formDesignInstance = findInstance()
 		
 		def questions = formDesignInstance.getQuestions()
 		
@@ -322,254 +577,35 @@ class FormDesignController {
 		render model as JSON
 		
 	}
-	
-	
-	def saveForm(){
-		
-		 def form = request.JSON
-		 def components = form.components
-		 
-		 def formDesignInstance = formDesignService.create(form)
-		
+ * 
+ * */
 
-		def model = [success: true, formDesignId: formDesignInstance.id]
-		
-		render model  as JSON
-	}
+/*def update(Long id, Long version) {
+ def formDesignInstance = FormDesign.get(id)
+ if (!formDesignInstance) {
+	 flash.message = message(code: 'default.not.found.message', args: [message(code: 'formDesign.label', default: 'FormDesign'), id])
+	 redirect(action: "list")
+	 return
+ }
 
-	
-	def updateForm(){
-		
-		 def form = request.JSON
-		 def components = form.components
+ if (version != null) {
+	 if (formDesignInstance.version > version) {
+		 formDesignInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
+				   [message(code: 'formDesign.label', default: 'FormDesign')] as Object[],
+				   "Another user has updated this FormDesign while you were editing")
+		 render(view: "edit", model: [formDesignInstance: formDesignInstance])
+		 return
+	 }
+ }
 
-		 def formDesignId = form.formDesignId
-		 
-		 def formDesignInstance = findInstance(formDesignId.toInteger())
-		 
-		 if (!formDesignInstance) {
-			 flash.message = message(code: 'default.not.found.message', args: [message(code: 'formDesignInstance.label', default: 'FormDesign'), id])
-			 redirect(action: "list")
-			 return
-		 }
-		 		 
-		 formDesignInstance = formDesignService.update(formDesignInstance, form)
+ formDesignInstance.properties = params
 
-		def model = [success: true, formDesignId: formDesignInstance.id]
-		
-		render model  as JSON
-	}
-	
-	
-	
-	def jsonFormsBuilder(Long id){
-		
-		def formDesignInstance = FormDesign.get(id)
-		
-		def questions = formDesignInstance.getQuestions()
-		
-		def model = [questions: questions]
-		
-		render model as JSON
-		
-	}
-	
-	
-	def preview(Long id) {
-		
-		def formDesignInstance = FormDesign.get(id)
-        if (!formDesignInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'formDesign.label', default: 'FormDesign'), id])
-            redirect(action: "list")
-            return
-        }
-		
+ if (!formDesignInstance.save(flush: true)) {
+	 render(view: "edit", model: [formDesignInstance: formDesignInstance])
+	 return
+ }
 
-        [formDesignInstance: formDesignInstance]
-		
-	}
-	
-    def show(Long id) {
-        def formDesignInstance = FormDesign.get(id)
-        if (!formDesignInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'formDesign.label', default: 'FormDesign'), id])
-            redirect(action: "list")
-            return
-        }
-		
-        [formDesignInstance: formDesignInstance]
-    }
-
-    def edit(Long id) {
-        def formDesignInstance = FormDesign.get(id)
-        if (!formDesignInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'formDesign.label', default: 'FormDesign'), id])
-            redirect(action: "list")
-            return
-        }
-
-        [formDesignInstance: formDesignInstance]
-    }
-
-    def update(Long id, Long version) {
-        def formDesignInstance = FormDesign.get(id)
-        if (!formDesignInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'formDesign.label', default: 'FormDesign'), id])
-            redirect(action: "list")
-            return
-        }
-
-        if (version != null) {
-            if (formDesignInstance.version > version) {
-                formDesignInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
-                          [message(code: 'formDesign.label', default: 'FormDesign')] as Object[],
-                          "Another user has updated this FormDesign while you were editing")
-                render(view: "edit", model: [formDesignInstance: formDesignInstance])
-                return
-            }
-        }
-
-        formDesignInstance.properties = params
-
-        if (!formDesignInstance.save(flush: true)) {
-            render(view: "edit", model: [formDesignInstance: formDesignInstance])
-            return
-        }
-
-        flash.message = message(code: 'default.updated.message', args: [message(code: 'formDesign.label', default: 'FormDesign'), formDesignInstance.id])
-        redirect(action: "show", id: formDesignInstance.id)
-    }
-
-    def delete(Long id) {
-        def formDesignInstance = FormDesign.get(id)
-        if (!formDesignInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'formDesign.label', default: 'FormDesign'), id])
-            redirect(action: "list")
-            return
-        }
-
-        try {
-            formDesignInstance.delete(flush: true)
-            flash.message = message(code: 'default.deleted.message', args: [message(code: 'formDesign.label', default: 'FormDesign'), id])
-            redirect(action: "list")
-        }
-        catch (DataIntegrityViolationException e) {
-            flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'formDesign.label', default: 'FormDesign'), id])
-            redirect(action: "show", id: id)
-        }
-    }
-	
-	def getDataType(){
-		
-		
-	}
-	
-	
-	
-	String getSortField(String column){
-		
-		def field
-		
-		switch(column){
-			
-			case '0':
-				field = "refId"
-			break
-			
-			case '1':
-				field = "name"
-			break
-			
-			case '2':
-				field = "description"
-			break
-			
-			default:
-				field = "x"
-			break
-		}
-		
-		return field
-		
-	}
-	
-	
-	/* **************************************************************************************
-	 * ********************************* GRANT *************************************************
-	
-	 * this function grant permission to the given data element
-	 *********************************************************************************** */
-	
-	
-	def grant = {
-		
-				def formDesign = findInstance()
-				
-				if (!formDesign) return
-		
-				if (!request.post) {
-					return [formDesignInstance: formDesign]
-				}
-		
-				formDesignService.addPermission(formDesign, params.recipient, params.int('permission'))
-		
-				redirectShow "Permission $params.permission granted on Report $formDesign.id " + "to $params.recipient", formDesign.id
-			}
-	
-	/* **********************************************************************************
-	 * this function uses the formDesign service to get the data element so that
-	 * the appropriate security considerations are adhered to
-	 *********************************************************************************** */
-	
-	private FormDesign findInstance() {
-		def formDesign = formDesignService.get(params.long('id'))
-		if (!formDesign) {
-			flash.message = "FormDesign not found with id $params.id"
-			redirect action: list
-		}
-		formDesign
-	}
-	
-	private FormDesign findInstance(Long id) {
-		def formDesign = formDesignService.get(id)
-		if (!formDesign) {
-			flash.message = "FormDesign not found with id $params.id"
-			redirect action: list
-		}
-		formDesign
-	}
-	
-	
-	/* **********************************************************************************
-	 * this function redirects to the show data element screen
-	 *********************************************************************************** */
-	
-	private void redirectShow(message, id) {
-		flash.message = message
-		//redirect with message
-				
-		redirect(action: "show", id: id)
-	}
-	
-	/* **********************************************************************************
-	 * this function checks to see if the data element passed to it contains errors i.e. when a
-	 * service returns the element. It either returns false (if no errors) or it redirects
-	 * to the view specified by the caller
-	 *********************************************************************************** */
-
-	private boolean renderWithErrors(String view, FormDesign formDesign) {
-		if (formDesign.hasErrors()) {
-			render view: view, model: [formDesignInstance: formDesign]
-			return true
-			
-		}
-		false
-	}
-	
-	
-	
-	
-	
-	
-	
-}
+ flash.message = message(code: 'default.updated.message', args: [message(code: 'formDesign.label', default: 'FormDesign'), formDesignInstance.id])
+ redirect(action: "show", id: formDesignInstance.id)
+}*/
+ 

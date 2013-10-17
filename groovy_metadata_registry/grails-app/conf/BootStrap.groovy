@@ -329,7 +329,7 @@ class BootStrap {
 						
 						DataElementValueDomain.link(new DataElement(name:"PERSON FAMILY NAME (AT BIRTH)",
 																	refId:"CR0140",
-																	description:"The PATIENT's surname at birth.",
+																	description:"The PATIENTs surname at birth.",
 																	dataElementConcept: DEM).save(failOnError: true),
 													new ValueDomain(name:"NHS PERSON FAMILY NAME (AT BIRTH)",
 																	refId:"CR0140",
@@ -398,7 +398,7 @@ class BootStrap {
 								questionNumber: '1',
 								prompt: 'this is the first question',
 								style: 'this style1',
-								label: 'this style2',
+								label: 'is this really a label?',
 								additionalInstructions: 'more instructions',
 								inputField: inputField1
 								).save(failOnError: true)
@@ -407,7 +407,7 @@ class BootStrap {
 									questionNumber: '2',
 									prompt: 'operation reference',
 									style: 'this style3',
-									label: 'this style4',
+									label: 'origin of referral',
 									additionalInstructions: 'more instructions2 ',
 									inputField: inputField2
 									).save(failOnError: true)
@@ -416,7 +416,7 @@ class BootStrap {
 										questionNumber: '3',
 										prompt: 'this is the thirs question',
 										style: 'this style5',
-										label: 'this style6',
+										label: 'what is your favorite colour ?',
 										additionalInstructions: 'more instructions',
 										inputField: inputField3
 										).save(failOnError: true)

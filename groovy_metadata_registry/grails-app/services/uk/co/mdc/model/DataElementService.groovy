@@ -358,8 +358,10 @@ class DataElementService {
 			}else if(pSubElements){
 			
 			//but there are also sub elements to remove
+			//NEED TO DOUBLE CHECK THIS
+			//!!!!!!! NEED what if they are the same size 
 		
-			if(pSubElements.size() < dataElementInstance?.subElements.size()){
+		//	if(pSubElements.size() < dataElementInstance?.subElements.size()){
 			
 				//pass all the objects sub elements into a new array (otherwise we get all sorts or problems)
 				def subElements = []				
@@ -379,7 +381,7 @@ class DataElementService {
 							}						
 						}
 					}
-			}
+			//}
 			
 		}
 	}
@@ -410,7 +412,7 @@ class DataElementService {
 			}else if(extReferences){
 			
 				//but there are also sub elements to remove
-				if(extReferences.size() < dataElementInstance?.externalReferences.size()){
+				//if(extReferences.size() < dataElementInstance?.externalReferences.size()){
 			
 					//pass all the objects external references into a new array (otherwise we get all sorts or problems)	
 					def externalReferences = []
@@ -431,7 +433,7 @@ class DataElementService {
 							}						
 						}
 					}
-				}
+				//}
 			}
 	}
 	

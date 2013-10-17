@@ -214,7 +214,7 @@ class ConceptualDomainService {
 	
 			}else if(pValueDomains){
 		
-			if(pValueDomains.size() < conceptualDomainInstance?.valueDomains.size()){
+			//if(pValueDomains.size() < conceptualDomainInstance?.valueDomains.size()){
 			
 				def valueDomains = []
 				
@@ -241,7 +241,7 @@ class ConceptualDomainService {
 						
 						}
 					}
-			}
+			//}
 			
 		}
 	}
