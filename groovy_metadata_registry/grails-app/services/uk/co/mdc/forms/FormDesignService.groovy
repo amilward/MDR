@@ -14,6 +14,7 @@ import uk.co.mdc.model.ValueDomain;
 import uk.co.mdc.model.DataType;
 import uk.co.mdc.model.Collection;
 import grails.converters.JSON
+
 import org.codehaus.groovy.grails.web.json.*;
 
 	/* *********************************************************************
@@ -328,6 +329,45 @@ class FormDesignService {
 		return formDesignInstance
 		
 	}
+	
+	
+	/* ************************* DELETE DATA ELEMENTS***********************************************
+	 * requires that the authenticated user have delete or admin permission on the report instance to
+	 * edit it
+	 ******************************************************************************************** */
+
+	@Transactional @PreAuthorize("hasPermission(#formDesignInstance, delete) or hasPermission(#formDesignInstance, admin)")
+	void delete(FormDesign formDesignInstance) {
+		
+		//formDesignInstance.prepareForDelete()
+		formDesignInstance.delete(flush: true)
+		
+		// Delete the ACL information as well
+		aclUtilService.deleteAcl formDesignInstance
+   }
+	
+	
+	/* ************************* DELETE PERMISSIONS***********************************************
+	 * deletePermission requires that the authenticated user have admin permission on the report
+	 *  instance to delete a grant
+	 ******************************************************************************************** */
+	
+	@Transactional @PreAuthorize("hasPermission(#formDesignInstance, admin)")
+	void deletePermission(FormDesign formDesignInstance, String username, Permission permission) {
+		def acl = aclUtilService.readAcl(formDesignInstance)
+		
+		// Remove all permissions associated with this particular
+		// recipient (string equality to KISS)
+		
+		acl.entries.eachWithIndex {
+			entry, i -> if (entry.sid.equals(recipient) && entry.permission.equals(permission)) {
+				acl.deleteAce i
+				}
+			}
+		
+		aclService.updateAcl acl
+		
+		}
 	
 	
 	/* ************************* DATA ELEMENT LINKAGE FUNCTIONS************************

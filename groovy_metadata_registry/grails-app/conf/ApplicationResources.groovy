@@ -37,11 +37,14 @@ modules = {
 		dependsOn "application"
 		resource url: "js/vendor/jquery.layout-1.3.0.min.js"
 		resource url: "js/vendor/bootstrap-editable.js"
+		resource url: "js/pathways/jquery.jsPlumb-1.5.2-min.js"
+		resource url: "js/respond.min.js"
 		resource url: "js/forms/form_model.js"
 		resource url: "js/forms/constraint.js"
 		resource url: "js/forms/frenderer-theme-bootstrap.js"
 		resource url: "js/forms/frenderer.js"
-		resource url: "js/custom.js"
+		resource url: "js/forms/frendererLayout.js"
+		
 	}
 	
 	pathways{
