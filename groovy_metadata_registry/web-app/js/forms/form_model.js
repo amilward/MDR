@@ -203,7 +203,8 @@ var form_model = {
 			id : "header",
 			text: "That's the end of the form.  Nothing more to complete."
 		},
-		containedElements : [{
+		containedElements : [
+		{
 			type : "Section Element",
 			label : "Section 1",
 			id : "section1",

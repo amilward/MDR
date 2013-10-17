@@ -19,14 +19,14 @@
 	<body>
 		<header>
 			<g:form id="deleteForm" url="[action:'delete',controller:'formDesign']">
-				<g:hiddenField name="id" value="${collectionInstance?.id}" />
+				<g:hiddenField name="id" value="${formDesignInstance?.id}" />
 			    	<div class="navbar">
 					    <div class="navbar-inner">
 						    <ul class="nav">
 						   		<li class="active"><a class="brand" href="#"><i class="icon-edit"></i> FormDesigner</a></li>
 						   		<li><a href="#" onclick="updateForm('${formDesignInstance?.id}')">Update</a></li>
 						  		 <li><g:link action="create" id="${formDesignInstance?.id}"><g:message code="default.button.create.label" default="Create" /></g:link></li>
-							    <li><a href="#" onclick="deleteItem('${formDesignInstance?.name}')">Delete</a></li>
+							    <li><a href="#" onclick="deleteItem('${formDesignInstance?.id}')">Delete</a></li>
 							    <li><g:link action="preview" id="${formDesignInstance?.id}"><g:message code="default.button.preview.label" default="Preview" /></g:link></li>
 							</ul>
 					    </div>

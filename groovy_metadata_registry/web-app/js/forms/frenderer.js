@@ -117,6 +117,9 @@ function _renderFormDesignElement(element, $div){
 	
 }
 
+function renderForm(){
+
+	render(form_model, $('#formdiv'));
 
 
-render(form_model, $('#formdiv'));
+}

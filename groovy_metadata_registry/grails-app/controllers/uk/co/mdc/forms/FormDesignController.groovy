@@ -252,12 +252,12 @@ class FormDesignController {
 	
 	
 	/* **************************************************************************************
-	 * ************************************** EDIT ********************************************
+	 * ************************************** PREVIEW ********************************************
 	
 	 * this function redirects to the edit form design screen
 	 *********************************************************************************** */
 	
-	def edit(Long id) {
+	def preview(Long id) {
 		//use the find instance method to get the form design in question
 		
 		def formDesignInstance = findInstance()
@@ -274,6 +274,11 @@ class FormDesignController {
 	}
 
 	
+	/* **************************************************************************************
+	 * ************************************ UPDATE **********************************************
+	
+	 * this function updates the form using the form design service
+	 *********************************************************************************** */
 	
 
 	def update(){
@@ -314,51 +319,28 @@ class FormDesignController {
 		render model  as JSON
 	}
 	
-	
-	
-	def jsonFormsBuilder(Long id){
-		
-		def formDesignInstance = FormDesign.get(id)
-		
-		def questions = formDesignInstance.getQuestions()
-		
-		def model = [questions: questions]
-		
-		render model as JSON
-		
-	}
-	
-	
-	def preview(Long id) {
-		
-		def formDesignInstance = FormDesign.get(id)
-        if (!formDesignInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'formDesign.label', default: 'FormDesign'), id])
-            redirect(action: "list")
-            return
-        }
-		
 
-        [formDesignInstance: formDesignInstance]
-		
-	}
 	
-
-
-
-
-   
+	/* **************************************************************************************
+	 * ********************************* DELETE *************************************************
+	
+	 * this function deletes the data element using the data element service
+	 *********************************************************************************** */
 
     def delete(Long id) {
-        def formDesignInstance = FormDesign.get(id)
+        def formDesignInstance = findInstance(id)
+		
         if (!formDesignInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'formDesign.label', default: 'FormDesign'), id])
             redirect(action: "list")
             return
         }
+		
+		//call form design service to delete design
 
         try {
-            formDesignInstance.delete(flush: true)
+			formDesignService.delete(formDesignInstance)
+           // formDesignInstance.delete(flush: true)
             flash.message = message(code: 'default.deleted.message', args: [message(code: 'formDesign.label', default: 'FormDesign'), id])
             redirect(action: "list")
         }
@@ -368,12 +350,23 @@ class FormDesignController {
         }
     }
 	
-	def getDataType(){
+	
+	
+	//forms get forms model
+	
+	def jsonFormsBuilder(Long id){
 		
+		def formDesignInstance = findInstance(id)
+		
+		def questions = formDesignInstance.getQuestions()
+		
+		def model = [questions: questions]
+		
+		render model as JSON
 		
 	}
 	
-	
+	//data tables column name for form design
 	
 	String getSortField(String column){
 		
@@ -439,6 +432,7 @@ class FormDesignController {
 		formDesign
 	}
 	
+	//if no parameters sent
 	private FormDesign findInstance(Long id) {
 		def formDesign = formDesignService.get(id)
 		if (!formDesign) {
@@ -481,7 +475,23 @@ class FormDesignController {
 
 
 /*
+ *
  * 
+ * 
+ * 	def preview(Long id) {
+		
+		def formDesignInstance = FormDesign.get(id)
+        if (!formDesignInstance) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'formDesign.label', default: 'FormDesign'), id])
+            redirect(action: "list")
+            return
+        }
+		
+
+        [formDesignInstance: formDesignInstance]
+		
+	}
+	
  * 
  * def getFormDesignElements(formDesignId){
 		
