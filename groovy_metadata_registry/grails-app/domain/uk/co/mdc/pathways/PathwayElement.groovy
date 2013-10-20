@@ -7,6 +7,18 @@ abstract class PathwayElement {
 	String refId
 	String name
 	String description
+	Collection peCollection
+	
+	String GetElementsJSON(){
+		def result = []
+		def de = '{}'
+		
+		peCollection.dataElementCollections.each{
+			de =+ ',{"id" : "' + it.refId + '", "description" : "' + it.description + '"}'
+		}
+		result
+	}
+	
 	
 	static hasMany = [nodes: Node, links: Link, 
 					  mandatoryInputs: Collection,
@@ -21,5 +33,6 @@ abstract class PathwayElement {
 		optionalOutputs nullable:true
 		refId unique:true
 		description nullable:true
+		peCollection nullable:true
     }
 }
