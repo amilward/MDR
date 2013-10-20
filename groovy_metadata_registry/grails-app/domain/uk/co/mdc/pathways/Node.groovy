@@ -6,6 +6,8 @@ class Node extends PathwayElement{
 	String x
 	String y
 	
+	
+	
 	static belongsTo = [pathwayElement : PathwayElement]
 
     static constraints = {

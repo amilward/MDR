@@ -7,7 +7,7 @@ function openPathways(pathway_model){
 			    class: 'node',
 			    rel: 'popover',
 			    'data-trigger' : 'click',
-			    'data-content' : node.Description,
+			    'data-content' : node.description,
 			    'data-original-title' : node.name
 			});
 			/*$newNode.append("<p>" + node.name + "</p>") */
@@ -34,7 +34,7 @@ function openPathways(pathway_model){
 				$sidebar = $('#sidebar');
 				$sidebar.html('');
 				$sidebar.append($('<h3>' + node.name + '</h3>'));
-				$sidebar.append($('<p>' + node.Description + '</p>'));
+				$sidebar.append($('<p>' + node.description + '</p>'));
 				$sidebar.append($('<h4>Data Elements</h4>'));
 				$sidebar.append($('<p>Below is a list of data elements collected at this stage in the pathway.</p>'));
 				$table = $('<table/>', {
