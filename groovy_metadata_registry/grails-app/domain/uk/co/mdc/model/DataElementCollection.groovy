@@ -2,11 +2,16 @@ package uk.co.mdc.model
 
 class DataElementCollection {
 	
-	SchemaSpecification schemaSpecification
-	
-	DataElement dataElement
-	
+	SchemaSpecification schemaSpecification	
+	DataElement dataElement	
 	Collection collection
+	
+	
+	public DataElementCollection(DataElement de, Collection col, SchemaSpecification  scs) {
+		this.schemaSpecification = scs
+		this.dataElement = de
+		this.collection = col	
+	}
 
     static constraints = {
 		
