@@ -1,24 +1,39 @@
 package uk.co.mdc.pathways
 
 import uk.co.mdc.model.Collection
+import uk.co.mdc.model.DataElement
+import uk.co.mdc.model.DataElementCollection
 
 abstract class PathwayElement {
 	
 	String refId
 	String name
 	String description
+
 	Collection peCollection
 	
 	String GetElementsJSON(){
 		def result = []
-		def de = '{}'
-		
-		peCollection.dataElementCollections.each{
-			de =+ ',{"id" : "' + it.refId + '", "description" : "' + it.description + '"}'
+		def de = new StringBuffer()
+		def isFirst = new Boolean('True')
+
+		Iterator i = peCollection.dataElementCollections.iterator();		
+		while (i.hasNext()){
+			DataElementCollection it = i.next()
+			if(isFirst){
+
+				de.append('{"id" : "' + it.dataElement.refId + '", "description" : "' + it.dataElement.description + '"}')
+			}else{
+				de.append(',')
+				de.append('{"id" : "' + it.dataElement.refId + '", "description" : "' + it.dataElement.description + '"}')
+			}
+			isFirst = new Boolean('False')
 		}
-		result
+		println "TEST:" + de.toString()
+		result = de.toString()
 	}
 	
+
 	
 	static hasMany = [nodes: Node, links: Link, 
 					  mandatoryInputs: Collection,

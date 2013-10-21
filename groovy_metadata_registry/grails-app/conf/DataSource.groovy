@@ -3,21 +3,23 @@ dataSource {
 	
 	
 	//persistence driver
-    /*driverClassName = "org.h2.Driver"
-	username = "root"
-	password = "root"
-	*/
+
+   // driverClassName = "org.h2.Driver"
+	//username = "root"
+	//password = "root"
 	
-	/*
-	 * uncomment the following to use mysql
+
+	
+	
+	/* uncomment the following to use mysql
 	 * persistence driver replacing
 	 * the code above and using local user credentials 
 	 */
 	driverClassName = "com.mysql.jdbc.Driver"
-	username = "mdradmin"
-    password = "mdradmin123"
+	username = "mdruser"
+    password = "mdruser123"
 	dialect = "org.hibernate.dialect.MySQL5InnoDBDialect"
-	
+
 }
 hibernate {
     cache.use_second_level_cache = true
@@ -29,11 +31,11 @@ environments {
     development {
         dataSource {
             dbCreate = "create-drop" // one of 'create', 'create-drop', 'update', 'validate', ''
-            url = "jdbc:h2:mem:devDb;MVCC=TRUE;LOCK_TIMEOUT=10000"
+         //   url = "jdbc:h2:mem:devDb;MVCC=TRUE;LOCK_TIMEOUT=10000"
 		
 		//  if using mysql driver replace the url above with 
 		//	the mysql url for the database i.e.
-		//	url = "jdbc:mysql://localhost/mdr_v0_4?useUnicode=yes&characterEncoding=UTF-8" 
+			url = "jdbc:mysql://localhost/mdr?useUnicode=yes&characterEncoding=UTF-8" 
        
 			
 		}
@@ -73,8 +75,8 @@ environments {
         dataSource {
             dbCreate = "create-drop"
             driverClassName = "com.mysql.jdbc.Driver"
-			username = "mdradmin"
-		    password = "mdradmin123"
+			username = "mdruser"
+		    password = "mdruser123"
 			dialect = "org.hibernate.dialect.MySQL5InnoDBDialect"
 			url = "jdbc:mysql://localhost/mdr?useUnicode=yes&characterEncoding=UTF-8"
             pooled = true
