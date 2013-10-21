@@ -29,7 +29,7 @@ abstract class PathwayElement {
 			}
 			isFirst = new Boolean('False')
 		}
-		println "TEST:" + de.toString()
+		
 		result = de.toString()
 	}
 	
