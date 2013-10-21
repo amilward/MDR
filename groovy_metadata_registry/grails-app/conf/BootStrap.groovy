@@ -435,9 +435,10 @@ class BootStrap {
 						
 						
 						//add a pathway
-						
+						//Node(String ref, String nm,String x, String y, String desc, Collection col)
 						
 						if(!PathwaysModel.count()){
+
 							
 							def collect1 = new Collection(refId: 'Colt11', name: 'TestCol11', description: 'blah blah blah').save(failOnError: true)           
 							def collect2 = new Collection(refId: 'Colt12', name: 'TestCol12', description: 'blah blah blah').save(failOnError: true)
@@ -450,69 +451,71 @@ class BootStrap {
                                                                     
 							collect1.addToDataElementCollections(de21)
 							collect1.addToDataElementCollections(de22)
+
+														
+						   
+				
+																			
+									println(" Collection" + collect1.refId)
+									println(" Collection" + collect2.refId)
+									println(" Collection" + collect3.refId)
+									println(" Collection" + collect4.refId)
+									println(" Collection" + collect5.refId)
+									
+							def node1 = new Node(
+										refId: 'TM_N1',
+										name: 'transfer to O.R.',
+										x: '5',
+										y: '0',
+										description: 'transfer patient to the Operating Room',
+										peCollection:  collect1
+										).save(flush:true)
+									
+							def de1 = new DataElement(name:"PERSON FAMILY NAME (AT BIRTH)",
+																	refId:"CR0111",
+																	description:"The PATIENT's surname at birth.",
+																	dataElementConcept: DEM).save(failOnError: true)
+						 
+							println(" Collection" + de1.refId)
+			
+							 						
+							def node2 = new Node(
+								refId: 'TM_N2',
+								name: 'Anaesthesia and Operating Patient.',
+								x: '15',
+								y: '10',
+								description: 'perform the operation',
+								peCollection:  collect2 
+								).save(flush:true)
+						
+															
+							def node3 = new Node(
+								refId: 'TM_N3',
+								name: 'Guarding Patient on recovery and transfer to nursing ward',
+								x: '25',
+								y: '30',
+								description: 'transfer patient to the Operating Room',
+								peCollection:  collect3
+								).save(flush:true)
 							
-							collect2.addToDataElementCollections(de21)
-							collect2.addToDataElementCollections(de22)
-                                        
-                              println(" Collection" + collect1.refId)
-                              println(" Collection" + collect2.refId)
-                              println(" Collection" + collect3.refId)
-                              println(" Collection" + collect4.refId)
-                              println(" Collection" + collect5.refId)
-                                    
-                            def node1 = new Node(
-                                        refId: 'TM_N1',
-                                        name: 'transfer to O.R.',
-                                        x: '5',
-                                        y: '0',
-                                        description: 'transfer patient to the Operating Room',
-                                        peCollection:  collect1
-                                        ).save(flush:true)
-                                    
-                            def de1 = new DataElement(name:"PERSON FAMILY NAME (AT BIRTH)",
-                                                                    refId:"CR0111",
-                                                                    description:"The PATIENT's surname at birth.",
-                                                                    dataElementConcept: DEM).save(failOnError: true)
-                        
-                            println(" Collection" + de1.refId)
-            
-                                                     
-                            def node2 = new Node(
-                                refId: 'TM_N2',
-                                name: 'Anaesthesia and Operating Patient.',
-                                x: '15',
-                                y: '10',
-                                description: 'perform the operation',
-                                peCollection:  collect2
-                                ).save(flush:true)
-                        
-                                                            
-                            def node3 = new Node(
-                                refId: 'TM_N3',
-                                name: 'Guarding Patient on recovery and transfer to nursing ward',
-                                x: '25',
-                                y: '30',
-                                description: 'transfer patient to the Operating Room',
-                                peCollection:  collect3
-                                ).save(flush:true)
-                            
-                        
-                        
-                            def link1 = new Link(
-                                refId: 'TM_L1',
-                                name: 'TM1',
-                                source: node1,
-                                target: node2,
-                                peCollection:  collect4
-                            ).save(flush:true)
-                            
-                            def link2 = new Link(
-                                refId: 'TM_L2',
-                                name: 'TM2',
-                                source: node2,
-                                target: node3,
-                                peCollection: collect5
-                            ).save(flush:true)
+						
+						
+							def link1 = new Link(
+								refId: 'TM_L1',
+								name: 'TM1',
+								source: node1,
+								target: node2,
+								peCollection:  collect4
+							).save(flush:true)
+							
+							def link2 = new Link(
+								refId: 'TM_L2',
+								name: 'TM2',
+								source: node2,
+								target: node3,
+								peCollection: collect5
+							).save(flush:true)
+
                             
                             def pathway = new PathwaysModel(
                                 refId: 'TM_P1',
