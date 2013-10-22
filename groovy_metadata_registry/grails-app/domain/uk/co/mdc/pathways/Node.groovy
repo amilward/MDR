@@ -15,10 +15,7 @@ class Node extends PathwayElement{
 		this.y = y
 	}
 	
-	
-	
-	
-	
+
 	
 	static belongsTo = [pathwayElement : PathwayElement]
 
