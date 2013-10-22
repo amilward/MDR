@@ -3,8 +3,9 @@ package uk.co.mdc.pathways
 import uk.co.mdc.model.Collection
 import uk.co.mdc.model.DataElement
 import uk.co.mdc.model.DataElementCollection
+import uk.co.mdc.model.DataElementConcept
 
-abstract class PathwayElement {
+abstract class PathwayElement extends DataElementConcept{
 	
 	String refId
 	String name
@@ -35,8 +36,7 @@ abstract class PathwayElement {
 	
 
 	
-	static hasMany = [nodes: Node, links: Link, 
-					  mandatoryInputs: Collection,
+	static hasMany = [mandatoryInputs: Collection,
 					  mandatoryOutputs: Collection,
 					  optionalInputs: Collection,
 					  optionalOutputs: Collection]
