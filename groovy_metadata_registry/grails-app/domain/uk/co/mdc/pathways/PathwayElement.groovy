@@ -5,7 +5,7 @@ import uk.co.mdc.model.DataElement
 import uk.co.mdc.model.DataElementCollection
 import uk.co.mdc.model.DataElementConcept
 
-abstract class PathwayElement extends DataElementConcept{
+abstract class PathwayElement {
 	
 	String refId
 	String name
