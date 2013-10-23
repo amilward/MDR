@@ -129,7 +129,25 @@ var dataTypeTemplates = [
 	 } 
  ];
 
-var paletteItems = [
+
+var sectionItems = []
+
+var sectionPallette = [{
+                       	name: "sections",
+                       	elements:[
+                       	          {
+                       	        	  id: 0,
+                       	        	  name: "New Section",
+                       	        	  type: "section",
+                       	        	  icon: "icon-pencil",
+                       	        	  properties: []
+                       	          }
+                       	          ]
+                       }
+                       ]
+
+
+var questionPallette = [
                     {
                  	   name: "Simple Questions",
                  	   elements: [
@@ -139,7 +157,8 @@ var paletteItems = [
                  	            	  icon: "icon-pencil",
                  	            	  type: "question",
                  	            	  datatype: "numeric",
-                 	            	  properties: []
+                 	            	  properties: [], 
+                 	            	  type: "question"
                  	              },
                  	              {
                  	            	  id: 5,
@@ -147,7 +166,8 @@ var paletteItems = [
                  	            	  icon: "icon-pencil",
                  	            	  type: "question",
                  	            	  datatype: "string",
-                 	            	  properties: []
+                 	            	  properties: [], 
+                 	            	  type: "question"
                  	              },
                  	              {
                  	            	  id: 6,
@@ -155,7 +175,8 @@ var paletteItems = [
                  	            	  icon: "icon-check",
                  	            	  type: "question",
                  	            	  datatype: "boolean",
-                 	            	  properties: []
+                 	            	  properties: [], 
+                 	            	  type: "question"
                  	              },
                  	              {
                  	            	  id: 7,
@@ -163,7 +184,8 @@ var paletteItems = [
                  	            	  icon: "icon-calendar",
                  	            	  type: "question",
                  	            	  datatype: "date",
-                 	            	  properties: []
+                 	            	  properties: [], 
+                 	            	  type: "question"
                  	              },
                  	              {
                  	            	  id: 8,
@@ -171,7 +193,8 @@ var paletteItems = [
                  	            	  icon: "icon-calendar",
                  	            	  type: "question",
                  	            	  datatype: "datetime",
-                 	            	  properties: []
+                 	            	  properties: [], 
+                 	            	  type: "question"
                  	              },
                  	              {
                  	            	  id: 9,
@@ -179,7 +202,8 @@ var paletteItems = [
                  	            	  icon: "icon-time",
                  	            	  type: "question",
                  	            	  datatype: "time",
-                 	            	  properties: []
+                 	            	  properties: [], 
+                 	            	  type: "question"
                  	              }]
                     },
                     {
@@ -190,14 +214,16 @@ var paletteItems = [
                  	            	  icon: "icon-list-ul",
                  	            	  type: "question",
                  	            	  datatype: "enumeration",
-                 	            	  properties: []
+                 	            	  properties: [], 
+                 	            	  type: "question"
                  	              },{
                  	            	  id: 11,
                  	            	  name: "Dropdown Select",
                  	            	  icon: "icon-reorder",
                  	            	  type: "question",
                  	            	  datatype: "enumeration",
-                 	            	  properties: []
+                 	            	  properties: [], 
+                 	            	  type: "question"
                  	              }]
                     }];
 
@@ -220,9 +246,14 @@ function Component(iid, eid, properties, icon) {
 	self.internalIdentifier = ko.observable(iid);
 	self.externalIdentifier = ko.observable(eid);
 	self.question = ko.observable();
+	self.section = ko.observable();
 	self.icon = ko.observable(icon);
 	self.setQuestion = function(q) {
 		self.question(q);
+	};
+	
+	self.setSection = function(s) {
+		self.section(s);
 	};
 	
 	
@@ -242,173 +273,103 @@ function Component(iid, eid, properties, icon) {
 
 		
 	self.clone = function(){
-		var c = new Component(lastComponentID++, self.externalIdentifier(), self.properties(), self.icon());
 		
-		var q = self.question().clone();
-		c.setQuestion(q);
+		//console.log(ko.toJSON(self.question()))
+
+		var c
+		
+		if(self.question()){
+
+			c = viewModel.currentlySelectedFormSection()
+			
+			var s = c.section()
+			
+			var q = self.question().clone();
+			
+			s.addQuestion(q);
+			
+			c.setSection(s);
+
+			//console.log(ko.toJSON(c))
+			
+		}else if(self.section()){
+			
+			c = new Component(lastComponentID++, self.externalIdentifier(), self.properties(), self.icon());
+
+			//console.log('cloning component section')
+			
+			var s = new Section("new section", 0, [])
+			
+			c.setSection(s);
+
+		}
+		
+		
+		//var s = self.question().clone();
+		//c.setSection(s);
+		
 		//console.log("cloning");
-		//console.log(ko.toJSON(self, null, 2));
+		
+		//console.log(ko.toJSON(c, null, 2));
+		
 		return c;
 		
 	};
 	
 }
 
-function Form(id, fullName, refId, description, versionNo, isDraft, collectionId, formVersionNo, components) {
+function Section(title, sectionId, questions){
+	
 	var self = this;
-	self.formID = ko.observable(id);
-	self.formDesignName = ko.observable(fullName);
-	self.formRefId = ko.observable(refId);
-	self.formCollectionId = ko.observable(collectionId);
-	self.formVersionNo = formVersionNo;
-	self.formDescription = ko.observable(description);
-	self.versionNo = ko.observable(versionNo);
-	self.isDraft = ko.observable(isDraft);
-	self.components = ko.observableArray(components);
+	
+	self.title = ko.observable(title);
+	
+	self.sectionId = ko.observable(sectionId);
+	
+	self.questions = ko.observableArray(questions);
+	
+	self.addQuestion = function(q){
+		
+		self.questions.push(q)
+	}
+	
+	self.clone = function() {
+		
+		//console.log('cloning section test')
+		
+		var s = new Section(
+				self.title(),
+				self.sectionId(),
+				self.questions()
+				);
+		
+		
+		//console.log(ko.toJSON(s))
+		
+		return s
+		
+	}
 	
 	
-	self.copyComponent = function(data, idx){
-		//console.log(data);
-		//console.log(idx);
-		//var idx = self.components.indexOf(iid);
-		var newItem = data.clone();
-		self.components.splice(idx+1, 0, newItem);
-		viewModel.setCurrentlySelectedFormComponentIdx(idx+1);
-		refreshFormPanelViews();
-	};
-	
-	self.deleteComponent = function(comp) {
+	self.deleteQuestion = function(comp) {
 
 	    var heading = 'Confirm Form Component Delete';
-	    var question = 'Please confirm that you wish to delete this form component: ' + comp.externalIdentifier() + '.';
+	    var question = 'Please confirm that you wish to delete this question: ' + comp.prompt() + '.';
 	    var cancelButtonTxt = 'Cancel';
 	    var okButtonTxt = 'Confirm';
 
 	    var callback = function() {
-	    	self.components.remove(comp);
+	    	self.questions.remove(comp);
 	    	refreshFormPanelViews();
 	    };
 
 	    confirm(heading, question, cancelButtonTxt, okButtonTxt, callback);
-
-		
 	};
-}
-
-
-
-function FormsModel() {
-    var self = this;
-    self.forms = ko.observableArray([]);
-    self.activeFormId = ko.observable(null);
-
-    self.activeForm = ko.computed(function() {
-    	if(self.activeFormId != null && self.forms().length > 0)
-    	{
-    		return $.grep(self.forms(), function (n,i) {  return n.formID() == self.activeFormId(); })[0];
-    	} else {
-    		return null;
-    	}
-    }, self);
-    
-    self.currentlySelectedFormComponentIdx = ko.observable(null);
-
-    self.currentlySelectedFormComponent = ko.computed({
-    	read: function() {
-	    	if(self.currentlySelectedFormComponentIdx() != null && self.activeForm() != null && self.activeForm().components().length > 0)
-	    	{
-	    		return self.activeForm().components()[self.currentlySelectedFormComponentIdx()];
-	    	} else {
-	    		return null;
-	    	}
-	    },
-	    write: function(value) {
-	    	console.log(value);
-	    },
-	    owner: self
-    });
-    
-
-    self.setActiveFormId = function(id){
-    	self.activeFormId(id); 
-    	refreshFormPanelViews();
-    };
-
-    self.setCurrentlySelectedFormComponentIdx = function(idx){
-    	//console.log("index: " + idx);
-    	self.currentlySelectedFormComponentIdx(idx); 
-    	//refreshFormPanelViews();
-    };
-
-
-    
-    self.addForm = function(id, fullName, refId, description, versionNo, isDraft, collectionId, formVersionNo, components){
-    	//self.palette = paletteItems;
-    	self.forms.push(new Form(id, fullName, refId, description, versionNo, isDraft, collectionId, formVersionNo, components));
-    	self.setActiveFormId(id);
-    	//self.palette = paletteItems;
-    	self.palette = paletteItems;
-    	
-    };
-    
-    
-    
-}
-
-var lastComponentID = 0;
-
-function newComponent(element)
-{
-
-	lastComponentID++;
-	var iid = element.id + '-' + lastComponentID;
-	var eid = iid;
-	var properties = element.properties;
-	var icon = element.icon;
-	
-	//var html = element.defaultView;
-	var c = new Component(iid, eid, properties, icon);
 	
 	
-	if(element.type == "question")
-	{
-		//console.log(dataTypeTemplates);
-		//console.log("something");
-		//console.log($.grep(dataTypeTemplates, function(n,i){ return n.name==element.datatype; })[0]);
-		var dt = $.grep(dataTypeTemplates, function(n,i){ return (n.name == element.datatype); })[0];
-		//return c;
-		var renderingOption = dt.prefRenderingOptions[0];
-		var name = dt.name;
-		var restriction = "";
-		var selectMultiple = false;
-		var options = element.enumerations;
-		//var options = ['test','asddfsaafds'];
-		var previewRender = dt.previewRender;
-		var dti = new DataTypeInstance(iid, eid, name, dt, renderingOption, restriction, selectMultiple, options, previewRender);
-		
-		if(element.prompt==null){
-			
-			var question = new Question("no question prompt", "no additionalInstructions", "no label", "", dti, "no defaultValue", "no placeholder", "no unitOfMeasure test", "", "no format", "false", "no enumerations", "");
-			
-			
-		}else{
-			
-			var question = new Question(element.prompt, element.additionalInstructions, element.label, element.style, 
-					dti, element.defaultValue, element.placeholder, 
-					element.unitOfMeasure,  element.maxCharacters, 
-					element.format, element.isEnumerated, element.enumerations, 
-					element.questionId, element.inputId, element.dataElementId, element.valueDomainId);
-		}
-		
-		
-		c.setQuestion(question);
-		//console.log(ko.toJSON(question, null, 2));
-	}
-	//console.log(c.question());
-
-	return c; 
 	
 }
+
 
 function Question(prompt, additionalInstructions, label, style, dataTypeInstance, defaultValue, placeholder, unitOfMeasure, maxCharacters, format, isEnumerated, enumerations, questionId, inputId, dataElementId, valueDomainId)
 {
@@ -452,11 +413,14 @@ function Question(prompt, additionalInstructions, label, style, dataTypeInstance
 	
 	
 	self.clone = function() {
+		//console.log('test question clone')
+		//console.log(ko.toJSON(self))
 		var dti = null;
 		if(self.dataTypeInstance())
 		{
 			dti = self.dataTypeInstance().clone();
 		}
+		
 		var q = new Question(self.prompt(), 
 				self.additionalInstructions(), 
 				self.label(), self.style(), 
@@ -471,7 +435,10 @@ function Question(prompt, additionalInstructions, label, style, dataTypeInstance
 				self.inputId(), 
 				self.dataElementId(),
 				self.valueDomainId());
-		//console.log(ko.toJSON(q, null, 2));
+		
+
+	//	console.log(ko.toJSON(q, null, 2));
+		
 		return q;
 	};
 }
@@ -504,6 +471,264 @@ function DataTypeInstance(iid, eid, name, instanceOf, renderingOption, restricti
 	};
 	
 }
+
+
+function Form(id, fullName, refId, description, versionNo, isDraft, collectionId, formVersionNo, components) {
+	
+	//console.log('creating new form')
+	
+	var self = this;
+	self.formID = ko.observable(id);
+	self.formDesignName = ko.observable(fullName);
+	self.formRefId = ko.observable(refId);
+	self.formCollectionId = ko.observable(collectionId);
+	self.formVersionNo = formVersionNo;
+	self.formDescription = ko.observable(description);
+	self.versionNo = ko.observable(versionNo);
+	self.isDraft = ko.observable(isDraft);
+	self.components = ko.observableArray(components);
+	
+	
+	self.copyComponent = function(data, idx){
+		//console.log(data);
+		//console.log(idx);
+		//var idx = self.components.indexOf(iid);
+		var newItem = data.clone();
+		self.components.splice(idx+1, 0, newItem);
+		viewModel.setCurrentlySelectedFormSectionIdx(idx+1);
+		
+		refreshFormPanelViews();
+	};
+	
+	self.deleteComponent = function(comp) {
+
+	    var heading = 'Confirm Form Component Delete';
+	    var question = 'Please confirm that you wish to delete this form component: ' + comp.externalIdentifier() + '.';
+	    var cancelButtonTxt = 'Cancel';
+	    var okButtonTxt = 'Confirm';
+
+	    var callback = function() {
+	    	self.components.remove(comp);
+	    	refreshFormPanelViews();
+	    };
+
+	    confirm(heading, question, cancelButtonTxt, okButtonTxt, callback);
+	};
+	
+	
+}
+
+
+
+function FormsModel() {
+    var self = this;
+    self.forms = ko.observableArray([]);
+    self.activeFormId = ko.observable(null);
+
+    self.activeForm = ko.computed(function() {
+    	if(self.activeFormId != null && self.forms().length > 0)
+    	{
+    		return $.grep(self.forms(), function (n,i) {  return n.formID() == self.activeFormId(); })[0];
+    	} else {
+    		return null;
+    	}
+    }, self);
+    
+    
+    self.currentlySelectedFormComponentIdx = ko.observable(null)
+    
+    self.currentlySelectedFormSectionIdx = ko.observable(null);
+
+    self.currentlySelectedQuestionIdx = ko.observable(null);
+    
+    
+    self.currentlySelectedFormComponent = ko.computed({
+    	read: function() {
+    		
+	    	if(self.currentlySelectedFormComponentIdx() != null && self.activeForm() != null && self.activeForm().components().length > 0)
+	    	{
+	    		return self.activeForm().components()[self.currentlySelectedFormComponentIdx()];
+	    	} else {
+	    		return null;
+	    	}
+	    },
+	    write: function(value) {
+	    	console.log(value);
+	    },
+	    owner: self
+    });
+    
+    
+    self.currentlySelectedFormSection = ko.computed({
+    	read: function() {
+    		
+	    	if(self.currentlySelectedFormSectionIdx() != null && self.activeForm() != null && self.activeForm().components().length > 0)
+	    	{
+	    		return self.activeForm().components()[self.currentlySelectedFormSectionIdx()];
+	    	} else {
+	    		return null;
+	    	}
+	    },
+	    write: function(value) {
+	    	console.log(value);
+	    },
+	    owner: self
+    });
+    
+    //note to self nned to check th
+    
+    self.currentlySelectedQuestion = ko.computed({
+    	read: function() {
+    		//console.log('selecting question')
+	    	if(self.currentlySelectedQuestionIdx() != null && self.activeForm() != null && self.activeForm().components().length > 0)
+	    	{
+	    		if(self.currentlySelectedFormSection().section().questions()!=null){
+	    		//console.log(self.currentlySelectedFormSection().section().questions()[self.currentlySelectedQuestionIdx()])
+	    		
+	    			return self.currentlySelectedFormSection().section().questions()[self.currentlySelectedQuestionIdx()]
+	    		
+	    		}else{
+	    			return null
+	    		}
+	    	} else {
+	    		return null;
+	    	}
+	    },
+	    write: function(value) {
+	    	console.log(value);
+	    },
+	    owner: self
+    });
+    
+    
+
+    self.setActiveFormId = function(id){
+    	self.activeFormId(id); 
+    	refreshFormPanelViews();
+    };
+
+    self.setCurrentlySelectedFormSectionIdx = function(idx){
+    	//console.log("index: " + idx);
+    	self.currentlySelectedFormSectionIdx(idx); 
+    	//refreshFormPanelViews();
+    };
+    
+    self.setCurrentlySelectedQuestionIdx = function(idx){
+    	
+    	self.currentlySelectedQuestionIdx(idx); 
+    	//refreshFormPanelViews();
+    };
+    
+    
+
+
+    
+    self.addForm = function(id, fullName, refId, description, versionNo, isDraft, collectionId, formVersionNo, components){
+    	//self.palette = questionPallette;
+    	self.forms.push(new Form(id, fullName, refId, description, versionNo, isDraft, collectionId, formVersionNo, components));
+    	self.setActiveFormId(id);
+    	//self.palette = questionPallette;
+    	self.palette = questionPallette;
+    	self.sectionPalette = sectionPallette;
+    	self.sections = sectionItems;
+    	
+    };
+    
+    
+    
+    
+    
+    
+}
+
+var lastComponentID = 0;
+
+
+function createQuestion(element){
+	
+	//console.log('creating a question')
+	//console.log(JSON.stringify(element))
+
+	//console.log(element.datatype)
+	//console.log(dataTypeTemplates);
+	//console.log("something");
+	//console.log($.grep(dataTypeTemplates, function(n,i){ return n.name==element.datatype; })[0]);
+	var dt = $.grep(dataTypeTemplates, function(n,i){ return (n.name == element.datatype); })[0];
+	//return c;
+	var renderingOption = dt.prefRenderingOptions[0];
+	var name = dt.name;
+	var restriction = "";
+	var selectMultiple = false;
+	var options = element.enumerations;
+	//var options = ['test','asddfsaafds'];
+	var previewRender = dt.previewRender;
+	var dti = new DataTypeInstance('', '', name, dt, renderingOption, restriction, selectMultiple, options, previewRender);
+	
+	if(element.prompt==null){
+		
+		var question = new Question("no question prompt", "no additionalInstructions", "no label", "", dti, "no defaultValue", "no placeholder", "no unitOfMeasure test", "", "no format", "false", "no enumerations", "");
+		
+		
+	}else{
+		
+		var question = new Question(element.prompt, element.additionalInstructions, element.label, element.style, 
+				dti, element.defaultValue, element.placeholder, 
+				element.unitOfMeasure,  element.maxCharacters, 
+				element.format, element.isEnumerated, element.enumerations, 
+				element.questionId, element.inputId, element.dataElementId, element.valueDomainId);
+	}
+	
+	return question
+	
+	
+}
+
+
+function newComponent(element)
+{
+
+	//console.log('creating a component')
+	//console.log(JSON.stringify(element))
+	
+	lastComponentID++;
+	var iid = element.id + '-' + lastComponentID;
+	var eid = iid;
+	var properties = element.properties;
+	var icon = element.icon;
+	
+	//var html = element.defaultView;
+	var c = new Component(iid, eid, properties, icon);
+	
+	if(element.type == "question")
+	{
+		
+		question = createQuestion(element);
+
+		c.setQuestion(question);
+		//console.log(ko.toJSON(question, null, 2));
+	}
+	
+	
+	if(element.type == "section")
+	{
+		//console.log(element.questions)
+		var questions = []
+		if(element.questions){
+			questions = element.questions
+		}
+		section = new Section(element.name, element.id, questions);
+		c.setSection(section);
+		
+		//console.log(ko.toJSON(c.section, null, 2));
+	}
+	
+	
+	//console.log(c.question());
+
+	return c; 
+	
+}
+
 
 function SelectOption()
 {
@@ -644,33 +869,70 @@ function openForms(formDesignId, formDesignRefId, formDesignName, formDesignDesc
 		
 	//ajax call to formDesign controller to get form design JSON	
 	$.getJSON('../jsonFormsBuilder/' + formDesignId, function(data) {
-		$.each(data.questions, function( index, value ){
-		var element = 	{
-	      	  id: '',
-	    	  name: '',
-	    	  icon: getIcon(value.dataType, value.isEnumerated),
-	    	  type: "question",
-	    	  datatype: getDataType(value.dataType, value.isEnumerated),
-	    	  properties: [{ename: value.name, iname: value.name, value: value.name}],
-	    	  prompt: escapeChar(value.prompt),
-	    	  style: value.style, 
-	    	  defaultValue: escapeChar(value.defaultValue), 
-	    	  placeholder: escapeChar(value.placeholder),
-	    	  unitOfMeasure: value.unitOfMeasure, 
-	    	  maxCharacters: value.maxCharacters, 
-	    	  format: value.format,
-	    	  isEnumerated: value.isEnumerated, 
-	    	  enumerations: value.enumerations,
-	    	  additionalInstructions: escapeChar(value.additionalInstructions), 
-	    	  label: escapeChar(value.label), 
-	    	  questionId: value.id,
-	    	  inputId: value.inputId,
-	    	  dataElementId: value.dataElementId,
-	    	  valueDomainId: value.valueDomainId
-	      }	
 
-		components.push((newComponent(element)))
+		//console.log(data)
+		//console.log(data.formDesign)
 		
+		//console.log(data.formDesign.containedElements)
+		
+		var elements = data.formDesign.containedElements
+		
+		$.each(elements, function( index, value ){
+			
+			sectionItems.push({name: value.label});
+
+			var questions = [];
+			
+			//console.log(section)
+			
+			$.each(value.containedElements, function( index, value ){
+				
+				//console.log(question)
+				
+				var question = 	{
+			      	  id: '',
+			    	  name: '',
+			    	  icon: getIcon(value.dataType, value.isEnumerated),
+			    	  type: "question",
+			    	  datatype: getDataType(value.dataType, value.isEnumerated),
+			    	  properties: [{ename: value.name, iname: value.name, value: value.name}],
+			    	  prompt: escapeChar(value.prompt),
+			    	  style: value.style, 
+			    	  defaultValue: escapeChar(value.defaultValue), 
+			    	  placeholder: escapeChar(value.placeholder),
+			    	  unitOfMeasure: value.unitOfMeasure, 
+			    	  maxCharacters: value.maxCharacters, 
+			    	  format: value.format,
+			    	  isEnumerated: value.isEnumerated, 
+			    	  enumerations: value.enumerations,
+			    	  additionalInstructions: escapeChar(value.additionalInstructions), 
+			    	  label: escapeChar(value.label), 
+			    	  questionId: value.id,
+			    	  inputId: value.inputId,
+			    	  dataElementId: value.dataElementId,
+			    	  valueDomainId: value.valueDomainId
+			      };	
+
+				questions.push(createQuestion(question));
+			
+			});
+			
+			
+			
+			
+			var section = {
+					name: value.label,
+					icon: 'icon-pencil',
+					type: 'section', 
+					properties: [],
+					id: value.id, 
+					questions: questions
+			};
+			
+			//console.log(section.questions)
+			
+			components.push((newComponent(section)))
+			
 		});
 		
 		jsonDeferred.resolve()

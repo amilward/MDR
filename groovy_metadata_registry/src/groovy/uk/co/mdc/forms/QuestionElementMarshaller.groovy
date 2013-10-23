@@ -25,6 +25,9 @@ class QuestionElementMarshaller {
 			'dataType' : questionElement?.inputField?.dataType?.name,
 			'isEnumerated' : questionElement?.inputField?.dataType?.enumerated ? questionElement?.inputField?.dataType?.enumerated : false,
 			'enumerations' : questionElement?.inputField?.dataType?.enumerations,
+			'cardinality': 1,
+			'rule': "",
+			'type': "Text_Field"
 			]
 		}
 	}

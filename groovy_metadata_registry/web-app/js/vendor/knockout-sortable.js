@@ -25,6 +25,7 @@
 
     //prepare the proper options for the template binding
     var prepareTemplateOptions = function(valueAccessor, dataName) {
+    	
         var result = {},
             options = unwrap(valueAccessor()),
             actualAfterRender;
@@ -136,17 +137,28 @@
                             item = ko.utils.domData.get(el, ITEMKEY) || dragItem;
 
                         dragItem = null;
-
+                        
                         //make sure that moves only run once, as update fires on multiple containers
                         if (item && (this === parentEl || $.contains(this, parentEl))) {
                             //identify parents
                             sourceParent = ko.utils.domData.get(el, PARENTKEY);
                             targetParent = ko.utils.domData.get(el.parentNode, LISTKEY);
+                            
+                           // targetParent = ko.utils.domData.get(parentEl, LISTKEY);
+                            if(targetParent==null){
+                            	targetParent = []
+                            }
+                           // console.log(ko.toJSON(parentEl))
+                            //console.log(ko.toJSON(el.parentNode))
+                            //console.log(ko.toJSON(targetParent))
+                            
+                           
+                            
                             targetIndex = ko.utils.arrayIndexOf(ui.item.parent().children(), el);
 
                             //take destroyed items into consideration
                             if (!templateOptions.includeDestroyed) {
-                                targetUnwrapped = targetParent();
+                                targetUnwrapped = targetParent;
                                 for (i = 0; i < targetIndex; i++) {
                                     //add one for every destroyed item we find before the targetIndex in the target array
                                     if (targetUnwrapped[i] && unwrap(targetUnwrapped[i]._destroy)) {

@@ -3,6 +3,8 @@ import util.marshalling.CustomObjectMarshallers
 import uk.co.mdc.model.DataElementMarshaller
 import uk.co.mdc.forms.FieldMarshaller
 import uk.co.mdc.forms.QuestionElementMarshaller
+import uk.co.mdc.forms.FormDesignMarshaller
+import uk.co.mdc.forms.SectionElementMarshaller
 import uk.co.mdc.model.ValueDomainMarshaller
 import uk.co.mdc.model.DataElementConceptMarshaller
 import uk.co.mdc.model.ConceptualDomainMarshaller
@@ -31,7 +33,9 @@ beans = {
 		new QuestionElementMarshaller(),
 		new PathwaysModelMarshaller(),
 		new LinkMarshaller(), 
-		new NodeMarshaller()
+		new NodeMarshaller(), 
+		new FormDesignMarshaller(), 
+		new SectionElementMarshaller()
 		]
 	}
 }

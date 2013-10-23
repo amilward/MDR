@@ -117,9 +117,22 @@ function _renderFormDesignElement(element, $div){
 	
 }
 
-function renderForm(){
+function renderForm(formDesignId){
 
-	render(form_model, $('#formdiv'));
-
-
+		//set up defer object
+	var jsonDeferred = $.Deferred();
+	var form_model
+	
+	$.getJSON('../jsonFormsBuilder/' + formDesignId, function(data) {	
+		
+		form_model = data.formDesign
+		
+		jsonDeferred.resolve()
+		
+	});
+	
+	jsonDeferred.done(function(){
+		render(form_model, $('#formdiv'));
+	});
+		
 }

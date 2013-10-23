@@ -38,26 +38,27 @@
 			<div class="ui-layout-center" id="center-panel">
 			
 			<div id="model-panel" class="ui-layout-center large-rounded">
+					<div class="large-rounded form-item form">
 						<div id="formdiv" class="col-lg-11 panel panel-primary ui-layout-center"></div>
+					</div>
 			</div>
 			
 			
 			
 			
 			<div id="properties-panel" class="ui-layout-west large-rounded">
-				<div id="sidebar">
-						<div id="sections" class="col-lg-3 oneHundred">
+				<div class="panel-title">
+					<i class="icon-list-ul"></i> &nbsp;&nbsp;Navigation
+				</div>
+					<div id="sections" class="col-lg-3 oneHundred">
 							<div id="dataelementselection" class="panel panel-primary">
-								<div class="panel-heading">
-									<i class="icon-list-ul"></i> &nbsp;&nbsp;Navigation
-								</div>
 								<div id="sectionsdiv">
 									<ul>
 									</ul>
 								</div>
+								
 							</div>
-						</div>
-				</div>
+					</div>
 			</div>
 			
 	</div>

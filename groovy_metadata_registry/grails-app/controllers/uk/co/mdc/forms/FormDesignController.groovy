@@ -360,7 +360,9 @@ class FormDesignController {
 		
 		def questions = formDesignInstance.getQuestions()
 		
-		def model = [questions: questions]
+		def model = [formDesign: formDesignInstance]
+		
+		//def model = [questions: questions]
 		
 		render model as JSON
 		

@@ -44,7 +44,7 @@ $(document).ready(function () {
 	});
 
 	function resizeWindows(){
-		$('#container').height($('html').height());
+		$('#container').height($('html').height() - 200);
 	}
 
 

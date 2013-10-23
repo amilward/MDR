@@ -393,6 +393,28 @@ class BootStrap {
 										 format: 'test forma3t',
 										
 										).save(failOnError: true)
+										
+						def inputField4 = new InputField(
+											
+											 defaultValue: 'test default',
+											 placeholder: 'test placeholder',
+											 maxCharacters: 9,
+											 unitOfMeasure: 'test UOM',
+											 dataType: string,
+											 format: 'test format',
+											
+											).save(failOnError: true)
+											
+						def inputField5 = new InputField(
+												
+												 defaultValue: 'test default',
+												 placeholder: 'test pladasceholder',
+												 maxCharacters: 11,
+												 unitOfMeasure: 'test UOM',
+												 dataType: string,
+												 format: 'test format',
+												
+												).save(failOnError: true)
 							
 							def question1  = new QuestionElement(
 								questionNumber: '1',
@@ -420,7 +442,26 @@ class BootStrap {
 										additionalInstructions: 'more instructions',
 										inputField: inputField3
 										).save(failOnError: true)
+										
+							def question4  = new QuestionElement(
+											questionNumber: '4',
+											prompt: 'this is the 4th question',
+											style: 'this style5',
+											label: 'what is your favorite animal ?',
+											additionalInstructions: 'more instructions',
+											inputField: inputField4
+											).save(failOnError: true)
 							
+							def question5  = new QuestionElement(
+												questionNumber: '5',
+												prompt: 'this is the 5th question',
+												style: 'this style5',
+												label: 'what is your favorite car ?',
+												additionalInstructions: 'more instructions',
+												inputField: inputField5
+												).save(failOnError: true)
+											
+																		
 							def formDesignInstance = new FormDesign(refId: 'testForm1',
 								name:'formDesignName1',
 								versionNo:'V0.1',
@@ -428,9 +469,24 @@ class BootStrap {
 								description:'test description 1'
 								).save(failOnError: true)	
 								
-							formDesignInstance.addToFormDesignElements(question1)	
-							formDesignInstance.addToFormDesignElements(question2)
-							formDesignInstance.addToFormDesignElements(question3)
+								
+							def section1 = new SectionElement(
+								title: 'section1'
+								).save(failOnError:true)
+								
+							def section2 = new SectionElement(
+									title: 'section2'
+									).save(failOnError:true)
+								
+							section1.addToQuestionElements(question1)	
+							section1.addToQuestionElements(question2)
+							section1.addToQuestionElements(question3)
+							
+							section2.addToQuestionElements(question4)
+							section2.addToQuestionElements(question5)
+							
+							formDesignInstance.addToFormDesignElements(section1)
+							formDesignInstance.addToFormDesignElements(section2)
 						}
 						
 						
