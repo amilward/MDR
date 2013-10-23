@@ -18,6 +18,7 @@ class SectionElement extends FormDesignElement{
 	static belongsTo = [formDesign: FormDesign]
 	
     static constraints = {
+		number nullable:true
 		dataElementConcept nullable:true
 		formDesign nullable:true
 		title nullable:true

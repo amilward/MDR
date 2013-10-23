@@ -28,7 +28,7 @@ modules = {
 		resource url: "js/vendor/knockout-sortable.js"
 		resource url: "js/vendor/knockout-x-editable.js"
 		resource url: "js/forms/viewModel.js"
-		resource url: "js/custom.js"
+		resource url: "js/forms/fDesignerLayout.js"
 		
 	}
 	

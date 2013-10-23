@@ -60,15 +60,25 @@ $(document).ready(function () {
 });
 
 function initializePalette(){
-	$( "#accordion" ).accordion({
+	$( "#questionAccordion" ).accordion({
 		collapsible: true,
 		autoHeight: true,
 		beforeActivate: function( event, ui ) {
 			ui.oldHeader.blur();
 			ui.newHeader.blur();
 		}, 
-		
 	});
+	
+	
+	$( "#sectionAccordion" ).accordion({
+		collapsible: true,
+		autoHeight: true,
+		beforeActivate: function( event, ui ) {
+			ui.oldHeader.blur();
+			ui.newHeader.blur();
+		}, 
+	});
+	
 }
 
 
@@ -84,12 +94,12 @@ function refreshFormPanelViews(){
 		
 		setTimeout(function(){
 		
-			$('.form .form-item').mouseover(function(){
+			$('.form .section .question').mouseover(function(){
 				$(this).addClass('hover');
 				$(this).find('.menu-content').show();
 			});
 	
-			$('.form .form-item').mouseout(function(){
+			$('.form .section .question').mouseout(function(){
 				$(this).removeClass('hover');
 				$(this).find('.menu-content').hide();
 			});	
@@ -113,7 +123,7 @@ function confirm(heading, question, cancelButtonTxt, okButtonTxt, callback) {
     $('<div class="modal hide fade">' +    
         '<div class="modal-header">' +
           '<a class="close" data-dismiss="modal" >&times;</a>' +
-          '<h3>' + heading +'</h3>' +
+          '<h3>test test test' + heading +'</h3>' +
         '</div>' +
 
         '<div class="modal-body">' +

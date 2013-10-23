@@ -214,3 +214,16 @@ iframe.ui-layout-mask {}	/* extra mask for objects/applets */
 		overflow:	visible !important;
 	}
 }
+
+
+
+.col-lg-8 {
+    display: block;
+    height: 40px;
+    width: 100%;
+}
+
+.form-horizontal .control-label{
+	width:500px;
+	
+}
