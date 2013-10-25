@@ -55,7 +55,7 @@ var dataTypeTemplates = [
 		 allowMultiple: true,
 		 useOptions: false,
 		 previewRender: function(){
-			 return "<i class=\"icon-large pull-left icon-calendar\"></i>"
+			 return "<i class=\"icon-large pull-left icon-calendar\"></i>";
 		 }
 	 },
 	 {
@@ -66,7 +66,7 @@ var dataTypeTemplates = [
 		 allowMultiple: true,
 		 useOptions: false,
 		 previewRender: function(){
-			 return "<h4>My form control here.</h4>";
+			 return "<i class=\"icon-time pull-left icon-calendar\"></i>";
 		 }
 	 },
 	 {
@@ -77,7 +77,7 @@ var dataTypeTemplates = [
 		 allowMultiple: true,
 		 useOptions: false,
 		 previewRender: function(){
-			 return "<h4>My form control here.</h4>";
+			 return "<i class=\"icon-large pull-left icon-calendar\"></i>";
 		 }
 	 },
 	 {
@@ -88,7 +88,7 @@ var dataTypeTemplates = [
 		 allowMultiple: true,
 		 useOptions: false,
 		 previewRender: function(){
-			 return "<h4>My form control here.</h4>";
+			 return "<span><input type=\"text\"/></span>";
 		 }
 	 },
 	 {
@@ -270,8 +270,7 @@ function Component(iid, eid, properties, icon) {
 	
 	
 	self.properties = ko.observableArray(mappedProperties);
-
-		
+	
 	self.clone = function(){
 		
 		//console.log(ko.toJSON(self.question()))
@@ -316,6 +315,8 @@ function Component(iid, eid, properties, icon) {
 		
 	};
 	
+
+	
 }
 
 function Section(title, sectionId, questions){
@@ -350,7 +351,6 @@ function Section(title, sectionId, questions){
 		
 	}
 	
-	
 	self.deleteQuestion = function(comp) {
 
 	    var heading = 'Confirm Form Component Delete';
@@ -371,7 +371,7 @@ function Section(title, sectionId, questions){
 }
 
 
-function Question(prompt, additionalInstructions, label, style, dataTypeInstance, defaultValue, placeholder, unitOfMeasure, maxCharacters, format, isEnumerated, enumerations, questionId, inputId, dataElementId, valueDomainId)
+function Question(prompt, additionalInstructions, questionNumber, label, style, dataTypeInstance, defaultValue, placeholder, unitOfMeasure, maxCharacters, format, isEnumerated, enumerations, questionId, inputId, dataElementId, valueDomainId)
 {
 	var self = this;
 	self.prompt = ko.observable(prompt);
@@ -395,6 +395,7 @@ function Question(prompt, additionalInstructions, label, style, dataTypeInstance
 	self.dataElementId = ko.observable(dataElementId);
 	self.valueDomainId = ko.observable(valueDomainId);
 	self.additionalInstructions = ko.observable(additionalInstructions);
+	self.questionNumber = ko.observable(questionNumber);
 	self.label = ko.observable(label);
 	self.style = ko.observable(style);
 	self.dataTypeInstance = ko.observable(dataTypeInstance);
@@ -411,7 +412,6 @@ function Question(prompt, additionalInstructions, label, style, dataTypeInstance
 		self.dataTypeInstance(dti);
 	};
 	
-	
 	self.clone = function() {
 		//console.log('test question clone')
 		//console.log(ko.toJSON(self))
@@ -422,7 +422,7 @@ function Question(prompt, additionalInstructions, label, style, dataTypeInstance
 		}
 		
 		var q = new Question(self.prompt(), 
-				self.additionalInstructions(), 
+				self.additionalInstructions(), self.questionNumber(),
 				self.label(), self.style(), 
 				dti, self.defaultValue(), 
 				self.placeholder(), 
@@ -646,7 +646,7 @@ var lastComponentID = 0;
 
 function createQuestion(element){
 	
-	//console.log('creating a question')
+	console.log('creating a question')
 	//console.log(JSON.stringify(element))
 
 	//console.log(element.datatype)
@@ -666,17 +666,21 @@ function createQuestion(element){
 	
 	if(element.prompt==null){
 		
-		var question = new Question("no question prompt", "no additionalInstructions", "no label", "", dti, "no defaultValue", "no placeholder", "no unitOfMeasure test", "", "no format", "false", "no enumerations", "");
+		var question = new Question("no question prompt", "no additionalInstructions","", "no label", "", dti, "no defaultValue", "no placeholder", "no unitOfMeasure test", "", "no format", "false", "no enumerations", "");
 		
 		
 	}else{
 		
-		var question = new Question(element.prompt, element.additionalInstructions, element.label, element.style, 
+
+		var question = new Question(element.prompt, element.additionalInstructions, element.questionNumber, element.label, element.style, 
 				dti, element.defaultValue, element.placeholder, 
 				element.unitOfMeasure,  element.maxCharacters, 
 				element.format, element.isEnumerated, element.enumerations, 
 				element.questionId, element.inputId, element.dataElementId, element.valueDomainId);
 	}
+	
+
+	//console.log(ko.toJSON(question, null, 2));
 	
 	return question
 	
@@ -684,7 +688,7 @@ function createQuestion(element){
 }
 
 
-function newComponent(element)
+function createComponent(element)
 {
 
 	//console.log('creating a component')
@@ -718,8 +722,7 @@ function newComponent(element)
 		}
 		section = new Section(element.name, element.id, questions);
 		c.setSection(section);
-		
-		//console.log(ko.toJSON(c.section, null, 2));
+
 	}
 	
 	
@@ -802,7 +805,7 @@ function createEmptyForm(){
 }
 
 
-function createFormFromCollection(collectionId, questions){
+function createFormFromCollection(collectionId, jsonQuestions){
 
 	//set up defer object
 	var jsonDeferred = $.Deferred();
@@ -813,39 +816,66 @@ function createFormFromCollection(collectionId, questions){
 	
 	var components = []
 	
-	questions = JSON.parse(questions);
+	var questions = []
 	
-	$.each(questions, function(index, question){
-		var element = 	{
-	      	  id: '',
-	    	  name: '',
-	    	  icon: getIcon(question.dataType.name, question.dataType.enumerated),
-	    	  type: 'question',
-	    	  datatype: getDataType(question.dataType.name, question.dataType.enumerated),
-	    	  properties: [{ename: question.name, iname: question.name, value: question.name}],
-	    	  prompt: escapeChar(question.label),
-	    	  style: '', 
-	    	  defaultValue: '', 
-	    	  placeholder: '',
-	    	  unitOfMeasure: question.unitOfMeasure, 
-	    	  maxCharacters: question.maxCharacters, 
-	    	  format: question.format,
-	    	  isEnumerated: question.isEnumerated, 
-	    	  enumerations: question.options,
-	    	  additionalInstructions: escapeChar(question.additionalInstructions), 
-	    	  label: escapeChar(question.label), 
-	    	  questionId: '',
-	    	  inputId: '', 
-	    	  dataElementId: question.dataElementId,
-	    	  valueDomainId: question.valueDomainId
-	      }	
+	jsonQuestions = JSON.parse(jsonQuestions);
+	
+	$.each(jsonQuestions, function(index, value){
+		
+		var question = 	{
+		      	  id: '',
+		    	  name: '',
+		    	  icon: getIcon(value.dataType.name, value.isEnumerated),
+		    	  type: "question",	    	  
+		    	  datatype: getDataType(value.dataType.name, value.isEnumerated),
+		    	  properties: [{ename: value.name, iname: value.name, value: value.name}],
+		    	  prompt: escapeChar(value.label),
+		    	  style: '', 
+		    	  defaultValue: '', 
+		    	  placeholder: '',
+		    	  unitOfMeasure: value.unitOfMeasure, 
+		    	  maxCharacters: value.maxCharacters, 
+		    	  format: value.format,
+		    	  isEnumerated: value.isEnumerated, 
+		    	  enumerations: value.enumerations,
+		    	  additionalInstructions: escapeChar(value.additionalInstructions), 
+		    	  questionNumber: escapeChar(value.questionNumber), 
+		    	  label: escapeChar(value.label), 
+		    	  questionId: '',
+		    	  inputId: '', 
+		    	  dataElementId: value.dataElementId,
+		    	  valueDomainId: value.valueDomainId
+		      };	
 
-		components.push(newComponent(element));
-		jsonDeferred.resolve();
+			questions.push(createQuestion(question));
 	});
 	
 	
+	
+	
+		var section = {
+				name: 'new section',
+				icon: 'icon-pencil',
+				type: 'section', 
+				properties: [],
+				id: 1, 
+				questions: questions
+		};
+		
+		
+		console.log(section.questions)
+		
+		components.push((createComponent(section)))
+	
+		jsonDeferred.resolve();
+
+	
+	
+	
 	jsonDeferred.done(function(){
+		
+		
+		
 		viewModel.addForm('', '','','', '', true,collectionId,'', components);
 		setTimeout(function(){
 			initializePalette();
@@ -886,8 +916,7 @@ function openForms(formDesignId, formDesignRefId, formDesignName, formDesignDesc
 			//console.log(section)
 			
 			$.each(value.containedElements, function( index, value ){
-				
-				//console.log(question)
+			
 				
 				var question = 	{
 			      	  id: '',
@@ -906,6 +935,7 @@ function openForms(formDesignId, formDesignRefId, formDesignName, formDesignDesc
 			    	  isEnumerated: value.isEnumerated, 
 			    	  enumerations: value.enumerations,
 			    	  additionalInstructions: escapeChar(value.additionalInstructions), 
+			    	  questionNumber: escapeChar(value.questionNumber), 
 			    	  label: escapeChar(value.label), 
 			    	  questionId: value.id,
 			    	  inputId: value.inputId,
@@ -931,7 +961,7 @@ function openForms(formDesignId, formDesignRefId, formDesignName, formDesignDesc
 			
 			//console.log(section.questions)
 			
-			components.push((newComponent(section)))
+			components.push((createComponent(section)))
 			
 		});
 		
@@ -953,6 +983,8 @@ function openForms(formDesignId, formDesignRefId, formDesignName, formDesignDesc
 function saveForm(){
 	
 	var form = viewModel.activeForm()
+	
+	//console.log(ko.toJSON(form))
 	
 	$.ajax({
 		type: "POST",
@@ -992,8 +1024,8 @@ function updateForm(formDesignId){
 
 
 function escapeChar(text){
-	if(text!=null){
-		text =  text.replace("'", "/'");
+	if(text!=null && text!=''){
+		text =  text.toString().replace("'", "/'");
 	}
 	
 	return text

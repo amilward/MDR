@@ -296,7 +296,7 @@ class BootStrap {
 				new DataType(name:"Text", enumerated: false).save(failOnError: true)
 				new DataType(name:"Integer", enumerated: false).save(failOnError: true)
 				new DataType(name:"Date", enumerated: false).save(failOnError: true)
-				new DataType(name:"DateTime", enumerated: false).save(failOnError: true)
+				new DataType(name:"Datetime", enumerated: false).save(failOnError: true)
 				new DataType(name:"Time", enumerated: false).save(failOnError: true)
 				new DataType(name:"Float", enumerated: false).save(failOnError: true)
 				new DataType(name:"Boolean", enumerated: false).save(failOnError: true)
@@ -417,7 +417,7 @@ class BootStrap {
 												).save(failOnError: true)
 							
 							def question1  = new QuestionElement(
-								questionNumber: '1',
+								designOrder: 1,
 								prompt: 'this is the first question',
 								style: 'this style1',
 								label: 'is this really a label?',
@@ -426,7 +426,7 @@ class BootStrap {
 								).save(failOnError: true)
 								
 							def question2  = new QuestionElement(
-									questionNumber: '2',
+									designOrder: 2,
 									prompt: 'operation reference',
 									style: 'this style3',
 									label: 'origin of referral',
@@ -435,7 +435,7 @@ class BootStrap {
 									).save(failOnError: true)
 									
 							def question3  = new QuestionElement(
-										questionNumber: '3',
+										designOrder: '3',
 										prompt: 'this is the thirs question',
 										style: 'this style5',
 										label: 'what is your favorite colour ?',
@@ -444,7 +444,7 @@ class BootStrap {
 										).save(failOnError: true)
 										
 							def question4  = new QuestionElement(
-											questionNumber: '4',
+											designOrder: 4,
 											prompt: 'this is the 4th question',
 											style: 'this style5',
 											label: 'what is your favorite animal ?',
@@ -453,7 +453,7 @@ class BootStrap {
 											).save(failOnError: true)
 							
 							def question5  = new QuestionElement(
-												questionNumber: '5',
+												designOrder: 5,
 												prompt: 'this is the 5th question',
 												style: 'this style5',
 												label: 'what is your favorite car ?',
@@ -471,11 +471,13 @@ class BootStrap {
 								
 								
 							def section1 = new SectionElement(
-								title: 'section1'
+								title: 'section1', 
+								designOrder: 1
 								).save(failOnError:true)
 								
 							def section2 = new SectionElement(
-									title: 'section2'
+									title: 'section2',
+									designOrder: 2
 									).save(failOnError:true)
 								
 							section1.addToQuestionElements(question1)	
