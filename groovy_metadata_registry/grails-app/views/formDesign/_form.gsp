@@ -87,7 +87,10 @@
 							<div class="section" data-bind="event: { mouseover: function(){$root.setCurrentlySelectedFormSectionIdx($index());}}">
 									
 											
-										<p><span class="lead" data-bind="text: section().title()"></span> <!--  (<span data-bind="text: section().sectionId()"></span>)--></p>
+										<p><span class="lead" data-bind="text: section().title()"></span>
+										 <span data-bind="click: $parents[0].deleteComponent"> delete </span></p>
+										
+										
 							
 							<!-- ko if: section().questions()==null-->
 							
@@ -346,7 +349,7 @@
 			</div>
 			<div id="palette-panel" class="ui-layout-east">
 			
-				<ul class="unstyled accordion collapse in">
+				<!--  <ul class="unstyled accordion collapse in">
 					<li class="accordion-group ">
 					<h4>
                         <a data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#form-section-nav">
@@ -355,13 +358,13 @@
                     </h4>
                         <ul class="collapse" id="form-section-nav">
                         
-	                        <!-- ko foreach: sections -->
+	                        < !-- ko foreach: sections -- >
 							<li><span data-bind="text: name"></span></li>
-							<!-- /ko -->
+							< !-- /ko -- >
 
                         </ul>
                     </li>
-                 </ul>
+                 </ul> -->
                  
                  
                 <h4>Sections</h4>
@@ -370,7 +373,7 @@
 					<h5><span data-bind="text: name"></span></h5>
 					<ul data-bind="foreach: {data: elements, as: 'element'}">
 						<li class="palette-option" 
-							data-bind="draggable: { data: newComponent(element),
+							data-bind="draggable: { data: createComponent(element),
 							connectClass: 'section',
 							options: { 
 										appendTo: '#center-panel',
@@ -398,7 +401,7 @@
 					<h5><span data-bind="text: name"></span></h5>
 					<ul data-bind="foreach: {data: elements, as: 'element'}">
 						<li class="palette-option" 
-							data-bind="draggable: { data: newComponent(element),
+							data-bind="draggable: { data: createComponent(element),
 							connectClass: 'form-item',
 							options: { 
 										appendTo: '#center-panel',

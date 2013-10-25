@@ -5,7 +5,6 @@ class FormDesignElement {
 	String label
 	String style
 	
-	
 	//I'm assuming
 	Integer designOrder
 	
@@ -17,8 +16,7 @@ class FormDesignElement {
     static constraints = {
 		label nullable: true
 		style nullable:true
-		designOrder nullable:true
 		formDesign nullable:true
-
     }
+	
 }

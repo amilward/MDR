@@ -14,9 +14,12 @@ class FormDesign {
 	FormDesignElement footer
 	//collection - link to the metadata registry model
 	Collection collection
+	List <FormDesignElement> formDesignElements
 	
 	static hasMany = [formDesignElements: FormDesignElement]
 
+	static fetchMode = [formDesignElements: 'eager']
+	
     static constraints = {
 		refId unique:true, nullable: false
 		name nullable:true
@@ -26,9 +29,10 @@ class FormDesign {
 		collection nullable: true
 		formDesignElements nullable:true
     }
-	
+
 	static mapping = {
 		description type: 'text'
+		formDesignElements sort: 'designOrder'
 	}
 	
 	def getQuestions(){

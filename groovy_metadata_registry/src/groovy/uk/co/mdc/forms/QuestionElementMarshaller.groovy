@@ -1,5 +1,6 @@
 package uk.co.mdc.forms
 import java.util.Map;
+import org.codehaus.groovy.grails.web.json.JSONObject
 import grails.converters.JSON
 
 
@@ -10,6 +11,7 @@ class QuestionElementMarshaller {
 				
 			return [
 			'id' : questionElement.id,
+			'questionNumber' : questionElement?.designOrder,
 			'label' : questionElement.label,
 			'prompt' : questionElement?.prompt,
 			'style' : questionElement?.style,
@@ -25,11 +27,63 @@ class QuestionElementMarshaller {
 			'dataType' : questionElement?.inputField?.dataType?.name,
 			'isEnumerated' : questionElement?.inputField?.dataType?.enumerated ? questionElement?.inputField?.dataType?.enumerated : false,
 			'enumerations' : questionElement?.inputField?.dataType?.enumerations,
+			'listItems': formatListItems(questionElement?.inputField?.dataType?.enumerated,questionElement?.inputField?.dataType?.enumerations),
 			'cardinality': 1,
 			'rule': "",
-			'type': "Text_Field"
+			'renderType': calculateRenderType(questionElement?.inputField?.dataType?.enumerated, questionElement?.inputField?.dataType?.name)
 			]
 		}
+	}
+	
+	
+	
+	def calculateRenderType(isEnumerated, dataType){
+		
+		if(isEnumerated){
+			return "List_Field"	
+		}else{
+		
+			switch(dataType){
+				
+				case "String":
+				
+				return "Text_Field"
+				break;
+				
+				default:
+				
+				return "Text_Field"
+				break;
+				
+			}
+		
+		}
+		
+	}
+	
+	def formatListItems(isEnumerated, enumerations){
+	
+		if(isEnumerated){
+			
+			def listItems = []
+			
+			enumerations.each{ key, value->
+				
+				def listItem = new JSONObject()
+				
+				listItem.put("code", key)
+				listItem.put("definition", value)
+				
+				listItems.push(listItem)
+			}
+			
+			return listItems
+			
+		}else{
+		
+			return []
+		}
+	
 	}
 
 }

@@ -9,8 +9,9 @@ class SectionElementMarshaller {
 				
 			return [
 			'id' : sectionElement.id,
-			'type' : "Section Element",
+			'renderType' : "Section Element",
 			'label' : sectionElement.title,
+			'sectionNumber': sectionElement?.designOrder,
 			'containedElements' : sectionElement.questionElements
 			]
 		}

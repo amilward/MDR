@@ -9,7 +9,7 @@
 	<classpathentry kind="src" path="grails-app/taglib"/>
 	<classpathentry kind="src" path="grails-app/utils"/>
 	<classpathentry kind="src" path="test/unit"/>
-	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path=".link_to_grails_plugins/audit-logging-0.5.4/grails-app/controllers">
 		<attributes>
 			<attribute name="org.grails.ide.eclipse.core.SOURCE_FOLDER" value="true"/>
