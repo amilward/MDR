@@ -99,7 +99,7 @@ class FormDesignService {
 	//!!!!!!!!!!!!!!!!need to change this from object
 	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	FormDesign create(Object form) { 
-		
+
 		def components = form.components
 		def section
 		def inputField
@@ -120,6 +120,8 @@ class FormDesignService {
 		//add questions to the form design
 		
 		//create questions.
+			
+		def sectionNumber = 1
 
 		components.each{ component->
 			
@@ -127,7 +129,7 @@ class FormDesignService {
 				
 				section = component.section
 					
-				def sectionInstance = new SectionElement(title: section?.title).save(failOnError: true,flush:true)
+				def sectionInstance = new SectionElement(title: section?.title, designOrder: sectionNumber).save(failOnError: true,flush:true)
 				
 				// Grant the current user principal administrative permission
 				 
@@ -164,8 +166,10 @@ class FormDesignService {
 							  
 						//create question
 							 
+					   def questionNumber = 1
+							 
 						question  = new QuestionElement(
-								 questionNumber: '1',
+								 designOrder: questionNumber,
 								 prompt: question?.prompt,
 								 style: question?.style,
 								 label: question?.label,
@@ -173,7 +177,7 @@ class FormDesignService {
 								 inputField: inputField,
 								 dataElement: (question?.dataElementId) ? DataElement.get(question?.dataElementId.toInteger()) : null,
 								 valueDomain: (question?.valueDomainId) ? ValueDomain.get(question?.valueDomainId.toInteger()) : null
-								 ).save(failOnError: true,flush:true)
+								 ).save(failOnError: true, flush:true)
 								
 								 // Grant the current user principal administrative permission
 								 
@@ -183,10 +187,13 @@ class FormDesignService {
 								 
 								 addPermission question, 'admin', BasePermission.ADMINISTRATION
 	
+								 questionNumber++
+								 
 								 sectionInstance.addToQuestionElements(question)
 								  
 						 }
 				
+				sectionNumber++
 				formDesignInstance.addToFormDesignElements(sectionInstance)
 
 			}
@@ -278,7 +285,6 @@ class FormDesignService {
 		def components = form.components
 		def inputFieldInstance
 		
-		
 		formDesignInstance.refId = form.formRefId
 		formDesignInstance.name = form.formDesignName
 		formDesignInstance.description = form.formDescription
@@ -288,9 +294,15 @@ class FormDesignService {
 		
 		//update questions.
 
+		def sectionNumber = 1
+		
+		removeRedundantComponents(formDesignInstance, components)
+		
+		
 		components.each{ component->
 			
 			def section = component?.section
+			
 				
 			if(section?.sectionId){
 				
@@ -305,8 +317,10 @@ class FormDesignService {
 					
 					
 					sectionInstance.title = section?.title
+					sectionInstance.designOrder = sectionNumber
 					
 					def questions = section.questions
+					def questionNumber = 1
 					
 					questions.each{ question ->
 						
@@ -318,7 +332,7 @@ class FormDesignService {
 									
 									questionInstance.prompt = question?.prompt
 									questionInstance.additionalInstructions = question?.additionalInstructions
-				
+									questionInstance.designOrder =  questionNumber
 									inputFieldInstance = InputField.get(question?.inputId)
 									inputFieldInstance.defaultValue = question?.defaultValue
 									inputFieldInstance.placeholder = question?.placeholder
@@ -326,7 +340,10 @@ class FormDesignService {
 									inputFieldInstance.unitOfMeasure = question?.unitOfMeasure
 									// inputField.dataType =  will fill this in later
 									inputFieldInstance.format = question?.format
-									inputFieldInstance.save()
+									
+									
+									questionInstance.save(flush:true, failOnError: true)
+									inputFieldInstance.save(flush:true, failOnError: true)
 								
 								}
 								
@@ -345,35 +362,118 @@ class FormDesignService {
 								 dataType: dataType,
 								 format: question?.format,
 								
-								).save(failOnError: true)
+								).save(flush:true, failOnError: true)
 								
 						   //create question
 						   
 						   def newQuestion  = new QuestionElement(
-									questionNumber: '1',
+									designOrder: questionNumber,
 									prompt: question?.prompt,
 									style: question?.style,
 									label: question?.label,
 									additionalInstructions: question?.additionalInstructions,
 									inputField: inputField
-									).save(failOnError: true)
+									).save(flush:true, failOnError: true)
 								
 							
-									sectionInstance.addToQuestions(newQuestion)
+									sectionInstance.addToQuestionElements(newQuestion)
 									
 							}
+							
+							questionNumber++
 						
 					}
 					
-				}	
+					
+					sectionNumber++
+					
+					sectionInstance.questionElements.sort()
+					
+					sectionInstance.save(flush:true, failOnError: true)
+					
+				}
+					
 			}else{
 			
-			println('add code to create new section here')
-			
-			//create new section
+				section = component.section
+					
+				def sectionInstance = new SectionElement(title: section?.title, designOrder: sectionNumber).save(failOnError: true,flush:true)
+				
+				// Grant the current user principal administrative permission
+				 
+				 addPermission sectionInstance, springSecurityService.authentication.name, BasePermission.ADMINISTRATION
+				 
+				 //Grant admin user administrative permissions
+				 
+				 addPermission sectionInstance, 'admin', BasePermission.ADMINISTRATION
+
+				 def questions = section.questions
+				 
+				 def questionNumber = 1
+				
+				questions.each{ question->
+						 
+						 //create input field for new question
+						 def inputField = new InputField(
+							 
+							  defaultValue: question?.defaultValue,
+							  placeholder: question?.placeholder,
+							  maxCharacters: question?.maxCharacters,
+							  unitOfMeasure: question?.unitOfMeasure,
+							  dataType: getDataType(question?.dataTypeInstance?.name, question?.valueDomainId),
+							  format: question?.format,
+							 
+							 ).save(failOnError: true, flush:true)
+							 
+							 // Grant the current user principal administrative permission
+							 
+							 addPermission inputField, springSecurityService.authentication.name, BasePermission.ADMINISTRATION
+							 
+							 //Grant admin user administrative permissions
+							 
+							 addPermission inputField, 'admin', BasePermission.ADMINISTRATION
+							 
+							  
+						//create question
+							 
+						def newQuestion  = new QuestionElement(
+								 designOrder: questionNumber,
+								 prompt: question?.prompt,
+								 style: question?.style,
+								 label: question?.label,
+								 additionalInstructions: question?.additionalInstructions,
+								 inputField: inputField,
+								 dataElement: (question?.dataElementId) ? DataElement.get(question?.dataElementId.toInteger()) : null,
+								 valueDomain: (question?.valueDomainId) ? ValueDomain.get(question?.valueDomainId.toInteger()) : null
+								 ).save(failOnError: true, flush:true)
+								
+								 // Grant the current user principal administrative permission
+								 
+								 addPermission newQuestion, springSecurityService.authentication.name, BasePermission.ADMINISTRATION
+								 
+								 //Grant admin user administrative permissions
+								 
+								 addPermission newQuestion, 'admin', BasePermission.ADMINISTRATION
+	
+								 questionNumber++
+								 
+								 sectionInstance.addToQuestionElements(newQuestion)
+								  
+						 }
+				
+				
+				sectionNumber++
+				formDesignInstance.addToFormDesignElements(sectionInstance)
+				
+				
 			}
 			
+			
+			
 		}
+		
+		formDesignInstance.formDesignElements.sort()
+		formDesignInstance.save(flush:true, failOnError: true)
 		
 		return formDesignInstance
 		
@@ -478,5 +578,87 @@ class FormDesignService {
 			
 	}
 	
+	
+	/* ************************* DATA ELEMENT LINKAGE FUNCTIONS************************
+	 * unlinks the sub elements that have been removed during an update of the data element
+	 ********************************************************************************* */
+	
+	
+	def removeRedundantComponents(FormDesign formDesignInstance, updatedComponents){
+		
+		//if there are no components i.e. ALL components need to be removed
+		//from the form design after the edit
+					
+					//collect all the question ids
+					def sectionIds = []
+					
+					
+					if(updatedComponents){
+						updatedComponents.each{ component ->
 
+							sectionIds.push(component.section.sectionId.toString());
+							
+						}
+					}
+					
+					//see if all questions have been removed
+					
+					if(sectionIds.size()==0 && formDesignInstance?.formDesignElements.size()>0){
+							
+							//pass all the objects  elements into a new array (otherwise we get all sorts or problems)
+							def sections = []
+							sections += formDesignInstance?.formDesignElements
+							
+							//remove ALL of the subelements
+							
+							sections.each{ section->
+	
+								formDesignInstance.removeFromFormDesignElements(section)
+								
+								// Delete the ACL information as well
+								//aclUtilService.deleteAcl section
+								
+								section.delete(flush: true, failOnError:true)
+								
+								
+								
+								formDesignInstance.save(failOnError:true, flush:true)
+
+							}
+							
+						//else if there are some  elements
+							
+						}else if(sectionIds.size()>0){
+					
+						
+							//but there are also  elements to remove
+			
+							//pass all the objects  elements into a new array (otherwise we get all sorts or problems)
+							def sections = []
+							sections += formDesignInstance?.formDesignElements
+							
+							//remove the sub elements that need removing
+							sections.each{ section->
+
+								
+										if(!sectionIds.contains(section.id.toString())){
+											formDesignInstance.removeFromFormDesignElements(section)
+											
+											// Delete the ACL information as well
+											//aclUtilService.deleteAcl section
+											
+											section.delete(flush: true, failOnError:true)
+											
+											
+											
+											formDesignInstance.save(failOnError:true, flush:true)
+											
+											
+										}
+							}
+					}
+						
+				
+				}
+		
 }

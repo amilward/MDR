@@ -96,7 +96,7 @@ function _renderAdditionalTextElement(element, $div){
 }
 
 function _renderFormDesignElement(element, $div){
-	switch (element.type) {
+	switch (element.renderType) {
 	case "Section Element":
 		_renderSection(element, $div);
 		break;
