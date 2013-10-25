@@ -27,7 +27,6 @@ import static org.springframework.security.acls.domain.BasePermission.DELETE
 import static org.springframework.security.acls.domain.BasePermission.READ
 import static org.springframework.security.acls.domain.BasePermission.WRITE
 
-import org.springframework.beans.factory.parsing.ImportDefinition;
 import org.springframework.security.authentication. UsernamePasswordAuthenticationToken
 import org.springframework.security.core.authority.AuthorityUtils
 import org.springframework.security.core.context.SecurityContextHolder as SCH
@@ -163,7 +162,6 @@ class BootStrap {
 	def grantAdminPermissions(objectList){
 
 		for (object in objectList) {
-			println object
 			aclUtilService.addPermission object, 'admin', ADMINISTRATION
 		}
 
@@ -174,7 +172,7 @@ class BootStrap {
 
 
 	/*
-	 *  **********************POPULATE WITH FORMS TEST DATA********************************
+	 * **********************POPULATE WITH FORMS TEST DATA********************************
 	 *
 	 * */
 
@@ -188,6 +186,7 @@ class BootStrap {
 
 		//assumes the first line of the file has the field names
 
+
 		if (!ExternalReference.count()) {
 			def externalReferences = new XmlSlurper().parse( new File("${basePath}/WEB-INF/bootstrap-data/ExternalReference.xml"))
 			externalReferences.externalReference.each() { e ->
@@ -196,21 +195,27 @@ class BootStrap {
 
 		}
 
-		
+
 		new File("${basePath}/WEB-INF/bootstrap-data/NHIC/CAN/CAN.csv").toCsvReader(['charset':'UTF-8', skipLines : 1] ).eachLine { tokens ->
 			importCSVLine(tokens, null);
 		}
-		
-		
-		
+
+
+
 		/*def dataElementConcepts = new XmlSlurper().parse( new File("${basePath}/WEB-INF/bootstrap-data/NHIC/CAN/CAM.xml"))
-		dataElementConcepts.dataElementConcept.each() { xmldec ->
-			importDataElementConcept(xmldec, null);
-		} */
-			
+		 dataElementConcepts.dataElementConcept.each() { xmldec ->
+		 importDataElementConcept(xmldec, null);
+		 } */
 
 
 
+
+		/*if (!PathwaysModel.count()) {
+		 def pathways = new XmlSlurper().parse( new File("${basePath}/WEB-INF/bootstrap-data/Pathway.xml"))
+		 pathways.pathway_model.each() { p ->
+		 new PathwaysModel(p.attributes()).save(failOnError: true) //assumes the keys match the Pathway properties
+		 }
+		 }*/
 		/*if (!PathwaysModel.count()) {
 		 def pathways = new XmlSlurper().parse( new File("${basePath}/WEB-INF/bootstrap-data/Pathway.xml"))
 		 pathways.pathway_model.each() { p ->
@@ -224,7 +229,7 @@ class BootStrap {
 			ConceptualDomain COSD = new ConceptualDomain(name:"COSD", refId:1, description:"Cancer Outcomes and Services Dataset").save(failOnError: true)
 
 			if (!DataElementConcept.count()) {
-				DataElementConcept CORE  = new DataElementConcept(name:"CORE", refId:"CORE", description:"CORE data set").save(failOnError: true)
+				DataElementConcept CORE = new DataElementConcept(name:"CORE", refId:"CORE", description:"CORE data set").save(failOnError: true)
 				DataElementConcept HAEMA = new DataElementConcept(name:"HAEMATOLOGY", refId:"HAEMATOLOGY", description:"HAEMATOLOGY data set").save(failOnError: true)
 				new DataElementConcept(name:"CORE - DIAGNOSTIC DETAILS", refId:"DIAGNOSTIC DETAILS", parent: CORE).save(failOnError: true)
 				new DataElementConcept(name:"CORE - PATIENT IDENTITY DETAILS", refId:"PATIENT IDENTITY DETAILS", parent: CORE).save(failOnError: true)
@@ -256,7 +261,7 @@ class BootStrap {
 
 					new DataType(name:"NHS PERSON GENDER", enumerated: true, enumerations: genderCode).save(failOnError: true)
 
-					Map enthicCat = [	"A":"(White) British",
+					Map enthicCat = [        "A":"(White) British",
 						"B":"(White) Irish",
 						"C":"Any other White background",
 						"D":"White and Black Caribbean",
@@ -307,7 +312,7 @@ class BootStrap {
 					new DataType(name:"Text", enumerated: false).save(failOnError: true)
 					new DataType(name:"Integer", enumerated: false).save(failOnError: true)
 					new DataType(name:"Date", enumerated: false).save(failOnError: true)
-					new DataType(name:"DateTime", enumerated: false).save(failOnError: true)
+					new DataType(name:"Datetime", enumerated: false).save(failOnError: true)
 					new DataType(name:"Time", enumerated: false).save(failOnError: true)
 					new DataType(name:"Float", enumerated: false).save(failOnError: true)
 					new DataType(name:"Boolean", enumerated: false).save(failOnError: true)
@@ -427,8 +432,8 @@ class BootStrap {
 
 									).save(failOnError: true)
 
-							def question1  = new QuestionElement(
-									questionNumber: '1',
+							def question1 = new QuestionElement(
+									designOrder: 1,
 									prompt: 'this is the first question',
 									style: 'this style1',
 									label: 'is this really a label?',
@@ -436,8 +441,8 @@ class BootStrap {
 									inputField: inputField1
 									).save(failOnError: true)
 
-							def question2  = new QuestionElement(
-									questionNumber: '2',
+							def question2 = new QuestionElement(
+									designOrder: 2,
 									prompt: 'operation reference',
 									style: 'this style3',
 									label: 'origin of referral',
@@ -445,8 +450,8 @@ class BootStrap {
 									inputField: inputField2
 									).save(failOnError: true)
 
-							def question3  = new QuestionElement(
-									questionNumber: '3',
+							def question3 = new QuestionElement(
+									designOrder: '3',
 									prompt: 'this is the thirs question',
 									style: 'this style5',
 									label: 'what is your favorite colour ?',
@@ -454,8 +459,8 @@ class BootStrap {
 									inputField: inputField3
 									).save(failOnError: true)
 
-							def question4  = new QuestionElement(
-									questionNumber: '4',
+							def question4 = new QuestionElement(
+									designOrder: 4,
 									prompt: 'this is the 4th question',
 									style: 'this style5',
 									label: 'what is your favorite animal ?',
@@ -463,8 +468,8 @@ class BootStrap {
 									inputField: inputField4
 									).save(failOnError: true)
 
-							def question5  = new QuestionElement(
-									questionNumber: '5',
+							def question5 = new QuestionElement(
+									designOrder: 5,
 									prompt: 'this is the 5th question',
 									style: 'this style5',
 									label: 'what is your favorite car ?',
@@ -482,11 +487,13 @@ class BootStrap {
 
 
 							def section1 = new SectionElement(
-									title: 'section1'
+									title: 'section1',
+									designOrder: 1
 									).save(failOnError:true)
 
 							def section2 = new SectionElement(
-									title: 'section2'
+									title: 'section2',
+									designOrder: 2
 									).save(failOnError:true)
 
 							section1.addToQuestionElements(question1)
@@ -514,7 +521,7 @@ class BootStrap {
 							def collect5 = new Collection(refId: 'Colt16', name: 'TestCol15', description: 'blah blah blah').save(failOnError: true)
 
 							def de21 = new DataElement(name:"SOURCE OF REFERRAL FOR OUT-PATIENTS", refId:"D1600",description:"This identifies the source of referral of each Consultant Out-Patient Episode.", dataElementConcept: REF).save(failOnError: true)
-							def de22 = new DataElement(name:"ANOTHER SOURCE  FOR OUT-PATIENTS", refId:"E1600",description:"This identifies the  referral of each Consultant Out-Patient Episode.",dataElementConcept: REF).save(failOnError: true)
+							def de22 = new DataElement(name:"ANOTHER SOURCE FOR OUT-PATIENTS", refId:"E1600",description:"This identifies the referral of each Consultant Out-Patient Episode.",dataElementConcept: REF).save(failOnError: true)
 
 							collect1.addToDataElementCollections(de21)
 							collect1.addToDataElementCollections(de22)
@@ -535,7 +542,7 @@ class BootStrap {
 									x: '5',
 									y: '0',
 									description: 'transfer patient to the Operating Room',
-									peCollection:  collect1
+									peCollection: collect1
 									).save(flush:true)
 
 							def de1 = new DataElement(name:"PERSON FAMILY NAME (AT BIRTH)",
@@ -552,7 +559,7 @@ class BootStrap {
 									x: '15',
 									y: '10',
 									description: 'perform the operation',
-									peCollection:  collect2
+									peCollection: collect2
 									).save(flush:true)
 
 
@@ -562,7 +569,7 @@ class BootStrap {
 									x: '25',
 									y: '30',
 									description: 'transfer patient to the Operating Room',
-									peCollection:  collect3
+									peCollection: collect3
 									).save(flush:true)
 
 
@@ -572,7 +579,7 @@ class BootStrap {
 									name: 'TM1',
 									source: node1,
 									target: node2,
-									peCollection:  collect4
+									peCollection: collect4
 									).save(flush:true)
 
 							def link2 = new Link(
@@ -608,12 +615,11 @@ class BootStrap {
 			}
 		}
 	}
-
 	private importCSVLine(tokens, parent)
 	{
 		// if the DEC for tokens[1] doesn't exist, create it.
-		def section = DataElementConcept.findAllWhere("name" : tokens[1], "parent" : parent) 
-		
+		def section = DataElementConcept.findAllWhere("name" : tokens[1], "parent" : parent)
+
 		if(section.empty){
 			section = new DataElementConcept(name : tokens[1], parent : parent, dataElements: []).save(failOnError: true)
 			println tokens[1]
@@ -631,13 +637,13 @@ class BootStrap {
 		}
 
 		def de = new DataElement(refId : tokens[0], name: tokens[3], description : tokens[4], dataElementConcept: subsection ).save(failOnError: true)
-/*		subsection.dataElements.add(de)
-		subsection.save(failOnError: true)
-		de.save(failOnError: true) */
+		/*		subsection.dataElements.add(de)
+		 subsection.save(failOnError: true)
+		 de.save(failOnError: true) */
 
 	}
-	
-	
+
+
 
 	private importDataElementConcept(xmldec, parent)
 	{
@@ -651,10 +657,6 @@ class BootStrap {
 			importDataElementConcept(xmldec2, dec);
 		}
 	}
-	
-	
-	
-	
+
+
 }
-
-

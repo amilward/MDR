@@ -52,7 +52,9 @@ $(document).ready(function () {
 	refreshFormPanelViews();
 
 	function resizeWindows(){
-		$('#container').height($('html').height() + 205);
+		//$('#container').height($('html').height() + 205);
+		$('#container').height($(window).height()-135);
+		
 	}
 
 

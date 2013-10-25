@@ -5,8 +5,7 @@ import uk.co.mdc.model.*
 import grails.converters.*
 import org.springframework.security.acls.model.Permission
 import grails.plugins.springsecurity.Secured
-import org.codehaus.groovy.grails.web.json.*;
-
+import org.codehaus.groovy.grails.web.json.*
 @Secured(['ROLE_USER'])
 
 class FormDesignController {
@@ -195,21 +194,32 @@ class FormDesignController {
 					renderType = 'text'
 					options = null
 				}
+
+				println(label)
+				println(dataElement?.id)
+				println(valueDomain?.id)
+				println(unitOfMeasure)
+				println(dataType)
+				println(dataType?.enumerated)
+				println(format)
+				println(renderType)
+				println(description)
+				println(options)
+				
 				
 				//add the question information to the questions array
 				questions.push(new HashMap(
 							label: label,
-							dataElementId: dataElement.id, 
-							valueDomainId: valueDomain.id,
+							dataElementId: dataElement?.id, 
+							valueDomainId: valueDomain?.id,
 							unitOfMeasure: unitOfMeasure,
 							dataType: dataType,
-							isEnumerated: dataType.enumerated,
+							isEnumerated: dataType?.enumerated,
 							format: format,
 							renderType: renderType,
 							additionalInstructions: description,
-							options: options	
-							)
-				)
+							enumerations: options	
+							))
 			}
 			
 			//return the collection id and the questions needed to create a new form
@@ -316,6 +326,7 @@ class FormDesignController {
 		formDesignInstance = formDesignService.update(formDesignInstance, form)
 	
 		def model = [success: true, formDesignId: formDesignInstance.id, formVersion: formDesignInstance.version, message: 'saved']
+		
 		render model  as JSON
 	}
 	
@@ -358,7 +369,7 @@ class FormDesignController {
 		
 		def formDesignInstance = findInstance(id)
 		
-		def questions = formDesignInstance.getQuestions()
+		//def questions = formDesignInstance.getQuestions()
 		
 		def model = [formDesign: formDesignInstance]
 		
