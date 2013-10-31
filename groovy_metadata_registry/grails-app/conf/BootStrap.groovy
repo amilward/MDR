@@ -19,6 +19,7 @@ import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils
 import org.codehaus.groovy.grails.commons.ApplicationHolder
 
 import grails.util.DomainBuilder
+import groovy.json.JsonSlurper
 
 import org.springframework.web.context.support.WebApplicationContextUtils
 
@@ -31,6 +32,7 @@ import org.springframework.security.authentication. UsernamePasswordAuthenticati
 import org.springframework.security.core.authority.AuthorityUtils
 import org.springframework.security.core.context.SecurityContextHolder as SCH
 import org.grails.plugins.csv.CSVMapReader
+import org.json.simple.JSONObject
 
 
 class BootStrap {
@@ -195,10 +197,9 @@ class BootStrap {
 
 		}
 
+		
+		importNHICData(basePath)
 
-		new File("${basePath}/WEB-INF/bootstrap-data/NHIC/CAN/CAN.csv").toCsvReader(['charset':'UTF-8', skipLines : 1] ).eachLine { tokens ->
-			importCSVLine(tokens, null);
-		}
 
 
 
@@ -635,8 +636,10 @@ class BootStrap {
 		else{
 			subsection = subsection.first()
 		}
-
-		def de = new DataElement(refId : tokens[0], name: tokens[3], description : tokens[4], dataElementConcept: subsection ).save(failOnError: true)
+		def ext = new JSONObject();
+		ext.put("NHIC Data", "NHIC Data instance");
+		println ext.keySet().size()
+		def de = new DataElement(refId : tokens[0], name: tokens[3], description : tokens[4], dataElementConcept: subsection, extension: ext ).save(failOnError: true)
 		/*		subsection.dataElements.add(de)
 		 subsection.save(failOnError: true)
 		 de.save(failOnError: true) */
@@ -658,5 +661,27 @@ class BootStrap {
 		}
 	}
 
+	private importNHICData(basePath){
+		
+		
+		NHICImportConfig.functions.keySet().each { filename -> 
+			new File("${basePath}" + filename).toCsvReader([charset:'UTF-8', skipLines : 1] ).eachLine { tokens ->
+				NHICImportConfig.functions[filename](tokens);
+			}
+		}
+		
+		//def slurper = new JsonSlurper()
+		
+		
+		//def result = slurper.parse(new FileReader("${basePath}/WEB-INF/bootstrap-data/NHIC/config.json"))
+		
+		//println(result.configs[0].filename)
+		
+		
+		/*new File("${basePath}/WEB-INF/bootstrap-data/NHIC/CAN/CAN.csv").toCsvReader(['charset':'UTF-8', skipLines : 1] ).eachLine { tokens ->
+			importCSVLine(tokens, null);
+		}*/
 
+	}
+	
 }

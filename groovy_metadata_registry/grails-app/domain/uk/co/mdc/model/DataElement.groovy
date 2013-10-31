@@ -1,6 +1,7 @@
 package uk.co.mdc.model
 
 import org.codehaus.groovy.grails.web.servlet.mvc.GrailsParameterMap
+import org.json.simple.JSONObject
 
 class DataElement {
 	
@@ -17,6 +18,8 @@ class DataElement {
 	DataElement parent
 	
 	DataElementConcept dataElementConcept
+	
+	JSONObject extension
 	
 	static auditable = true
 	
@@ -40,6 +43,7 @@ class DataElement {
 	static mapping = {
 		description type: 'text'
 		definition type: 'text'
+		extension sqlType: 'binary(5000)'
 		subElements cascade: 'save-update'
 	}
 	
