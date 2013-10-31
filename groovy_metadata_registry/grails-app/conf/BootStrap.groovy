@@ -536,6 +536,16 @@ class BootStrap {
 						 
 							println(" Collection" + de1.refId)
 			
+				/*
+				 * 
+				 * 
+				 * 
+				 * PATHWAYS
+				 * 
+				 * 
+				 * */			
+							
+							
 							 						
 							def node2 = new Node(
 								refId: 'TM_N2',

@@ -37,6 +37,8 @@ modules = {
 		dependsOn "application"
 		resource url: "js/vendor/jquery.layout-1.3.0.min.js"
 		resource url: "js/vendor/bootstrap-editable.js"
+		resource url: "js/lib/bootstrap-datepicker.js"
+		resource url: "js/lib/bootstrap-timepicker.js"
 		resource url: "js/pathways/jquery.jsPlumb-1.5.2-min.js"
 		resource url: "js/respond.min.js"
 		resource url: "js/forms/form_model.js"

@@ -125,7 +125,7 @@ theme.finishRenderForm = function($div){
 	$buttonDiv.append('&nbsp;&nbsp;');
 	$buttonDiv.append('<button id="nextPage" type="button" class="btn btn-primary" onclick="nextPage();">Next Page</button>');
 	$buttonDiv.append('<button id="submit" type="button" class="btn btn-primary" onclick="submit();">Submit</button>');
-	$('#formdiv').append($buttonDiv);
+	$('#formdiv').prepend($buttonDiv);
 
 	redrawNavigation();
 	return $div;
@@ -193,6 +193,27 @@ theme.renderTextField = function(inputField, $div ){
 	$div.append($formgroup);
 }
 
+theme.renderDateField = function(inputField, $div ){
+	var $formgroup = $('<div class="form-group">');
+
+	var $label = $('<label class="col-lg-4 control-label" for="' + inputField.id + '">');
+	$label.text(inputField.label);
+	$formgroup.append($label);
+	$formgroup.append($('<div class="col-lg-8"><input class="form-control datepicker" id="' + inputField.id + '"></div>'));
+	$div.append($formgroup);
+}
+
+theme.renderTimeField = function(inputField, $div ){
+	var $formgroup = $('<div class="form-group ">');
+
+	var $label = $('<label class="col-lg-4 control-label" for="' + inputField.id + '">');
+	$label.text(inputField.label);
+	$formgroup.append($label);
+	$formgroup.append($('<div class="input-append bootstrap-timepicker"><input class="timepicker input-small" id="' + inputField.id + '"><span class="add-on"><i class="icon-time"></i></span></div>'));
+	$div.append($formgroup);
+	
+}
+
 theme.renderListField = function(inputField, $div ){
 	var $formgroup = $('<div class="form-group">');
 
@@ -210,6 +231,26 @@ theme.renderListField = function(inputField, $div ){
 	$formgroup.append($inputDiv);
 	$div.append($formgroup);
 }
+
+
+theme.renderBooleanField = function(inputField, $div ){
+	var $formgroup = $('<div class="form-group">');
+
+	var $label = $('<label class="col-lg-4 control-label" for="' + inputField.id + '">');
+	$label.text(inputField.label);
+	$formgroup.append($label);
+	var $inputDiv = $('<div class="col-lg-8">');
+	var $select = $('<select class="form-control" id="' + inputField.id + '">');
+
+	$select.append('<option value="true">true</option>');
+	$select.append('<option value="true">false</option>');
+
+	
+	$inputDiv.append($select);
+	$formgroup.append($inputDiv);
+	$div.append($formgroup);
+}
+
 
 theme.renderAdditionalTextElement = function(element, $div){
 	var $p = $('<p>');

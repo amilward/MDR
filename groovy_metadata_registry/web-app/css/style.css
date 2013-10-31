@@ -1298,7 +1298,7 @@ li.deselected{
 	cursor: pointer;
 }
 #buttonDiv{
-	position : absolute;
+	position : relative;
 	bottom: 1em;
 	border-top: 1px solid silver;
 	width: 97%;

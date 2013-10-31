@@ -46,14 +46,24 @@ class QuestionElementMarshaller {
 			switch(dataType){
 				
 				case "String":
+					return "Text_Field"
+					break;
 				
-				return "Text_Field"
-				break;
+				case "Boolean":
+					return "Boolean_Field"
+					break;
+					
+				case "Date":
+					return "Date_Field"
+					break;
+					
+				case "Time":
+					return "Time_Field"
+					break;
 				
 				default:
-				
-				return "Text_Field"
-				break;
+					return "Text_Field"
+					break;
 				
 			}
 		
