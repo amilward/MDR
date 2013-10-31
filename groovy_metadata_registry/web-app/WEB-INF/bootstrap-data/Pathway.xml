@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pathwayModels>
+<pathway_model refId="pwm001" versionNo="1.0" isDraft="true" name="Renal Transplantation Pathway">
+    <elements>
+        <node id="n7.1">
+            <name>Transfer to O.R.</name>
+            <description>Recipient is summoned for transplantation by anaesthetist.</description>
+        </node>
+        <node id="n7.2">
+            <name>Anaesthesia and operating patient</name>
+            <description>Operating room co-workers conduct actions according to working instructions before the operation.</description>
+        </node>
+        <node id="n7.3">
+            <name>Guarding patient on recovery and transfer to nursing ward</name>
+            <description>Recovery room personnel observes and treats, under the responsibility of the anaesthetist, the recipient according to protocol...  The recipient is permitted transfer from recovery room to the nursing ward if the recipient meets criteria for transfer...</description>
+        </node>
+        <link source="n7.1" target="n7.2">
+            <name></name>
+            <description></description>
+        </link>
+        <link source="n7.2" target="n7.3">
+            <name></name>
+            <description></description>
+        </link>
+    </elements>
+</pathway_model>
+</pathwayModels>
