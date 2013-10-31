@@ -111,7 +111,7 @@ var dataTypeTemplates = [
 					enumerations += "<a data-parent=\"#menu\" data-toggle=\"collapse\" class=\"accordion-toggle\" data-target=\"#enumerations-nav-"+self.iid() +"\">";
 					enumerations += "<i class=\"icon-list-ol icon-large\"></i> Enumerations  [Radio] ";
 					enumerations += "</a>";
-					enumerations += "<ul class=\"collapse\" id=\"enumerations-nav-"+self.iid() +"\">";
+					enumerations += "<ul class=\"collapse\" id=\"enumerations-nav-"+ self.iid() +"\">";
 					$.each(self.options(),function(index, value){
 						enumerations += "<input class=\"pull-left\" type=\"radio\"/><li>"+ value +" ["+index+"]</li>";
 
@@ -189,15 +189,6 @@ var questionPallette = [
                  	              },
                  	              {
                  	            	  id: 8,
-                 	            	  name: "Date / Time Input",
-                 	            	  icon: "icon-calendar",
-                 	            	  type: "question",
-                 	            	  datatype: "datetime",
-                 	            	  properties: [], 
-                 	            	  type: "question"
-                 	              },
-                 	              {
-                 	            	  id: 9,
                  	            	  name: "Time Input",
                  	            	  icon: "icon-time",
                  	            	  type: "question",
@@ -209,7 +200,7 @@ var questionPallette = [
                     {
                  	   name: "Complex Questions",
                  	   elements: [{
-                 	            	  id: 10,
+                 	            	  id: 9,
                  	            	  name: "Radio Select",
                  	            	  icon: "icon-list-ul",
                  	            	  type: "question",
@@ -217,7 +208,7 @@ var questionPallette = [
                  	            	  properties: [], 
                  	            	  type: "question"
                  	              },{
-                 	            	  id: 11,
+                 	            	  id: 10,
                  	            	  name: "Dropdown Select",
                  	            	  icon: "icon-reorder",
                  	            	  type: "question",
@@ -662,7 +653,10 @@ function createQuestion(element){
 	var options = element.enumerations;
 	//var options = ['test','asddfsaafds'];
 	var previewRender = dt.previewRender;
-	var dti = new DataTypeInstance('', '', name, dt, renderingOption, restriction, selectMultiple, options, previewRender);
+	//need to change this -using random at the moment 
+	//maybe use data elmentid and value domain id and a random?
+	//works fine for now
+	var dti = new DataTypeInstance(getRandomInt(1,10000), '', name, dt, renderingOption, restriction, selectMultiple, options, previewRender);
 	
 	if(element.prompt==null){
 		
@@ -1036,4 +1030,10 @@ String.prototype.capitalize = function() {
 }
 
 
-
+/**
+ * Returns a random integer between min and max
+ * Using Math.round() will give you a non-uniform distribution!
+ */
+function getRandomInt (min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}

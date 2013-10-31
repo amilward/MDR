@@ -22,14 +22,14 @@
 	<header>
 		<g:form id="deleteForm"
 			url="[action:'delete',controller:'formDesign']">
-			<g:hiddenField name="id" value="${collectionInstance?.id}" />
+			<g:hiddenField name="id" value="" />
 			<div class="navbar">
 				<div class="navbar-inner">
 					<ul class="nav">
 						<li class="active"><a class="brand" href="#"><i
 								class="icon-edit"></i> Pathways</a></li>
 						<li><a href="#"
-							onclick="saveForm('${formDesignInstance?.id}')">Save</a></li>
+							onclick="saveForm('${pathwaysInstance?.id}')">Save</a></li>
 					</ul>
 				</div>
 			</div>
@@ -84,7 +84,7 @@
 		
 	<g:javascript disposition="defer" library="pathways" />
 	<r:script disposition="defer">
-		getPathway(1);
+		getPathway(${pathwaysModelInstance?.id});
 	</r:script>
 </body>
 </html>
