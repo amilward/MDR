@@ -196,9 +196,9 @@ class BootStrap {
 		}
 
 
-		//new File("${basePath}/WEB-INF/bootstrap-data/NHIC/CAN/CAN.csv").toCsvReader(['charset':'UTF-8', skipLines : 1] ).eachLine { tokens ->
-		//	importCSVLine(tokens, null);
-		//}
+		new File("${basePath}/WEB-INF/bootstrap-data/NHIC/CAN/CAN.csv").toCsvReader(['charset':'UTF-8', skipLines : 1] ).eachLine { tokens ->
+			importCSVLine(tokens, null);
+		}
 
 
 
@@ -551,8 +551,23 @@ class BootStrap {
 							dataElementConcept: DEM).save(failOnError: true)
 
 							println(" Collection" + de1.refId)
+<<<<<<< HEAD
+			
+				/*
+				 * 
+				 * 
+				 * 
+				 * PATHWAYS
+				 * 
+				 * 
+				 * */			
+							
+							
+							 						
+=======
 
 
+>>>>>>> ae75cda2945436284733ed37f28d793af8eb6968
 							def node2 = new Node(
 									refId: 'TM_N2',
 									name: 'Anaesthesia and Operating Patient.',
