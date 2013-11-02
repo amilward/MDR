@@ -182,8 +182,8 @@ class BootStrap {
 
 
 		//populate with test data
-		def applicationContext = grailsApplication.mainContext
-		String basePath = applicationContext.getResource("/").getFile().toString()
+		//def applicationContext = grailsApplication.mainContext
+		//String basePath = applicationContext.getResource("/").getFile().toString()
 
 
 		//assumes the first line of the file has the field names
@@ -198,7 +198,7 @@ class BootStrap {
 		}
 
 		
-		importNHICData(basePath)
+		//importNHICData(basePath)
 
 
 
@@ -616,7 +616,7 @@ class BootStrap {
 			}
 		}
 	}
-	private importCSVLine(tokens, parent)
+	/*private importCSVLine(tokens, parent)
 	{
 		// if the DEC for tokens[1] doesn't exist, create it.
 		def section = DataElementConcept.findAllWhere("name" : tokens[1], "parent" : parent)
@@ -644,11 +644,11 @@ class BootStrap {
 		 subsection.save(failOnError: true)
 		 de.save(failOnError: true) */
 
-	}
+	//}
 
 
 
-	private importDataElementConcept(xmldec, parent)
+	/*private importDataElementConcept(xmldec, parent)
 	{
 		if(parent != null)
 		{
@@ -659,9 +659,9 @@ class BootStrap {
 		xmldec.subConcepts.dataElementConcept.each { xmldec2 ->
 			importDataElementConcept(xmldec2, dec);
 		}
-	}
+	}*/
 
-	private importNHICData(basePath){
+/*	private importNHICData(basePath){
 		
 		
 		NHICImportConfig.functions.keySet().each { filename -> 
@@ -678,10 +678,11 @@ class BootStrap {
 		//println(result.configs[0].filename)
 		
 		
-		/*new File("${basePath}/WEB-INF/bootstrap-data/NHIC/CAN/CAN.csv").toCsvReader(['charset':'UTF-8', skipLines : 1] ).eachLine { tokens ->
+		new File("${basePath}/WEB-INF/bootstrap-data/NHIC/CAN/CAN.csv").toCsvReader(['charset':'UTF-8', skipLines : 1] ).eachLine { tokens ->
 			importCSVLine(tokens, null);
-		}*/
+		}
 
-	}
+	}*/
 	
 }
+	
