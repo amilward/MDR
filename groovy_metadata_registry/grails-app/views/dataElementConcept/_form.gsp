@@ -67,6 +67,7 @@
 					</tr>
 				</tbody>
 			</table>
+<g:javascript library="dataElementConcept"/>	
 <g:javascript library="dualListBox"/>	
 <r:script disposition="defer">
 

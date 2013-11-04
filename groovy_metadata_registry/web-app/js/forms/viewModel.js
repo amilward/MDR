@@ -634,10 +634,12 @@ function FormsModel() {
 
 var lastComponentID = 0;
 
+var randomIds = []
+
 
 function createQuestion(element){
 	
-	console.log('creating a question')
+	//console.log('creating a question')
 	//console.log(JSON.stringify(element))
 
 	//console.log(element.datatype)
@@ -653,11 +655,13 @@ function createQuestion(element){
 	var options = element.enumerations;
 	//var options = ['test','asddfsaafds'];
 	var previewRender = dt.previewRender;
-	//need to change this -using random at the moment 
-	//maybe use data elmentid and value domain id and a random?
-	//works fine for now
-	var dti = new DataTypeInstance(getRandomInt(1,10000), '', name, dt, renderingOption, restriction, selectMultiple, options, previewRender);
+	//this uses a random is to identify the data type
+	//it checks that there isn't another datatype with teh same random id first
+	var newRandomId = getUniqueId(1,1000)
 	
+	var dti = new DataTypeInstance(newRandomId, '', name, dt, renderingOption, restriction, selectMultiple, options, previewRender);
+	
+
 	if(element.prompt==null){
 		
 		var question = new Question("no question prompt", "no additionalInstructions","", "no label", "", dti, "no defaultValue", "no placeholder", "no unitOfMeasure test", "", "no format", "false", "no enumerations", "");
@@ -1033,7 +1037,26 @@ String.prototype.capitalize = function() {
 /**
  * Returns a random integer between min and max
  * Using Math.round() will give you a non-uniform distribution!
+ * checks that the id is unique i.e. not in the randomIds array
  */
-function getRandomInt (min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
+function getUniqueId (min, max) {
+    
+	var isValid = false;
+	var newRandomId;
+	
+	while(!isValid){
+		
+		newRandomId = Math.floor(Math.random() * (max - min + 1)) + min;
+		
+		if(jQuery.inArray(newRandomId, randomIds)==-1){
+			
+			isValid = true;
+			
+		}
+	}
+	
+	randomIds.push(newRandomId)
+	
+	return newRandomId;
+    
 }

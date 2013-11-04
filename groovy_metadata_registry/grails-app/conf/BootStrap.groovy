@@ -67,7 +67,7 @@ class BootStrap {
 			//populate with some test data....there will be more
 			populateWithTestData()
 
-
+			//grant relevant permissions (i.e. admin user has admin on everything)
 			grantPermissions()
 
 			sessionFactory.currentSession.flush()
@@ -123,25 +123,6 @@ class BootStrap {
 
 	private void grantPermissions() {
 		def dataElements = []
-		/*100.times {
-		 long id = it + 1
-		 def dataElement = new DataElement(refId: "reference$id", name: "dataElement$id", description: 'test').save(failOnError:true)
-		 dataElements << dataElement
-		 aclService.createAcl( objectIdentityRetrievalStrategy.getObjectIdentity(dataElement))
-		 }
-		 // grant user 1 admin on 11,12 and read on 1-67
-		 aclUtilService.addPermission dataElements[10], 'user1', ADMINISTRATION
-		 aclUtilService.addPermission dataElements[11], 'user1', ADMINISTRATION
-		 67.times {
-		 aclUtilService.addPermission dataElements[it], 'user1', READ
-		 }
-		 // grant user 2 read on 1-5, write on 5
-		 5.times {
-		 aclUtilService.addPermission dataElements[it], 'user2', READ
-		 }
-		 aclUtilService.addPermission dataElements[4], 'user2', WRITE*/
-
-		// user 3 has no grants
 
 		// grant admin admin on everything
 
@@ -155,9 +136,6 @@ class BootStrap {
 		grantAdminPermissions(QuestionElement.list())
 		grantAdminPermissions(InputField.list())
 
-		// grant user 1 ownership on 1,2 to allow the user to grant
-		//aclUtilService.changeOwner dataElements[0], 'user1'
-		//aclUtilService.changeOwner dataElements[1], 'user1'
 	}
 
 
@@ -182,8 +160,8 @@ class BootStrap {
 
 
 		//populate with test data
-		//def applicationContext = grailsApplication.mainContext
-		//String basePath = applicationContext.getResource("/").getFile().toString()
+		def applicationContext = grailsApplication.mainContext
+		String basePath = applicationContext.getResource("/").getFile().toString()
 
 
 		//assumes the first line of the file has the field names
@@ -197,20 +175,10 @@ class BootStrap {
 
 		}
 
-		
-		//importNHICData(basePath)
-
-
-
-
 		/*def dataElementConcepts = new XmlSlurper().parse( new File("${basePath}/WEB-INF/bootstrap-data/NHIC/CAN/CAM.xml"))
 		 dataElementConcepts.dataElementConcept.each() { xmldec ->
 		 importDataElementConcept(xmldec, null);
 		 } */
-
-
-
-
 		/*if (!PathwaysModel.count()) {
 		 def pathways = new XmlSlurper().parse( new File("${basePath}/WEB-INF/bootstrap-data/Pathway.xml"))
 		 pathways.pathway_model.each() { p ->
@@ -528,15 +496,6 @@ class BootStrap {
 							collect1.addToDataElementCollections(de22)
 
 
-
-
-
-							println(" Collection" + collect1.refId)
-							println(" Collection" + collect2.refId)
-							println(" Collection" + collect3.refId)
-							println(" Collection" + collect4.refId)
-							println(" Collection" + collect5.refId)
-
 							def node1 = new Node(
 									refId: 'TM_N1',
 									name: 'transfer to O.R.',
@@ -615,8 +574,12 @@ class BootStrap {
 
 			}
 		}
+		
+		
+		importNHICData(basePath)
+		
 	}
-	/*private importCSVLine(tokens, parent)
+	private importCSVLine(tokens, parent)
 	{
 		// if the DEC for tokens[1] doesn't exist, create it.
 		def section = DataElementConcept.findAllWhere("name" : tokens[1], "parent" : parent)
@@ -644,11 +607,11 @@ class BootStrap {
 		 subsection.save(failOnError: true)
 		 de.save(failOnError: true) */
 
-	//}
+	}
 
 
 
-	/*private importDataElementConcept(xmldec, parent)
+	private importDataElementConcept(xmldec, parent)
 	{
 		if(parent != null)
 		{
@@ -659,9 +622,9 @@ class BootStrap {
 		xmldec.subConcepts.dataElementConcept.each { xmldec2 ->
 			importDataElementConcept(xmldec2, dec);
 		}
-	}*/
+	}
 
-/*	private importNHICData(basePath){
+	private importNHICData(basePath){
 		
 		
 		NHICImportConfig.functions.keySet().each { filename -> 
@@ -678,11 +641,11 @@ class BootStrap {
 		//println(result.configs[0].filename)
 		
 		
-		new File("${basePath}/WEB-INF/bootstrap-data/NHIC/CAN/CAN.csv").toCsvReader(['charset':'UTF-8', skipLines : 1] ).eachLine { tokens ->
+		/*new File("${basePath}/WEB-INF/bootstrap-data/NHIC/CAN/CAN.csv").toCsvReader(['charset':'UTF-8', skipLines : 1] ).eachLine { tokens ->
 			importCSVLine(tokens, null);
-		}
+		}*/
 
-	}*/
+	}
 	
 }
 	

@@ -72,8 +72,8 @@ class DataElementConceptController {
 			
 			def searchResults = dataElementConceptService.search(params.sSearch)
 			
-			total = searchResults.count()
-			displayTotal = searchResults.count()
+			total = searchResults.size()
+			displayTotal = searchResults.size()
 			
 			if(total>0){
 				data = searchResults
