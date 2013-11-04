@@ -12,12 +12,23 @@ modules = {
     }
 	
 	dataTables {
+		dependsOn "application"
 		resource url: "js/datatable/jquery.dataTables.min.js"
 		resource url: "js/datatable/jquery.dataTables.fnSetFilteringDelay.js"
 	}
 	
 	dualListBox {
 		resource url: "js/lib/jquery.bootstrap-duallistbox.js"
+	}
+	
+	dataElement{
+		dependsOn "dataTables"
+		resource url: "js/model/dataElement/dataElement.js"
+	}
+	
+	dataElementConcept{
+		dependsOn "dataTables"
+		resource url: "js/model/dataElementConcept/dataElementConcept.js"
 	}
 	
 	formsBuilder{
