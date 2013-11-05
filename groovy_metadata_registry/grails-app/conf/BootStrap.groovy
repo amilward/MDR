@@ -483,17 +483,17 @@ class BootStrap {
 						if(!PathwaysModel.count()){
 
 
-							def collect1 = new Collection(refId: 'Colt11', name: 'TestCol11', description: 'blah blah blah').save(failOnError: true)
-							def collect2 = new Collection(refId: 'Colt12', name: 'TestCol12', description: 'blah blah blah').save(failOnError: true)
-							def collect3 = new Collection(refId: 'Colt14', name: 'TestCol13',description: 'blah blah blah').save(failOnError: true)
-							def collect4 = new Collection(refId: 'Colt15', name: 'TestCol14', description: 'blah blah blah').save(failOnError: true)
-							def collect5 = new Collection(refId: 'Colt16', name: 'TestCol15', description: 'blah blah blah').save(failOnError: true)
+							//def collect1 = new Collection(refId: 'Colt11', name: 'TestCol11', description: 'blah blah blah').save(failOnError: true)
+							//def collect2 = new Collection(refId: 'Colt12', name: 'TestCol12', description: 'blah blah blah').save(failOnError: true)
+							//def collect3 = new Collection(refId: 'Colt14', name: 'TestCol13',description: 'blah blah blah').save(failOnError: true)
+							//def collect4 = new Collection(refId: 'Colt15', name: 'TestCol14', description: 'blah blah blah').save(failOnError: true)
+							//def collect5 = new Collection(refId: 'Colt16', name: 'TestCol15', description: 'blah blah blah').save(failOnError: true)
 
-							def de21 = new DataElement(name:"SOURCE OF REFERRAL FOR OUT-PATIENTS", refId:"D1600",description:"This identifies the source of referral of each Consultant Out-Patient Episode.", dataElementConcept: REF).save(failOnError: true)
-							def de22 = new DataElement(name:"ANOTHER SOURCE FOR OUT-PATIENTS", refId:"E1600",description:"This identifies the referral of each Consultant Out-Patient Episode.",dataElementConcept: REF).save(failOnError: true)
+							//def de21 = new DataElement(name:"SOURCE OF REFERRAL FOR OUT-PATIENTS", refId:"D1600",description:"This identifies the source of referral of each Consultant Out-Patient Episode.", dataElementConcept: REF).save(failOnError: true)
+							//def de22 = new DataElement(name:"ANOTHER SOURCE FOR OUT-PATIENTS", refId:"E1600",description:"This identifies the referral of each Consultant Out-Patient Episode.",dataElementConcept: REF).save(failOnError: true)
 
-							collect1.addToDataElementCollections(de21)
-							collect1.addToDataElementCollections(de22)
+							//collect1.addToDataElementCollections(de21)
+							//collect1.addToDataElementCollections(de22)
 
 
 							def node1 = new Node(
@@ -502,15 +502,15 @@ class BootStrap {
 									x: '5',
 									y: '0',
 									description: 'transfer patient to the Operating Room',
-									peCollection: collect1
+									//peCollection: collect1
 									).save(flush:true)
 
-							def de1 = new DataElement(name:"PERSON FAMILY NAME (AT BIRTH)",
+							/*def de1 = new DataElement(name:"PERSON FAMILY NAME (AT BIRTH)",
 							refId:"CR0111",
 							description:"The PATIENT's surname at birth.",
 							dataElementConcept: DEM).save(failOnError: true)
-
-							println(" Collection" + de1.refId)
+*/
+							//println(" Collection" + de1.refId)
 
 
 							def node2 = new Node(
@@ -519,7 +519,7 @@ class BootStrap {
 									x: '15',
 									y: '10',
 									description: 'perform the operation',
-									peCollection: collect2
+								//	peCollection: collect2
 									).save(flush:true)
 
 
@@ -529,7 +529,7 @@ class BootStrap {
 									x: '25',
 									y: '30',
 									description: 'transfer patient to the Operating Room',
-									peCollection: collect3
+									//peCollection: collect3
 									).save(flush:true)
 
 
@@ -539,7 +539,7 @@ class BootStrap {
 									name: 'TM1',
 									source: node1,
 									target: node2,
-									peCollection: collect4
+									//peCollection: collect4
 									).save(flush:true)
 
 							def link2 = new Link(
@@ -547,7 +547,7 @@ class BootStrap {
 									name: 'TM2',
 									source: node2,
 									target: node3,
-									peCollection: collect5
+									//peCollection: collect5
 									).save(flush:true)
 
 

@@ -6,6 +6,8 @@ import grails.converters.*
 import org.springframework.security.acls.model.Permission
 import grails.plugins.springsecurity.Secured
 import org.codehaus.groovy.grails.web.json.*
+import groovy.json.StringEscapeUtils
+
 @Secured(['ROLE_USER'])
 
 class FormDesignController {
@@ -160,6 +162,7 @@ class FormDesignController {
 			def options
 			def renderType
 			def description
+			def invalidDataElements = []
 			
 			//loop through the data elements in the collection
 			
@@ -172,8 +175,16 @@ class FormDesignController {
 				
 				valueDomains = dataElement.dataElementValueDomains()
 				valueDomain = valueDomains[0]
+				
+				if(!valueDomain){
+					
+					invalidDataElements.add(dataElement?.name)
+					
+				}else{
+				
 				label = dataElement?.name
 				description = dataElement?.description
+
 				unitOfMeasure = valueDomain?.unitOfMeasure
 				dataType = valueDomain?.dataType
 				format = valueDomain?.format
@@ -194,17 +205,6 @@ class FormDesignController {
 					renderType = 'text'
 					options = null
 				}
-
-				println(label)
-				println(dataElement?.id)
-				println(valueDomain?.id)
-				println(unitOfMeasure)
-				println(dataType)
-				println(dataType?.enumerated)
-				println(format)
-				println(renderType)
-				println(description)
-				println(options)
 				
 				
 				//add the question information to the questions array
@@ -220,13 +220,21 @@ class FormDesignController {
 							additionalInstructions: description,
 							enumerations: options	
 							))
+				}
 			}
 			
 			//return the collection id and the questions needed to create a new form
 			//based on the data elements in a collection
 			
-			[collectionId: collectionInstance.id, questions: questions as JSON]
+			if(invalidDataElements.size()>0){
+					flash.message = "Cannot generate form with data elements : " + invalidDataElements.toListString() + ", as no value domain exists for them"
+					redirect(controller: "collection", action: "show", id: params.collectionId.toInteger())
+					return
+			}else{
 			
+				[collectionId: collectionInstance.id, questions: questions as JSON]
+				
+			}
 		}else{
 		
 			//create a blank form
