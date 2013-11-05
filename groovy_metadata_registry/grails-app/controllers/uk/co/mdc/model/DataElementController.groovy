@@ -74,6 +74,7 @@ class DataElementController {
 				data=[]
 			}
 			
+			println(data as JSON)
 			//otherwise list the data elements using the data elements service and pass the relevant data
 			//back to the data tables plugin request as json
 			

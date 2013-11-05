@@ -145,12 +145,8 @@ class CollectionController {
 		
 		//create the collection with the parameters passed from the collection basket
 		
-		println(params)
-		
 		def collectionInstance = collectionService.createFromBasket(params)
 		
-		
-		println(collectionInstance)
 		//if there are any errors in the collection put them into a format
 		//that we can display and redirect
 			
