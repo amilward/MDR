@@ -106,6 +106,7 @@ class DataElementService {
 	@PostFilter("hasPermission(filterObject, read) or hasPermission(filterObject, admin)")
 	List<DataElement> search(String sSearch) {
 	   def searchResult = DataElement.search(sSearch)
+	   println(searchResult.results)
 	   searchResult.results
 	   }
 	
@@ -119,6 +120,7 @@ class DataElementService {
 	@PreAuthorize("hasRole('ROLE_USER')")
 	@PostFilter("hasPermission(filterObject, read) or hasPermission(filterObject, admin)")
 	List<DataElement> list(Map parameters) {
+		println(DataElement.list(parameters))
 		DataElement.list parameters
 	}
 	

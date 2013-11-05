@@ -48,7 +48,7 @@
 		var collectionId
 		
 		<g:if test="${questions}">
-			questions = '${questions}';
+			questions = JSON.stringify(${questions});
 		</g:if>
 		<g:else>
 			questions = '';
