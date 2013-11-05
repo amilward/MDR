@@ -63,7 +63,7 @@ function getObjectTable(jsonArray, classname){
 	
 	var table
 	
-	if(jsonArray.length>0){
+	if(jsonArray!=null && jsonArray.length>0){
 		table = '<table>';
 		
 		$.each(jsonArray, function(key, value) {
