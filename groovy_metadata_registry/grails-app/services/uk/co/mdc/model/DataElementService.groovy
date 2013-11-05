@@ -1,5 +1,6 @@
 package uk.co.mdc.model
 
+import grails.converters.JSON
 import org.springframework.security.access.prepost.PostFilter
 import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.security.acls.domain.BasePermission
@@ -105,9 +106,16 @@ class DataElementService {
 	@PreAuthorize("hasRole('ROLE_USER')")
 	@PostFilter("hasPermission(filterObject, read) or hasPermission(filterObject, admin)")
 	List<DataElement> search(String sSearch) {
-	   def searchResult = DataElement.search(sSearch)
-	   println(searchResult.results)
-	   searchResult.results
+	   def searchResults = DataElement.search(sSearch)
+	   
+	   //refresh the objects to get the relational field (otherwise lazy and returns null)
+	   //.......bit of a hack will try and have a play with modifying the 
+	   //searchable plugin code to load the objects with the link classes 
+	   searchResults.results.each { dataElement->
+                dataElement.refresh()
+            }
+
+	   searchResults.results
 	   }
 	
 	
