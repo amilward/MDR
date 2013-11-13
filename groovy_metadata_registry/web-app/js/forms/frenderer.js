@@ -64,20 +64,36 @@ function _renderSection(section, $div){
 	
 	$sectionDiv = theme.completeSectionDiv($sectionDiv, section);
 	
-	if(section.rules && section.rules.display)
+	if(section.rules)
 	{
-		bindfunction = appendFunction(bindfunction, function(){
-			var answer = constraint.parse(section.rules.display);
-			if(answer)
-			{
-				theme.hideSection(section.id);
-			}
-			else
-			{
-				theme.showSection(section.id);
-			}
+		$.each(section.rules, function(i, rule)
+				{
+					//array.push({'value': n, 'text': n});
+			
+			console.log(rule)
+			
+					if(rule.predicate && rule.consequence=='display'){
 
-		});
+						console.log(constraint.parse(rule.predicate))
+						
+						bindfunction = appendFunction(bindfunction, function(){
+							var answer = constraint.parse(rule.predicate);
+							
+							if(answer)
+							{
+								theme.hideSection(section.id);
+							}
+							else
+							{
+								theme.showSection(section.id);
+							}
+
+						});
+						
+						
+					}
+			
+				});
 		
 	}
 	$div.append($sectionDiv);

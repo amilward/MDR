@@ -262,14 +262,18 @@ function Component(iid, eid, properties, icon) {
 	
 	self.properties = ko.observableArray(mappedProperties);
 	
-	self.clone = function(){
+	self.clone = function(sectionNo){
 		
-		//console.log(ko.toJSON(self.question()))
-
-		var c
+		//
 		
 		if(self.question()){
+			
+			//console.log('creating a question')
+			
+			//console.log(sectionNo)
 
+			viewModel.setCurrentlySelectedFormSectionIdx(sectionNo)
+			
 			c = viewModel.currentlySelectedFormSection()
 			
 			var s = c.section()
@@ -559,6 +563,8 @@ function FormsModel() {
 	    	} else {
 	    		return null;
 	    	}
+	    	
+	    	console.log(value)
 	    },
 	    write: function(value) {
 	    	console.log(value);
@@ -689,9 +695,9 @@ function createQuestion(element){
 function createComponent(element)
 {
 
-	//console.log('creating a component')
-	//console.log(JSON.stringify(element))
 	
+	//console.log(ko.toJSON(element))
+
 	lastComponentID++;
 	var iid = element.id + '-' + lastComponentID;
 	var eid = iid;

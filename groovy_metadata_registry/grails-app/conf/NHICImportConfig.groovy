@@ -77,11 +77,11 @@ class NHICImportConfig {
 		def de = new DataElement(	name: tokens[3],
 									description : tokens[4],
 									dataElementConcept: dec,
-									extension: ext,
+									extension: ext.toString(),
 									refId: tokens[0]).save(failOnError: true)
 		de.addToDataElementValueDomains(vd);
 		de.save();
-		println "importing: " + tokens[0]
+		println "importing: " + tokens[0] + de?.extension
 	}
 		
 	]

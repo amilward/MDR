@@ -81,7 +81,10 @@
         			</ul>
         			<!-- /ko -->
         			<!-- ko if: components().length > 0 -->
-					<ul class="sortable" data-bind="sortable: {data: components, connectClass: 'section', afterMove: function(something) { $root.setCurrentlySelectedFormSectionIdx(something.targetIndex);refreshFormPanelViews(); }}" >
+					<ul class="sortable" data-bind="sortable: {data: components, 
+																connectClass: 'section', 
+																afterMove: function(something) { $root.setCurrentlySelectedFormSectionIdx(something.targetIndex);refreshFormPanelViews(); }
+																}" >
 						<li data-bind="click: function(data, event) { if(!$(event.target).is('.menu-content li')){ $root.setCurrentlySelectedFormSectionIdx($index());}}">
 							<!-- ko if: section()!= null -->
 							<div class="section" data-bind="event: { mouseover: function(){$root.setCurrentlySelectedFormSectionIdx($index());}}">
@@ -103,7 +106,9 @@
 									
 							<!-- ko if: section().questions()!=null-->
 							<!-- ko with: section() -->
-								<ul class="sortableQuestions" data-bind="sortable: {data: questions, connectClass: 'form-item', afterMove: function(something) { $root.setCurrentlySelectedQuestionIdx(something.targetIndex); refreshFormPanelViews(); }}" >
+								<ul class="sortableQuestions" data-bind="sortable: {data: questions, connectClass: 'form-item', 
+																					afterMove: function(something) { $root.setCurrentlySelectedQuestionIdx(something.targetIndex); refreshFormPanelViews(); }}" 
+																					>
 								<li data-bind="click: function(data, event) { if(!$(event.target).is('.menu-content li')){ $root.setCurrentlySelectedQuestionIdx($index());}}">
 									<div class="large-rounded question form-item" data-bind="css: {selected: $root.currentlySelectedQuestionIdx() == $index() && $root.currentlySelectedFormSectionIdx() == $parentContext.$index()}">
 										<table class="small-rounded">
@@ -120,7 +125,7 @@
 													</span>-->
 													(<span data-bind="text: dataTypeInstance().name()"></span>)
 													</p>
-													<p data-bind="text: additionalInstructions()"></p>
+													<!--  <p data-bind="text: additionalInstructions()"></p>-->
 													<p><span class="pull-left" data-bind="text: label()"></span>
 													<span class="pull-left"> &nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;</span> 
 													<span class="pull-left" data-bind="html: dataTypeInstance().previewRender()"></span>
@@ -198,7 +203,17 @@
 							<td>
 								<a data-bind="editable: section().title, editableOptions: { mode: 'inline' }"></a>
 							</td>
-						</tr>
+					</tr>
+					
+					 <!-- ko if: section().rules != null -->
+					<tr>
+							<td>Rule Predicate</td>
+							<td><span id="pencil"><i class="icon-pencil"></i></span></td>
+							<td></td>
+					</tr>
+
+					<!-- /ko -->
+					
 					</tbody>
 					</table>
 					

@@ -86,6 +86,7 @@
 				</tbody>
 			</table>
 <g:javascript library="dualListBox"/>	
+<g:javascript library="valueDomain"/>
 <r:script disposition="defer">
 
 	<g:if test="${!selectedDataElements}">
