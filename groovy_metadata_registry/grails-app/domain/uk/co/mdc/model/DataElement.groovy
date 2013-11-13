@@ -19,10 +19,7 @@ class DataElement extends ExtensibleObject {
 	
 	DataElementConcept dataElementConcept
 	
-
 	Set synonyms
-	
-	String extension
 	
 	static auditable = true
 	
