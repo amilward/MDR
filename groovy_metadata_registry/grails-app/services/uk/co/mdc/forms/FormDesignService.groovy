@@ -331,6 +331,7 @@ class FormDesignService {
 								if(questionInstance){
 									
 									questionInstance.prompt = question?.prompt
+									questionInstance.label = question?.label
 									questionInstance.additionalInstructions = question?.additionalInstructions
 									questionInstance.designOrder =  questionNumber
 									inputFieldInstance = InputField.get(question?.inputId)

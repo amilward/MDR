@@ -121,6 +121,7 @@
 					</tr>
 				</tbody>
 			</table>
+<g:javascript library="dataElement"/>
 <g:javascript library="dualListBox"/>	
 <r:script disposition="defer">
 

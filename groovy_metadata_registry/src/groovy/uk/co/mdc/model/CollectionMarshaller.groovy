@@ -11,8 +11,7 @@ class CollectionMarshaller extends CustomMarshaller {
 			'refId' : collection.refId,
 			'name' : collection.name,
 			'description' : collection.description,
-			'dataElements': limitRender(collection.dataElementCollections()),
-			'formSpecifications': collection?.formSpecifications
+			'dataElements': limitRender(collection.dataElementCollections())
 			]
 		}
 	}

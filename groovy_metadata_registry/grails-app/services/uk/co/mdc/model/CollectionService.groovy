@@ -65,10 +65,18 @@ class CollectionService {
 		
 		if(collectionInstance.save(flush:true)){
 			
-			parameters.dataElementIds.each{ de ->
-				
+			Set dataElementIds = []
+
+			if(parameters.dataElementIds instanceof String){
+				dataElementIds.add(parameters.dataElementIds)
+			}else{
+				dataElementIds = parameters.dataElementIds
+			}
+			
+			dataElementIds.each{ de ->
+
 				def dataElement = DataElement.get(de)
-				
+
 				def dataElementSchemaInfo = parameters["dataElement_" + de]
 				
 				def schemaSpecification = SchemaSpecification.MANDATORY
@@ -89,25 +97,27 @@ class CollectionService {
 				
 				DataElementCollection.link(dataElement, collectionInstance, schemaSpecification)
 				
-				def collectionBasket = CollectionBasket.get(parameters?.collection_basket_id)
 				
-				collectionBasket.dataElements.clear();
-				collectionBasket.save(flush: true)
 				
 			}
 			
+			def collectionBasket = CollectionBasket.get(parameters?.collection_basket_id)
+			collectionBasket.dataElements.clear();
+			collectionBasket.save(flush: true)
+			
+		
+			// Grant the current user principal administrative permission
+			
+			addPermission collectionInstance, springSecurityService.authentication.name, BasePermission.ADMINISTRATION
+			
+			//Grant admin user administrative permissions
+			
+			addPermission collectionInstance, 'admin', BasePermission.ADMINISTRATION
+			
+			//return the collection to the consumer (the controller)
+			
 		}
-		
-		// Grant the current user principal administrative permission 
-		
-		addPermission collectionInstance, springSecurityService.authentication.name, BasePermission.ADMINISTRATION
-		
-		//Grant admin user administrative permissions
-		
-		addPermission collectionInstance, 'admin', BasePermission.ADMINISTRATION
-		
-		//return the collection to the consumer (the controller)
-		
+
 		collectionInstance 
 		
 		}

@@ -44,7 +44,7 @@ grails.project.dependency.resolution = {
     dependencies {
 
 		test "org.spockframework:spock-grails-support:0.7-groovy-2.0"
-		
+		compile 'com.googlecode.json-simple:json-simple:1.1.1'
 		// specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes e.g.
 
          runtime 'mysql:mysql-connector-java:5.1.22'

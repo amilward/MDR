@@ -18,7 +18,10 @@ class NodeMarshaller {
 			'description': node?.description,
 			'x' : node.x,
 			'y' : node.y,
-			'dataElements' : '['+ node?.GetElementsJSON() + ']'
+			'mandatoryInputs': node?.mandatoryInputs,
+			'mandatoryOutputs': node?.mandatoryOutputs,
+			'optionalInputs': node?.optionalInputs,
+			'optionalOutputs': node?.optionalOutputs
 			]
 		}
 	}

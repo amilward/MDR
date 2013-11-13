@@ -111,7 +111,7 @@ var dataTypeTemplates = [
 					enumerations += "<a data-parent=\"#menu\" data-toggle=\"collapse\" class=\"accordion-toggle\" data-target=\"#enumerations-nav-"+self.iid() +"\">";
 					enumerations += "<i class=\"icon-list-ol icon-large\"></i> Enumerations  [Radio] ";
 					enumerations += "</a>";
-					enumerations += "<ul class=\"collapse\" id=\"enumerations-nav-"+self.iid() +"\">";
+					enumerations += "<ul class=\"collapse\" id=\"enumerations-nav-"+ self.iid() +"\">";
 					$.each(self.options(),function(index, value){
 						enumerations += "<input class=\"pull-left\" type=\"radio\"/><li>"+ value +" ["+index+"]</li>";
 
@@ -189,15 +189,6 @@ var questionPallette = [
                  	              },
                  	              {
                  	            	  id: 8,
-                 	            	  name: "Date / Time Input",
-                 	            	  icon: "icon-calendar",
-                 	            	  type: "question",
-                 	            	  datatype: "datetime",
-                 	            	  properties: [], 
-                 	            	  type: "question"
-                 	              },
-                 	              {
-                 	            	  id: 9,
                  	            	  name: "Time Input",
                  	            	  icon: "icon-time",
                  	            	  type: "question",
@@ -209,7 +200,7 @@ var questionPallette = [
                     {
                  	   name: "Complex Questions",
                  	   elements: [{
-                 	            	  id: 10,
+                 	            	  id: 9,
                  	            	  name: "Radio Select",
                  	            	  icon: "icon-list-ul",
                  	            	  type: "question",
@@ -217,7 +208,7 @@ var questionPallette = [
                  	            	  properties: [], 
                  	            	  type: "question"
                  	              },{
-                 	            	  id: 11,
+                 	            	  id: 10,
                  	            	  name: "Dropdown Select",
                  	            	  icon: "icon-reorder",
                  	            	  type: "question",
@@ -643,10 +634,12 @@ function FormsModel() {
 
 var lastComponentID = 0;
 
+var randomIds = []
+
 
 function createQuestion(element){
 	
-	console.log('creating a question')
+	//console.log('creating a question')
 	//console.log(JSON.stringify(element))
 
 	//console.log(element.datatype)
@@ -662,8 +655,13 @@ function createQuestion(element){
 	var options = element.enumerations;
 	//var options = ['test','asddfsaafds'];
 	var previewRender = dt.previewRender;
-	var dti = new DataTypeInstance('', '', name, dt, renderingOption, restriction, selectMultiple, options, previewRender);
+	//this uses a random is to identify the data type
+	//it checks that there isn't another datatype with teh same random id first
+	var newRandomId = getUniqueId(1,1000)
 	
+	var dti = new DataTypeInstance(newRandomId, '', name, dt, renderingOption, restriction, selectMultiple, options, previewRender);
+	
+
 	if(element.prompt==null){
 		
 		var question = new Question("no question prompt", "no additionalInstructions","", "no label", "", dti, "no defaultValue", "no placeholder", "no unitOfMeasure test", "", "no format", "false", "no enumerations", "");
@@ -1036,4 +1034,29 @@ String.prototype.capitalize = function() {
 }
 
 
-
+/**
+ * Returns a random integer between min and max
+ * Using Math.round() will give you a non-uniform distribution!
+ * checks that the id is unique i.e. not in the randomIds array
+ */
+function getUniqueId (min, max) {
+    
+	var isValid = false;
+	var newRandomId;
+	
+	while(!isValid){
+		
+		newRandomId = Math.floor(Math.random() * (max - min + 1)) + min;
+		
+		if(jQuery.inArray(newRandomId, randomIds)==-1){
+			
+			isValid = true;
+			
+		}
+	}
+	
+	randomIds.push(newRandomId)
+	
+	return newRandomId;
+    
+}

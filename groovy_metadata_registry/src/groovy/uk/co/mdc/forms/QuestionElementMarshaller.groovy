@@ -1,6 +1,7 @@
 package uk.co.mdc.forms
 import java.util.Map;
 import org.codehaus.groovy.grails.web.json.JSONObject
+import groovy.json.StringEscapeUtils
 import grails.converters.JSON
 
 
@@ -22,7 +23,7 @@ class QuestionElementMarshaller {
 			'defaultValue' : questionElement?.inputField?.defaultValue,
 			'placeholder' : questionElement?.inputField?.placeholder,
 			'unitOfMeasure' : questionElement?.inputField?.unitOfMeasure,
-			'maxCharacters' : questionElement?.inputField?.maxCharacters,
+			'maxCharacters' :questionElement?.inputField?.maxCharacters,
 			'format' : questionElement?.inputField?.format,
 			'dataType' : questionElement?.inputField?.dataType?.name,
 			'isEnumerated' : questionElement?.inputField?.dataType?.enumerated ? questionElement?.inputField?.dataType?.enumerated : false,
@@ -46,14 +47,24 @@ class QuestionElementMarshaller {
 			switch(dataType){
 				
 				case "String":
+					return "Text_Field"
+					break;
 				
-				return "Text_Field"
-				break;
+				case "Boolean":
+					return "Boolean_Field"
+					break;
+					
+				case "Date":
+					return "Date_Field"
+					break;
+					
+				case "Time":
+					return "Time_Field"
+					break;
 				
 				default:
-				
-				return "Text_Field"
-				break;
+					return "Text_Field"
+					break;
 				
 			}
 		
