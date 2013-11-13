@@ -16,7 +16,7 @@
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
 			<div id="dataElementList" ></div>
-			<g:javascript library="dataTables"/>
+			<g:javascript library="dataElement"/>
 			<r:script disposition="defer">
 
 			$(function() {

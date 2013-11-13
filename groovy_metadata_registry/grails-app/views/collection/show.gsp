@@ -26,6 +26,9 @@
 			   </g:form>
 		</header>
 		<div class="box">
+			<g:if test="${flash.message}">
+				<div class="message" role="status">${flash.message}</div>
+			</g:if>
 			<table class="table table-hovered">
 				<tbody>
 				<g:if test="${collectionInstance?.refId}">

@@ -108,7 +108,7 @@
 						</td>
 					</tr>
 				</g:if>
-				<g:if test="${dataElementInstance?.synonyms}">
+				<g:if test="${dataElementInstance.synonyms()}">
 					<tr>
 						<td colspan="2"><span id="name-label" class="label">Synonyms</span></td>
 					</tr>

@@ -1,5 +1,6 @@
 package uk.co.mdc.model
 
+import grails.converters.JSON
 import org.springframework.security.access.prepost.PostFilter
 import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.security.acls.domain.BasePermission
@@ -105,8 +106,16 @@ class DataElementService {
 	@PreAuthorize("hasRole('ROLE_USER')")
 	@PostFilter("hasPermission(filterObject, read) or hasPermission(filterObject, admin)")
 	List<DataElement> search(String sSearch) {
-	   def searchResult = DataElement.search(sSearch)
-	   searchResult.results
+	   def searchResults = DataElement.search(sSearch)
+	   
+	   //refresh the objects to get the relational field (otherwise lazy and returns null)
+	   //.......bit of a hack will try and have a play with modifying the 
+	   //searchable plugin code to load the objects with the link classes 
+	   searchResults.results.each { dataElement->
+                dataElement.refresh()
+            }
+
+	   searchResults.results
 	   }
 	
 	
@@ -140,15 +149,18 @@ class DataElementService {
 	   //remove any external references that have specified for removal
 	   unLinkExternalReferences(dataElementInstance, parameters?.externalReferences)
 	   
-	   //add/remove synonyms that have specified for addition or removal
-	   linkSynonyms(dataElementInstance, parameters?.synonyms)
-
 	   dataElementInstance.properties = parameters
+	   
+	   if(dataElementInstance.save(flush: true)){
+		   //add/remove synonyms that have specified for addition or removal
+		   linkSynonyms(dataElementInstance, parameters?.synonyms)
+	   }
 	   
 	   if(dataElementInstance.save(flush: true)){
 		   // add/remove value domains
 		   linkValueDomains(dataElementInstance, parameters?.valueDomains)
 	   }
+	   
 	}
 	
 	
@@ -215,14 +227,14 @@ class DataElementService {
 				//remove any synonyms that aren't this one
 				associatedSynonyms.each{ vd ->
 					if(synonyms!=vd.id.toString()){
-							dataElementInstance.removeFromSynonyms(vd)
+							Synonym.unlink(dataElementInstance, vd)
 					}
 				}
 				
 				//add this one to the data element
 				
-				if(synonym){
-					dataElementInstance.addToSynonyms(synonym)
+				if(synonym){					
+					Synonym.link(dataElementInstance, synonym)
 				}
 				
 			}
@@ -234,7 +246,7 @@ class DataElementService {
 				//remove all the synonyms that aren't in the list
 				associatedSynonyms.each{ vd ->
 					if(!synonyms.contains(vd.id.toString())){
-							dataElementInstance.removeFromSynonyms(vd)
+							Synonym.unlink(dataElementInstance, vd)
 					}
 				}
 				
@@ -243,7 +255,7 @@ class DataElementService {
 				  for (synonymID in synonyms){
 					  DataElement synonym =  DataElement.get(synonymID)
 					  if(synonym){
-							dataElementInstance.addToSynonyms(synonym)
+						  	Synonym.link(dataElementInstance, synonym)
 						}
 				  }
   
@@ -254,7 +266,9 @@ class DataElementService {
 		
 		//remove all the synonyms that aren't this one
 		associatedSynonyms.each{ vd ->
-					dataElementInstance.removeFromSynonyms(vd)
+			
+				Synonym.unlink(dataElementInstance, vd)
+
 		}
 		
 		}

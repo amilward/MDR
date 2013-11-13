@@ -390,11 +390,7 @@
 					</ul>
 					<!-- /ko -->
 				</div>
-                 
-                 
-                 
-                 
-			
+
 				<h4>Questions</h4>
 				<div id="questionAccordion">
 					<!-- ko foreach: palette -->

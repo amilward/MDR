@@ -34,7 +34,7 @@ function render(model, $div){
 
 	$form = theme.finishRenderForm($form);
 	
-	$div.append($form);
+	$div.prepend($form);
 
 	$form.find(':input').on('input', function(){
 		bindfunction();
@@ -91,6 +91,18 @@ function _renderListField(inputField, $div){
 	theme.renderListField(inputField, $div);
 }
 
+function _renderBooleanField(inputField, $div){
+	theme.renderBooleanField(inputField, $div);
+}
+
+function _renderDateField(inputField, $div){
+	theme.renderDateField(inputField, $div);
+}
+
+function _renderTimeField(inputField, $div){
+	theme.renderTimeField(inputField, $div);
+}
+
 function _renderAdditionalTextElement(element, $div){
 	theme.renderAdditionalTextElement(element, $div);
 }
@@ -106,6 +118,16 @@ function _renderFormDesignElement(element, $div){
 	case "List_Field":
 		_renderListField(element, $div);
 		break;
+	case "Boolean_Field":	
+		_renderBooleanField(element, $div);
+		break;
+	case "Date_Field":	
+		_renderDateField(element, $div);
+		break;
+	case "Time_Field":	
+		_renderTimeField(element, $div);
+		break;
+	
 	case "Additional_Text Element":
 		_renderAdditionalTextElement(element, $div);
 		break;
@@ -116,6 +138,9 @@ function _renderFormDesignElement(element, $div){
 	
 	
 }
+
+
+
 
 function renderForm(formDesignId){
 
@@ -133,6 +158,12 @@ function renderForm(formDesignId){
 	
 	jsonDeferred.done(function(){
 		render(form_model, $('#formdiv'));
+		loadTwitterBootstrapRendering()
 	});
 		
+}
+
+function loadTwitterBootstrapRendering(){
+	$('.datepicker').datepicker({});
+	$('.timepicker').timepicker();
 }

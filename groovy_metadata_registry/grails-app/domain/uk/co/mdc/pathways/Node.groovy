@@ -15,9 +15,11 @@ class Node extends PathwayElement{
 		this.y = y
 	}
 	
-
-	
-	static belongsTo = [pathwayElement : PathwayElement]
+	static hasMany = [
+		mandatoryInputs: Collection,
+		mandatoryOutputs: Collection,
+		optionalInputs: Collection,
+		optionalOutputs: Collection]
 
     static constraints = {
 		pathwaysModel nullable:true

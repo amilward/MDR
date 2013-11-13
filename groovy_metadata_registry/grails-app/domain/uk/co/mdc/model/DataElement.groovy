@@ -19,6 +19,10 @@ class DataElement extends ExtensibleObject {
 	
 	DataElementConcept dataElementConcept
 	
+
+	Set synonyms
+	
+	String extension
 	
 	static auditable = true
 	
@@ -26,7 +30,7 @@ class DataElement extends ExtensibleObject {
         content: spellCheck 'include'
     } 
 	
-	static hasMany = [synonyms: DataElementDataElement, subElements: DataElement, dataElementValueDomains: DataElementValueDomain, dataElementCollections: DataElementCollection, externalReferences: ExternalReference]
+	static hasMany = [synonyms: Synonym, subElements: DataElement, dataElementValueDomains: DataElementValueDomain, dataElementCollections: DataElementCollection, externalReferences: ExternalReference]
 	
 	static belongsTo = [parent: DataElement, dataElementConcept: DataElementConcept]
 	
@@ -37,6 +41,7 @@ class DataElement extends ExtensibleObject {
 		definition nullable: true
 		externalIdentifier nullable:true
 		name blank: false
+		extension nullable: true
     }
 	
 	static mapping = {
@@ -75,22 +80,29 @@ class DataElement extends ExtensibleObject {
 	/******************************************************************************************************************/
 	
 	List synonyms() {
-		return synonyms.collect{it.synonym}
-	}
-
-	//add a valueDomain to list of valueDomains
-	
-	List addToSynonyms(DataElement dataElement) {
-		DataElementDataElement.link(this, dataElement)
-		return synonyms()
-	}
-
-	//remove a valueDomain from list of valueDomains
-	
-	List removeFromSynonyms(DataElement dataElement) {
 		
-		DataElementDataElement.unlink(this, dataElement)
-		return synonyms()
+		def synonymsR = []
+		
+		if(synonyms.collect{it.dataElement1Id}[0] == this.id){
+			
+			def synonymIds = synonyms.collect{it.dataElement2Id}
+			
+			synonymIds.each{ synonymId->
+				synonymsR.add(DataElement.get(synonymId))
+			}
+			
+		}else{
+			
+			def synonymIds = synonyms.collect{it.dataElement1Id}
+			
+			synonymIds.each{ synonymId->
+				synonymsR.add(DataElement.get(synonymId))
+			}
+	
+		}
+		
+		return synonymsR
+		
 	}
 	
 	/******************************************************************************************************************/

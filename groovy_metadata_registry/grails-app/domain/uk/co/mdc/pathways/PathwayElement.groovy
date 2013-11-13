@@ -42,10 +42,6 @@ abstract class PathwayElement {
 					  optionalOutputs: Collection]
 
     static constraints = {
-		mandatoryInputs nullable:true
-		mandatoryOutputs nullable:true
-		optionalInputs nullable:true
-		optionalOutputs nullable:true
 		refId unique:true
 		description nullable:true
 		peCollection nullable:true
