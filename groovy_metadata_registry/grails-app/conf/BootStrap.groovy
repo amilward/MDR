@@ -138,6 +138,7 @@ class BootStrap {
 		grantAdminPermissions(FormDesign.list())
 		grantAdminPermissions(QuestionElement.list())
 		grantAdminPermissions(InputField.list())
+		grantAdminPermissions(PathwaysModel.list())
 
 	}
 
@@ -200,6 +201,12 @@ class BootStrap {
 		
 
 		if(!FormDesign.count()){
+			
+			def rule1 = new Rule(
+				name: 'display section rule',
+				predicate: 'question1 > 5',
+				consequence: 'display'
+				).save(failOnError:true)
 
 			def inputField1 = new InputField(
 
@@ -258,9 +265,9 @@ class BootStrap {
 
 			def question1 = new QuestionElement(
 					designOrder: 1,
-					prompt: 'this is the first question',
+					prompt: 'how old are you',
 					style: 'this style1',
-					label: 'is this really a label?',
+					label: 'how old are you?',
 					additionalInstructions: 'more instructions',
 					inputField: inputField1
 					).save(failOnError: true)
@@ -319,11 +326,13 @@ class BootStrap {
 					title: 'section2',
 					designOrder: 2
 					).save(failOnError:true)
-
+					
 			section1.addToQuestionElements(question1)
 			section1.addToQuestionElements(question2)
 			section1.addToQuestionElements(question3)
 
+			
+			section2.addToRules(rule1)
 			section2.addToQuestionElements(question4)
 			section2.addToQuestionElements(question5)
 

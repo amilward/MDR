@@ -40,7 +40,7 @@
 					</tr>
 				</tbody>
 			</table>
-			
+		<g:javascript library="dataType"/>	
 		<r:script disposition="defer">
 		$(document).ready(function() {
 			dataTypeForm();

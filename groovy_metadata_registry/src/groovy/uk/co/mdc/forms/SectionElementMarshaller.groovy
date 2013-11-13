@@ -12,7 +12,8 @@ class SectionElementMarshaller {
 			'renderType' : "Section Element",
 			'label' : sectionElement.title,
 			'sectionNumber': sectionElement?.designOrder,
-			'containedElements' : sectionElement.questionElements
+			'containedElements' : sectionElement.questionElements,
+			'rules': sectionElement?.rules
 			]
 		}
 	}

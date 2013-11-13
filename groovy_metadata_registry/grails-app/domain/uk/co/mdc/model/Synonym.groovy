@@ -24,11 +24,8 @@ class Synonym {
 		
 		}else{
 		
-		println('linking synonyms')
-		
-		
 			s = new Synonym( dataElement1Id: dataElement1.id,
-								 dataElement2Id: dataElement2.id).save()
+							 dataElement2Id: dataElement2.id).save()
 			
 			 
 			dataElement1.addToSynonyms(s)

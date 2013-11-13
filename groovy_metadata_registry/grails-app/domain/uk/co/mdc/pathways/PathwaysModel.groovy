@@ -9,6 +9,10 @@ class PathwaysModel {
 	Boolean isDraft
 	String description
 	
+	static searchable = {
+		content: spellCheck 'include'
+	}
+	
 	static hasMany = [pathwayElements : PathwayElement] 
 
     static constraints = {

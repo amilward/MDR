@@ -64,18 +64,26 @@
 						<td class="right_col_show"><g:link controller="dataElement" action="show" id="${dataElementInstance?.parent?.id}">${dataElementInstance?.parent?.name?.encodeAsHTML()}</g:link></td>
 					</tr>
 				</g:if>
+				
 				<g:if test="${dataElementInstance?.extension}">
+					<tr>
+						<td class="left_col_show"><span id="name-label" class="label"><g:message code="dataElement.extension.label" default="Extension" /></span></td>
+						<td class="right_col_show"><g:fieldValue bean="${dataElementInstance}" field="extension"/></td>
+					</tr>
+				</g:if>
+				
+				<!--<g:if test="\$ {dataElementInstance?.extension}">
 					<tr>
 						<td><h3>Extension detail</h3></td>
 					</tr>
-					<g:each var="ext" in="${dataElementInstance?.extension?.keySet()}">
+					<g:each var="ext" in="\$ {dataElementInstance?.extension?.keySet()}">
  					<tr>
-						<td class="left_col_show"><span id="name-label" class="label">${ext}</span></td>
-						<td class="right_col_show">${dataElementInstance?.extension?.get(ext)}</td>
+						<td class="left_col_show"><span id="name-label" class="label">\$ {ext}</span></td>
+						<td class="right_col_show">\$ {dataElementInstance?.extension?.get(ext)}</td>
 					</tr>  
 					</g:each>
 					
-				</g:if>
+				</g:if>-->
 				<g:if test="${dataElementInstance?.dataElementValueDomains}">
 					<tr>
 							<td colspan="2"><span id="name-label" class="label">Associated Value Domains</span></td>

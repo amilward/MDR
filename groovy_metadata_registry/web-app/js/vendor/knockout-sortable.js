@@ -117,16 +117,27 @@
                         }
                     },
                     receive: function(event, ui) {
+
+                    	//var parent = event.target.$parentContext;
+                    	var context = ko.contextFor($(event.target).parent()[0]);
+                	
+                    	
+                    	
                         dragItem = ko.utils.domData.get(ui.item[0], DRAGKEY);
+
                         if (dragItem) {
                             //copy the model item, if a clone option is provided
                             if (dragItem.clone) {
-                                dragItem = dragItem.clone();
+                            	
+                         
+                                dragItem = dragItem.clone(ko.toJSON(context.$index));
                             }
 
                             //configure a handler to potentially manipulate item before drop
                             if (sortable.dragged) {
+
                                 dragItem = sortable.dragged.call(this, dragItem, event, ui) || dragItem;
+
                             }
                         }
                     },
@@ -148,12 +159,7 @@
                             if(targetParent==null){
                             	targetParent = []
                             }
-                           // console.log(ko.toJSON(parentEl))
-                            //console.log(ko.toJSON(el.parentNode))
-                            //console.log(ko.toJSON(targetParent))
-                            
-                           
-                            
+
                             targetIndex = ko.utils.arrayIndexOf(ui.item.parent().children(), el);
 
                             //take destroyed items into consideration
@@ -177,10 +183,14 @@
                                     targetIndex: targetIndex,
                                     cancelDrop: false
                                 };
+                                
+
                             }
 
                             if (sortable.beforeMove) {
+
                                 sortable.beforeMove.call(this, arg, event, ui);
+                                
                                 if (arg.cancelDrop) {
                                     //call cancel on the correct list
                                     if (arg.sourceParent) {
@@ -197,6 +207,7 @@
 
                             if (targetIndex >= 0) {
                                 if (sourceParent) {
+                                	
                                     sourceParent.remove(item);
 
                                     //if using deferred updates plugin, force updates
@@ -217,6 +228,11 @@
                                 ko.processAllDeferredBindingUpdates();
                             }
 
+                            
+                            if (sortable.dragged) {
+                            	sortable.dragged.call(this, arg, event, ui);
+                            }
+                            
                             //allow binding to accept a function to execute after moving the item
                             if (sortable.afterMove) {
                                 sortable.afterMove.call(this, arg, event, ui);

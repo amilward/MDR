@@ -9,6 +9,7 @@ public class PathwaysModelMarshaller {
 		JSON.registerObjectMarshaller(PathwaysModel) { PathwaysModel pathwayModel ->
 				
 			return [
+			'id' : pathwayModel.id,
 			'refId': pathwayModel?.refId,
 			'name': pathwayModel?.name,
 			'versionNo': pathwayModel?.versionNo,

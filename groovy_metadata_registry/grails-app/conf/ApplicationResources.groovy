@@ -26,6 +26,16 @@ modules = {
 		resource url: "js/model/dataElement/dataElement.js"
 	}
 	
+	valueDomain{
+		dependsOn "dataTables"
+		resource url: "js/model/valueDomain/valueDomain.js"
+	}
+	
+	dataType{
+		dependsOn "dataTables"
+		resource url: "js/model/dataType/dataType.js"
+	}
+	
 	dataElementConcept{
 		dependsOn "dataTables"
 		resource url: "js/model/dataElementConcept/dataElementConcept.js"
@@ -68,6 +78,12 @@ modules = {
 		resource url: "js/pathways/pathway_model.js"
 		resource url: "js/pathways/pathway.js"
 		resource url: "js/pathways/pathwaysLayout.js"
+		
+	}
+	
+	pathwaysList{
+		dependsOn "dataTables"
+		resource url: "js/pathways/pathwaysList.js"
 	}
 
 	dForms{
