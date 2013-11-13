@@ -1,8 +1,9 @@
 package uk.co.mdc.model
 
 import org.codehaus.groovy.grails.web.servlet.mvc.GrailsParameterMap
+import org.json.simple.JSONObject
 
-class DataElement {
+class DataElement extends ExtensibleObject {
 	
 	String refId
 	
@@ -18,6 +19,7 @@ class DataElement {
 	
 	DataElementConcept dataElementConcept
 	
+
 	Set synonyms
 	
 	String extension
@@ -26,7 +28,6 @@ class DataElement {
 	
 	static searchable = {
         content: spellCheck 'include'
-		except: 'extension'
     } 
 	
 	static hasMany = [synonyms: Synonym, subElements: DataElement, dataElementValueDomains: DataElementValueDomain, dataElementCollections: DataElementCollection, externalReferences: ExternalReference]
@@ -46,6 +47,7 @@ class DataElement {
 	static mapping = {
 		description type: 'text'
 		definition type: 'text'
+		extension sqlType: 'binary(5000)'
 		subElements cascade: 'save-update'
 	}
 	
