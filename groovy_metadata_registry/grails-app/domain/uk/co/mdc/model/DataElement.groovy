@@ -3,7 +3,7 @@ package uk.co.mdc.model
 import org.codehaus.groovy.grails.web.servlet.mvc.GrailsParameterMap
 import org.json.simple.JSONObject
 
-class DataElement {
+class DataElement extends ExtensibleObject {
 	
 	String refId
 	
@@ -19,7 +19,6 @@ class DataElement {
 	
 	DataElementConcept dataElementConcept
 	
-	JSONObject extension
 	
 	static auditable = true
 	
