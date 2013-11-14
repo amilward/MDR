@@ -25,6 +25,7 @@ class DataElement extends ExtensibleObject {
 	
 	static searchable = {
         content: spellCheck 'include'
+		except = ["extension"]
     } 
 	
 	static hasMany = [synonyms: Synonym, subElements: DataElement, dataElementValueDomains: DataElementValueDomain, dataElementCollections: DataElementCollection, externalReferences: ExternalReference]
