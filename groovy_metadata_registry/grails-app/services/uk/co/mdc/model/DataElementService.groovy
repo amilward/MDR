@@ -23,6 +23,7 @@ class DataElementService {
 	def aclService
 	def aclUtilService
 	def springSecurityService
+	def searchableService
 	
 	
 	/* **************************** ADD PERMISSIONS *****************************************
@@ -106,6 +107,7 @@ class DataElementService {
 	@PreAuthorize("hasRole('ROLE_USER')")
 	@PostFilter("hasPermission(filterObject, read) or hasPermission(filterObject, admin)")
 	List<DataElement> search(String sSearch) {
+		//searchableService.reindexAll()
 	   def searchResults = DataElement.search(sSearch)
 	   
 	   //refresh the objects to get the relational field (otherwise lazy and returns null)
