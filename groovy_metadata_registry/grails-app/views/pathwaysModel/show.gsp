@@ -22,10 +22,10 @@
 
 	<div class="box">
 		<div id="container">
-		
-		<div class="ui-layout-center" id="center-panel">
+
+			<div class="ui-layout-center" id="center-panel">
 				<div id="model-panel" class="ui-layout-center large-rounded">
-				
+
 
 
 
@@ -40,33 +40,33 @@
 					</div>
 
 				</div>
-				</div>
-				<div id="properties-panel" class="ui-layout-east large-rounded">
-					<div id="sidebar">
-						<div id="explanation">
-							<h4>STATE MACHINE</h4>
-							<p>Nodes are connected with the StateMachine connector.</p>
-							<p>Endpoints are located with 'Continuous' anchors, which are
-								anchors whose location is calculated based on the location of
-								all other connected elements, and which guarantee a unique
-								endpoint per connection.</p>
-							<p>Click and drag new Connections from the orange div in each
-								element; the main elements in the UI are configured to be
-								Connection targets. You can drag from one of these divs onto its
-								parent element to create a 'loopback' connection. Each element
-								supports up to 5 Connections.</p>
-							<p>Click on a Connection to delete it.</p>
+			</div>
+			<div id="properties-panel" class="ui-layout-east large-rounded">
+				<div id="sidebar">
+					<div id="explanation">
+						<h4>STATE MACHINE</h4>
+						<p>Nodes are connected with the StateMachine connector.</p>
+						<p>Endpoints are located with 'Continuous' anchors, which are
+							anchors whose location is calculated based on the location of all
+							other connected elements, and which guarantee a unique endpoint
+							per connection.</p>
+						<p>Click and drag new Connections from the orange div in each
+							element; the main elements in the UI are configured to be
+							Connection targets. You can drag from one of these divs onto its
+							parent element to create a 'loopback' connection. Each element
+							supports up to 5 Connections.</p>
+						<p>Click on a Connection to delete it.</p>
 
-							<p>This demonstration uses jsPlumb 1.5.2, jQuery 1.9.0 and
-								jQuery UI 1.9.2. For touch support, jQuery Touch Punch is used.</p>
-						</div>
+						<p>This demonstration uses jsPlumb 1.5.2, jQuery 1.9.0 and
+							jQuery UI 1.9.2. For touch support, jQuery Touch Punch is used.</p>
 					</div>
-
-
 				</div>
+
+
 			</div>
 		</div>
-		
+	</div>
+
 	<g:javascript disposition="defer" library="pathways" />
 	<r:script disposition="defer">
 		getPathway(${pathwaysModelInstance?.id});
