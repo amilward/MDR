@@ -3,8 +3,8 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta name="layout" content="pathways">
-		<g:set var="entityName" value="${message(code: 'pathwaysModel.label', default: 'PathwaysModel')}" />
+<meta name="layout" content="pathways">
+<g:set var="entityName" value="${message(code: 'pathwaysModel.label', default: 'PathwaysModel')}" />
 		<title><g:message code="default.list.label" args="[entityName]" /></title>
 		<parameter name="name" value="Pathways" />
 	</head>
