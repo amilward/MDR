@@ -108,6 +108,7 @@
                                 <!-- .nav -->
                                 <ul class="nav">
                                     <li class="active"><a href="index.html">Dashboard</a></li>
+                                    
                                     <li class="dropdown">
                                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                             Profile <b class="caret"></b>
@@ -119,6 +120,16 @@
                                         </ul>
                                     </li>
                                     <sec:ifLoggedIn>
+                                    
+                                    <li class ="dropdown">
+                                      <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                        Pathways <b class="caret"></b>
+                                      </a>
+                                      <ul class="dropdown-menu">
+                                        <li><g:link action="list" controller="PathwaysModel"><i class="icon-angle-right"></i> List pathways</g:link></li>
+                                        <li><g:link action="create" controller="PathwaysModel"><i class="icon-angle-right"></i> Create pathway</g:link></li>
+                                      </ul>
+                                    </li>
                                     
 	                                    <sec:ifAnyGranted roles="ROLE_ADMIN">
 	                                    

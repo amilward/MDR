@@ -183,7 +183,8 @@ body.padTop44 {
 }
 /* END #left div */
 /* BEGIN main content */
-#content {
+
+#content{
   margin-left: 220px;
   margin-right: 0;
   -webkit-transition: margin-left 0.4s;
@@ -191,6 +192,10 @@ body.padTop44 {
   -o-transition: margin-left 0.4s;
   transition: margin-left 0.4s;
   width: auto;
+}
+
+#content.content-pathways{
+	 margin-left: 0;
 }
 #content .main {
   padding: 10px;
