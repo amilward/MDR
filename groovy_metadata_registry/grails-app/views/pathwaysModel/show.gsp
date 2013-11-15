@@ -23,6 +23,17 @@
 	<div class="box">
 		<div id="container">
 
+			<div class="ui-layout-west">
+        <div id="properties-panel" class="large-rounded">
+          <h4>Add items</h4>
+          <button>Add node</button>
+        </div>
+        <div id="properties-panel" class=" large-rounded">
+          <h4>Tree view</h4>
+          <p>To be populated with James' tree viewer</p>
+        </div>
+      </div>
+
 			<div class="ui-layout-center" id="center-panel">
 				<div id="model-panel" class="ui-layout-center large-rounded">
 
@@ -44,6 +55,8 @@
 			<div id="properties-panel" class="ui-layout-east large-rounded">
 				<div id="sidebar">
 					<div id="explanation">
+						<h4>Properties</h4>
+						<p>Properties of the selected node go here</p>
 						<h4>STATE MACHINE</h4>
 						<p>Nodes are connected with the StateMachine connector.</p>
 						<p>Endpoints are located with 'Continuous' anchors, which are
