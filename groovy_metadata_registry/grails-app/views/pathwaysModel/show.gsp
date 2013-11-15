@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="layout" content="main">
+<meta name="layout" content="pathways">
 <g:set var="entityName"
 	value="${message(code: 'pathwaysModel.label', default: 'PathwaysModel')}" />
 <title><g:message code="default.show.label" args="[entityName]" /></title>
@@ -19,22 +19,7 @@
 	href="${resource(dir: 'css', file: 'custom.css')}" type="text/css">
 </head>
 <body>
-	<header>
-		<g:form id="deleteForm"
-			url="[action:'delete',controller:'formDesign']">
-			<g:hiddenField name="id" value="" />
-			<div class="navbar">
-				<div class="navbar-inner">
-					<ul class="nav">
-						<li class="active"><a class="brand" href="#"><i
-								class="icon-edit"></i> Pathways</a></li>
-						<li><a href="#"
-							onclick="saveForm('${pathwaysInstance?.id}')">Save</a></li>
-					</ul>
-				</div>
-			</div>
-		</g:form>
-	</header>
+
 	<div class="box">
 		<div id="container">
 		
