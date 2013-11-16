@@ -1,37 +1,145 @@
-function openPathways(pathway_model){
-		mainDiv = $('#main');
-		$.each(pathway_model.pathwaysModelInstance.nodes, function(index, node) {
 
+function getPathway(pathwayId){
+	/*$.getJSON('../jsonPathways/' + pathwayId, function(data) {
+		alert("Call openPathways");
+		 console.log(data) 
+		openPathways(data);
+		 alert("openPathways completed");
+	})*/
+	
+	var pathway_model = {
+		
+		nodes: [{
+			id: "pwNode1",
+			name : 'Assessed for Eligibility',
+			shortDescription: 'At this stage, the patient is assessed for their eligibility for the trial.  This description might include how the assessment takes place, perhaps including links to the eligibility criteria.',
+			x : 5,
+			y : 0,
+			dataElements : [{
+				id : 'Data_Element_1',
+				description : 'Name in Klingon'
+			},{
+				id : 'Data_Element_7',
+				description : 'Age of best friend'
+			}]
+		},
+		{
+			id: "pwNode2",
+			name : 'Randomized',
+			shortDescription: 'Here the participant is randomized.  The randomization protocol could be accessed via a link here.',
+			x : 15,
+			y : 10,
+			dataElements : [{
+				id : 'Data_Element_10',
+				description : 'How loud can you shout?'
+			},{
+				id : 'Data_Element_11',
+				description : 'Peak tear flow'
+			},{
+				id : 'Data_Element_19',
+				description : 'Can you stand on your head?'
+			}]
+		},
+		{
+			id: "pwNode3",
+			name : 'Allocated to Intervention 1',
+			shortDescription: 'At this point in the trial, the patient is allocated to a particular intervention.  Description of the first intervention goes here.',
+			x : 25,
+			y : 20,
+			dataElements : [{
+				id : 'Data_Element_4',
+				description : 'Date of Birth'
+			},{
+				id : 'Data_Element_9',
+				description : 'Date of first Admission'
+			},{
+				id : 'Data_Element_23',
+				description : 'Referring Clinician'
+			},{
+				id : 'Data_Element_23',
+				description : 'No. of visits'
+			}]
+		},
+		{
+			id: "pwNode4",
+			name : 'Allocated to Intervention 2',
+			shortDescription: 'At this point in the trial, the patient is allocated to a particular intervention.  Description of the second intervention goes here.',
+			x : 43,
+			y : 20,
+			dataElements : [{
+				id : 'Data_Element_15',
+				description : 'Size of left foot'
+			},{
+				id : 'Data_Element_19',
+				description : 'How high can you jump?'
+			},{
+				id : 'Data_Element_25',
+				description : 'Largest Ear'
+			}]
+			
+		}],
+		
+		links: [{
+			source:{"class":"PathwaysNode","id":1},
+			target:{"class":"PathwaysNode","id":2},
+			label: "Randomization"
+		},
+		{
+			source:{"class":"PathwaysNode","id":2},
+			target:{"class":"PathwaysNode","id":3},
+			label: "Allocated to Phase A"
+		},
+		{
+			source:{"class":"PathwaysNode","id":2},
+			target:{"class":"PathwaysNode","id":4},
+			label: "Allocated to Phase B"
+		}]	
+
+	};
+	
+	openPathways(pathway_model);
+	
+}
+
+function initPathways(){
+	pwnodes = []; 
+	descisionpoints = [];
+	mainDiv = $('#main');
+}
+
+function openPathways(pathway_model){	
+		mainDiv = $('#main');
+		pwnodes = []; 
+		descisionpoints = [];
+		$.each(pathway_model.nodes, function(index, node) {
+			  
 			$newNode = $('<div/>', {
 			    id: node.id,
-			    class: 'node',
+			    class: 'pwNode',
 			    rel: 'popover',
 			    'data-trigger' : 'click',
 			    'data-content' : node.description,
 			    'data-original-title' : node.name
 			});
-			/*$newNode.append("<p>" + node.name + "</p>") */
 			$newNode.text(node.name);
 			$newNode.append("<div class=\"ep icon-chevron-sign-right right\"></div>");
 			$newNode.append("<div class=\"ep icon-chevron-sign-left left\"></div>");
 			$newNode.append("<div class=\"ep icon-chevron-sign-up up\"></div>");
 			$newNode.append("<div class=\"ep icon-chevron-sign-down down\"></div>");
-			mainDiv.append($newNode)
+			mainDiv.append($newNode);
+
 			$newNode.animate({
 				left : node.x + "em",
 				top : node.y + "em"
 			}, 1000);
-			
-			//bindNode($newNode);
 			$newNode.hover(function(){
 				$(this).find('.ep').show();
 			}, function(){
 				$(this).find('.ep').hide();
 			});
-			
-			//$newNode.popover();
+
 			$newNode.click(function(){
-				$sidebar = $('#sidebar');
+				$sidebar = $('#right-panel');
 				$sidebar.html('');
 				$sidebar.append($('<h3>' + node.name + '</h3>'));
 				$sidebar.append($('<p>' + node.description + '</p>'));
@@ -40,23 +148,19 @@ function openPathways(pathway_model){
 				$table = $('<table/>', {
 					class: 'table table-striped table-bordered'
 				});
-
-				var dataElements = $.parseJSON(node.dataElements)
-				
-					$.each(dataElements, function(index, de){
-						$tr = $('<tr/>');
-						$tr.append("<td>" + de.id + "</td>");
-						$tr.append("<td>" + de.description + "</td>");
-						$table.append($tr);
-					});
-					$sidebar.append($table);
+				$.each(node.dataElements, function(index, de){
+					$tr = $('<tr/>');
+					$tr.append("<td>" + de.id + "</td>");
+					$tr.append("<td>" + de.description + "</td>");
+					$table.append($tr);
+				});
+				$sidebar.append($table);
 			});	
-			
+
 			$newNode.contextmenu(function(e){
 				e.preventDefault();
-				alert("Something!");
 			});
-
+			pwnodes.push($newNode);
 		});
 
 		jsPlumb.ready(function() {
@@ -77,31 +181,13 @@ function openPathways(pathway_model){
 					id : "arrow",
 					length : 14,
 					foldback : 0.8
-				} ],/* [ "Label", {
-					label : "FOO",
-					id : "label",
-					cssClass : "aLabel"
-				} ] */]
+				} ],]
 			});
 
-			var nodes = $(".node");
-
+			var nodes = $(".pwNode");
 			// initialise draggable elements.  
 			jsPlumb.draggable(nodes);
 
-			// bind a click listener to each connection; the connection is deleted. you could of course
-			// just do this: jsPlumb.bind("click", jsPlumb.detach), but I wanted to make it clear what was
-			// happening.
-			/*jsPlumb.bind("click", function(c) {
-				jsPlumb.detach(c);
-			}); */
-
-			// make each ".ep" div a source and give it some parameters to work with.  here we tell it
-			// to use a Continuous anchor and the StateMachine connectors, and also we give it the
-			// connector's paint style.  note that in this demo the strokeStyle is dynamically generated,
-			// which prevents us from just setting a jsPlumb.Defaults.PaintStyle.  but that is what i
-			// would recommend you do. Note also here that we use the 'filter' option to tell jsPlumb
-			// which parts of the element should actually respond to a drag start.
 			jsPlumb.makeSource(nodes, {
 				filter : ".ep", // only supported by jquery
 				anchor : "Continuous",
@@ -121,16 +207,6 @@ function openPathways(pathway_model){
 				}
 			});
 
-			// bind a connection listener. note that the parameter passed to this function contains more than
-			// just the new connection - see the documentation for a full list of what is included in 'info'.
-			// this listener sets the connection's internal
-			// id as the label overlay's text.
-			/*jsPlumb.bind("connection", function(info) {
-				info.connection.getOverlay("label")
-						.setLabel(info.connection.id);
-			});*/
-
-			// initialise all '.w' elements as connection targets.
 			jsPlumb.makeTarget(nodes, {
 				dropOptions : {
 					hoverClass : "dragHover"
@@ -138,24 +214,26 @@ function openPathways(pathway_model){
 				anchor : "Continuous"
 			});
 
-			// and finally, make a couple of connections
-			
 			$("div").promise().done(function() {
-				$.each(pathway_model.pathwaysModelInstance.links, function(index, link) {
-					jsPlumb.connect({
-						source : link.source,
-						target : link.target,
+				 $.each(pathway_model.links, function(index, link) {
+				 	
+				 	var src = "pwNode" + link.source.id.toString();
+				 	var tgt = "pwNode" + link.target.id.toString();
+ 
+				 	
+					 jsPlumb.connect({
+						source : src,
+						target : tgt,
 						overlays : [ [ "Label", {
 							label : link.label,
 							id : "label",
 							cssClass : "aLabel"
-						} ] ],
-					});
-					
-					
-				});
+						} ] ]
+					}); 
+				}); 
 				// allow refresh again
 				jsPlumb.setSuspendDrawing(false, true);
+
 				// Now we add the default label again
 				jsPlumb.importDefaults({
 					ConnectionOverlays : [ [ "Arrow", {
@@ -169,7 +247,7 @@ function openPathways(pathway_model){
 						cssClass : "aLabel"
 					} ]  ]
 				});
-				$.fn.editable.defaults.mode = 'inline';
+
 				jsPlumb.bind("connection", function(info) {
 					   var label = $.grep(info.connection.getOverlays(), function(overlay){
 						   return overlay.type == "Label";
@@ -182,13 +260,234 @@ function openPathways(pathway_model){
 							showbuttons : false
 					   }).editable('toggle'); 
 					   
-					});
+				});
 			});
-		});
+		});		
+	}
 		
-		}	
 function bindNode(n){
 
+}	
 
-}		
+function addProcessPoint(){
+
+   var nname = prompt("Enter a name", "Start Process X");
+
+   var ndescription = prompt("Please give a short description of the process", " ... process");
+   var did = descisionpoints.length + 1;
+   var id = "processpoint" + did.toString();
+
+   var d  = $('<div/>', {
+			    id:  id,
+			    class: 'processpoint',
+			    rel: 'popover',
+			    'data-trigger' : 'click',
+			    'data-content' : ndescription,
+			    'data-original-title' : nname
+			});
+
+	d.text(nname);
+	d.append("<div class=\"ep icon-chevron-sign-right right\"></div>");
+	d.append("<div class=\"ep icon-chevron-sign-left left\"></div>");
+	d.append("<div class=\"ep icon-chevron-sign-up up\"></div>");
+	d.append("<div class=\"ep icon-chevron-sign-down down\"></div>");
+	mainDiv.append(d);	
+	var w = screen.width - 162, h = screen.height - 162;
+	var x = (0.2 * w) + Math.floor(Math.random()*(0.5 * w));
+	var y = (0.2 * h) + Math.floor(Math.random()*(0.6 * h));
+
+	 initHover(id);
+	 pwnodes.push(d);
+	 jsPlumb.draggable(d);
+	jsPlumb.makeSource(d, {
+		filter : ".ep", // only supported by jquery
+		anchor : "Continuous",
+		connector : [ "StateMachine", {curviness : 20} ],
+		connectorStyle : {
+					strokeStyle : "#5c96bc",
+					lineWidth : 2,
+					outlineColor : "transparent",
+					outlineWidth : 4
+		},
+		maxConnections : 5,
+		onMaxConnections : function(info, e) {
+					alert("Maximum connections (" + info.maxConnections
+							+ ") reached");
+		}
+	});
+				
+	 jsPlumb.makeTarget(d, {
+				dropOptions : {
+					hoverClass : "dragHover"
+				},
+				anchor : "Continuous"
+			}); 
+
+}	
+
+function addDecisionPoint(){
+	
+   var nname = prompt("Enter a name", "Start Chemo");
+   var ndescription = prompt("Please give a short description of the decision", "Decide if Chemo should start - if so start the Chemo process");
+   var did = descisionpoints.length + 1;
+   var id = "decisionpoint" + did.toString();
+   var d  = $('<div/>', {
+			    id:  id,
+			    class: 'decisionpoint',
+			    rel: 'popover',
+			    'data-trigger' : 'click',
+			    'data-content' : ndescription,
+			    'data-original-title' : nname
+			});
+
+	d.text(nname);
+	d.append("<div class=\"ep icon-chevron-sign-right right\"></div>");
+	d.append("<div class=\"ep icon-chevron-sign-left left\"></div>");
+	d.append("<div class=\"ep icon-chevron-sign-up up\"></div>");
+	d.append("<div class=\"ep icon-chevron-sign-down down\"></div>");
+	mainDiv.append(d);	
+	var w = screen.width - 162, h = screen.height - 162;
+	var x = (0.2 * w) + Math.floor(Math.random()*(0.5 * w));
+	var y = (0.2 * h) + Math.floor(Math.random()*(0.6 * h));
+
+	 initHover(id);
+	 pwnodes.push(d);
+
+	 jsPlumb.draggable(d);
+	 jsPlumb.makeSource(d, {
+		filter : ".ep", // only supported by jquery
+		anchor : "Continuous",
+		connector : [ "StateMachine", {curviness : 20} ],
+		connectorStyle : {
+					strokeStyle : "#5c96bc",
+					lineWidth : 2,
+					outlineColor : "transparent",
+					outlineWidth : 4
+		},
+		maxConnections : 5,
+		onMaxConnections : function(info, e) {
+					alert("Maximum connections (" + info.maxConnections
+							+ ") reached");
+		}
+	});
+	
+ 
+	
+    //alert("Alert 5"   );				
+	 jsPlumb.makeTarget(d, {
+				dropOptions : {
+					hoverClass : "dragHover"
+				},
+				anchor : "Continuous"
+			}); 
+			
+	
+}	
+
+function addNode(){
+
+   var nname = prompt("Enter a name", "Surgery");
+   var ndescription = prompt("Please give a short description of the process", "Take an implement and start cutting");
+   var nid = pwnodes.length + 1;
+   var id = "pwNode" + nid.toString();
+   var d  = $('<div/>', {
+			    id:  id,
+			    class: 'pwNode',
+			    rel: 'popover',
+			    'data-trigger' : 'click',
+			    'data-content' : ndescription,
+			    'data-original-title' : nname
+			});
+			
+	d.text(nname);
+	d.append("<div class=\"ep icon-chevron-sign-right right\"></div>");
+	d.append("<div class=\"ep icon-chevron-sign-left left\"></div>");
+	d.append("<div class=\"ep icon-chevron-sign-up up\"></div>");
+	d.append("<div class=\"ep icon-chevron-sign-down down\"></div>");
+	mainDiv.append(d);		
+	//var id = 
+	//alert ("Add Node 2 #" + id);
+	var w = screen.width - 162, h = screen.height - 162;
+	var x = (0.2 * w) + Math.floor(Math.random()*(0.5 * w));
+	var y = (0.2 * h) + Math.floor(Math.random()*(0.6 * h));
+
+	//Prepare
+	 initHover(id);
+	 pwnodes.push(d);
+
+	 jsPlumb.draggable(d);
+	jsPlumb.makeSource(d, {
+		filter : ".ep", // only supported by jquery
+		anchor : "Continuous",
+		connector : [ "StateMachine", {curviness : 20} ],
+		connectorStyle : {
+					strokeStyle : "#5c96bc",
+					lineWidth : 2,
+					outlineColor : "transparent",
+					outlineWidth : 4
+		},
+		maxConnections : 5,
+		onMaxConnections : function(info, e) {
+					alert("Maximum connections (" + info.maxConnections
+							+ ") reached");
+		}
+	});
+	
+			
+	 jsPlumb.makeTarget(d, {
+				dropOptions : {
+					hoverClass : "dragHover"
+				},
+				anchor : "Continuous"
+			}); 
+			
+	d.click(function(){
 		
+		      // alert("ChangeSidebar1");
+				$sidebar = $('#rhsidebar');
+				$sidebar.html('');
+				$sidebar.append($('<h3>new node</h3>'));
+				$sidebar.append($('<p>new node description not available</p>'));
+				$sidebar.append($('<h4>Data Elements</h4>'));
+				$sidebar.append($('<p>Below is a list of data elements collected at this stage in the pathway.</p>'));
+				$table = $('<table/>', {
+					class: 'table table-striped table-bordered'
+				});				 
+				$sidebar.append($table);
+			});	
+
+}
+
+
+ 
+function initHover(elId){
+ 
+	 $("#" + elId).hover(function(){
+				$(this).find('.ep').show();
+			}, function(){
+				$(this).find('.ep').hide();
+			});
+}
+	
+function initAnimation(elId) {
+	$("#" + elId).bind('click', function(e, ui) {
+				if ($(this).hasClass("jsPlumb_dragged")) {
+					$(this).removeClass("jsPlumb_dragged");
+					return;
+				}
+				var o = $(this).offset(),
+				w = $(this).outerWidth(),
+				h = $(this).outerHeight(),
+				c = [o.left + (w/2) - e.pageX, o.top + (h/2) - e.pageY],
+				oo = [c[0] / w, c[1] / h],
+				l = oo[0] < 0 ? '+=' : '-=', t = oo[1] < 0 ? "+=" : '-=',
+				DIST = 450,
+				l = l + Math.abs(oo[0] * DIST);
+	
+				t = t + Math.abs(oo[1] * DIST);
+				// notice the easing here.  you can pass any args into this animate call; they
+				// are passed through to jquery as-is by jsPlumb.
+				var id = $(this).attr("id");
+				jsPlumb.animate(id, {left:l, top:t}, { duration:1400, easing:'easeOutBack' });
+	});
+}

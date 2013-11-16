@@ -17,6 +17,7 @@
 	href="${resource(dir: 'css', file: 'layout.css')}" type="text/css">
 <link rel="stylesheet"
 	href="${resource(dir: 'css', file: 'custom.css')}" type="text/css">
+	
 </head>
 <body>
 	<header>
@@ -28,8 +29,10 @@
 					<ul class="nav">
 						<li class="active"><a class="brand" href="#"><i
 								class="icon-edit"></i> Pathways</a></li>
-						<li><a href="#"
-							onclick="saveForm('${pathwaysInstance?.id}')">Save</a></li>
+						<li><a href="#" onclick="saveForm('${pathwaysInstance?.id}')">Save</a></li>
+						<li><a href="#" onclick="addNode()">Add Node</a></li>
+
+
 					</ul>
 				</div>
 			</div>
@@ -37,55 +40,93 @@
 	</header>
 	<div class="box">
 		<div id="container">
-		
-		<div class="ui-layout-center" id="center-panel">
+
+			<div class="ui-layout-west large-rounded" id="tree-panel">
+				<div class="panel panel-default">
+	                <div class="panel-heading">Tree View</div>
+	                <div class="panel-body">
+	                    {Tree View}
+	                </div>
+	            </div>
+			</div>
+			
+
+			<div class="ui-layout-center" id="center-panel">
 				<div id="model-panel" class="ui-layout-center large-rounded">
-				
-
-
 
 					<div id="main" class="graph-paper">
 						<div id="render"></div>
-						<!-- 			<div class="node" id="opened">BEGIN<div class="ep"></div></div>
-			<div class="node" id="phone1">PHONE INTERVIEW 1<div class="ep"></div></div>
-			<div class="node" id="phone2">PHONE INTERVIEW 2<div class="ep"></div></div>
-			<div class="node" id="inperson">IN PERSON<div class="ep"></div></div>
-			<div class="node" id="rejected">REJECTED<div class="ep"></div></div>
-			 -->
 					</div>
-
-				</div>
-				</div>
-				<div id="properties-panel" class="ui-layout-east large-rounded">
-					<div id="sidebar">
-						<div id="explanation">
-							<h4>STATE MACHINE</h4>
-							<p>Nodes are connected with the StateMachine connector.</p>
-							<p>Endpoints are located with 'Continuous' anchors, which are
-								anchors whose location is calculated based on the location of
-								all other connected elements, and which guarantee a unique
-								endpoint per connection.</p>
-							<p>Click and drag new Connections from the orange div in each
-								element; the main elements in the UI are configured to be
-								Connection targets. You can drag from one of these divs onto its
-								parent element to create a 'loopback' connection. Each element
-								supports up to 5 Connections.</p>
-							<p>Click on a Connection to delete it.</p>
-
-							<p>This demonstration uses jsPlumb 1.5.2, jQuery 1.9.0 and
-								jQuery UI 1.9.2. For touch support, jQuery Touch Punch is used.</p>
-						</div>
-					</div>
-
 
 				</div>
 			</div>
+
+			<div id="properties-panel" class="ui-layout-east large-rounded"
+				data-bind="with: selectedNode">
+				<div class="panel panel-default">
+					<div class="panel-heading">Properties</div>
+					<div class="panel-body">
+						<form class="form" role="form">
+							<div class="form-group">
+								<label for="txt-name" class="control-label">Name: </label> <input
+									id="txt-name" type="text" class="form-control"
+									data-bind="value: name, valueUpdate: 'input'" />
+							</div>
+							<div class="form-group">
+								<label for="txt-desc" class="control-label">Description:
+								</label>
+								<textarea id="txt-desc" rows="3" class="form-control"
+									data-bind="value: description, valueUpdate: 'input'"></textarea>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
 		</div>
-		
+	</div>
+
+
+	<!-- Modal -->
+	<div class="fade" id="CreatePathwayModal" tabindex="-1"
+		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>-->
+					<h4 class="modal-title" id="myModalLabel">Create Pathway</h4>
+				</div>
+				<div class="modal-body">
+					<form class="form" role="form" data-bind="with: pathwayModel">
+						<div class="form-group">
+							<label for="txt-name" class="control-label">Name: </label> <input
+								id="txt-name" type="text" class="form-control"
+								data-bind="value: name, valueUpdate: 'input'" />
+						</div>
+						<div class="form-group">
+							<label for="txt-desc" class="control-label">Description:
+							</label>
+							<textarea id="txt-desc" rows="3" class="form-control"
+								data-bind="value: description, valueUpdate: 'input'"></textarea>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary"
+						data-bind="click: createPathway">Create</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
+
+
 	<g:javascript disposition="defer" library="pathways" />
 	<r:script disposition="defer">
-		getPathway(${pathwaysModelInstance?.id});
+		initPathways();
 	</r:script>
+
 </body>
 </html>
 
