@@ -78,6 +78,7 @@ modules = {
 		resource url: "js/pathways/pathway_model.js"
 		resource url: "js/pathways/pathway.js"
 		resource url: "js/pathways/pathwaysLayout.js"
+		resource url: "js/pathways/pathwayAjaxFunctions.js"
 		
 	}
 	

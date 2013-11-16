@@ -150,3 +150,148 @@ background-image: linear-gradient(#def 2px, transparent 2px),
                  #269;
                  
 }
+
+
+/** COMMON ELEMENT PROPERTIES **/
+.shape {
+    z-index:2;
+    opacity:0.7;
+    filter:alpha(opacity=70);
+    position:absolute;
+    cursor:pointer;
+    text-align:center;
+    color:#333;
+}
+.decisionpoint{
+	z-index:2;
+    opacity:0.7;
+    filter:alpha(opacity=70);
+    position:absolute;
+    cursor:pointer;
+    text-align:center;
+    color:#333;
+    width:150px;
+    height:150px;
+    left:150px;
+    top:150px;
+    line-height: 150px;
+    background-image:url(diamond.png);
+}
+.processpoint{
+	z-index:2;
+    opacity:0.7;
+    filter:alpha(opacity=70);
+    position:absolute;
+    cursor:pointer;
+    text-align:center;
+    color:#333;
+    width:210px;
+    height:70px;
+    background-image:url(ellipse.png);
+}
+ 
+.pwNode {
+/*	width: 5em; */
+	padding: 2em;
+	position: absolute;
+	z-index: 4;
+	border-radius: 1em;
+	border: 1px solid #2e6f9a;
+	box-shadow: 2px 2px 19px #e0e0e0;
+	-o-box-shadow: 2px 2px 19px #e0e0e0;
+	-webkit-box-shadow: 2px 2px 19px #e0e0e0;
+	-moz-box-shadow: 2px 2px 19px #e0e0e0;
+	-moz-border-radius: 0.5em;
+	border-radius: 0.5em;
+	opacity: 0.8;
+	filter: alpha(opacity =   80);
+	cursor: move;
+	background-color: white;
+	font-size: 11px;
+	-webkit-transition: background-color 0.25s ease-in;
+	-moz-transition: background-color 0.25s ease-in;
+	transition: background-color 0.25s ease-in;
+	/*background-image:url(rectangle.png);*/
+}
+
+.pwNode:hover {
+	background-color: #5c96bc;
+	color: white;
+	border:2px solid orange; 
+}
+
+.dropHover { 
+	border:1px solid orange; 
+}
+
+
+.aLabel {
+	-webkit-transition: background-color 0.25s ease-in;
+	-moz-transition: background-color 0.25s ease-in;
+	transition: background-color 0.25s ease-in;
+}
+
+.aLabel._jsPlumb_hover,._jsPlumb_source_hover,._jsPlumb_target_hover {
+	background-color: #1e8151;
+	color: white;
+}
+
+.aLabel {
+	background-color: white;
+	opacity: 0.8;
+	padding: 0.3em;
+	border-radius: 0.5em;
+	border: 1px solid #346789;
+	cursor: pointer;
+}
+
+.ep {
+	display: none;
+	position: absolute;
+	width: 1em;
+	height: 1em;
+	background-color: green;
+	cursor: pointer;
+	font-size: 125%;
+	/* box-shadow: 0px 0px 2px black;
+	-webkit-transition: -webkit-box-shadow 0.25s ease-in;
+	-moz-transition: -moz-box-shadow 0.25s ease-in;
+	transition: box-shadow 0.25s ease-in; */
+}
+
+.right {
+	bottom: 37%;
+	right: 0;
+	
+}
+.left {
+	bottom: 37%;
+	left: 0;
+	
+}
+.up {
+	top: 0;
+	right: 47%;
+	
+}
+.down {
+	bottom: 0%;
+	right: 46%;
+	
+}
+
+/*.ep:hover {
+	box-shadow: 0px 0px 6px black;
+}*/
+
+._jsPlumb_endpoint {
+	z-index: 3;
+}
+
+.dragHover {
+	border: 2px solid orange;
+}
+
+path {
+	cursor: pointer;
+}
