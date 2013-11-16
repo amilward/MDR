@@ -1,5 +1,7 @@
 package uk.co.mdc.pathways
 
+import grails.converters.JSON
+import org.json.simple.JSONObject
 import org.springframework.dao.DataIntegrityViolationException
 
 class NodeController {
@@ -40,6 +42,60 @@ class NodeController {
 
         [nodeInstance: nodeInstance]
     }
+	
+	
+	
+	def getNodeJSON(Long id){
+		
+		def nodeInstance = Node.get(id)
+		if (!nodeInstance) {
+			flash.message = message(code: 'default.not.found.message', args: [message(code: 'Node.label', default: 'Node'), id])
+			redirect(action: "list")
+			return
+		}
+
+		def model = [nodeInstance: nodeInstance]
+		
+		render model as JSON
+	}
+	
+	def updateNodeFromJSON(){
+		
+		def data = request.JSON
+		
+		def nodeId = data.nodeInstance.id
+		
+		def nodeVersion = data.nodeInstance.nodeVersionNo
+		
+		def nodeInstance = Node.get(nodeId)
+			
+		if (!nodeInstance) {
+			flash.message = message(code: 'default.not.found.message', args: [message(code: 'nodeInstance.label', default: 'Node'), nodeId])
+			redirect(action: "list")
+			return
+		}
+			
+			
+		//check that we have the right version i.e. no one else has updated the form design whilst we have been
+		 //looking at it
+ 
+		 if (nodeVersion != null) {
+			 if (nodeInstance.version > nodeVersion) {
+				 nodeInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
+						   [message(code: 'formDesign.label', default: 'DataElement')] as Object[],
+						   "Another user has updated this Form Design while you were editing")
+				 def model = [success: true, nodeId: nodeInstance.id, message: 'version number conflict, please reload page and try again']
+				 render model  as JSON
+			}
+		 }
+		 		 
+		formDesignInstance = formDesignService.update(formDesignInstance, form)
+	
+		def model = [success: true, formDesignId: formDesignInstance.id, formVersion: formDesignInstance.version, message: 'saved']
+		
+		render model  as JSON
+	}
+	
 
     def edit(Long id) {
         def nodeInstance = Node.get(id)
