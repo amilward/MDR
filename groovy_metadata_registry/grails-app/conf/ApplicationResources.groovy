@@ -1,9 +1,26 @@
 modules = {
 	
+	// Standard libraries
 	jquery_lib {
 		resource url: "js/vendor/jquery-1.10.1.min.js"
 		resource url: "js/vendor/jquery-ui.1.10.2.js"
 	}
+	
+	knockout_lib{
+		resource url: "js/vendor/knockout/knockout-3.0.0.js"
+		resource url: "js/vendor/knockout/knockout-es5.js"
+	}
+	
+	require_lib{
+		resource url: "js/vendor/require/require.js"
+	}
+	
+	d3_lib{
+		resource url: "js/vendor/d3/d3.js"
+	}
+	
+	
+	// Application libraries
 	
     application {
 		dependsOn "jquery_lib"
@@ -85,6 +102,20 @@ modules = {
 	pathwaysList{
 		dependsOn "dataTables"
 		resource url: "js/pathways/pathwaysList.js"
+	}
+
+	// Order is important for the creationModal scripts :)
+	pathwayCreationModal{
+		dependsOn: "application"
+		dependsOn: "knockout_lib"
+		resource url: "js/vendor/knockout/knockout-3.0.0.js"
+		resource url: "js/vendor/knockout/knockout-es5.js"
+		dependsOn: "d3_lib"
+	 	resource url: "js/pathways/creationModal/main.js"
+		resource url: "js/pathways/creationModal/service/FormService.js"
+		resource url: "js/pathways/creationModal/service/PathwayService.js"
+		resource url: "js/pathways/creationModal/model/PathwayModel.js"
+		resource url: "js/pathways/creationModal/AppViewModel.js"
 	}
 
 	dForms{

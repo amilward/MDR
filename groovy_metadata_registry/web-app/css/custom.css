@@ -224,3 +224,7 @@ textarea[readonly] {
       padding-right: 5px;
     }
 }	
+
+.search-bar-inner {
+	height: inherit;
+}
