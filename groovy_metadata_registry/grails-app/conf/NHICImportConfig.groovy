@@ -104,7 +104,7 @@ class NHICImportConfig {
 	
 	'/WEB-INF/bootstrap-data/NHIC/Initial/TRA.csv' :
 	{ tokens ->
-		def categories = [tokens[2], tokens[1], "Initial Proposal - GSTT","Renal transplantation", "NHIC Datasets"];
+		def categories = [tokens[2], tokens[1], "Initial Proposal - GSTT","Renal Transplantation", "NHIC Datasets"];
 		def dec = importDataElementConcepts(categories, null);
 		def dataTypes = [tokens[5]]
 		def dataType = importDataTypes(tokens[3],dataTypes);
