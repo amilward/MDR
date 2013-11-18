@@ -45,7 +45,7 @@ class NHICImportConfig {
 										refId: tokens[0]).save(failOnError: true)
 			de.addToDataElementValueDomains(vd);
 			de.save();
-			//println "importing: " + tokens[0]
+			println "importing: " + tokens[0]
 		},
 	'/WEB-INF/bootstrap-data/NHIC/Initial/ACS.csv' :
 	{ tokens ->
@@ -81,7 +81,7 @@ class NHICImportConfig {
 									refId: tokens[0]).save(failOnError: true)
 		de.addToDataElementValueDomains(vd);
 		de.save();
-		//println "importing: " + tokens[0] + de?.extension
+		println "importing: " + tokens[0] + de?.extension
 	}
 		
 	]

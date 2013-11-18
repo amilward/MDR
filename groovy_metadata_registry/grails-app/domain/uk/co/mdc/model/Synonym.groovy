@@ -1,6 +1,6 @@
 package uk.co.mdc.model
 
-class Synonym {
+class Synonym extends ExtensibleObject  {
 	
 	Integer dataElement1Id
 	Integer dataElement2Id

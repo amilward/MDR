@@ -1,6 +1,6 @@
 package uk.co.mdc.model
 
-class Document {
+class Document extends ExtensibleObject  {
 	
 	String refId
 	String name

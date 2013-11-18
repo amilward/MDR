@@ -46,6 +46,6 @@
 # other
 *.iws
 
+
 /.settings
 /.classpath
-/bin
