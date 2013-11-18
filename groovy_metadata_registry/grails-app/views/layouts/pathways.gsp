@@ -15,7 +15,6 @@
 <html lang="en" class="no-js">
 <!--<![endif]-->
 <head>
-
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <title><g:layoutTitle default="Grails" /></title>
@@ -40,8 +39,9 @@
 		    window.appContext = '${request.contextPath}';
 		    var root = location.protocol + '//' + location.host + window.appContext;
 		</g:javascript>
-
+		
 <g:javascript library="jquery_lib" />
+<g:javascript library="jquery" plugin="jquery"/>
 
 <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>
@@ -54,7 +54,7 @@
 </head>
 <body>
 
-
+  <g:render template="/pathwaysModel/createPathwayModal" />
 
 	<!-- BEGIN WRAP -->
 	<div id="wrap">
@@ -126,6 +126,7 @@
 							<!-- .nav -->
 							<ul class="nav">
 								<li class="active"><a href="index.html">Dashboard</a></li>
+
 								<li class="dropdown"><a data-toggle="dropdown"
 									class="dropdown-toggle" href="#"> Profile <b class="caret"></b>
 								</a>
@@ -143,11 +144,33 @@
 										<ul class="dropdown-menu">
 											<li><g:link action="list" controller="PathwaysModel">
 													<i class="icon-angle-right"></i> List pathways</g:link></li>
-											<li><g:link action="create" controller="PathwaysModel">
-													<i class="icon-angle-right"></i> Create pathway</g:link></li>
-										</ul></li>
+<!--
+											<li><g:link action="create" controller="PathwaysModel"><i class="icon-angle-right"></i> Create pathway (old style)</g:link></li>
+-->
 
-									<sec:ifAnyGranted roles="ROLE_ADMIN">
+											<li><a id="openModalLink" href="#"> <i
+													class="icon-angle-right"></i> Create pathway
+											</a></li>
+										</ul> <script>
+											// FIXME ryan refactor into JS file
+											$('#openModalLink')
+													.click(
+															function() {
+																$(
+																		'#createPathwayModal')
+																		.removeClass(
+																				"hide");
+																$(this)
+																		.closest(
+																				".dropdown")
+																		.removeClass(
+																				"open");
+																return false;
+															});
+										</script> 
+										
+										
+										<sec:ifAnyGranted roles="ROLE_ADMIN">
 
 										<li class="dropdown"><a data-toggle="dropdown"
 											class="dropdown-toggle" href="#"> <g:message
