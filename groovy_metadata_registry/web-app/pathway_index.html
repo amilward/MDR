@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+    <head>
+        
+        <title>NHIC Model Catalogue</title>
+		<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="css/bootstrap.css" />
+        <link rel="stylesheet" href="css/style.css" />		
+		<link rel="stylesheet" href="css/pathway.css">
+		<link href="css/custom.css" rel="stylesheet">
+		
+    </head>
+  <body>
+		<div id="headerWrapper">
+			<div id="header">
+				<div class="menu">   
+					<a><p><button class="tpbt" onclick="addNode()">Add Node</button></p></a>					
+				</div>
+			</div>
+		</div>
+		
+		<div id="left-panel" class="col-md-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">Tree View</div>
+                <div class="panel-body">
+                    {Tree View}
+                </div>
+            </div>
+        </div>
+        
+        <div id="main" class="col-md-7">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Pathway</div>
+                <div class="panel-body">
+                    {jsPlumb}
+                </div>
+            </div>
+            <div id="render"></div>
+        </div>
+		
+        <div id="right-panel" class="col-md-3" data-bind="with: selectedNode">
+            <div class="panel panel-default">
+                <div class="panel-heading">Properties</div>
+                <div class="panel-body">
+                    <form class="form" role="form">
+                        <div class="form-group">
+                            <label for="txt-name" class="control-label">Name: </label>
+                            <input id="txt-name" type="text" class="form-control" data-bind="value: name, valueUpdate: 'input'" />
+                        </div>
+                        <div class="form-group">
+                            <label for="txt-desc" class="control-label">Description: </label>
+                            <textarea id="txt-desc" rows="3" class="form-control" data-bind="value: description, valueUpdate: 'input'"></textarea>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+         <!-- Modal -->
+        <div  class="modal fade" id="CreatePathwayModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>-->
+                        <h4 class="modal-title" id="myModalLabel">Create Pathway</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form" role="form" data-bind="with: pathwayModel">
+                            <div class="form-group">
+                                <label for="txt-name" class="control-label">Name: </label>
+                                <input id="txt-name" type="text" class="form-control" data-bind="value: name, valueUpdate: 'input'" />
+                            </div>
+                            <div class="form-group">
+                                <label for="txt-desc" class="control-label">Description: </label>
+                                <textarea id="txt-desc" rows="3" class="form-control" data-bind="value: description, valueUpdate: 'input'"></textarea>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-bind="click: createPathway">Create</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+		
+		
+		 
+	
+        <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js'></script>
+        <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js'></script>		
+		<script type='text/javascript' src='js/jquery.jsPlumb-1.5.2-min.js'></script>
+		<script type="text/javascript" src="js/pathwaysLayout.js"></script>
+		<script type="text/javascript" src="js/pathway.js"></script>
+		
+		<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+		<script type="text/javascript" src="js/reload-client.js"></script>
+		<script type="text/javascript" src="js/vendor/jquery/jquery-2.0.3.js"></script>
+        <script type="text/javascript" src="js/vendor/bootstrap/bootstrap.js"></script>
+        <script type="text/javascript" src="js/vendor/knockout/knockout-3.0.0.js"></script>
+        <script type="text/javascript" src="js/vendor/knockout/knockout-es5.js"></script>
+        <script type="text/javascript" src="js/vendor/d3/d3.js"></script>
+        <script type="text/javascript" src="js/vendor/require/require.js" data-main="js/main"></script>
+        <script type="text/javascript"> initPathways(); </script>
+		
+		
+				
+	</body>
+ </html>
