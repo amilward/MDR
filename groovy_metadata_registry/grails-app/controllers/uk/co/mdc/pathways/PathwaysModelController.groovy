@@ -113,6 +113,18 @@ class PathwaysModelController {
         redirect(action: "show", id: pathwaysModelInstance.id)
     }
 
+	
+	def test(Long id) {
+		def pathwaysModelInstance = PathwaysModel.get(id)
+		if (!pathwaysModelInstance) {
+			flash.message = message(code: 'default.not.found.message', args: [message(code: 'pathwaysModel.label', default: 'PathwaysModel'), id])
+			redirect(action: "list")
+			return
+		}
+
+		[pathwaysModelInstance: pathwaysModelInstance]
+	}
+	
     def show(Long id) {
         def pathwaysModelInstance = PathwaysModel.get(id)
         if (!pathwaysModelInstance) {

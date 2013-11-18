@@ -89,7 +89,12 @@ class NodeController {
 			}
 		 }
 		 		 
-		formDesignInstance = formDesignService.update(formDesignInstance, form)
+		nodeInstance.properties = params
+
+        if (!nodeInstance.save(flush: true)) {
+            println('failure')
+        }
+
 	
 		def model = [success: true, formDesignId: formDesignInstance.id, formVersion: formDesignInstance.version, message: 'saved']
 		
