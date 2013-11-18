@@ -1,6 +1,8 @@
 package uk.co.mdc.pathways
 
-class PathwaysModel {
+import uk.co.mdc.model.ExtensibleObject;
+
+class PathwaysModel extends ExtensibleObject  {
 	
 
 	String refId

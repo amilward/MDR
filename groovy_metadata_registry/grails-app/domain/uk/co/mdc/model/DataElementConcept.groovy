@@ -1,6 +1,6 @@
 package uk.co.mdc.model
 
-class DataElementConcept {
+class DataElementConcept extends ExtensibleObject  {
 	
 	String refId
 	
