@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Set;
 import uk.co.mdc.forms.FormSpecification
 
-class Collection {
+class Collection extends ExtensibleObject  {
 	
 	String refId
 	 

@@ -13,4 +13,27 @@ abstract class ExtensibleObject {
 		extension sqlType: 'blob'
 	}
 
+	
+	public boolean addExtraAttribute(String name, Object obj)
+	{
+		try{
+			if(extension==null)
+			{
+				extension = new JSONObject();
+			}
+			extension.put(name, obj);
+			this.save();
+			return true;
+		}catch(Exception e){
+			e.println 
+			return false;
+		}
+	}
+	
+	public Object getExtraAttributeValue(String name)
+	{
+		return this.extension.get(name);
+		
+	}
+	
 }

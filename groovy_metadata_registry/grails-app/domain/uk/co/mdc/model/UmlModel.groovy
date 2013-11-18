@@ -1,6 +1,6 @@
 package uk.co.mdc.model
 
-class UmlModel {
+class UmlModel extends ExtensibleObject  {
 
 	Integer refId;
 	

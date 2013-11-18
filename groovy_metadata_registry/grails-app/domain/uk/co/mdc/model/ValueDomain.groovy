@@ -2,7 +2,7 @@ package uk.co.mdc.model
 
 import java.util.List;
 
-class ValueDomain {
+class ValueDomain extends ExtensibleObject  {
 	
 	String name
 
