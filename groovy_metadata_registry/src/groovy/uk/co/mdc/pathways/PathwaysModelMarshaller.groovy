@@ -14,7 +14,7 @@ public class PathwaysModelMarshaller {
 			'name': pathwayModel?.name,
 			'versionNo': pathwayModel?.versionNo,
 			'isDraft': pathwayModel?.isDraft,
-			'description': pathwayModel?.description,
+			'description'	: pathwayModel?.description,
 			'nodes' : pathwayModel.getNodes(),
 			'links' : pathwayModel.getLinks()
 			]
