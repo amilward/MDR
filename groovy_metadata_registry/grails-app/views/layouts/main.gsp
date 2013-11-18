@@ -39,8 +39,9 @@
 		    window.appContext = '${request.contextPath}';
 		    var root = location.protocol + '//' + location.host + window.appContext;
 		</g:javascript>
-
-  
+		
+<g:javascript library="jquery_lib" />
+<g:javascript library="jquery" plugin="jquery"/>
 
 <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>
@@ -53,6 +54,7 @@
 </head>
 <body>
 
+  <g:render template="/pathwaysModel/createPathwayModal" />
 
 	<!-- BEGIN WRAP -->
 	<div id="wrap">
@@ -156,8 +158,8 @@
 															function() {
 																$(
 																		'#createPathwayModal')
-																		.addClass(
-																				"show");
+																		.removeClass(
+																				"hide");
 																$(this)
 																		.closest(
 																				".dropdown")
