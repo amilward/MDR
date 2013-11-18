@@ -1,6 +1,6 @@
 package uk.co.mdc.model
 
-class DataType {
+class DataType extends ExtensibleObject  {
 	
 	String name
 	Boolean enumerated
