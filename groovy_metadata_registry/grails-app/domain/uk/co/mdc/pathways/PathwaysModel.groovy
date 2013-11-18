@@ -18,8 +18,9 @@ class PathwaysModel extends ExtensibleObject  {
 	static hasMany = [pathwayElements : PathwayElement] 
 
     static constraints = {
-		refId unique:true
+		refId unique:true, nullable: true
 		description nullable: true
+		versionNo nullable:true  
     }
 	
 	List getNodes(){
