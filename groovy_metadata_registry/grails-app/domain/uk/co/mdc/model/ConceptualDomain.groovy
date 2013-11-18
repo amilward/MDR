@@ -1,6 +1,6 @@
 package uk.co.mdc.model
 
-class ConceptualDomain {
+class ConceptualDomain extends ExtensibleObject  {
 	
 	String refId
 	

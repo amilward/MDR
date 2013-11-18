@@ -2,7 +2,7 @@ package uk.co.mdc.model
 
 import java.util.Map;
 
-class ExternalReference {
+class ExternalReference extends ExtensibleObject  {
 
 	String externalIdentifier
 	String name

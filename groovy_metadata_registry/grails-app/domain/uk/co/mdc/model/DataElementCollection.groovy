@@ -1,6 +1,6 @@
 package uk.co.mdc.model
 
-class DataElementCollection {
+class DataElementCollection extends ExtensibleObject  {
 	
 	SchemaSpecification schemaSpecification	
 	DataElement dataElement	
