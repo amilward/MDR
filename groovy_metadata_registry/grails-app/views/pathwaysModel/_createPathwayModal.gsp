@@ -18,7 +18,7 @@
 			</div>
 			<div class="modal-body">
 			
-				<form class="form" role="form" data-bind="with: pathwayModel">
+				<form class="form" role="form" data-bind="with: pathwayModel" action="/groovy_metadata_registry/pathwaysModel/save" method="post">
 					<div class="form-group">
 						<label for="txt-name" class="control-label">Name: </label> <input
 							id="txt-name" type="text" class="form-control"
@@ -42,9 +42,12 @@
 				</form>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-primary"
-					data-bind="click: createPathway">Create</button>
-			</div>
+        <button type="button" class="btn btn-primary"
+          data-bind="click: createPathway">Create</button>
+        <button type="button" class="btn"
+          data-bind="click: cancel">Cancel</button>
+      </div>
+      
 		</div>
 		<!-- /.modal-content -->
 	</div>
