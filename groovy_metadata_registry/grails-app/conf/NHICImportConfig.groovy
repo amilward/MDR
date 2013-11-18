@@ -14,8 +14,8 @@ class NHICImportConfig {
 		'/WEB-INF/bootstrap-data/NHIC/Initial/CAN.csv' : 
 		{ tokens -> 
 			def categories = [tokens[2], tokens[1], "Initial Proposal - CUH","Ovarian Cancer", "NHIC Datasets"];
-			def dataTypes = [tokens[5]]
 			def dec = importDataElementConcepts(categories, null);
+			def dataTypes = [tokens[5]]
 			def dataType = importDataTypes(tokens[3],dataTypes);
 			def ext = new JSONObject();
 			ext.put("NHIC Identifier", tokens[0]);
@@ -23,14 +23,8 @@ class NHICImportConfig {
 			ext.put("Link to Existing Definition",tokens[6]);
 			ext.put("Notes from GD/JCIS",tokens[7]);
 			
-			def cd = ConceptualDomain.findByRefId("CUH")
+			def cd = findOrCreateConceptualDomain("CUH", "NHIC : Ovarian Cancer")
 			
-			if (!cd) {
-			
-				cd = new ConceptualDomain(name:"CUH", 
-										  refId:"CUH", 
-										  description:"Initial Proposal - CUH").save(failOnError: true);
-			}
 			
 			def vd = new ValueDomain(name : tokens[3], 
 									refId : tokens[0],
@@ -47,25 +41,20 @@ class NHICImportConfig {
 			de.save();
 			println "importing: " + tokens[0]
 		},
+	
+	
 	'/WEB-INF/bootstrap-data/NHIC/Initial/ACS.csv' :
 	{ tokens ->
 		def categories = [tokens[2], tokens[1], "Initial Proposal - IMP","Acute Coronary Syndromes", "NHIC Datasets"];
-		def dataTypes = [tokens[5]]
 		def dec = importDataElementConcepts(categories, null);
+		def dataTypes = [tokens[5]]
 		def dataType = importDataTypes(tokens[3],dataTypes);
 		def ext = new JSONObject();
 		ext.put("NHIC Identifier", tokens[0]);
 		ext.put("Local Identifier", tokens[7]);
 		ext.put("Data Dictionary Element",tokens[6]);
 		
-		def cd = ConceptualDomain.findByRefId("ASC")
-		
-		if (!cd) {
-		
-			cd = new ConceptualDomain(name:"ASC",
-									  refId:"ASC",
-									  description:"Initial Proposal - CUH").save(failOnError: true);
-		}
+		def cd = findOrCreateConceptualDomain("ACS","NHIC : Acute Coronary Syndromes")
 		
 		
 		def vd = new ValueDomain(name : tokens[3], 
@@ -81,15 +70,107 @@ class NHICImportConfig {
 									refId: tokens[0]).save(failOnError: true)
 		de.addToDataElementValueDomains(vd);
 		de.save();
-		println "importing: " + tokens[0] + de?.extension
+		println "importing: " + tokens[0]
+	},
+
+	'/WEB-INF/bootstrap-data/NHIC/Initial/HEP.csv' :
+	{ tokens ->
+		def categories = [tokens[2], tokens[1], "Initial Proposal - OUH","Viral Hepatitis C/B", "NHIC Datasets"];
+		def dec = importDataElementConcepts(categories, null);
+		def dataTypes = [tokens[5]]
+		def dataType = importDataTypes(tokens[3],dataTypes);
+		def ext = new JSONObject();
+		ext.put("NHIC Identifier", tokens[0]);
+		ext.put("Local Identifier", tokens[8]);
+		
+		def cd = findOrCreateConceptualDomain("HEP", "NHIC : Viral Hepatitis C/B")
+				
+		
+		def vd = new ValueDomain(name : tokens[3],
+								refId : tokens[0],
+								conceptualDomain: cd,
+								dataType: dataType,
+								description : tokens[5]).save(failOnError: true);
+							
+		def de = new DataElement(	name: tokens[3],
+									description : tokens[4],
+									dataElementConcept: dec,
+									extension: ext,
+									refId: tokens[0]).save(failOnError: true)
+		de.addToDataElementValueDomains(vd);
+		de.save();
+		println "importing: " + tokens[0]
+	},
+	
+	'/WEB-INF/bootstrap-data/NHIC/Initial/TRA.csv' :
+	{ tokens ->
+		def categories = [tokens[2], tokens[1], "Initial Proposal - GSTT","Renal transplantation", "NHIC Datasets"];
+		def dec = importDataElementConcepts(categories, null);
+		def dataTypes = [tokens[5]]
+		def dataType = importDataTypes(tokens[3],dataTypes);
+		def ext = new JSONObject();
+		ext.put("NHIC Identifier", tokens[0]);
+		
+		def cd = findOrCreateConceptualDomain("TRA", "NHIC : Renal Transplantation")
+		
+		def vd = new ValueDomain(name : tokens[3],
+								refId : tokens[0],
+								conceptualDomain: cd,
+								dataType: dataType,
+								description : tokens[5]).save(failOnError: true);
+							
+		def de = new DataElement(	name: tokens[3],
+									description : tokens[4],
+									dataElementConcept: dec,
+									extension: ext,
+									refId: tokens[0]).save(failOnError: true)
+		de.addToDataElementValueDomains(vd);
+		de.save();
+		println "importing: " + tokens[0]
+	},
+
+	'/WEB-INF/bootstrap-data/NHIC/Initial/ICU.csv' :
+	{ tokens ->
+		def categories = [tokens[2], tokens[1], "Initial Proposal - UCL","Intensive Care", "NHIC Datasets"];
+		def dec = importDataElementConcepts(categories, null);
+		def dataTypes = [tokens[5]]
+		def dataType = importDataTypes(tokens[3],dataTypes);
+		def ext = new JSONObject();
+		ext.put("NHIC Identifier", tokens[0]);
+		
+		def cd = findOrCreateConceptualDomain("ICU", "NHIC : Intensive Care")
+		
+		def vd = new ValueDomain(name : tokens[3],
+								refId : tokens[0],
+								conceptualDomain: cd,
+								dataType: dataType,
+								description : tokens[5]).save(failOnError: true);
+							
+		def de = new DataElement(	name: tokens[3],
+									description : tokens[4],
+									dataElementConcept: dec,
+									extension: ext,
+									refId: tokens[0]).save(failOnError: true)
+		de.addToDataElementValueDomains(vd);
+		de.save();
+		println "importing: " + tokens[0]
 	}
-		
+
 	]
-		
+
+	
+	
+	
+	
+			
 	
 	static private importDataElementConcepts(nodenames, parent)
 	{
 		nodenames.reverse().inject(parent) {dec, name -> 
+			if(name.equals(""))
+			{
+				return dec;
+			}
 			def matches = DataElementConcept.findAllWhere("name" : name, "parent" : dec)
 			if(matches.empty)
 			{
@@ -148,5 +229,16 @@ class NHICImportConfig {
 		return dataTypeReturn
 	}
 	
+	public static findOrCreateConceptualDomain(String name, String description){
 	
+		def cd = ConceptualDomain.findByRefId(name)
+		
+		if (!cd) {
+		
+			cd = new ConceptualDomain(name:name,
+									  refId:name,
+									  description:description).save(failOnError: true);
+		}
+		return cd
+	}
 }
