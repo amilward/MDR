@@ -39,7 +39,7 @@ div.form-input{
 	display: inline-block;
 }
 
-#model-panel, #properties-panel {
+#model-panel, #properties-panel, #tree-panel {
 	border: 1px solid #E5E5E5;
 	background-color: white;
 	padding: 10px;	
@@ -224,3 +224,7 @@ textarea[readonly] {
       padding-right: 5px;
     }
 }	
+
+.search-bar-inner {
+	height: inherit;
+}
