@@ -26,4 +26,6 @@ class Node extends PathwayElement{
 		x nullable:true
 		y nullable:true
     }
+	
+	
 }

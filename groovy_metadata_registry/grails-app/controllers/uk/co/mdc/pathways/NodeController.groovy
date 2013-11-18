@@ -59,6 +59,35 @@ class NodeController {
 		render model as JSON
 	}
 	
+	def createNodeFromJSON(){
+	
+		def data = request.JSON
+		
+		def newNode = data.nodeInstance
+		
+		println('new node')
+		println(newNode)
+		
+		def nodeInstance = new Node(
+			refId: newNode?.refId,
+			name: newNode?.name,
+			x: newNode?.x,
+			y: newNode?.y,
+			description: newNode?.description
+			//	peCollection: collect2
+			)
+
+		if (!nodeInstance.save(flush: true)) {
+			println(nodeInstance.errors)
+		}
+		
+		
+		def model = [success: true, nodeId: nodeInstance.id, nodeVersion: nodeInstance.version, message: 'saved']
+		
+		render model  as JSON
+		
+	}
+	
 	def updateNodeFromJSON(){
 		
 		def data = request.JSON
@@ -68,6 +97,8 @@ class NodeController {
 		def nodeVersion = data.nodeInstance.nodeVersionNo
 		
 		def nodeInstance = Node.get(nodeId)
+		
+		println(nodeInstance)
 			
 		if (!nodeInstance) {
 			flash.message = message(code: 'default.not.found.message', args: [message(code: 'nodeInstance.label', default: 'Node'), nodeId])
@@ -88,17 +119,49 @@ class NodeController {
 				 render model  as JSON
 			}
 		 }
-		 		 
-		nodeInstance.properties = params
+		 
+		println('nodeprops') 		 
+		println(nodeInstance.properties)
+		
+		println('nodeprops')
+		println(data.nodeInstance)
+		 
+		nodeInstance.properties = data.nodeInstance
 
         if (!nodeInstance.save(flush: true)) {
             println('failure')
         }
 
 	
-		def model = [success: true, formDesignId: formDesignInstance.id, formVersion: formDesignInstance.version, message: 'saved']
+		def model = [success: true, nodeId: nodeInstance.id, nodeVersion: nodeInstance.version, message: 'saved']
 		
 		render model  as JSON
+	}
+	
+	def deleteNode(Long id){
+		
+		def nodeInstance = Node.get(id)
+		
+		def model
+		def message
+		
+		if (!nodeInstance) {
+			message = message(code: 'default.not.found.message', args: [message(code: 'node.label', default: 'Node'), id])
+			model = [success: false, message: message]
+		}
+
+		try {
+			nodeInstance.delete(flush: true)
+			message = message(code: 'default.deleted.message', args: [message(code: 'node.label', default: 'Node'), id])
+			model = [success: true, message: message]
+		}
+		catch (DataIntegrityViolationException e) {
+			message = message(code: 'default.not.found.message', args: [message(code: 'node.label', default: 'Node'), id])
+			model = [success: false, message: message]
+		}
+		
+		render model as JSON
+		
 	}
 	
 
