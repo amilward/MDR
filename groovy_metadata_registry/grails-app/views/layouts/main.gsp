@@ -40,7 +40,7 @@
 		    var root = location.protocol + '//' + location.host + window.appContext;
 		</g:javascript>
 
-<g:javascript library="jquery_lib" />
+  
 
 <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>
@@ -52,7 +52,6 @@
 <r:layoutResources />
 </head>
 <body>
-
 
 
 	<!-- BEGIN WRAP -->
@@ -143,11 +142,33 @@
 										<ul class="dropdown-menu">
 											<li><g:link action="list" controller="PathwaysModel">
 													<i class="icon-angle-right"></i> List pathways</g:link></li>
-											<li><g:link action="create" controller="PathwaysModel">
-													<i class="icon-angle-right"></i> Create pathway</g:link></li>
-										</ul></li>
+<!--
+											<li><g:link action="create" controller="PathwaysModel"><i class="icon-angle-right"></i> Create pathway (old style)</g:link></li>
+-->
 
-									<sec:ifAnyGranted roles="ROLE_ADMIN">
+											<li><a id="openModalLink" href="#"> <i
+													class="icon-angle-right"></i> Create pathway
+											</a></li>
+										</ul> <script>
+											// FIXME ryan refactor into JS file
+											$('#openModalLink')
+													.click(
+															function() {
+																$(
+																		'#createPathwayModal')
+																		.addClass(
+																				"show");
+																$(this)
+																		.closest(
+																				".dropdown")
+																		.removeClass(
+																				"open");
+																return false;
+															});
+										</script> 
+										
+										
+										<sec:ifAnyGranted roles="ROLE_ADMIN">
 
 										<li class="dropdown"><a data-toggle="dropdown"
 											class="dropdown-toggle" href="#"> <g:message
