@@ -22,6 +22,10 @@ class PathwaysModel extends ExtensibleObject  {
 		description nullable: true
     }
 	
+	static mapping = {
+		pathwayElements cascade: 'all-delete-orphan'
+	}
+	
 	List getNodes(){
 		
 		def nodes = []

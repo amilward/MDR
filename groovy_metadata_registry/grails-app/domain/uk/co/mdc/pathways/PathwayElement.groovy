@@ -6,7 +6,7 @@ import uk.co.mdc.model.DataElementCollection
 import uk.co.mdc.model.DataElementConcept
 import uk.co.mdc.model.ExtensibleObject;
 
-abstract class PathwayElement extends ExtensibleObject  {
+abstract class PathwayElement  {
 	
 	String refId
 	String name

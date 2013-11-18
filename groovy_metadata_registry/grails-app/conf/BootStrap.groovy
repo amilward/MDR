@@ -429,7 +429,7 @@ class BootStrap {
 		}
 
 
-		importNHICData(basePath)
+		//importNHICData(basePath)
 		
 	}
 	private importCSVLine(tokens, parent)

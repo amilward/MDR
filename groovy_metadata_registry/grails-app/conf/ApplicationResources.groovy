@@ -82,6 +82,10 @@ modules = {
 		
 	}
 	
+	node{
+		resource url: "js/pathways/pathwayAjaxFunctions.js"
+	}
+	
 	pathwaysList{
 		dependsOn "dataTables"
 		resource url: "js/pathways/pathwaysList.js"

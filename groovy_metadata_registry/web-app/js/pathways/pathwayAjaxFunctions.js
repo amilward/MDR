@@ -1,5 +1,21 @@
-function createNode(){
+function createNode(createNodeJSON){
 	
+console.log(JSON.stringify(createNodeJSON))
+	
+	$.ajax({
+		type: "POST",
+		url: '../../Node/createNodeFromJSON',
+		data: JSON.stringify(createNodeJSON),
+		success: function(data){
+			console.log(data.message);
+		},
+		error: function (xhr, ajaxOptions, thrownError) {
+	        console.log(xhr.status);
+	        alert(thrownError);
+	      },
+		contentType: 'application/json',
+		dataType: 'json'
+		});
 	
 }
 
@@ -36,7 +52,19 @@ function updateNode(updatedNodeJSON){
 }
 
 function deleteNode(id){
-	
+	$.ajax({
+		type: "POST",
+		url: '../../Node/deleteNode/' + id,
+		success: function(data){
+			console.log(data.message);
+		},
+		error: function (xhr, ajaxOptions, thrownError) {
+	        console.log(xhr.status);
+	        alert(thrownError);
+	      },
+		contentType: 'application/json',
+		dataType: 'json'
+		});
 }
 
 function getLink(id){
