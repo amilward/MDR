@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta name="layout" content="main_no-sidebar"/>
+		<meta name="layout" content="main"/>
 		<title>Welcome to the MDC Metadata Registry</title>
 		<parameter name="name" value="Dashboard" />
 	</head>
