@@ -19,6 +19,7 @@ import org.codehaus.groovy.grails.plugins.springsecurity.SecurityFilterPosition
 import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils
 import org.codehaus.groovy.grails.commons.ApplicationHolder
 
+import grails.util.Environment
 import grails.util.DomainBuilder
 import groovy.json.JsonSlurper
 
@@ -36,8 +37,7 @@ import org.grails.plugins.csv.CSVMapReader
 import org.json.simple.JSONObject
 
 
-class BootStrap {
-
+class BootStrap {	
 	def aclService
 	def aclUtilService
 	def objectIdentityRetrievalStrategy
@@ -429,7 +429,10 @@ class BootStrap {
 		}
 
 
-		importNHICData(basePath)
+		if(Environment.current != Environment.DEVELOPMENT){
+			importNHICData(basePath)
+		}
+		
 	}
 	
 
