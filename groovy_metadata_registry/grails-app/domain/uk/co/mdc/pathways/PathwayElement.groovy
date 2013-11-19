@@ -13,13 +13,19 @@ abstract class PathwayElement  {
 	String description
 
 	Collection peCollection
+
+    static constraints = {
+		refId unique:true
+		description nullable:true
+		peCollection nullable:true
+    }
 	
 	String GetElementsJSON(){
 		def result = []
 		def de = new StringBuffer()
 		def isFirst = new Boolean('True')
 
-		Iterator i = peCollection.dataElementCollections.iterator();		
+		Iterator i = peCollection.dataElementCollections.iterator();
 		while (i.hasNext()){
 			DataElementCollection it = i.next()
 			if(isFirst){
@@ -35,16 +41,4 @@ abstract class PathwayElement  {
 		result = de.toString()
 	}
 	
-
-	
-	static hasMany = [mandatoryInputs: Collection,
-					  mandatoryOutputs: Collection,
-					  optionalInputs: Collection,
-					  optionalOutputs: Collection]
-
-    static constraints = {
-		refId unique:true
-		description nullable:true
-		peCollection nullable:true
-    }
 }

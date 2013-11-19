@@ -363,7 +363,7 @@ class BootStrap {
 					y: '0',
 					description: 'transfer patient to the Operating Room',
 					//peCollection: collect1
-					).save(flush:true)
+					)
 
 			/*def de1 = new DataElement(name:"PERSON FAMILY NAME (AT BIRTH)",
 			 refId:"CR0111",
@@ -380,7 +380,7 @@ class BootStrap {
 					y: '10',
 					description: 'perform the operation',
 					//	peCollection: collect2
-					).save(flush:true)
+					)
 
 
 			def node3 = new Node(
@@ -390,7 +390,7 @@ class BootStrap {
 					y: '30',
 					description: 'transfer patient to the Operating Room',
 					//peCollection: collect3
-					).save(flush:true)
+					)
 
 
 
@@ -400,7 +400,7 @@ class BootStrap {
 					source: node1,
 					target: node2,
 					//peCollection: collect4
-					).save(flush:true)
+					)
 
 			def link2 = new Link(
 					refId: 'TM_L2',
@@ -408,7 +408,7 @@ class BootStrap {
 					source: node2,
 					target: node3,
 					//peCollection: collect5
-					).save(flush:true)
+					)
 
 
 			def pathway = new PathwaysModel(

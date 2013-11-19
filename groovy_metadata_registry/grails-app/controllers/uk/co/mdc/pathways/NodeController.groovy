@@ -140,24 +140,28 @@ class NodeController {
 	
 	def deleteNode(Long id){
 		
+		println(id)
+		
 		def nodeInstance = Node.get(id)
 		
+		println(nodeInstance)
+		
 		def model
-		def message
+		def msg
 		
 		if (!nodeInstance) {
-			message = message(code: 'default.not.found.message', args: [message(code: 'node.label', default: 'Node'), id])
-			model = [success: false, message: message]
+			msg = message(code: 'default.not.found.message', args: [message(code: 'node.label', default: 'Node'), id])
+			model = [success: false, message: msg]
 		}
 
 		try {
-			nodeInstance.delete(flush: true)
-			message = message(code: 'default.deleted.message', args: [message(code: 'node.label', default: 'Node'), id])
-			model = [success: true, message: message]
+			nodeInstance.delete(flush: true, failOnError:true)
+			msg = message(code: 'default.deleted.message', args: [message(code: 'node.label', default: 'Node'), id])
+			model = [success: true, message: msg]
 		}
 		catch (DataIntegrityViolationException e) {
-			message = message(code: 'default.not.found.message', args: [message(code: 'node.label', default: 'Node'), id])
-			model = [success: false, message: message]
+			msg = message(code: 'default.not.found.message', args: [message(code: 'node.label', default: 'Node'), id])
+			model = [success: false, message: msg]
 		}
 		
 		render model as JSON
@@ -214,6 +218,7 @@ class NodeController {
         }
 
         try {
+			nodeInstance.prepareForDelete()
             nodeInstance.delete(flush: true)
             flash.message = message(code: 'default.deleted.message', args: [message(code: 'node.label', default: 'Node'), id])
             redirect(action: "list")
