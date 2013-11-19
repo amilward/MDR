@@ -1,8 +1,8 @@
-<%@ page import="uk.co.mdc.pathways.PathwaysModel" %>
+	<%@ page import="uk.co.mdc.pathways.PathwaysModel" %>
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta name="layout" content="main">
+		<meta name="layout" content="main_no-sidebar">
 		<g:set var="entityName" value="${message(code: 'pathwaysModel.label', default: 'PathwaysModel')}" />
 		<title><g:message code="default.create.label" args="[entityName]" /></title>
 	</head>
