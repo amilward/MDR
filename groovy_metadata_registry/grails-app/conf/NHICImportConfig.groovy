@@ -23,7 +23,7 @@ class NHICImportConfig {
 			ext.put("Link to Existing Definition",tokens[6]);
 			ext.put("Notes from GD/JCIS",tokens[7]);
 
-			def cd = findOrCreateConceptualDomain("CUH", "NHIC : Ovarian Cancer")
+			def cd = findOrCreateConceptualDomain("CAN", "NHIC : Ovarian Cancer")
 
 
 			def vd = new ValueDomain(name : tokens[3],
