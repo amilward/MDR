@@ -16,7 +16,9 @@ savePathway = function(model, success, failure) {
 		url : "/groovy_metadata_registry/pathwaysModel/saveREST",
 		data : jsonModel,
 		contentType: "application/json; charset=utf-8",
-		success : success,
+		success : function(data){
+			success(data.id);
+		},
 		error : function(xhr, ajaxOptions, thrownError) {
 			console.log("Creation of pathway failed: " + thrownError);
 			failure();
