@@ -19,7 +19,9 @@ modules = {
 		resource url: "js/vendor/d3/d3.js"
 	}
 	
-	
+	modernizr_lib{
+		resource url: "js/vendor/modernizr/modernizr-2.6.2-respond-1.1.0.min.js"
+	}
 	// Application libraries
 	
     application {

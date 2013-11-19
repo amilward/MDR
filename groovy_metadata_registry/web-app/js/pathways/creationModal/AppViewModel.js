@@ -19,32 +19,25 @@ var AppViewModel = function() {
 	self.createPathway = function() {
 		// Create the pathway (on server?)
 		// FIXME Make OO
-		savePathway(self.pathwayModel, function() {
+		savePathway(self.pathwayModel, function(id) {
 			// Hide the create pathway modal (SUCCESS)
-			$('#createPathwayModal').addClass('hide');
-			$('#createPathwayModal').removeClass('show');
+			$('#createPathwayModal').modal({ show: false });
+			location.href = "/groovy_metadata_registry/pathwaysModel/show/"+id;
 		}, function() {
 			// Prompt on failure
 			// FIXME clever validation feedback here
-			alert("Something's wrong")
-			// $('#createPathwayModal').addClass('hide');
-			// $('#createPathwayModal').removeClass('show');
+			alert("The form wasn't completed correctly, or a server error occurred. Please fix and try again.")
 		});
 		// Content for Properties panel
 		self.selectedNode = self.pathwayModel;
 
 		// Hide the create pathway modal
-		$('#createPathwayModal').addClass('hide');
-		$('#createPathwayModal').removeClass('show');
+		$('#createPathwayModal').modal({ show: false });
 	};
 
 	self.cancel = function() {
 		// Reset the form
 		self.pathwayModel = new PathwayModel();
-
-		// Hide the create pathway modal
-		$('#createPathwayModal').addClass('hide');
-		$('#createPathwayModal').removeClass('show');
 	}
 
 	// Initialize form list using FormService
