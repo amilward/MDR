@@ -32,16 +32,16 @@
 <link rel="stylesheet"
   href="${resource(dir: 'css', file: 'datatable/jquery.dataTables.css')}"
   type="text/css">
-
-<g:javascript src="modernizr-2.6.2-respond-1.1.0.min.js" />
-
+  
+<g:javascript library="jquery_lib" />
+<g:javascript library="jquery" plugin="jquery"/><!--  FIXME, there's duplication here -->
+<g:javascript library="modernizr_lib" />
 <g:javascript>
         window.appContext = '${request.contextPath}';
         var root = location.protocol + '//' + location.host + window.appContext;
     </g:javascript>
     
-<g:javascript library="jquery_lib" />
-<g:javascript library="jquery" plugin="jquery"/>
+
 
 <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>
@@ -156,15 +156,8 @@
                       $('#openModalLink')
                           .click(
                               function() {
-                                $(
-                                    '#createPathwayModal')
-                                    .removeClass(
-                                        "hide");
-                                $(this)
-                                    .closest(
-                                        ".dropdown")
-                                    .removeClass(
-                                        "open");
+                            	  $('#createPathwayModal').modal({ show: true, keyboard: false, backdrop: 'static' });
+                                $(this).closest(".dropdown").removeClass("open");
                                 return false;
                               });
                     </script> 
