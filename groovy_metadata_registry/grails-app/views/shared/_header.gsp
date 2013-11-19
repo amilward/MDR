@@ -53,8 +53,8 @@
 <r:layoutResources />
 </head>
 <body>
-
-  <g:render template="/pathwaysModel/createPathwayModal" />
+<g:render template="/pathwaysModel/createPathwayModal" />
+  
 
   <!-- BEGIN WRAP -->
   <div id="wrap">
@@ -144,19 +144,14 @@
                     <ul class="dropdown-menu">
                       <li><g:link action="list" controller="PathwaysModel">
                           <i class="icon-angle-right"></i> List pathways</g:link></li>
-<!--
-                      <li><g:link action="create" controller="PathwaysModel"><i class="icon-angle-right"></i> Create pathway (old style)</g:link></li>
--->
-
                       <li><a id="openModalLink" href="#"> <i
-                          class="icon-angle-right"></i> Create pathway
-                      </a></li>
+                          class="icon-angle-right"></i> Create pathway </a></li>
                     </ul> <script>
                       // FIXME ryan refactor into JS file
                       $('#openModalLink')
                           .click(
                               function() {
-                            	  $('#createPathwayModal').modal({ show: true, keyboard: false, backdrop: 'static' });
+                            	    $('#createPathwayModal').modal({ show: true, keyboard: true, backdrop: 'static' });
                                 $(this).closest(".dropdown").removeClass("open");
                                 return false;
                               });
