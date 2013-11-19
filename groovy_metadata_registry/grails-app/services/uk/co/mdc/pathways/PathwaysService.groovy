@@ -1,4 +1,4 @@
-package uk.co.mdc
+package uk.co.mdc.pathways
 
 import java.util.List;
 import java.util.Map;
