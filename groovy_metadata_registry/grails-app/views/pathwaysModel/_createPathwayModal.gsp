@@ -8,8 +8,7 @@
 <g:javascript library="pathwayCreationModal"/>
 
 <!-- TODO include JS library (knockout + view model) -->
-<div id="createPathwayModal" class="modal fade" id="CreatePathwayModal" tabindex="-1"
-	role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop = "true" >
+<div id="createPathwayModal" class="modal fade hide" tabindex="-1"	role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop = "true" >
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
