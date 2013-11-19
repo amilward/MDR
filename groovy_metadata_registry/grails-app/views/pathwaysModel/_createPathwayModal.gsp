@@ -8,8 +8,8 @@
 <g:javascript library="pathwayCreationModal"/>
 
 <!-- TODO include JS library (knockout + view model) -->
-<div id="createPathwayModal" class="modal hide" id="CreatePathwayModal" tabindex="-1"
-	role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div id="createPathwayModal" class="modal fade" id="CreatePathwayModal" tabindex="-1"
+	role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop = "true" >
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -45,7 +45,7 @@
         <button type="button" class="btn btn-primary"
           data-bind="click: createPathway">Create</button>
         <button type="button" class="btn"
-          data-bind="click: cancel">Cancel</button>
+          data-bind="click: cancel" data-dismiss="modal">Cancel</button>
       </div>
       
 		</div>
