@@ -26,9 +26,7 @@ var AppViewModel = function() {
 		}, function() {
 			// Prompt on failure
 			// FIXME clever validation feedback here
-			alert("Something's wrong")
-			// $('#createPathwayModal').addClass('hide');
-			// $('#createPathwayModal').removeClass('show');
+			alert("The form wasn't completed correctly, or a server error occurred. Please fix and try again.")
 		});
 		// Content for Properties panel
 		self.selectedNode = self.pathwayModel;
