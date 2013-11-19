@@ -104,12 +104,12 @@ class PathwaysModelController {
 	def saveREST() {
 		def unvalidated = request.JSON
 		def pathway = [name: unvalidated.name, description: unvalidated.description, versionNo: unvalidated.version, isDraft: unvalidated.isDraft]
-		println request.JSON
+		
 		//FIXME validate
-		//println params
-		println pathway
-		def pathwaysModelInstance = new PathwaysModel(pathway)
-		if (!pathwaysModelInstance.save(flush: true)) {
+		def pathwaysModelInstance = pathwaysService.create(pathway)
+		
+		println pathwaysModelInstance.errors
+		if (pathwaysModelInstance.errors.hasErrors()) {
 			def responseMessage = [errors: true, details: pathwaysModelInstance.errors]
 			response.status = 400
 			render responseMessage as JSON

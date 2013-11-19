@@ -1,4 +1,4 @@
-package uk.co.mdc
+package uk.co.mdc.pathways
 
 import java.util.List;
 import java.util.Map;
@@ -58,25 +58,20 @@ class PathwaysService {
 		def pathwaysModelInstance = new PathwaysModel(parameters)
 		
 		//save the dataElement
-
 		if(!pathwaysModelInstance.save(flush:true)){
+			// FIXME should throw an error here with the errors from the instance
 			return pathwaysModelInstance
 		}
 		
 		// Grant the current user principal administrative permission
-		
 		addPermission pathwaysModelInstance, springSecurityService.authentication.name, BasePermission.ADMINISTRATION
 		
 		//Grant admin user administrative permissions
-		
 		addPermission pathwaysModelInstance, 'admin', BasePermission.ADMINISTRATION
 		
 		//return the data element to the consumer (the controller)
-		
 		pathwaysModelInstance
-		
-
-		}
+	}
 	
 	
 	/* ************************* GET VALUED DOMAINS ***********************************************
