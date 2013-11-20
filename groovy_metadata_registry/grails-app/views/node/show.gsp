@@ -41,14 +41,6 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${nodeInstance?.peCollection}">
-				<li class="fieldcontain">
-					<span id="peCollection-label" class="property-label"><g:message code="node.peCollection.label" default="Pe Collection" /></span>
-					
-						<span class="property-value" aria-labelledby="peCollection-label"><g:link controller="collection" action="show" id="${nodeInstance?.peCollection?.id}">${nodeInstance?.peCollection?.encodeAsHTML()}</g:link></span>
-					
-				</li>
-				</g:if>
 			
 				<g:if test="${nodeInstance?.pathwaysModel}">
 				<li class="fieldcontain">
@@ -142,7 +134,7 @@
 			</g:form>
 		</div>
 		
-		<g:javascript disposition="defer" library="node" />
+		<g:javascript disposition="defer" library="ajaxfunctions" />
 	<r:script disposition="defer">
 		//getPathway(${pathwaysModelInstance?.id});
 		

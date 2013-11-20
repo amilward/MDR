@@ -2,38 +2,6 @@
 
 
 
-<div class="fieldcontain ${hasErrors(bean: linkInstance, field: 'mandatoryInputs', 'error')} ">
-	<label for="mandatoryInputs">
-		<g:message code="link.mandatoryInputs.label" default="Mandatory Inputs" />
-		
-	</label>
-	<g:select name="mandatoryInputs" from="${uk.co.mdc.model.Collection.list()}" multiple="multiple" optionKey="id" size="5" value="${linkInstance?.mandatoryInputs*.id}" class="many-to-many"/>
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: linkInstance, field: 'mandatoryOutputs', 'error')} ">
-	<label for="mandatoryOutputs">
-		<g:message code="link.mandatoryOutputs.label" default="Mandatory Outputs" />
-		
-	</label>
-	<g:select name="mandatoryOutputs" from="${uk.co.mdc.model.Collection.list()}" multiple="multiple" optionKey="id" size="5" value="${linkInstance?.mandatoryOutputs*.id}" class="many-to-many"/>
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: linkInstance, field: 'optionalInputs', 'error')} ">
-	<label for="optionalInputs">
-		<g:message code="link.optionalInputs.label" default="Optional Inputs" />
-		
-	</label>
-	<g:select name="optionalInputs" from="${uk.co.mdc.model.Collection.list()}" multiple="multiple" optionKey="id" size="5" value="${linkInstance?.optionalInputs*.id}" class="many-to-many"/>
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: linkInstance, field: 'optionalOutputs', 'error')} ">
-	<label for="optionalOutputs">
-		<g:message code="link.optionalOutputs.label" default="Optional Outputs" />
-		
-	</label>
-	<g:select name="optionalOutputs" from="${uk.co.mdc.model.Collection.list()}" multiple="multiple" optionKey="id" size="5" value="${linkInstance?.optionalOutputs*.id}" class="many-to-many"/>
-</div>
-
 <div class="fieldcontain ${hasErrors(bean: linkInstance, field: 'refId', 'error')} ">
 	<label for="refId">
 		<g:message code="link.refId.label" default="Ref Id" />
@@ -50,12 +18,20 @@
 	<g:textField name="description" value="${linkInstance?.description}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: linkInstance, field: 'peCollection', 'error')} ">
-	<label for="peCollection">
-		<g:message code="link.peCollection.label" default="Pe Collection" />
+<div class="fieldcontain ${hasErrors(bean: linkInstance, field: 'pathwaysModel', 'error')} ">
+	<label for="pathwaysModel">
+		<g:message code="link.pathwaysModel.label" default="Pathways Model" />
 		
 	</label>
-	<g:select id="peCollection" name="peCollection.id" from="${uk.co.mdc.model.Collection.list()}" optionKey="id" value="${linkInstance?.peCollection?.id}" class="many-to-one" noSelection="['null': '']"/>
+	<g:select id="pathwaysModel" name="pathwaysModel.id" from="${uk.co.mdc.pathways.PathwaysModel.list()}" optionKey="id" value="${linkInstance?.pathwaysModel?.id}" class="many-to-one" noSelection="['null': '']"/>
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: linkInstance, field: 'extension', 'error')} ">
+	<label for="extension">
+		<g:message code="link.extension.label" default="Extension" />
+		
+	</label>
+	
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: linkInstance, field: 'name', 'error')} ">

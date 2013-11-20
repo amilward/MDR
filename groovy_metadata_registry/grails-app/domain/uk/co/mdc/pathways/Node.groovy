@@ -8,12 +8,6 @@ class Node extends PathwayElement{
 	String x
 	String y
 
-	public Node(String ref, String nm,String x, String y, String desc, Collection peCollection){
-		super( ref, nm, desc, peCollection)
-		this.x = x
-		this.y = y
-	}
-	
 	static belongsTo = [pathwaysModel: PathwaysModel]
 	
 	static hasMany = [
@@ -29,9 +23,6 @@ class Node extends PathwayElement{
 		y nullable:true
     }
 	
-	def prepareForDelete(){
-		if(this.pathwaysModel){
-			this.pathwaysModel.removeFromPathwaysElements(this)
-		}
-	}
+	
+
 }

@@ -6,20 +6,22 @@ import uk.co.mdc.model.DataElementCollection
 import uk.co.mdc.model.DataElementConcept
 import uk.co.mdc.model.ExtensibleObject;
 
-abstract class PathwayElement  {
+abstract class PathwayElement extends ExtensibleObject{
 	
 	String refId
 	String name
 	String description
 
-	Collection peCollection
-
+	static belongsTo = [pathwaysModel: PathwaysModel]
+	
     static constraints = {
 		refId unique:true
 		description nullable:true
-		peCollection nullable:true
+		pathwaysModel nullable:true
+		extension nullable: true
     }
 	
+
 	String GetElementsJSON(){
 		def result = []
 		def de = new StringBuffer()

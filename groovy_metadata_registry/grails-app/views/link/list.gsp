@@ -28,13 +28,13 @@
 					
 						<g:sortableColumn property="description" title="${message(code: 'link.description.label', default: 'Description')}" />
 					
-						<th><g:message code="link.peCollection.label" default="Pe Collection" /></th>
+						<th><g:message code="link.pathwaysModel.label" default="Pathways Model" /></th>
+					
+						<g:sortableColumn property="extension" title="${message(code: 'link.extension.label', default: 'Extension')}" />
 					
 						<g:sortableColumn property="name" title="${message(code: 'link.name.label', default: 'Name')}" />
 					
 						<th><g:message code="link.source.label" default="Source" /></th>
-					
-						<th><g:message code="link.target.label" default="Target" /></th>
 					
 					</tr>
 				</thead>
@@ -46,13 +46,13 @@
 					
 						<td>${fieldValue(bean: linkInstance, field: "description")}</td>
 					
-						<td>${fieldValue(bean: linkInstance, field: "peCollection")}</td>
+						<td>${fieldValue(bean: linkInstance, field: "pathwaysModel")}</td>
+					
+						<td>${fieldValue(bean: linkInstance, field: "extension")}</td>
 					
 						<td>${fieldValue(bean: linkInstance, field: "name")}</td>
 					
 						<td>${fieldValue(bean: linkInstance, field: "source")}</td>
-					
-						<td>${fieldValue(bean: linkInstance, field: "target")}</td>
 					
 					</tr>
 				</g:each>

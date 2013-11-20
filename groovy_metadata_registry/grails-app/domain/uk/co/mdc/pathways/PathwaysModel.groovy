@@ -25,7 +25,6 @@ class PathwaysModel  {
     }
 	
 	static mapping = {
-		pathwayElements cascade: 'all-delete-orphan'
 	}
 	
 	List getNodes(){
