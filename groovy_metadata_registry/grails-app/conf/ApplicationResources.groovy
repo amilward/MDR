@@ -101,7 +101,7 @@ modules = {
 		
 	}
 	
-	node{
+	ajaxfunctions{
 		resource url: "js/pathways/pathwayAjaxFunctions.js"
 	}
 	

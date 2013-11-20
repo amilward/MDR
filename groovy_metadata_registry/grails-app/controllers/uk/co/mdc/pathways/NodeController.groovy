@@ -22,6 +22,8 @@ class NodeController {
     }
 
     def save() {
+		
+		println(params)
         def nodeInstance = new Node(params)
         if (!nodeInstance.save(flush: true)) {
             render(view: "create", model: [nodeInstance: nodeInstance])
@@ -48,14 +50,17 @@ class NodeController {
 	def getNodeJSON(Long id){
 		
 		def nodeInstance = Node.get(id)
+		def model 
+		
 		if (!nodeInstance) {
-			flash.message = message(code: 'default.not.found.message', args: [message(code: 'Node.label', default: 'Node'), id])
-			redirect(action: "list")
-			return
+		 model = [message: message(code: 'default.not.found.message', args: [message(code: 'Node.label', default: 'Node'), id])]
+		
+		 }else{
+		 
+		 model = [nodeInstance: nodeInstance]
+		 
 		}
 
-		def model = [nodeInstance: nodeInstance]
-		
 		render model as JSON
 	}
 	
@@ -74,12 +79,15 @@ class NodeController {
 			x: newNode?.x,
 			y: newNode?.y,
 			description: newNode?.description
-			//	peCollection: collect2
 			)
 
 		if (!nodeInstance.save(flush: true)) {
 			println(nodeInstance.errors)
 		}
+		
+		def pathway = PathwaysModel.get(1)
+		
+		pathway.addToPathwayElements(nodeInstance)
 		
 		
 		def model = [success: true, nodeId: nodeInstance.id, nodeVersion: nodeInstance.version, message: 'saved']
@@ -114,7 +122,7 @@ class NodeController {
 			 if (nodeInstance.version > nodeVersion) {
 				 nodeInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
 						   [message(code: 'formDesign.label', default: 'DataElement')] as Object[],
-						   "Another user has updated this Form Design while you were editing")
+						   "Another user has updated this Node while you were editing")
 				 def model = [success: true, nodeId: nodeInstance.id, message: 'version number conflict, please reload page and try again']
 				 render model  as JSON
 			}
@@ -152,18 +160,37 @@ class NodeController {
 		if (!nodeInstance) {
 			msg = message(code: 'default.not.found.message', args: [message(code: 'node.label', default: 'Node'), id])
 			model = [success: false, message: msg]
-		}
+		}else{
 
-		try {
-			nodeInstance.delete(flush: true, failOnError:true)
-			msg = message(code: 'default.deleted.message', args: [message(code: 'node.label', default: 'Node'), id])
-			model = [success: true, message: msg]
+			try {
+				def sources  = Link.findAllWhere(source: nodeInstance)
+				
+				println('removing link sources and targets')
+				
+				sources.each{ link ->
+					
+					link.delete(flush:true,failOnError:true)
+				}
+				
+				//targets
+				def targets = Link.findAllWhere(target: nodeInstance)
+				
+				targets.each{ link->
+					
+					link.delete(flush:true,failOnError:true)
+					
+				}
+				
+				
+	            nodeInstance.delete(flush: true)
+				msg = message(code: 'default.deleted.message', args: [message(code: 'node.label', default: 'Node'), id])
+				model = [success: true, message: msg]
+			}
+			catch (DataIntegrityViolationException e) {
+				msg = message(code: 'default.not.found.message', args: [message(code: 'node.label', default: 'Node'), id])
+				model = [success: false, message: msg]
+			}
 		}
-		catch (DataIntegrityViolationException e) {
-			msg = message(code: 'default.not.found.message', args: [message(code: 'node.label', default: 'Node'), id])
-			model = [success: false, message: msg]
-		}
-		
 		render model as JSON
 		
 	}
@@ -218,8 +245,29 @@ class NodeController {
         }
 
         try {
-			nodeInstance.prepareForDelete()
+
+			
+			def sources  = Link.findAllWhere(source: nodeInstance)
+			
+			println('removing link sources and targets')
+			
+			sources.each{ link ->
+				
+				link.delete(flush:true,failOnError:true)
+			}
+			
+			//targets
+			def targets = Link.findAllWhere(target: nodeInstance)
+			
+			targets.each{ link->
+				
+				link.delete(flush:true,failOnError:true)
+				
+			}
+			
+			
             nodeInstance.delete(flush: true)
+			
             flash.message = message(code: 'default.deleted.message', args: [message(code: 'node.label', default: 'Node'), id])
             redirect(action: "list")
         }
