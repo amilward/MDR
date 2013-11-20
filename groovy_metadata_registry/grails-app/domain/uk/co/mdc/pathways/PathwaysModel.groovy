@@ -2,7 +2,7 @@ package uk.co.mdc.pathways
 
 import uk.co.mdc.model.ExtensibleObject;
 
-class PathwaysModel extends ExtensibleObject  {
+class PathwaysModel  {
 	
 
 	String refId
@@ -21,7 +21,11 @@ class PathwaysModel extends ExtensibleObject  {
 		refId unique:true, nullable: true
 		description nullable: true
 		versionNo nullable:true  
+		pathwayElements nullable:true
     }
+	
+	static mapping = {
+	}
 	
 	List getNodes(){
 		

@@ -22,6 +22,8 @@ class NodeController {
     }
 
     def save() {
+		
+		println(params)
         def nodeInstance = new Node(params)
         if (!nodeInstance.save(flush: true)) {
             render(view: "create", model: [nodeInstance: nodeInstance])
@@ -48,15 +50,50 @@ class NodeController {
 	def getNodeJSON(Long id){
 		
 		def nodeInstance = Node.get(id)
+		def model 
+		
 		if (!nodeInstance) {
-			flash.message = message(code: 'default.not.found.message', args: [message(code: 'Node.label', default: 'Node'), id])
-			redirect(action: "list")
-			return
+		 model = [message: message(code: 'default.not.found.message', args: [message(code: 'Node.label', default: 'Node'), id])]
+		
+		 }else{
+		 
+		 model = [nodeInstance: nodeInstance]
+		 
 		}
 
-		def model = [nodeInstance: nodeInstance]
-		
 		render model as JSON
+	}
+	
+	def createNodeFromJSON(){
+	
+		def data = request.JSON
+		
+		def newNode = data.nodeInstance
+		
+		println('new node')
+		println(newNode)
+		
+		def nodeInstance = new Node(
+			refId: newNode?.refId,
+			name: newNode?.name,
+			x: newNode?.x,
+			y: newNode?.y,
+			description: newNode?.description
+			)
+
+		if (!nodeInstance.save(flush: true)) {
+			println(nodeInstance.errors)
+		}
+		
+		def pathway = PathwaysModel.get(1)
+		
+		pathway.addToPathwayElements(nodeInstance)
+		
+		
+		def model = [success: true, nodeId: nodeInstance.id, nodeVersion: nodeInstance.version, message: 'saved']
+		
+		render model  as JSON
+		
 	}
 	
 	def updateNodeFromJSON(){
@@ -68,6 +105,8 @@ class NodeController {
 		def nodeVersion = data.nodeInstance.nodeVersionNo
 		
 		def nodeInstance = Node.get(nodeId)
+		
+		println(nodeInstance)
 			
 		if (!nodeInstance) {
 			flash.message = message(code: 'default.not.found.message', args: [message(code: 'nodeInstance.label', default: 'Node'), nodeId])
@@ -83,17 +122,77 @@ class NodeController {
 			 if (nodeInstance.version > nodeVersion) {
 				 nodeInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
 						   [message(code: 'formDesign.label', default: 'DataElement')] as Object[],
-						   "Another user has updated this Form Design while you were editing")
+						   "Another user has updated this Node while you were editing")
 				 def model = [success: true, nodeId: nodeInstance.id, message: 'version number conflict, please reload page and try again']
 				 render model  as JSON
 			}
 		 }
-		 		 
-		formDesignInstance = formDesignService.update(formDesignInstance, form)
+		 
+		println('nodeprops') 		 
+		println(nodeInstance.properties)
+		
+		println('nodeprops')
+		println(data.nodeInstance)
+		 
+		nodeInstance.properties = data.nodeInstance
+
+        if (!nodeInstance.save(flush: true)) {
+            println('failure')
+        }
+
 	
-		def model = [success: true, formDesignId: formDesignInstance.id, formVersion: formDesignInstance.version, message: 'saved']
+		def model = [success: true, nodeId: nodeInstance.id, nodeVersion: nodeInstance.version, message: 'saved']
 		
 		render model  as JSON
+	}
+	
+	def deleteNode(Long id){
+		
+		println(id)
+		
+		def nodeInstance = Node.get(id)
+		
+		println(nodeInstance)
+		
+		def model
+		def msg
+		
+		if (!nodeInstance) {
+			msg = message(code: 'default.not.found.message', args: [message(code: 'node.label', default: 'Node'), id])
+			model = [success: false, message: msg]
+		}else{
+
+			try {
+				def sources  = Link.findAllWhere(source: nodeInstance)
+				
+				println('removing link sources and targets')
+				
+				sources.each{ link ->
+					
+					link.delete(flush:true,failOnError:true)
+				}
+				
+				//targets
+				def targets = Link.findAllWhere(target: nodeInstance)
+				
+				targets.each{ link->
+					
+					link.delete(flush:true,failOnError:true)
+					
+				}
+				
+				
+	            nodeInstance.delete(flush: true)
+				msg = message(code: 'default.deleted.message', args: [message(code: 'node.label', default: 'Node'), id])
+				model = [success: true, message: msg]
+			}
+			catch (DataIntegrityViolationException e) {
+				msg = message(code: 'default.not.found.message', args: [message(code: 'node.label', default: 'Node'), id])
+				model = [success: false, message: msg]
+			}
+		}
+		render model as JSON
+		
 	}
 	
 
@@ -146,7 +245,29 @@ class NodeController {
         }
 
         try {
+
+			
+			def sources  = Link.findAllWhere(source: nodeInstance)
+			
+			println('removing link sources and targets')
+			
+			sources.each{ link ->
+				
+				link.delete(flush:true,failOnError:true)
+			}
+			
+			//targets
+			def targets = Link.findAllWhere(target: nodeInstance)
+			
+			targets.each{ link->
+				
+				link.delete(flush:true,failOnError:true)
+				
+			}
+			
+			
             nodeInstance.delete(flush: true)
+			
             flash.message = message(code: 'default.deleted.message', args: [message(code: 'node.label', default: 'Node'), id])
             redirect(action: "list")
         }

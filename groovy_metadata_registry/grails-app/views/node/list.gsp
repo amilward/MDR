@@ -46,8 +46,6 @@
 					
 						<td>${fieldValue(bean: nodeInstance, field: "description")}</td>
 					
-						<td>${fieldValue(bean: nodeInstance, field: "peCollection")}</td>
-					
 						<td>${fieldValue(bean: nodeInstance, field: "pathwaysModel")}</td>
 					
 						<td>${fieldValue(bean: nodeInstance, field: "x")}</td>

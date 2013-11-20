@@ -7,10 +7,10 @@ class Link extends PathwayElement{
 	Node source
 	Node target
 
-    static constraints = {
-		mandatoryInputs nullable:true
-		mandatoryOutputs nullable:true
-		optionalInputs nullable:true
-		optionalOutputs nullable:true
-    }
+	static belongsTo = [pathwaysModel: PathwaysModel]
+	
+	static constraints = {
+		pathwaysModel nullable: true
+	}
+	
 }

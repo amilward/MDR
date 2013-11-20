@@ -18,14 +18,6 @@
 	<g:textField name="description" value="${nodeInstance?.description}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: nodeInstance, field: 'peCollection', 'error')} ">
-	<label for="peCollection">
-		<g:message code="node.peCollection.label" default="Pe Collection" />
-		
-	</label>
-	<g:select id="peCollection" name="peCollection.id" from="${uk.co.mdc.model.Collection.list()}" optionKey="id" value="${nodeInstance?.peCollection?.id}" class="many-to-one" noSelection="['null': '']"/>
-</div>
-
 <div class="fieldcontain ${hasErrors(bean: nodeInstance, field: 'pathwaysModel', 'error')} ">
 	<label for="pathwaysModel">
 		<g:message code="node.pathwaysModel.label" default="Pathways Model" />
