@@ -10,7 +10,7 @@
 		<div id="page-body" role="main">
 			<div id="welcome" class="innertube">welcome to the metadata registry</div>
 					<sec:ifLoggedIn>
-							<p>Glad your in. Now the fun starts..........</p>
+							<p>Glad you're in. Now the fun starts..........</p>
 					</sec:ifLoggedIn>
 					<sec:ifNotLoggedIn>
 							<p>Please log in or register</p>

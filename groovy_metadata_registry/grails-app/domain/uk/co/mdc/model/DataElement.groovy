@@ -45,7 +45,7 @@ class DataElement extends ExtensibleObject {
 	static mapping = {
 		description type: 'text'
 		definition type: 'text'
-		extension sqlType: 'binary(5000)'
+		extension sqlType: 'blob'
 		subElements cascade: 'save-update'
 	}
 	

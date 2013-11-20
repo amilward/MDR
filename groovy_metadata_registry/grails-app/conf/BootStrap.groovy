@@ -560,56 +560,15 @@ class BootStrap {
 
 		}
 
+
 		if(Environment.current != Environment.DEVELOPMENT){
 			importNHICData(basePath)
 		}
 
 		
 	}
-	private importCSVLine(tokens, parent)
-	{
-		// if the DEC for tokens[1] doesn't exist, create it.
-		def section = DataElementConcept.findAllWhere("name" : tokens[1], "parent" : parent)
+	
 
-		if(section.empty){
-			section = new DataElementConcept(name : tokens[1], parent : parent, dataElements: []).save(failOnError: true)
-			println tokens[1]
-		}
-		else{
-			section = section.first()
-		}
-		def subsection = DataElementConcept.findAllWhere("name" : tokens[2], "parent" : section.first())
-		if(subsection.empty){
-			subsection = new DataElementConcept(name : tokens[2], parent : section.first(), dataElements: []).save(failOnError: true)
-			println tokens[2]
-		}
-		else{
-			subsection = subsection.first()
-		}
-		def ext = new JSONObject();
-		ext.put("NHIC Data", "NHIC Data instance");
-		println ext.keySet().size()
-		def de = new DataElement(refId : tokens[0], name: tokens[3], description : tokens[4], dataElementConcept: subsection, extension: ext ).save(failOnError: true)
-		/*		subsection.dataElements.add(de)
-		 subsection.save(failOnError: true)
-		 de.save(failOnError: true) */
-
-	}
-
-
-
-	private importDataElementConcept(xmldec, parent)
-	{
-		if(parent != null)
-		{
-			xmldec.attributes().putAt("parent", parent);
-		}
-		def dec = new DataElementConcept(xmldec.attributes()).save(failOnError: true) //assumes the keys match the DataElementConcept properties
-		//dec.dataElements = [];
-		xmldec.subConcepts.dataElementConcept.each { xmldec2 ->
-			importDataElementConcept(xmldec2, dec);
-		}
-	}
 
 	private importNHICData(basePath){
 		
@@ -619,18 +578,6 @@ class BootStrap {
 				NHICImportConfig.functions[filename](tokens);
 			}
 		}
-		
-		//def slurper = new JsonSlurper()
-		
-		
-		//def result = slurper.parse(new FileReader("${basePath}/WEB-INF/bootstrap-data/NHIC/config.json"))
-		
-		//println(result.configs[0].filename)
-		
-		
-		/*new File("${basePath}/WEB-INF/bootstrap-data/NHIC/CAN/CAN.csv").toCsvReader(['charset':'UTF-8', skipLines : 1] ).eachLine { tokens ->
-			importCSVLine(tokens, null);
-		}*/
 
 	}
 	
