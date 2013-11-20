@@ -133,6 +133,10 @@ modules = {
 		
 	}
 	
+	ajaxfunctions{
+		resource url: "js/pathways/pathwayAjaxFunctions.js"
+	}
+	
 	pathwaysList{
 		dependsOn "dataTables"
 		dependsOn "knockout_lib"

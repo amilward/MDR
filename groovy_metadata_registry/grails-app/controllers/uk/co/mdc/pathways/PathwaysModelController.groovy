@@ -132,6 +132,8 @@ class PathwaysModelController {
         redirect(action: "show", id: pathwaysModelInstance.id)
     }
 
+	
+	
     def show(Long id) {
         def pathwaysModelInstance = PathwaysModel.get(id)
         if (!pathwaysModelInstance) {
