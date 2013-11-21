@@ -42,14 +42,14 @@ grails.project.dependency.resolution = {
     }
 
     dependencies {
-
-		test "org.spockframework:spock-grails-support:0.7-groovy-2.0"
+		// specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes
+		
 		compile 'com.googlecode.json-simple:json-simple:1.1.1'
-		// specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes e.g.
-
-         runtime 'mysql:mysql-connector-java:5.1.22'
-
-
+		
+		test "org.spockframework:spock-grails-support:0.7-groovy-2.0"
+		test "org.gebish:geb-spock:0.9.2"
+		
+        runtime 'mysql:mysql-connector-java:5.1.22'
     }
 
     plugins {
@@ -68,6 +68,7 @@ grails.project.dependency.resolution = {
 
         compile ':cache:1.0.1'
 		
+		test "org.grails.plugins:geb:0.9.2"
 		test(":spock:0.7") {
 			exclude "spock-grails-support"
 		  }

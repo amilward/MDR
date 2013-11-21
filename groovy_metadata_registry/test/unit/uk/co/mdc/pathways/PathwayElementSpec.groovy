@@ -11,7 +11,7 @@ import org.junit.*
 @TestFor(PathwayElement)
 class PathwayElementSpec {
 
-    void testSomething() {
-       fail "Implement me"
-    }
+//    void testSomething() {
+//       fail "Implement me"
+//    }
 }

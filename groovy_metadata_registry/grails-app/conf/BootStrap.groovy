@@ -56,7 +56,7 @@ class BootStrap {
 		//register spring filters (in this case the rest api security filter)
 		registerSpringFilters()
 
-		if(!SecUser.findByUsername('user1') ){
+		if(!SecUser.findByUsername('user1') && Environment.current != Environment.PRODUCTION){
 			//this if needs to be removed....only for development purposes
 
 			//create user if none exists
@@ -603,7 +603,7 @@ class BootStrap {
 		}
 
 
-		if(Environment.current != Environment.DEVELOPMENT){
+		if(Environment.current == Environment.PRODUCTION){
 			importNHICData(basePath)
 		}
 
