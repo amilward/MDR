@@ -11,7 +11,7 @@ import org.junit.*
 @TestFor(PathwaysModel)
 class PathwaysModelSpec {
 
-    void testSomething() {
-       fail "Implement me"
-    }
+//    void testSomething() {
+//       fail "Implement me"
+//    }
 }
