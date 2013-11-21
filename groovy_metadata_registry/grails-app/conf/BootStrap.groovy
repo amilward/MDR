@@ -37,7 +37,7 @@ import org.grails.plugins.csv.CSVMapReader
 import org.json.simple.JSONObject
 
 
-class BootStrap {	
+class BootStrap {
 	def aclService
 	def aclUtilService
 	def objectIdentityRetrievalStrategy
@@ -180,11 +180,11 @@ class BootStrap {
 		}
 
 		def string
-		
+
 		def date
-		
+
 		if (!DataType.count()) {
-			
+
 			string = new DataType(name:"String", enumerated: false).save(failOnError: true)
 			new DataType(name:"Text", enumerated: false).save(failOnError: true)
 			new DataType(name:"Integer", enumerated: false).save(failOnError: true)
@@ -194,19 +194,19 @@ class BootStrap {
 			new DataType(name:"Float", enumerated: false).save(failOnError: true)
 			new DataType(name:"Boolean", enumerated: false).save(failOnError: true)
 			new DataType(name:"Blob", enumerated: false).save(failOnError: true)
-			
-			
+
+
 		}
-		
-		
+
+
 
 		if(!FormDesign.count()){
-			
+
 			def rule1 = new Rule(
-				name: 'display section rule',
-				predicate: 'question1 > 5',
-				consequence: 'display'
-				).save(failOnError:true)
+					name: 'display section rule',
+					predicate: 'question1 > 5',
+					consequence: 'display'
+					).save(failOnError:true)
 
 			def inputField1 = new InputField(
 
@@ -326,12 +326,12 @@ class BootStrap {
 					title: 'section2',
 					designOrder: 2
 					).save(failOnError:true)
-					
+
 			section1.addToQuestionElements(question1)
 			section1.addToQuestionElements(question2)
 			section1.addToQuestionElements(question3)
 
-			
+
 			section2.addToRules(rule1)
 			section2.addToQuestionElements(question4)
 			section2.addToQuestionElements(question5)
@@ -343,14 +343,56 @@ class BootStrap {
 		if(!PathwaysModel.count()){
 
 			//Add a form to the pathways
-			
-			def rulepw1 = new Rule(
-				name: 'display section rule',
-				predicate: 'question1 > 5',
-				consequence: 'display'
-				).save(failOnError:true)
 
-			
+			def rulepw1 = new Rule(
+					name: 'display section rule',
+					predicate: 'question1 > 5',
+					consequence: 'display'
+					).save(failOnError:true)
+
+			def inputFieldpw1 = new InputField(
+
+					defaultValue: 'test default',
+					placeholder: 'test placeholder',
+					maxCharacters: 11,
+					unitOfMeasure: 'test UOM',
+					dataType: string,
+					format: 'test format',
+
+					).save(failOnError: true)
+
+			def inputFieldpw2 = new InputField(
+
+					defaultValue: 'test default',
+					placeholder: 'test placeholder',
+					maxCharacters: 20,
+					unitOfMeasure: 'test2 UOM',
+					dataType: string,
+					format: 'test format2',
+
+					).save(failOnError: true)
+
+			def inputFieldpw3 = new InputField(
+
+					defaultValue: 'te3st default',
+					placeholder: 'test3 placeholder',
+					maxCharacters: 13,
+					unitOfMeasure: 'tes3t UOM',
+					dataType: date,
+					format: 'test forma3t',
+
+					).save(failOnError: true)
+
+			def inputFieldpw4 = new InputField(
+
+					defaultValue: 'test default',
+					placeholder: 'test placeholder',
+					maxCharacters: 9,
+					unitOfMeasure: 'test UOM',
+					dataType: string,
+					format: 'test format',
+
+					).save(failOnError: true)
 
 			def inputFieldpw5 = new InputField(
 
@@ -426,12 +468,12 @@ class BootStrap {
 					title: 'sectionpw2',
 					designOrder: 2
 					).save(failOnError:true)
-					
+
 			sectionpw1.addToQuestionElements(questionpw1)
 			sectionpw1.addToQuestionElements(questionpw2)
 			sectionpw1.addToQuestionElements(questionpw3)
 
-			
+
 			sectionpw2.addToRules(rulepw1)
 			sectionpw2.addToQuestionElements(questionpw4)
 			sectionpw2.addToQuestionElements(questionpw5)
@@ -444,42 +486,42 @@ class BootStrap {
 			def collect3 = new Collection(refId: 'Colt14', name: 'TestCol13',description: 'blah blah blah').save(failOnError: true)
 			def collect4 = new Collection(refId: 'Colt15', name: 'TestCol14', description: 'blah blah blah').save(failOnError: true)
 			def collect5 = new Collection(refId: 'Colt16', name: 'TestCol15', description: 'blah blah blah').save(failOnError: true)
-			
+
 			def dec1 = new DataElementConcept(refId:"LC011", name: "Lung Cancer", description: "Cancers affecting the Lung").save(failOnError: true)
-			
+
 			def de11 = new DataElement(name:"SOURCE OF REFERRAL FOR OUT-PATIENTS", refId:"D1600",description:"This identifies the source of referral of each Consultant Out-Patient Episode.", dataElementConcept: dec1).save(failOnError: true)
 			def de12 = new DataElement(name:"ANOTHER SOURCE FOR OUT-PATIENTS", refId:"E1600",description:"This identifies the referral of each Consultant Out-Patient Episode.",dataElementConcept: dec1).save(failOnError: true)
 
 			collect1.addToDataElementCollections(de11)
 			collect1.addToDataElementCollections(de12)
 			collect1.addToForms(formDesignPW)
-			
+
 			def dec2 = new DataElementConcept(refId:"PC022", name: "Pancreatic Cancer", description: "Cancers affecting the Lung").save(failOnError: true)
-			
+
 			def de21 = new DataElement(name:"SOURCE OF REFERRAL FOR OUT-PATIENTS", refId:"D1699",description:"This identifies the source of referral of each Consultant Out-Patient Episode.", dataElementConcept: dec2).save(failOnError: true)
 			def de22 = new DataElement(name:"ANOTHER SOURCE FOR OUT-PATIENTS", refId:"E1699",description:"This identifies the referral of each Consultant Out-Patient Episode.",dataElementConcept: dec2).save(failOnError: true)
 
 			collect2.addToDataElementCollections(de21)
 			collect2.addToDataElementCollections(de22)
-			
+
 			def dec3 = new DataElementConcept(refId:"DI033", name: "Diabetes", description: "Cancers affecting the Lung").save(failOnError: true)
-			
+
 			def de31 = new DataElement(name:"SOURCE OF REFERRAL FOR OUT-PATIENTS", refId:"D13199",description:"This identifies the source of referral of each Consultant Out-Patient Episode.", dataElementConcept: dec3).save(failOnError: true)
 			def de32 = new DataElement(name:"ANOTHER SOURCE FOR OUT-PATIENTS", refId:"E13299",description:"This identifies the referral of each Consultant Out-Patient Episode.",dataElementConcept: dec3).save(failOnError: true)
 
 			collect3.addToDataElementCollections(de31)
 			collect3.addToDataElementCollections(de32)
-			
+
 			def dec4 = new DataElementConcept(refId:"OC044", name: "Ovarian Cancer", description: "Cancers affecting the Lung").save(failOnError: true)
-			
+
 			def de41 = new DataElement(name:"SOURCE OF REFERRAL FOR OUT-PATIENTS", refId:"D4199",description:"This identifies the source of referral of each Consultant Out-Patient Episode.", dataElementConcept: dec4).save(failOnError: true)
 			def de42 = new DataElement(name:"ANOTHER SOURCE FOR OUT-PATIENTS", refId:"E4299",description:"This identifies the referral of each Consultant Out-Patient Episode.",dataElementConcept: dec4).save(failOnError: true)
 
 			collect4.addToDataElementCollections(de41)
 			collect4.addToDataElementCollections(de42)
-			
+
 			def dec5 = new DataElementConcept(refId:"BC055", name: "Advanced Breast Cancer", description: "Cancers affecting the Lung").save(failOnError: true)
-			
+
 			def de51 = new DataElement(name:"SOURCE OF REFERRAL FOR OUT-PATIENTS", refId:"D5199",description:"This identifies the source of referral of each Consultant Out-Patient Episode.", dataElementConcept: dec5).save(failOnError: true)
 			def de52 = new DataElement(name:"ANOTHER SOURCE FOR OUT-PATIENTS", refId:"E5299",description:"This identifies the referral of each Consultant Out-Patient Episode.",dataElementConcept: dec5).save(failOnError: true)
 
@@ -497,12 +539,12 @@ class BootStrap {
 					).save(flush:true)
 
 			def de1 = new DataElement(name:"PERSON FAMILY NAME (AT BIRTH)",
-			 refId:"CR0111",
-			 description:"The PATIENT's surname at birth.",
-			 dataElementConcept: dec1).save(failOnError: true)
-			 
+			refId:"CR0111",
+			description:"The PATIENT's surname at birth.",
+			dataElementConcept: dec1).save(failOnError: true)
+
 			println(" Collection" + de1.refId)
-			
+
 
 
 			def node2 = new Node(
@@ -511,7 +553,7 @@ class BootStrap {
 					x: '15',
 					y: '10',
 					description: 'perform the operation',
-						peCollection: collect2
+					peCollection: collect2
 					).save(flush:true)
 
 
@@ -565,21 +607,21 @@ class BootStrap {
 			importNHICData(basePath)
 		}
 
-		
+
 	}
-	
+
 
 
 	private importNHICData(basePath){
-		
-		
-		NHICImportConfig.functions.keySet().each { filename -> 
+
+
+		NHICImportConfig.functions.keySet().each { filename ->
 			new File("${basePath}" + filename).toCsvReader([charset:'UTF-8', skipLines : 1] ).eachLine { tokens ->
 				NHICImportConfig.functions[filename](tokens);
 			}
 		}
 
 	}
-	
+
 }
-	
+
