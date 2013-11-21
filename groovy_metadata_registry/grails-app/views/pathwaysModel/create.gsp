@@ -44,7 +44,7 @@
 					<div id="canvas-panel" class="panel panel-primary">
             <div class="panel-heading">
                 <span>Pathway: {{pathwayModel ? pathwayModel.name : ''}}</span>
-                <button type="button" class="btn btn-link btn-xs pull-right" data-bind="click: addNode">
+                <button type="button" class="btn btn-link btn-xs pull-right" data-bind="click: saveNodeToServer">
                     <i class="fa fa-plus"></i> Add Node
                 </button>
             </div>
@@ -65,7 +65,7 @@
 <!-- If selectedNode is undefined, the right panel will be empty -->
     <div id="properties-panel" class="ui-layout-east large-rounded" data-bind="with: selectedNode">
         <div class="panel panel-primary">
-            <div class="panel-heading">Properties: {{name}}</div>
+            <div class="panel-heading">Properties: {{id}}</div>
             <div class="panel-body">
                 <form class="form" role="form">
                     <div class="form-group">

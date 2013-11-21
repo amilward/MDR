@@ -43,10 +43,10 @@
     	
     	var jsonNodeToServer = {}
     	var nodeInstance = {}
-    	nodeInstance.refId = node.id
+    	nodeInstance.refId = node.name
     	nodeInstance.name = node.name
     	nodeInstance.description = node.description
-    	nodeInstance.x = node.description
+    	nodeInstance.x = node.x
     	nodeInstance.y = node.y
     	nodeInstance.pathwaysModelId = pathwayId
     	
@@ -62,8 +62,8 @@
     		url: "/groovy_metadata_registry/Node/createNodeFromJSON",
     		data: JSON.stringify(jsonNodeToServer),
     		success: function(data){
-    			console.log(data.message);
-    			vm.updateNodeFromServer(data.id)
+    			console.log(data);
+    			vm.updateNodeFromServer(data.nodeId)
     		},
     		error: function (xhr, ajaxOptions, thrownError) {
     	        console.log(xhr.status);
@@ -84,12 +84,11 @@
 
     	var jsonLinkToServer = {}
     	var linkInstance = {}
-    	nodeInstance.source = node.id
-    	nodeInstance.name = node.name
-    	nodeInstance.description = node.description
-    	nodeInstance.x = node.description
-    	nodeInstance.y = node.y
-    	nodeInstance.pathwaysModelId = pathwayId
+    	linkInstance.source = link.source
+    	linkInstance.target = link.target
+    	nodeInstance.refId = link.refId
+    	nodeInstance.name = link.name
+    	linkInstance.pathwaysModelId = pathwayId
     	
     		
     		$.ajax({
@@ -98,6 +97,7 @@
     			data: JSON.stringify(jsonLinkToServer),
     			success: function(data){
     				console.log(data.message);
+    				
     			},
     			error: function (xhr, ajaxOptions, thrownError) {
     		        console.log(xhr.status);
