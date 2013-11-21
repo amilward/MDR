@@ -342,18 +342,149 @@ class BootStrap {
 
 		if(!PathwaysModel.count()){
 
+			//Add a form to the pathways
+			
+			def rulepw1 = new Rule(
+				name: 'display section rule',
+				predicate: 'question1 > 5',
+				consequence: 'display'
+				).save(failOnError:true)
 
-			//def collect1 = new Collection(refId: 'Colt11', name: 'TestCol11', description: 'blah blah blah').save(failOnError: true)
-			//def collect2 = new Collection(refId: 'Colt12', name: 'TestCol12', description: 'blah blah blah').save(failOnError: true)
-			//def collect3 = new Collection(refId: 'Colt14', name: 'TestCol13',description: 'blah blah blah').save(failOnError: true)
-			//def collect4 = new Collection(refId: 'Colt15', name: 'TestCol14', description: 'blah blah blah').save(failOnError: true)
-			//def collect5 = new Collection(refId: 'Colt16', name: 'TestCol15', description: 'blah blah blah').save(failOnError: true)
+			
 
-			//def de21 = new DataElement(name:"SOURCE OF REFERRAL FOR OUT-PATIENTS", refId:"D1600",description:"This identifies the source of referral of each Consultant Out-Patient Episode.", dataElementConcept: REF).save(failOnError: true)
-			//def de22 = new DataElement(name:"ANOTHER SOURCE FOR OUT-PATIENTS", refId:"E1600",description:"This identifies the referral of each Consultant Out-Patient Episode.",dataElementConcept: REF).save(failOnError: true)
+			def inputFieldpw5 = new InputField(
 
-			//collect1.addToDataElementCollections(de21)
-			//collect1.addToDataElementCollections(de22)
+					defaultValue: 'test default',
+					placeholder: 'test pladasceholder',
+					maxCharacters: 11,
+					unitOfMeasure: 'test UOM',
+					dataType: string,
+					format: 'test format',
+
+					).save(failOnError: true)
+
+			def questionpw1 = new QuestionElement(
+					designOrder: 1,
+					prompt: 'how old are you',
+					style: 'this style1',
+					label: 'how old are you?',
+					additionalInstructions: 'more instructions',
+					inputField: inputFieldpw1
+					).save(failOnError: true)
+
+			def questionpw2 = new QuestionElement(
+					designOrder: 2,
+					prompt: 'operation reference',
+					style: 'this style3',
+					label: 'origin of referral',
+					additionalInstructions: 'more instructions2 ',
+					inputField: inputFieldpw2
+					).save(failOnError: true)
+
+			def questionpw3 = new QuestionElement(
+					designOrder: '3',
+					prompt: 'this is the thirs question',
+					style: 'this style5',
+					label: 'what is your favorite colour ?',
+					additionalInstructions: 'more instructions',
+					inputField: inputFieldpw3
+					).save(failOnError: true)
+
+			def questionpw4 = new QuestionElement(
+					designOrder: 4,
+					prompt: 'this is the 4th question',
+					style: 'this style5',
+					label: 'what is your favorite animal ?',
+					additionalInstructions: 'more instructions',
+					inputField: inputFieldpw4
+					).save(failOnError: true)
+
+			def questionpw5 = new QuestionElement(
+					designOrder: 5,
+					prompt: 'this is the 5th question',
+					style: 'this style5',
+					label: 'what is your favorite car ?',
+					additionalInstructions: 'more instructions',
+					inputField: inputFieldpw5
+					).save(failOnError: true)
+
+
+			def formDesignPW = new FormDesign(refId: 'testFormpw1',
+			name:'formDesignNamepw1',
+			versionNo:'V0.145',
+			isDraft:true,
+			description:'test description 1'
+			).save(failOnError: true)
+
+
+			def sectionpw1 = new SectionElement(
+					title: 'sectionpw1',
+					designOrder: 1
+					).save(failOnError:true)
+
+			def sectionpw2 = new SectionElement(
+					title: 'sectionpw2',
+					designOrder: 2
+					).save(failOnError:true)
+					
+			sectionpw1.addToQuestionElements(questionpw1)
+			sectionpw1.addToQuestionElements(questionpw2)
+			sectionpw1.addToQuestionElements(questionpw3)
+
+			
+			sectionpw2.addToRules(rulepw1)
+			sectionpw2.addToQuestionElements(questionpw4)
+			sectionpw2.addToQuestionElements(questionpw5)
+
+			formDesignPW.addToFormDesignElements(sectionpw1)
+			formDesignPW.addToFormDesignElements(sectionpw2)
+			//End add form
+			def collect1 = new Collection(refId: 'Colt11', name: 'TestCol11', description: 'blah blah blah').save(failOnError: true)
+			def collect2 = new Collection(refId: 'Colt12', name: 'TestCol12', description: 'blah blah blah').save(failOnError: true)
+			def collect3 = new Collection(refId: 'Colt14', name: 'TestCol13',description: 'blah blah blah').save(failOnError: true)
+			def collect4 = new Collection(refId: 'Colt15', name: 'TestCol14', description: 'blah blah blah').save(failOnError: true)
+			def collect5 = new Collection(refId: 'Colt16', name: 'TestCol15', description: 'blah blah blah').save(failOnError: true)
+			
+			def dec1 = new DataElementConcept(refId:"LC011", name: "Lung Cancer", description: "Cancers affecting the Lung").save(failOnError: true)
+			
+			def de11 = new DataElement(name:"SOURCE OF REFERRAL FOR OUT-PATIENTS", refId:"D1600",description:"This identifies the source of referral of each Consultant Out-Patient Episode.", dataElementConcept: dec1).save(failOnError: true)
+			def de12 = new DataElement(name:"ANOTHER SOURCE FOR OUT-PATIENTS", refId:"E1600",description:"This identifies the referral of each Consultant Out-Patient Episode.",dataElementConcept: dec1).save(failOnError: true)
+
+			collect1.addToDataElementCollections(de11)
+			collect1.addToDataElementCollections(de12)
+			collect1.addToForms(formDesignPW)
+			
+			def dec2 = new DataElementConcept(refId:"PC022", name: "Pancreatic Cancer", description: "Cancers affecting the Lung").save(failOnError: true)
+			
+			def de21 = new DataElement(name:"SOURCE OF REFERRAL FOR OUT-PATIENTS", refId:"D1699",description:"This identifies the source of referral of each Consultant Out-Patient Episode.", dataElementConcept: dec2).save(failOnError: true)
+			def de22 = new DataElement(name:"ANOTHER SOURCE FOR OUT-PATIENTS", refId:"E1699",description:"This identifies the referral of each Consultant Out-Patient Episode.",dataElementConcept: dec2).save(failOnError: true)
+
+			collect2.addToDataElementCollections(de21)
+			collect2.addToDataElementCollections(de22)
+			
+			def dec3 = new DataElementConcept(refId:"DI033", name: "Diabetes", description: "Cancers affecting the Lung").save(failOnError: true)
+			
+			def de31 = new DataElement(name:"SOURCE OF REFERRAL FOR OUT-PATIENTS", refId:"D13199",description:"This identifies the source of referral of each Consultant Out-Patient Episode.", dataElementConcept: dec3).save(failOnError: true)
+			def de32 = new DataElement(name:"ANOTHER SOURCE FOR OUT-PATIENTS", refId:"E13299",description:"This identifies the referral of each Consultant Out-Patient Episode.",dataElementConcept: dec3).save(failOnError: true)
+
+			collect3.addToDataElementCollections(de31)
+			collect3.addToDataElementCollections(de32)
+			
+			def dec4 = new DataElementConcept(refId:"OC044", name: "Ovarian Cancer", description: "Cancers affecting the Lung").save(failOnError: true)
+			
+			def de41 = new DataElement(name:"SOURCE OF REFERRAL FOR OUT-PATIENTS", refId:"D4199",description:"This identifies the source of referral of each Consultant Out-Patient Episode.", dataElementConcept: dec4).save(failOnError: true)
+			def de42 = new DataElement(name:"ANOTHER SOURCE FOR OUT-PATIENTS", refId:"E4299",description:"This identifies the referral of each Consultant Out-Patient Episode.",dataElementConcept: dec4).save(failOnError: true)
+
+			collect4.addToDataElementCollections(de41)
+			collect4.addToDataElementCollections(de42)
+			
+			def dec5 = new DataElementConcept(refId:"BC055", name: "Advanced Breast Cancer", description: "Cancers affecting the Lung").save(failOnError: true)
+			
+			def de51 = new DataElement(name:"SOURCE OF REFERRAL FOR OUT-PATIENTS", refId:"D5199",description:"This identifies the source of referral of each Consultant Out-Patient Episode.", dataElementConcept: dec5).save(failOnError: true)
+			def de52 = new DataElement(name:"ANOTHER SOURCE FOR OUT-PATIENTS", refId:"E5299",description:"This identifies the referral of each Consultant Out-Patient Episode.",dataElementConcept: dec5).save(failOnError: true)
+
+			collect5.addToDataElementCollections(de51)
+			collect5.addToDataElementCollections(de52)
 
 
 			def node1 = new Node(
@@ -362,15 +493,16 @@ class BootStrap {
 					x: '5',
 					y: '0',
 					description: 'transfer patient to the Operating Room',
-					//peCollection: collect1
+					peCollection: collect1
 					).save(flush:true)
 
-			/*def de1 = new DataElement(name:"PERSON FAMILY NAME (AT BIRTH)",
+			def de1 = new DataElement(name:"PERSON FAMILY NAME (AT BIRTH)",
 			 refId:"CR0111",
 			 description:"The PATIENT's surname at birth.",
-			 dataElementConcept: DEM).save(failOnError: true)
-			 */
-			//println(" Collection" + de1.refId)
+			 dataElementConcept: dec1).save(failOnError: true)
+			 
+			println(" Collection" + de1.refId)
+			
 
 
 			def node2 = new Node(
@@ -379,7 +511,7 @@ class BootStrap {
 					x: '15',
 					y: '10',
 					description: 'perform the operation',
-					//	peCollection: collect2
+						peCollection: collect2
 					).save(flush:true)
 
 
@@ -389,7 +521,7 @@ class BootStrap {
 					x: '25',
 					y: '30',
 					description: 'transfer patient to the Operating Room',
-					//peCollection: collect3
+					peCollection: collect3
 					).save(flush:true)
 
 
@@ -399,7 +531,7 @@ class BootStrap {
 					name: 'TM1',
 					source: node1,
 					target: node2,
-					//peCollection: collect4
+					peCollection: collect4
 					).save(flush:true)
 
 			def link2 = new Link(
@@ -407,7 +539,7 @@ class BootStrap {
 					name: 'TM2',
 					source: node2,
 					target: node3,
-					//peCollection: collect5
+					peCollection: collect5
 					).save(flush:true)
 
 
@@ -432,6 +564,7 @@ class BootStrap {
 		if(Environment.current != Environment.DEVELOPMENT){
 			importNHICData(basePath)
 		}
+
 		
 	}
 	
