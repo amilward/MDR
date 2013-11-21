@@ -1,4 +1,3 @@
-
 <%@ page import="uk.co.mdc.pathways.PathwaysModel"%>
 <!DOCTYPE html>
 <html>
@@ -102,13 +101,7 @@
 
 		</div>
 	</div>
-	</div>
-	<!-- /.modal-content -->
-	</div>
 
-	<!-- /.modal-dialog -->
-	</div>
-	<!-- /.modal -->
 
 	<g:javascript disposition="defer" library="pathways" />
 	<r:script disposition="defer">

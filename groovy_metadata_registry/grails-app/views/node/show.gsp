@@ -127,7 +127,7 @@
 				<fieldset class="buttons">
 					<g:hiddenField name="id" value="${nodeInstance?.id}" />
 					<a href="#" onclick="updateNode({'nodeInstance':{'id':${nodeInstance?.id},'nodeVersionNo': ${nodeInstance?.version},'name':'transfer to O.R. TEST2','description':'transfer patient to the Operating Room','x':'5','y':'0','mandatoryInputs':[],'mandatoryOutputs':[],'optionalInputs':[],'optionalOutputs':[]}})"">Update</a>
-					<a href="#" onclick="createNode({'nodeInstance':{'refId': 'TMN123','name':'transfer to O.R. TEST CREATE','description':'test ccreate - transfer patient to the Operating Room','x':'15','y':'10','mandatoryInputs':[],'mandatoryOutputs':[],'optionalInputs':[],'optionalOutputs':[]}})">Create</a>
+					<a href="#" onclick="createNode({'nodeInstance':{'refId': 'TMN123','pathwaysModelId': 1, 'name':'transfer to O.R. TEST CREATE','description':'test ccreate - transfer patient to the Operating Room','x':'15','y':'10','mandatoryInputs':[],'mandatoryOutputs':[],'optionalInputs':[],'optionalOutputs':[]}})">Create</a>
 					<a href="#" onclick="deleteNode(${nodeInstance?.id})">Delete</a>
 					<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
 				</fieldset>
