@@ -34,20 +34,14 @@ ko.bindingHandlers.makeNode = {
         jsPlumb.bind("connection", function (info) {
         	
         	
-            var source = ko.dataFor(info.source); //Get the source node model instance
-            
-            console.log('source')
-             console.log(source)
-            
+            var source = ko.dataFor(info.source); //Get the source node model instance            
             var target = ko.dataFor(info.target); //Get the target node model instance
-            
-            console.log('target')
-             console.log(target)
             
             
             //If source is current node, and target node is not already in the outputs array, add it to outputs
             if (value === source && !ko.utils.arrayFirst(value.outputs, function (item) { return item === target })) {
                 value.outputs.push(target);
+                vm.createLink(source.id, target.id);
             }
 
             //If target is current node, and source node is not already in the inputs array, add it to inputs

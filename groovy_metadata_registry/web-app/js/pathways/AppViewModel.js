@@ -20,6 +20,7 @@
         //#region View related functions/logic
 
         self.createPathway = function (pathway) {
+        	//FIXME need to amalgamate both methods into a jquery wait function
         	console.log('creating a new pathway')
         	console.log(pathway)
             var pm = new PathwayModel(pathway);
@@ -27,6 +28,7 @@
         };
 
         self.savePathwayToServer = function(model) {
+        	//FIXME need to amalgamate both methods into a jquery wait function
         	console.log('saving a pathway')
         	console.log(model)
         	console.log(ko.toJSON(model))
@@ -38,7 +40,7 @@
         
         self.updatePathwayFromServer = function(pathwayId){
         	//console.log(pathway)
-
+        	//FIXME need to amalgamate both methods into a jquery wait function
             //Set the new pathway model as the current model
             self.pathwayModel.id = pathwayId;
             
@@ -58,6 +60,7 @@
         };
 
         self.saveNodeToServer = function () {
+        	//FIXME need to amalgamate both methods into a jquery wait function
         	var node = new NodeModel();
             node.name = 'node' + (new Date().getTime());
             node.x = 0
@@ -66,6 +69,7 @@
         };
 
         self.updateNodeFromServer = function (nodeId) {
+        	//FIXME need to amalgamate both methods into a jquery wait function
         	console.log(nodeId)
             var node = new NodeModel();
             node.name = 'node' + (new Date().getTime());
@@ -73,6 +77,20 @@
             self.pathwayModel.nodes.push(node);
             console.log(ko.toJSON(self.pathwayModel.nodes));
         };
+        
+        self.createLink = function(sourceId, targetId){
+        	//FIXME need to amalgamate both methods into a jquery wait function
+        	if(targetId!=null && sourceId!=null){
+	        	var link = {}
+	        	link.refId = 'link' + (new Date().getTime());
+	        	link.name = 'link' + (new Date().getTime());
+	        	link.source = 'node' + sourceId
+	        	link.target = 'node' + targetId
+
+	        	createLink(link, self.pathwayModel.id)
+	        }
+        	
+        }
 
         //#endregion
 

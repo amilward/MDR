@@ -80,20 +80,23 @@
     	
     	//{'linkInstance':{'source':'node2','pathwaysModelId':1, 'target':'node3','refId':'testRef', 'name':'Test create link'}}
     
-    	console.log(ko.toJSON(link))
+    	console.log(link)
 
     	var jsonLinkToServer = {}
     	var linkInstance = {}
     	linkInstance.source = link.source
     	linkInstance.target = link.target
-    	nodeInstance.refId = link.refId
-    	nodeInstance.name = link.name
+    	linkInstance.refId = link.refId
+    	linkInstance.name = link.name
     	linkInstance.pathwaysModelId = pathwayId
     	
+    	jsonLinkToServer.linkInstance = linkInstance;
+    	
+    	console.log(jsonLinkToServer)
     		
     		$.ajax({
     			type: "POST",
-    			url: '../../Link/createLinkFromJSON',
+    			url: '/groovy_metadata_registry/Link/createLinkFromJSON',
     			data: JSON.stringify(jsonLinkToServer),
     			success: function(data){
     				console.log(data.message);
