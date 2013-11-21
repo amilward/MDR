@@ -33,12 +33,8 @@
 						</goals>
 						<configuration>
 							<sources>
-								<source>src/groovy</source>
-								<source>src/java</source>
-								<source>grails-app/controllers</source>
-								<source>grails-app/domain</source>
-								<source>grails-app/providers</source>
-								<source>grails-app/services</source>
+								<source>src</source>
+								<source>grails-app</source>
 							</sources>
 						</configuration>
 					</execution>
@@ -47,7 +43,6 @@
 		</plugins>
 	</build>
 	<properties>
-		<sonar.host.url>http://sonar.dev</sonar.host.url>
 		<sonar.language>grvy</sonar.language>
 		<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
 		<sonar.surefire.reportsPath>test/reports</sonar.surefire.reportsPath>
