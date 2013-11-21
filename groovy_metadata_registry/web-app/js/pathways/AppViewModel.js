@@ -45,7 +45,7 @@
             //console.log(ko.toJSON(self.pathwayModel))
 
             //Add a default node
-            self.addNode();
+            self.saveNodeToServer();
 
             //Hide the create pathway modal
             $('#CreatePathwayModal').modal('hide');
@@ -57,22 +57,22 @@
             self.selectedNode = n;
         };
 
-        self.createNode = function () {
-        	console.log('createNode')
-            var node = new NodeModel();
+        self.saveNodeToServer = function () {
+        	var node = new NodeModel();
             node.name = 'node' + (new Date().getTime());
+            node.x = 0
+            node.y = 0
             createNode(node, self.pathwayModel.id)
-            return node;
         };
 
-        self.addNode = function () {
-            self.pathwayModel.nodes.push(self.createNode());
+        self.updateNodeFromServer = function (nodeId) {
+        	console.log(nodeId)
+            var node = new NodeModel();
+            node.name = 'node' + (new Date().getTime());
+            node.id = nodeId
+            self.pathwayModel.nodes.push(node);
             console.log(ko.toJSON(self.pathwayModel.nodes));
         };
-        
-        self.saveNodeToServer = function(){
-        	createNode(node, self.pathwayModel.id)
-        }
 
         //#endregion
 

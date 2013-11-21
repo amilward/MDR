@@ -3,8 +3,8 @@
         var self = this;
 
         //TODO: better id generation
-        self.id = 'node-' + (new Date().getTime());
-        self.name = self.id;
+        self.id = undefined
+        self.name = undefined
         self.description = undefined;
         self.type = 'node' //'node' | 'pathway'
         self.x = undefined
