@@ -53,22 +53,59 @@ class LinkService {
 	@PreAuthorize("hasRole('ROLE_USER')")
 	Link create(Map parameters) {
 		
-		def linkInstance = new Link(parameters)
 		
-		//save the dataElement
-		if(!linkInstance.save(flush:true)){
-			// FIXME should throw an error here with the errors from the instance
-			return linkInstance
+		println('new link')
+		println(parameters)
+
+		def sourceNode
+		def targetNode
+		def linkInstance
+
+		if(parameters.source){
+			def sourceID = parameters.source.toString().replace( 'node', '' )
+			sourceNode = Node.get(sourceID)
+		}
+
+		if(parameters.target){
+			def targetID = parameters.target.toString().replace( 'node', '' )
+			targetNode = Node.get(targetID)
+		}
+
+		if(sourceNode && targetNode){
+
+			 linkInstance = new Link(
+					refId: parameters?.refId,
+					name: parameters?.name,
+					source: sourceNode,
+					target: targetNode
+					)
+
+					println(linkInstance)
+					
+			if(!linkInstance.save(flush:true)){
+				// FIXME should throw an error here with the errors from the instance
+				return linkInstance
+			}
+			
+			// Grant the current user principal administrative permission
+			addPermission linkInstance, springSecurityService.authentication.name, BasePermission.ADMINISTRATION
+			
+			//Grant admin user administrative permissions
+			addPermission linkInstance, 'admin', BasePermission.ADMINISTRATION
 		}
 		
-		// Grant the current user principal administrative permission
-		addPermission linkInstance, springSecurityService.authentication.name, BasePermission.ADMINISTRATION
+		if(linkInstance && parameters?.pathwaysModelId){
+
+			def pathway = PathwaysModel.get(parameters?.pathwaysModelId)
+			
+			if(pathway){
+				pathway.addToPathwayElements(linkInstance)
+			}
+		}
 		
-		//Grant admin user administrative permissions
-		addPermission linkInstance, 'admin', BasePermission.ADMINISTRATION
-		
+		println(linkInstance)
 		//return the data element to the consumer (the controller)
-		linkInstance
+		return linkInstance
 	}
 	
 	
@@ -76,7 +113,7 @@ class LinkService {
 	 * requires that the authenticated user have read or admin permission on the specified Data Element
 	 ******************************************************************************************** */
 	
-	@PreAuthorize('hasPermission(#id, "uk.co.mdc.model.Link", read) or hasPermission(#id, "uk.co.mdc.model.Link", admin)')
+	@PreAuthorize('hasPermission(#id, "uk.co.mdc.pathways.Link", read) or hasPermission(#id, "uk.co.mdc.pathways.Link", admin)')
 	Link get(long id) {
 	   Link.get id
 	   }
@@ -119,11 +156,24 @@ class LinkService {
 	
 	@Transactional
 	@PreAuthorize("hasPermission(#linkInstance, write) or hasPermission(#linkInstance, admin)")
-	void update(Link linkInstance, Map parameters) {
+	Link update(Link linkInstance, Map parameters) {
 
-	   
-	   linkInstance.properties = parameters
-	   linkInstance.save()
+		linkInstance.refId = parameters?.refId
+		linkInstance.name = parameters?.name
+		linkInstance.description = parameters?.description
+		
+		def targetId = parameters.target.toString().replace( 'node', '' );
+
+		if(linkInstance?.target?.id.toString()!=targetId){
+			def newTargetNode = Node.get(targetId)
+			if(newTargetNode){
+				linkInstance.target = newTargetNode
+			}
+		}
+		
+		linkInstance.save()
+		
+		linkInstance
 	}
 	
 	
@@ -165,7 +215,4 @@ class LinkService {
 		
 		}
 		
-    def serviceMethod() {
-
-    }
 }

@@ -91,8 +91,8 @@
 				<fieldset class="buttons">
 					<g:hiddenField name="id" value="${linkInstance?.id}" />
 					<a href="#" onclick="getLink(${linkInstance?.id})"">Get</a>
-					<a href="#" onclick="updateLink({'linkInstance':{'id': ${linkInstance?.id},'linkVersionNo': ${linkInstance?.version},'source':'node21','target':'node22','label':'Test update'}})">Update</a>
-					<a href="#" onclick="createLink({'linkInstance':{'source':'node21','target':'node23','refId':'testRef', 'name':'Test create link'}})">Create</a>
+					<a href="#" onclick="updateLink({'linkInstance':{'id': ${linkInstance?.id},'refId': '${linkInstance?.refId}','linkVersionNo': ${linkInstance?.version},'source':'node3','target':'node2','name':'Test update'}})">Update</a>
+					<a href="#" onclick="createLink({'linkInstance':{'source':'node2','pathwaysModelId':1, 'target':'node3','refId':'testRef', 'name':'Test create link'}})">Create</a>
 					<a href="#" onclick="deleteLink(${linkInstance?.id})">Delete</a>
 					
 					<g:link class="edit" action="edit" id="${linkInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link>

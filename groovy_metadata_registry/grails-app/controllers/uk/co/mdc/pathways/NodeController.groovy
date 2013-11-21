@@ -1,6 +1,7 @@
 package uk.co.mdc.pathways
 
 import grails.converters.JSON
+
 import org.json.simple.JSONObject
 import org.springframework.dao.DataIntegrityViolationException
 
@@ -8,7 +9,200 @@ class NodeController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
-    def index() {
+   def nodeService
+	
+   /* **************************************************************************************
+	* ************************************* GET NODE (JSON)***************************************
+	* get node and return as Json
+	********************************************************************************************* */
+	
+	def getNodeJSON(Long id){
+		
+		def nodeInstance = findInstance()
+		def model 
+		
+		if (!nodeInstance) {
+			model = [message: message(code: 'default.not.found.message', args: [message(code: 'Node.label', default: 'Node'), id])]
+		
+		 }else{
+		 
+		 	model = [nodeInstance: nodeInstance]
+		 
+		}
+
+		render model as JSON
+	}
+	
+	
+	/* **************************************************************************************
+	 * ************************************* CREATE NODE (JSON)***************************************
+	 * create node and return as Json
+	 ********************************************************************************************* */
+	
+	def createNodeFromJSON(){
+	
+		def data = request.JSON
+		def model
+		def newNode = data.nodeInstance
+		
+		def nodeInstance = nodeService.create(newNode)
+		
+		if(nodeInstance){
+			model = [success: true, nodeId: nodeInstance.id, nodeVersion: nodeInstance.version, message: 'saved']
+		}else{
+		
+			model = [success: false]
+		
+		}
+		render model  as JSON
+		
+	}
+	
+	/* **************************************************************************************
+	 * ************************************* UPDATE NODE (JSON)***************************************
+	 * update node and return as Json
+	 ********************************************************************************************* */
+	
+	def updateNodeFromJSON(){
+		
+		def data = request.JSON
+		def model
+		
+		if(data?.nodeInstance?.id){
+			
+			def nodeInstance = findInstance(data.nodeInstance.id)
+
+			if (!nodeInstance) {
+				flash.message = message(code: 'default.not.found.message', args: [message(code: 'nodeInstance.label', default: 'Node'), nodeId])
+				redirect(action: "list")
+				return
+			}
+				
+			
+			def nodeVersion = data?.nodeInstance?.nodeVersionNo
+				
+			//check that we have the right version i.e. no one else has updated the form design whilst we have been
+			 //looking at it
+	 
+			 if (nodeVersion != null) {
+				 if (nodeInstance.version > nodeVersion) {
+					 nodeInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
+							   [message(code: 'formDesign.label', default: 'DataElement')] as Object[],
+							   "Another user has updated this Node while you were editing")
+					 model = [success: true, nodeId: nodeInstance.id, message: 'version number conflict, please reload page and try again']
+					 render model  as JSON
+				}
+			 }
+			 
+			 nodeInstance = nodeService.update(nodeInstance, data.nodeInstance)
+			 
+						 if (nodeInstance.errors.hasErrors()) {
+							 def responseMessage = [errors: true, details: nodeInstance.errors]
+							 response.status = 400
+							 render responseMessage as JSON
+							 return
+						 }
+			 
+					
+			model = [success: true, nodeId: nodeInstance.id, nodeVersion: nodeInstance.version, message: 'saved']
+		
+		}else{
+			
+			 model = [errors: true, details: 'no id included']
+			
+		}
+		
+		render model  as JSON
+	}
+	
+	
+	/* **************************************************************************************
+	 * ************************************* DELETE NODE (JSON)***************************************
+	 * update node and return as Json
+	 ********************************************************************************************* */
+	
+	def deleteNode(Long id){
+		
+		def nodeInstance = findInstance()
+		
+		def model
+		def msg
+		
+		if (!nodeInstance) {
+			msg = message(code: 'default.not.found.message', args: [message(code: 'node.label', default: 'Node'), id])
+			model = [success: false, message: msg]
+		}else{
+
+			try {
+				nodeService.delete(nodeInstance)
+				msg = message(code: 'default.deleted.message', args: [message(code: 'node.label', default: 'Node'), id])
+				model = [success: true, message: msg]
+			}
+			catch (DataIntegrityViolationException e) {
+				msg = message(code: 'default.not.found.message', args: [message(code: 'node.label', default: 'Node'), id])
+				model = [success: false, message: msg]
+			}
+		}
+		render model as JSON
+		
+	}
+	
+	
+	/* **************************************************************************************
+	 * ********************************* GRANT *************************************************
+	 * this function grant permission to the given node
+	 *********************************************************************************** */
+
+
+	def grant = {
+
+		def node = findInstance()
+
+		if (!node) return
+
+			if (!request.post) {
+				return [nodeInstance: node]
+			}
+
+		nodeService.addPermission(node, params.recipient, params.int('permission'))
+
+		redirectShow "Permission $params.permission granted on Report $node.id " + "to $params.recipient", node.id
+	}
+
+	/* **********************************************************************************
+	 * this function uses the node service to get the node so that
+	 * the appropriate security considerations are adhered to
+	 *********************************************************************************** */
+
+	private Node findInstance() {
+		def node = nodeService.get(params.long('id'))
+		if (!node) {
+			flash.message = "Node not found with id $params.id"
+			redirect action: list
+		}
+		node
+	}
+
+	private Node findInstance(id) {
+		def node = nodeService.get(id)
+		if (!node) {
+			flash.message = "Node not found with id $params.id"
+			redirect action: list
+		}
+		node
+	}
+
+
+
+
+	
+	
+	
+	
+	
+	/* FIXME these need to be removed - keeping them in for testing purposes*/
+
+	 def index() {
         redirect(action: "list", params: params)
     }
 
@@ -45,157 +239,6 @@ class NodeController {
         [nodeInstance: nodeInstance]
     }
 	
-	
-	
-	def getNodeJSON(Long id){
-		
-		def nodeInstance = Node.get(id)
-		def model 
-		
-		if (!nodeInstance) {
-		 model = [message: message(code: 'default.not.found.message', args: [message(code: 'Node.label', default: 'Node'), id])]
-		
-		 }else{
-		 
-		 model = [nodeInstance: nodeInstance]
-		 
-		}
-
-		render model as JSON
-	}
-	
-	def createNodeFromJSON(){
-	
-		def data = request.JSON
-		
-		def newNode = data.nodeInstance
-		
-		println('new node')
-		println(newNode)
-		
-		def nodeInstance = new Node(
-			refId: newNode?.refId,
-			name: newNode?.name,
-			x: newNode?.x,
-			y: newNode?.y,
-			description: newNode?.description
-			)
-
-		if (!nodeInstance.save(flush: true)) {
-			println(nodeInstance.errors)
-		}
-		
-		def pathway = PathwaysModel.get(1)
-		
-		pathway.addToPathwayElements(nodeInstance)
-		
-		
-		def model = [success: true, nodeId: nodeInstance.id, nodeVersion: nodeInstance.version, message: 'saved']
-		
-		render model  as JSON
-		
-	}
-	
-	def updateNodeFromJSON(){
-		
-		def data = request.JSON
-		
-		def nodeId = data.nodeInstance.id
-		
-		def nodeVersion = data.nodeInstance.nodeVersionNo
-		
-		def nodeInstance = Node.get(nodeId)
-		
-		println(nodeInstance)
-			
-		if (!nodeInstance) {
-			flash.message = message(code: 'default.not.found.message', args: [message(code: 'nodeInstance.label', default: 'Node'), nodeId])
-			redirect(action: "list")
-			return
-		}
-			
-			
-		//check that we have the right version i.e. no one else has updated the form design whilst we have been
-		 //looking at it
- 
-		 if (nodeVersion != null) {
-			 if (nodeInstance.version > nodeVersion) {
-				 nodeInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
-						   [message(code: 'formDesign.label', default: 'DataElement')] as Object[],
-						   "Another user has updated this Node while you were editing")
-				 def model = [success: true, nodeId: nodeInstance.id, message: 'version number conflict, please reload page and try again']
-				 render model  as JSON
-			}
-		 }
-		 
-		println('nodeprops') 		 
-		println(nodeInstance.properties)
-		
-		println('nodeprops')
-		println(data.nodeInstance)
-		 
-		nodeInstance.properties = data.nodeInstance
-
-        if (!nodeInstance.save(flush: true)) {
-            println('failure')
-        }
-
-	
-		def model = [success: true, nodeId: nodeInstance.id, nodeVersion: nodeInstance.version, message: 'saved']
-		
-		render model  as JSON
-	}
-	
-	def deleteNode(Long id){
-		
-		println(id)
-		
-		def nodeInstance = Node.get(id)
-		
-		println(nodeInstance)
-		
-		def model
-		def msg
-		
-		if (!nodeInstance) {
-			msg = message(code: 'default.not.found.message', args: [message(code: 'node.label', default: 'Node'), id])
-			model = [success: false, message: msg]
-		}else{
-
-			try {
-				def sources  = Link.findAllWhere(source: nodeInstance)
-				
-				println('removing link sources and targets')
-				
-				sources.each{ link ->
-					
-					link.delete(flush:true,failOnError:true)
-				}
-				
-				//targets
-				def targets = Link.findAllWhere(target: nodeInstance)
-				
-				targets.each{ link->
-					
-					link.delete(flush:true,failOnError:true)
-					
-				}
-				
-				
-	            nodeInstance.delete(flush: true)
-				msg = message(code: 'default.deleted.message', args: [message(code: 'node.label', default: 'Node'), id])
-				model = [success: true, message: msg]
-			}
-			catch (DataIntegrityViolationException e) {
-				msg = message(code: 'default.not.found.message', args: [message(code: 'node.label', default: 'Node'), id])
-				model = [success: false, message: msg]
-			}
-		}
-		render model as JSON
-		
-	}
-	
-
     def edit(Long id) {
         def nodeInstance = Node.get(id)
         if (!nodeInstance) {

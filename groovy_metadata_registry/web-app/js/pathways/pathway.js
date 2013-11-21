@@ -104,6 +104,7 @@ function getPathway(pathwayId){
 function initPathways(){
 	pwnodes = []; 
 	descisionpoints = [];
+	console.log('test')
 	mainDiv = $('#main');
 }
 

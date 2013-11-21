@@ -118,11 +118,10 @@ modules = {
 		dependsOn "knockout_lib"
 		dependsOn "jquery_layout_lib"
 		dependsOn "bootstrap_editable_lib"
-		resource url: "js/pathways/pathway_model.js"
-		resource url: "js/pathways/pathway.js"
+		//resource url: "js/pathways/pathway_model.js"
+		//resource url: "js/pathways/pathway.js"
 		resource url: "js/pathways/pathwaysLayout.js"
 		resource url: "js/pathways/pathwayAjaxFunctions.js"
-		
 		resource url: "js/pathways/AppViewModel.js"
 		resource url: "js/pathways/show.js"
 		resource url: "js/pathways/binding/knockout.jsplumb.js"

@@ -2,7 +2,7 @@
     //Pathway model
     var PathwayModel = function () {
         var self = this;
-
+        self.id = undefined;
         self.name = undefined;
     	self.description = undefined;
     	self.version = undefined;
