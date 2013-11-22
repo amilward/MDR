@@ -29,7 +29,7 @@
     	return $.ajax({
     		type: "POST",
     		url: "/groovy_metadata_registry/Node/createNodeFromJSON",
-    		data: JSON.stringify(jsonNodeToServer),
+    		data: stringify(jsonNodeToServer),
     		/*success: function(data){
     			console.log(data);
     			vm.updateNodeFromServer(data.nodeId)
@@ -55,6 +55,7 @@
     	nodeInstance.y = node.y
     	nodeInstance.pathwaysModelId = pathwayId
     	jsonNodeToServer.nodeInstance = nodeInstance
+    	console.log(jsonNodeToServer)
     	return jsonNodeToServer
     }
     
@@ -63,15 +64,15 @@
     		return $.ajax({
     			type: "POST",
     			url: '/groovy_metadata_registry/Link/createLinkFromJSON',
-    			data: JSON.stringify(jsonLinkToServer),
-    			success: function(data){
+    			data: stringify(jsonLinkToServer),
+    			/*success: function(data){
     				console.log(data.message);
     				
     			},
     			error: function (xhr, ajaxOptions, thrownError) {
     		        console.log(xhr.status);
     		        alert(thrownError);
-    		      },
+    		      },*/
     			contentType: 'application/json',
     			dataType: 'json'
     			});
@@ -79,17 +80,19 @@
     
     }
     
+    //this method gets around problems with references to other nodes
+    //i.e. fixes the TypeError: cyclic object value
     var stringify = function(jsonObject){
-    	
-    	JSON.stringify(jsonObject, function(key, val) {
+    	var seen = [];
+    	var jso = JSON.stringify(jsonObject, function(key, val) {
     		   if (typeof val == "object") {
     		        if (seen.indexOf(val) >= 0)
     		            return
-    		        seen.push(val)
+    		        seen.push(val);
     		    }
-    		    return val
+    		    return val;
     		})
-    	
+    	return jso;
     }
     
     

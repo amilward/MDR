@@ -35,7 +35,7 @@ modules = {
 	}
 	
 	jsplumb_lib{
-		resource url: "js/vendor/jsplumb/jquery.jsPlumb-1.5.2-min.js"
+		resource url: "js/vendor/jsplumb/jquery.jsPlumb-1.5.4-min.js"
 	}
 	
 	bootstrap_lib{

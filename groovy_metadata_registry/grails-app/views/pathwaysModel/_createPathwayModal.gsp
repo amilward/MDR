@@ -5,7 +5,7 @@
 <!--  TODO move to HEAD -->
 <!--  FIXME errors in require.js -->
 <!--  FIXME add padding so scroll of modal works -->
-<g:javascript library="pathwayCreationModal"/>
+<!--  <g:javascript library="pathwayCreationModal"/> -->
 
 <!-- TODO include JS library (knockout + view model) -->
 <div id="createPathwayModal" class="modal fade hide" tabindex="-1"	role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop = "true" >
