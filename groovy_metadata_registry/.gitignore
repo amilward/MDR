@@ -46,6 +46,9 @@
 # other
 *.iws
 
-
+# Eclipse settings
 /.settings
 /.classpath
+
+# Sonar cache
+/.sonar
