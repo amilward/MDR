@@ -1,4 +1,4 @@
-grails.servlet.version = "2.5" // Change depending on target container compliance (2.5 or 3.0)
+	grails.servlet.version = "2.5" // Change depending on target container compliance (2.5 or 3.0)
 grails.project.class.dir = "target/classes"
 grails.project.test.class.dir = "target/test-classes"
 grails.project.test.reports.dir = "target/test-reports"
@@ -42,12 +42,26 @@ grails.project.dependency.resolution = {
     }
 
     dependencies {
+		// Selenium WebDriver, for use in Geb
+		def webDriverVersion = "2.37.0"
+		
 		// specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes
 		
 		compile 'com.googlecode.json-simple:json-simple:1.1.1'
 		
+		// Testing modules
 		test "org.spockframework:spock-grails-support:0.7-groovy-2.0"
 		test "org.gebish:geb-spock:0.9.2"
+		test "org.seleniumhq.selenium:selenium-support:${webDriverVersion}"
+		test "org.seleniumhq.selenium:selenium-firefox-driver:${webDriverVersion}"
+		test "org.seleniumhq.selenium:selenium-chrome-driver:${webDriverVersion}"
+		
+		// Required because of bug in 2.37.0 of WebDriver:
+		test "org.apache.httpcomponents:httpclient:4.3.1"
+		test("org.seleniumhq.selenium:selenium-htmlunit-driver:${webDriverVersion}") {
+			exclude 'xml-apis'
+		}
+		
 		
         runtime 'mysql:mysql-connector-java:5.1.22'
     }
@@ -68,7 +82,7 @@ grails.project.dependency.resolution = {
 
         compile ':cache:1.0.1'
 		
-		test "org.grails.plugins:geb:0.9.2"
+		test ":geb:0.9.2"
 		test(":spock:0.7") {
 			exclude "spock-grails-support"
 		  }

@@ -52,3 +52,6 @@
 
 # Sonar cache
 /.sonar
+
+# Geb testing cache
+/test/drivers 
