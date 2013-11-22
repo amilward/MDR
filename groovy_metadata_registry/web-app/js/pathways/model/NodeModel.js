@@ -5,6 +5,7 @@
         //TODO: better id generation
         self.id = undefined
         self.name = undefined
+        self.version = undefined
         self.description = undefined;
         self.type = 'node' //'node' | 'pathway'
         self.x = undefined

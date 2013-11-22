@@ -20,7 +20,7 @@
         //#region View related functions/logic
 
         self.createPathway = function (pathway) {
-        	//FIXME need to amalgamate both methods into a jquery wait function
+        	//FIXME this isn't used yet...presumable this will be for the sub pathways
         	console.log('creating a new pathway')
         	console.log(pathway)
             var pm = new PathwayModel(pathway);
@@ -28,31 +28,24 @@
         };
 
         self.savePathwayToServer = function(model) {
-        	//FIXME need to amalgamate both methods into a jquery wait function
-        	console.log('saving a pathway')
-        	console.log(model)
-        	console.log(ko.toJSON(model))
-            //Create the pathway (on server?)
-            savePathway(model);
-        	self.pathwayModel = model;
+
+            //Create the pathway (on server)
+        	
+        	$.when(savePathway(model)).done(function (data) {
+        		//create pathwayModal
+        		self.pathwayModel = model;
+        		 //Set the new pathway model id given the id created on the server
+                self.pathwayModel.id = data.pathwayId;
+
+                //Add a default node
+                self.saveNodeToServer();
+
+                //Hide the create pathway modal
+                $('#CreatePathwayModal').modal('hide');
+        	});
         	
         };
         
-        self.updatePathwayFromServer = function(pathwayId){
-        	//console.log(pathway)
-        	//FIXME need to amalgamate both methods into a jquery wait function
-            //Set the new pathway model as the current model
-            self.pathwayModel.id = pathwayId;
-            
-            //console.log(ko.toJSON(self.pathwayModel))
-
-            //Add a default node
-            self.saveNodeToServer();
-
-            //Hide the create pathway modal
-            $('#CreatePathwayModal').modal('hide');
-
-        }
 
         self.selectNode = function (n) {
             //Set current seletect node to bind to properties panel
@@ -60,34 +53,48 @@
         };
 
         self.saveNodeToServer = function () {
-        	//FIXME need to amalgamate both methods into a jquery wait function
+        	//create the node in the model
         	var node = new NodeModel();
             node.name = 'node' + (new Date().getTime());
             node.x = 0
             node.y = 0
-            createNode(node, self.pathwayModel.id)
+            //create a json representation of the node to send to the server using the pathways service
+            var jsonNodeToServer = createJsonNode(node, self.pathwayModel.id)
+            //after the node has been created on the server using the pathways service methods
+            //pass the version number and the id from the server to the node and 
+            //add it to the pathways model
+            $.when(createNode(jsonNodeToServer)).done(function (data) {
+            	if(data.success===true){
+	                node.id = data.nodeId
+	                node.version = data.nodeVersion
+	                self.pathwayModel.nodes.push(node);
+	                console.log(ko.toJSON(self.pathwayModel.nodes));
+            	}else{
+            		alert('node creation failed')
+            	}
+            });
         };
-
-        self.updateNodeFromServer = function (nodeId) {
-        	//FIXME need to amalgamate both methods into a jquery wait function
-        	console.log(nodeId)
-            var node = new NodeModel();
-            node.name = 'node' + (new Date().getTime());
-            node.id = nodeId
-            self.pathwayModel.nodes.push(node);
-            console.log(ko.toJSON(self.pathwayModel.nodes));
-        };
+        
+       
         
         self.createLink = function(sourceId, targetId){
         	//FIXME need to amalgamate both methods into a jquery wait function
         	if(targetId!=null && sourceId!=null){
-	        	var link = {}
-	        	link.refId = 'link' + (new Date().getTime());
+	        	var link = new LinkModel();
 	        	link.name = 'link' + (new Date().getTime());
 	        	link.source = 'node' + sourceId
 	        	link.target = 'node' + targetId
-
-	        	createLink(link, self.pathwayModel.id)
+	        	var jsonLink = createJsonLink(link, self.pathwayModel.id)
+	        	$.when(createLink(jsonLink)).done(function (data) {
+	        		console.log(data)
+	        		link.id = data.linkId
+	        		link.version = data.linkVersion
+	        		self.pathwayModel.links.push(link);
+	        		
+	        		console.log(ko.toJSON(self.pathwayModel.links))
+	        	});
+	        	
+	        	
 	        }
         	
         }

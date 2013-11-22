@@ -1,4 +1,21 @@
-﻿// Usage: <div class="node" data-bind="makeNode: $data">....</div>
+﻿// setup some defaults for jsPlumb.	
+			jsPlumb.importDefaults({
+				Endpoint : [ "Dot", {
+					radius : 2
+				} ],
+				HoverPaintStyle : {
+					strokeStyle : "#1e8151",
+					lineWidth : 2
+				},
+				ConnectionOverlays : [ [ "Arrow", {
+					location : 1,
+					id : "arrow",
+					length : 14,
+					foldback : 0.8
+				} ],]
+			});
+
+// Usage: <div class="node" data-bind="makeNode: $data">....</div>
 ko.bindingHandlers.makeNode = {
     init: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
         var value = valueAccessor();
@@ -32,8 +49,7 @@ ko.bindingHandlers.makeNode = {
 
         //Listening for connection event
         jsPlumb.bind("connection", function (info) {
-        	
-        	
+   
             var source = ko.dataFor(info.source); //Get the source node model instance            
             var target = ko.dataFor(info.target); //Get the target node model instance
             
@@ -41,6 +57,8 @@ ko.bindingHandlers.makeNode = {
             //If source is current node, and target node is not already in the outputs array, add it to outputs
             if (value === source && !ko.utils.arrayFirst(value.outputs, function (item) { return item === target })) {
                 value.outputs.push(target);
+                //FIXME this needs to be in it's own if else statement ie. see if the link exists within the pathways
+                //model, if not create link
                 vm.createLink(source.id, target.id);
             }
 
