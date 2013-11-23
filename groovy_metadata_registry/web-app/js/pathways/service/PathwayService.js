@@ -1,9 +1,12 @@
-﻿
-    var loadPathway = function (id) {
+﻿var PathwayService = function () {
+	
+	var self = this;
+	
+    self.loadPathway = function (id) {
         //Load a pathway model from server
     };
 
-    var savePathway = function (model) {
+    self.savePathway = function (model) {
 
     	
     	return $.ajax({
@@ -24,12 +27,12 @@
 
     };
     
-    var createNode = function(jsonNodeToServer){
+    self.createNode = function(jsonNodeToServer){
 
     	return $.ajax({
     		type: "POST",
     		url: "/groovy_metadata_registry/Node/createNodeFromJSON",
-    		data: stringify(jsonNodeToServer),
+    		data: self.stringify(jsonNodeToServer),
     		/*success: function(data){
     			console.log(data);
     			vm.updateNodeFromServer(data.nodeId)
@@ -45,7 +48,7 @@
     	
     };
     
-    var createJsonNode = function(node, pathwayId){
+    self.createJsonNode = function(node, pathwayId){
     	var jsonNodeToServer = {}
     	var nodeInstance = {}
     	nodeInstance.refId = node.name
@@ -59,12 +62,12 @@
     	return jsonNodeToServer
     }
     
-    var createLink = function(jsonLinkToServer){
+    self.createLink = function(jsonLinkToServer){
     		
     		return $.ajax({
     			type: "POST",
     			url: '/groovy_metadata_registry/Link/createLinkFromJSON',
-    			data: stringify(jsonLinkToServer),
+    			data: self.stringify(jsonLinkToServer),
     			/*success: function(data){
     				console.log(data.message);
     				
@@ -80,9 +83,25 @@
     
     }
     
+    self.deleteNode = function(nodeId){
+    	return $.ajax({
+    		type: "POST",
+    		url: '/groovy_metadata_registry/Node/deleteNode/' + nodeId,
+    		/*success: function(data){
+    			console.log(data.message);
+    		},
+    		error: function (xhr, ajaxOptions, thrownError) {
+    	        console.log(xhr.status);
+    	        alert(thrownError);
+    	      },*/
+    		contentType: 'application/json',
+    		dataType: 'json'
+    		});
+    }
+    
     //this method gets around problems with references to other nodes
     //i.e. fixes the TypeError: cyclic object value
-    var stringify = function(jsonObject){
+    self.stringify = function(jsonObject){
     	var seen = [];
     	var jso = JSON.stringify(jsonObject, function(key, val) {
     		   if (typeof val == "object") {
@@ -96,7 +115,7 @@
     }
     
     
-    var createJsonLink = function(link, pathwayId){
+    self.createJsonLink = function(link, pathwayId){
     	var jsonLinkToServer = {}
     	var linkInstance = {}
     	linkInstance.source = link.source
@@ -108,3 +127,20 @@
     	jsonLinkToServer.linkInstance = linkInstance;
     	return jsonLinkToServer
     }
+    
+    self.deleteLink = function(linkId){
+    	return $.ajax({
+    		type: "POST",
+    		url: '/groovy_metadata_registry/Link/deleteLink/' + linkId,
+    		/*success: function(data){
+    			console.log(data.message);
+    		},
+    		error: function (xhr, ajaxOptions, thrownError) {
+    	        console.log(xhr.status);
+    	        alert(thrownError);
+    	      },*/
+    		contentType: 'application/json',
+    		dataType: 'json'
+    		});
+    }
+}

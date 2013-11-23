@@ -44,7 +44,7 @@
 					<div id="canvas-panel" class="panel panel-primary">
             <div class="panel-heading">
                 <span>Pathway: {{pathwayModel ? pathwayModel.name : ''}}</span>
-                <button type="button" class="btn btn-link btn-xs pull-right" data-bind="click: saveNodeToServer">
+                <button type="button" class="btn btn-link btn-xs pull-right" data-bind="click: createNode">
                     <i class="fa fa-plus"></i> Add Node
                 </button>
             </div>
