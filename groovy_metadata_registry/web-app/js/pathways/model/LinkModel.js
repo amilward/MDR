@@ -6,7 +6,7 @@
         self.name = undefined;
     	self.source = undefined;
     	self.target = undefined;
-    	
+    	self.connectionId = undefined;
         //Turn all self.XXX properties above this statement to observable{Array}
         ko.track(self);
 
