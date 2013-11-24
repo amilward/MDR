@@ -6,13 +6,33 @@
         //Load a pathway model from server
     };
 
+    self.updatePathway = function(pathwayModel){
+    	
+    	return $.ajax({
+    		type : "POST",
+    		// FIXME remove static app name
+    		url : "/groovy_metadata_registry/pathwaysModel/updatePathwayJSON",
+    		data : ko.toJSON(pathwayModel),
+    		contentType: "application/json; charset=utf-8",
+    		/*success : function(data){
+    			console.log(data)
+    			vm.updatePathwayFromServer(data.id)
+    		},
+    		error : function(xhr, ajaxOptions, thrownError) {
+    			console.log("Creation of pathway failed: " + thrownError);
+    			failure();
+    		}*/
+    	});
+
+    }
+    
     self.savePathway = function (model) {
 
     	
     	return $.ajax({
     		type : "POST",
     		// FIXME remove static app name
-    		url : "/groovy_metadata_registry/pathwaysModel/saveREST",
+    		url : "/groovy_metadata_registry/pathwaysModel/createPathwayFromJSON",
     		data : ko.toJSON(model),
     		contentType: "application/json; charset=utf-8",
     		/*success : function(data){
@@ -58,7 +78,7 @@
     	nodeInstance.y = node.y
     	nodeInstance.pathwaysModelId = pathwayId
     	jsonNodeToServer.nodeInstance = nodeInstance
-    	console.log(jsonNodeToServer)
+    	//console.log(jsonNodeToServer)
     	return jsonNodeToServer
     }
     
@@ -118,8 +138,8 @@
     self.createJsonLink = function(link, pathwayId){
     	var jsonLinkToServer = {}
     	var linkInstance = {}
-    	linkInstance.source = link.source
-    	linkInstance.target = link.target
+    	linkInstance.source = 'node' + link.source.id
+    	linkInstance.target = 'node' + link.target.id
     	linkInstance.refId = link.refId
     	linkInstance.name = link.name
     	linkInstance.pathwaysModelId = pathwayId

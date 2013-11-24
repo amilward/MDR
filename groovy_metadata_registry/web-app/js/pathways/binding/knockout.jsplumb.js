@@ -58,7 +58,7 @@ ko.bindingHandlers.makeNode = {
    	   		 "Delete Node": function() {
    	   			$( this ).dialog( "close" );
    	   			nodeInfo = ko.dataFor(element)
-   	   			console.log(nodeInfo.id)
+   	   			//console.log(nodeInfo.id)
    	   			vm.deleteNode(nodeInfo.id)
    	   			jsPlumb.remove($(element))
    	   		 },
@@ -81,27 +81,16 @@ ko.bindingHandlers.makeNode = {
 
 //Listening for connection event
 jsPlumb.bind("connection", function (info) {
-	console.log('makeConnectionBinding')
+	//console.log('makeConnectionBinding')
 	
     var source = ko.dataFor(info.source); //Get the source node model instance            
     var target = ko.dataFor(info.target); //Get the target node model instance
 
     var connectionId = 'connection_' + (new Date().getTime())
-    console.log(connectionId)
+   // console.log(connectionId)
     info.connection.setParameter("connectionId", connectionId)
-    vm.createLink(source.id, target.id, connectionId);
+    vm.createLink(source, target, connectionId);
 
-    //If source is current node, and target node is not already in the outputs array, add it to outputs
-    if (!ko.utils.arrayFirst(source.outputs, function (item) { return item === target })) {
-        source.outputs.push(target);     
-        
-    }
-
-    //If target is current node, and source node is not already in the inputs array, add it to inputs
-    if (!ko.utils.arrayFirst(target.inputs, function (item) { return item === source })) {
-        target.inputs.push(source);
-    }
-    
     //binding for connection double click
     info.connection.bind("dblclick", function() {
     	$( "#dialog-confirm" ).text('Delete connection?');
@@ -113,28 +102,12 @@ jsPlumb.bind("connection", function (info) {
 	   		 buttons: {
 	   		 "Delete Connection": function() {
 	   			$( this ).dialog( "close" );
-	   			
-	   			var source = ko.dataFor(info.source); //Get the source node model instance            
-	   		    var target = ko.dataFor(info.target); //Get the target node model instance
-	   		    
+
 	   			var params = info.connection.getParameters()
-	   			
-	   			console.log(source.outputs)
-	   			console.log(target.inputs)
-	   			
-	   			//If source is current node, and target node is not already in the outputs array, add it to outputs
-			    if (ko.utils.arrayFirst(source.outputs, function (item) { return item === target })) {
-			    	ko.utils.arrayRemoveItem(source.outputs, target);   
-			        
-			    }
-			
-			    //If target is current node, and source node is not already in the inputs array, add it to inputs
-			    if (ko.utils.arrayFirst(target.inputs, function (item) { return item === source })) {
-			        ko.utils.arrayRemoveItem(target.inputs, source);
-			    }
 	   			
 	   			vm.deleteLink(params.connectionId);
 	   			jsPlumb.detach(info.connection);
+	   			
 	   		 },
 	   		 Cancel: function() {
 	   			 $( this ).dialog( "close" );

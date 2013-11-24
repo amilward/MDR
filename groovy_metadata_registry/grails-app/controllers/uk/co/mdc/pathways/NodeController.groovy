@@ -48,7 +48,7 @@ class NodeController {
 		def nodeInstance = nodeService.create(newNode)
 		
 		if(nodeInstance){
-			model = [success: true, nodeId: nodeInstance.id, nodeVersion: nodeInstance.version, message: 'saved']
+			model = [success: true, nodeId: nodeInstance.id, pathwaysModelVersion: nodeInstance.pathwaysModel.version, nodeVersion: nodeInstance.version, message: 'saved']
 		}else{
 		
 			model = [success: false]

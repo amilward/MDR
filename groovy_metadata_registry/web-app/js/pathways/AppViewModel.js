@@ -18,26 +18,39 @@
         //We can now use the observable without ()
 
         //#region View related functions/logic
+        
+        self.updatePathway = function() {
+        	
+			$.when(pathwayService.updatePathway(self.pathwayModel)).done(function (data) {
+			        		console.log(data)
+			        		console.log('pathway saved')
+			        	});
 
+        };
+        
         self.createPathway = function (pathway) {
         	//FIXME this isn't used yet...presumable this will be for the sub pathways
-        	console.log('creating a new pathway')
-        	console.log(pathway)
+        	//console.log('creating a new pathway')
+        	//console.log(pathway)
             var pm = new PathwayModel(pathway);
             return pm;
         };
+        
 
-        self.savePathwayToServer = function(model) {
+        self.savePathway = function(pathway) {
 
             //Create the pathway (on server)
         	
-        	$.when(pathwayService.savePathway(model)).done(function (data) {
+        	console.log(ko.toJSON(pathway))
+        	
+        	$.when(pathwayService.savePathway(pathway)).done(function (data) {
         		
         		//create pathwayModal
-        		self.pathwayModel = model;
+        		self.pathwayModel = pathway;
         		 //Set the new pathway model id given the id created on the server
-                self.pathwayModel.id = data.id;
-                console.log(self.pathwayModel.id)
+                self.pathwayModel.id = data.pathwayId;
+                self.pathwayModel.version = data.pathwayVersion
+               // console.log(self.pathwayModel.id)
                 //Add a default node
                 self.createNode();
 
@@ -61,7 +74,7 @@
             node.y = 0;
             //create a json representation of the node to send to the server using the pathways service
             var jsonNodeToServer = pathwayService.createJsonNode(node, self.pathwayModel.id)
-            console.log(jsonNodeToServer)
+           // console.log(jsonNodeToServer)
             //after the node has been created on the server using the pathways service methods
             //pass the version number and the id from the server to the node and 
             //add it to the pathways model
@@ -70,6 +83,7 @@
             	if(data.success===true){
 	                node.id = data.nodeId
 	                node.version = data.nodeVersion
+	                self.pathwayModel.version = data.pathwaysModelVersion
 	                self.pathwayModel.nodes.push(node);
 	                //console.log(ko.toJSON(self.pathwayModel.nodes));
             	}else{
@@ -79,7 +93,7 @@
         };
         
         self.deleteNode = function(nodeId){
-        	console.log('deleting node');
+        	//console.log('deleting node');
         	
         	//get ko node
         	var nodeToDelete;
@@ -88,6 +102,13 @@
 		    	  nodeToDelete = node;
 		      }
 		    });
+		    
+		    
+		    //remove inputs/outputs
+		    
+		    
+		    
+		    
 		    
 		    //remove all links associated with ko node
 		    
@@ -107,7 +128,7 @@
 		    
 		    $.each(linksToDelete, function( index, value ) {
 		    	
-		    	console.log('deleting link ' + value.connectionId);
+		    	//console.log('deleting link ' + value.connectionId);
 		    	self.deleteLink(value.connectionId);
 		    	
 		    	});
@@ -116,27 +137,39 @@
 		    
 		    //remove the ko node from pathway model
         	$.when(pathwayService.deleteNode(nodeId)).done(function (data) {
-		    	console.log(self.pathwayModel.nodes);
+		    	//console.log(self.pathwayModel.nodes);
 			    ko.utils.arrayRemoveItem(self.pathwayModel.nodes, nodeToDelete);
-			    console.log(self.pathwayModel.nodes);
+			    //console.log(self.pathwayModel.nodes);
         	});
         }
        
         
-        self.createLink = function(sourceId, targetId, connectionId){
-        	console.log('creating link')
-        	if(targetId!=null && sourceId!=null){
+        self.createLink = function(source, target, connectionId){
+        	//console.log('creating link')
+        	if(target!=null && source!=null){
 	        	var link = new LinkModel();
-	        	link.name = 'link_' + sourceId + '_' + targetId;
-	        	link.source = 'node' + sourceId;
-	        	link.target = 'node' + targetId;
+	        	link.name = 'link_' + source.id + '_' + target.id;
+	        	link.source = source;
+	        	link.target = target;
 	        	link.connectionId = connectionId;
-	        	console.log(ko.toJSON(link))
+	        	
+	        	//If source is current node, and target node is not already in the outputs array, add it to outputs
+	            if (!ko.utils.arrayFirst(source.outputs, function (item) { return item === target })) {
+	                source.outputs.push(target);     
+	                
+	            }
+
+	            //If target is current node, and source node is not already in the inputs array, add it to inputs
+	            if (!ko.utils.arrayFirst(target.inputs, function (item) { return item === source })) {
+	                target.inputs.push(source);
+	            }
+
 	        	var jsonLink = pathwayService.createJsonLink(link, self.pathwayModel.id);
 	        	$.when(pathwayService.createLink(jsonLink)).done(function (data) {
-	        		console.log(data);
+	        		//console.log(data);
 	        		link.id = data.linkId;
 	        		link.version = data.linkVersion;
+	        		self.pathwayModel.version = data.pathwaysModelVersion
 	        		self.pathwayModel.links.push(link);
 	        	});
 	        		
@@ -146,7 +179,7 @@
         
         self.deleteLink = function(connectionId){
         	
-        	console.log(connectionId)
+        	//console.log(connectionId)
         	
         	var link;
 		    ko.utils.arrayForEach(self.pathwayModel.links, function(connection) {
@@ -154,12 +187,34 @@
 		    	 link = connection;
 		      }
 		    });
+		    
+		    
+		    //remove inputs/outputs
+		    
+		    var source = link.source; //Get the source node model instance            
+   		    var target = link.target; //Get the target node model instance
+   		    
+   		    //console.log(source.outputs)
+   			//console.log(target.inputs)
+   			
+   			//If source is current node, and target node is not already in the outputs array, add it to outputs
+		    if (ko.utils.arrayFirst(source.outputs, function (item) { return item === target })) {
+		    	ko.utils.arrayRemoveItem(source.outputs, target);   
+		        
+		    }
 		
+		    //If target is current node, and source node is not already in the inputs array, add it to inputs
+		    if (ko.utils.arrayFirst(target.inputs, function (item) { return item === source })) {
+		        ko.utils.arrayRemoveItem(target.inputs, source);
+		    }
+		    
+		    
+		    //remove the link itself
 		    
 		    $.when(pathwayService.deleteLink(link.id)).done(function (data) {
-		    	console.log(self.pathwayModel.links);
+		    	//console.log(self.pathwayModel.links);
 			    ko.utils.arrayRemoveItem(self.pathwayModel.links, link);
-			    console.log(self.pathwayModel.links);
+			   // console.log(self.pathwayModel.links);
         	});
 
         }
