@@ -1,46 +1,74 @@
-﻿
-    var loadPathway = function (id) {
+﻿var PathwayService = function () {
+	
+	var self = this;
+	
+    self.loadPathway = function (id) {
         //Load a pathway model from server
     };
 
-    var savePathway = function (model) {
-
-        //Turn model into pure JSON string
-        var jsonModel = ko.toJSON(model); 
-        
-        console.log(jsonModel)
-
-     // FIXME Save pathway model to server
-    	//TODO remove console log
-    	console.log("posting to server" + jsonModel)
+    self.updatePathway = function(pathwayModel){
     	
-    	$.ajax({
+    	return $.ajax({
     		type : "POST",
     		// FIXME remove static app name
-    		url : "/groovy_metadata_registry/pathwaysModel/saveREST",
-    		data : jsonModel,
+    		url : "/groovy_metadata_registry/pathwaysModel/updatePathwayJSON",
+    		data : ko.toJSON(pathwayModel),
     		contentType: "application/json; charset=utf-8",
-    		success : function(data){
+    		/*success : function(data){
     			console.log(data)
     			vm.updatePathwayFromServer(data.id)
     		},
     		error : function(xhr, ajaxOptions, thrownError) {
     			console.log("Creation of pathway failed: " + thrownError);
     			failure();
-    		}
+    		}*/
     	});
-        
-        
-        //Save pathway model to server
+
+    }
+    
+    self.savePathway = function (model) {
+
+    	
+    	return $.ajax({
+    		type : "POST",
+    		// FIXME remove static app name
+    		url : "/groovy_metadata_registry/pathwaysModel/createPathwayFromJSON",
+    		data : ko.toJSON(model),
+    		contentType: "application/json; charset=utf-8",
+    		/*success : function(data){
+    			console.log(data)
+    			vm.updatePathwayFromServer(data.id)
+    		},
+    		error : function(xhr, ajaxOptions, thrownError) {
+    			console.log("Creation of pathway failed: " + thrownError);
+    			failure();
+    		}*/
+    	});
+
     };
     
-    var createNode = function(node, pathwayId){
+    self.createNode = function(jsonNodeToServer){
+
+    	return $.ajax({
+    		type: "POST",
+    		url: "/groovy_metadata_registry/Node/createNodeFromJSON",
+    		data: self.stringify(jsonNodeToServer),
+    		/*success: function(data){
+    			console.log(data);
+    			vm.updateNodeFromServer(data.nodeId)
+    		},
+    		error: function (xhr, ajaxOptions, thrownError) {
+    	        console.log(xhr.status);
+    	        alert(thrownError);
+    	      },*/
+    		contentType: 'application/json',
+    		dataType: 'json'
+    		});
     	
-    	console.log('test')
-    	//Turn node into pure JSON String
-    	var jsonNode = ko.toJSON(node); 
-    	console.log(jsonNode)
     	
+    };
+    
+    self.createJsonNode = function(node, pathwayId){
     	var jsonNodeToServer = {}
     	var nodeInstance = {}
     	nodeInstance.refId = node.name
@@ -49,63 +77,90 @@
     	nodeInstance.x = node.x
     	nodeInstance.y = node.y
     	nodeInstance.pathwaysModelId = pathwayId
-    	
     	jsonNodeToServer.nodeInstance = nodeInstance
-    	
-    	console.log(JSON.stringify(jsonNodeToServer))
-    	
-    	//{"id":"node-1384963617899","name":"node1384963617901","type":"node","inputs":[],"outputs":[]}
-    	//{'nodeInstance':{'refId': 'TMN123','pathwaysModelId': 1, 'name':'transfer to O.R. TEST CREATE','description':'test ccng Room','x':'15','y':'10','mandatoryInputs':[],'mandatoryOutputs':[],'optionalInputs':[],'optionalOutputs':[]}})
-    	
-    	$.ajax({
-    		type: "POST",
-    		url: "/groovy_metadata_registry/Node/createNodeFromJSON",
-    		data: JSON.stringify(jsonNodeToServer),
-    		success: function(data){
-    			console.log(data);
-    			vm.updateNodeFromServer(data.nodeId)
-    		},
-    		error: function (xhr, ajaxOptions, thrownError) {
-    	        console.log(xhr.status);
-    	        alert(thrownError);
-    	      },
-    		contentType: 'application/json',
-    		dataType: 'json'
-    		});
-    	
-    	
-    };
+    	//console.log(jsonNodeToServer)
+    	return jsonNodeToServer
+    }
     
-    var createLink = function(link, pathwayId){
-    	
-    	//{'linkInstance':{'source':'node2','pathwaysModelId':1, 'target':'node3','refId':'testRef', 'name':'Test create link'}}
-    
-    	console.log(ko.toJSON(link))
-
-    	var jsonLinkToServer = {}
-    	var linkInstance = {}
-    	linkInstance.source = link.source
-    	linkInstance.target = link.target
-    	nodeInstance.refId = link.refId
-    	nodeInstance.name = link.name
-    	linkInstance.pathwaysModelId = pathwayId
-    	
+    self.createLink = function(jsonLinkToServer){
     		
-    		$.ajax({
+    		return $.ajax({
     			type: "POST",
-    			url: '../../Link/createLinkFromJSON',
-    			data: JSON.stringify(jsonLinkToServer),
-    			success: function(data){
+    			url: '/groovy_metadata_registry/Link/createLinkFromJSON',
+    			data: self.stringify(jsonLinkToServer),
+    			/*success: function(data){
     				console.log(data.message);
     				
     			},
     			error: function (xhr, ajaxOptions, thrownError) {
     		        console.log(xhr.status);
     		        alert(thrownError);
-    		      },
+    		      },*/
     			contentType: 'application/json',
     			dataType: 'json'
     			});
 
     
     }
+    
+    self.deleteNode = function(nodeId){
+    	return $.ajax({
+    		type: "POST",
+    		url: '/groovy_metadata_registry/Node/deleteNode/' + nodeId,
+    		/*success: function(data){
+    			console.log(data.message);
+    		},
+    		error: function (xhr, ajaxOptions, thrownError) {
+    	        console.log(xhr.status);
+    	        alert(thrownError);
+    	      },*/
+    		contentType: 'application/json',
+    		dataType: 'json'
+    		});
+    }
+    
+    //this method gets around problems with references to other nodes
+    //i.e. fixes the TypeError: cyclic object value
+    self.stringify = function(jsonObject){
+    	var seen = [];
+    	var jso = JSON.stringify(jsonObject, function(key, val) {
+    		   if (typeof val == "object") {
+    		        if (seen.indexOf(val) >= 0)
+    		            return
+    		        seen.push(val);
+    		    }
+    		    return val;
+    		})
+    	return jso;
+    }
+    
+    
+    self.createJsonLink = function(link, pathwayId){
+    	var jsonLinkToServer = {}
+    	var linkInstance = {}
+    	linkInstance.source = 'node' + link.source.id
+    	linkInstance.target = 'node' + link.target.id
+    	linkInstance.refId = link.refId
+    	linkInstance.name = link.name
+    	linkInstance.pathwaysModelId = pathwayId
+    	
+    	jsonLinkToServer.linkInstance = linkInstance;
+    	return jsonLinkToServer
+    }
+    
+    self.deleteLink = function(linkId){
+    	return $.ajax({
+    		type: "POST",
+    		url: '/groovy_metadata_registry/Link/deleteLink/' + linkId,
+    		/*success: function(data){
+    			console.log(data.message);
+    		},
+    		error: function (xhr, ajaxOptions, thrownError) {
+    	        console.log(xhr.status);
+    	        alert(thrownError);
+    	      },*/
+    		contentType: 'application/json',
+    		dataType: 'json'
+    		});
+    }
+}

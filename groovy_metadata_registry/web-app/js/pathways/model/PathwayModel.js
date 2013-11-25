@@ -16,3 +16,10 @@
         //We can now use the observable without ()
 
     };
+
+    //json marshaller(so we don't get cyclical problems)
+    
+    PathwayModel.prototype.toJSON = function() {
+        var copy = ko.toJS(this); //easy way to get a clean copy
+        return copy; //return the copy to be serialized
+    };

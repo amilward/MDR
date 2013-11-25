@@ -116,7 +116,7 @@ class LinkController {
 				
 		if(linkInstance){
 
-			model = [success: true, linkId: linkInstance.id, linkVersion: linkInstance.version, message: 'saved']
+			model = [success: true, linkId: linkInstance.id, pathwaysModelVersion: linkInstance.pathwaysModel.version,  linkVersion: linkInstance.version, message: 'saved']
 
 
 		}else{
