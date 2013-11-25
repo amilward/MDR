@@ -37,7 +37,7 @@ import org.grails.plugins.csv.CSVMapReader
 import org.json.simple.JSONObject
 
 
-class BootStrap {	
+class BootStrap {
 	def aclService
 	def aclUtilService
 	def objectIdentityRetrievalStrategy
@@ -56,7 +56,7 @@ class BootStrap {
 		//register spring filters (in this case the rest api security filter)
 		registerSpringFilters()
 
-		if(!SecUser.findByUsername('user1') ){
+		if(!SecUser.findByUsername('user1') && Environment.current != Environment.PRODUCTION){
 			//this if needs to be removed....only for development purposes
 
 			//create user if none exists
@@ -344,6 +344,86 @@ class BootStrap {
 
 		if(!PathwaysModel.count()){
 
+			//Add a form to the pathways
+
+			def rulepw1 = new Rule(
+					name: 'display section rule',
+					predicate: 'question1 > 5',
+					consequence: 'display'
+					).save(failOnError:true)
+
+			def inputFieldpw1 = new InputField(
+
+					defaultValue: 'test default',
+					placeholder: 'test placeholder',
+					maxCharacters: 11,
+					unitOfMeasure: 'test UOM',
+					dataType: string,
+					format: 'test format',
+
+					).save(failOnError: true)
+
+			def inputFieldpw2 = new InputField(
+
+					defaultValue: 'test default',
+					placeholder: 'test placeholder',
+					maxCharacters: 20,
+					unitOfMeasure: 'test2 UOM',
+					dataType: string,
+					format: 'test format2',
+
+					).save(failOnError: true)
+
+			def inputFieldpw3 = new InputField(
+
+					defaultValue: 'te3st default',
+					placeholder: 'test3 placeholder',
+					maxCharacters: 13,
+					unitOfMeasure: 'tes3t UOM',
+					dataType: date,
+					format: 'test forma3t',
+
+					).save(failOnError: true)
+
+			def inputFieldpw4 = new InputField(
+
+					defaultValue: 'test default',
+					placeholder: 'test placeholder',
+					maxCharacters: 9,
+					unitOfMeasure: 'test UOM',
+					dataType: string,
+					format: 'test format',
+
+					).save(failOnError: true)
+
+			def inputFieldpw5 = new InputField(
+
+					defaultValue: 'test default',
+					placeholder: 'test pladasceholder',
+					maxCharacters: 11,
+					unitOfMeasure: 'test UOM',
+					dataType: string,
+					format: 'test format',
+
+					).save(failOnError: true)
+
+			def questionpw1 = new QuestionElement(
+					designOrder: 1,
+					prompt: 'how old are you',
+					style: 'this style1',
+					label: 'how old are you?',
+					additionalInstructions: 'more instructions',
+					inputField: inputFieldpw1
+					).save(failOnError: true)
+
+			def questionpw2 = new QuestionElement(
+					designOrder: 2,
+					prompt: 'operation reference',
+					style: 'this style3',
+					label: 'origin of referral',
+					additionalInstructions: 'more instructions2 ',
+					inputField: inputFieldpw2
+					).save(failOnError: true)
 			def pathway = new PathwaysModel(
 				refId: 'PM_P1',
 				name: 'Transplanting and Monitoring Pathway',
@@ -351,6 +431,113 @@ class BootStrap {
 				isDraft: true
 				).save(failOnError:true)
 			
+
+			def questionpw3 = new QuestionElement(
+					designOrder: '3',
+					prompt: 'this is the thirs question',
+					style: 'this style5',
+					label: 'what is your favorite colour ?',
+					additionalInstructions: 'more instructions',
+					inputField: inputFieldpw3
+					).save(failOnError: true)
+
+			def questionpw4 = new QuestionElement(
+					designOrder: 4,
+					prompt: 'this is the 4th question',
+					style: 'this style5',
+					label: 'what is your favorite animal ?',
+					additionalInstructions: 'more instructions',
+					inputField: inputFieldpw4
+					).save(failOnError: true)
+
+			def questionpw5 = new QuestionElement(
+					designOrder: 5,
+					prompt: 'this is the 5th question',
+					style: 'this style5',
+					label: 'what is your favorite car ?',
+					additionalInstructions: 'more instructions',
+					inputField: inputFieldpw5
+					).save(failOnError: true)
+
+
+			def formDesignPW = new FormDesign(refId: 'testFormpw1',
+			name:'formDesignNamepw1',
+			versionNo:'V0.145',
+			isDraft:true,
+			description:'test description 1'
+			).save(failOnError: true)
+
+
+			def sectionpw1 = new SectionElement(
+					title: 'sectionpw1',
+					designOrder: 1
+					).save(failOnError:true)
+
+			def sectionpw2 = new SectionElement(
+					title: 'sectionpw2',
+					designOrder: 2
+					).save(failOnError:true)
+
+			sectionpw1.addToQuestionElements(questionpw1)
+			sectionpw1.addToQuestionElements(questionpw2)
+			sectionpw1.addToQuestionElements(questionpw3)
+
+
+			sectionpw2.addToRules(rulepw1)
+			sectionpw2.addToQuestionElements(questionpw4)
+			sectionpw2.addToQuestionElements(questionpw5)
+
+			formDesignPW.addToFormDesignElements(sectionpw1)
+			formDesignPW.addToFormDesignElements(sectionpw2)
+			//End add form
+			def collect1 = new Collection(refId: 'Colt11', name: 'TestCol11', description: 'blah blah blah').save(failOnError: true)
+			def collect2 = new Collection(refId: 'Colt12', name: 'TestCol12', description: 'blah blah blah').save(failOnError: true)
+			def collect3 = new Collection(refId: 'Colt14', name: 'TestCol13',description: 'blah blah blah').save(failOnError: true)
+			def collect4 = new Collection(refId: 'Colt15', name: 'TestCol14', description: 'blah blah blah').save(failOnError: true)
+			def collect5 = new Collection(refId: 'Colt16', name: 'TestCol15', description: 'blah blah blah').save(failOnError: true)
+
+			def dec1 = new DataElementConcept(refId:"LC011", name: "Lung Cancer", description: "Cancers affecting the Lung").save(failOnError: true)
+
+			def de11 = new DataElement(name:"SOURCE OF REFERRAL FOR OUT-PATIENTS", refId:"D1600",description:"This identifies the source of referral of each Consultant Out-Patient Episode.", dataElementConcept: dec1).save(failOnError: true)
+			def de12 = new DataElement(name:"ANOTHER SOURCE FOR OUT-PATIENTS", refId:"E1600",description:"This identifies the referral of each Consultant Out-Patient Episode.",dataElementConcept: dec1).save(failOnError: true)
+
+			collect1.addToDataElementCollections(de11)
+			collect1.addToDataElementCollections(de12)
+			collect1.addToForms(formDesignPW)
+
+			def dec2 = new DataElementConcept(refId:"PC022", name: "Pancreatic Cancer", description: "Cancers affecting the Lung").save(failOnError: true)
+
+			def de21 = new DataElement(name:"SOURCE OF REFERRAL FOR OUT-PATIENTS", refId:"D1699",description:"This identifies the source of referral of each Consultant Out-Patient Episode.", dataElementConcept: dec2).save(failOnError: true)
+			def de22 = new DataElement(name:"ANOTHER SOURCE FOR OUT-PATIENTS", refId:"E1699",description:"This identifies the referral of each Consultant Out-Patient Episode.",dataElementConcept: dec2).save(failOnError: true)
+
+			collect2.addToDataElementCollections(de21)
+			collect2.addToDataElementCollections(de22)
+
+			def dec3 = new DataElementConcept(refId:"DI033", name: "Diabetes", description: "Cancers affecting the Lung").save(failOnError: true)
+
+			def de31 = new DataElement(name:"SOURCE OF REFERRAL FOR OUT-PATIENTS", refId:"D13199",description:"This identifies the source of referral of each Consultant Out-Patient Episode.", dataElementConcept: dec3).save(failOnError: true)
+			def de32 = new DataElement(name:"ANOTHER SOURCE FOR OUT-PATIENTS", refId:"E13299",description:"This identifies the referral of each Consultant Out-Patient Episode.",dataElementConcept: dec3).save(failOnError: true)
+
+			collect3.addToDataElementCollections(de31)
+			collect3.addToDataElementCollections(de32)
+
+			def dec4 = new DataElementConcept(refId:"OC044", name: "Ovarian Cancer", description: "Cancers affecting the Lung").save(failOnError: true)
+
+			def de41 = new DataElement(name:"SOURCE OF REFERRAL FOR OUT-PATIENTS", refId:"D4199",description:"This identifies the source of referral of each Consultant Out-Patient Episode.", dataElementConcept: dec4).save(failOnError: true)
+			def de42 = new DataElement(name:"ANOTHER SOURCE FOR OUT-PATIENTS", refId:"E4299",description:"This identifies the referral of each Consultant Out-Patient Episode.",dataElementConcept: dec4).save(failOnError: true)
+
+			collect4.addToDataElementCollections(de41)
+			collect4.addToDataElementCollections(de42)
+
+			def dec5 = new DataElementConcept(refId:"BC055", name: "Advanced Breast Cancer", description: "Cancers affecting the Lung").save(failOnError: true)
+
+			def de51 = new DataElement(name:"SOURCE OF REFERRAL FOR OUT-PATIENTS", refId:"D5199",description:"This identifies the source of referral of each Consultant Out-Patient Episode.", dataElementConcept: dec5).save(failOnError: true)
+			def de52 = new DataElement(name:"ANOTHER SOURCE FOR OUT-PATIENTS", refId:"E5299",description:"This identifies the referral of each Consultant Out-Patient Episode.",dataElementConcept: dec5).save(failOnError: true)
+
+			collect5.addToDataElementCollections(de51)
+			collect5.addToDataElementCollections(de52)
+
+
 			def node1 = new Node(
 					refId: 'TM_N1',
 					name: 'transfer to O.R.',
@@ -358,6 +545,17 @@ class BootStrap {
 					y: '0',
 					description: 'transfer patient to the Operating Room',
 					).save(failOnError:true)
+					peCollection: collect1
+					).save(flush:true)
+
+			def de1 = new DataElement(name:"PERSON FAMILY NAME (AT BIRTH)",
+			refId:"CR0111",
+			description:"The PATIENT's surname at birth.",
+			dataElementConcept: dec1).save(failOnError: true)
+
+			println(" Collection" + de1.refId)
+
+
 
 			def node2 = new Node(
 					refId: 'TM_N2',
@@ -366,6 +564,8 @@ class BootStrap {
 					y: '10',
 					description: 'perform the operation',
 					).save(failOnError:true)
+					peCollection: collect2
+					).save(flush:true)
 
 
 			def node3 = new Node(
@@ -375,6 +575,8 @@ class BootStrap {
 					y: '30',
 					description: 'transfer patient to the Operating Room',
 					).save(failOnError:true)
+					peCollection: collect3
+					).save(flush:true)
 
 
 
@@ -384,6 +586,8 @@ class BootStrap {
 					source: node1,
 					target: node2,
 					).save(failOnError:true)
+					peCollection: collect4
+					).save(flush:true)
 
 			def link2 = new Link(
 					refId: 'TM_L2',
@@ -392,16 +596,29 @@ class BootStrap {
 					target: node3,
 					).save(failOnError:true)
 			
+					peCollection: collect5
+					).save(flush:true)
+
+
+			def pathway = new PathwaysModel(
+					refId: 'TM_P1',
+					name: 'Transplanting and Monitoring Pathway',
+					versionNo: '0.1',
+					isDraft: true
+					)
+
+
 			pathway.addToPathwayElements(node1)
 			pathway.addToPathwayElements(node2)
 			pathway.addToPathwayElements(node3)
 			pathway.addToPathwayElements(link1)
 			pathway.addToPathwayElements(link2)
+			pathway.save(flush:true)
 
 		}
 
 
-		if(Environment.current != Environment.DEVELOPMENT){
+		if(Environment.current == Environment.PRODUCTION){
 			importNHICData(basePath)
 		}
 		

@@ -1,5 +1,6 @@
 package uk.co.mdc.pathways
 
+import uk.co.mdc.forms.FormDesign
 import uk.co.mdc.model.Collection
 import uk.co.mdc.model.DataElement
 import uk.co.mdc.model.DataElementCollection
@@ -19,28 +20,14 @@ abstract class PathwayElement extends ExtensibleObject{
 		description nullable:true
 		pathwaysModel nullable:true
 		extension nullable: true
+		peCollection nullable:true
     }
 	
-
-	String GetElementsJSON(){
-		def result = []
-		def de = new StringBuffer()
-		def isFirst = new Boolean('True')
-
-		Iterator i = peCollection.dataElementCollections.iterator();
-		while (i.hasNext()){
-			DataElementCollection it = i.next()
-			if(isFirst){
-
-				de.append('{"id" : "' + it.dataElement.refId + '", "description" : "' + it.dataElement.description + '"}')
-			}else{
-				de.append(',')
-				de.append('{"id" : "' + it.dataElement.refId + '", "description" : "' + it.dataElement.description + '"}')
-			}
-			isFirst = new Boolean('False')
-		}
+	Collection peCollection
 		
-		result = de.toString()
-	}
-	
+	static hasMany = [mandatoryInputs: Collection,
+					  mandatoryOutputs: Collection,
+					  optionalInputs: Collection,
+					  optionalOutputs: Collection]
+
 }

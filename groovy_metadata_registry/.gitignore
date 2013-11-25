@@ -7,7 +7,7 @@
 /.classpath
 /.launch
 /.project
-/.settings
+/.settings/
 /*.launch
 /*.tmproj
 /ivy*
@@ -45,9 +45,18 @@
 /reports/
 /.sonar/
 
+# test report output
+/reports
+
 # other
 *.iws
 
-
+# Eclipse settings
 /.settings
 /.classpath
+
+# Sonar cache
+/.sonar
+
+# Geb testing cache
+/test/drivers 
