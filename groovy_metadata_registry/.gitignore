@@ -7,7 +7,7 @@
 /.classpath
 /.launch
 /.project
-/.settings
+/.settings/
 /*.launch
 /*.tmproj
 /ivy*
