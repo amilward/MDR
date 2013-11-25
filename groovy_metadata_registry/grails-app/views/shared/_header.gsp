@@ -137,6 +137,10 @@
                   </ul></li>
                 <sec:ifLoggedIn>
 
+                  <!-- Value domains menu -->
+                  <li><g:link action="list" controller="ValueDomain"><i class="icon-angle-right"></i> Data model </g:link></li>
+                  
+                  <!-- Pathways menu -->
                   <li class="dropdown"><a data-toggle="dropdown"
                     class="dropdown-toggle" href="#"> Pathways <b
                       class="caret"></b>
@@ -144,9 +148,15 @@
                     <ul class="dropdown-menu">
                       <li><g:link action="list" controller="PathwaysModel">
                           <i class="icon-angle-right"></i> List pathways</g:link></li>
+
+
                       <li><a id="openModalLink" href="#"> <i
-                          class="icon-angle-right"></i> Create pathway </a></li>
-                    </ul> <script>
+                          class="icon-angle-right"></i> Create pathway
+                      </a></li>
+                    </ul> 
+                    
+                    <script>
+
                       // FIXME ryan refactor into JS file
                       $('#openModalLink')
                           .click(
@@ -157,6 +167,8 @@
                               });
                     </script> 
                     
+                    <!-- Form design menu -->
+                    <li><g:link action="list" controller="FormDesign"><i class="icon-angle-right"></i> Form design </g:link></li>
                     
                     <sec:ifAnyGranted roles="ROLE_ADMIN">
 

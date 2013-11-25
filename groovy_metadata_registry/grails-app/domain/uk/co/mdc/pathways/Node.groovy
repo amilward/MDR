@@ -10,6 +10,12 @@ class Node extends PathwayElement{
 
 	static belongsTo = [pathwaysModel: PathwaysModel]
 	
+	public Node(String refId, String name,String x, String y, String desc, Collection peCollection){
+		super( refId, name, desc, peCollection)
+		this.x = x
+		this.y = y
+	}
+	
 	static hasMany = [
 		mandatoryInputs: Collection,
 		mandatoryOutputs: Collection,
