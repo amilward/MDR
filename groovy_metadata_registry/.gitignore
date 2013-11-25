@@ -42,6 +42,8 @@
 # "temporary" build files
 /target
 /target-eclipse
+/report/
+/.sonar/
 
 # other
 *.iws
