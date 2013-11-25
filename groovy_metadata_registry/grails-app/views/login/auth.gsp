@@ -18,7 +18,9 @@
 
 				<g:if test='${flash.message}'>
 					<div class='login_message'>
-						<p class="muted text-center">${flash.message}</p>
+						<p class="muted text-center">
+							${flash.message}
+						</p>
 					</div>
 				</g:if>
 
@@ -26,9 +28,11 @@
 					class="form-signin" autocomplete='off'>
 					<p class="muted text-center">Please Login</p>
 
-						<input type='text' placeholder="Username" class='text_ input-block-level' name='j_username' id='username' />
+					<input type='text' placeholder="Username"
+						class='text_ input-block-level' name='j_username' id='username' />
 
-						<input type='password' placeholder="Password" class='text_ input-block-level' name='j_password' id='password' />
+					<input type='password' placeholder="Password"
+						class='text_ input-block-level' name='j_password' id='password' />
 
 
 					<p id="remember_me_holder">
@@ -36,7 +40,8 @@
 							id='remember_me'
 							<g:if test='${hasCookie}'>checked='checked'</g:if> /> <label
 							for='remember_me'><g:message
-								code="springSecurity.login.remember.me.label" class="muted pull-right"/></label>
+								code="springSecurity.login.remember.me.label"
+								class="muted pull-right" /></label>
 					</p>
 
 					<p>
@@ -68,9 +73,10 @@
 		</div>
 		<div class="text-center">
 			<ul class="inline">
-				<li><a id="forgottenPasswordLink" class="muted" href="../forgotPassword/" data-toggle="tab">Forgot
-						Password</a></li>
-				<li><a id="registerLink" class="muted" href="../register/" data-toggle="tab">Signup</a></li>
+				<li><a id="forgottenPasswordLink" class="muted"
+					href="../forgotPassword/" data-toggle="tab">Forgot Password</a></li>
+				<li><a id="registerLink" class="muted" href="../register/"
+					data-toggle="tab">Signup</a></li>
 			</ul>
 		</div>
 
@@ -79,10 +85,10 @@
 	<!-- /container -->
 	<script type='text/javascript'>
 	<!--
-	(function() {
-		document.forms['loginForm'].elements['j_username'].focus();
-	})();
+		(function() {
+			document.forms['loginForm'].elements['j_username'].focus();
+		})();
 	// -->
-</script>
+	</script>
 </body>
 </html>

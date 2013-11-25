@@ -12,8 +12,14 @@ import uk.co.mdc.model.CollectionMarshaller
 import uk.co.mdc.pathways.PathwaysModelMarshaller
 import uk.co.mdc.pathways.LinkMarshaller
 import uk.co.mdc.pathways.NodeMarshaller
+import grails.util.Environment
+
 // Place your Spring DSL code here
 beans = {
+
+	// FIXME remove prior to release!
+	mailService(uk.co.mdc.mail.DummyMailService)
+	
 	
 	apiAuthFilter(APIAuthenticationFilters) {
 		authenticationManager = ref("authenticationManager")
