@@ -35,7 +35,7 @@ modules = {
 	}
 	
 	jsplumb_lib{
-		resource url: "js/vendor/jsplumb/jquery.jsPlumb-1.5.2-min.js"
+		resource url: "js/vendor/jsplumb/jquery.jsPlumb-1.5.4-min.js"
 	}
 	
 	bootstrap_lib{
@@ -127,6 +127,7 @@ modules = {
 		resource url: "js/pathways/binding/knockout.jsplumb.js"
 		resource url: "js/pathways/model/NodeModel.js"
 		resource url: "js/pathways/model/PathwayModel.js"
+		resource url: "js/pathways/model/LinkModel.js"
 		resource url: "js/pathways/service/FormService.js"
 		resource url: "js/pathways/service/PathwayService.js"
 		

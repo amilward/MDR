@@ -1,11 +1,14 @@
 
     //Enable embedded text bindings in html (http://mbest.github.io/knockout.punches/)
 var vm   
+var pathwayService
 
 function initPathways(){
 	
 	ko.punches.interpolationMarkup.enable();
 
+	//create new pathwayService
+	pathwayService = new PathwayService()
     //Create the main view model
     vm = new AppViewModel();
 

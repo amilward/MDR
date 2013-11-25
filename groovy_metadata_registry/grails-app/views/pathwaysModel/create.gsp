@@ -44,8 +44,11 @@
 					<div id="canvas-panel" class="panel panel-primary">
             <div class="panel-heading">
                 <span>Pathway: {{pathwayModel ? pathwayModel.name : ''}}</span>
-                <button type="button" class="btn btn-link btn-xs pull-right" data-bind="click: saveNodeToServer">
+                <button type="button" class="btn btn-link btn-xs pull-right" data-bind="click: createNode">
                     <i class="fa fa-plus"></i> Add Node
+                </button>
+                <button type="button" class="btn btn-link btn-xs pull-right" data-bind="click: updatePathway">
+                    <i class="fa fa-save"></i> Save Pathway
                 </button>
             </div>
             <div class="panel-body" data-bind="with: pathwayModel">
@@ -121,7 +124,7 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-bind="click: $root.savePathwayToServer">Create</button>
+                    <button type="button" class="btn btn-primary" data-bind="click: $root.savePathway">Create</button>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->

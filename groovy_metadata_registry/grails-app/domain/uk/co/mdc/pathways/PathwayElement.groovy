@@ -15,7 +15,7 @@ abstract class PathwayElement extends ExtensibleObject{
 	static belongsTo = [pathwaysModel: PathwaysModel]
 	
     static constraints = {
-		refId unique:true
+		refId unique:true, nullable:true
 		description nullable:true
 		pathwaysModel nullable:true
 		extension nullable: true
