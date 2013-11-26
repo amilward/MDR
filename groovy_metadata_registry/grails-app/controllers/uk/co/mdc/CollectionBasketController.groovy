@@ -87,7 +87,7 @@ class CollectionBasketController {
             return
         }
 
-        [collectionBasketInstance: collectionBasketInstance, errors: params?.errors, refId: params?.refId, name: params?.name, description: params?.description]
+        [collectionBasketInstance: collectionBasketInstance, errors: params?.errors, name: params?.name, description: params?.description]
     }
 
 }

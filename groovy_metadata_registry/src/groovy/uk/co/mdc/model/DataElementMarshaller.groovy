@@ -9,7 +9,6 @@ class DataElementMarshaller extends CustomMarshaller{
 				
 			return [
 			'id' : dataElement.id,
-			'refId' : dataElement.refId,
 			'name' : dataElement.name,
 			'description' : dataElement.description,
 			'definition' : dataElement.definition,

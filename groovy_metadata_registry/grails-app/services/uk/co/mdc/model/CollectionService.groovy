@@ -61,7 +61,7 @@ class CollectionService {
 		
 		//save the collection
 		
-		Collection collectionInstance = new Collection(refId: parameters?.refId, name: parameters?.name, description: parameters?.description)
+		Collection collectionInstance = new Collection(name: parameters?.name, description: parameters?.description)
 		
 		if(collectionInstance.save(flush:true)){
 			

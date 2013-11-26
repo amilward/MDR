@@ -3,10 +3,6 @@
 
 <table class="table table-hovered">
 				<tbody>
-					<tr class="${hasErrors(bean: collectionInstance, field: 'refId', 'error')} ">
-						<td class="left_col_show"><span id="name-label" class="label"><g:message code="collection.refId.label" default="Reference ID" /></span></td>
-						<td class="right_col_show"><g:textField title="${g.message(code:'tooltip.collection.refId')}" class="input-large input-block-level" name="refId" value="${collectionInstance.refId}" required=""/></td>
-					</tr>
 					<tr class="${hasErrors(bean: collectionInstance, field: 'name', 'error')} ">
 						<td class="left_col_show"><span id="name-label" class="label"><g:message code="collection.name.label" default="Name" /></span></td>
 						<td class="right_col_show"><g:textField title="tooltip.collection.name" class="input-large input-block-level"  name="name" value="${collectionInstance?.name}"/></td>

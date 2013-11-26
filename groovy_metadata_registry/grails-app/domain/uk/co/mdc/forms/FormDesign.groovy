@@ -4,7 +4,6 @@ import uk.co.mdc.model.Collection
 
 class FormDesign {
 	
-	String refId
 	String name 
 	String versionNo
 	Boolean isDraft
@@ -25,7 +24,6 @@ class FormDesign {
 	static fetchMode = [formDesignElements: 'eager']
 	
     static constraints = {
-		refId unique:true, nullable: false
 		name nullable:true
 		header nullable:true
 		footer nullable:true

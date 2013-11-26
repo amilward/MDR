@@ -23,10 +23,6 @@
 			<table class="table table-hovered">
 				<tbody>
 					<tr>
-						<td class="left_col_show fieldcontain required"><span id="refId-label" class="label"><g:message code="collection.refId.label" default="Reference ID" /></span></td>
-						<td class="right_col_show"><g:textField value="${refId}" name="refId" required=""/></td>
-					</tr>
-					<tr>
 						<td class="left_col_show"><span id="name-label" class="label"><g:message code="collection.name.label" default="Name" /></span></td>
 						<td class="right_col_show"><g:textField value="${name}" name="name" required=""/></td>
 					</tr>
