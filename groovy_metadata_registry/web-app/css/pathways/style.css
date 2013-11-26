@@ -1,5 +1,5 @@
 body {
-  padding-top: 20px;
+
 }
 .col-md-1,
 .col-md-2,
@@ -54,3 +54,8 @@ body {
 #right-panel .outputs {
   min-height: 0;
 }
+#formDesignCart {
+	width:100%;
+	height:20px;    
+}
+

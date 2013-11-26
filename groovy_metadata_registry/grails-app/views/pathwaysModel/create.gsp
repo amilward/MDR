@@ -5,10 +5,10 @@
 <meta name="layout" content="main_no-sidebar">
 <g:set var="entityName"
 	value="${message(code: 'pathwaysModel.label', default: 'PathwaysModel')}" />
-<title><g:message code="default.show.label" args="[entityName]" /></title>
+<title><g:message code="default.create.label" args="[entityName]" /></title>
 <link rel="stylesheet"
 	href="${resource(dir: 'css', file: 'pathway.css')}" type="text/css">
-<parameter name="name" value=" Pathways" />
+<parameter name="name" value="Create Pathways" />
 
 <link rel="stylesheet" href="${resource(dir: 'css', file: 'bootstrap-editable.css')}" type="text/css">
 <link rel="stylesheet" href="${resource(dir: 'css', file: 'layout.css')}" type="text/css">
@@ -96,6 +96,17 @@
                         </ul>
                     </div>
                 </div>
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Forms</div>
+                    <div class="panel-body forms">
+                        <ul class="list-group" data-bind="foreach: forms">
+                            <li class="list-group-item"><a href="#" data-bind="click: previewForm">{{name}}</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-link btn-xs pull-right" data-bind="click: addFormDialog">
+                    <i class="fa fa-plus"></i> Add Form
+                </button>
             </div>
         </div>
     </div>
@@ -103,7 +114,7 @@
 	</div>
 
 
-<!-- Modal -->
+	<!-- Add Pathway Modal -->
     <div class="modal fade" id="CreatePathwayModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content" data-bind="with: $root.createPathway">
@@ -129,11 +140,31 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
-
+    
+    
+    <!-- Add Form Modal -->
+    <div class="modal fade" id="AddFormModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>-->
+                    <h4 class="modal-title" id="myModalLabel">Add Form</h4>
+                </div>
+                <div class="modal-body">
+                	<div id="formDesignCart"><i class="fa fa-plus"></i> Add to Node</div>
+                   <div id="formDesignList" ></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bind="click: $root.addFormFinish">Finish</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    
 
 	<g:javascript disposition="defer" library="pathways" />
 	<r:script disposition="defer">
-		initPathways();
+		initPathways('create');
 	</r:script>
 
 </body>

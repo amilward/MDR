@@ -159,6 +159,9 @@ class NodeService {
 	@Transactional @PreAuthorize("hasPermission(#nodeInstance, delete) or hasPermission(#nodeInstance, admin)")
 	void delete(Node nodeInstance) {
 		
+		//make sure we have the latest copy of the node
+		nodeInstance.refresh()
+		
 		def sources  = Link.findAllWhere(source: nodeInstance)
 		
 		println('removing link sources and targets')
