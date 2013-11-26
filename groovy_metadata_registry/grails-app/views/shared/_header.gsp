@@ -53,7 +53,7 @@
 <r:layoutResources />
 </head>
 <body>
-<g:render template="/pathwaysModel/createPathwayModal" />
+<!-- < g :r ender template="/pathwaysModel/createPathwayModal" /> --> 
   
 
   <!-- BEGIN WRAP -->
