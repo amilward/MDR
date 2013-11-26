@@ -67,15 +67,6 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${linkInstance?.refId}">
-				<li class="fieldcontain">
-					<span id="refId-label" class="property-label"><g:message code="link.refId.label" default="Ref Id" /></span>
-					
-						<span class="property-value" aria-labelledby="refId-label"><g:fieldValue bean="${linkInstance}" field="refId"/></span>
-					
-				</li>
-				</g:if>
-			
 				<g:if test="${linkInstance?.description}">
 				<li class="fieldcontain">
 					<span id="description-label" class="property-label"><g:message code="link.description.label" default="Description" /></span>

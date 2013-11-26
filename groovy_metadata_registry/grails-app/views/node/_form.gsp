@@ -1,15 +1,5 @@
 <%@ page import="uk.co.mdc.pathways.Node" %>
 
-
-
-<div class="fieldcontain ${hasErrors(bean: nodeInstance, field: 'refId', 'error')} ">
-	<label for="refId">
-		<g:message code="node.refId.label" default="Ref Id" />
-		
-	</label>
-	<g:textField name="refId" value="${nodeInstance?.refId}"/>
-</div>
-
 <div class="fieldcontain ${hasErrors(bean: nodeInstance, field: 'description', 'error')} ">
 	<label for="description">
 		<g:message code="node.description.label" default="Description" />
