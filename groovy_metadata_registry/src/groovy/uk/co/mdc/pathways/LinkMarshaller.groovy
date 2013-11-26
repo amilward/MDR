@@ -8,9 +8,10 @@ class LinkMarshaller {
 		JSON.registerObjectMarshaller(Link) { Link link ->
 				
 			return [
-			'source': 'node' + link?.source?.id,
-			'target': 'node' + link?.target?.id,
-			'label': link?.name
+			'source': link?.source?.id,
+			'target': link?.target?.id,
+			'label': link?.name,
+			'version' : link?.version
 			]
 		}
 	}

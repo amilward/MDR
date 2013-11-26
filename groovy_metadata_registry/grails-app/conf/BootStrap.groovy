@@ -362,8 +362,8 @@ class BootStrap {
 			def node2 = new Node(
 					refId: 'TM_N2',
 					name: 'Anaesthesia and Operating Patient.',
-					x: '15',
-					y: '10',
+					x: '115',
+					y: '110',
 					description: 'perform the operation',
 					).save(failOnError:true)
 
@@ -371,8 +371,8 @@ class BootStrap {
 			def node3 = new Node(
 					refId: 'TM_N3',
 					name: 'Guarding Patient on recovery and transfer to nursing ward',
-					x: '25',
-					y: '30',
+					x: '225',
+					y: '300',
 					description: 'transfer patient to the Operating Room',
 					).save(failOnError:true)
 
