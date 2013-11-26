@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pathwayModels>
-<pathway_model refId="pwm001" versionNo="1.0" isDraft="true" name="Renal Transplantation Pathway">
+<pathway_model versionNo="1.0" isDraft="true" name="Renal Transplantation Pathway">
     <elements>
         <node id="n7.1">
             <name>Transfer to O.R.</name>

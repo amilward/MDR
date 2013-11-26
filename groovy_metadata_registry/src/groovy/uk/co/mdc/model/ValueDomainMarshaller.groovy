@@ -8,7 +8,6 @@ class ValueDomainMarshaller extends CustomMarshaller{
 				
 			return [
 			'id' : valueDomain.id,
-			'refId' : valueDomain.refId,
 			'name' : valueDomain.name,
 			'description' : valueDomain.description,
 			'format' : valueDomain.format,

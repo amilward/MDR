@@ -27,12 +27,6 @@
 		<div class="box">
 			<table class="table table-hovered">
 				<tbody>
-				<g:if test="${conceptualDomainInstance?.refId}">
-					<tr>
-						<td class="left_col_show"><span id="name-label" class="label"><g:message code="conceptualDomain.refId.label" default="Reference ID" /></span></td>
-						<td class="right_col_show"><g:fieldValue bean="${conceptualDomainInstance}" field="refId"/></td>
-					</tr>
-				</g:if>
 				<g:if test="${conceptualDomainInstance?.name}">
 					<tr>
 						<td class="left_col_show"><span id="name-label" class="label"><g:message code="conceptualDomain.name.label" default="Data Element" /></span></td>
@@ -55,7 +49,6 @@
 							<thead>
 								<tr>
 									<th>Name</th>
-									<th>Reference ID</th>
 									<th>Description</th>
 									<th>Data Type</th>
 									<th>Unit of Measure</th>
@@ -66,7 +59,6 @@
 							<g:each var="valueDomain" in="${conceptualDomainInstance.valueDomains}">
 								<tr>
 									<td><g:link action="show" controller="ValueDomain" id="${valueDomain?.id}">${valueDomain?.name} </g:link></td>
-									<td>${valueDomain?.refId}</td>
 									<td>${valueDomain?.description}</td>
 									<td><g:link action="show" controller="DataType" id="${valueDomain?.dataType?.id}">${valueDomain?.dataType?.name}</g:link></td>
 									<td>${valueDomain?.unitOfMeasure} </td>

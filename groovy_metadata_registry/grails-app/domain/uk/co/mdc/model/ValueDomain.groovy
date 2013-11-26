@@ -4,6 +4,7 @@ import java.util.List;
 
 class ValueDomain extends ExtensibleObject  {
 
+	String name
 	String unitOfMeasure
 	String regexDef	
 	String format	

@@ -171,7 +171,7 @@ function startCollectionBasket() {
 		success: function(result){
 			if(result!=null){
 				$.each(result.dataElements, function(){
-					$( "<li></li>" ).html('<a id="' + this.id + '" href="' + root +'/dataElement/show/' + this.id + '" >' + this.refId + ' - ' + this.name + '</a>').prependTo($( ".cart ul" )).draggable({
+					$( "<li></li>" ).html('<a id="' + this.id + '" href="' + root +'/dataElement/show/' + this.id + '" >' + this.name + '</a>').prependTo($( ".cart ul" )).draggable({
 				        helper: "clone",
 				        start: function(event, ui) {
 				            c.li = this;
@@ -226,7 +226,7 @@ function dataElementDragStart(){
 		
 		// change the data element link text to include the reference id...this will be useful when we are trying to create a collection from the cart
 		var link = $(c.name);
-		link.text(c.refId + ' - ' + $(c.name).text());
+		link.text($(c.name).text());
 
 		$( "<li></li>" ).html(link).prependTo($( ".cart ul" )).draggable({
 	        helper: "clone",
@@ -250,7 +250,7 @@ function dataElementDragStart(){
 function addToCollectionBasket(dataElementId){
 	
 	var data = {id: dataElementId};
-	
+	console.log('dataElementId:'+dataElementId);
 	$.ajax({
 		type: "POST",
 		url: root + "/collectionBasket/addElement",
@@ -344,7 +344,6 @@ function conceptualDomainList(){
         "bAutoWidth": false,
         "aaSorting": [[ 1, "asc" ]],
 		"aoColumns": [
-			{ "mDataProp": "refId", "sTitle":"Ref ID", "sWidth":"10%"},
 			{
 				    // `data` refers to the data for the cell (defined by `mData`, which
 				    // defaults to the column being worked with, in this case is the first
@@ -434,7 +433,6 @@ function collectionList(){
         "bAutoWidth": false,
         "aaSorting": [[ 1, "asc" ]],
 		"aoColumns": [
-		    { "mDataProp": "refId", "sTitle":"Ref ID", "sWidth":"10%"},
 			{
 				    // `data` refers to the data for the cell (defined by `mData`, which
 				    // defaults to the column being worked with, in this case is the first
@@ -529,7 +527,6 @@ function documentList(){
         "bAutoWidth": false,
         "aaSorting": [[ 1, "asc" ]],
 		"aoColumns": [
-		    { "mDataProp": "refId", "sTitle":"Ref ID", "sWidth":"10%"},
 			{
 				    // `data` refers to the data for the cell (defined by `mData`, which
 				    // defaults to the column being worked with, in this case is the first
@@ -925,7 +922,6 @@ function formDesignList(){
         "bAutoWidth": false,
         "aaSorting": [[ 1, "asc" ]],
 		"aoColumns": [
-		    { "mDataProp": "refId", "sTitle":"Ref ID", "sWidth":"10%"},
 			{
 				    // `data` refers to the data for the cell (defined by `mData`, which
 				    // defaults to the column being worked with, in this case is the first

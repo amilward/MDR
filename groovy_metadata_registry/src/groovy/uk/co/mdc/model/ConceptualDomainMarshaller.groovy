@@ -8,7 +8,6 @@ class ConceptualDomainMarshaller extends CustomMarshaller{
 				
 			return [
 			'id' : conceptualDomain.id,
-			'refId' : conceptualDomain.refId,
 			'name' : conceptualDomain.name,
 			'description' : conceptualDomain.description,
 			'valueDomains' : limitRender(conceptualDomain.valueDomains)

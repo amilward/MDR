@@ -35,6 +35,7 @@ class DataElement extends ExtensibleObject {
 		parent nullable: true
 		dataElementConcept nullable: true
 		definition nullable: true
+		description nullable:true
 		externalIdentifier nullable:true
 		name blank: false
 		extension nullable: true

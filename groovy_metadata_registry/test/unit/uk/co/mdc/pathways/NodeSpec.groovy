@@ -20,7 +20,6 @@ class NodeSpec extends spock.lang.Specification {
 		def node1
 
 		def expected = [
-			refId: 124152,
 			name: "Bill",
 			desc: "One half of the flowerpot men",
 			x: 10,
