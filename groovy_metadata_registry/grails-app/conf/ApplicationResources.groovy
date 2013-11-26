@@ -85,9 +85,15 @@ modules = {
 		resource url: "js/model/dataElementConcept/dataElementConcept.js"
 	}
 	
+	formDesignList{
+		dependsOn "dataTables"
+		resource url: "js/forms/formDesign.js"
+	}
+	
 	formsBuilder{
 		dependsOn "application"
-		dependsOn "bootstap_editable_lib"
+		dependsOn "jquery_layout_lib"
+		dependsOn "bootstrap_editable_lib"
 		resource url: "js/vendor/knockout-2.2.1.js"
 		resource url: "js/vendor/knockout-sortable.js"
 		resource url: "js/vendor/knockout-x-editable.js"
@@ -118,6 +124,7 @@ modules = {
 		dependsOn "knockout_lib"
 		dependsOn "jquery_layout_lib"
 		dependsOn "bootstrap_editable_lib"
+		dependsOn "dataTables"
 		//resource url: "js/pathways/pathway_model.js"
 		//resource url: "js/pathways/pathway.js"
 		resource url: "js/pathways/pathwaysLayout.js"
@@ -128,8 +135,10 @@ modules = {
 		resource url: "js/pathways/model/NodeModel.js"
 		resource url: "js/pathways/model/PathwayModel.js"
 		resource url: "js/pathways/model/LinkModel.js"
+		resource url: "js/pathways/model/FormModel.js"
 		resource url: "js/pathways/service/FormService.js"
 		resource url: "js/pathways/service/PathwayService.js"
+		resource url: "js/forms/formDesign.js"
 		
 	}
 	

@@ -100,7 +100,7 @@
 		<g:else>
 			isDraft = ''
 		</g:else>
-		
+
 		openForms(formInstanceId, formInstanceRefId, formInstanceName, formInstanceDescription, versionNo, isDraft, formInstanceCollectionId, formVersionNo);
 		
 	</r:script>

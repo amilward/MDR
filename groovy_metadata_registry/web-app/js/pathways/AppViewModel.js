@@ -103,13 +103,6 @@
 		      }
 		    });
 		    
-		    
-		    //remove inputs/outputs
-		    
-		    
-		    
-		    
-		    
 		    //remove all links associated with ko node
 		    
 		    var linksToDelete = []
@@ -142,7 +135,7 @@
 			    //console.log(self.pathwayModel.nodes);
         	});
         }
-       
+        
         
         self.createLink = function(source, target, connectionId){
         	//console.log('creating link')
@@ -221,6 +214,13 @@
 
         //#endregion
 
+        
+        //FIXME  need to pu this into either the node model method and find a better way to call it or take all
+        // he methods out of the node model and put them here 
+		self.addFormFinish = function(){
+		        	  $('#AddFormModal').modal('hide');
+		        }
+        
         //Initialize form list using FormService
         $.when(loadFormList()).done(function (data) {
             //"data" is assumed to be pure JSON array containing items with no observable applied.
