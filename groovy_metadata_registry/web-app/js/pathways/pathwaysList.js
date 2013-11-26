@@ -13,7 +13,6 @@ function pathwaysList(){
         "bAutoWidth": false,
         "aaSorting": [[ 0, "asc" ]],
 		"aoColumns": [
-		    { "mDataProp": "refId", "sTitle":"Ref ID", "sWidth":"10%"},
 			{ "mDataProp": "versionNo", "sTitle":"versionNo", "sWidth":"10%"},
 			{ "mDataProp": "isDraft", "sTitle":"isDraft", "sWidth":"10%"},
 			{

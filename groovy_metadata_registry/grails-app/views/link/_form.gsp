@@ -34,14 +34,6 @@
 	<g:select name="optionalOutputs" from="${uk.co.mdc.model.Collection.list()}" multiple="multiple" optionKey="id" size="5" value="${linkInstance?.optionalOutputs*.id}" class="many-to-many"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: linkInstance, field: 'refId', 'error')} ">
-	<label for="refId">
-		<g:message code="link.refId.label" default="Ref Id" />
-		
-	</label>
-	<g:textField name="refId" value="${linkInstance?.refId}"/>
-</div>
-
 <div class="fieldcontain ${hasErrors(bean: linkInstance, field: 'description', 'error')} ">
 	<label for="description">
 		<g:message code="link.description.label" default="Description" />

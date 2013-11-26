@@ -31,12 +31,6 @@
 			</g:if>
 			<table class="table table-hovered">
 				<tbody>
-				<g:if test="${collectionInstance?.refId}">
-					<tr>
-						<td class="left_col_show"><span id="name-label" class="label"><g:message code="collection.collectionConcept.label" default="Reference Id" /></span></td>
-						<td class="right_col_show"><g:fieldValue bean="${collectionInstance}" field="refId"/></td>
-					</tr>
-				</g:if>
 				<g:if test="${collectionInstance?.name}">
 					<tr>
 						<td class="left_col_show"><span id="name-label" class="label"><g:message code="collection.name.label" default="Name" /></span></td>
@@ -59,7 +53,6 @@
 							<thead>
 								<tr>
 									<th>Name</th>
-									<th>Reference ID</th>
 									<th>Description</th>
 									<th>Parent</th>
 									<th>Schema Specification</th>
@@ -69,7 +62,6 @@
 							<g:each var="dataElement" in="${collectionInstance.mandatoryDataElementCollections()}">
 							<tr>
 								<td><g:link action="show" controller="DataElement" id="${dataElement?.id}">${dataElement?.name} </g:link></td>
-								<td>${dataElement?.refId}</td>
 								<td>${dataElement?.description}</td>
 								<td><g:link action="show" controller="DataElement" id="${dataElement?.parent?.id}">${dataElement?.parent?.name} </g:link> </td>
 								<td>Mandatory</td>
@@ -78,7 +70,6 @@
 							<g:each var="dataElement" in="${collectionInstance.requiredDataElementCollections()}">
 							<tr>
 								<td><g:link action="show" controller="DataElement" id="${dataElement?.id}">${dataElement?.name} </g:link></td>
-								<td>${dataElement?.refId}</td>
 								<td>${dataElement?.description}</td>
 								<td><g:link action="show" controller="DataElement" id="${dataElement?.parent?.id}">${dataElement?.parent?.name} </g:link> </td>
 								<td>Required</td>
@@ -87,7 +78,6 @@
 							<g:each var="dataElement" in="${collectionInstance.optionalDataElementCollections()}">
 							<tr>
 								<td><g:link action="show" controller="DataElement" id="${dataElement?.id}">${dataElement?.name} </g:link></td>
-								<td>${dataElement?.refId}</td>
 								<td>${dataElement?.description}</td>
 								<td><g:link action="show" controller="DataElement" id="${dataElement?.parent?.id}">${dataElement?.parent?.name} </g:link> </td>
 								<td>Optional</td>
@@ -96,7 +86,6 @@
 							<g:each var="dataElement" in="${collectionInstance.referenceDataElementCollections()}">
 							<tr>
 								<td><g:link action="show" controller="DataElement" id="${dataElement?.id}">${dataElement?.name} </g:link></td>
-								<td>${dataElement?.refId}</td>
 								<td>${dataElement?.description}</td>
 								<td><g:link action="show" controller="DataElement" id="${dataElement?.parent?.id}">${dataElement?.parent?.name} </g:link> </td>
 								<td>Reference (X)</td>

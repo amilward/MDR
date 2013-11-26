@@ -2,10 +2,6 @@
 
 <table class="table table-hovered">
 				<tbody>
-					<tr class="${hasErrors(bean: documentInstance, field: 'refId', 'error')} required">
-						<td class="left_col_show"><span id="refId-label" class="label"><g:message code="document.refId.label" default="Reference Id" /></span></td>
-						<td class="right_col_show"><g:textField title="tooltip.document.refId" class="input-large input-block-level"  name="refId" value="${documentInstance?.refId}"/></td>
-					</tr>
 					<tr class="${hasErrors(bean: documentInstance, field: 'name', 'error')} required">
 						<td class="left_col_show"><span id="name-label" class="label"><g:message code="document.name.label" default="Name" /></span></td>
 						<td class="right_col_show"><g:textField title="tooltip.document.name" class="input-large input-block-level"  name="name" value="${documentInstance?.name}"/></td>
