@@ -8,7 +8,6 @@ class CollectionMarshaller extends CustomMarshaller {
 				
 			return [
 			'id' : collection.id,
-			'refId' : collection.refId,
 			'name' : collection.name,
 			'description' : collection.description,
 			'dataElements': limitRender(collection.dataElementCollections())

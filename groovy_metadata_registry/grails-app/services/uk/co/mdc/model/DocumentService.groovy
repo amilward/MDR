@@ -131,7 +131,6 @@ class DocumentService {
 		if(parameters.content.isEmpty()){
 			documentInstance.description = parameters?.description
 			documentInstance.name = parameters?.name
-			documentInstance.refId = parameters?.refId
 			documentInstance.fileName = parameters?.fileName
 			documentInstance.contentType = parameters?.contentType
 			documentInstance.version = parameters?.version

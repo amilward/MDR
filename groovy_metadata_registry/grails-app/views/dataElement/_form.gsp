@@ -3,10 +3,6 @@
 
 <table class="table table-hovered">
 				<tbody>
-					<tr class="${hasErrors(bean: dataElementInstance, field: 'refId', 'error')} ">
-						<td class="left_col_show"><span id="name-label" class="label"><g:message code="dataElement.refId.label" default="Reference ID" /></span></td>
-						<td class="right_col_show"><g:textField title="${g.message(code:'tooltip.dataElement.refId')}" class="input-large input-block-level" name="refId" value="${dataElementInstance.refId}" required=""/></td>
-					</tr>
 					<tr class="${hasErrors(bean: dataElementInstance, field: 'name', 'error')} ">
 						<td class="left_col_show"><span id="name-label" class="label"><g:message code="dataElement.name.label" default="Name" /></span></td>
 						<td class="right_col_show"><g:textField title="tooltip.dataElement.name" class="input-large input-block-level"  name="name" value="${dataElementInstance?.name}"/></td>

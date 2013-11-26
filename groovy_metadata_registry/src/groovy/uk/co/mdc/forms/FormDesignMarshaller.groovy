@@ -10,7 +10,6 @@ class FormDesignMarshaller {
 			return [
 			'id' : formDesign.id,
 			'name' : formDesign.name,
-			'refId': formDesign.refId,
 			'description': formDesign.description,
 			'header' : '',
 			'footer' : '',

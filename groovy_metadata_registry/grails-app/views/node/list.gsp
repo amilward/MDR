@@ -22,10 +22,7 @@
 			</g:if>
 			<table>
 				<thead>
-					<tr>
-					
-						<g:sortableColumn property="refId" title="${message(code: 'node.refId.label', default: 'Ref Id')}" />
-					
+					<tr>					
 						<g:sortableColumn property="description" title="${message(code: 'node.description.label', default: 'Description')}" />
 					
 						<th><g:message code="node.peCollection.label" default="Pe Collection" /></th>
@@ -42,7 +39,7 @@
 				<g:each in="${nodeInstanceList}" status="i" var="nodeInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
-						<td><g:link action="show" id="${nodeInstance.id}">${fieldValue(bean: nodeInstance, field: "refId")}</g:link></td>
+						<td><g:link action="show" id="${nodeInstance.id}">${fieldValue(bean: nodeInstance, field: "name")}</g:link></td>
 					
 						<td>${fieldValue(bean: nodeInstance, field: "description")}</td>
 					

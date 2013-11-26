@@ -5,15 +5,10 @@ import java.util.Set;
 import uk.co.mdc.forms.FormDesign
 
 class Collection extends ExtensibleObject  {
-	
-	String refId
 	 
 	String name
-	 
 	String description
-	
 	Set dataElementCollections = []
-	
 	Set forms = []
 	 
 	static auditable = true
@@ -25,7 +20,6 @@ class Collection extends ExtensibleObject  {
 	static hasMany = [dataElementCollections: DataElementCollection, forms: FormDesign]
 	 
     static constraints = {
-		refId unique: true
 		name blank: false
     }
 	
