@@ -544,7 +544,6 @@ class BootStrap {
 					x: '5',
 					y: '0',
 					description: 'transfer patient to the Operating Room',
-					).save(failOnError:true)
 					peCollection: collect1
 					).save(flush:true)
 
@@ -563,7 +562,6 @@ class BootStrap {
 					x: '15',
 					y: '10',
 					description: 'perform the operation',
-					).save(failOnError:true)
 					peCollection: collect2
 					).save(flush:true)
 
@@ -574,7 +572,6 @@ class BootStrap {
 					x: '25',
 					y: '30',
 					description: 'transfer patient to the Operating Room',
-					).save(failOnError:true)
 					peCollection: collect3
 					).save(flush:true)
 
@@ -585,7 +582,6 @@ class BootStrap {
 					name: 'TM1',
 					source: node1,
 					target: node2,
-					).save(failOnError:true)
 					peCollection: collect4
 					).save(flush:true)
 
@@ -594,13 +590,12 @@ class BootStrap {
 					name: 'TM2',
 					source: node2,
 					target: node3,
-					).save(failOnError:true)
 			
 					peCollection: collect5
 					).save(flush:true)
 
 
-			def pathway = new PathwaysModel(
+			def pathway2 = new PathwaysModel(
 					refId: 'TM_P1',
 					name: 'Transplanting and Monitoring Pathway',
 					versionNo: '0.1',
@@ -608,12 +603,12 @@ class BootStrap {
 					)
 
 
-			pathway.addToPathwayElements(node1)
-			pathway.addToPathwayElements(node2)
-			pathway.addToPathwayElements(node3)
-			pathway.addToPathwayElements(link1)
-			pathway.addToPathwayElements(link2)
-			pathway.save(flush:true)
+			pathway2.addToPathwayElements(node1)
+			pathway2.addToPathwayElements(node2)
+			pathway2.addToPathwayElements(node3)
+			pathway2.addToPathwayElements(link1)
+			pathway2.addToPathwayElements(link2)
+			pathway2.save(flush:true)
 
 		}
 
