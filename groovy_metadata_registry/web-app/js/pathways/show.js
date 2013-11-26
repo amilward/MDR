@@ -3,7 +3,7 @@
 var vm   
 var pathwayService
 
-function initPathways(){
+function initPathways(param){
 	
 	ko.punches.interpolationMarkup.enable();
 
@@ -18,6 +18,12 @@ function initPathways(){
     ko.applyBindings(vm, document.getElementById('content'));
 
     //Initial action on page load
-    $('#CreatePathwayModal').modal({ show: true, keyboard: false, backdrop: 'static' });
+    if(param==='create'){
+    	$('#CreatePathwayModal').modal({ show: true, keyboard: false, backdrop: 'static' });
+    }else{
+    	
+    	console.log(param)
+    	//vm.loadPathway(param)
+    }
     
 }
