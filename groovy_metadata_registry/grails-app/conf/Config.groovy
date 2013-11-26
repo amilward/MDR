@@ -91,6 +91,7 @@ log4j = {
            'org.springframework',
            'org.hibernate',
            'net.sf.ehcache.hibernate'
+    warn 'grails.app.services.grails.plugin.springsecurity.ui.SpringSecurityUiService'
 	debug  'uk.co.mdc.mail'		// Dummy mail output for dev
 }
 
@@ -120,6 +121,8 @@ grails.plugins.springsecurity.userLookup.userDomainClassName = 'uk.co.mdc.SecUse
 grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'uk.co.mdc.SecUserSecAuth'
 grails.plugins.springsecurity.authority.className = 'uk.co.mdc.SecAuth'
 
+// User registration: don't add user to any roles by default (this is done by an admin to approve the account)
+grails.plugin.springsecurity.ui.register.defaultRoleNames = [] // no roles
 //security config
 
 import grails.plugins.springsecurity.SecurityConfigType
