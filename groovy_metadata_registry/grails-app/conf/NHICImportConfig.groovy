@@ -27,7 +27,7 @@ class NHICImportConfig {
 
 
 			def vd = new ValueDomain(name : tokens[3],
-			refId : tokens[0],
+			
 			conceptualDomain: cd,
 			dataType: dataType,
 			description : tokens[5]).save(failOnError: true);
@@ -35,8 +35,7 @@ class NHICImportConfig {
 			def de = new DataElement(	name: tokens[3],
 			description : tokens[4],
 			dataElementConcept: dec,
-			extension: ext,
-			refId: tokens[0]).save(failOnError: true)
+			extension: ext).save(failOnError: true)
 			de.addToDataElementValueDomains(vd);
 			de.save();
 			println "importing: " + tokens[0]
@@ -58,7 +57,7 @@ class NHICImportConfig {
 
 
 			def vd = new ValueDomain(name : tokens[3],
-			refId : tokens[0],
+			
 			conceptualDomain: cd,
 			dataType: dataType,
 			description : tokens[5]).save(failOnError: true);
@@ -66,8 +65,7 @@ class NHICImportConfig {
 			def de = new DataElement(	name: tokens[3],
 			description : tokens[4],
 			dataElementConcept: dec,
-			extension: ext,
-			refId: tokens[0]).save(failOnError: true)
+			extension: ext).save(failOnError: true)
 			de.addToDataElementValueDomains(vd);
 			de.save();
 			println "importing: " + tokens[0]
@@ -87,7 +85,7 @@ class NHICImportConfig {
 
 
 			def vd = new ValueDomain(name : tokens[3],
-			refId : tokens[0],
+			
 			conceptualDomain: cd,
 			dataType: dataType,
 			description : tokens[5]).save(failOnError: true);
@@ -95,8 +93,7 @@ class NHICImportConfig {
 			def de = new DataElement(	name: tokens[3],
 			description : tokens[4],
 			dataElementConcept: dec,
-			extension: ext,
-			refId: tokens[0]).save(failOnError: true)
+			extension: ext).save(failOnError: true)
 			de.addToDataElementValueDomains(vd);
 			de.save();
 			println "importing: " + tokens[0]
@@ -114,7 +111,7 @@ class NHICImportConfig {
 			def cd = findOrCreateConceptualDomain("TRA", "NHIC : Renal Transplantation")
 
 			def vd = new ValueDomain(name : tokens[3],
-			refId : tokens[0],
+			
 			conceptualDomain: cd,
 			dataType: dataType,
 			description : tokens[5]).save(failOnError: true);
@@ -122,8 +119,7 @@ class NHICImportConfig {
 			def de = new DataElement(	name: tokens[3],
 			description : tokens[4],
 			dataElementConcept: dec,
-			extension: ext,
-			refId: tokens[0]).save(failOnError: true)
+			extension: ext).save(failOnError: true)
 			de.addToDataElementValueDomains(vd);
 			de.save();
 			println "importing: " + tokens[0]
@@ -141,7 +137,7 @@ class NHICImportConfig {
 			def cd = findOrCreateConceptualDomain("ICU", "NHIC : Intensive Care")
 
 			def vd = new ValueDomain(name : tokens[3],
-			refId : tokens[0],
+			
 			conceptualDomain: cd,
 			dataType: dataType,
 			description : tokens[5]).save(failOnError: true);
@@ -149,8 +145,7 @@ class NHICImportConfig {
 			def de = new DataElement(	name: tokens[3],
 			description : tokens[4],
 			dataElementConcept: dec,
-			extension: ext,
-			refId: tokens[0]).save(failOnError: true)
+			extension: ext).save(failOnError: true)
 			de.addToDataElementValueDomains(vd);
 			de.save();
 			println "importing: " + tokens[0]
@@ -175,7 +170,7 @@ class NHICImportConfig {
 			def cd = findOrCreateConceptualDomain("ACS", "NHIC : Acute Coronary Syndromes")
 
 			def vd = new ValueDomain(name : tokens[3],
-			refId : tokens[0] + "_Round1_GSTT",
+			
 			conceptualDomain: cd,
 			dataType: dataType,
 			description : tokens[5]).save(failOnError: true);
@@ -183,8 +178,7 @@ class NHICImportConfig {
 			def de = new DataElement(name: tokens[3],
 			description : tokens[4],
 			dataElementConcept: dec,
-			extension: ext,
-			refId: tokens[0] + "_Round1_GSTT").save(failOnError: true)
+			extension: ext).save(failOnError: true)
 			de.addToDataElementValueDomains(vd);
 			de.save();
 			println "importing: " + tokens[0] + "_Round1_GSTT"
@@ -209,7 +203,7 @@ class NHICImportConfig {
 			def cd = findOrCreateConceptualDomain("ACS", "NHIC : Acute Coronary Syndromes")
 
 			def vd = new ValueDomain(name : tokens[3],
-			refId : tokens[0] + "_Round1_OUH",
+			
 			conceptualDomain: cd,
 			dataType: dataType,
 			description : tokens[5]).save(failOnError: true);
@@ -217,8 +211,7 @@ class NHICImportConfig {
 			def de = new DataElement(name: tokens[3],
 			description : tokens[4],
 			dataElementConcept: dec,
-			extension: ext,
-			refId: tokens[0] + "_Round1_OUH").save(failOnError: true)
+			extension: ext).save(failOnError: true)
 			de.addToDataElementValueDomains(vd);
 			de.save();
 			println "importing: " + tokens[0] + "_Round1_OUH"
@@ -243,7 +236,7 @@ class NHICImportConfig {
 			def cd = findOrCreateConceptualDomain("ACS", "NHIC : Acute Coronary Syndromes")
 
 			def vd = new ValueDomain(name : tokens[3],
-			refId : tokens[0] + "_Round1_UCL",
+			
 			conceptualDomain: cd,
 			dataType: dataType,
 			description : tokens[5]).save(failOnError: true);
@@ -251,8 +244,7 @@ class NHICImportConfig {
 			def de = new DataElement(name: tokens[3],
 			description : tokens[4],
 			dataElementConcept: dec,
-			extension: ext,
-			refId: tokens[0] + "_Round1_UCL").save(failOnError: true)
+			extension: ext).save(failOnError: true)
 			de.addToDataElementValueDomains(vd);
 			de.save();
 			println "importing: " + tokens[0] + "_Round1_UCL"
@@ -282,7 +274,7 @@ class NHICImportConfig {
 			def cd = findOrCreateConceptualDomain("CAN", "NHIC : Ovarian Cancer")
 
 			def vd = new ValueDomain(name : tokens[3],
-			refId : tokens[0] + "_Round1_CAN",
+			
 			conceptualDomain: cd,
 			dataType: dataType,
 			description : tokens[5]).save(failOnError: true);
@@ -290,8 +282,7 @@ class NHICImportConfig {
 			def de = new DataElement(name: tokens[3],
 			description : tokens[4],
 			dataElementConcept: dec,
-			extension: ext,
-			refId: tokens[0] + "_Round1_CAN").save(failOnError: true)
+			extension: ext).save(failOnError: true)
 			de.addToDataElementValueDomains(vd);
 			de.save();
 			println "importing: " + tokens[0] + "_Round1_CAN"
@@ -317,7 +308,7 @@ class NHICImportConfig {
 			def cd = findOrCreateConceptualDomain("CAN", "NHIC : Ovarian Cancer")
 
 			def vd = new ValueDomain(name : tokens[3],
-			refId : tokens[0] + "_Round1_GSTT",
+			
 			conceptualDomain: cd,
 			dataType: dataType,
 			description : tokens[5]).save(failOnError: true);
@@ -325,8 +316,7 @@ class NHICImportConfig {
 			def de = new DataElement(name: tokens[3],
 			description : tokens[4],
 			dataElementConcept: dec,
-			extension: ext,
-			refId: tokens[0] + "_Round1_GSTT").save(failOnError: true)
+			extension: ext).save(failOnError: true)
 			de.addToDataElementValueDomains(vd);
 			de.save();
 			println "importing: " + tokens[0] + "_Round1_GSTT"
@@ -354,7 +344,7 @@ class NHICImportConfig {
 			def cd = findOrCreateConceptualDomain("CAN", "NHIC : Ovarian Cancer")
 
 			def vd = new ValueDomain(name : tokens[3],
-			refId : tokens[0] + "_Round1_IMP",
+			
 			conceptualDomain: cd,
 			dataType: dataType,
 			description : tokens[5]).save(failOnError: true);
@@ -362,8 +352,7 @@ class NHICImportConfig {
 			def de = new DataElement(name: tokens[3],
 			description : tokens[4],
 			dataElementConcept: dec,
-			extension: ext,
-			refId: tokens[0] + "_Round1_IMP").save(failOnError: true)
+			extension: ext).save(failOnError: true)
 			de.addToDataElementValueDomains(vd);
 			de.save();
 			println "importing: " + tokens[0] + "_Round1_IMP"
@@ -391,7 +380,7 @@ class NHICImportConfig {
 			def cd = findOrCreateConceptualDomain("CAN", "NHIC : Ovarian Cancer")
 
 			def vd = new ValueDomain(name : tokens[3],
-			refId : tokens[0] + "_Round1_UCL",
+			
 			conceptualDomain: cd,
 			dataType: dataType,
 			description : tokens[5]).save(failOnError: true);
@@ -399,8 +388,7 @@ class NHICImportConfig {
 			def de = new DataElement(name: tokens[3],
 			description : tokens[5],
 			dataElementConcept: dec,
-			extension: ext,
-			refId: tokens[0] + "_Round1_UCL").save(failOnError: true)
+			extension: ext).save(failOnError: true)
 			de.addToDataElementValueDomains(vd);
 			de.save();
 			println "importing: " + tokens[0] + "_Round1_UCL"
@@ -426,7 +414,7 @@ class NHICImportConfig {
 			def cd = findOrCreateConceptualDomain("HEP", "NHIC : Viral Hepatitis C/B")
 
 			def vd = new ValueDomain(name : tokens[3],
-			refId : tokens[0] + "_Round1_OUH",
+			
 			conceptualDomain: cd,
 			dataType: dataType,
 			description : tokens[4]).save(failOnError: true);
@@ -434,8 +422,7 @@ class NHICImportConfig {
 			def de = new DataElement(name: tokens[3],
 			description : tokens[4],
 			dataElementConcept: dec,
-			extension: ext,
-			refId: tokens[0] + "_Round1_OUH").save(failOnError: true)
+			extension: ext).save(failOnError: true)
 			de.addToDataElementValueDomains(vd);
 			de.save();
 			println "importing: " + tokens[0] + "_Round1_OUH"
@@ -461,7 +448,7 @@ class NHICImportConfig {
 			def cd = findOrCreateConceptualDomain("HEP", "NHIC : Viral Hepatitis C/B")
 
 			def vd = new ValueDomain(name : tokens[3],
-			refId : tokens[0] + "_Round1_UCL",
+			
 			conceptualDomain: cd,
 			dataType: dataType,
 			description : tokens[4]).save(failOnError: true);
@@ -469,8 +456,7 @@ class NHICImportConfig {
 			def de = new DataElement(name: tokens[3],
 			description : tokens[4],
 			dataElementConcept: dec,
-			extension: ext,
-			refId: tokens[0] + "_Round1_UCL").save(failOnError: true)
+			extension: ext).save(failOnError: true)
 			de.addToDataElementValueDomains(vd);
 			de.save();
 			println "importing: " + tokens[0] + "_Round1_UCL"
@@ -493,7 +479,7 @@ class NHICImportConfig {
 			def cd = findOrCreateConceptualDomain("HEP", "NHIC : Intensive Care")
 
 			def vd = new ValueDomain(name : tokens[3],
-			refId : tokens[0] + "_Round1_GSTT",
+			
 			conceptualDomain: cd,
 			dataType: dataType,
 			description : tokens[4]).save(failOnError: true);
@@ -501,8 +487,7 @@ class NHICImportConfig {
 			def de = new DataElement(name: tokens[3],
 			description : tokens[4],
 			dataElementConcept: dec,
-			extension: ext,
-			refId: tokens[0] + "_Round1_GSTT").save(failOnError: true)
+			extension: ext).save(failOnError: true)
 			de.addToDataElementValueDomains(vd);
 			de.save();
 			println "importing: " + tokens[0] + "_Round1_GSTT"
@@ -525,7 +510,7 @@ class NHICImportConfig {
 			def cd = findOrCreateConceptualDomain("HEP", "NHIC : Intensive Care")
 
 			def vd = new ValueDomain(name : tokens[3],
-			refId : tokens[0] + "_Round1_UCL",
+			
 			conceptualDomain: cd,
 			dataType: dataType,
 			description : tokens[4]).save(failOnError: true);
@@ -533,8 +518,7 @@ class NHICImportConfig {
 			def de = new DataElement(name: tokens[3],
 			description : tokens[4],
 			dataElementConcept: dec,
-			extension: ext,
-			refId: tokens[0] + "_Round1_UCL").save(failOnError: true)
+			extension: ext).save(failOnError: true)
 			de.addToDataElementValueDomains(vd);
 			de.save();
 			println "importing: " + tokens[0] + "_Round1_UCL"
@@ -560,7 +544,7 @@ class NHICImportConfig {
 			def cd = findOrCreateConceptualDomain("TRA", "NHIC : Renal Transplantation")
 
 			def vd = new ValueDomain(name : tokens[3],
-			refId : tokens[0] + "_Round1_CUH",
+			
 			conceptualDomain: cd,
 			dataType: dataType,
 			description : tokens[4]).save(failOnError: true);
@@ -568,8 +552,7 @@ class NHICImportConfig {
 			def de = new DataElement(name: tokens[3],
 			description : tokens[4],
 			dataElementConcept: dec,
-			extension: ext,
-			refId: tokens[0] + "_Round1_CUH").save(failOnError: true)
+			extension: ext).save(failOnError: true)
 			de.addToDataElementValueDomains(vd);
 			de.save();
 			println "importing: " + tokens[0] + "_Round1_CUH"
@@ -592,7 +575,7 @@ class NHICImportConfig {
 			def cd = findOrCreateConceptualDomain("TRA", "NHIC : Renal Transplantation")
 
 			def vd = new ValueDomain(name : tokens[3],
-			refId : tokens[0] + "_Round1_GSTT",
+			
 			conceptualDomain: cd,
 			dataType: dataType,
 			description : tokens[4]).save(failOnError: true);
@@ -600,8 +583,7 @@ class NHICImportConfig {
 			def de = new DataElement(name: tokens[3],
 			description : tokens[4],
 			dataElementConcept: dec,
-			extension: ext,
-			refId: tokens[0] + "_Round1_GSTT").save(failOnError: true)
+			extension: ext).save(failOnError: true)
 			de.addToDataElementValueDomains(vd);
 			de.save();
 			println "importing: " + tokens[0] + "_Round1_GSTT"
@@ -624,7 +606,7 @@ class NHICImportConfig {
 			def cd = findOrCreateConceptualDomain("TRA", "NHIC : Renal Transplantation")
 
 			def vd = new ValueDomain(name : tokens[2],
-			refId : tokens[0] + "_Round1_OUH",
+			
 			conceptualDomain: cd,
 			dataType: dataType,
 			description : tokens[3]).save(failOnError: true);
@@ -632,8 +614,7 @@ class NHICImportConfig {
 			def de = new DataElement(name: tokens[2],
 			description : tokens[3],
 			dataElementConcept: dec,
-			extension: ext,
-			refId: tokens[0] + "_Round1_OUH").save(failOnError: true)
+			extension: ext).save(failOnError: true)
 			de.addToDataElementValueDomains(vd);
 			de.save();
 			println "importing: " + tokens[0] + "_Round1_OUH"
@@ -723,12 +704,11 @@ class NHICImportConfig {
 
 	public static findOrCreateConceptualDomain(String name, String description){
 
-		def cd = ConceptualDomain.findByRefId(name)
+		def cd = ConceptualDomain.findByName(name)
 
 		if (!cd) {
 
 			cd = new ConceptualDomain(name:name,
-			refId:name,
 			description:description).save(failOnError: true);
 		}
 		return cd

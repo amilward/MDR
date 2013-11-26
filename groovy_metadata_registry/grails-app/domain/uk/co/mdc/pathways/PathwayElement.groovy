@@ -9,7 +9,6 @@ import uk.co.mdc.model.ExtensibleObject;
 
 abstract class PathwayElement extends ExtensibleObject  {
 	
-	String refId
 	String name
 	String description
 
@@ -21,7 +20,6 @@ abstract class PathwayElement extends ExtensibleObject  {
 					  optionalOutputs: Collection]
 
     static constraints = {
-		refId unique:true
 		description nullable:true
 		peCollection nullable:true
     }

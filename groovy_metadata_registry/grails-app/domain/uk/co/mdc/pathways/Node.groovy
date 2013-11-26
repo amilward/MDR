@@ -9,8 +9,8 @@ class Node extends PathwayElement{
 	String x
 	String y
 	
-	public Node(String refId, String name,String x, String y, String desc, Collection peCollection){
-		super( refId, name, desc, peCollection)
+	public Node(String name,String x, String y, String desc, Collection peCollection){
+		super(name, desc, peCollection)
 		this.x = x
 		this.y = y
 	}
