@@ -27,13 +27,6 @@
 					<table class="small-rounded">
 					
 						<tr>
-							<td>Ref Id:</td>
-							<td><span id="pencil"><i class="icon-pencil"></i></span></td>
-							<td>
-								<a data-bind="editable: formRefId, editableOptions: { mode: 'inline' }"></a>
-							</td>
-						</tr>
-						<tr>
 							<td>Form Name:</td>
 							<td><span id="pencil"><i class="icon-pencil"></i></span></td>
 							<td>

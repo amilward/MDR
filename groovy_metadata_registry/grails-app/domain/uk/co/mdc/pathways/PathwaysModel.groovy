@@ -4,8 +4,6 @@ import uk.co.mdc.model.ExtensibleObject;
 
 class PathwaysModel  {
 	
-
-	String refId
 	String name
 	String versionNo
 	Boolean isDraft
@@ -18,7 +16,6 @@ class PathwaysModel  {
 	static hasMany = [pathwayElements : PathwayElement] 
 
     static constraints = {
-		refId unique:true, nullable: true
 		description nullable: true
 		versionNo nullable:true  
 		pathwayElements nullable:true

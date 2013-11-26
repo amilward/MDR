@@ -13,7 +13,6 @@ function valueDomainList(){
         "bAutoWidth": false,
         "aaSorting": [[ 4, "asc" ]],
 		"aoColumns": [
-		    { "mDataProp": "refId", "sTitle":"Ref ID", "sWidth":"10%"},
 			{
 				    // `data` refers to the data for the cell (defined by `mData`, which
 				    // defaults to the column being worked with, in this case is the first

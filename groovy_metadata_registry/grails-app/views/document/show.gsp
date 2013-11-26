@@ -27,13 +27,7 @@
 		<div class="box">
 			<table class="table table-hovered">
 				<tbody>
-				<g:if test="${documentInstance?.refId}">
-					<tr>
-						<td class="left_col_show"><span id="name-label" class="label"><g:message code="document.refId.label" default="Reference Id" /></span></td>
-						<td class="right_col_show"><g:fieldValue bean="${documentInstance}" field="refId"/></td>
-					</tr>
-				</g:if>
-				<g:if test="${documentInstance?.name}">
+					<g:if test="${documentInstance?.name}">
 					<tr>
 						<td class="left_col_show"><span id="name-label" class="label"><g:message code="document.name.label" default="Name" /></span></td>
 						<td class="right_col_show"><g:fieldValue bean="${documentInstance}" field="name"/></td>

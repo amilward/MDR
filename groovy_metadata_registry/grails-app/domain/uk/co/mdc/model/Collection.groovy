@@ -2,19 +2,14 @@ package uk.co.mdc.model
 
 import java.util.List;
 import java.util.Set;
-import uk.co.mdc.forms.FormSpecification
+import uk.co.mdc.forms.FormDesign
 
 class Collection extends ExtensibleObject  {
-	
-	String refId
 	 
 	String name
-	 
 	String description
-	
 	Set dataElementCollections = []
-	
-	Set formSpecifications = []
+	Set forms = []
 	 
 	static auditable = true
 	
@@ -22,10 +17,9 @@ class Collection extends ExtensibleObject  {
 		content: spellCheck 'include'
 	}
 	
-	static hasMany = [dataElementCollections: DataElementCollection, formSpecifications: FormSpecification]
+	static hasMany = [dataElementCollections: DataElementCollection, forms: FormDesign]
 	 
     static constraints = {
-		refId unique: true
 		name blank: false
     }
 	
@@ -102,6 +96,13 @@ class Collection extends ExtensibleObject  {
 		DataElementCollection.unlink(dataElement, this)
 		return dataElementCollections()
 	}
+	
+	
+	List forms() {
+		return forms.collect{it}
+	}
+	
+	
 	
 	/******************************************************************************************************************/
 	/*********************remove all the associated valueDomains and collections before deleting data element*****************************/

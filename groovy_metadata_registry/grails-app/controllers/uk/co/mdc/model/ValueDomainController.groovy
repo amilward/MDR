@@ -325,22 +325,18 @@ class ValueDomainController {
 		switch(column){
 			
 			case 0:
-				field = "refId"
-			break
-			
-			case 1:
 				field = "name"
 			break
 			
-			case 2:
+			case 1:
 				field = "dataType"
 			break
 			
-			case 3:
+			case 2:
 				field = "format"
 			break
 			
-			case 4:
+			case 3:
 				field = "conceptualDomain"
 			break
 			

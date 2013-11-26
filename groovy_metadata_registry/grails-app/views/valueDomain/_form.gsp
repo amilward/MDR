@@ -2,10 +2,6 @@
 
 <table class="table table-hovered">
 				<tbody>
-					<tr class="${hasErrors(bean: valueDomainInstance, field: 'refId', 'error')} ">
-						<td class="left_col_show"><span id="name-label" class="label"><g:message code="valueDomain.refId.label" default="Reference ID" /></span></td>
-						<td class="right_col_show"><g:textField title="${g.message(code:'tooltip.valueDomain.refId')}" class="input-large input-block-level" name="refId" value="${valueDomainInstance.refId}" required=""/></td>
-					</tr>
 					<tr class="${hasErrors(bean: valueDomainInstance, field: 'name', 'error')} ">
 						<td class="left_col_show"><span id="name-label" class="label"><g:message code="valueDomain.name.label" default="Name" /></span></td>
 						<td class="right_col_show"><g:textField title="tooltip.valueDomain.name" class="input-large input-block-level"  name="name" value="${valueDomainInstance?.name}"/></td>
