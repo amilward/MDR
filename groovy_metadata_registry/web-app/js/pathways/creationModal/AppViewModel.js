@@ -1,5 +1,5 @@
 ﻿// The main view model
-var AppViewModel = function() {
+var CreationModalAVM = function() {
 	var self = this;
 
 	// Pathway Model

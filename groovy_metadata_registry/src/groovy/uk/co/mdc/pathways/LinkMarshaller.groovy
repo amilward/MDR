@@ -10,7 +10,7 @@ class LinkMarshaller {
 			return [
 			'source': 'node' + link?.source?.id,
 			'target': 'node' + link?.target?.id,
-			'label': "Randomization"
+			'label': link?.name
 			]
 		}
 	}

@@ -2,17 +2,15 @@ package uk.co.mdc.pathways
 
 import java.util.List;
 import java.util.Map;
-
 import org.springframework.security.access.prepost.PostFilter
 import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.security.acls.domain.BasePermission
 import org.springframework.security.acls.model.Permission
 import org.springframework.transaction.annotation.Transactional
+import org.springframework.security.acls.model.Permission;
+import org.springframework.transaction.annotation.Transactional;
 
-import uk.co.mdc.pathways.PathwaysModel;
-
-
-class PathwaysService {
+class NodeService {
 
    	static transactional = false
 	
@@ -20,18 +18,16 @@ class PathwaysService {
 	def aclService
 	def aclUtilService
 	def springSecurityService
-    
-	def nodeService
-	def linkService
+	
 
 	/* **************************** ADD PERMISSIONS *****************************************
 	 * calls add permission with the relevant permission when called with an integer
 	 * permission input
 	 ********************************************************************************* */
 		
-	void addPermission(PathwaysModel pathwaysModel, String username, int permission){
+	void addPermission(Node node, String username, int permission){
 		
-		addPermission pathwaysModel, username,
+		addPermission node, username,
 			aclPermissionFactory.buildFromMask(permission)
 			
 	}
@@ -41,10 +37,10 @@ class PathwaysService {
 	 * to grant a permission to someone else
 	 * */
 	
-	@PreAuthorize("hasPermission(#pathwaysModel, admin)")
+	@PreAuthorize("hasPermission(#node, admin)")
 	@Transactional
-	void addPermission(PathwaysModel pathwaysModel, String username, Permission permission) {
-	   aclUtilService.addPermission pathwaysModel, username, permission
+	void addPermission(Node node, String username, Permission permission) {
+	   aclUtilService.addPermission node, username, permission
 	}
 	
 	
@@ -55,30 +51,47 @@ class PathwaysService {
 	
 	@Transactional
 	@PreAuthorize("hasRole('ROLE_USER')")
-	PathwaysModel create(Map parameters) {
+	Node create(Map parameters) {
 		
+
+		println('new node')
 		println(parameters)
-		
-		def pathwaysModelInstance = new PathwaysModel(
+
+		def sourceNode
+		def targetNode
+
+		def nodeInstance = new Node(
+			refId: parameters?.refId,
 			name: parameters?.name,
-			description: parameters?.description,
-			isDraft: parameters?.isDraft
-			);
+			x: parameters?.x,
+			y: parameters?.y,
+			description: parameters?.description
+			)
+					
+			if(!nodeInstance.save(flush:true)){
+				// FIXME should throw an error here with the errors from the instance
+				return nodeInstance
+			}
+			
+			// Grant the current user principal administrative permission
+			addPermission nodeInstance, springSecurityService.authentication.name, BasePermission.ADMINISTRATION
+			
+			//Grant admin user administrative permissions
+			addPermission nodeInstance, 'admin', BasePermission.ADMINISTRATION
 		
-		//save the dataElement
-		if(!pathwaysModelInstance.save(flush:true)){
-			// FIXME should throw an error here with the errors from the instance
-			return pathwaysModelInstance
+		
+		if(nodeInstance && parameters?.pathwaysModelId){
+
+			def pathway = PathwaysModel.get(parameters?.pathwaysModelId)
+			
+			if(pathway){
+				pathway.addToPathwayElements(nodeInstance)
+			}
 		}
 		
-		// Grant the current user principal administrative permission
-		addPermission pathwaysModelInstance, springSecurityService.authentication.name, BasePermission.ADMINISTRATION
-		
-		//Grant admin user administrative permissions
-		addPermission pathwaysModelInstance, 'admin', BasePermission.ADMINISTRATION
-		
+		println(nodeInstance)
 		//return the data element to the consumer (the controller)
-		pathwaysModelInstance
+		return nodeInstance
 	}
 	
 	
@@ -86,9 +99,9 @@ class PathwaysService {
 	 * requires that the authenticated user have read or admin permission on the specified Data Element
 	 ******************************************************************************************** */
 	
-	@PreAuthorize('hasPermission(#id, "uk.co.mdc.pathways.PathwaysModel", read) or hasPermission(#id, "uk.co.mdc.pathways.PathwaysModel", admin)')
-	PathwaysModel get(long id) {
-	   PathwaysModel.get id
+	@PreAuthorize('hasPermission(#id, "uk.co.mdc.pathways.Node", read) or hasPermission(#id, "uk.co.mdc.pathways.Node", admin)')
+	Node get(long id) {
+	   Node.get id
 	   }
 	
 	
@@ -100,9 +113,9 @@ class PathwaysService {
 	
 	@PreAuthorize("hasRole('ROLE_USER')")
 	@PostFilter("hasPermission(filterObject, read) or hasPermission(filterObject, admin)")
-	List<PathwaysModel> search(String sSearch) {
-		def searchResult = PathwaysModel.search(sSearch)
-	    searchResult.results
+	List<Node> search(String sSearch) {
+		def searchResult = Node.search(sSearch)
+		searchResult.results
 	}
 	
 	
@@ -114,13 +127,13 @@ class PathwaysService {
 	
 	@PreAuthorize("hasRole('ROLE_USER')")
 	@PostFilter("hasPermission(filterObject, read) or hasPermission(filterObject, admin)")
-	List<PathwaysModel> list(Map parameters) {
-		PathwaysModel.list parameters
+	List<Node> list(Map parameters) {
+		Node.list parameters
 	}
 	
 	//no restrictions on the count method
 	
-	int count() { PathwaysModel.count() }
+	int count() { Node.count() }
 	
 	
 	/* ************************* UPDATE VALUE DOMAINS***********************************************
@@ -128,46 +141,13 @@ class PathwaysService {
 	 ******************************************************************************************** */
 	
 	@Transactional
-	@PreAuthorize("hasPermission(#pathwaysModelInstance, write) or hasPermission(#pathwaysModelInstance, admin)")
-	PathwaysModel update(PathwaysModel pathwaysModelInstance, Map parameters) {
-
-		println('updated info')
-		println(parameters)
-		println('model to update')
-		println(pathwaysModelInstance)
+	@PreAuthorize("hasPermission(#nodeInstance, write) or hasPermission(#nodeInstance, admin)")
+	Node update(Node nodeInstance, Map parameters) {
+		 
+		nodeInstance.properties = parameters
+		nodeInstance.save()
 		
-		//update nodes
-		
-		def updatedNodes = parameters.nodes
-		
-		updatedNodes.each { updatedNode ->
-			
-			def nodeInstance = nodeService.get(updatedNode.id)
-			
-			def node = nodeService.update(nodeInstance, updatedNode)
-			
-		}
-		
-		//update links
-		
-		//update nodes
-		
-		def updatedLinks = parameters.links
-		
-		updatedLinks.each { updatedLink ->
-			
-			def linkInstance = linkService.get(updatedLink.id)
-			
-			def link = linkService.update(linkInstance, updatedLink)
-			
-		}
-		
-		
-	   pathwaysModelInstance.properties = parameters
-	   pathwaysModelInstance.save()
-	   
-	   pathwaysModelInstance
-	   
+		nodeInstance
 	}
 	
 	
@@ -176,14 +156,35 @@ class PathwaysService {
 	 * edit it
 	 ******************************************************************************************** */
 
-	@Transactional @PreAuthorize("hasPermission(#pathwaysModelInstance, delete) or hasPermission(#pathwaysModelInstance, admin)")
-	void delete(PathwaysModel pathwaysModelInstance) {
+	@Transactional @PreAuthorize("hasPermission(#nodeInstance, delete) or hasPermission(#nodeInstance, admin)")
+	void delete(Node nodeInstance) {
 		
-		//pathwaysModelInstance.prepareForDelete()
-		pathwaysModelInstance.delete(flush: true)
+		//make sure we have the latest copy of the node
+		nodeInstance.refresh()
+		
+		def sources  = Link.findAllWhere(source: nodeInstance)
+		
+		println('removing link sources and targets')
+		
+		sources.each{ link ->
+			
+			link.delete(flush:true,failOnError:true)
+		}
+		
+		//targets
+		def targets = Link.findAllWhere(target: nodeInstance)
+		
+		targets.each{ link->
+			
+			link.delete(flush:true,failOnError:true)
+			
+		}
+		
+		//nodeInstance.prepareForDelete()
+		nodeInstance.delete(flush: true)
 		
 		// Delete the ACL information as well
-		aclUtilService.deleteAcl pathwaysModelInstance
+		aclUtilService.deleteAcl nodeInstance
    }
 	
 	
@@ -192,9 +193,9 @@ class PathwaysService {
 	 *  instance to delete a grant
 	 ******************************************************************************************** */
 	
-	@Transactional @PreAuthorize("hasPermission(#pathwaysModelInstance, admin)")
-	void deletePermission(PathwaysModel pathwaysModelInstance, String username, Permission permission) {
-		def acl = aclUtilService.readAcl(pathwaysModelInstance)
+	@Transactional @PreAuthorize("hasPermission(#nodeInstance, admin)")
+	void deletePermission(Node nodeInstance, String username, Permission permission) {
+		def acl = aclUtilService.readAcl(nodeInstance)
 		
 		// Remove all permissions associated with this particular
 		// recipient (string equality to KISS)
@@ -208,6 +209,4 @@ class PathwaysService {
 		aclService.updateAcl acl
 		
 		}
-		
-	
 }

@@ -6,20 +6,28 @@ import uk.co.mdc.model.DataElementCollection
 import uk.co.mdc.model.DataElementConcept
 import uk.co.mdc.model.ExtensibleObject;
 
-abstract class PathwayElement extends ExtensibleObject  {
+abstract class PathwayElement extends ExtensibleObject{
 	
 	String refId
 	String name
 	String description
 
-	Collection peCollection
+	static belongsTo = [pathwaysModel: PathwaysModel]
 	
+    static constraints = {
+		refId unique:true, nullable:true
+		description nullable:true
+		pathwaysModel nullable:true
+		extension nullable: true
+    }
+	
+
 	String GetElementsJSON(){
 		def result = []
 		def de = new StringBuffer()
 		def isFirst = new Boolean('True')
 
-		Iterator i = peCollection.dataElementCollections.iterator();		
+		Iterator i = peCollection.dataElementCollections.iterator();
 		while (i.hasNext()){
 			DataElementCollection it = i.next()
 			if(isFirst){
@@ -35,16 +43,4 @@ abstract class PathwayElement extends ExtensibleObject  {
 		result = de.toString()
 	}
 	
-
-	
-	static hasMany = [mandatoryInputs: Collection,
-					  mandatoryOutputs: Collection,
-					  optionalInputs: Collection,
-					  optionalOutputs: Collection]
-
-    static constraints = {
-		refId unique:true
-		description nullable:true
-		peCollection nullable:true
-    }
 }

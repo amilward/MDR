@@ -5,9 +5,8 @@
 $( document ).ready(function() {
 	
 	//Create the main view model
-    var vm = new AppViewModel();
+    var vm = new CreationModalAVM();
 
-    //Bind the view model to <body> and its descendants
-    ko.applyBindings(vm, document.getElementById('modal-body'));
-
+    //Bind the view model to <createPathwayModal> and its descendants
+    ko.applyBindings(vm, document.getElementById('createPathwayModal'));
 });

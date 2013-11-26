@@ -139,6 +139,8 @@ class BootStrap {
 		grantAdminPermissions(QuestionElement.list())
 		grantAdminPermissions(InputField.list())
 		grantAdminPermissions(PathwaysModel.list())
+		grantAdminPermissions(Link.list())
+		grantAdminPermissions(Node.list())
 
 	}
 
@@ -342,36 +344,20 @@ class BootStrap {
 
 		if(!PathwaysModel.count()){
 
-
-			//def collect1 = new Collection(refId: 'Colt11', name: 'TestCol11', description: 'blah blah blah').save(failOnError: true)
-			//def collect2 = new Collection(refId: 'Colt12', name: 'TestCol12', description: 'blah blah blah').save(failOnError: true)
-			//def collect3 = new Collection(refId: 'Colt14', name: 'TestCol13',description: 'blah blah blah').save(failOnError: true)
-			//def collect4 = new Collection(refId: 'Colt15', name: 'TestCol14', description: 'blah blah blah').save(failOnError: true)
-			//def collect5 = new Collection(refId: 'Colt16', name: 'TestCol15', description: 'blah blah blah').save(failOnError: true)
-
-			//def de21 = new DataElement(name:"SOURCE OF REFERRAL FOR OUT-PATIENTS", refId:"D1600",description:"This identifies the source of referral of each Consultant Out-Patient Episode.", dataElementConcept: REF).save(failOnError: true)
-			//def de22 = new DataElement(name:"ANOTHER SOURCE FOR OUT-PATIENTS", refId:"E1600",description:"This identifies the referral of each Consultant Out-Patient Episode.",dataElementConcept: REF).save(failOnError: true)
-
-			//collect1.addToDataElementCollections(de21)
-			//collect1.addToDataElementCollections(de22)
-
-
+			def pathway = new PathwaysModel(
+				refId: 'PM_P1',
+				name: 'Transplanting and Monitoring Pathway',
+				versionNo: '0.1',
+				isDraft: true
+				).save(failOnError:true)
+			
 			def node1 = new Node(
 					refId: 'TM_N1',
 					name: 'transfer to O.R.',
 					x: '5',
 					y: '0',
 					description: 'transfer patient to the Operating Room',
-					//peCollection: collect1
-					).save(flush:true)
-
-			/*def de1 = new DataElement(name:"PERSON FAMILY NAME (AT BIRTH)",
-			 refId:"CR0111",
-			 description:"The PATIENT's surname at birth.",
-			 dataElementConcept: DEM).save(failOnError: true)
-			 */
-			//println(" Collection" + de1.refId)
-
+					).save(failOnError:true)
 
 			def node2 = new Node(
 					refId: 'TM_N2',
@@ -379,8 +365,7 @@ class BootStrap {
 					x: '15',
 					y: '10',
 					description: 'perform the operation',
-					//	peCollection: collect2
-					).save(flush:true)
+					).save(failOnError:true)
 
 
 			def node3 = new Node(
@@ -389,8 +374,7 @@ class BootStrap {
 					x: '25',
 					y: '30',
 					description: 'transfer patient to the Operating Room',
-					//peCollection: collect3
-					).save(flush:true)
+					).save(failOnError:true)
 
 
 
@@ -399,32 +383,20 @@ class BootStrap {
 					name: 'TM1',
 					source: node1,
 					target: node2,
-					//peCollection: collect4
-					).save(flush:true)
+					).save(failOnError:true)
 
 			def link2 = new Link(
 					refId: 'TM_L2',
 					name: 'TM2',
 					source: node2,
 					target: node3,
-					//peCollection: collect5
-					).save(flush:true)
-
-
-			def pathway = new PathwaysModel(
-					refId: 'TM_P1',
-					name: 'Transplanting and Monitoring Pathway',
-					versionNo: '0.1',
-					isDraft: true
-					)
-
-
+					).save(failOnError:true)
+			
 			pathway.addToPathwayElements(node1)
 			pathway.addToPathwayElements(node2)
 			pathway.addToPathwayElements(node3)
 			pathway.addToPathwayElements(link1)
 			pathway.addToPathwayElements(link2)
-			pathway.save(flush:true)
 
 		}
 
