@@ -26,7 +26,7 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">Tree View</div>
 					<div class="panel-body" data-bind="with: pathwayModel">
-						<div class="pathway-title" data-bind="attr:{title: description}">{{name}}</div>
+						<div class="pathway-title" data-bind="attr:{title: name">{{name}}</div>
 						<ul data-bind="foreach: nodes">
 							<li><a
 								data-bind="attr:{title: description}, click: $root.selectNode">{{name}}</a>
@@ -42,18 +42,31 @@
 				<div id="model-panel" class="ui-layout-center large-rounded">
 
 					<div id="canvas-panel" class="panel panel-primary">
-            <div class="panel-heading">
-                <span>Pathway: {{pathwayModel ? pathwayModel.name : ''}}</span>
-                <button type="button" class="btn btn-link btn-xs pull-right" data-bind="click: createNode">
+            <div id="panel-heading" class="panel-heading">
+            
+           	 	<button type="button" class="btn btn-link btn-xs pull-right" data-bind="click: createNode">
                     <i class="fa fa-plus"></i> Add Node
                 </button>
                 <button type="button" class="btn btn-link btn-xs pull-right" data-bind="click: updatePathway">
                     <i class="fa fa-save"></i> Save Pathway
                 </button>
+            	<form class="form" role="form" data-bind="with: pathwayModel">
+                    <div class="form-group">
+                        <input class="width60" id="txt-name" type="text" class="form-control" data-bind="value: name, valueUpdate: 'input'" />
+                    </div>
+                    <div class="form-group">
+                        <textarea id="txt-desc" class="width60" rows="1" class="form-control" data-bind="value: description, valueUpdate: 'input'"></textarea>
+                    </div>
+                    
+                </form>
+            
+               
+                
+                
             </div>
             <div class="panel-body" data-bind="with: pathwayModel">
                 <div class="jsplumb-container" data-bind="foreach: nodes ">
-                    <div class="node" data-bind="makeNode: $data, click: $root.selectNode, style: {top:y, left:x}, id: id">
+                    <div class="node" data-bind="makeNode: $data, click: $root.selectNode, style: {top:y, left:x}, attr: { 'id': 'node' + id}">
                         <div data-bind="attr:{title: description}">{{name}}</div>
                         <div class="anchor"></div>
                     </div>
@@ -79,6 +92,7 @@
                         <label for="txt-desc" class="control-label">Description: </label>
                         <textarea id="txt-desc" rows="3" class="form-control" data-bind="value: description, valueUpdate: 'input'"></textarea>
                     </div>
+                    
                 </form>
                 <div class="panel panel-primary">
                     <div class="panel-heading">Inputs</div>
@@ -107,6 +121,9 @@
                 <button type="button" class="btn btn-link btn-xs pull-right" data-bind="click: addFormDialog">
                     <i class="fa fa-plus"></i> Add Form
                 </button>
+                 <button type="button" class="btn btn-link btn-xs pull-right" data-bind="click: addDEDialog">
+                    <i class="fa fa-plus"></i> Add Data Elements
+                </button>
             </div>
         </div>
     </div>
@@ -117,7 +134,7 @@
 	<!-- Add Pathway Modal -->
     <div class="modal fade hide" id="CreatePathwayModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content" data-bind="with: $root.createPathway">
+            <div class="modal-content" >
                 <div class="modal-header">
                     <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>-->
                     <h4 class="modal-title" id="myModalLabel">Create Pathway</h4>
@@ -126,16 +143,45 @@
                     <form class="form" role="form">
                         <div class="form-group">
                             <label for="txt-name" class="control-label">Name: </label>
-                            <input id="txt-name" type="text" class="form-control" data-bind="value: name, valueUpdate: 'input'" />
+                            <input id="txt-name" type="text" class="form-control"/>
                         </div>
                         <div class="form-group">
                             <label for="txt-desc" class="control-label">Description: </label>
-                            <textarea id="txt-desc" rows="3" class="form-control" data-bind="value: description, valueUpdate: 'input'"></textarea>
+                            <textarea id="txt-desc" rows="3" class="form-control"></textarea>
                         </div>
-                    </form>
+			        </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" data-bind="click: $root.savePathway">Create</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    
+    <!-- Add Node Modal -->
+    <div class="modal fade hide" id="CreateNode" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>-->
+                    <h4 class="modal-title" id="myModalLabel">Create Node</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form" role="form">
+                        <div class="form-group">
+                            <label for="txt-name" class="control-label">Name: </label>
+                            <input id="createNodeName" type="text" class="form-control"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="txt-name" class="control-label">Description: </label>
+                            <input id="createNodeDescription" type="text" class="form-control"/>
+                        </div>
+			        </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bind="click: $root.saveNode">Create</button>
+                    <button class="closeModalLink" type="button" class="btn"
+          >Cancel</button>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
@@ -151,7 +197,26 @@
                     <h4 class="modal-title" id="myModalLabel">Add Form</h4>
                 </div>
                 <div class="modal-body">
-                	<div id="formDesignCart"><i class="fa fa-plus"></i> Add to Node</div>
+                	<div id="formDesignCart">Drag Form <i style="display:block" class="fa fa-plus"></i> Here To Add</div>
+                   <div id="formDesignList" ></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bind="click: $root.addFormFinish">Finish</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    
+    <!-- Add Data ElementModal -->
+    <div class="modal fade hide" id="AddDEModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>-->
+                    <h4 class="modal-title" id="myModalLabel">Add Data Element</h4>
+                </div>
+                <div class="modal-body">
+                	<div id="formDesignCart">Drag Data Element <i style="display:block" class="fa fa-plus"></i> Here To Add</div>
                    <div id="formDesignList" ></div>
                 </div>
                 <div class="modal-footer">
@@ -171,9 +236,7 @@
 		<g:else>
 			pathwaysModel = ''
 		</g:else>
-	
-		console.log(pathwaysModel)
-	
+
 		initPathways(pathwaysModel);
 	</r:script>
 

@@ -57,8 +57,7 @@ class PathwaysService {
 	@PreAuthorize("hasRole('ROLE_USER')")
 	PathwaysModel create(Map parameters) {
 		
-		println(parameters)
-		
+
 		def pathwaysModelInstance = new PathwaysModel(
 			name: parameters?.name,
 			description: parameters?.description,

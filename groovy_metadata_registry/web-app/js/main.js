@@ -49,6 +49,28 @@ $(function() {
 });
 
 
+$('#openModalLink').click(
+    function() {
+  	  $('#createPathwayModal').modal({ show: true, keyboard: false, backdrop: 'static' });
+      $(this).closest(".dropdown").removeClass("open");
+      return false;
+    });
+
+$('.closeModalLink')
+.click(
+    function() {
+  	  $('.modal').modal('hide');
+      return false;
+    });
+
+$('#submitModalLink')
+.click(
+    function() {
+  	  $('#createPathwayForm').submit();
+      return false;
+    });
+
+
 
 /*--------------------------------------------------------
 SHARED FUNCTIONS

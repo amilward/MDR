@@ -21,7 +21,6 @@ function formDesignList(){
         "bAutoWidth": false,
         "aaSorting": [[ 1, "asc" ]],
 		"aoColumns": [
-		    { "mDataProp": "refId", "sTitle":"Ref ID", "sWidth":"10%"},
 			{
 				    // `data` refers to the data for the cell (defined by `mData`, which
 				    // defaults to the column being worked with, in this case is the first
@@ -86,7 +85,6 @@ function formDesignListDraggable(){
         "bAutoWidth": false,
         "aaSorting": [[ 1, "asc" ]],
 		"aoColumns": [
-		    { "mDataProp": "refId", "sTitle":"Ref ID", "sWidth":"10%"},
 			{
 				    // `data` refers to the data for the cell (defined by `mData`, which
 				    // defaults to the column being worked with, in this case is the first
@@ -136,9 +134,8 @@ function formDesignListDraggable(){
 		        helper: "clone",
 		        start: function(event, ui) {
 		            c.tr = this;
-					c.refId = $(this).find("td").eq(0).html();  
-					c.name = $(this).find("td").eq(1).find("a").text();
-					c.id = $(this).find("td").eq(1).find("a").attr("id");
+					c.name = $(this).find("td").eq(0).find("a").text();
+					c.id = $(this).find("td").eq(0).find("a").attr("id");
 		            c.helper = ui.helper;
 		        }
 			});	
@@ -161,12 +158,12 @@ function formatFormDesignDetails ( nTr )
 {
 	var aData = oTable.fnGetData( nTr );
 	var dataElements = getObjectTable(aData.dataElements, "dataElement");
-	var formSpecifications = getObjectTable(aData.formSpecifications, "formSpecifications");
+	//var formSpecifications = getObjectTable(aData.formSpecifications, "formSpecifications");
 	
 	var sOut = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
 	
 	if(dataElements!=null){sOut += '<tr><td class="labelCol">Data Elements: </td><td>' + dataElements + '</td></tr>'}
-	if(formSpecifications!=null){sOut += '<tr><td class="labelCol">External Reference: </td><td>' + formSpecifications + '</td></tr>'}
+	//if(formSpecifications!=null){sOut += '<tr><td class="labelCol">External Reference: </td><td>' + formSpecifications + '</td></tr>'}
 
 	sOut += '</table>';
 	 

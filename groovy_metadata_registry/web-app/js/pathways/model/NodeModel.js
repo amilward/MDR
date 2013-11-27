@@ -13,18 +13,39 @@
         self.inputs = [];
         self.outputs = [];
         self.forms = [];
+        self.collections = [];
 
         ko.track(self);
 
+    
         
-        self.addForm = function(formId){
-        	console.log(ko.toJSON(self))
-        	self.forms.push(formId)
-        	console.log(ko.toJSON(self))
+        self.setForms = function(JSONforms){
+        	
+        	//console.log(JSONforms)
+        	$.each(JSONforms, function(index, formJSON){
+        			
+	        	var form = new FormModel()
+	        	form.id = formJSON.id
+	        	form.name = formJSON.name
+	        	
+	        	self.forms.push(form)
+        	});
+        	
+        }
+        
+        self.addForm = function(form){
+        	
+        	self.forms.push(form)
+        	
+        }
+        
+
+        self.addDEDialog = function(){
+        	console.log('add DE dialog')
         }
         
         self.addFormDialog = function(){
-        	console.log('addingForm');
+        	//console.log('addingForm');
         	//Initial action on page load
             $('#AddFormModal').modal({ show: true, keyboard: false, backdrop: 'static' });
             formDesignListDraggable();
@@ -37,7 +58,7 @@
         	$("#formDesignCart").droppable({
                 drop: function(event, ui) {
                 	if(c.id){
-                		
+                		console.log('test')
                 		var form = new FormModel();
                 		form.id = c.id
                 		form.name = c.name

@@ -9,7 +9,7 @@
     	self.isDraft = true;
     	self.nodes = [];
     	self.links = [];
-
+    	
         //Turn all self.XXX properties above this statement to observable{Array}
         ko.track(self);
 
