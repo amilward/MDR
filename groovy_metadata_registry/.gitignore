@@ -42,6 +42,8 @@
 # "temporary" build files
 /target
 /target-eclipse
+/reports/
+/.sonar/
 
 # test report output
 /reports

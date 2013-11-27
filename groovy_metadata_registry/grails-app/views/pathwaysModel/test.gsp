@@ -88,7 +88,7 @@
 		
 		//getNode(1);
 		
-		updateNode({"nodeInstance":{"id":"1","nodeVersionNo": 1,"name":"transfer to O.R.","description":"transfer patient to the Operating Room","x":"5","y":"0","mandatoryInputs":[],"mandatoryOutputs":[],"optionalInputs":[],"optionalOutputs":[]}})
+		updateNode({"nodeInstance":{"id":"1","nodeVersionNo": 1,"name":"transfer to O.R. TEST","description":"transfer patient to the Operating Room","x":"5","y":"0","mandatoryInputs":[],"mandatoryOutputs":[],"optionalInputs":[],"optionalOutputs":[]}})
 
 		
 	</r:script>

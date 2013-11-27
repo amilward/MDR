@@ -2,13 +2,24 @@ modules = {
 	
 	// Standard libraries
 	jquery_lib {
-		resource url: "js/vendor/jquery-1.10.1.min.js"
-		resource url: "js/vendor/jquery-ui.1.10.2.js"
+		resource url: "js/vendor/jquery/jquery-2.0.3.js"
+		resource url: "js/vendor/jquery/jquery-ui.1.10.2.js"
+	}
+	
+	jquery_layout_lib{
+		dependsOn "jquery_lib"
+		resource url: "js/vendor/jquery/jquery.layout-1.3.0.min.js"
+	}
+	
+	jquery_dform_lib{
+		dependsOn "jquery_lib"
+		resource url: "js/vendor/jquery/jquery.dform-1.1.0.min.js"
 	}
 	
 	knockout_lib{
 		resource url: "js/vendor/knockout/knockout-3.0.0.js"
 		resource url: "js/vendor/knockout/knockout-es5.js"
+		resource url: "js/vendor/knockout/knockout.punches.js"
 	}
 	
 	require_lib{
@@ -22,11 +33,25 @@ modules = {
 	modernizr_lib{
 		resource url: "js/vendor/modernizr/modernizr-2.6.2-respond-1.1.0.min.js"
 	}
+	
+	jsplumb_lib{
+		resource url: "js/vendor/jsplumb/jquery.jsPlumb-1.5.4-min.js"
+	}
+	
+	bootstrap_lib{
+		resource url: "js/vendor/bootstrap.min.js"
+	}
+	
+	bootstrap_editable_lib{
+		dependsOn "bootstrap_lib"
+		resource url: "js/vendor/bootstrap-editable.js"
+	}
+	
 	// Application libraries
 	
     application {
 		dependsOn "jquery_lib"
-		resource url: "js/vendor/bootstrap.min.js"
+		dependsOn "bootstrap_lib"
 		resource url: "js/main.js"
     }
 	
@@ -60,10 +85,15 @@ modules = {
 		resource url: "js/model/dataElementConcept/dataElementConcept.js"
 	}
 	
+	formDesignList{
+		dependsOn "dataTables"
+		resource url: "js/forms/formDesign.js"
+	}
+	
 	formsBuilder{
 		dependsOn "application"
-		resource url: "js/vendor/jquery.layout-1.3.0.min.js"
-		resource url: "js/vendor/bootstrap-editable.js"
+		dependsOn "jquery_layout_lib"
+		dependsOn "bootstrap_editable_lib"
 		resource url: "js/vendor/knockout-2.2.1.js"
 		resource url: "js/vendor/knockout-sortable.js"
 		resource url: "js/vendor/knockout-x-editable.js"
@@ -75,11 +105,10 @@ modules = {
 	formsRenderer{
 		
 		dependsOn "application"
-		resource url: "js/vendor/jquery.layout-1.3.0.min.js"
-		resource url: "js/vendor/bootstrap-editable.js"
+		dependsOn "jquery_layout_lib"
+		dependsOn "bootstap_editable_lib"
 		resource url: "js/lib/bootstrap-datepicker.js"
 		resource url: "js/lib/bootstrap-timepicker.js"
-		resource url: "js/pathways/jquery.jsPlumb-1.5.2-min.js"
 		resource url: "js/respond.min.js"
 		resource url: "js/forms/form_model.js"
 		resource url: "js/forms/constraint.js"
@@ -91,18 +120,35 @@ modules = {
 	
 	pathways{
 		dependsOn "application"
-		resource url: "js/vendor/jquery.layout-1.3.0.min.js"
-		resource url: "js/vendor/bootstrap-editable.js"
-		resource url: "js/pathways/jquery.jsPlumb-1.5.2-min.js"
-		resource url: "js/pathways/pathway_model.js"
-		resource url: "js/pathways/pathway.js"
+		dependsOn "jsplumb_lib"
+		dependsOn "knockout_lib"
+		dependsOn "jquery_layout_lib"
+		dependsOn "bootstrap_editable_lib"
+		dependsOn "dataTables"
+		//resource url: "js/pathways/pathway_model.js"
+		//resource url: "js/pathways/pathway.js"
 		resource url: "js/pathways/pathwaysLayout.js"
 		resource url: "js/pathways/pathwayAjaxFunctions.js"
+		resource url: "js/pathways/AppViewModel.js"
+		resource url: "js/pathways/show.js"
+		resource url: "js/pathways/binding/knockout.jsplumb.js"
+		resource url: "js/pathways/model/NodeModel.js"
+		resource url: "js/pathways/model/PathwayModel.js"
+		resource url: "js/pathways/model/LinkModel.js"
+		resource url: "js/pathways/model/FormModel.js"
+		resource url: "js/pathways/service/FormService.js"
+		resource url: "js/pathways/service/PathwayService.js"
+		resource url: "js/forms/formDesign.js"
 		
+	}
+	
+	ajaxfunctions{
+		resource url: "js/pathways/pathwayAjaxFunctions.js"
 	}
 	
 	pathwaysList{
 		dependsOn "dataTables"
+		dependsOn "knockout_lib"
 		resource url: "js/pathways/pathwaysList.js"
 	}
 
@@ -110,19 +156,16 @@ modules = {
 	pathwayCreationModal{
 		dependsOn: "application"
 		dependsOn: "knockout_lib"
-		resource url: "js/vendor/knockout/knockout-3.0.0.js"
-		resource url: "js/vendor/knockout/knockout-es5.js"
-		dependsOn: "d3_lib"
+		resource url: "js/pathways/model/PathwayModel.js"
 	 	resource url: "js/pathways/creationModal/main.js"
 		resource url: "js/pathways/creationModal/service/FormService.js"
 		resource url: "js/pathways/creationModal/service/PathwayService.js"
-		resource url: "js/pathways/creationModal/model/PathwayModel.js"
 		resource url: "js/pathways/creationModal/AppViewModel.js"
 	}
 
 	dForms{
 		dependsOn "application"
-		resource url: "js/vendor/jquery.dform-1.1.0.min.js"
+		dependsOn "jquery_dform_lib"
 		resource url: "js/forms/formDesign.js"
 		}
 
