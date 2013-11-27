@@ -96,13 +96,32 @@ class PathwaysModelController {
 				
 		render model as JSON
 	}
-	
 
     def create() {
         [pathwaysModelInstance: new PathwaysModel(params)]
     }
+	
+	def saveREST() {
+		def unvalidated = request.JSON
+		def pathway = [name: unvalidated.name, description: unvalidated.description, versionNo: unvalidated.version, isDraft: unvalidated.isDraft]
+		
+		//FIXME validate
+		def pathwaysModelInstance = pathwaysService.create(pathway)
+		
+		println pathwaysModelInstance.errors
+		if (pathwaysModelInstance.errors.hasErrors()) {
+			def responseMessage = [errors: true, details: pathwaysModelInstance.errors]
+			response.status = 400
+			render responseMessage as JSON
+			return
+		}
+
+		render pathwaysModelInstance as JSON
+		
+	}
 
     def save() {
+
         def pathwaysModelInstance = new PathwaysModel(params)
         if (!pathwaysModelInstance.save(flush: true)) {
             render(view: "create", model: [pathwaysModelInstance: pathwaysModelInstance])
@@ -217,22 +236,18 @@ class PathwaysModelController {
 		switch(column){
 			
 			case 0:
-				field = "refId"
-			break
-			
-			case 1:
 				field = "name"
 			break
 			
-			case 2:
+			case 1:
 				field = "versionNo"
 			break
 			
-			case 3:
+			case 2:
 				field = "isDraft"
 			break
 			
-			case 4:
+			case 3:
 				field = "description"
 			break
 			

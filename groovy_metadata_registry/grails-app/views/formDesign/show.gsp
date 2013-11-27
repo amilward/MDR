@@ -66,13 +66,6 @@
 			formInstanceId = ''
 		</g:else>
 		
-		<g:if test="${formDesignInstance?.id}">
-			formInstanceRefId = "${formDesignInstance.refId}"
-		</g:if>
-		<g:else>
-			formInstanceRefId = ''
-		</g:else>
-		
 		<g:if test="${formDesignInstance?.name}">
 			formInstanceName = "${formDesignInstance.name}"
 		</g:if>
@@ -101,7 +94,7 @@
 			isDraft = ''
 		</g:else>
 		
-		openForms(formInstanceId, formInstanceRefId, formInstanceName, formInstanceDescription, versionNo, isDraft, formInstanceCollectionId, formVersionNo);
+		openForms(formInstanceId, formInstanceName, formInstanceDescription, versionNo, isDraft, formInstanceCollectionId, formVersionNo);
 		
 	</r:script>
 		

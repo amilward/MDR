@@ -336,14 +336,10 @@ class ConceptualDomainController {
 		switch(column){
 			
 			case 0:
-				field = "refId"
-			break
-			
-			case 1:
 				field = "name"
 			break
 			
-			case 2:
+			case 1:
 				field = "description"
 			break
 			

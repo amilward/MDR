@@ -8,7 +8,6 @@ class DataElementConceptMarshaller extends CustomMarshaller {
 				
 			return [
 			'id' : dataElementConcept.id,
-			'refId' : dataElementConcept.refId,
 			'name' : dataElementConcept.name,
 			'description' : dataElementConcept.description,
 			'parent_id' : dataElementConcept?.parent?.id,

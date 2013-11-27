@@ -3,10 +3,6 @@
 
 <table class="table table-hovered">
 				<tbody>
-					<tr class="${hasErrors(bean: conceptualDomainInstance, field: 'refId', 'error')} ">
-						<td class="left_col_show"><span id="name-label" class="label"><g:message code="conceptualDomain.refId.label" default="Reference ID" /></span></td>
-						<td class="right_col_show"><g:textField title="${g.message(code:'tooltip.conceptualDomain.refId')}" class="input-large input-block-level" name="refId" value="${conceptualDomainInstance.refId}" required=""/></td>
-					</tr>
 					<tr class="${hasErrors(bean: conceptualDomainInstance, field: 'name', 'error')} ">
 						<td class="left_col_show"><span id="name-label" class="label"><g:message code="conceptualDomain.name.label" default="Name" /></span></td>
 						<td class="right_col_show"><g:textField title="tooltip.conceptualDomain.name" class="input-large input-block-level"  name="name" value="${conceptualDomainInstance?.name}"/></td>

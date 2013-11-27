@@ -1,13 +1,9 @@
 package uk.co.mdc.model
 
-class DataElementConcept {
-	
-	String refId
+class DataElementConcept extends ExtensibleObject  {
 	
 	String name
-	
 	String description
-	
 	DataElementConcept parent
 	
 	static auditable = true
@@ -23,7 +19,6 @@ class DataElementConcept {
     static constraints = {
 		name blank: false
 		parent nullable: true
-		refId unique: true, nullable:true
 		description nullable: true
 		
 		}

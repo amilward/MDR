@@ -4,8 +4,7 @@ import org.codehaus.groovy.grails.web.servlet.mvc.GrailsParameterMap
 import org.json.simple.JSONObject
 
 class DataElement extends ExtensibleObject {
-	
-	String refId
+
 	
 	String externalIdentifier
 	
@@ -33,10 +32,10 @@ class DataElement extends ExtensibleObject {
 	static belongsTo = [parent: DataElement, dataElementConcept: DataElementConcept]
 	
     static constraints = {
-		refId unique: true
 		parent nullable: true
 		dataElementConcept nullable: true
 		definition nullable: true
+		description nullable:true
 		externalIdentifier nullable:true
 		name blank: false
 		extension nullable: true
@@ -45,7 +44,7 @@ class DataElement extends ExtensibleObject {
 	static mapping = {
 		description type: 'text'
 		definition type: 'text'
-		extension sqlType: 'binary(5000)'
+		extension sqlType: 'blob'
 		subElements cascade: 'save-update'
 	}
 	

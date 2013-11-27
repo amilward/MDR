@@ -1,6 +1,6 @@
 package uk.co.mdc.model
 
-class DataElementValueDomain {
+class DataElementValueDomain extends ExtensibleObject  {
 	
 	DataElement dataElement
 	

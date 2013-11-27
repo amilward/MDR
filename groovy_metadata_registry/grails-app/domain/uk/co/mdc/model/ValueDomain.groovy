@@ -2,24 +2,15 @@ package uk.co.mdc.model
 
 import java.util.List;
 
-class ValueDomain {
-	
+class ValueDomain extends ExtensibleObject  {
+
 	String name
-
-	String refId
-
 	String unitOfMeasure
-	
-	String regexDef
-	
-	String format
-	
-	String description
-	
-	DataType dataType
- 	
-	Set dataElementValueDomains = []
-	
+	String regexDef	
+	String format	
+	String description	
+	DataType dataType	
+	Set dataElementValueDomains = []	
 	ConceptualDomain conceptualDomain
 	
 	static auditable = true
@@ -33,7 +24,6 @@ class ValueDomain {
 	static belongsTo = [conceptualDomain: ConceptualDomain]
 	
     static constraints = {
-		refId unique: true
 		conceptualDomain nullable:true
 		dataType nullable:true
 		description nullable:true

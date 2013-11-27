@@ -1,9 +1,9 @@
 package uk.co.mdc.pathways
 
-class PathwaysModel {
-	
+import uk.co.mdc.model.ExtensibleObject;
 
-	String refId
+class PathwaysModel extends ExtensibleObject  {
+	
 	String name
 	String versionNo
 	Boolean isDraft
@@ -16,8 +16,8 @@ class PathwaysModel {
 	static hasMany = [pathwayElements : PathwayElement] 
 
     static constraints = {
-		refId unique:true
 		description nullable: true
+		versionNo nullable:true  
     }
 	
 	List getNodes(){

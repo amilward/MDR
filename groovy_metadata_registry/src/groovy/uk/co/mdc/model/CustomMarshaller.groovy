@@ -6,7 +6,7 @@ class CustomMarshaller {
 	def limitRender(elements){
 		
 		def toRender = elements.collect{ element->
-			["id": element.id, "name":element.name, "refId": element.refId]
+			["id": element.id, "name":element.name]
 		}
 		
 		return toRender
