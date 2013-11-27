@@ -1,8 +1,7 @@
 package uk.co.mdc.model
 
 class Document extends ExtensibleObject  {
-	
-	String refId
+
 	String name
 	String description
 	String contentType
@@ -12,7 +11,7 @@ class Document extends ExtensibleObject  {
 	static auditable = true
 	
 	static searchable = {
-		only=['name', 'refId', 'fileName']
+		only=['name', 'fileName']
 		content: spellCheck 'include'
 	}
 	
@@ -20,7 +19,6 @@ class Document extends ExtensibleObject  {
 		name blank: false, nullable: false, size: 2..20
 		description blank: false, nullable: false, size: 2..500
 		content maxSize: 1024 * 1024 * 2
-		refId unique: true
     }
 	
 	static mapping = {

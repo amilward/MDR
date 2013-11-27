@@ -23,7 +23,7 @@ function initPathways(param){
     }else{
     	
     	console.log(param)
-    	//vm.loadPathway(param)
+    	vm.loadPathway(param);
     }
     
 }
