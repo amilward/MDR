@@ -23,7 +23,7 @@ ko.bindingHandlers.makeNode = {
     init: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
         var value = valueAccessor();
         
-        console.log('making load nodes')
+        //console.log('making load nodes')
         
         //Turn binded element into jsPlumb source node
         jsPlumb.makeSource($('.anchor', element), {
@@ -68,7 +68,7 @@ ko.bindingHandlers.makeNode = {
    	   		 "Delete Node": function() {
    	   			$( this ).dialog( "close" );
    	   			nodeInfo = ko.dataFor(element)
-   	   			//console.log(nodeInfo.id)
+   	   			////console.log(nodeInfo.id)
    	   			vm.deleteNode(nodeInfo.id)
    	   			jsPlumb.remove($(element))
    	   		 },
@@ -83,7 +83,7 @@ ko.bindingHandlers.makeNode = {
     },
     update: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
         
-    	console.log('testing update')
+    	//console.log('testing update')
     	
     }
 };
@@ -93,22 +93,22 @@ ko.bindingHandlers.makeNode = {
 
 //Listening for connection event
 jsPlumb.bind("connection", function (info) {
-	console.log('makeConnectionBinding')
+	//console.log('makeConnectionBinding')
 	
 	 var connectionId = null;
 	 connectionId = info.connection.getParameter("connectionId", connectionId)
 	 
-	 console.log(connectionId)
+	 //console.log(connectionId)
 	 
 	if(connectionId==null){
 
-		console.log('create with conn id')
+		//console.log('create with conn id')
 		
 	    var source = ko.dataFor(info.source); //Get the source node model instance            
 	    var target = ko.dataFor(info.target); //Get the target node model instance
 	
 	    connectionId = 'connection_' + (new Date().getTime())
-	   // console.log(connectionId)
+	   // //console.log(connectionId)
 	    info.connection.setParameter("connectionId", connectionId)
 	    vm.createLink(source, target, connectionId);
 	

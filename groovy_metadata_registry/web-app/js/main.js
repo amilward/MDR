@@ -55,13 +55,20 @@ $('#openModalLink').click(
       $(this).closest(".dropdown").removeClass("open");
       return false;
     });
-/*
-$('#closeModalLink')
+
+$('.closeModalLink')
 .click(
     function() {
-  	  $('#createPathwayModal').;
+  	  $('.modal').modal('hide');
       return false;
-    });*/
+    });
+
+$('#submitModalLink')
+.click(
+    function() {
+  	  $('#createPathwayForm').submit();
+      return false;
+    });
 
 
 

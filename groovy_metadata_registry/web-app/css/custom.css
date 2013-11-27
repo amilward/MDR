@@ -228,3 +228,10 @@ textarea[readonly] {
 .search-bar-inner {
 	height: inherit;
 }
+
+.width60{
+	width:60%;
+}
+#panel-heading{
+	height:118px;
+}

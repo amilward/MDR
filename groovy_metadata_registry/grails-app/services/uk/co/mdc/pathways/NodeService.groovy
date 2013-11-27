@@ -181,7 +181,7 @@ class NodeService {
 		println('removing link sources and targets')
 		
 		sources.each{ link ->
-			
+			link.refresh()
 			link.delete(flush:true,failOnError:true)
 		}
 		
@@ -189,7 +189,7 @@ class NodeService {
 		def targets = Link.findAllWhere(target: nodeInstance)
 		
 		targets.each{ link->
-			
+			link.refresh()
 			link.delete(flush:true,failOnError:true)
 			
 		}

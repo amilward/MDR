@@ -138,6 +138,8 @@ class BootStrap {
 		grantAdminPermissions(FormDesign.list())
 		grantAdminPermissions(QuestionElement.list())
 		grantAdminPermissions(InputField.list())
+		grantAdminPermissions(Node.list())
+		grantAdminPermissions(Link.list())
 		grantAdminPermissions(PathwaysModel.list())
 
 	}

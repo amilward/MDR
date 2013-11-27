@@ -16,10 +16,11 @@
 
         ko.track(self);
 
+    
         
         self.setForms = function(JSONforms){
         	
-        	console.log(JSONforms)
+        	//console.log(JSONforms)
         	$.each(JSONforms, function(index, formJSON){
         			
 	        	var form = new FormModel()
@@ -38,7 +39,7 @@
         }
         
         self.addFormDialog = function(){
-        	console.log('addingForm');
+        	//console.log('addingForm');
         	//Initial action on page load
             $('#AddFormModal').modal({ show: true, keyboard: false, backdrop: 'static' });
             formDesignListDraggable();
