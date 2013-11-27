@@ -1,18 +1,20 @@
-﻿jsPlumb.ready(function() {
+﻿
 // setup some defaults for jsPlumb.	
 			jsPlumb.importDefaults({
 				Endpoint : [ "Dot", {
-					radius : 2
+					radius : 1
 				} ],
 				HoverPaintStyle : {
 					strokeStyle : "#1e8151",
-					lineWidth : 2
+					lineWidth : 1
 				},
+				Connector: 'StateMachine',
+	            ConnectorStyle: { strokeStyle: "#5c96bc", lineWidth: 1, outlineColor: "transparent" },
 				ConnectionOverlays : [ [ "Arrow", {
-					location : 1,
-					id : "arrow",
-					length : 14,
-					foldback : 0.8
+					location: 1,
+                    id: "arrow",
+                    length: 14,
+                    foldback: 0.8
 				} ],]
 			});
 
@@ -21,11 +23,13 @@ ko.bindingHandlers.makeNode = {
     init: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
         var value = valueAccessor();
         
+        console.log('making load nodes')
+        
         //Turn binded element into jsPlumb source node
         jsPlumb.makeSource($('.anchor', element), {
             parent: $(element),
             connector: 'StateMachine',
-            connectorStyle: { strokeStyle: "#5c96bc", lineWidth: 2, outlineColor: "transparent", outlineWidth: 4 },
+            connectorStyle: { strokeStyle: "#5c96bc", lineWidth: 1, outlineColor: "transparent" },
             connectorOverlays: [
                   ["Arrow", {
                       location: 1,
@@ -79,6 +83,8 @@ ko.bindingHandlers.makeNode = {
     },
     update: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
         
+    	console.log('testing update')
+    	
     }
 };
 
@@ -92,6 +98,8 @@ jsPlumb.bind("connection", function (info) {
 	 var connectionId = null;
 	 connectionId = info.connection.getParameter("connectionId", connectionId)
 	 
+	 console.log(connectionId)
+	 
 	if(connectionId==null){
 
 		console.log('create with conn id')
@@ -102,7 +110,7 @@ jsPlumb.bind("connection", function (info) {
 	    connectionId = 'connection_' + (new Date().getTime())
 	   // console.log(connectionId)
 	    info.connection.setParameter("connectionId", connectionId)
-	   // vm.createLink(source, target, connectionId);
+	    vm.createLink(source, target, connectionId);
 	
 	}
 	 
@@ -132,5 +140,4 @@ jsPlumb.bind("connection", function (info) {
     	
     });
     
-});
 });

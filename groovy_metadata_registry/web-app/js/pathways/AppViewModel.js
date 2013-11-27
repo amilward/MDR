@@ -38,20 +38,23 @@
         	 self.pathwayModel = pm;
         	 var nodes = pathwayJSON.nodes;
         	 
-        	 $.each(nodes, function( index, node ) {
-        		self.loadNode(node);        	 
-        	 });
+        	 
+				        	 $.each(nodes, function( index, node ) {
+				        		self.loadNode(node);        	 
+				        	 });
+								     
+				   
         	 
         	 console.log('finished creating nodes')
         	 
         	 setTimeout( function()
 							      {
-							        		 var links = pathwayJSON.links;
-							            	 $.each(links, function( index, link ) {
+							       var links = pathwayJSON.links;
+							       $.each(links, function( index, link ) {
 							            		 console.log('load link')
 							            		self.loadLink(link);        	 
-							            	 });
-							      }, 500);
+							         	 });
+							      }, 100);
         	 
         	 
         	 
@@ -277,7 +280,10 @@
 		        	
 		        	jsPlumb.connect({
 		        			source: sourceDiv,
-		       				target: targetDiv
+		       				target: targetDiv,
+		       				parameters: {
+		       					"connectionId" : link.connectionId
+		       				}
 		       				
 		        	});
 		        		
