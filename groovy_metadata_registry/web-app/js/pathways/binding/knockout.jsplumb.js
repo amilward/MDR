@@ -9,7 +9,7 @@
 					lineWidth : 1
 				},
 				Connector: 'StateMachine',
-	            ConnectorStyle: { strokeStyle: "#5c96bc", lineWidth: 1, outlineColor: "transparent" },
+	            ConnectorStyle: { strokeStyle: "#5c96bc", lineWidth: 2, outlineColor: "transparent", outlineWidth: 4 },
 				ConnectionOverlays : [ [ "Arrow", {
 					location: 1,
                     id: "arrow",
@@ -29,7 +29,7 @@ ko.bindingHandlers.makeNode = {
         jsPlumb.makeSource($('.anchor', element), {
             parent: $(element),
             connector: 'StateMachine',
-            connectorStyle: { strokeStyle: "#5c96bc", lineWidth: 1, outlineColor: "transparent" },
+            connectorStyle: { strokeStyle: "#5c96bc", lineWidth: 2, outlineColor: "transparent", outlineWidth: 4 },
             connectorOverlays: [
                   ["Arrow", {
                       location: 1,
