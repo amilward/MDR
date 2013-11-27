@@ -1,4 +1,5 @@
-﻿// setup some defaults for jsPlumb.	
+﻿jsPlumb.ready(function() {
+// setup some defaults for jsPlumb.	
 			jsPlumb.importDefaults({
 				Endpoint : [ "Dot", {
 					radius : 2
@@ -44,7 +45,12 @@ ko.bindingHandlers.makeNode = {
 
         //Enable dragging of nodes
         jsPlumb.draggable($(element), {
-            containment: "parent"
+            containment: "parent",
+            stop: function( event, ui ) {
+            	//node = ko.contextFor(element)
+            	value.y = Math.round(ui.position.top) + "px"
+            	value.x = Math.round(ui.position.left) + "px"
+            }
         });
         
         $(element).bind('dblclick', function(){
@@ -81,20 +87,22 @@ ko.bindingHandlers.makeNode = {
 
 //Listening for connection event
 jsPlumb.bind("connection", function (info) {
-	//console.log('makeConnectionBinding')
+	console.log('makeConnectionBinding')
 	
 	 var connectionId = null;
 	 connectionId = info.connection.getParameter("connectionId", connectionId)
 	 
 	if(connectionId==null){
 
+		console.log('create with conn id')
+		
 	    var source = ko.dataFor(info.source); //Get the source node model instance            
 	    var target = ko.dataFor(info.target); //Get the target node model instance
 	
 	    connectionId = 'connection_' + (new Date().getTime())
 	   // console.log(connectionId)
 	    info.connection.setParameter("connectionId", connectionId)
-	    vm.createLink(source, target, connectionId);
+	   // vm.createLink(source, target, connectionId);
 	
 	}
 	 
@@ -124,4 +132,5 @@ jsPlumb.bind("connection", function (info) {
     	
     });
     
+});
 });

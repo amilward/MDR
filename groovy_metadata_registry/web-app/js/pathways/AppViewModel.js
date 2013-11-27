@@ -41,10 +41,18 @@
         	 $.each(nodes, function( index, node ) {
         		self.loadNode(node);        	 
         	 });
-        	 var links = pathwayJSON.links;
-        	 $.each(links, function( index, link ) {
-        		self.loadLink(link);        	 
-        	 });
+        	 
+        	 console.log('finished creating nodes')
+        	 
+        	 setTimeout( function()
+							      {
+							        		 var links = pathwayJSON.links;
+							            	 $.each(links, function( index, link ) {
+							            		 console.log('load link')
+							            		self.loadLink(link);        	 
+							            	 });
+							      }, 500);
+        	 
         	 
         	 
 
@@ -90,12 +98,14 @@
         
         self.loadNode = function(JSONNode) {
         	//create the node in the model
+        	console.log('test')
         	var node = new NodeModel();
             node.name = JSONNode.name;
-            node.x = JSONNode.x + 'px';
-            node.y = JSONNode.y + 'px';
+            node.x = JSONNode.x ;
+            node.y = JSONNode.y ;
             node.id = JSONNode.id
 	        node.version = JSONNode.nodeVersion
+	        node.setForms(JSONNode.optionalOutputs)
 	         self.pathwayModel.version = JSONNode.pathwaysModelVersion
 	         self.pathwayModel.nodes.push(node);
 	         console.log("loadNodecomplete");
@@ -238,7 +248,9 @@
 				});
 	        	
 	        	if(source!=null && target!=null){
-	        	  	        	
+	        	  	        
+	        		link.id = JSONLink.id
+	        		
 		        	link.name = 'link_' + source.id + '_' + target.id;
 		        	link.source = source;
 		        	link.target = target;
@@ -251,17 +263,23 @@
 		            if (!ko.utils.arrayFirst(target.inputs, function (item) { return item === source })) {
 		                target.inputs.push(source);
 		            }
-		        		link.id = JSONLink.linkId;
-		        		link.version = JSONLink.linkVersion;	
-		        		self.pathwayModel.links.push(link);	 
-		        		
-		        		/*jsPlumb.connect(
-		        				source: "node" + source.id,
-		        				target: "node" + target.id,
-		        				parameters: {
-		        					"connectionId" : link.connectionId
-		        				});
-		        		);*/
+		            
+		        	link.version = JSONLink.linkVersion;	
+		        	self.pathwayModel.links.push(link);	 
+		        	
+		        	var sourceDiv = "node" + source.id
+		        	var targetDiv = "node" + target.id
+		        	
+		        	console.log('divy stuff')
+		        	console.log(sourceDiv)
+		        	
+		        	console.log($("#" + sourceDiv).attr('id'))
+		        	
+		        	jsPlumb.connect({
+		        			source: sourceDiv,
+		       				target: targetDiv
+		       				
+		        	});
 		        		
 		        		
 	        	}

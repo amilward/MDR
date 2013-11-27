@@ -53,7 +53,7 @@
             </div>
             <div class="panel-body" data-bind="with: pathwayModel">
                 <div class="jsplumb-container" data-bind="foreach: nodes ">
-                    <div class="node" data-bind="makeNode: $data, click: $root.selectNode, style: {top:y, left:x}, id: id">
+                    <div class="node" data-bind="makeNode: $data, click: $root.selectNode, style: {top:y, left:x}, attr: { 'id': 'node' + id}">
                         <div data-bind="attr:{title: description}">{{name}}</div>
                         <div class="anchor"></div>
                     </div>
@@ -78,6 +78,14 @@
                     <div class="form-group">
                         <label for="txt-desc" class="control-label">Description: </label>
                         <textarea id="txt-desc" rows="3" class="form-control" data-bind="value: description, valueUpdate: 'input'"></textarea>
+                    </div>
+                    <div class="form-group">
+                            <label for="txt-desc" class="control-label">x: </label>
+                            <textarea id="txt-desc" rows="3" class="form-control" data-bind="value: x, valueUpdate: 'input'"></textarea>
+                        </div>
+                      <div class="form-group">
+                            <label for="txt-desc" class="control-label">y: </label>
+                            <textarea id="txt-desc" rows="3" class="form-control" data-bind="value: y, valueUpdate: 'input'"></textarea>
                     </div>
                 </form>
                 <div class="panel panel-primary">
@@ -132,7 +140,7 @@
                             <label for="txt-desc" class="control-label">Description: </label>
                             <textarea id="txt-desc" rows="3" class="form-control" data-bind="value: description, valueUpdate: 'input'"></textarea>
                         </div>
-                    </form>
+			        </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" data-bind="click: $root.savePathway">Create</button>
@@ -151,7 +159,7 @@
                     <h4 class="modal-title" id="myModalLabel">Add Form</h4>
                 </div>
                 <div class="modal-body">
-                	<div id="formDesignCart"><i class="fa fa-plus"></i> Add to Node</div>
+                	<div id="formDesignCart">Drag Form <i style="display:block" class="fa fa-plus"></i> Here To Add</div>
                    <div id="formDesignList" ></div>
                 </div>
                 <div class="modal-footer">
