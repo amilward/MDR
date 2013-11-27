@@ -1,44 +1,64 @@
-# .gitignore for Grails 1.2 and 1.3
+# This is the root .gitignore file
+# Please use this one rather than creating .gitignore files lower down in the directory structure.
 
 # web application files
-/web-app/WEB-INF
+/groovy_metadata_registry/web-app/WEB-INF
 
 # IDE support files
-/.classpath
-/.launch
-/.project
-/.settings
-/*.launch
-/*.tmproj
-/ivy*
-/eclipse
+/groovy_metadata_registry/.classpath
+/groovy_metadata_registry/.launch
+/groovy_metadata_registry/.project
+/groovy_metadata_registry/.settings
+/groovy_metadata_registry/*.launch
+/groovy_metadata_registry/*.tmproj
+/groovy_metadata_registry/ivy*
+/groovy_metadata_registry/eclipse
+/groovy_metadata_registry/*.iws #Was *.iws (but have restricted to dir)
+
+# Sonar cache
+/groovy_metadata_registry/.sonar
 
 # default HSQL database files for production mode
-/prodDb.*
+/groovy_metadata_registry/prodDb.*
 
 # general HSQL database files
 *Db.properties
 *Db.script
 
 # logs
-/stacktrace.log
-/test/reports
-/logs
+/groovy_metadata_registry/stacktrace.log
+/groovy_metadata_registry/test/reports
+/groovy_metadata_registry/logs
 
 # project release file
-/*.war
+/groovy_metadata_registry/*.war
 
 # plugin release file
-/*.zip
+/groovy_metadata_registry/*.zip
 
 # older plugin install locations
-/plugins
-/web-app/plugins
-/web-app/WEB-INF/classes
+/groovy_metadata_registry/plugins
+/groovy_metadata_registry/web-app/plugins
+/groovy_metadata_registry/web-app/WEB-INF/classes
+/groovy_metadata_registry/.link_to_grails_plugins
 
 # "temporary" build files
-/target
+/groovy_metadata_registry/target
+/groovy_metadata_registry/target-eclipse
+/groovy_metadata_registry/bin
 
-# other
-*.iws
+# test report output
+/groovy_metadata_registry/reports
 
+# Geb testing cache
+/groovy_metadata_registry/test/drivers 
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
