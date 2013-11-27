@@ -1,15 +1,13 @@
-<html>
-
 <head>
-	<meta name='layout' content='register'/>
-	<title><g:message code='spring.security.ui.register.title'/></title>
+  <meta name="layout" content="register">
 </head>
-
 <body>
-<p/>
+
+
+         
 
 <s2ui:form width='650' height='300' elementId='loginFormContainer'
-           titleCode='spring.security.ui.register.description' center='true'>
+           titleCode='spring.security.ui.register.description' center='false'>
 
 <g:form action='register' name='registerForm'>
 
@@ -21,9 +19,9 @@
 
 	<br/>
 
-	<table>
+	<table id="s2ui_registration">
 	<tbody>
-
+            
 		<s2ui:textFieldRow name='username' labelCode='user.username.label' bean="${command}"
                          size='40' labelCodeDefault='Username' value="${command.username}"/>
 
@@ -47,6 +45,7 @@
 
 </s2ui:form>
 
+
 <script>
 $(document).ready(function() {
 	$('#username').focus();
@@ -54,4 +53,3 @@ $(document).ready(function() {
 </script>
 
 </body>
-</html>
