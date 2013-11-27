@@ -1,4 +1,4 @@
-﻿define(['jquery'], function ($) {
+﻿
     var loadFormList = function () {
         //Load list of available forms
 
@@ -8,8 +8,3 @@
             { name: 'form3', description: '', link: 'xxxx' }
         ];
     };
-
-    return {
-        loadFormList: loadFormList
-    }
-});

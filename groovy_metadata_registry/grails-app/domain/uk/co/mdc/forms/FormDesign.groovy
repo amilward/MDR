@@ -15,6 +15,10 @@ class FormDesign {
 	Collection collection
 	List <FormDesignElement> formDesignElements
 	
+	static searchable = {
+		content: spellCheck 'include'
+	}
+	
 	static hasMany = [formDesignElements: FormDesignElement]
 
 	static fetchMode = [formDesignElements: 'eager']

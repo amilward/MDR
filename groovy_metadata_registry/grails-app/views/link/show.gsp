@@ -23,46 +23,11 @@
 			</g:if>
 			<ol class="property-list link">
 			
-				<g:if test="${linkInstance?.mandatoryInputs}">
+				<g:if test="${linkInstance?.refId}">
 				<li class="fieldcontain">
-					<span id="mandatoryInputs-label" class="property-label"><g:message code="link.mandatoryInputs.label" default="Mandatory Inputs" /></span>
+					<span id="refId-label" class="property-label"><g:message code="link.refId.label" default="Ref Id" /></span>
 					
-						<g:each in="${linkInstance.mandatoryInputs}" var="m">
-						<span class="property-value" aria-labelledby="mandatoryInputs-label"><g:link controller="collection" action="show" id="${m.id}">${m?.encodeAsHTML()}</g:link></span>
-						</g:each>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${linkInstance?.mandatoryOutputs}">
-				<li class="fieldcontain">
-					<span id="mandatoryOutputs-label" class="property-label"><g:message code="link.mandatoryOutputs.label" default="Mandatory Outputs" /></span>
-					
-						<g:each in="${linkInstance.mandatoryOutputs}" var="m">
-						<span class="property-value" aria-labelledby="mandatoryOutputs-label"><g:link controller="collection" action="show" id="${m.id}">${m?.encodeAsHTML()}</g:link></span>
-						</g:each>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${linkInstance?.optionalInputs}">
-				<li class="fieldcontain">
-					<span id="optionalInputs-label" class="property-label"><g:message code="link.optionalInputs.label" default="Optional Inputs" /></span>
-					
-						<g:each in="${linkInstance.optionalInputs}" var="o">
-						<span class="property-value" aria-labelledby="optionalInputs-label"><g:link controller="collection" action="show" id="${o.id}">${o?.encodeAsHTML()}</g:link></span>
-						</g:each>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${linkInstance?.optionalOutputs}">
-				<li class="fieldcontain">
-					<span id="optionalOutputs-label" class="property-label"><g:message code="link.optionalOutputs.label" default="Optional Outputs" /></span>
-					
-						<g:each in="${linkInstance.optionalOutputs}" var="o">
-						<span class="property-value" aria-labelledby="optionalOutputs-label"><g:link controller="collection" action="show" id="${o.id}">${o?.encodeAsHTML()}</g:link></span>
-						</g:each>
+						<span class="property-value" aria-labelledby="refId-label"><g:fieldValue bean="${linkInstance}" field="refId"/></span>
 					
 				</li>
 				</g:if>
@@ -76,11 +41,20 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${linkInstance?.peCollection}">
+				<g:if test="${linkInstance?.pathwaysModel}">
 				<li class="fieldcontain">
-					<span id="peCollection-label" class="property-label"><g:message code="link.peCollection.label" default="Pe Collection" /></span>
+					<span id="pathwaysModel-label" class="property-label"><g:message code="link.pathwaysModel.label" default="Pathways Model" /></span>
 					
-						<span class="property-value" aria-labelledby="peCollection-label"><g:link controller="collection" action="show" id="${linkInstance?.peCollection?.id}">${linkInstance?.peCollection?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="pathwaysModel-label"><g:link controller="pathwaysModel" action="show" id="${linkInstance?.pathwaysModel?.id}">${linkInstance?.pathwaysModel?.encodeAsHTML()}</g:link></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${linkInstance?.extension}">
+				<li class="fieldcontain">
+					<span id="extension-label" class="property-label"><g:message code="link.extension.label" default="Extension" /></span>
+					
+						<span class="property-value" aria-labelledby="extension-label"><g:fieldValue bean="${linkInstance}" field="extension"/></span>
 					
 				</li>
 				</g:if>
@@ -116,10 +90,16 @@
 			<g:form>
 				<fieldset class="buttons">
 					<g:hiddenField name="id" value="${linkInstance?.id}" />
+					<a href="#" onclick="getLink(${linkInstance?.id})"">Get</a>
+					<a href="#" onclick="updateLink({'linkInstance':{'id': ${linkInstance?.id},'refId': '${linkInstance?.refId}','linkVersionNo': ${linkInstance?.version},'source':'node3','target':'node2','name':'Test update'}})">Update</a>
+					<a href="#" onclick="createLink({'linkInstance':{'source':'node2','pathwaysModelId':1, 'target':'node3','refId':'testRef', 'name':'Test create link'}})">Create</a>
+					<a href="#" onclick="deleteLink(${linkInstance?.id})">Delete</a>
+					
 					<g:link class="edit" action="edit" id="${linkInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
 					<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
 				</fieldset>
 			</g:form>
 		</div>
+		<g:javascript disposition="defer" library="ajaxfunctions" />
 	</body>
 </html>
