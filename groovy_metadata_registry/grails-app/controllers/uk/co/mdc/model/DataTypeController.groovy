@@ -216,7 +216,7 @@ class DataTypeController {
 		
 		dataTypeService.update(dataTypeInstance, params)
 		
-		if (!renderWithErrors('edit', dataTypeInstance)) {
+		if (!renderWithErrors('update', dataTypeInstance)) {
 			redirectShow message(code: 'default.updated.message', args: [message(code: 'dataType.label', default: 'DataType'), dataTypeInstance.id]), dataTypeInstance.id
 		}
     }

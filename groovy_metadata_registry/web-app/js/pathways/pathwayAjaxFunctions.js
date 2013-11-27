@@ -1,5 +1,21 @@
-function createNode(){
+function createNode(createNodeJSON){
 	
+console.log(JSON.stringify(createNodeJSON))
+	
+	$.ajax({
+		type: "POST",
+		url: '../../Node/createNodeFromJSON',
+		data: JSON.stringify(createNodeJSON),
+		success: function(data){
+			console.log(data.message);
+		},
+		error: function (xhr, ajaxOptions, thrownError) {
+	        console.log(xhr.status);
+	        alert(thrownError);
+	      },
+		contentType: 'application/json',
+		dataType: 'json'
+		});
 	
 }
 
@@ -36,30 +52,91 @@ function updateNode(updatedNodeJSON){
 }
 
 function deleteNode(id){
+	$.ajax({
+		type: "POST",
+		url: '../../Node/deleteNode/' + id,
+		success: function(data){
+			console.log(data.message);
+		},
+		error: function (xhr, ajaxOptions, thrownError) {
+	        console.log(xhr.status);
+	        alert(thrownError);
+	      },
+		contentType: 'application/json',
+		dataType: 'json'
+		});
+}
+
+function getLink(linkId){
+	
+console.log('get the link')
+	
+	$.getJSON('../../Link/getLinkJSON/' + linkId, function(data) {
+		console.log(JSON.stringify(data))
+		return data
+	})
+	.fail(function(jqXHR, textStatus, errorThrown) { console.log('getJSON request failed! ' + textStatus); })
+	
 	
 }
 
-function getLink(id){
+function updateLink(updatedLinkJSON){
+	
+console.log(JSON.stringify(updatedLinkJSON))
+	
+	$.ajax({
+		type: "POST",
+		url: '../../Link/updateLinkFromJSON',
+		data: JSON.stringify(updatedLinkJSON),
+		success: function(data){
+			console.log(data.message);
+		},
+		error: function (xhr, ajaxOptions, thrownError) {
+	        console.log(xhr.status);
+	        alert(thrownError);
+	      },
+		contentType: 'application/json',
+		dataType: 'json'
+		});
 	
 }
 
-function updateLink(id, link){
+function createLink(createLinkJSON){
 	
-}
+	console.log(JSON.stringify(createLinkJSON))
+		
+		$.ajax({
+			type: "POST",
+			url: '../../Link/createLinkFromJSON',
+			data: JSON.stringify(createLinkJSON),
+			success: function(data){
+				console.log(data.message);
+			},
+			error: function (xhr, ajaxOptions, thrownError) {
+		        console.log(xhr.status);
+		        alert(thrownError);
+		      },
+			contentType: 'application/json',
+			dataType: 'json'
+			});
+		
+	}
 
 function deleteLink(id){
 	
-	   	var heading = 'Confirm Delete Link';
-	    var question = 'Please confirm that you wish to delete this link: ' + comp.prompt() + '.';
-	    var cancelButtonTxt = 'Cancel';
-	    var okButtonTxt = 'Confirm';
-
-	    var callback = function() {
-	    	self.questions.remove(comp);
-	    	refreshFormPanelViews();
-	    };
-
-	    confirm(heading, question, cancelButtonTxt, okButtonTxt, callback);
+	$.ajax({
+		type: "POST",
+		url: '../../Link/deleteLink/' + id,
+		success: function(data){
+			console.log(data.message);
+		},
+		error: function (xhr, ajaxOptions, thrownError) {
+	        console.log(xhr.status);
+	        alert(thrownError);
+	      },
+		contentType: 'application/json',
+		dataType: 'json'
+		});
 	
 }
 

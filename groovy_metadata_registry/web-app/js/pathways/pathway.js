@@ -104,6 +104,7 @@ function getPathway(pathwayId){
 function initPathways(){
 	pwnodes = []; 
 	descisionpoints = [];
+	console.log('test')
 	mainDiv = $('#main');
 }
 
@@ -139,7 +140,7 @@ function openPathways(pathway_model){
 			});
 
 			$newNode.click(function(){
-				$sidebar = $('#right-panel');
+				$sidebar = $('#properties-panel');
 				$sidebar.html('');
 				$sidebar.append($('<h3>' + node.name + '</h3>'));
 				$sidebar.append($('<p>' + node.description + '</p>'));

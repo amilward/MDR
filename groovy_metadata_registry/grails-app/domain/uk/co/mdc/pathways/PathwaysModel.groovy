@@ -2,7 +2,7 @@ package uk.co.mdc.pathways
 
 import uk.co.mdc.model.ExtensibleObject;
 
-class PathwaysModel extends ExtensibleObject  {
+class PathwaysModel  {
 	
 	String name
 	String versionNo
@@ -18,7 +18,11 @@ class PathwaysModel extends ExtensibleObject  {
     static constraints = {
 		description nullable: true
 		versionNo nullable:true  
+		pathwayElements nullable:true
     }
+	
+	static mapping = {
+	}
 	
 	List getNodes(){
 		
