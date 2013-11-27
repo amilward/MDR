@@ -21,6 +21,8 @@ class PathwaysService {
 	def aclUtilService
 	def springSecurityService
     
+	def nodeService
+	def linkService
 
 	/* **************************** ADD PERMISSIONS *****************************************
 	 * calls add permission with the relevant permission when called with an integer
@@ -55,7 +57,13 @@ class PathwaysService {
 	@PreAuthorize("hasRole('ROLE_USER')")
 	PathwaysModel create(Map parameters) {
 		
-		def pathwaysModelInstance = new PathwaysModel(parameters)
+		println(parameters)
+		
+		def pathwaysModelInstance = new PathwaysModel(
+			name: parameters?.name,
+			description: parameters?.description,
+			isDraft: parameters?.isDraft
+			);
 		
 		//save the dataElement
 		if(!pathwaysModelInstance.save(flush:true)){
@@ -78,7 +86,7 @@ class PathwaysService {
 	 * requires that the authenticated user have read or admin permission on the specified Data Element
 	 ******************************************************************************************** */
 	
-	@PreAuthorize('hasPermission(#id, "uk.co.mdc.model.PathwaysModel", read) or hasPermission(#id, "uk.co.mdc.model.PathwaysModel", admin)')
+	@PreAuthorize('hasPermission(#id, "uk.co.mdc.pathways.PathwaysModel", read) or hasPermission(#id, "uk.co.mdc.pathways.PathwaysModel", admin)')
 	PathwaysModel get(long id) {
 	   PathwaysModel.get id
 	   }
@@ -121,11 +129,44 @@ class PathwaysService {
 	
 	@Transactional
 	@PreAuthorize("hasPermission(#pathwaysModelInstance, write) or hasPermission(#pathwaysModelInstance, admin)")
-	void update(PathwaysModel pathwaysModelInstance, Map parameters) {
+	PathwaysModel update(PathwaysModel pathwaysModelInstance, Map parameters) {
 
-	   
+		println('updated info')
+		println(parameters)
+		println('model to update')
+		println(pathwaysModelInstance)
+		
+		//update nodes
+		
+		def updatedNodes = parameters.nodes
+		
+		updatedNodes.each { updatedNode ->
+			
+			def nodeInstance = nodeService.get(updatedNode.id)
+			
+			def node = nodeService.update(nodeInstance, updatedNode)
+			
+		}
+		
+		//update links
+		
+		//update nodes
+		
+		def updatedLinks = parameters.links
+		
+		updatedLinks.each { updatedLink ->
+			
+			def linkInstance = linkService.get(updatedLink.id)
+			
+			def link = linkService.update(linkInstance, updatedLink)
+			
+		}
+		
+		
 	   pathwaysModelInstance.properties = parameters
+	   pathwaysModelInstance.save()
 	   
+	   pathwaysModelInstance
 	   
 	}
 	
