@@ -30,7 +30,7 @@ function initPathways(param){
     
     //save every 60 seconds
     
-    setInterval(function(){vm.savePathway(); console.log('saving')},60000);
+    setInterval(function(){vm.updatePathway(); console.log('saving')},100000);
     
     
 }

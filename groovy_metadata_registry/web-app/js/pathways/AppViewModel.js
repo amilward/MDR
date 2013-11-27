@@ -88,7 +88,7 @@
                 self.pathwayModel.version = data.pathwayVersion
                // //console.log(self.pathwayModel.id)
                 //Add a default node
-                self.createNode();
+                self.saveNode();
 
                 //Hide the create pathway modal
                 $('#CreatePathwayModal').modal('hide');
@@ -129,7 +129,7 @@
         	var name = 'node' + (new Date().getTime());	 
         	var description = ''
         	
-        	if(createFrom=='form'){
+        	if($('#createNodeName').val()!=''){
         		name = $('#createNodeName').val();
         		description = $('#createNodeDescription').val();
         	}
@@ -157,6 +157,8 @@
             		alert('node creation failed')
             	}
             });
+            $('#createNodeName').val('');
+    		$('#createNodeDescription').val('');
             $('#CreateNode').modal('hide');
         };
         

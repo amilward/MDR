@@ -44,7 +44,7 @@
 					<div id="canvas-panel" class="panel panel-primary">
             <div id="panel-heading" class="panel-heading">
             
-            <button type="button" class="btn btn-link btn-xs pull-right" data-bind="click: saveNode">
+           	 	<button type="button" class="btn btn-link btn-xs pull-right" data-bind="click: createNode">
                     <i class="fa fa-plus"></i> Add Node
                 </button>
                 <button type="button" class="btn btn-link btn-xs pull-right" data-bind="click: updatePathway">

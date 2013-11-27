@@ -39,6 +39,11 @@
         	
         }
         
+
+        self.addDEDialog = function(){
+        	console.log('add DE dialog')
+        }
+        
         self.addFormDialog = function(){
         	//console.log('addingForm');
         	//Initial action on page load
