@@ -23,15 +23,6 @@
 			</g:if>
 			<ol class="property-list node">
 			
-				<g:if test="${nodeInstance?.refId}">
-				<li class="fieldcontain">
-					<span id="refId-label" class="property-label"><g:message code="node.refId.label" default="Ref Id" /></span>
-					
-						<span class="property-value" aria-labelledby="refId-label"><g:fieldValue bean="${nodeInstance}" field="refId"/></span>
-					
-				</li>
-				</g:if>
-			
 				<g:if test="${nodeInstance?.description}">
 				<li class="fieldcontain">
 					<span id="description-label" class="property-label"><g:message code="node.description.label" default="Description" /></span>

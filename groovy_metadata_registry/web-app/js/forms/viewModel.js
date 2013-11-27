@@ -468,14 +468,13 @@ function DataTypeInstance(iid, eid, name, instanceOf, renderingOption, restricti
 }
 
 
-function Form(id, fullName, refId, description, versionNo, isDraft, collectionId, formVersionNo, components) {
+function Form(id, fullName, description, versionNo, isDraft, collectionId, formVersionNo, components) {
 	
 	//console.log('creating new form')
 	
 	var self = this;
 	self.formID = ko.observable(id);
 	self.formDesignName = ko.observable(fullName);
-	self.formRefId = ko.observable(refId);
 	self.formCollectionId = ko.observable(collectionId);
 	self.formVersionNo = formVersionNo;
 	self.formDescription = ko.observable(description);
@@ -620,9 +619,9 @@ function FormsModel() {
 
 
     
-    self.addForm = function(id, fullName, refId, description, versionNo, isDraft, collectionId, formVersionNo, components){
+    self.addForm = function(id, fullName, description, versionNo, isDraft, collectionId, formVersionNo, components){
     	//self.palette = questionPallette;
-    	self.forms.push(new Form(id, fullName, refId, description, versionNo, isDraft, collectionId, formVersionNo, components));
+    	self.forms.push(new Form(id, fullName, description, versionNo, isDraft, collectionId, formVersionNo, components));
     	self.setActiveFormId(id);
     	//self.palette = questionPallette;
     	self.palette = questionPallette;
@@ -890,7 +889,7 @@ function createFormFromCollection(collectionId, jsonQuestions){
 	
 }
 
-function openForms(formDesignId, formDesignRefId, formDesignName, formDesignDescription, formVersionNo, formIsDraft, formCollectionId, formVersionNo){
+function openForms(formDesignId, formDesignName, formDesignDescription, formVersionNo, formIsDraft, formCollectionId, formVersionNo){
 
 	//set up defer object
 	var jsonDeferred = $.Deferred();
@@ -974,7 +973,7 @@ function openForms(formDesignId, formDesignRefId, formDesignName, formDesignDesc
 	});
 
 	jsonDeferred.done(function(){
-		viewModel.addForm(formDesignId, formDesignName,formDesignRefId,formDesignDescription, formVersionNo, formIsDraft, formCollectionId, formVersionNo, components);
+		viewModel.addForm(formDesignId, formDesignName,formDesignDescription, formVersionNo, formIsDraft, formCollectionId, formVersionNo, components);
 		setTimeout(function(){
 			initializePalette();
 		}, 500);

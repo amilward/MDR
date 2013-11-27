@@ -28,12 +28,6 @@
 		<div class="box">
 			<table class="table table-hovered">
 				<tbody>
-				<g:if test="${dataElementInstance?.refId}">
-					<tr>
-						<td class="left_col_show"><span id="name-label" class="label"><g:message code="dataElement.refId.label" default="Reference ID" /></span></td>
-						<td class="right_col_show"><g:fieldValue bean="${dataElementInstance}" field="refId"/></td>
-					</tr>
-				</g:if>
 				<g:if test="${dataElementInstance?.name}">
 					<tr>
 						<td class="left_col_show"><span id="name-label" class="label"><g:message code="dataElement.name.label" default="Data Element" /></span></td>
@@ -75,7 +69,6 @@
 							<thead>
 								<tr>
 									<th>Name</th>
-									<th>Reference ID</th>
 									<th>Description</th>
 									<th>Data Type</th>
 									<th>Unit of Measure</th>
@@ -86,7 +79,6 @@
 							<g:each var="valueDomain" in="${dataElementInstance.dataElementValueDomains()}">
 								<tr>
 									<td><g:link action="show" controller="ValueDomain" id="${valueDomain?.id}">${valueDomain?.name} </g:link></td>
-									<td>${valueDomain?.refId}</td>
 									<td>${valueDomain?.description}</td>
 									<td><g:link action="show" controller="DataType" id="${valueDomain?.dataType?.id}">${valueDomain?.dataType?.name}</g:link></td>
 									<td>${valueDomain?.unitOfMeasure} </td>
@@ -107,7 +99,6 @@
 							<thead>
 								<tr>
 									<th>Name</th>
-									<th>Reference ID</th>
 									<th>Description</th>
 									<th>Definition</th>
 								</tr>
@@ -115,7 +106,6 @@
 							<g:each var="dataElement" in="${dataElementInstance.synonyms()}">
 								<tr>
 									<td><g:link action="show" controller="DataElement" id="${dataElement?.id}">${dataElement?.name} </g:link></td>
-									<td>${dataElement?.refId}</td>
 									<td>${dataElement?.description}</td>
 									<td>${dataElement?.definition} </td>
 								</tr>
@@ -134,7 +124,6 @@
 							<thead>
 								<tr>
 									<th>Name</th>
-									<th>Reference ID</th>
 									<th>Description</th>
 									<th>Definition</th>
 								</tr>
@@ -142,7 +131,6 @@
 							<g:each var="dataElement" in="${dataElementInstance.subElements}">
 								<tr>
 									<td><g:link action="show" controller="DataElement" id="${dataElement?.id}">${dataElement?.name} </g:link></td>
-									<td>${dataElement?.refId}</td>
 									<td>${dataElement?.description}</td>
 									<td>${dataElement?.definition} </td>
 								</tr>

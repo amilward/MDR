@@ -1,6 +1,5 @@
 package uk.co.mdc.pathways
 
-import uk.co.mdc.forms.FormDesign
 import uk.co.mdc.model.Collection
 import uk.co.mdc.model.DataElement
 import uk.co.mdc.model.DataElementCollection

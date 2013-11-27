@@ -112,7 +112,6 @@ function dataElementList(){
 	    "bAutoWidth": false,
 	    "aaSorting": [[ 3, "asc" ]],
 		"aoColumns": [
-		    { "mDataProp": "refId", "sTitle":"Ref ID", "sWidth":"10%"},
 			{
 				    // `data` refers to the data for the cell (defined by `mData`, which
 				    // defaults to the column being worked with, in this case is the first
@@ -175,9 +174,8 @@ function dataElementList(){
 		        helper: "clone",
 		        start: function(event, ui) {
 		            c.tr = this;
-					c.refId = $(this).find("td").eq(0).html();  
-					c.name = $(this).find("td").eq(1).html();
-					c.id = $(this).find("td").eq(1).find("a").attr("id");
+					c.name = $(this).find("td").eq(0).html();
+					c.id = $(this).find("td").eq(0).find("a").attr("id");
 		            c.helper = ui.helper;
 		        }
 			});	

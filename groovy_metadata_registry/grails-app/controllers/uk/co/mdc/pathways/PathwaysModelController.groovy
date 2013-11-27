@@ -134,7 +134,7 @@ class PathwaysModelController {
 
 	
 	
-    def show(Long id) {
+    def show() {
         def pathwaysModelInstance = findInstance()
         if (!pathwaysModelInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'pathwaysModel.label', default: 'PathwaysModel'), id])
@@ -344,22 +344,18 @@ class PathwaysModelController {
 		switch(column){
 			
 			case 0:
-				field = "refId"
-			break
-			
-			case 1:
 				field = "name"
 			break
 			
-			case 2:
+			case 1:
 				field = "versionNo"
 			break
 			
-			case 3:
+			case 2:
 				field = "isDraft"
 			break
 			
-			case 4:
+			case 3:
 				field = "description"
 			break
 			

@@ -163,7 +163,7 @@ class CollectionController {
 			}
 			if(errors.size()>0){
 				//redirect to the collection basket controller any errors displayed
-				redirect(controller: "CollectionBasket", action:"show", id: params?.collection_basket_id, params: ['errors': errors, refId: params?.refId, name: params?.name, description: params?.description])
+				redirect(controller: "CollectionBasket", action:"show", id: params?.collection_basket_id, params: ['errors': errors, name: params?.name, description: params?.description])
 				return
 			}
 		}
@@ -471,19 +471,15 @@ class CollectionController {
 		switch(column){
 			
 			case 0:
-				field = "refId"
-			break
-			
-			case 1:
 				field = "name"
 			break
 			
-			case 2:
+			case 1:
 				field = "description"
 			break
 			
 			default:
-				field = "refId"
+				field = "name"
 			break
 		}
 		

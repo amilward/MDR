@@ -27,13 +27,7 @@
 		<div class="box">
 			<table class="table table-hovered">
 				<tbody>
-				<g:if test="${valueDomainInstance?.refId}">
-					<tr>
-						<td class="left_col_show"><span id="name-label" class="label"><g:message code="valueDomain.valueDomainConcept.label" default="Reference Id" /></span></td>
-						<td class="right_col_show"><g:fieldValue bean="${valueDomainInstance}" field="refId"/></td>
-					</tr>
-				</g:if>
-				<g:if test="${valueDomainInstance?.name}">
+					<g:if test="${valueDomainInstance?.name}">
 					<tr>
 						<td class="left_col_show"><span id="name-label" class="label"><g:message code="valueDomain.name.label" default="Name" /></span></td>
 						<td class="right_col_show"><g:fieldValue bean="${valueDomainInstance}" field="name"/></td>
@@ -79,7 +73,6 @@
 							<thead>
 								<tr>
 									<th>Name</th>
-									<th>Reference ID</th>
 									<th>Description</th>
 									<th>Parent</th>
 		
@@ -88,7 +81,6 @@
 							<g:each var="dataElement" in="${valueDomainInstance.dataElementValueDomains()}">
 							<tr>
 								<td><g:link action="show" controller="DataElement" id="${dataElement?.id}">${dataElement?.name} </g:link></td>
-								<td>${dataElement?.refId}</td>
 								<td>${dataElement?.description}</td>
 								<td><g:link action="show" controller="DataElement" id="${dataElement?.parent?.id}">${dataElement?.parent?.name} </g:link> </td>
 							</tr>

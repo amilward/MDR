@@ -331,29 +331,26 @@ class DocumentController {
 		def field
 		
 		switch(column){
+
 			
 			case 0:
-				field = "refId"
-			break
-			
-			case 1:
 				field = "name"
 			break
 			
-			case 2:
+			case 1:
 				field = "description"
 			break
 			
-			case 3:
+			case 2:
 				field = "fileName"
 			break
 			
-			case 4:
+			case 3:
 				field = "contentType"
 			break
 			
 			default:
-				field = "refId"
+				field = "name"
 			break
 		}
 		

@@ -83,14 +83,21 @@ ko.bindingHandlers.makeNode = {
 jsPlumb.bind("connection", function (info) {
 	//console.log('makeConnectionBinding')
 	
-    var source = ko.dataFor(info.source); //Get the source node model instance            
-    var target = ko.dataFor(info.target); //Get the target node model instance
+	 var connectionId = null;
+	 connectionId = info.connection.getParameter("connectionId", connectionId)
+	 
+	if(connectionId==null){
 
-    var connectionId = 'connection_' + (new Date().getTime())
-   // console.log(connectionId)
-    info.connection.setParameter("connectionId", connectionId)
-    vm.createLink(source, target, connectionId);
-
+	    var source = ko.dataFor(info.source); //Get the source node model instance            
+	    var target = ko.dataFor(info.target); //Get the target node model instance
+	
+	    connectionId = 'connection_' + (new Date().getTime())
+	   // console.log(connectionId)
+	    info.connection.setParameter("connectionId", connectionId)
+	    vm.createLink(source, target, connectionId);
+	
+	}
+	 
     //binding for connection double click
     info.connection.bind("dblclick", function() {
     	$( "#dialog-confirm" ).text('Delete connection?');
@@ -116,6 +123,5 @@ jsPlumb.bind("connection", function (info) {
 	   	 });
     	
     });
-    
     
 });

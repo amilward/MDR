@@ -28,6 +28,28 @@
 
         };
         
+        self.loadPathway = function(pathwayJSON){
+        	
+        	 var pm = new PathwayModel();
+        	 pm.name = pathwayJSON.name;
+        	 pm.description = pathwayJSON.description;
+        	 pm.version = pathwayJSON.version;
+        	 pm.id = pathwayJSON.id;
+        	 self.pathwayModel = pm;
+        	 var nodes = pathwayJSON.nodes;
+        	 
+        	 $.each(nodes, function( index, node ) {
+        		self.loadNode(node);        	 
+        	 });
+        	 var links = pathwayJSON.links;
+        	 $.each(links, function( index, link ) {
+        		self.loadLink(link);        	 
+        	 });
+        	 
+        	 
+
+        }
+        
         self.createPathway = function (pathway) {
         	//FIXME this isn't used yet...presumable this will be for the sub pathways
         	//console.log('creating a new pathway')
@@ -64,6 +86,20 @@
         self.selectNode = function (n) {
             //Set current seletect node to bind to properties panel
             self.selectedNode = n;
+        };
+        
+        self.loadNode = function(JSONNode) {
+        	//create the node in the model
+        	var node = new NodeModel();
+            node.name = JSONNode.name;
+            node.x = JSONNode.x + 'px';
+            node.y = JSONNode.y + 'px';
+            node.id = JSONNode.id
+	        node.version = JSONNode.nodeVersion
+	         self.pathwayModel.version = JSONNode.pathwaysModelVersion
+	         self.pathwayModel.nodes.push(node);
+	         console.log("loadNodecomplete");
+
         };
 
         self.createNode = function () {
@@ -168,7 +204,70 @@
 	        		
 	        }
         	
-        }
+        };
+        
+        self.loadLink = function(JSONLink){
+        	console.log('creating link')
+        	var targetid = JSONLink.target;
+        	var sourceid = JSONLink.source;
+        	
+        	console.log(targetid)
+        	console.log(sourceid)
+
+        	if(targetid!=null && sourceid!=null){
+	        	var link = new LinkModel();
+	        	var source = null
+	        	var target = null
+	        	console.log(ko.toJSON(self.pathwayModel.nodes))
+	        	
+	        	ko.utils.arrayForEach(self.pathwayModel.nodes, function(node) {
+				      if(node.id == targetid){
+				    	  target = node;
+				    	  console.log(target)
+				    	  console.log(node)
+				      }
+				});
+	        	
+	        	
+	        	ko.utils.arrayForEach(self.pathwayModel.nodes, function(node) {
+				      if(node.id == sourceid){
+				    	  source = node;
+				    	  console.log(source)
+				    	  console.log(node)
+				      }
+				});
+	        	
+	        	if(source!=null && target!=null){
+	        	  	        	
+		        	link.name = 'link_' + source.id + '_' + target.id;
+		        	link.source = source;
+		        	link.target = target;
+		        	link.connectionId = 'connection_' + (new Date().getTime());	        	
+		        	//If source is current node, and target node is not already in the outputs array, add it to outputs
+		            if (!ko.utils.arrayFirst(source.outputs, function (item) { return item === target })) {
+		                source.outputs.push(target);        
+		            }
+		            //If target is current node, and source node is not already in the inputs array, add it to inputs
+		            if (!ko.utils.arrayFirst(target.inputs, function (item) { return item === source })) {
+		                target.inputs.push(source);
+		            }
+		        		link.id = JSONLink.linkId;
+		        		link.version = JSONLink.linkVersion;	
+		        		self.pathwayModel.links.push(link);	 
+		        		
+		        		/*jsPlumb.connect(
+		        				source: "node" + source.id,
+		        				target: "node" + target.id,
+		        				parameters: {
+		        					"connectionId" : link.connectionId
+		        				});
+		        		);*/
+		        		
+		        		
+	        	}
+	        }
+        	
+        };
         
         self.deleteLink = function(connectionId){
         	

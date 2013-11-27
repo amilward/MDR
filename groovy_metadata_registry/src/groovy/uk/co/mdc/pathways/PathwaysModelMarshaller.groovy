@@ -10,13 +10,13 @@ public class PathwaysModelMarshaller {
 				
 			return [
 			'id' : pathwayModel.id,
-			'refId': pathwayModel?.refId,
 			'name': pathwayModel?.name,
 			'versionNo': pathwayModel?.versionNo,
 			'isDraft': pathwayModel?.isDraft,
 			'description'	: pathwayModel?.description,
 			'nodes' : pathwayModel.getNodes(),
-			'links' : pathwayModel.getLinks()
+			'links' : pathwayModel.getLinks(),
+			'version' : pathwayModel.version
 			]
 		}
 	}

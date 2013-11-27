@@ -110,7 +110,6 @@ class FormDesignService {
 		
 		FormDesign formDesignInstance = new FormDesign(
 			collection : collection,
-			refId : form?.formRefId,
 			name : form?.formDesignName,
 			description : form?.formDescription,
 			versionNo : form?.versionNo,
@@ -285,7 +284,6 @@ class FormDesignService {
 		def components = form.components
 		def inputFieldInstance
 		
-		formDesignInstance.refId = form.formRefId
 		formDesignInstance.name = form.formDesignName
 		formDesignInstance.description = form.formDescription
 		formDesignInstance.versionNo = form.versionNo

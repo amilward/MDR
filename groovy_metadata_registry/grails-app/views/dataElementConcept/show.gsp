@@ -27,12 +27,6 @@
 		<div class="box">
 			<table class="table table-hovered">
 				<tbody>
-				<g:if test="${dataElementConceptInstance?.refId}">
-					<tr>
-						<td class="left_col_show"><span id="name-label" class="label"><g:message code="dataElementConcept.dataElementConceptConcept.label" default="Reference Id" /></span></td>
-						<td class="right_col_show"><g:fieldValue bean="${dataElementConceptInstance}" field="refId"/></td>
-					</tr>
-				</g:if>
 				<g:if test="${dataElementConceptInstance?.name}">
 					<tr>
 						<td class="left_col_show"><span id="name-label" class="label"><g:message code="dataElementConcept.name.label" default="Name" /></span></td>
@@ -83,7 +77,6 @@
 							<thead>
 								<tr>
 									<th>Name</th>
-									<th>Reference ID</th>
 									<th>Description</th>
 									<th>Parent</th>
 		
@@ -92,7 +85,6 @@
 							<g:each var="dataElement" in="${dataElementConceptInstance.dataElements}">
 							<tr>
 								<td><g:link action="show" controller="DataElement" id="${dataElement?.id}">${dataElement?.name} </g:link></td>
-								<td>${dataElement?.refId}</td>
 								<td>${dataElement?.description}</td>
 								<td><g:link action="show" controller="DataElement" id="${dataElement?.parent?.id}">${dataElement?.parent?.name} </g:link> </td>
 							</tr>
