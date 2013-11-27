@@ -91,6 +91,7 @@ log4j = {
            'org.springframework',
            'org.hibernate',
            'net.sf.ehcache.hibernate'
+	debug  'uk.co.mdc.mail'		// Dummy mail output for dev
 }
 
 
@@ -103,6 +104,11 @@ grails.views.javascript.library="jquery"
 
 grails.mail.disabled=true
 
+// Grails security password requirements
+conf.ui.password.minLength=8
+conf.ui.password.maxLength=64
+// Stupendously long password validation regex (courtedy of Ryan Brooks (ryan.brooks@ndm.ox.ac.uk). Checks for all permutations of digit, character, symbol.
+conf.ui.password.validationRegex='((?=.*\\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&]))|((?=.*\\d)(?=.*[!@#$%^&](?=.*[a-zA-Z])))|((?=.*[a-zA-Z])(?=.*\\d)(?=.*[!@#$%^&]))|((?=.*[a-zA-Z])(?=.*[!@#$%^&])(?=.*\\d))|((?=.*[!@#$%^&])(?=.*\\d)(?=.*[a-zA-Z]))|((?=.*[!@#$%^&])(?=.*[a-zA-Z])(?=.*\\d))'
 
 // Added by the Spring Security Core plugin:
 grails.plugins.springsecurity.userLookup.userDomainClassName = 'co.uk.mdc.SecUser'

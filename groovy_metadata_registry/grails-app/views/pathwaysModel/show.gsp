@@ -52,8 +52,8 @@
                 </button>
             </div>
             <div class="panel-body" data-bind="with: pathwayModel">
-                <div class="jsplumb-container" data-bind="foreach: nodes">
-                    <div class="node" data-bind="makeNode: $data, click: $root.selectNode,">
+                <div class="jsplumb-container" data-bind="foreach: nodes ">
+                    <div class="node" data-bind="makeNode: $data, click: $root.selectNode, style: {top:y, left:x}, id: id">
                         <div data-bind="attr:{title: description}">{{name}}</div>
                         <div class="anchor"></div>
                     </div>
@@ -115,7 +115,7 @@
 
 
 	<!-- Add Pathway Modal -->
-    <div class="modal fade" id="CreatePathwayModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal fade hide" id="CreatePathwayModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content" data-bind="with: $root.createPathway">
                 <div class="modal-header">
@@ -143,7 +143,7 @@
     
     
     <!-- Add Form Modal -->
-    <div class="modal fade" id="AddFormModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal fade hide" id="AddFormModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">

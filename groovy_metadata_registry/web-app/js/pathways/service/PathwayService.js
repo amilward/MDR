@@ -138,8 +138,8 @@
     self.createJsonLink = function(link, pathwayId){
     	var jsonLinkToServer = {}
     	var linkInstance = {}
-    	linkInstance.source = 'node' + link.source.id
-    	linkInstance.target = 'node' + link.target.id
+    	linkInstance.source = link.source.id
+    	linkInstance.target = link.target.id
     	linkInstance.refId = link.refId
     	linkInstance.name = link.name
     	linkInstance.pathwaysModelId = pathwayId
