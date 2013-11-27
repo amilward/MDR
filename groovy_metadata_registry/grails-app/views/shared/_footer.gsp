@@ -51,7 +51,7 @@
             });
         </r:script>
   </sec:ifLoggedIn>
-  <div id="dialog-confirm" style="display: none"></div>
+  <div id="dialog-confirm" style="visibility: hidden"></div>
   <r:layoutResources />
   
   </body>

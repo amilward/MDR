@@ -132,16 +132,91 @@ class PathwaysModelController {
         redirect(action: "show", id: pathwaysModelInstance.id)
     }
 
-    def show(Long id) {
-        def pathwaysModelInstance = PathwaysModel.get(id)
+	
+	
+    def show() {
+        def pathwaysModelInstance = findInstance()
         if (!pathwaysModelInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'pathwaysModel.label', default: 'PathwaysModel'), id])
             redirect(action: "list")
             return
         }
 
-        [pathwaysModelInstance: pathwaysModelInstance]
+        [pathwaysModelInstance: pathwaysModelInstance as JSON]
     }
+	
+	
+	def createPathwayFromJSON(){
+		
+			def data = request.JSON
+			def model
+			
+			println(data)
+			
+			def pathwayInstance = pathwaysService.create(data)
+			
+			if(pathwayInstance){
+				model = [success: true, pathwayId: pathwayInstance.id, pathwayVersion: pathwayInstance.version, message: 'saved']
+			}else{
+			
+				model = [success: false]
+			
+			}
+			render model  as JSON
+			
+		}
+	
+	
+	def updatePathwayJSON(){
+		def data = request.JSON
+		def model
+		
+		if(data?.id){
+			
+			def pathwayInstance = findInstance(data?.id)
+
+			if (!pathwayInstance) {
+				flash.message = message(code: 'default.not.found.message', args: [message(code: 'pathwayInstance.label', default: 'Node'), data?.id])
+				redirect(action: "list")
+				return
+			}
+				
+			def pathwayVersion = data?.version
+
+			//check that we have the right version i.e. no one else has updated the form design whilst we have been
+			 //looking at it
+	 
+			 if (pathwayVersion != null) {
+				 if (pathwayInstance.version > pathwayVersion) {
+					 pathwayInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
+							   [message(code: 'formDesign.label', default: 'DataElement')] as Object[],
+							   "Another user has updated this Node while you were editing")
+					 model = [success: true, pathwayId: pathwayInstance.id, message: 'version number conflict, please reload page and try again']
+					 render model  as JSON
+				}
+			 }
+			 
+			 pathwayInstance = pathwaysService.update(pathwayInstance, data)
+			 
+						 if (pathwayInstance.errors.hasErrors()) {
+							 def responseMessage = [errors: true, details: pathwayInstance.errors]
+							 response.status = 400
+							 render responseMessage as JSON
+							 return
+						 }
+			 
+					
+			model = [success: true, pathwayId: pathwayInstance.id, pathwayVersion: pathwayInstance.version, message: 'saved']
+		
+		}else{
+			
+			 model = [errors: true, details: 'no id included']
+			
+		}
+		
+		render model  as JSON
+		
+	}
 
 	def jsonPathways(Long id){
 		
@@ -215,6 +290,51 @@ class PathwaysModelController {
             redirect(action: "show", id: id)
         }
     }
+	
+	
+	/* **************************************************************************************
+	 * ********************************* GRANT *************************************************
+	 * this function grant permission to the given node
+	 *********************************************************************************** */
+
+
+	def grant = {
+
+		def pathway = findInstance()
+
+		if (!pathway) return
+
+			if (!request.post) {
+				return [pathwayInstance: pathway]
+			}
+
+		pathwaysService.addPermission(pathway, params.recipient, params.int('permission'))
+
+		redirectShow "Permission $params.permission granted on Report $pathway.id " + "to $params.recipient", pathway.id
+	}
+
+	/* **********************************************************************************
+	 * this function uses the pathway service to get the pathway so that
+	 * the appropriate security considerations are adhered to
+	 *********************************************************************************** */
+
+	private PathwaysModel findInstance() {
+		def pathway = pathwaysService.get(params.long('id'))
+		if (!pathway) {
+			flash.message = "Pathway not found with id $params.id"
+			redirect action: list
+		}
+		pathway
+	}
+
+	private PathwaysModel findInstance(id) {
+		def pathway = pathwaysService.get(id)
+		if (!pathway) {
+			flash.message = "Pathway not found with id $params.id"
+			redirect action: list
+		}
+		pathway
+	}
 	
 	
 	String getSortField(Integer column){

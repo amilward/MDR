@@ -32,14 +32,6 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${nodeInstance?.peCollection}">
-				<li class="fieldcontain">
-					<span id="peCollection-label" class="property-label"><g:message code="node.peCollection.label" default="Pe Collection" /></span>
-					
-						<span class="property-value" aria-labelledby="peCollection-label"><g:link controller="collection" action="show" id="${nodeInstance?.peCollection?.id}">${nodeInstance?.peCollection?.encodeAsHTML()}</g:link></span>
-					
-				</li>
-				</g:if>
 			
 				<g:if test="${nodeInstance?.pathwaysModel}">
 				<li class="fieldcontain">
@@ -125,10 +117,24 @@
 			<g:form>
 				<fieldset class="buttons">
 					<g:hiddenField name="id" value="${nodeInstance?.id}" />
-					<g:link class="edit" action="edit" id="${nodeInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
+					<a href="#" onclick="updateNode({'nodeInstance':{'id':${nodeInstance?.id},'nodeVersionNo': ${nodeInstance?.version},'name':'transfer to O.R. TEST2','description':'transfer patient to the Operating Room','x':'5','y':'0','mandatoryInputs':[],'mandatoryOutputs':[],'optionalInputs':[],'optionalOutputs':[]}})"">Update</a>
+					<a href="#" onclick="createNode({'nodeInstance':{'refId': 'TMN123','pathwaysModelId': 1, 'name':'transfer to O.R. TEST CREATE','description':'test ccreate - transfer patient to the Operating Room','x':'15','y':'10','mandatoryInputs':[],'mandatoryOutputs':[],'optionalInputs':[],'optionalOutputs':[]}})">Create</a>
+					<a href="#" onclick="deleteNode(${nodeInstance?.id})">Delete</a>
 					<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
 				</fieldset>
 			</g:form>
 		</div>
+		
+		<g:javascript disposition="defer" library="ajaxfunctions" />
+	<r:script disposition="defer">
+		//getPathway(${pathwaysModelInstance?.id});
+		
+		//getNode(1);
+		
+		
+		
+	</r:script>
+		
+		
 	</body>
 </html>

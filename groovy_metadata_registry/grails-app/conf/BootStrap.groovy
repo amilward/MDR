@@ -180,11 +180,11 @@ class BootStrap {
 		}
 
 		def string
-
+		
 		def date
-
+		
 		if (!DataType.count()) {
-
+			
 			string = new DataType(name:"String", enumerated: false).save(failOnError: true)
 			new DataType(name:"Text", enumerated: false).save(failOnError: true)
 			new DataType(name:"Integer", enumerated: false).save(failOnError: true)
@@ -194,19 +194,19 @@ class BootStrap {
 			new DataType(name:"Float", enumerated: false).save(failOnError: true)
 			new DataType(name:"Boolean", enumerated: false).save(failOnError: true)
 			new DataType(name:"Blob", enumerated: false).save(failOnError: true)
-
-
+			
+			
 		}
-
-
+		
+		
 
 		if(!FormDesign.count()){
-
+			
 			def rule1 = new Rule(
-					name: 'display section rule',
-					predicate: 'question1 > 5',
-					consequence: 'display'
-					).save(failOnError:true)
+				name: 'display section rule',
+				predicate: 'question1 > 5',
+				consequence: 'display'
+				).save(failOnError:true)
 
 			def inputField1 = new InputField(
 
@@ -326,12 +326,12 @@ class BootStrap {
 					title: 'section2',
 					designOrder: 2
 					).save(failOnError:true)
-
+					
 			section1.addToQuestionElements(question1)
 			section1.addToQuestionElements(question2)
 			section1.addToQuestionElements(question3)
 
-
+			
 			section2.addToRules(rule1)
 			section2.addToQuestionElements(question4)
 			section2.addToQuestionElements(question5)
@@ -422,6 +422,13 @@ class BootStrap {
 					additionalInstructions: 'more instructions2 ',
 					inputField: inputFieldpw2
 					).save(failOnError: true)
+			def pathway = new PathwaysModel(
+				refId: 'PM_P1',
+				name: 'Transplanting and Monitoring Pathway',
+				versionNo: '0.1',
+				isDraft: true
+				).save(failOnError:true)
+			
 
 			def questionpw3 = new QuestionElement(
 					designOrder: '3',
@@ -543,7 +550,6 @@ class BootStrap {
 			description:"The PATIENT's surname at birth.",
 			dataElementConcept: dec1).save(failOnError: true)
 
-
 			def node2 = new Node(
 					
 					name: 'Anaesthesia and Operating Patient.',
@@ -578,24 +584,23 @@ class BootStrap {
 					name: 'TM2',
 					source: node2,
 					target: node3,
+
 					peCollection: collect5
 					).save(flush:true)
 
 
-			def pathway = new PathwaysModel(
-					
+			def pathway2 = new PathwaysModel(
 					name: 'Transplanting and Monitoring Pathway',
 					versionNo: '0.1',
 					isDraft: true
-					)
+			)
 
-
-			pathway.addToPathwayElements(node1)
-			pathway.addToPathwayElements(node2)
-			pathway.addToPathwayElements(node3)
-			pathway.addToPathwayElements(link1)
-			pathway.addToPathwayElements(link2)
-			pathway.save(flush:true)
+			pathway2.addToPathwayElements(node1)
+			pathway2.addToPathwayElements(node2)
+			pathway2.addToPathwayElements(node3)
+			pathway2.addToPathwayElements(link1)
+			pathway2.addToPathwayElements(link2)
+			pathway2.save(flush:true)
 
 		}
 
@@ -603,22 +608,21 @@ class BootStrap {
 		if(Environment.current == Environment.PRODUCTION){
 			importNHICData(basePath)
 		}
-
-
+		
 	}
-
+	
 
 
 	private importNHICData(basePath){
-
-
-		NHICImportConfig.functions.keySet().each { filename ->
+		
+		
+		NHICImportConfig.functions.keySet().each { filename -> 
 			new File("${basePath}" + filename).toCsvReader([charset:'UTF-8', skipLines : 1] ).eachLine { tokens ->
 				NHICImportConfig.functions[filename](tokens);
 			}
 		}
 
 	}
-
+	
 }
-
+	
