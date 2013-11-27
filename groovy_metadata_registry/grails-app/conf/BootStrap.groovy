@@ -344,271 +344,318 @@ class BootStrap {
 
 		if(!PathwaysModel.count()){
 
-			//Add a form to the pathways
-
-			def rulepw1 = new Rule(
-					name: 'display section rule',
-					predicate: 'question1 > 5',
-					consequence: 'display'
-					).save(failOnError:true)
-
-			def inputFieldpw1 = new InputField(
-
-					defaultValue: 'test default',
-					placeholder: 'test placeholder',
-					maxCharacters: 11,
-					unitOfMeasure: 'test UOM',
-					dataType: string,
-					format: 'test format',
-
-					).save(failOnError: true)
-
-			def inputFieldpw2 = new InputField(
-
-					defaultValue: 'test default',
-					placeholder: 'test placeholder',
-					maxCharacters: 20,
-					unitOfMeasure: 'test2 UOM',
-					dataType: string,
-					format: 'test format2',
-
-					).save(failOnError: true)
-
-			def inputFieldpw3 = new InputField(
-
-					defaultValue: 'te3st default',
-					placeholder: 'test3 placeholder',
-					maxCharacters: 13,
-					unitOfMeasure: 'tes3t UOM',
-					dataType: date,
-					format: 'test forma3t',
-
-					).save(failOnError: true)
-
-			def inputFieldpw4 = new InputField(
-
-					defaultValue: 'test default',
-					placeholder: 'test placeholder',
-					maxCharacters: 9,
-					unitOfMeasure: 'test UOM',
-					dataType: string,
-					format: 'test format',
-
-					).save(failOnError: true)
-
-			def inputFieldpw5 = new InputField(
-
-					defaultValue: 'test default',
-					placeholder: 'test pladasceholder',
-					maxCharacters: 11,
-					unitOfMeasure: 'test UOM',
-					dataType: string,
-					format: 'test format',
-
-					).save(failOnError: true)
-
-			def questionpw1 = new QuestionElement(
-					designOrder: 1,
-					prompt: 'how old are you',
-					style: 'this style1',
-					label: 'how old are you?',
-					additionalInstructions: 'more instructions',
-					inputField: inputFieldpw1
-					).save(failOnError: true)
-
-			def questionpw2 = new QuestionElement(
-					designOrder: 2,
-					prompt: 'operation reference',
-					style: 'this style3',
-					label: 'origin of referral',
-					additionalInstructions: 'more instructions2 ',
-					inputField: inputFieldpw2
-					).save(failOnError: true)
-			def pathway = new PathwaysModel(
-				refId: 'PM_P1',
+			
+			
+			def pathway1 = new PathwaysModel(
 				name: 'Transplanting and Monitoring Pathway',
 				versionNo: '0.1',
 				isDraft: true
 				).save(failOnError:true)
-			
-
-			def questionpw3 = new QuestionElement(
-					designOrder: '3',
-					prompt: 'this is the thirs question',
-					style: 'this style5',
-					label: 'what is your favorite colour ?',
-					additionalInstructions: 'more instructions',
-					inputField: inputFieldpw3
-					).save(failOnError: true)
-
-			def questionpw4 = new QuestionElement(
-					designOrder: 4,
-					prompt: 'this is the 4th question',
-					style: 'this style5',
-					label: 'what is your favorite animal ?',
-					additionalInstructions: 'more instructions',
-					inputField: inputFieldpw4
-					).save(failOnError: true)
-
-			def questionpw5 = new QuestionElement(
-					designOrder: 5,
-					prompt: 'this is the 5th question',
-					style: 'this style5',
-					label: 'what is your favorite car ?',
-					additionalInstructions: 'more instructions',
-					inputField: inputFieldpw5
-					).save(failOnError: true)
-
-
-			def formDesignPW = new FormDesign(
-			name:'formDesignNamepw1',
-			versionNo:'V0.145',
-			isDraft:true,
-			description:'test description 1'
-			).save(failOnError: true)
-
-
-			def sectionpw1 = new SectionElement(
-					title: 'sectionpw1',
-					designOrder: 1
-					).save(failOnError:true)
-
-			def sectionpw2 = new SectionElement(
-					title: 'sectionpw2',
-					designOrder: 2
-					).save(failOnError:true)
-
-			sectionpw1.addToQuestionElements(questionpw1)
-			sectionpw1.addToQuestionElements(questionpw2)
-			sectionpw1.addToQuestionElements(questionpw3)
-
-
-			sectionpw2.addToRules(rulepw1)
-			sectionpw2.addToQuestionElements(questionpw4)
-			sectionpw2.addToQuestionElements(questionpw5)
-
-			formDesignPW.addToFormDesignElements(sectionpw1)
-			formDesignPW.addToFormDesignElements(sectionpw2)
-			//End add form
-			def collect1 = new Collection(name: 'TestCol11', description: 'blah blah blah').save(failOnError: true)
-			def collect2 = new Collection(name: 'TestCol12', description: 'blah blah blah').save(failOnError: true)
-			def collect3 = new Collection(name: 'TestCol13',description: 'blah blah blah').save(failOnError: true)
-			def collect4 = new Collection(name: 'TestCol14', description: 'blah blah blah').save(failOnError: true)
-			def collect5 = new Collection(name: 'TestCol15', description: 'blah blah blah').save(failOnError: true)
-
-			def dec1 = new DataElementConcept(name: "Lung Cancer", description: "Cancers affecting the Lung").save(failOnError: true)
-
-			def de11 = new DataElement(name:"SOURCE OF REFERRAL FOR OUT-PATIENTS", dataElementConcept: dec1).save(failOnError: true)
-			def de12 = new DataElement(name:"ANOTHER SOURCE FOR OUT-PATIENTS", description:"This identifies the referral of each Consultant Out-Patient Episode.",dataElementConcept: dec1).save(failOnError: true)
-
-			collect1.addToDataElementCollections(de11)
-			collect1.addToDataElementCollections(de12)
-			collect1.addToForms(formDesignPW)
-
-			def dec2 = new DataElementConcept(name: "Pancreatic Cancer", description: "Cancers affecting the Lung").save(failOnError: true)
-
-			def de21 = new DataElement(name:"SOURCE OF REFERRAL FOR OUT-PATIENTS", dataElementConcept: dec2).save(failOnError: true)
-			def de22 = new DataElement(name:"ANOTHER SOURCE FOR OUT-PATIENTS", description:"This identifies the referral of each Consultant Out-Patient Episode.",dataElementConcept: dec2).save(failOnError: true)
-
-			collect2.addToDataElementCollections(de21)
-			collect2.addToDataElementCollections(de22)
-
-			def dec3 = new DataElementConcept(name: "Diabetes", description: "Cancers affecting the Lung").save(failOnError: true)
-
-			def de31 = new DataElement(name:"SOURCE OF REFERRAL FOR OUT-PATIENTS", dataElementConcept: dec3).save(failOnError: true)
-			def de32 = new DataElement(name:"ANOTHER SOURCE FOR OUT-PATIENTS", description:"This identifies the referral of each Consultant Out-Patient Episode.",dataElementConcept: dec3).save(failOnError: true)
-
-			collect3.addToDataElementCollections(de31)
-			collect3.addToDataElementCollections(de32)
-
-			def dec4 = new DataElementConcept(name: "Ovarian Cancer", description: "Cancers affecting the Lung").save(failOnError: true)
-
-			def de41 = new DataElement(name:"SOURCE OF REFERRAL FOR OUT-PATIENTS", dataElementConcept: dec4).save(failOnError: true)
-			def de42 = new DataElement(name:"ANOTHER SOURCE FOR OUT-PATIENTS", description:"This identifies the referral of each Consultant Out-Patient Episode.",dataElementConcept: dec4).save(failOnError: true)
-
-			collect4.addToDataElementCollections(de41)
-			collect4.addToDataElementCollections(de42)
-
-			def dec5 = new DataElementConcept(name: "Advanced Breast Cancer", description: "Cancers affecting the Lung").save(failOnError: true)
-
-			def de51 = new DataElement(name:"SOURCE OF REFERRAL FOR OUT-PATIENTS", dataElementConcept: dec5).save(failOnError: true)
-			def de52 = new DataElement(name:"ANOTHER SOURCE FOR OUT-PATIENTS", description:"This identifies the referral of each Consultant Out-Patient Episode.",dataElementConcept: dec5).save(failOnError: true)
-
-			collect5.addToDataElementCollections(de51)
-			collect5.addToDataElementCollections(de52)
-
-
+				
 			def node1 = new Node(
 					
 					name: 'transfer to O.R.',
 					x: '5',
 					y: '0',
-					description: 'transfer patient to the Operating Room',
-					peCollection: collect1
+					description: 'transfer patient to the Operating Room'
 					).save(flush:true)
-
-			def de1 = new DataElement(name:"PERSON FAMILY NAME (AT BIRTH)",
-			
-			description:"The PATIENT's surname at birth.",
-			dataElementConcept: dec1).save(failOnError: true)
 
 			def node2 = new Node(
 					
 					name: 'Anaesthesia and Operating Patient.',
 					x: '15',
 					y: '10',
-					description: 'perform the operation',
-					peCollection: collect2
+					description: 'perform the operation'
 					).save(flush:true)
-
 
 			def node3 = new Node(
 					
 					name: 'Guarding Patient on recovery and transfer to nursing ward',
 					x: '25',
 					y: '30',
-					description: 'transfer patient to the Operating Room',
-					peCollection: collect3
+					description: 'transfer patient to the Operating Room'
 					).save(flush:true)
 
-
-
 			def link1 = new Link(
-					
 					name: 'TM1',
 					source: node1,
 					target: node2,
-					peCollection: collect4
 					).save(flush:true)
 
 			def link2 = new Link(
-					
 					name: 'TM2',
 					source: node2,
 					target: node3,
-
-					peCollection: collect5
 					).save(flush:true)
 
 
-			def pathway2 = new PathwaysModel(
-					name: 'Transplanting and Monitoring Pathway',
-					versionNo: '0.1',
-					isDraft: true
-			)
 
-			pathway2.addToPathwayElements(node1)
-			pathway2.addToPathwayElements(node2)
-			pathway2.addToPathwayElements(node3)
-			pathway2.addToPathwayElements(link1)
-			pathway2.addToPathwayElements(link2)
-			pathway2.save(flush:true)
+			pathway1.addToPathwayElements(node1)
+			pathway1.addToPathwayElements(node2)
+			pathway1.addToPathwayElements(node3)
+			pathway1.addToPathwayElements(link1)
+			pathway1.addToPathwayElements(link2)
+			pathway1.save(flush:true)
+			
+			
+			//Add a form to the pathways
+			
+						def rulepw1 = new Rule(
+								name: 'display section rule',
+								predicate: 'question1 > 5',
+								consequence: 'display'
+								).save(failOnError:true)
+			
+						def inputFieldpw1 = new InputField(
+			
+								defaultValue: 'test default',
+								placeholder: 'test placeholder',
+								maxCharacters: 11,
+								unitOfMeasure: 'test UOM',
+								dataType: string,
+								format: 'test format',
+			
+								).save(failOnError: true)
+			
+						def inputFieldpw2 = new InputField(
+			
+								defaultValue: 'test default',
+								placeholder: 'test placeholder',
+								maxCharacters: 20,
+								unitOfMeasure: 'test2 UOM',
+								dataType: string,
+								format: 'test format2',
+			
+								).save(failOnError: true)
+			
+						def inputFieldpw3 = new InputField(
+			
+								defaultValue: 'te3st default',
+								placeholder: 'test3 placeholder',
+								maxCharacters: 13,
+								unitOfMeasure: 'tes3t UOM',
+								dataType: date,
+								format: 'test forma3t',
+			
+								).save(failOnError: true)
+			
+						def inputFieldpw4 = new InputField(
+			
+								defaultValue: 'test default',
+								placeholder: 'test placeholder',
+								maxCharacters: 9,
+								unitOfMeasure: 'test UOM',
+								dataType: string,
+								format: 'test format',
+			
+								).save(failOnError: true)
+			
+						def inputFieldpw5 = new InputField(
+			
+								defaultValue: 'test default',
+								placeholder: 'test pladasceholder',
+								maxCharacters: 11,
+								unitOfMeasure: 'test UOM',
+								dataType: string,
+								format: 'test format',
+			
+								).save(failOnError: true)
+			
+						def questionpw1 = new QuestionElement(
+								designOrder: 1,
+								prompt: 'how old are you',
+								style: 'this style1',
+								label: 'how old are you?',
+								additionalInstructions: 'more instructions',
+								inputField: inputFieldpw1
+								).save(failOnError: true)
+			
+						def questionpw2 = new QuestionElement(
+								designOrder: 2,
+								prompt: 'operation reference',
+								style: 'this style3',
+								label: 'origin of referral',
+								additionalInstructions: 'more instructions2 ',
+								inputField: inputFieldpw2
+								).save(failOnError: true)
+						
+						
+			
+						def questionpw3 = new QuestionElement(
+								designOrder: '3',
+								prompt: 'this is the thirs question',
+								style: 'this style5',
+								label: 'what is your favorite colour ?',
+								additionalInstructions: 'more instructions',
+								inputField: inputFieldpw3
+								).save(failOnError: true)
+			
+						def questionpw4 = new QuestionElement(
+								designOrder: 4,
+								prompt: 'this is the 4th question',
+								style: 'this style5',
+								label: 'what is your favorite animal ?',
+								additionalInstructions: 'more instructions',
+								inputField: inputFieldpw4
+								).save(failOnError: true)
+			
+						def questionpw5 = new QuestionElement(
+								designOrder: 5,
+								prompt: 'this is the 5th question',
+								style: 'this style5',
+								label: 'what is your favorite car ?',
+								additionalInstructions: 'more instructions',
+								inputField: inputFieldpw5
+								).save(failOnError: true)
+			
+			
+						def formDesignPW = new FormDesign(
+						name:'formDesignNamepw1',
+						versionNo:'V0.145',
+						isDraft:true,
+						description:'test description 1'
+						).save(failOnError: true)
+			
+			
+						def sectionpw1 = new SectionElement(
+								title: 'sectionpw1',
+								designOrder: 1
+								).save(failOnError:true)
+			
+						def sectionpw2 = new SectionElement(
+								title: 'sectionpw2',
+								designOrder: 2
+								).save(failOnError:true)
+			
+						sectionpw1.addToQuestionElements(questionpw1)
+						sectionpw1.addToQuestionElements(questionpw2)
+						sectionpw1.addToQuestionElements(questionpw3)
+			
+			
+						sectionpw2.addToRules(rulepw1)
+						sectionpw2.addToQuestionElements(questionpw4)
+						sectionpw2.addToQuestionElements(questionpw5)
+			
+						formDesignPW.addToFormDesignElements(sectionpw1)
+						formDesignPW.addToFormDesignElements(sectionpw2)
+						//End add form
+						def collect1 = new Collection(name: 'TestCol11', description: 'blah blah blah').save(failOnError: true)
+						def collect2 = new Collection(name: 'TestCol12', description: 'blah blah blah').save(failOnError: true)
+						def collect3 = new Collection(name: 'TestCol13',description: 'blah blah blah').save(failOnError: true)
+						def collect4 = new Collection(name: 'TestCol14', description: 'blah blah blah').save(failOnError: true)
+						def collect5 = new Collection(name: 'TestCol15', description: 'blah blah blah').save(failOnError: true)
+			
+						def dec1 = new DataElementConcept(name: "Lung Cancer", description: "Cancers affecting the Lung").save(failOnError: true)
+			
+						def de11 = new DataElement(name:"SOURCE OF REFERRAL FOR OUT-PATIENTS", dataElementConcept: dec1).save(failOnError: true)
+						def de12 = new DataElement(name:"ANOTHER SOURCE FOR OUT-PATIENTS", description:"This identifies the referral of each Consultant Out-Patient Episode.",dataElementConcept: dec1).save(failOnError: true)
+			
+						collect1.addToDataElementCollections(de11)
+						collect1.addToDataElementCollections(de12)
+						collect1.addToForms(formDesignPW)
+			
+						def dec2 = new DataElementConcept(name: "Pancreatic Cancer", description: "Cancers affecting the Lung").save(failOnError: true)
+			
+						def de21 = new DataElement(name:"SOURCE OF REFERRAL FOR OUT-PATIENTS", dataElementConcept: dec2).save(failOnError: true)
+						def de22 = new DataElement(name:"ANOTHER SOURCE FOR OUT-PATIENTS", description:"This identifies the referral of each Consultant Out-Patient Episode.",dataElementConcept: dec2).save(failOnError: true)
+			
+						collect2.addToDataElementCollections(de21)
+						collect2.addToDataElementCollections(de22)
+			
+						def dec3 = new DataElementConcept(name: "Diabetes", description: "Cancers affecting the Lung").save(failOnError: true)
+			
+						def de31 = new DataElement(name:"SOURCE OF REFERRAL FOR OUT-PATIENTS", dataElementConcept: dec3).save(failOnError: true)
+						def de32 = new DataElement(name:"ANOTHER SOURCE FOR OUT-PATIENTS", description:"This identifies the referral of each Consultant Out-Patient Episode.",dataElementConcept: dec3).save(failOnError: true)
+			
+						collect3.addToDataElementCollections(de31)
+						collect3.addToDataElementCollections(de32)
+			
+						def dec4 = new DataElementConcept(name: "Ovarian Cancer", description: "Cancers affecting the Lung").save(failOnError: true)
+			
+						def de41 = new DataElement(name:"SOURCE OF REFERRAL FOR OUT-PATIENTS", dataElementConcept: dec4).save(failOnError: true)
+						def de42 = new DataElement(name:"ANOTHER SOURCE FOR OUT-PATIENTS", description:"This identifies the referral of each Consultant Out-Patient Episode.",dataElementConcept: dec4).save(failOnError: true)
+			
+						collect4.addToDataElementCollections(de41)
+						collect4.addToDataElementCollections(de42)
+			
+						def dec5 = new DataElementConcept(name: "Advanced Breast Cancer", description: "Cancers affecting the Lung").save(failOnError: true)
+			
+						def de51 = new DataElement(name:"SOURCE OF REFERRAL FOR OUT-PATIENTS", dataElementConcept: dec5).save(failOnError: true)
+						def de52 = new DataElement(name:"ANOTHER SOURCE FOR OUT-PATIENTS", description:"This identifies the referral of each Consultant Out-Patient Episode.",dataElementConcept: dec5).save(failOnError: true)
+			
+						collect5.addToDataElementCollections(de51)
+						collect5.addToDataElementCollections(de52)
+			
+			
+						def node11 = new Node(
+								
+								name: 'transfer to O.R.',
+								x: '5',
+								y: '0',
+								description: 'transfer patient to the Operating Room',
+								peCollection: collect1
+								).save(flush:true)
+			
+						def de1 = new DataElement(name:"PERSON FAMILY NAME (AT BIRTH)",
+						
+						description:"The PATIENT's surname at birth.",
+						dataElementConcept: dec1).save(failOnError: true)
+			
+						def node12 = new Node(
+								
+								name: 'Anaesthesia and Operating Patient.',
+								x: '15',
+								y: '10',
+								description: 'perform the operation',
+								peCollection: collect2
+								).save(flush:true)
+			
+			
+						def node13 = new Node(
+								
+								name: 'Guarding Patient on recovery and transfer to nursing ward',
+								x: '25',
+								y: '30',
+								description: 'transfer patient to the Operating Room',
+								peCollection: collect3
+								).save(flush:true)
+			
+			
+			
+						def link21 = new Link(
+								
+								name: 'TM21',
+								source: node11,
+								target: node12,
+								peCollection: collect4
+								).save(flush:true)
+			
+						def link22 = new Link(
+								
+								name: 'TM22',
+								source: node12,
+								target: node13,
+								peCollection: collect5
+								).save(flush:true)
+			
+			
+						def pathway2 = new PathwaysModel(
+								name: 'Transplanting and Monitoring Pathway',
+								versionNo: '0.2',
+								isDraft: true
+						)
+						pathway2.addToPathwayElements(node11)
+						pathway2.addToPathwayElements(node12)
+						pathway2.addToPathwayElements(node13)
+						pathway2.addToPathwayElements(link21)
+						pathway2.addToPathwayElements(link22)
+						pathway2.save(flush:true)
 
 		}
 
 
 		if(Environment.current == Environment.PRODUCTION){
-			importNHICData(basePath)
+			//importNHICData(basePath)
 		}
 		
 	}

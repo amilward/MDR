@@ -13,6 +13,7 @@
         self.inputs = [];
         self.outputs = [];
         self.forms = [];
+        self.collections = [];
 
         ko.track(self);
 
