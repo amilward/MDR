@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta name="layout" content="main">
+		<meta name="layout" content="main_no-sidebar">
 		<g:set var="entityName" value="${message(code: 'formDesign.label', default: 'FormDesign')}" />
 		<title><g:message code="default.show.label" args="[entityName]" /></title>
 		<parameter name="name" value=" FORM Builder - ${formDesignInstance?.name}" />
@@ -66,13 +66,6 @@
 			formInstanceId = ''
 		</g:else>
 		
-		<g:if test="${formDesignInstance?.id}">
-			formInstanceRefId = "${formDesignInstance.refId}"
-		</g:if>
-		<g:else>
-			formInstanceRefId = ''
-		</g:else>
-		
 		<g:if test="${formDesignInstance?.name}">
 			formInstanceName = "${formDesignInstance.name}"
 		</g:if>
@@ -101,7 +94,7 @@
 			isDraft = ''
 		</g:else>
 
-		openForms(formInstanceId, formInstanceRefId, formInstanceName, formInstanceDescription, versionNo, isDraft, formInstanceCollectionId, formVersionNo);
+		openForms(formInstanceId, formInstanceName, formInstanceDescription, versionNo, isDraft, formInstanceCollectionId, formVersionNo);
 		
 	</r:script>
 		

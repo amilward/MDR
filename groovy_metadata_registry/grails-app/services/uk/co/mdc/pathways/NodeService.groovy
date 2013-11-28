@@ -9,6 +9,7 @@ import org.springframework.security.acls.model.Permission
 import org.springframework.transaction.annotation.Transactional
 import org.springframework.security.acls.model.Permission;
 import org.springframework.transaction.annotation.Transactional;
+import uk.co.mdc.forms.FormDesign;
 
 class NodeService {
 
@@ -144,9 +145,22 @@ class NodeService {
 	@PreAuthorize("hasPermission(#nodeInstance, write) or hasPermission(#nodeInstance, admin)")
 	Node update(Node nodeInstance, Map parameters) {
 		 
+		def forms = []
+		if(parameters?.forms){
+			
+			//FIXME at the moment we are putting the forms into the optionalOutputs - as we develop the model this may change
+			def pForms = parameters?.forms
+			
+			pForms.each{ form->
+				forms.push(FormDesign.get(form.id))
+			}
+			
+			println(forms)
+			parameters?.optionalOutputs = forms
+		}
 		nodeInstance.properties = parameters
 		nodeInstance.save()
-		
+
 		nodeInstance
 	}
 	
@@ -167,7 +181,7 @@ class NodeService {
 		println('removing link sources and targets')
 		
 		sources.each{ link ->
-			
+			link.refresh()
 			link.delete(flush:true,failOnError:true)
 		}
 		
@@ -175,7 +189,7 @@ class NodeService {
 		def targets = Link.findAllWhere(target: nodeInstance)
 		
 		targets.each{ link->
-			
+			link.refresh()
 			link.delete(flush:true,failOnError:true)
 			
 		}
