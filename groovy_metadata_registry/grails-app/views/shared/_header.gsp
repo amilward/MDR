@@ -32,6 +32,10 @@
 <link rel="stylesheet"
   href="${resource(dir: 'css', file: 'datatable/jquery.dataTables.css')}"
   type="text/css">
+  <link rel="stylesheet"
+  href="${resource(dir: 'css', file: 'jquery-ui-1.8.24.custom.css')}"
+  type="text/css">
+  
   
 <g:javascript library="jquery_lib" />
 <g:javascript library="jquery" plugin="jquery"/><!--  FIXME, there's duplication here -->

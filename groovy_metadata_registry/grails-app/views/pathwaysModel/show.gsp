@@ -50,19 +50,10 @@
                 <button type="button" class="btn btn-link btn-xs pull-right" data-bind="click: updatePathway">
                     <i class="fa fa-save"></i> Save Pathway
                 </button>
-            	<form class="form" role="form" data-bind="with: pathwayModel">
-                    <div class="form-group">
-                        <input class="width60" id="txt-name" type="text" class="form-control" data-bind="value: name, valueUpdate: 'input'" />
-                    </div>
-                    <div class="form-group">
-                        <textarea id="txt-desc" class="width60" rows="1" class="form-control" data-bind="value: description, valueUpdate: 'input'"></textarea>
-                    </div>
-                    
-                </form>
-            
-               
-                
-                
+                <button type="button" class="btn btn-link btn-xs pull-right" data-bind="click: updatePathway">
+                    <i class="fa fa-edit"></i> Edit Pathway Info
+                </button>
+            	<span>Pathway: {{pathwayModel ? pathwayModel.name : ''}}</span>
             </div>
             <div class="panel-body" data-bind="with: pathwayModel">
                 <div class="jsplumb-container" data-bind="foreach: nodes ">
