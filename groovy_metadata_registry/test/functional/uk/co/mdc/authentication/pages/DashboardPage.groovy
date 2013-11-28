@@ -3,6 +3,7 @@ package uk.co.mdc.authentication.pages;
 import geb.Browser
 import geb.Page
 import geb.Module
+import uk.co.mdc.modules.TopNavElements
 
 class DashboardPage extends Page{
 	
@@ -14,6 +15,6 @@ class DashboardPage extends Page{
 	}
 	
 	static content = {
-		
+		nav { module TopNavElements }
 	}
 }
