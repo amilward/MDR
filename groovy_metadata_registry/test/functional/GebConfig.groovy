@@ -9,7 +9,10 @@ import org.openqa.selenium.chrome.ChromeDriver
 reportsDir = new File("target/geb-reports")
 reportOnTestFailureOnly = false
 
-driver = { new FirefoxDriver() }
+driver = { 
+	new FirefoxDriver()
+ }
+
 
 // Download the driver and set it up automatically
 private void downloadDriver(File file, String path) {

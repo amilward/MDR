@@ -141,7 +141,7 @@
                   <li id="nav-model-link"><g:link action="list" controller="ValueDomain"><i class="icon-angle-right"></i> Data model </g:link></li>
                   
                   <!-- Pathways menu -->
-                  <li class="dropdown"><a data-toggle="dropdown"
+                  <li class="dropdown"><a id="nav-pathway-expand" data-toggle="dropdown"
                     class="dropdown-toggle" href="#"> Pathways <b
                       class="caret"></b>
                   </a>
