@@ -2,6 +2,7 @@ package uk.co.mdc.authentication;
 import geb.spock.GebReportingSpec
 
 import uk.co.mdc.authentication.pages.*
+import uk.co.mdc.authentication.pages.pathways.*
 
 class UserLoginSpec extends GebReportingSpec {
 
@@ -72,17 +73,7 @@ class UserLoginSpec extends GebReportingSpec {
 	//When I authenticate with a correct username/password combination
 	//and I have navigated directly to the login screen
 	//Then I am redirected to the system dashboard
-	def "Successful login when going to the login page directly"() {
-		when: 'I enter the incorrect credentials'
-		to LoginPage
-		username = "baduser"
-		password = "badpassword"
-		submitButton.click()
-
-		then: 'Then an error message is displayed stating the combination is incorrect and I can try again'
-		at LoginPage
-		invalidUsernameOrPasswordError
-		
+	def "Successful login when going to the login page directly"() {		
 		when: 'I enter the correct credentials'
 		to LoginPage
 		username = "user1"
@@ -99,6 +90,25 @@ class UserLoginSpec extends GebReportingSpec {
 	//and I have been redirected to the login screen whilst trying to access another resource
 	//and I am authorised to access that resource
 	//Then I am redirected to the requested resource
+	def "Successful login when attempting to go somewhere else"() {
+		when: 'I go to a restricted page and I am not logged in'
+		go "pathwaysModel/list"
+		
+		then:'I am redirected to the login screen'
+		waitFor{
+			at LoginPage
+		}
+		
+		when:'I authenticate successfully'
+		username = "user1"
+		password = "password1"
+		submitButton.click(PathwayListPage)
+
+		then: 'I am redirected to my original destination'
+		waitFor{
+			at PathwayListPage
+		}
+	}
 	
 	//When I authenticate with a correct username/password combination
 	//and I have been redirected to the login screen whilst trying to access another resource

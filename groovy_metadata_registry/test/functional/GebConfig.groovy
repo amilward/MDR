@@ -7,7 +7,7 @@ import org.openqa.selenium.firefox.FirefoxDriver
 import org.openqa.selenium.chrome.ChromeDriver
 
 reportsDir = new File("target/geb-reports")
-reportOnTestFailureOnly = true
+reportOnTestFailureOnly = false
 
 driver = { new FirefoxDriver() }
 
