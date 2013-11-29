@@ -64,7 +64,10 @@
                 <div class="jsplumb-container" data-bind="foreach: nodes ">
                     <div class="node" data-bind="makeNode: $data, click: $root.selectNode, style: {top:y, left:x}, attr: { 'id': 'node' + id}">
                         <div data-bind="attr:{title: description}">{{name}}</div>
-                        <div class="anchor"></div>
+                        <div class="fa fa-chevron-right ep right"></div>
+			<div class="fa fa-chevron-left ep left"></div>
+			<div class="fa fa-chevron-up ep up"></div>
+			<div class="fa fa-chevron-down ep down"></div>
                     </div>
                 </div>
             </div>

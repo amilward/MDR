@@ -2,19 +2,17 @@
 // setup some defaults for jsPlumb.	
 			jsPlumb.importDefaults({
 				Endpoint : [ "Dot", {
-					radius : 1
+					radius : 2
 				} ],
 				HoverPaintStyle : {
 					strokeStyle : "#1e8151",
-					lineWidth : 1
+					lineWidth : 2
 				},
-				Connector: 'StateMachine',
-	            ConnectorStyle: { strokeStyle: "#5c96bc", lineWidth: 2, outlineColor: "transparent", outlineWidth: 4 },
 				ConnectionOverlays : [ [ "Arrow", {
-					location: 1,
-                    id: "arrow",
-                    length: 14,
-                    foldback: 0.8
+					location : 1,
+					id : "arrow",
+					length : 14,
+					foldback : 0.8
 				} ],]
 			});
 
@@ -26,25 +24,22 @@ ko.bindingHandlers.makeNode = {
         //console.log('making load nodes')
         
         //Turn binded element into jsPlumb source node
-        jsPlumb.makeSource($('.anchor', element), {
+        jsPlumb.makeSource($('.ep', element), {
             parent: $(element),
             connector: 'StateMachine',
-            connectorStyle: { strokeStyle: "#5c96bc", lineWidth: 2, outlineColor: "transparent", outlineWidth: 4 },
-            connectorOverlays: [
-                  ["Arrow", {
-                      location: 1,
-                      id: "arrow",
-                      length: 14,
-                      foldback: 0.8
-                  }]
-            ],
-            endpoint: ["Dot", { radius: 1 }]
+            anchor: 'Continuous',
+            connector : [ "StateMachine", {curviness : 20} ],
+            connectorStyle : {
+                    strokeStyle : "#5c96bc",
+                    lineWidth : 2,
+                    outlineColor : "transparent",
+                    outlineWidth : 4
+            }
         });
 
         //Turn binded element into jsPlumb target node
         jsPlumb.makeTarget($(element), {
-            anchor: 'Continuous',
-            endpoint: ["Dot", { radius: 2 }]
+            anchor: 'Continuous'
         });
 
         //Enable dragging of nodes
