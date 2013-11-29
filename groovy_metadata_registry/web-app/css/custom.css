@@ -236,9 +236,7 @@ textarea[readonly] {
 	height:118px;
 }
 .form-group {
-    display: block;
-    height: 40px;
-    width: 100%;
+    
 }
 
 .form-render-label{

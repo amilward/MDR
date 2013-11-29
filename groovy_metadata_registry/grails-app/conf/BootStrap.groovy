@@ -594,8 +594,8 @@ class BootStrap {
 						def node11 = new Node(
 								
 								name: 'transfer to O.R.',
-								x: '5',
-								y: '0',
+								x: '5px',
+								y: '0px',
 								description: 'transfer patient to the Operating Room',
 								peCollection: collect1
 								).save(flush:true)
@@ -608,8 +608,8 @@ class BootStrap {
 						def node12 = new Node(
 								
 								name: 'Anaesthesia and Operating Patient.',
-								x: '115',
-								y: '110',
+								x: '115px',
+								y: '110px',
 								description: 'perform the operation',
 								peCollection: collect2
 								).save(flush:true)
@@ -618,8 +618,8 @@ class BootStrap {
 						def node13 = new Node(
 								
 								name: 'Guarding Patient on recovery and transfer to nursing ward',
-								x: '325',
-								y: '330',
+								x: '325px',
+								y: '330px',
 								description: 'transfer patient to the Operating Room',
 								peCollection: collect3
 								).save(flush:true)
