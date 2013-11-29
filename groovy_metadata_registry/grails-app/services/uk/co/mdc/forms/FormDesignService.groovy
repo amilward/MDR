@@ -162,6 +162,10 @@ class FormDesignService {
 							 
 							 addPermission inputField, 'admin', BasePermission.ADMINISTRATION
 							 
+							 //FIXME Grant user user administrative permissions
+							 
+							 addPermission inputField, 'user', BasePermission.ADMINISTRATION
+							 
 							  
 						//create question
 							 
@@ -185,6 +189,10 @@ class FormDesignService {
 								 //Grant admin user administrative permissions
 								 
 								 addPermission question, 'admin', BasePermission.ADMINISTRATION
+								 
+								 //FIXME Grant user user administrative permissions
+								 
+								 addPermission question, 'user', BasePermission.ADMINISTRATION
 	
 								 questionNumber++
 								 
@@ -211,6 +219,10 @@ class FormDesignService {
 		
 		addPermission formDesignInstance, 'admin', BasePermission.ADMINISTRATION
 		
+		
+		//FIXME Grant user user administrative permissions
+		
+		addPermission formDesignInstance, 'user', BasePermission.ADMINISTRATION
 		
 		//return the data element to the consumer (the controller)
 		
@@ -405,6 +417,10 @@ class FormDesignService {
 				 //Grant admin user administrative permissions
 				 
 				 addPermission sectionInstance, 'admin', BasePermission.ADMINISTRATION
+				 
+				 //FIXME Grant user user administrative permissions
+				 
+				 addPermission sectionInstance, 'user', BasePermission.ADMINISTRATION
 
 				 def questions = section.questions
 				 
@@ -432,6 +448,10 @@ class FormDesignService {
 							 
 							 addPermission inputField, 'admin', BasePermission.ADMINISTRATION
 							 
+							 //FIXME Grant user user administrative permissions
+							 
+							 addPermission inputField, 'user', BasePermission.ADMINISTRATION
+							 
 							  
 						//create question
 							 
@@ -453,6 +473,10 @@ class FormDesignService {
 								 //Grant admin user administrative permissions
 								 
 								 addPermission newQuestion, 'admin', BasePermission.ADMINISTRATION
+								 
+								 //FIXME Grant user user administrative permissions
+								 
+								 addPermission newQuestion, 'user', BasePermission.ADMINISTRATION
 	
 								 questionNumber++
 								 

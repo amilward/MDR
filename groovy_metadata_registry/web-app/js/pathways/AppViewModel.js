@@ -28,6 +28,12 @@
 
         };
         
+        self.editPathway = function() {
+        	
+        	$('#updatePathwayModal').modal({ show: true, keyboard: false, backdrop: 'static' });
+
+        };
+        
         self.loadPathway = function(pathwayJSON){
         	
         	 var pm = new PathwayModel();
@@ -305,7 +311,7 @@
 		       				parameters: {
 		       					"connectionId" : link.connectionId
 		       				},
-		       				Anchor : 'Continuous',
+		       				anchor : 'Continuous',
 		       				paintStyle:{ strokeStyle: "#5c96bc", lineWidth: 2, outlineColor: "transparent", outlineWidth: 4  }
 		        	});
 		        		

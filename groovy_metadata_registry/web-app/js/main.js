@@ -59,7 +59,8 @@ $('#openModalLink').click(
 $('.closeModalLink')
 .click(
     function() {
-  	  $('.modal').modal('hide');
+    $('#deleteModalButton').unbind()
+  	$('.modal').modal('hide');
       return false;
     });
 
@@ -106,22 +107,15 @@ function getObjectTable(jsonArray, classname){
 }
 
 function deleteItem(item){
-	 $( "#dialog-confirm" ).text('Delete ' + item + '?');
-	 $( "#dialog-confirm" ).dialog({
-		 resizable: false,
-		 height:140,
-		 modal: true,
-		 title: 'delete',
-		 buttons: {
-		 "Delete Item": function() {
-			$( this ).dialog( "close" );
+
+	$( "#dialog-confirm .modal-header h4" ).text('Delete '+ item + ' ?');
+	$( "#dialog-confirm" ).modal({ show: true, keyboard: false, backdrop: 'static' });
+	$( "#deleteModalButton" ).bind('click', function(){
 			$('#deleteForm').submit();
-		 },
-		 Cancel: function() {
-			 $( this ).dialog( "close" );
-		 }
-		 }
-	 });
+   			$( "#deleteModalButton" ).unbind();
+   			$('.modal').modal('hide');
+	})
+	
 }
 
 function updateForm(){

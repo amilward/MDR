@@ -38,6 +38,7 @@ ko.bindingHandlers.makeNode = {
                       foldback: 0.8
                   }]
             ],
+            anchor : 'Continuous',
             endpoint: ["Dot", { radius: 1 }]
         });
 
@@ -58,25 +59,16 @@ ko.bindingHandlers.makeNode = {
         });
         
         $(element).bind('dblclick', function(){
-        	$( "#dialog-confirm" ).text('Delete node?');
-        	$( "#dialog-confirm" ).dialog({
-   	   		 resizable: false,
-   	   		 height:140,
-   	   		 modal: true,
-   	   		 title: 'delete node',
-   	   		 buttons: {
-   	   		 "Delete Node": function() {
-   	   			$( this ).dialog( "close" );
-   	   			nodeInfo = ko.dataFor(element)
+        	$( "#dialog-confirm .modal-header h4" ).text('Delete node?');
+        	$( "#dialog-confirm" ).modal({ show: true, keyboard: false, backdrop: 'static' });
+        	$( "#deleteModalButton" ).bind('click', function(){
+        		nodeInfo = ko.dataFor(element)
    	   			////console.log(nodeInfo.id)
    	   			vm.deleteNode(nodeInfo.id)
    	   			jsPlumb.remove($(element))
-   	   		 },
-   	   		 Cancel: function() {
-   	   			 $( this ).dialog( "close" );
-   	   		 }
-   	   		 }
-   	   	 });
+   	   			$( "#deleteModalButton" ).unbind();
+        		$('.modal').modal('hide');
+        	})
         	
         });
         
@@ -116,27 +108,16 @@ jsPlumb.bind("connection", function (info) {
 	 
     //binding for connection double click
     info.connection.bind("dblclick", function() {
-    	$( "#dialog-confirm" ).text('Delete connection?');
-	   	$( "#dialog-confirm" ).dialog({
-	   		 resizable: false,
-	   		 height:140,
-	   		 modal: true,
-	   		 title: 'delete connection',
-	   		 buttons: {
-	   		 "Delete Connection": function() {
-	   			$( this ).dialog( "close" );
-
+    	$( "#dialog-confirm .modal-header h4" ).text('Delete Connection?');
+    	$( "#dialog-confirm" ).modal({ show: true, keyboard: false, backdrop: 'static' });
+    	$( "#deleteModalButton" ).bind('click', function(){
 	   			var params = info.connection.getParameters()
-	   			
 	   			vm.deleteLink(params.connectionId);
 	   			jsPlumb.detach(info.connection);
-	   			
-	   		 },
-	   		 Cancel: function() {
-	   			 $( this ).dialog( "close" );
-	   		 }
-	   		 }
-	   	 });
+	   			$( "#deleteModalButton" ).unbind();
+	   			$('.modal').modal('hide');
+    	})
+    	
     	
     });
     
