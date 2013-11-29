@@ -54,5 +54,8 @@ class PathwaysModel  {
 		
 	}
 	
+	static List<PathwaysModel> loadXML(InputStream inputStream) {
+		return [];
+	}
 	
 }
