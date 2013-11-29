@@ -13,7 +13,7 @@ import uk.co.mdc.model.Collection
 @TestFor(Link)
 @Mock(Node)
 class LinkSpec extends spock.lang.Specification {
-/*
+
 	def "Links are simple objects"(){
 
 		//
@@ -60,5 +60,5 @@ class LinkSpec extends spock.lang.Specification {
 		link.errors.hasFieldErrors("target")
 		
 		
-	}*/
+	}
 }
