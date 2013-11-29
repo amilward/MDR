@@ -1,20 +1,19 @@
-﻿
 // setup some defaults for jsPlumb.	
-			jsPlumb.importDefaults({
-				Endpoint : [ "Dot", {
-					radius : 2
-				} ],
-				HoverPaintStyle : {
-					strokeStyle : "#1e8151",
-					lineWidth : 2
-				},
-				ConnectionOverlays : [ [ "Arrow", {
-					location : 1,
-					id : "arrow",
-					length : 14,
-					foldback : 0.8
-				} ],]
-			});
+jsPlumb.importDefaults({
+        Endpoint : [ "Dot", {
+                radius : 2
+        } ],
+        HoverPaintStyle : {
+                strokeStyle : "#1e8151",
+                lineWidth : 2
+        },
+        ConnectionOverlays : [ [ "Arrow", {
+                location : 1,
+                id : "arrow",
+                length : 14,
+                foldback : 0.8
+        } ],]
+});
 
 // Usage: <div class="node" data-bind="makeNode: $data">....</div>
 ko.bindingHandlers.makeNode = {
@@ -41,16 +40,21 @@ ko.bindingHandlers.makeNode = {
         jsPlumb.makeTarget($(element), {
             anchor: 'Continuous'
         });
-
+        
         //Enable dragging of nodes
         jsPlumb.draggable($(element), {
             containment: "parent",
             stop: function( event, ui ) {
             	//node = ko.contextFor(element)
-            	value.y = Math.round(ui.position.top) + "px"
-            	value.x = Math.round(ui.position.left) + "px"
+            	value.y = Math.round(ui.position.top) + "px";
+            	value.x = Math.round(ui.position.left) + "px";
+                
+                bindingContext.$root.updatePathway();
             }
         });
+        
+        $(element).css('top', value.y);
+        $(element).css('left', value.x);
         
         $(element).bind('dblclick', function(){
         	$( "#dialog-confirm" ).text('Delete node?');
