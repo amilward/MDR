@@ -34,9 +34,14 @@
         }
         
         self.addForm = function(form){
-        	
         	self.forms.push(form)
-        	
+        	var jsonNodeToServer = pathwayService.createJsonNode(self)
+        	console.log(jsonNodeToServer)
+        	$.when(pathwayService.updateNode(jsonNodeToServer)).done(function (data) {
+            	if(data.success===true){
+            		console.log('form added on server')
+            		}
+            	});
         }
         
 

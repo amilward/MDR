@@ -51,34 +51,24 @@
             });
         </r:script>
   </sec:ifLoggedIn>
-  <div class="modal-dialog" id="dialog-confirm" style="visibility: hidden"></div>
   
-  <!-- Confirm Modal 
-    <div class="modal fade hide" id="dialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <!--<div class="modal-dialog" id="dialog-confirm" style="visibility: hidden"></div>-->
+  
+  <!-- Confirm Modal -->
+    <div id="dialog-confirm" class="modal fade hide" id="dialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content" >
                 <div class="modal-header">
                     
-                    <h4 class="modal-title" id="myModalLabel">Create Pathway</h4>
-                </div>
-                <div class="modal-body">
-                    <form class="form" role="form">
-                        <div class="form-group">
-                            <label for="txt-name" class="control-label">Name: </label>
-                            <input id="txt-name" type="text" class="form-control"/>
-                        </div>
-                        <div class="form-group">
-                            <label for="txt-desc" class="control-label">Description: </label>
-                            <textarea id="txt-desc" rows="3" class="form-control"></textarea>
-                        </div>
-			        </form>
+                    <h4 class="modal-title" id="myModalLabel"></h4>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-bind="click: $root.savePathway">Create</button>
+                    <button type="button" id="deleteModalButton" class="btn btn-primary">Confirm</button>
+                    <button type="button" class="closeModalLink btn btn-primary">Cancel</button>
                 </div>
             </div><!-- /.modal-content -->
-      <!--  </div> /.modal-dialog -->
-  <!--  </div><!-- /.modal -->
+      </div> <!-- /.modal-dialog -->
+   </div><!-- /.modal -->
   
   <r:layoutResources />
   

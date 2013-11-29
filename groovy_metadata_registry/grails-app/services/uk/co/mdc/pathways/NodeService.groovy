@@ -79,6 +79,9 @@ class NodeService {
 			
 			//Grant admin user administrative permissions
 			addPermission nodeInstance, 'admin', BasePermission.ADMINISTRATION
+			
+			//FIXME we are grainting all users all permissions at the moment
+			addPermission  nodeInstance, 'user', BasePermission.ADMINISTRATION
 		
 		
 		if(nodeInstance && parameters?.pathwaysModelId){

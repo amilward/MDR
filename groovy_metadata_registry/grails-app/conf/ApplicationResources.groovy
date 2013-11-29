@@ -106,15 +106,14 @@ modules = {
 		
 		dependsOn "application"
 		dependsOn "jquery_layout_lib"
-		dependsOn "bootstap_editable_lib"
+		dependsOn "bootstrap_editable_lib"
 		resource url: "js/lib/bootstrap-datepicker.js"
 		resource url: "js/lib/bootstrap-timepicker.js"
 		resource url: "js/respond.min.js"
-		resource url: "js/forms/form_model.js"
-		resource url: "js/forms/constraint.js"
-		resource url: "js/forms/frenderer-theme-bootstrap.js"
-		resource url: "js/forms/frenderer.js"
-		resource url: "js/forms/frendererLayout.js"
+		resource url: "js/forms/formsRenderer/constraint.js"
+		resource url: "js/forms/formsRenderer/frenderer-theme-bootstrap.js"
+		resource url: "js/forms/formsRenderer/frenderer.js"
+		resource url: "js/forms/formsRenderer/frendererLayout.js"
 		
 	}
 	

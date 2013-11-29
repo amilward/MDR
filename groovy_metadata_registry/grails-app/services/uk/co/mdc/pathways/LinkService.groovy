@@ -80,8 +80,6 @@ class LinkService {
 					target: targetNode
 					)
 
-					println(linkInstance)
-					
 			if(!linkInstance.save(flush:true)){
 				// FIXME should throw an error here with the errors from the instance
 				return linkInstance
@@ -92,6 +90,9 @@ class LinkService {
 			
 			//Grant admin user administrative permissions
 			addPermission linkInstance, 'admin', BasePermission.ADMINISTRATION
+			
+			//FIXME we are grainting all users all permissions at the moment
+			addPermission linkInstance, 'user', BasePermission.ADMINISTRATION
 		}
 		
 		if(linkInstance && parameters?.pathwaysModelId){

@@ -148,10 +148,14 @@ class BootStrap {
 	def grantAdminPermissions(objectList){
 
 		for (object in objectList) {
-			aclUtilService.addPermission object, 'admin', ADMINISTRATION
+			aclUtilService.addPermission object, 'ROLE_ADMIN', ADMINISTRATION
+			
+			//FIX ME at present users can see everything but we don't want this to be the case
+			aclUtilService.addPermission object, 'ROLE_USER', ADMINISTRATION
 		}
 
 	}
+	
 
 	def destroy = {
 	}
@@ -604,8 +608,8 @@ class BootStrap {
 						def node12 = new Node(
 								
 								name: 'Anaesthesia and Operating Patient.',
-								x: '15',
-								y: '10',
+								x: '115',
+								y: '110',
 								description: 'perform the operation',
 								peCollection: collect2
 								).save(flush:true)
@@ -614,8 +618,8 @@ class BootStrap {
 						def node13 = new Node(
 								
 								name: 'Guarding Patient on recovery and transfer to nursing ward',
-								x: '25',
-								y: '30',
+								x: '325',
+								y: '330',
 								description: 'transfer patient to the Operating Room',
 								peCollection: collect3
 								).save(flush:true)
