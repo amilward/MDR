@@ -14,6 +14,6 @@ class PathwayShowPage extends BasePageWithNav{
 	
 	
 	static content = {
-		pathwayName  { 	$("#pathwayName") }
+		pathwayName  { 	$("h1#pathwayName") }
 	}
 }
