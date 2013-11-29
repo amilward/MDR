@@ -56,7 +56,7 @@ class PathwayCreationSpec extends GebReportingSpec {
 
 		and: "it displays the name of the pathway"
 		waitFor{
-			pathwayName.@text == varPathwayName
+			pathwayName.text() == varPathwayName
 		}
 		
 		
