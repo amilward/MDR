@@ -225,7 +225,7 @@
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
     
-    <!-- Add Data ElementModal -->
+    <!-- Update Pathway Info -->
     <div id="updatePathwayModal" class="modal fade hide" tabindex="-1"	role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop = "true" >
 	<div class="modal-dialog">
 		<div class="modal-content" data-bind="">
@@ -271,10 +271,6 @@
 </div>
 <!-- /.modal -->
     
-    
-    
-    
-
 	<g:javascript disposition="defer" library="pathways" />
 	<r:script disposition="defer">
 	

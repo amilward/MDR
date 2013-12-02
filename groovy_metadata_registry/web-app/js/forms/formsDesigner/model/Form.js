@@ -1,7 +1,5 @@
 function Form(id, fullName, description, versionNo, isDraft, collectionId, formVersionNo, components) {
 	
-
-	
 	var self = this;
 	self.formID = ko.observable(id);
 	self.formDesignName = ko.observable(fullName);
@@ -10,9 +8,14 @@ function Form(id, fullName, description, versionNo, isDraft, collectionId, formV
 	self.formDescription = ko.observable(description);
 	self.versionNo = ko.observable(versionNo);
 	self.isDraft = ko.observable(isDraft);
-	console.log(ko.toJSON(components))
+	//console.log(ko.toJSON(components))
 	self.components = ko.observableArray(components);
 	
+	
+    self.editForm = function(){
+    	
+    	$('#EditFormModal').modal({ show: true, keyboard: false, backdrop: 'static' });
+    }
 	
 	self.copyComponent = function(data, idx){
 		//console.log(data);

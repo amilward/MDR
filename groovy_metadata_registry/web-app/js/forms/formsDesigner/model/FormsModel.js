@@ -101,8 +101,6 @@ function FormsModel() {
     
     
 
-
-    
     self.addForm = function(id, fullName, description, versionNo, isDraft, collectionId, formVersionNo, components){
     	//self.palette = questionPallette;
     	
@@ -116,5 +114,90 @@ function FormsModel() {
     	
     	
     };
+    
+    self.createQuestion = function (element){
+    	
+    	var dt = $.grep(dataTypeTemplates, function(n,i){ return (n.name == element.datatype); })[0];
+    	//return c;
+    	var renderingOption = dt.prefRenderingOptions[0];
+    	var name = dt.name;
+    	var restriction = "";
+    	var selectMultiple = false;
+    	var options = element.enumerations;
+    	//var options = ['test','asddfsaafds'];
+    	var previewRender = dt.previewRender;
+    	//this uses a random is to identify the data type
+    	//it checks that there isn't another datatype with teh same random id first
+    	var newRandomId = getUniqueId(1,1000)
+    	
+    	var dti = new DataTypeInstance(newRandomId, '', name, dt, renderingOption, restriction, selectMultiple, options, previewRender);
+    	
+
+    	if(element.prompt==null){
+    		
+    		var question = new Question("no question prompt", "no additionalInstructions","", "no label", "", dti, "no defaultValue", "no placeholder", "no unitOfMeasure test", "", "no format", "false", "no enumerations", "");
+    		
+    		
+    	}else{
+    		
+
+    		var question = new Question(element.prompt, element.additionalInstructions, element.questionNumber, element.label, element.style, 
+    				dti, element.defaultValue, element.placeholder, 
+    				element.unitOfMeasure,  element.maxCharacters, 
+    				element.format, element.isEnumerated, element.enumerations, 
+    				element.questionId, element.inputId, element.dataElementId, element.valueDomainId);
+    	}
+    	
+
+    	//console.log(ko.toJSON(question, null, 2));
+    	
+    	return question;
+    	
+    }
+    
+    
+    self.createComponent = function (element)
+    {
+
+    	
+    	//console.log(ko.toJSON(element))
+
+    	lastComponentID++;
+    	var iid = element.id + '-' + lastComponentID;
+    	var eid = iid;
+    	var properties = element.properties;
+    	var icon = element.icon;
+    	
+    	//var html = element.defaultView;
+    	var c = new Component(iid, eid, properties, icon);
+    	
+    	if(element.type == "question")
+    	{
+    		
+    		question = self.createQuestion(element);
+
+    		c.setQuestion(question);
+    		//console.log(ko.toJSON(question, null, 2));
+    	}
+    	
+    	
+    	if(element.type == "section")
+    	{
+    		//console.log(element.questions)
+    		var questions = []
+    		if(element.questions){
+    			questions = element.questions
+    		}
+    		section = new Section(element.name, element.id, questions);
+    		c.setSection(section);
+
+    	}
+    	
+    	
+    	//console.log(c.question());
+
+    	return c; 
+    	
+    }
       
 }

@@ -165,7 +165,7 @@
                           <i class="icon-angle-right"></i> List Forms</g:link></li>
 
                       <li><g:link action="create" controller="FormDesign">
-                          <i class="icon-angle-right"></i> Create Forms</g:link></li>
+                          <i class="icon-angle-right"></i> Create Form</g:link></li>
                     </ul> 
                     
                     
