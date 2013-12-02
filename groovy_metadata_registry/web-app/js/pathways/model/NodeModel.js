@@ -14,6 +14,7 @@
         self.outputs = [];
         self.forms = [];
         self.collections = [];
+        self.subpathway = undefined;
 
         ko.track(self);
 
@@ -72,7 +73,23 @@
         	});	
         	
         	//on close delete binding
-        }
+        };
+        
+        self.createSubPathway = function(root) {
+            self.subpathway = new PathwayModel();
+            self.subpathway.name = self.name;
+            
+            //root.pathwayModel = self.subPathway;
+            //root.savePathway();
+            
+        };
+        
+        self.viewSubPathway = function(data, e) {
+            var bindingContext = ko.contextFor(e.target);
+            bindingContext.$root.containerPathway = self.pathwayModel;
+            bindingContext.$root.pathwayModel = self.subpathway;
+            
+        };
         
     };
     

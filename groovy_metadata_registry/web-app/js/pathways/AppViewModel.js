@@ -6,6 +6,8 @@
 
         //Pathway Model
         self.pathwayModel = undefined;
+        
+        self.containerPathway = undefined;
 
         //View related properties
         self.selectedNode = undefined;
@@ -76,8 +78,6 @@
         	var pathway = self.pathwayModel
         	
             //Create the pathway (on server)
-        	
-        	//console.log(ko.toJSON(pathway))
         	
         	$.when(pathwayService.savePathway(pathway)).done(function (data) {
         		
@@ -365,6 +365,11 @@
 		self.addFormFinish = function(){
 		        	  $('#AddFormModal').modal('hide');
 		        }
+                        
+        self.gotoContainerPathway = function() {
+            self.pathwayModel = self.containerPathway;
+            self.containerPathway = undefined;
+        }
         
         //Initialize form list using FormService
         $.when(loadFormList()).done(function (data) {

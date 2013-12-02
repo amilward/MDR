@@ -44,6 +44,9 @@
 					<div id="canvas-panel" class="panel panel-primary">
             <div id="panel-heading" class="panel-heading">
             
+                <button type="button" class="btn btn-link btn-xs pull-right" data-bind="visible: containerPathway, click: gotoContainerPathway">
+                    <i class="fa fa-arrow-up"></i> Goto Container Pathway
+                </button>
            	 	<button type="button" class="btn btn-link btn-xs pull-right" data-bind="click: createNode">
                     <i class="fa fa-plus"></i> Add Node
                 </button>
@@ -93,6 +96,19 @@
                     </div>
                     
                 </form>
+                
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Sub-Pathway</div>
+                    <div class="panel-body">
+                        <div data-bind="visible: subpathway">
+                            <div data-bind="click: viewSubPathway" class="btn btn-link">View</div>
+                        </div>
+                        <div data-bind="visible: subpathway === undefined">
+                            <div data-bind="click: createSubPathway($root)" class="btn btn-link">Create</div>
+                        </div>
+                    </div>
+                </div>
+                    
                 <div class="panel panel-primary">
                     <div class="panel-heading">Inputs</div>
                     <div class="panel-body inputs">
