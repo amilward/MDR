@@ -33,6 +33,7 @@
   href="${resource(dir: 'css', file: 'datatable/jquery.dataTables.css')}"
   type="text/css">
   
+  
 <g:javascript library="jquery_lib" />
 <g:javascript library="jquery" plugin="jquery"/><!--  FIXME, there's duplication here -->
 <g:javascript library="modernizr_lib" />
@@ -69,7 +70,7 @@
             <a class="btn btn-navbar" data-toggle="collapse"
               data-target=".nav-collapse"> <span class="icon-bar"></span> <span
               class="icon-bar"></span> <span class="icon-bar"></span>
-            </a> <a class="brand" href="${createLink(uri: '/')}">MDC</a>
+            </a> <a id="projectHomeLink" class="brand" href="${createLink(uri: '/')}">MC</a>
             <!-- .topnav -->
             <div class="btn-toolbar topnav">
 
@@ -97,7 +98,7 @@
               </div>
             </div>
 
-            <div class="search-bar">
+            <div id="search-bar" class="search-bar">
               <div class="row-fluid">
                 <div class="span12">
                   <div class="search-bar-inner">
@@ -124,8 +125,7 @@
             <!-- /.topnav -->
             <div class="nav-collapse collapse">
               <!-- .nav -->
-              <ul class="nav">
-                <li class="active"><a href="index.html">Dashboard</a></li>
+              <ul  id="navbar" class="nav">
 
                 <li class="dropdown"><a data-toggle="dropdown"
                   class="dropdown-toggle" href="#"> Profile <b class="caret"></b>
@@ -138,35 +138,36 @@
                 <sec:ifLoggedIn>
 
                   <!-- Value domains menu -->
-                  <li><g:link action="list" controller="ValueDomain"><i class="icon-angle-right"></i> Data model </g:link></li>
+                  <li id="nav-model-link"><g:link action="list" controller="ValueDomain"><i class="icon-angle-right"></i> Data model </g:link></li>
                   
                   <!-- Pathways menu -->
-                  <li class="dropdown"><a data-toggle="dropdown"
+                  <li class="dropdown"><a id="nav-pathway-expand" data-toggle="dropdown"
                     class="dropdown-toggle" href="#"> Pathways <b
                       class="caret"></b>
                   </a>
                     <ul class="dropdown-menu">
-                      <li><g:link action="list" controller="PathwaysModel">
+                      <li id="nav-pathway-link"><g:link action="list" controller="PathwaysModel">
                           <i class="icon-angle-right"></i> List pathways</g:link></li>
 
                       <li><a id="openModalLink" href="#"> <i
                           class="icon-angle-right"></i> Create pathway
                       </a></li>
                     </ul> 
-                    
-                    <script>
-                      // FIXME ryan refactor into JS file
-                      $('#openModalLink')
-                          .click(
-                              function() {
-                            	  $('#createPathwayModal').modal({ show: true, keyboard: false, backdrop: 'static' });
-                                $(this).closest(".dropdown").removeClass("open");
-                                return false;
-                              });
-                    </script> 
-                    
+
                     <!-- Form design menu -->
-                    <li><g:link action="list" controller="FormDesign"><i class="icon-angle-right"></i> Form design </g:link></li>
+                  <li class="dropdown">
+                  <a id="nav-form-expand" data-toggle="dropdown"
+                    class="dropdown-toggle" href="#"> Form Design <b
+                      class="caret"></b>
+                  </a>
+                    <ul class="dropdown-menu">
+                      <li id="nav-form-link"><g:link action="list" controller="FormDesign">
+                          <i class="icon-angle-right"></i> List Forms</g:link></li>
+
+                      <li><g:link action="create" controller="FormDesign">
+                          <i class="icon-angle-right"></i> Create Form</g:link></li>
+                    </ul> 
+                    
                     
                     <sec:ifAnyGranted roles="ROLE_ADMIN">
 

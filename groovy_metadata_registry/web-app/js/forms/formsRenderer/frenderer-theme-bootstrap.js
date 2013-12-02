@@ -186,27 +186,27 @@ theme.completeSectionDiv = function($sectionDiv, section){
 theme.renderTextField = function(inputField, $div ){
 	var $formgroup = $('<div class="form-group">');
 
-	var $label = $('<label class="col-lg-4 control-label" for="question' + inputField.id + '">');
+	var $label = $('<label class="col-lg-4  form-control" for="question' + inputField.id + '">');
 	$label.text(inputField.label);
 	$formgroup.append($label);
-	$formgroup.append($('<div class="col-lg-8"><input class="form-control" id="question' + inputField.id + '"></div>'));
+	$formgroup.append($('<input class="form-control" id="question' + inputField.id + '">'));
 	$div.append($formgroup);
 }
 
 theme.renderDateField = function(inputField, $div ){
 	var $formgroup = $('<div class="form-group">');
 
-	var $label = $('<label class="col-lg-4 control-label" for="question' + inputField.id + '">');
+	var $label = $('<label class="col-lg-4  form-control" for="question' + inputField.id + '">');
 	$label.text(inputField.label);
 	$formgroup.append($label);
-	$formgroup.append($('<div class="col-lg-8"><input class="form-control datepicker" id="question' + inputField.id + '"></div>'));
+	$formgroup.append($('<input class="form-control datepicker" id="question' + inputField.id + '">'));
 	$div.append($formgroup);
 }
 
 theme.renderTimeField = function(inputField, $div ){
 	var $formgroup = $('<div class="form-group ">');
 
-	var $label = $('<label class="col-lg-4 control-label" for="question' + inputField.id + '">');
+	var $label = $('<label class="col-lg-4  form-control" for="question' + inputField.id + '">');
 	$label.text(inputField.label);
 	$formgroup.append($label);
 	$formgroup.append($('<div class="input-append bootstrap-timepicker"><input class="timepicker input-small" id="question' + inputField.id + '"><span class="add-on"><i class="icon-time"></i></span></div>'));
@@ -217,37 +217,37 @@ theme.renderTimeField = function(inputField, $div ){
 theme.renderListField = function(inputField, $div ){
 	var $formgroup = $('<div class="form-group">');
 
-	var $label = $('<label class="col-lg-4 control-label" for="question' + inputField.id + '">');
+	var $label = $('<label class="col-lg-4  form-control" for="question' + inputField.id + '">');
 	$label.text(inputField.label);
 	$formgroup.append($label);
-	var $inputDiv = $('<div class="col-lg-8">');
+	//var $inputDiv = $('<div class="col-lg-8">');
 	var $select = $('<select class="form-control" id="question' + inputField.id + '">');
 	for(var i=0;i<inputField.listItems.length;i++)
 	{
 		$select.append('<option value="' + inputField.listItems[i].code + '">' + inputField.listItems[i].definition + '</option>');
 	}
 	
-	$inputDiv.append($select);
-	$formgroup.append($inputDiv);
+	//$inputDiv.append($select);
+	$formgroup.append($select);
 	$div.append($formgroup);
 }
 
 
 theme.renderBooleanField = function(inputField, $div ){
 	var $formgroup = $('<div class="form-group">');
-
-	var $label = $('<label class="col-lg-4 control-label" for="question' + inputField.id + '">');
+	//var $inputDiv = $('<div class="col-lg-8">');
+	var $label = $('<label class="col-lg-4 form-control" for="question' + inputField.id + '">');
 	$label.text(inputField.label);
 	$formgroup.append($label);
-	var $inputDiv = $('<div class="col-lg-8">');
+	//var $inputDiv = $('<div class="col-lg-8">');
 	var $select = $('<select class="form-control" id="question' + inputField.id + '">');
 
 	$select.append('<option value="true">true</option>');
 	$select.append('<option value="true">false</option>');
 
 	
-	$inputDiv.append($select);
-	$formgroup.append($inputDiv);
+	//$inputDiv.append($select);
+	$formgroup.append($select);
 	$div.append($formgroup);
 }
 
