@@ -36,8 +36,7 @@
 
 	</tbody>
 	</table>
-
-	<s2ui:submitButton elementId='create' form='registerForm' messageCode='spring.security.ui.register.submit'/>
+	<g:submitButton name="Create your account" elementId='create' form='registerForm' messageCode='spring.security.ui.register.submit'/>
 
 	</g:else>
 
