@@ -1,4 +1,4 @@
-function FormsModel() {
+function AppViewModel() {
     var self = this;
     self.forms = ko.observableArray([]);
     self.activeFormId = ko.observable(null);

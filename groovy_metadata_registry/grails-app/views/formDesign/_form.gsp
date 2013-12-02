@@ -50,6 +50,7 @@
 									
 											
 										<p><span class="lead" data-bind="text: section().title()"></span>
+										<span data-bind="click: $parents[0].editComponent"> edit /</span>
 										 <span data-bind="click: $parents[0].deleteComponent"> delete </span></p>
 										
 										

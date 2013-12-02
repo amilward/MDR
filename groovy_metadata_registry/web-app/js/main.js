@@ -49,7 +49,7 @@ $(function() {
 });
 
 
-$('#openModalLink').click(
+$('#createPathwayLink').click(
     function() {
   	  $('#createPathwayModal').modal({ show: true, keyboard: false, backdrop: 'static' });
       $(this).closest(".dropdown").removeClass("open");
