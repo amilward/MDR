@@ -70,7 +70,7 @@
             <a class="btn btn-navbar" data-toggle="collapse"
               data-target=".nav-collapse"> <span class="icon-bar"></span> <span
               class="icon-bar"></span> <span class="icon-bar"></span>
-            </a> <a id="projectHomeLink" class="brand" href="${createLink(uri: '/')}">MDC</a>
+            </a> <a id="projectHomeLink" class="brand" href="${createLink(uri: '/')}">MC</a>
             <!-- .topnav -->
             <div class="btn-toolbar topnav">
 
@@ -126,7 +126,6 @@
             <div class="nav-collapse collapse">
               <!-- .nav -->
               <ul  id="navbar" class="nav">
-                <li class="active"><a href="index.html">Dashboard</a></li>
 
                 <li class="dropdown"><a data-toggle="dropdown"
                   class="dropdown-toggle" href="#"> Profile <b class="caret"></b>
@@ -155,9 +154,20 @@
                       </a></li>
                     </ul> 
 
-                    
                     <!-- Form design menu -->
-                    <li id="nav-form-link"><g:link action="list" controller="FormDesign"><i class="icon-angle-right"></i> Form design </g:link></li>
+                  <li class="dropdown">
+                  <a id="nav-form-expand" data-toggle="dropdown"
+                    class="dropdown-toggle" href="#"> Form Design <b
+                      class="caret"></b>
+                  </a>
+                    <ul class="dropdown-menu">
+                      <li id="nav-form-link"><g:link action="list" controller="FormDesign">
+                          <i class="icon-angle-right"></i> List Forms</g:link></li>
+
+                      <li><g:link action="create" controller="FormDesign">
+                          <i class="icon-angle-right"></i> Create Forms</g:link></li>
+                    </ul> 
+                    
                     
                     <sec:ifAnyGranted roles="ROLE_ADMIN">
 

@@ -359,24 +359,24 @@ class BootStrap {
 			def node1 = new Node(
 					
 					name: 'transfer to O.R.',
-					x: '5',
-					y: '0',
+					x: '5px',
+					y: '0px',
 					description: 'transfer patient to the Operating Room'
 					).save(flush:true)
 
 			def node2 = new Node(
 					
 					name: 'Anaesthesia and Operating Patient.',
-					x: '15',
-					y: '10',
+					x: '150px',
+					y: '100px',
 					description: 'perform the operation'
 					).save(flush:true)
 
 			def node3 = new Node(
 					
 					name: 'Guarding Patient on recovery and transfer to nursing ward',
-					x: '25',
-					y: '30',
+					x: '250px',
+					y: '300px',
 					description: 'transfer patient to the Operating Room'
 					).save(flush:true)
 

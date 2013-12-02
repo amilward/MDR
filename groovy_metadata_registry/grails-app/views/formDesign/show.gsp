@@ -86,8 +86,9 @@
 		<g:else>
 			versionNo = ''
 		</g:else>
+
+		<g:if test="${formDesignInstance?.isDraft}!=null">
 		
-		<g:if test="${formDesignInstance?.isDraft}">
 			isDraft = "${formDesignInstance.isDraft}"
 		</g:if>
 		<g:else>

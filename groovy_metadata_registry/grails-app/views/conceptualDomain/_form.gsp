@@ -30,7 +30,7 @@
 					</tr>
 				</tbody>
 			</table>
-<g:javascript library="dualListBox"/>	
+<g:javascript library="conceptualDomain"/>	
 <r:script disposition="defer">
 
 	<g:if test="${!selectedValueDomains*.id}">

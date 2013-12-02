@@ -276,11 +276,16 @@ class FormDesignService {
 	//no restriction on the getDataType MEthod at the moment
 	
 	def getDataType(String dataType, Integer valueDomainId){
+		println(dataType)
 		if(valueDomainId){
 			ValueDomain valueDomain = ValueDomain.get(valueDomainId);
+			println(valueDomain.dataType)
 			return valueDomain.dataType
-		}else{
+		}else if(DataType.findByName(dataType.capitalize())){
+			println(DataType.findByName(dataType.capitalize()))
 			return DataType.findByName(dataType.capitalize())
+		}else{
+			return DataType.findByName('String')
 		}
 	}
 	
@@ -299,8 +304,7 @@ class FormDesignService {
 		formDesignInstance.name = form.formDesignName
 		formDesignInstance.description = form.formDescription
 		formDesignInstance.versionNo = form.versionNo
-		formDesignInstance.isDraft= form.isDraft
-	   
+		formDesignInstance.isDraft = form.isDraft.toBoolean()
 		
 		//update questions.
 

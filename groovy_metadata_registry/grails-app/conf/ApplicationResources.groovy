@@ -70,6 +70,18 @@ modules = {
 		resource url: "js/model/dataElement/dataElement.js"
 	}
 	
+	conceptualDomain{
+		dependsOn "dataTables"
+		dependsOn "dualListBox"
+		resource url: "js/model/conceptualDomain/conceptualDomain.js"
+	}
+	
+	collection{
+		dependsOn "dataTables"
+		dependsOn "dualListBox"
+		resource url: "js/model/collection/collection.js"
+	}
+	
 	valueDomain{
 		dependsOn "dataTables"
 		resource url: "js/model/valueDomain/valueDomain.js"
@@ -97,8 +109,15 @@ modules = {
 		resource url: "js/vendor/knockout-2.2.1.js"
 		resource url: "js/vendor/knockout-sortable.js"
 		resource url: "js/vendor/knockout-x-editable.js"
-		resource url: "js/forms/viewModel.js"
-		resource url: "js/forms/fDesignerLayout.js"
+		resource url: "js/forms/formsDesigner/model/FormsModel.js"
+		resource url: "js/forms/formsDesigner/model/Form.js"
+		resource url: "js/forms/formsDesigner/model/Component.js"
+		resource url: "js/forms/formsDesigner/model/Question.js"
+		resource url: "js/forms/formsDesigner/model/Component.js"
+		resource url: "js/forms/formsDesigner/model/Section.js"
+		resource url: "js/forms/formsDesigner/model/DataTypeInstance.js"
+		resource url: "js/forms/formsDesigner/viewModel.js"
+		resource url: "js/forms/formsDesigner/fDesignerLayout.js"
 		
 	}
 	

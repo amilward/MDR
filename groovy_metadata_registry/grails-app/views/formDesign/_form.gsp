@@ -28,37 +28,44 @@
 					
 						<tr>
 							<td>Form Name:</td>
-							<td><span id="pencil"><i class="icon-pencil"></i></span></td>
 							<td>
-								<a data-bind="editable: formDesignName, editableOptions: { mode: 'inline' }"></a>
+								<input id="txt-name" type="text" class="form-control" data-bind="value: formDesignName, valueUpdate: 'input'" />
+								
 							</td>
+							
 						</tr>
 						<tr>
 							<td>Collection Id:</td>
-							<td><span id="pencil"><i class="icon-pencil"></i></span></td>
+							
 							<td>
 								<a data-bind="text: formCollectionId"></a>
 							</td>
 						</tr>
 						<tr>
 							<td>Description:</td>
-							<td><span id="pencil"><i class="icon-pencil"></i></span></td>
+							
 							<td>
-								<a data-bind="editable: formDescription, editableOptions: { mode: 'inline' }"></a>
+							 <textarea id="txt-desc" rows="3" class="form-control" data-bind="value: formDescription, valueUpdate: 'input'"></textarea>
+               
 							</td>
 						</tr>
 						<tr>
 							<td>Version Name:</td>
-							<td><span id="pencil"><i class="icon-pencil"></i></span></td>
+							
 							<td>
-								<a data-bind="editable: versionNo, editableOptions: { mode: 'inline' }"></a>
+								<input id="txt-name" type="text" class="form-control" data-bind="value: versionNo" />
+									
 							</td>
 						</tr>
 						<tr>
 							<td>Is Draft:</td>
-							<td><span id="pencil"><i class="icon-pencil"></i></span></td>
+							
 							<td>
-								<a data-bind="editable: isDraft, editableOptions: { mode: 'inline' }"></a>
+								<select data-bind="optionsText: 'isDraft', value: isDraft, optionsCaption: 'Choose...'">
+									<option value="true">true</option>
+   									 <option value="false">false</option>
+								</select>
+								
 							</td>
 						</tr>
 					</table>
