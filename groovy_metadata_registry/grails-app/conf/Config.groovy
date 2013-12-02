@@ -146,8 +146,8 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	'/index':          ['permitAll'],
 	'/index.gsp':      ['permitAll'],
 	'/plugins/*/js/**':['permitAll'],
-	'/**/css/**':      ['permitAll']
-	]
+	'/**/css/**':      ['permitAll'],
+	'/js/**':      ['permitAll']]
 
 import grails.plugins.springsecurity.SecurityConfigType
 
@@ -155,6 +155,12 @@ import grails.plugins.springsecurity.SecurityConfigType
 grails.plugins.springsecurity.securityConfigType = SecurityConfigType.InterceptUrlMap
 grails.plugins.springsecurity.interceptUrlMap = [
 	'/js/vendor/**':  [
+		'IS_AUTHENTICATED_ANONYMOUSLY'
+	],
+	'/js/**':  [
+		'IS_AUTHENTICATED_ANONYMOUSLY'
+	],
+	'/plugins/**/js/**':  [
 		'IS_AUTHENTICATED_ANONYMOUSLY'
 	],
 	'/css/**': [
