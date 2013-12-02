@@ -93,11 +93,12 @@ class BootStrap {
 	}
 
 	private void createUsers() {
+		def rolePending = SecAuth.findByAuthority('ROLE_PENDING') ?: new SecAuth(authority: 'ROLE_PENDING').save(failOnError: true)
 		def roleUser = SecAuth.findByAuthority('ROLE_USER') ?: new SecAuth(authority: 'ROLE_USER').save(failOnError: true)
 		def roleAdmin = SecAuth.findByAuthority('ROLE_ADMIN') ?: new SecAuth(authority: 'ROLE_ADMIN').save(failOnError: true)
 
 
-		if(!SecUser.findByUsername('user1') ){
+		if(!SecUser.findByUsername('user1') ){	
 			3.times {
 				long id = it + 1
 				def user = new SecUser(username: "user$id", enabled: true, password: "password$id").save(failOnError: true)

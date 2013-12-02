@@ -1,3 +1,5 @@
+import grails.plugins.springsecurity.SecurityConfigType
+import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils
 // locations to search for config files that get merged into the main config;
 // config files can be ConfigSlurper scripts, Java properties files, or classes
 // in the classpath in ConfigSlurper format
@@ -121,158 +123,85 @@ grails.views.javascript.library="jquery"
 
 grails.mail.disabled=true
 
-// Grails security password requirements
-conf.ui.password.minLength=8
-conf.ui.password.maxLength=64
-// Stupendously long password validation regex (courtedy of Ryan Brooks (ryan.brooks@ndm.ox.ac.uk). Checks for all permutations of digit, character, symbol.
-conf.ui.password.validationRegex='((?=.*\\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&]))|((?=.*\\d)(?=.*[!@#$%^&](?=.*[a-zA-Z])))|((?=.*[a-zA-Z])(?=.*\\d)(?=.*[!@#$%^&]))|((?=.*[a-zA-Z])(?=.*[!@#$%^&])(?=.*\\d))|((?=.*[!@#$%^&])(?=.*\\d)(?=.*[a-zA-Z]))|((?=.*[!@#$%^&])(?=.*[a-zA-Z])(?=.*\\d))'
+grails{
+	plugins{
+		springsecurity{
 
-// Added by the Spring Security Core plugin:
-grails.plugins.springsecurity.userLookup.userDomainClassName = 'co.uk.mdc.SecUser'
-grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'co.uk.mdc.SecUserSecRole'
-grails.plugins.springsecurity.authority.className = 'co.uk.mdc.SecRole'
+			// Added by the Spring Security Core plugin:
+			userLookup.userDomainClassName = 'uk.co.mdc.SecUser'
+			userLookup.authorityJoinClassName = 'uk.co.mdc.SecUserSecAuth'
+			authority.className = 'uk.co.mdc.SecAuth'
 
-// Added by the Spring Security Core plugin:
-grails.plugins.springsecurity.userLookup.userDomainClassName = 'uk.co.mdc.SecUser'
-grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'uk.co.mdc.SecUserSecAuth'
-grails.plugins.springsecurity.authority.className = 'uk.co.mdc.SecAuth'
+			//disable to prevent double encryption of passwords
+			ui.encodePassword = false
 
-// User registration: don't add user to any roles by default (this is done by an admin to approve the account)
-grails.plugin.springsecurity.ui.register.defaultRoleNames = [] // no roles
-//security config
+			// User registration: don't add user to any roles by default (this is done by an admin to approve the account)
+			ui.register.defaultRoleNames = ['ROLE_PENDING']
 
-grails.plugin.springsecurity.controllerAnnotations.staticRules = [
-	'/':               ['permitAll'],
-	'/index':          ['permitAll'],
-	'/index.gsp':      ['permitAll'],
-	'/plugins/*/js/**':['permitAll'],
-	'/**/css/**':      ['permitAll'],
-	'/js/**':      ['permitAll']]
+			// Grails security password requirements
+			// Stupendously long password validation regex (courtesy of Ryan Brooks (ryan.brooks@ndm.ox.ac.uk). Checks for all permutations of digit, character, symbol.
+			//ui.password.validationRegex='((?=.*\\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&]))|((?=.*\\d)(?=.*[!@#$%^&](?=.*[a-zA-Z])))|((?=.*[a-zA-Z])(?=.*\\d)(?=.*[!@#$%^&]))|((?=.*[a-zA-Z])(?=.*[!@#$%^&])(?=.*\\d))|((?=.*[!@#$%^&])(?=.*\\d)(?=.*[a-zA-Z]))|((?=.*[!@#$%^&])(?=.*[a-zA-Z])(?=.*\\d))'
+			ui.password.minLength=8
+			ui.password.maxLength=64
 
-import grails.plugins.springsecurity.SecurityConfigType
+			securityConfigType = SecurityConfigType.InterceptUrlMap
+			useSecurityEventListener = true
 
+			onInteractiveAuthenticationSuccessEvent = { e, appCtx ->
+				uk.co.mdc.SecUser.withTransaction {
+					def user = uk.co.mdc.SecUser.get(appCtx.springSecurityService.currentUser.id)
+					user.lastLoginDate = new Date()
+					user.save()
+				}
+			}
 
-grails.plugins.springsecurity.securityConfigType = SecurityConfigType.InterceptUrlMap
-grails.plugins.springsecurity.interceptUrlMap = [
-	'/js/vendor/**':  [
-		'IS_AUTHENTICATED_ANONYMOUSLY'
-	],
-	'/plugins/**/js/**':  [
-		'IS_AUTHENTICATED_ANONYMOUSLY'
-	],
-	'/css/**': [
-		'IS_AUTHENTICATED_ANONYMOUSLY'
-	],
-	'/images/**': [
-		'IS_AUTHENTICATED_ANONYMOUSLY'
-	],
-	'/img/**': [
-		'IS_AUTHENTICATED_ANONYMOUSLY'
-	],
-	'/login/*':    [
-		'IS_AUTHENTICATED_ANONYMOUSLY'
-	],
-	'/logout/*':    [
-		'IS_AUTHENTICATED_ANONYMOUSLY'
-	],
-	'/register/*':    [
-		'IS_AUTHENTICATED_ANONYMOUSLY'
-	],
-	'/securityInfo/**':  [
-		"hasAnyRole('ROLE_ADMIN')",
-		'IS_AUTHENTICATED_FULLY'
-	],
-	'/role':  [
-		"hasAnyRole('ROLE_ADMIN')",
-		'IS_AUTHENTICATED_FULLY'
-	],
-	'/role/**':  [
-		"hasAnyRole('ROLE_ADMIN')",
-		'IS_AUTHENTICATED_FULLY'
-	],
-	'/user':  [
-		"hasAnyRole('ROLE_ADMIN')",
-		'IS_AUTHENTICATED_FULLY'
-	],
-	'/user/**':  [
-		"hasAnyRole('ROLE_ADMIN')",
-		'IS_AUTHENTICATED_FULLY'
-	],
-	'/aclClass':  [
-		"hasAnyRole('ROLE_ADMIN')",
-		'IS_AUTHENTICATED_FULLY'
-	],
-	'/aclClass/**':  [
-		"hasAnyRole('ROLE_ADMIN')",
-		'IS_AUTHENTICATED_FULLY'
-	],
-	'/aclSid':  [
-		"hasAnyRole('ROLE_ADMIN')",
-		'IS_AUTHENTICATED_FULLY'
-	],
-	'/aclSid/**':  [
-		"hasAnyRole('ROLE_ADMIN')",
-		'IS_AUTHENTICATED_FULLY'
-	],
-	'/aclEntry':  [
-		"hasAnyRole('ROLE_ADMIN')",
-		'IS_AUTHENTICATED_FULLY'
-	],
-	'/aclEntry/**':  [
-		"hasAnyRole('ROLE_ADMIN')",
-		'IS_AUTHENTICATED_FULLY'
-	],
-	'/aclObjectIdentity':  [
-		"hasAnyRole('ROLE_ADMIN')",
-		'IS_AUTHENTICATED_FULLY'
-	],
-	'/aclObjectIdentity/*':  [
-		"hasAnyRole('ROLE_ADMIN')",
-		'IS_AUTHENTICATED_FULLY'
-	],
-	'/conceptualDomain/*':         [
-		"hasAnyRole('ROLE_USER', 'ROLE_ADMIN')",
-		'IS_AUTHENTICATED_FULLY'
-	],
-	'/valueDomain/*':         [
-		"hasAnyRole('ROLE_USER', 'ROLE_ADMIN')",
-		'IS_AUTHENTICATED_FULLY'
-	],
-	'/dataElement/*':         [
-		"hasAnyRole('ROLE_USER', 'ROLE_ADMIN')",
-		'IS_AUTHENTICATED_FULLY'
-	],
-	'/umlModel/*':         [
-		"hasAnyRole('ROLE_USER', 'ROLE_ADMIN')",
-		'IS_AUTHENTICATED_FULLY'
-	],
-	'/document/*':         [
-		"hasAnyRole('ROLE_USER', 'ROLE_ADMIN')",
-		'IS_AUTHENTICATED_FULLY'
-	],
-	'/**':         [
-		"hasAnyRole('ROLE_USER', 'ROLE_ADMIN')",
-		'IS_AUTHENTICATED_FULLY']
-]
-
-grails.plugins.springsecurity.useSecurityEventListener = true
-
-grails.plugins.springsecurity.onInteractiveAuthenticationSuccessEvent = { e, appCtx ->
-	uk.co.mdc.SecUser.withTransaction {
-		def user = uk.co.mdc.SecUser.get(appCtx.springSecurityService.currentUser.id)
-		user.lastLoginDate = new Date()
-		user.save()
+			securityConfigType = "Annotation"
+			controllerAnnotations.staticRules = [
+				// FIXME the following 3 rules want adding back in when the index page is just an auth/advert page rather than the dashboard.
+//				'/':               		['IS_AUTHENTICATED_ANONYMOUSLY'],
+//				'/index':          		['IS_AUTHENTICATED_ANONYMOUSLY'],
+//				'/index.gsp':      		['IS_AUTHENTICATED_ANONYMOUSLY'],
+				// Javascript
+				'/js/**':      			['IS_AUTHENTICATED_ANONYMOUSLY'],
+				'/js/vendor/**':  		['IS_AUTHENTICATED_ANONYMOUSLY'],
+				'/plugins/**/js/**':	['IS_AUTHENTICATED_ANONYMOUSLY'],
+				// CSS
+				'/**/css/**':      		['IS_AUTHENTICATED_ANONYMOUSLY'],
+				'/css/**': 				['IS_AUTHENTICATED_ANONYMOUSLY'],
+				// Images
+				'/images/**': 			['IS_AUTHENTICATED_ANONYMOUSLY'],
+				'/img/**': 				['IS_AUTHENTICATED_ANONYMOUSLY'],
+				// Anonymously acessible pages, e.g. registration & login
+				'/login/*':    			['IS_AUTHENTICATED_ANONYMOUSLY'],
+				'/logout/*':    		['IS_AUTHENTICATED_ANONYMOUSLY'],
+				'/register/*':    		['IS_AUTHENTICATED_ANONYMOUSLY'],
+				
+				'/securityInfo/**': 	["hasAnyRole('ROLE_ADMIN')",'IS_AUTHENTICATED_FULLY'],
+				'/role':  				["hasAnyRole('ROLE_ADMIN')",'IS_AUTHENTICATED_FULLY'],
+				'/role/**':  			["hasAnyRole('ROLE_ADMIN')",'IS_AUTHENTICATED_FULLY'],
+				'/user':  				["hasAnyRole('ROLE_ADMIN')",'IS_AUTHENTICATED_FULLY'],
+				'/user/**':  			["hasAnyRole('ROLE_ADMIN')",'IS_AUTHENTICATED_FULLY'],
+				'/aclClass':  			["hasAnyRole('ROLE_ADMIN')",'IS_AUTHENTICATED_FULLY'],
+				'/aclClass/**': 	 	["hasAnyRole('ROLE_ADMIN')",'IS_AUTHENTICATED_FULLY'],
+				'/aclSid':  			["hasAnyRole('ROLE_ADMIN')",'IS_AUTHENTICATED_FULLY'],
+				'/aclSid/**':  			["hasAnyRole('ROLE_ADMIN')",'IS_AUTHENTICATED_FULLY'],
+				'/aclEntry':  			["hasAnyRole('ROLE_ADMIN')",'IS_AUTHENTICATED_FULLY'],
+				'/aclEntry/**': 		["hasAnyRole('ROLE_ADMIN')",'IS_AUTHENTICATED_FULLY'],
+				'/aclObjectIdentity':	["hasAnyRole('ROLE_ADMIN')",'IS_AUTHENTICATED_FULLY'],
+				'/aclObjectIdentity/*': ["hasAnyRole('ROLE_ADMIN')",'IS_AUTHENTICATED_FULLY'],
+				'/conceptualDomain/*':  ["hasAnyRole('ROLE_USER', 'ROLE_ADMIN')",'IS_AUTHENTICATED_FULLY'],
+				'/valueDomain/*':       ["hasAnyRole('ROLE_USER', 'ROLE_ADMIN')",'IS_AUTHENTICATED_FULLY'],
+				'/dataElement/*':       ["hasAnyRole('ROLE_USER', 'ROLE_ADMIN')",'IS_AUTHENTICATED_FULLY'],
+				'/umlModel/*':         	["hasAnyRole('ROLE_USER', 'ROLE_ADMIN')",'IS_AUTHENTICATED_FULLY'],
+				'/document/*':         	["hasAnyRole('ROLE_USER', 'ROLE_ADMIN')",'IS_AUTHENTICATED_FULLY'],
+				'/**':         			["hasAnyRole('ROLE_USER', 'ROLE_ADMIN')",'IS_AUTHENTICATED_FULLY']
+			]
+		}
 	}
 }
 
 
-//spring security ui - disable to prevent double encryption of passwords
-
-grails.plugins.springsecurity.ui.encodePassword = false
-
 //get username and add to audit logging
-
-import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils
 
 auditLog {
 	actorClosure = { request, session ->

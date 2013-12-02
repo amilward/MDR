@@ -14,6 +14,8 @@
 	<g:if test='${emailSent}'>
 	<br/>
 	<g:message code='spring.security.ui.register.sent'/>
+	<br/>
+	<a href="${createLink(uri: '/')}">Return to the homepage</a>
 	</g:if>
 	<g:else>
 
