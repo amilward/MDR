@@ -76,6 +76,10 @@ class PathwaysService {
 		//Grant admin user administrative permissions
 		addPermission pathwaysModelInstance, 'admin', BasePermission.ADMINISTRATION
 		
+		
+		//FIXME we are grantin all users all permissions at the moment
+		addPermission  pathwaysModelInstance, 'user', BasePermission.ADMINISTRATION
+		
 		//return the data element to the consumer (the controller)
 		pathwaysModelInstance
 	}

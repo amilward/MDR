@@ -2,9 +2,13 @@
 	
 	var self = this;
 	
+	//FIXME at the moment the gsp passes in the json....we should probably change this
+	
     self.loadPathway = function (id) {
         //Load a pathway model from server
     };
+    
+    //update an existing pathway
 
     self.updatePathway = function(pathwayModel){
     	
@@ -26,8 +30,11 @@
 
     }
     
+    //create a pathway and save it
+    
     self.savePathway = function (model) {
 
+    	console.log(ko.toJSON(model))
     	
     	return $.ajax({
     		type : "POST",
@@ -68,14 +75,34 @@
     	
     };
     
+    self.updateNode = function(jsonNodeToServer){
+    	return $.ajax({
+    		type: "POST",
+    		url: "/groovy_metadata_registry/Node/updateNodeFromJSON",
+    		data: self.stringify(jsonNodeToServer),
+    		/*success: function(data){
+    			console.log(data);
+    			vm.updateNodeFromServer(data.nodeId)
+    		},
+    		error: function (xhr, ajaxOptions, thrownError) {
+    	        console.log(xhr.status);
+    	        alert(thrownError);
+    	      },*/
+    		contentType: 'application/json',
+    		dataType: 'json'
+    		});
+    }
+    
+    
     self.createJsonNode = function(node, pathwayId){
     	var jsonNodeToServer = {}
     	var nodeInstance = {}
-    	nodeInstance.refId = node.name
+    	nodeInstance.id = node.id
     	nodeInstance.name = node.name
     	nodeInstance.description = node.description
     	nodeInstance.x = node.x
     	nodeInstance.y = node.y
+    	nodeInstance.forms = node.forms
     	nodeInstance.pathwaysModelId = pathwayId
     	jsonNodeToServer.nodeInstance = nodeInstance
     	//console.log(jsonNodeToServer)

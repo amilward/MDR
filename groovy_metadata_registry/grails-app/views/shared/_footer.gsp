@@ -51,7 +51,25 @@
             });
         </r:script>
   </sec:ifLoggedIn>
-  <div id="dialog-confirm" style="visibility: hidden"></div>
+  
+  <!--<div class="modal-dialog" id="dialog-confirm" style="visibility: hidden"></div>-->
+  
+  <!-- Confirm Modal -->
+    <div id="dialog-confirm" class="modal fade hide" id="dialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" >
+                <div class="modal-header">
+                    
+                    <h4 class="modal-title" id="myModalLabel"></h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="deleteModalButton" class="btn btn-primary">Confirm</button>
+                    <button type="button" class="closeModalLink btn btn-primary">Cancel</button>
+                </div>
+            </div><!-- /.modal-content -->
+      </div> <!-- /.modal-dialog -->
+   </div><!-- /.modal -->
+  
   <r:layoutResources />
   
   </body>

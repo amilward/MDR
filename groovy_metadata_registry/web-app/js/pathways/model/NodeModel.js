@@ -10,16 +10,16 @@
         self.type = 'node' //'node' | 'pathway'
         self.x = undefined
         self.y = undefined
+        self.subPathwayNameId = undefined;
+    	self.parentPathwayNameId = undefined;
         self.inputs = [];
         self.outputs = [];
         self.forms = [];
         self.collections = [];
-        self.subpathway = undefined;
+    	
 
         ko.track(self);
 
-    
-        
         self.setForms = function(JSONforms){
         	
         	//console.log(JSONforms)
@@ -35,9 +35,14 @@
         }
         
         self.addForm = function(form){
-        	
         	self.forms.push(form)
-        	
+        	var jsonNodeToServer = pathwayService.createJsonNode(self)
+        	console.log(jsonNodeToServer)
+        	$.when(pathwayService.updateNode(jsonNodeToServer)).done(function (data) {
+            	if(data.success===true){
+            		console.log('form added on server')
+            		}
+            	});
         }
         
 
@@ -78,6 +83,12 @@
         self.createSubPathway = function(root) {
             self.subpathway = new PathwayModel();
             self.subpathway.name = self.name;
+            
+            $.when(pathwayService.createPathway(jsonNodeToServer)).done(function (data) {
+            	if(data.success===true){
+            		console.log('form added on server')
+            		}
+            	});
             
             //root.pathwayModel = self.subPathway;
             //root.savePathway();
