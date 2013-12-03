@@ -22,7 +22,7 @@ class PathwaysModelSlurperSpec extends spock.lang.Specification {
 		
 	def "load pathway model that is empty" () {
 		when: "presented with an imput stream containing valid xml"		
-			def pathwaysModels = loadPathwaysModels(xml_pathways_models_empty)
+			def pathwaysModels = loadPathwaysModels(XML_PATHWAYS_MODELS_EMPTY)
 					
 		then: "an empty collection of pathway models should be returned"		
 			pathwaysModels == [];		
@@ -30,25 +30,30 @@ class PathwaysModelSlurperSpec extends spock.lang.Specification {
 	
 	def "throw an exception when xml has no namespace" () {
 		when: "presented with an imput stream containing invalid xml (no namespace)"
-			def pathwaysModels = loadPathwaysModels(xml_invalid_no_namespace)
+			def pathwaysModels = loadPathwaysModels(XML_INVALID_NO_NAMESPACE)
 		
 		then: "an exception should be thrown"		
-			Throwable e = thrown()	
+			RuntimeException e = thrown()	
 	}
 	
-	
+	def "throw an exception when root element is not a PathwaysModels element" () {
+		when: "presented with an imput stream containing invalid xml (incorrect root element name)"
+			def pathwaysModels = loadPathwaysModels(XML_INVALID_INCORRECT_ROOT_ELEMENT_NAME)
 		
-	
+		then: "an exception should be thrown"
+			RuntimeException e = thrown()
+	}
+			
 	/* XML Constants */
-	static final def xml_pi = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
-	static final def ns_pm = "http://pathways.mdc.co.uk/1/pm.xsd"
-	static final def quoted_pmxsdns = "\""+ns_pm+"\""
+	static final def XML_PI = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
+	static final def NS_PATHWAYS_MODEL = "http://pathways.mdc.co.uk/1/pm.xsd"
+	static final def QUOTED_NS_PATHWAYS_MODEL = "\""+NS_PATHWAYS_MODEL+"\""
 	
 	/* Turn Strings into streams */
 	
 	def List<PathwaysModel> loadPathwaysModels (String text) {
 		return PathwaysModel.loadXML(
-				convertToInputStream(xml_pathways_models_empty)
+				convertToInputStream(text)
 		);	
 	}
 	
@@ -57,22 +62,27 @@ class PathwaysModelSlurperSpec extends spock.lang.Specification {
 	}
 	
 	/* Example pathways models for using in tests */	
-	static final def xml_invalid_corrupt = xml_pi+"""
+	static final def XML_INVALID_CORRUPT = XML_PI+"""
 		<This is not valid XML>
 		<& neither is this!>
 	"""
 	
-	static final def xml_invalid_no_namespace = xml_pi+"""
+	static final def XML_INVALID_NO_NAMESPACE = XML_PI+"""
 		<PathwaysModels>
 			
 		</PathwaysModels>
 	"""
 	
-	static final String xml_pathways_models_empty = xml_pi+"""
-		<PathwaysModels xmlns="""+quoted_pmxsdns+""">
+	static final String XML_PATHWAYS_MODELS_EMPTY = XML_PI+"""
+		<PathwaysModels xmlns="""+QUOTED_NS_PATHWAYS_MODEL+""">
 			
 		</PathwaysModels>
-"""
+	"""
 	
+	static final String XML_INVALID_INCORRECT_ROOT_ELEMENT_NAME = XML_PI+"""
+		<OtherModel xmlns="""+QUOTED_NS_PATHWAYS_MODEL+""">
+			
+		</OtherModel>
+	"""
 
 }
