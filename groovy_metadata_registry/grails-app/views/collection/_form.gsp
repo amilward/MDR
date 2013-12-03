@@ -83,7 +83,9 @@
 					
 				</tbody>
 			</table>
-<g:javascript library="collection"/>	
+<g:javascript library="dualListBox"/>
+<g:javascript library="collection"/>
+	
 <r:script disposition="defer">
 
 	<g:if test="${!mandatoryDataElements*.id}">

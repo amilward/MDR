@@ -32,7 +32,7 @@ function getNode(nodeId){
 }
 
 function updateNode(updatedNodeJSON){
-	console.log(JSON.stringify(updatedNodeJSON))
+	console.log("updatedNodeJSON:" + JSON.stringify(updatedNodeJSON))
 	
 	$.ajax({
 		type: "POST",
