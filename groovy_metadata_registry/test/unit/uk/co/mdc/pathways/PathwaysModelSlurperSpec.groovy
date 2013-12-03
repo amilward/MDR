@@ -82,7 +82,20 @@ class PathwaysModelSlurperSpec extends spock.lang.Specification {
 	
 	/* Load single pathway */
 	
-	
+	static final String XML_PATHWAYS_MODEL_INVALID_NO_NAME = XML_PI+"""
+	<PathwaysModels xmlns="""+QUOTED_NS_PATHWAYS_MODEL+""">
+		<PathwaysModel/>
+	</PathwaysModels>
+	"""
+	 	
+	def "throw an exception when pathway model has no name" () {
+		when: "PathwaysModel does not have a name attribute"
+			def pathwaysModels = loadPathwaysModels(XML_PATHWAYS_MODEL_INVALID_NO_NAME)
+		
+		then: "an exception should be thrown"
+			RuntimeException e = thrown()
+	}
+
 	
 	/* Load multiple pathways */
 	
