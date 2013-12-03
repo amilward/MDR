@@ -108,9 +108,9 @@ td{
 </style>
 <link href="css/bootstrap.min.css" rel="stylesheet"/>
 
-<script type="text/javascript" src="js/vendor/jquery-1.10.1.min.js"></script>
-<script type="text/javascript" src="js/vendor/jquery-ui.1.10.2.js"></script>
-<script type="text/javascript" src="js/vendor/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/vendor/jquery/jquery-2.0.3.js"></script>
+<script type="text/javascript" src="js/vendor/jquery/jquery-ui.1.10.2.js"></script>
+<script type="text/javascript" src="js/vendor/bootstrap/bootstrap.js"></script>
 
 <script type="text/javascript">
 

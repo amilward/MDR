@@ -1,8 +1,20 @@
 package uk.co.mdc
 
-class IndexController {
+import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils
 
-    def index() { 
-		render(view: "index")
+class IndexController {
+	def springSecurityService
+
+	
+	def index() { 
+		
+		def roles = springSecurityService.getPrincipal().getAuthorities()
+		if(SpringSecurityUtils.ifAllGranted("ROLE_ADMIN")){
+			render(view: "/index")
+			return true
+		}else{
+			render(view: "/dashboard")
+			return true
+		}
 	}
 }

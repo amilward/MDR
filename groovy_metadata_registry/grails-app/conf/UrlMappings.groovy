@@ -14,7 +14,7 @@ class UrlMappings {
 			}
 		}
 
-		"/"(view:"/index")
+		"/"(controller:"index", action: "index")
 		"403"(controller: "errors", action: "error403") 
 		"404"(controller: "errors", action: "error404") 
 		"500"(controller: "errors", action: "error500") 
