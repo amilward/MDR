@@ -61,7 +61,7 @@ class PathwaysModel  {
 	 * @author Charles Crichton
 	 * @param inputStream The input stream to be parsed. 
 	 * @return Collection of loaded PathwayModels
-	 * @throws 
+	 * @throws RuntimeException
 	 */
 	static List<PathwaysModel> loadXML(InputStream inputStream) {
 	 
@@ -95,14 +95,24 @@ class PathwaysModel  {
 		
 		/* For each pm:PathwaysModel element in the pathways models :
 		 *  Create an empty pathway model
-		 *  Load (slurp) the pathway model
+		 *  Load (slurp) the pathway model nodes
+		 *  Load (slurp) the pathway model links
 		 *  [If there is an exception in slurp it implicitly gets passed up.]
 		 */
 		slurper."pm:PathwaysModel".each { pathwaysModelElement ->
 
 			def pathwaysModel = new PathwaysModel()
-			pathwaysModel.slurp(pathwaysModelElement)
-
+			pathwaysModel.slurpModelsAndNodes(pathwaysModelElement)
+			
+			//Work out a mapping from IDs to nodes
+			Map<String,Node> refIdToNode = {				
+				def map = new HashMap<String,Node>()				
+				addPathwaysModelID(pathwaysModel,map);				
+				return map
+			}
+			
+			pathwaysModel.slurpLinks(refIdToNode, pathwaysModelElement)
+			
 			//We get this far if there are no exceptions, so add to the list
 			pathwaysModels += pathwaysModel
 		}
@@ -115,8 +125,20 @@ class PathwaysModel  {
 		
 	}
 
+	private static def addPathwaysModelID(PathwaysModel pm, HashMap<String,uk.co.mdc.pathways.Node> map) { 
+		pm.getNodes().each { n ->
+			addNodeID(n,map)
+		}
+	}
 	
-	protected def slurp(groovy.util.slurpersupport.NodeChild pathwaysModelElement) {
+	private static def addNodeID(uk.co.mdc.pathways.Node n, HashMap<String,uk.co.mdc.pathways.Node> map) {
+		map[ n.refId ] = n 
+		if (n.subModel != null) {
+			addPathwaysModelID(n.subModel,map)
+		}
+	}
+	
+	protected def slurpModelsAndNodes(groovy.util.slurpersupport.NodeChild pathwaysModelElement) {
 		
 		//We must have a name
 		if (pathwaysModelElement.attributes().get('name') == null) {
@@ -139,7 +161,48 @@ class PathwaysModel  {
 		} else if (descriptionCount == 1) {
 			this.description = pathwaysModelElement.Description.text()
 		}
-			 
+		
+		//Create nodes
+		pathwaysModelElement.Node.each {
+			
+			//Create an empty node
+			uk.co.mdc.pathways.Node node = new uk.co.mdc.pathways.Node()
+			
+			//Slurp data into it
+			node.slurpModelsAndNodes(it)
+			
+			//Add to pathway elements
+			this.pathwayElements += node
+		}
+	}
+	
+	protected def slurpLinks(Map<String,Node> idRefToNode, groovy.util.slurpersupport.NodeChild pathwaysModelElement) {
+		
+		//Create links
+		pathwaysModelElement.Link.each { linkElement ->
+			
+			//Create an empty node
+			uk.co.mdc.pathways.Link link = new uk.co.mdc.pathways.Link()
+			
+			//Slurp data into it
+			link.slurpLink(idRefToNode, linkElement)
+			
+			//Add to pathway elements
+			this.pathwayElements += link
+		}
+		
+		//Traverse nodes
+		pathwaysModelElement.Node.each { nodeElement ->
+			
+			//Find the idRef (we know it must exist at this point as it has already been loaded once)
+			def nodeIdRef = nodeElement.@id
+			
+			//Find the node
+			def node = idRefToNode[nodeIdRef]
+			
+			//Slurp link data into it
+			node.slurpLinks(idRefToNode, nodeElement)
+		}
 	}
 	
 }
