@@ -3,9 +3,8 @@
 
 package uk.co.mdc.pathways
 
-import grails.test.mixin.*
-
-import org.junit.*
+//TOREMOVE import grails.test.mixin.*
+//TOREMOVE import org.junit.*
 
 import com.sun.xml.internal.ws.client.sei.ResponseBuilder.InputStreamBuilder;
 
