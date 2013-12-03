@@ -1,22 +1,19 @@
-﻿
 // setup some defaults for jsPlumb.	
-			jsPlumb.importDefaults({
-				Endpoint : [ "Dot", {
-					radius : 1
-				} ],
-				HoverPaintStyle : {
-					strokeStyle : "#1e8151",
-					lineWidth : 1
-				},
-				Connector: 'StateMachine',
-	            ConnectorStyle: { strokeStyle: "#5c96bc", lineWidth: 2, outlineColor: "transparent", outlineWidth: 4 },
-				ConnectionOverlays : [ [ "Arrow", {
-					location: 1,
-                    id: "arrow",
-                    length: 14,
-                    foldback: 0.8
-				} ],]
-			});
+jsPlumb.importDefaults({
+        Endpoint : [ "Dot", {
+                radius : 2
+        } ],
+        HoverPaintStyle : {
+                strokeStyle : "#1e8151",
+                lineWidth : 2
+        },
+        ConnectionOverlays : [ [ "Arrow", {
+                location : 1,
+                id : "arrow",
+                length : 14,
+                foldback : 0.8
+        } ],]
+});
 
 // Usage: <div class="node" data-bind="makeNode: $data">....</div>
 ko.bindingHandlers.makeNode = {
@@ -26,49 +23,59 @@ ko.bindingHandlers.makeNode = {
         //console.log('making load nodes')
         
         //Turn binded element into jsPlumb source node
-        jsPlumb.makeSource($('.anchor', element), {
+        jsPlumb.makeSource($('.ep', element), {
             parent: $(element),
             connector: 'StateMachine',
-            connectorStyle: { strokeStyle: "#5c96bc", lineWidth: 2, outlineColor: "transparent", outlineWidth: 4 },
-            connectorOverlays: [
-                  ["Arrow", {
-                      location: 1,
-                      id: "arrow",
-                      length: 14,
-                      foldback: 0.8
-                  }]
-            ],
-            anchor : 'Continuous',
-            endpoint: ["Dot", { radius: 1 }]
+            anchor: 'Continuous',
+            connector : [ "StateMachine", {curviness : 20} ],
+            connectorStyle : {
+                    strokeStyle : "#5c96bc",
+                    lineWidth : 2,
+                    outlineColor : "transparent",
+                    outlineWidth : 4
+            }
         });
 
         //Turn binded element into jsPlumb target node
         jsPlumb.makeTarget($(element), {
-            anchor: 'Continuous',
-            endpoint: ["Dot", { radius: 2 }]
+            anchor: 'Continuous'
         });
-
+        
         //Enable dragging of nodes
         jsPlumb.draggable($(element), {
             containment: "parent",
             stop: function( event, ui ) {
             	//node = ko.contextFor(element)
-            	value.y = Math.round(ui.position.top) + "px"
-            	value.x = Math.round(ui.position.left) + "px"
+            	value.y = Math.round(ui.position.top) + "px";
+            	value.x = Math.round(ui.position.left) + "px";
+                
+                bindingContext.$root.updatePathway();
             }
         });
         
+        $(element).css('top', value.y);
+        $(element).css('left', value.x);
+        
         $(element).bind('dblclick', function(){
-        	$( "#dialog-confirm .modal-header h4" ).text('Delete node?');
-        	$( "#dialog-confirm" ).modal({ show: true, keyboard: false, backdrop: 'static' });
-        	$( "#deleteModalButton" ).bind('click', function(){
-        		nodeInfo = ko.dataFor(element)
+        	$( "#dialog-confirm" ).text('Delete node?');
+        	$( "#dialog-confirm" ).dialog({
+   	   		 resizable: false,
+   	   		 height:140,
+   	   		 modal: true,
+   	   		 title: 'delete node',
+   	   		 buttons: {
+   	   		 "Delete Node": function() {
+   	   			$( this ).dialog( "close" );
+   	   			nodeInfo = ko.dataFor(element)
    	   			////console.log(nodeInfo.id)
    	   			vm.deleteNode(nodeInfo.id)
    	   			jsPlumb.remove($(element))
-   	   			$( "#deleteModalButton" ).unbind();
-        		$('.modal').modal('hide');
-        	})
+   	   		 },
+   	   		 Cancel: function() {
+   	   			 $( this ).dialog( "close" );
+   	   		 }
+   	   		 }
+   	   	 });
         	
         });
         
@@ -108,16 +115,27 @@ jsPlumb.bind("connection", function (info) {
 	 
     //binding for connection double click
     info.connection.bind("dblclick", function() {
-    	$( "#dialog-confirm .modal-header h4" ).text('Delete Connection?');
-    	$( "#dialog-confirm" ).modal({ show: true, keyboard: false, backdrop: 'static' });
-    	$( "#deleteModalButton" ).bind('click', function(){
+    	$( "#dialog-confirm" ).text('Delete connection?');
+	   	$( "#dialog-confirm" ).dialog({
+	   		 resizable: false,
+	   		 height:140,
+	   		 modal: true,
+	   		 title: 'delete connection',
+	   		 buttons: {
+	   		 "Delete Connection": function() {
+	   			$( this ).dialog( "close" );
+
 	   			var params = info.connection.getParameters()
+	   			
 	   			vm.deleteLink(params.connectionId);
 	   			jsPlumb.detach(info.connection);
-	   			$( "#deleteModalButton" ).unbind();
-	   			$('.modal').modal('hide');
-    	})
-    	
+	   			
+	   		 },
+	   		 Cancel: function() {
+	   			 $( this ).dialog( "close" );
+	   		 }
+	   		 }
+	   	 });
     	
     });
     
