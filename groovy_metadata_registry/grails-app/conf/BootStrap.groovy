@@ -101,12 +101,12 @@ class BootStrap {
 		if(!SecUser.findByUsername('user1') ){	
 			3.times {
 				long id = it + 1
-				def user = new SecUser(username: "user$id", enabled: true, password: "password$id").save(failOnError: true)
+				def user = new SecUser(username: "user$id", enabled: true, emailAddress: "testuser$id@example.org", password: "password$id").save(failOnError: true)
 				SecUserSecAuth.create user, roleUser
 			}
 		}
 
-		def admin = SecUser.findByUsername('admin') ?: new SecUser(username: 'admin', enabled: true, password: 'admin123').save(failOnError: true)
+		def admin = SecUser.findByUsername('admin') ?: new SecUser(username: 'admin', emailAddress: "testadmin1@example.org", enabled: true, password: 'admin123').save(failOnError: true)
 
 		if (!admin.authorities.contains(roleAdmin)) {
 			SecUserSecAuth.create admin, roleUser
@@ -126,7 +126,7 @@ class BootStrap {
 	private void grantPermissions() {
 		def dataElements = []
 
-		// grant admin admin on everything
+		// grant ROLE_ADMIN on everything
 
 		grantAdminPermissions(DataElement.list())
 		grantAdminPermissions(ValueDomain.list())
@@ -140,16 +140,33 @@ class BootStrap {
 		grantAdminPermissions(QuestionElement.list())
 		grantAdminPermissions(InputField.list())
 		grantAdminPermissions(PathwaysModel.list())
+		
+		// Grant ROLE_USER on everything
+		grantUserPermissions(DataElement.list())
+		grantUserPermissions(ValueDomain.list())
+		grantUserPermissions(ConceptualDomain.list())
+		grantUserPermissions(DataElementConcept.list())
+		grantUserPermissions(DataType.list())
+		grantUserPermissions(Document.list())
+		grantUserPermissions(ExternalReference.list())
+		grantUserPermissions(Collection.list())
+		grantUserPermissions(FormDesign.list())
+		grantUserPermissions(QuestionElement.list())
+		grantUserPermissions(InputField.list())
+		grantUserPermissions(PathwaysModel.list())
 
 	}
 
 
 	def grantAdminPermissions(objectList){
-
 		for (object in objectList) {
 			aclUtilService.addPermission object, 'admin', ADMINISTRATION
 		}
-
+	}
+	def grantUserPermissions(objectList){
+		for (object in objectList) {
+			aclUtilService.addPermission object, 'admin', ADMINISTRATION
+		}
 	}
 
 	def destroy = {

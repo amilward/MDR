@@ -24,8 +24,15 @@ tabData << [name: 'roles',    icon: 'icon_role', messageCode: 'spring.security.u
 		<table>
 		<tbody>
 
-			<s2ui:textFieldRow name='username' labelCode='user.username.label' bean="${user}"
+      <s2ui:textFieldRow name='username' labelCode='user.username.label' bean="${user}"
                             labelCodeDefault='Username' value="${user?.username}"/>
+      <s2ui:textFieldRow name='firstName' labelCode='user.firstName.label' bean="${user}"
+                            labelCodeDefault='First name' value="${user?.firstName}"/>
+      <s2ui:textFieldRow name='lastName' labelCode='user.lastName.label' bean="${user}"
+                            labelCodeDefault='Last name' value="${user?.lastName}"/>                      
+      <s2ui:textFieldRow name='email' labelCode='user.email.label' bean="${user}"
+                            labelCodeDefault='Email' value="${user?.email}"/>                      
+                            
 
 			<s2ui:passwordFieldRow name='password' labelCode='user.password.label' bean="${user}"
                                 labelCodeDefault='Password' value="${user?.password}"/>
