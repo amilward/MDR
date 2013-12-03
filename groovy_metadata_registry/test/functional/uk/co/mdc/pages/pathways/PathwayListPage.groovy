@@ -15,6 +15,8 @@ class PathwayListPage extends BasePageWithNav{
 	
 	static content = {
 		dataTableRows  { 	$("#documentTable tbody tr") }
-		searchBox  { 	$("#documentTable tbody tr") }
+		dataTableFirstRow  { $("#documentTable tbody tr:first") }
+		dataTableFirstRowName {dataTableFirstRow.find("a")}
+		searchBox  { 	$("#documentTable_filter input") }
 	}
 }
