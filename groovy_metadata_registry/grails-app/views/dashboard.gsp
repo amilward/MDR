@@ -211,14 +211,14 @@ $(function() {
 		  					<td>
 			  					<ul>
 			  						<g:each var="pathway" in="${draftPathways}">
-    									<li><a href="">${pathway.name}</a></li></p>
+    									<li><a href="pathwaysModel/show/${pathway.id}">${pathway.name}</a></li></p>
 									</g:each>
 			  					</ul>
 			  				</td>
 		  					<td>
 			  					<ul>
 			  						<g:each var="pathway" in="${finalizedPathways}">
-    									<li><a href="">${pathway.name}</a></li></p>
+    									<li><a href="pathwaysModel/show/${pathway.id}">${pathway.name}</a></li></p>
 									</g:each>
 			  					</ul>
 			  				</td>
@@ -250,14 +250,14 @@ $(function() {
 		  					<td>
 			  					<ul>
 			  						<g:each var="form" in="${draftForms}">
-    									<li><a href="">${form.name}</a></li></p>
+    									<li><a href="formDesign/show/${form.id}">${form.name}</a></li></p>
 									</g:each>
 			  					</ul>
 			  				</td>
 		  					<td>
 			  					<ul>
 			  						<g:each var="form" in="${finalizedForms}">
-    									<li><a href="">${form.name}</a></li></p>
+    									<li><a href="formDesign/show/${form.id}">${form.name}</a></li></p>
 									</g:each>
 			  					</ul>
 			  				</td>
