@@ -3,8 +3,8 @@
 
 package uk.co.mdc.pathways
 
-//TOREMOVE import grails.test.mixin.*
-//TOREMOVE import org.junit.*
+import grails.test.mixin.*
+import org.junit.*
 
 import com.sun.xml.internal.ws.client.sei.ResponseBuilder.InputStreamBuilder;
 
@@ -81,6 +81,8 @@ class PathwaysModelSlurperSpec extends spock.lang.Specification {
 	}
 	
 	/* Load single pathway */
+	
+	
 	
 	/* Load multiple pathways */
 	
