@@ -41,7 +41,7 @@
 	</div>
 	
 	
-<!-- Update Form Info -->
+<!-- Update Section Info -->
     <div id="EditSectionModal" class="modal fade hide" tabindex="-1"	role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop = "true" >
 	<div class="modal-dialog">
 		<div class="modal-content" data-bind="">
@@ -51,39 +51,18 @@
 			</div>
 			<div class="modal-body">
 			
-				<form class="form" role="form" data-bind="with: activeForm" id="createFormForm" action="#" method="post">
+				<form class="form" role="form" data-bind="with: currentlySelectedFormSection()" id="updateSection" action="#" method="post">
 					<div class="form-group">
-						<label for="txt-name" class="control-label">Name: </label> 
+						<label for="txt-name" class="control-label">Title: </label> 
 						<input name="name"
-							id="txt-name" type="text" class="form-control" data-bind="value: formDesignName, valueUpdate: 'input'" 
+							id="txt-name" type="text" class="form-control" data-bind="value: section().title, valueUpdate: 'input'" 
 							 />
 					</div>
-					<div class="form-group">
-						<label for="txt-desc" class="control-label">Description: </label>
-						<textarea name="description" id="txt-desc" rows="3" class="form-control" data-bind="value: formDescription, valueUpdate: 'input'" 
-							></textarea>
-					</div>
-					<div class="form-group">
-			            <label for="txt-version" class="control-label">Collection Id: </label> <a data-bind="text: formCollectionId"></a>
-			         </div>
-					
-					<div class="form-group">
-			            <label for="txt-version" class="control-label">Version: </label> <input
-			              id="txt-version" type="text" name="version" class="form-control" data-bind="value: versionNo, valueUpdate: 'input'" 
-			              />
-			         </div>
-			          <div class="form-group"> 
-			            <label for="bool-isDraft" class="control-label">Draft: </label> 
-			            <select data-bind="optionsText: 'isDraft', value: isDraft, optionsCaption: 'Choose...'">
-									<option value="true">true</option>
-   									 <option value="false">false</option>
-								</select>
-			          </div>
 				</form>
 			</div>
 			<div class="modal-footer">
         <button class="closeModalLink" type="button" class="btn"
-          >Close</button>
+          >Save</button>
       </div>
       
 		</div>
@@ -100,7 +79,7 @@
 	<!-- Update Form Info -->
     <div id="EditFormModal" class="modal fade hide" tabindex="-1"	role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop = "true" >
 	<div class="modal-dialog">
-		<div class="modal-content" data-bind="">
+		<div class="modal-content">
 			<div class="modal-header">
 				<!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>-->
 				<h4 class="modal-title" id="myModalLabel">Update Form</h4>

@@ -43,5 +43,9 @@ function Form(id, fullName, description, versionNo, isDraft, collectionId, formV
 	    confirm(heading, question, cancelButtonTxt, okButtonTxt, callback);
 	};
 	
+	self.editComponent = function(comp) {
+		$('#EditSectionModal').modal({ show: true, keyboard: false, backdrop: 'static' });
+	};
+	
 	
 }
