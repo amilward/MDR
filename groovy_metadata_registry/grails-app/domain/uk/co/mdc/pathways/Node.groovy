@@ -5,7 +5,7 @@ import uk.co.mdc.model.Collection;
 class Node extends PathwayElement{
 	
 	PathwaysModel subModel
-	String x
+	String x //ISSUE It seems strange to me that x and y are not integers. (@charlescrichton)
 	String y
 
 	static belongsTo = [pathwaysModel: PathwaysModel]
