@@ -9,6 +9,7 @@
 
 <!-- Le styles -->
 <link href="./css/bootstrap.min.css" rel="stylesheet">
+<link href="./css/custom.css" rel="stylesheet">
 <style type="text/css">
 body {
 	padding-top: 20px;
@@ -89,7 +90,7 @@ body {
 	border-radius: 0 3px 3px 0;
 }
 </style>
-<link href="../assets/css/bootstrap-responsive.css" rel="stylesheet">
+<link href="./css/bootstrap-responsive.min.css" rel="stylesheet">
 
 <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>
@@ -135,8 +136,8 @@ body {
 		<div class="jumbotron">
 			<h1>Model Catalogue</h1>
 			<p class="lead">
-				<b>Model</b> existing business processes and context. <b>Design</b>
-				new pathways, forms, data storage, studies. <b>Generate</b> better
+				<b><em>Model</em></b> existing business processes and context. <b><em>Design</em></b>
+				new pathways, forms, data storage, studies. <b><em>Generate</em></b> better
 				software components
 			</p>
 			<a class="btn btn-large btn-success" data-toggle="modal"
@@ -192,46 +193,53 @@ body {
 	<div class="hide fade modal" id="login-modal">
 		<div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal">×</button>
-			<h2>Please login</h2>
+			<h3>Login</h3>
 		</div>
 
-		<div class="modal-body">
-			<!-- The async form to send and replace the modals content with its response -->
-			<form class="form-horizontal well"
+		<!-- The async form to send and replace the modals content with its response -->
+		<form class="form-horizontal well"
 				action='/groovy_metadata_registry/j_spring_security_check'
 				method='POST' id='loginForm'>
+		<div class="modal-body">
+				<div class="alert alert-error" id="login-error">
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+					Invalid combination of username and password
+				</div>
 				<fieldset>
-					<input type='text' placeholder="Username"
-						class='text_ input-block-level' name='j_username' id='username' />
-
-					<input type='password' placeholder="Password"
-						class='text_ input-block-level' name='j_password' id='password' />
-
-
-					<p id="remember_me_holder">
+					<div class="form-label"><label for="username">Username</label></div>
+					<div class="form-input">					
+						<input type='text' placeholder="Username"
+							class='text_ input-block-level' name='j_username' id='username' />
+					</div>
+					<div class="form-label"><label for="password">Password</label></div>
+					<div class="form-input">
+						<input type='password' placeholder="Password"
+							class='text_ input-block-level' name='j_password' id='password' />
+					</div>
+					<div class="clearb">&nbsp;</div>
+					<div class="form-label"><label
+							for='remember_me'>Remember me</label></div>
+					<div class="form-input">					
 						<input type='checkbox' class='chk'
-							name='_spring_security_remember_me' id='remember_me' /> <label
-							for='remember_me'>Remember me</label>
-					</p>
+							name='_spring_security_remember_me' id='remember_me' />
+					</div>
 
-					<p>
-						<input type='submit' class="btn btn-large btn-primary btn-block"
-							id="submit" value='Login' />
-					</p>
 				</fieldset>
-			</form>
 		</div>
 
 		<div class="modal-footer">
+			<input type='submit' class="btn btn-primary"
+				id="submit" value='Login' />
 			<a href="#" class="btn" data-dismiss="modal">Cancel</a>
 		</div>
+		</form>
 	</div>
 
 	<!--  Sign Up Modal -->
 	<div class="hide fade modal" id="signup-modal">
 		<div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal">×</button>
-			<h2>Sign Up</h2>
+			<h3>Sign Up</h3>
 		</div>
 
 		<div class="modal-body">
@@ -240,9 +248,7 @@ body {
 				action='/groovy_metadata_registry/j_spring_security_check'
 				method='POST' id='loginForm'>
 				<fieldset>
-					<table id="s2ui_registration">
-						<tbody>
-
+						
 							<s2ui:textFieldRow name='username'
 								labelCode='user.username.label' bean="${command}" size='40'
 								labelCodeDefault='Username' value="" />
@@ -279,42 +285,12 @@ body {
 	<!-- Placed at the end of the document so the pages load faster -->
 	<script src="./js/vendor/jquery/jquery-2.0.3.js"></script>
 	<script src="./js/vendor/bootstrap/bootstrap.js"></script>
+	<script src="./js/application.js"></script>
+
+
+
 
 </body>
 </html>
 
 
-
-<!-- <!DOCTYPE html>
-<html>
-	<head>
-		<title>Welcome to the MDC Metadata Registry</title>
-	</head>
-	<body>
-		<h1>Not logged in!</h1>
-					<form action='/groovy_metadata_registry/j_spring_security_check' method='POST' id='loginForm'
-					class="form-signin" autocomplete='off'>
-					<p class="muted text-center">Please Login</p>
-
-					<input type='text' placeholder="Username"
-						class='text_ input-block-level' name='j_username' id='username' />
-
-					<input type='password' placeholder="Password"
-						class='text_ input-block-level' name='j_password' id='password' />
-
-
-					<p id="remember_me_holder">
-						<input type='checkbox' class='chk' name='_spring_security_remember_me'
-							id='remember_me'
-							 /> <label
-							for='remember_me'>Remember me</label>
-					</p>
-
-					<p>
-						<input type='submit' class="btn btn-large btn-primary btn-block"
-							id="submit"
-							value='Login' />
-					</p>
-				</form>
-	</body>
-</html> -->

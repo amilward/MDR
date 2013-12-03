@@ -194,8 +194,8 @@ $(function() {
 	  	<div class="dashboard-page" id="dashboard-pathways" style="display: none;">
 	  		<div class="dashboard-wrapper">
 		  		<h2>Pathway Models</h2>
-		  		<p>You currently have 2 pathways in a 'draft' state, and you have
-					previously finalised 5 pathway models. Click a model below to edit or
+		  		<p>You currently have ${draftPathways.size()} pathway(s) in a 'draft' state, and you have
+					previously finalised ${finalizedPathways.size()} pathway model(s). Click a model below to edit or
 					view, or start creating a new pathway model by clicking the button below...
 				</p>
 				
@@ -210,17 +210,16 @@ $(function() {
 		  				<tr>
 		  					<td>
 			  					<ul>
-			  						<li><a href="">Pathway 1</a></li>
-			  						<li><a href="">Pathway 2</a></li>
+			  						<g:each var="pathway" in="${draftPathways}">
+    									<li><a href="">${pathway.name}</a></li></p>
+									</g:each>
 			  					</ul>
 			  				</td>
 		  					<td>
 			  					<ul>
-			  						<li><a href="">NHIC Ovarian Cancer</a></li>
-			  						<li><a href="">NHIC Renal Transplantation</a></li>
-			  						<li><a href="">NHIC Acute Coronary Syndromes</a></li>
-			  						<li><a href="">NHIC Renal Intensive Care</a></li>
-			  						<li><a href="">NHIC Hepatitis B / C</a></li>
+			  						<g:each var="pathway" in="${finalizedPathways}">
+    									<li><a href="">${pathway.name}</a></li></p>
+									</g:each>
 			  					</ul>
 			  				</td>
 		  				</tr>
@@ -234,8 +233,8 @@ $(function() {
 	  	<div class="dashboard-page" id="dashboard-forms" style="display: none;">
 	  		<div class="dashboard-wrapper">
 	  	 		<h2>Forms</h2>
-		  		<p>You currently have 2 forms in a 'draft' state, and you have
-					previously finalised 1 form model. Click a model below to edit or
+		  		<p>You currently have ${draftForms.size()} form(s) in a 'draft' state, and you have
+					previously finalised ${finalizedForms.size()} form model(s). Click a model below to edit or
 					view, or start creating a new form model by clicking the button below...
 				</p>
 				
@@ -250,13 +249,16 @@ $(function() {
 		  				<tr>
 		  					<td>
 			  					<ul>
-			  						<li><a href="">Draft Form 1</a></li>
-			  						<li><a href="">Draft Form 2</a></li>
+			  						<g:each var="form" in="${draftForms}">
+    									<li><a href="">${form.name}</a></li></p>
+									</g:each>
 			  					</ul>
 			  				</td>
 		  					<td>
 			  					<ul>
-			  						<li><a href="">Haem / Onc MDT Version 0.1</a></li>
+			  						<g:each var="form" in="${finalizedForms}">
+    									<li><a href="">${form.name}</a></li></p>
+									</g:each>
 			  					</ul>
 			  				</td>
 		  				</tr>

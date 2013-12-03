@@ -127,6 +127,10 @@ grails{
 	plugins{
 		springsecurity{
 
+			// page to redirect to if a login attempt fails
+			failureHandler.defaultFailureUrl = '/?login_error=1'
+			
+			
 			// Added by the Spring Security Core plugin:
 			userLookup.userDomainClassName = 'uk.co.mdc.SecUser'
 			userLookup.authorityJoinClassName = 'uk.co.mdc.SecUserSecAuth'
@@ -157,10 +161,6 @@ grails{
 
 			securityConfigType = "Annotation"
 			controllerAnnotations.staticRules = [
-				// FIXME the following 3 rules want adding back in when the index page is just an auth/advert page rather than the dashboard.
-//				'/':               		['IS_AUTHENTICATED_ANONYMOUSLY'],
-//				'/index':          		['IS_AUTHENTICATED_ANONYMOUSLY'],
-//				'/index.gsp':      		['IS_AUTHENTICATED_ANONYMOUSLY'],
 				// Javascript
 				'/js/**':      			['IS_AUTHENTICATED_ANONYMOUSLY'],
 				'/js/vendor/**':  		['IS_AUTHENTICATED_ANONYMOUSLY'],
