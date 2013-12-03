@@ -202,13 +202,8 @@ class PathwaysModelSlurperSpec extends spock.lang.Specification {
 		when: "PathwaysModel has a node"
 			def pathwaysModels = loadPathwaysModels(XML_PATHWAYS_MODEL_WITH_DESCRIPTION_1)
 		
-		then: "the fields are instantiated"
-			assert pathwaysModels[0].name.equals("name")
-			assert pathwaysModels[0].versionNo.equals("1.0")
-			assert pathwaysModels[0].isDraft == false
-			assert pathwaysModels[0].description.equals("desc")
-			assert pathwaysModels[0].getNodes().isEmpty()
-			assert pathwaysModels[0].getLinks().isEmpty()
+		then: "the refId is instantiated"
+			assert pathwaysModels[0].getNodes()[0].refId == "id.1"			
 	}
 	
 	/* Pathways with sub-pathways */
