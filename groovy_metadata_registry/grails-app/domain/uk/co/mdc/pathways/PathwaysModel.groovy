@@ -64,10 +64,16 @@ class PathwaysModel  {
 	 * @throws 
 	 */
 	static List<PathwaysModel> loadXML(InputStream inputStream) {
-
+	 
 		//Load the inputstream into an XmlSlurper object.
-		groovy.util.slurpersupport.NodeChild slurper = new XmlSlurper().parse(inputStream).declareNamespace(pm: NS_PATHWAYS_MODEL)
-
+		groovy.util.slurpersupport.NodeChild slurper;
+		
+		try {
+			slurper = new XmlSlurper().parse(inputStream).declareNamespace(pm: NS_PATHWAYS_MODEL)
+		} catch(e) {
+			throw new RuntimeException("Unable to load XML",e);
+		}
+		 
 		//Define a list to hold the resulting PathwaysModels - this will be returned.
 		def pathwaysModels = []
 
@@ -89,20 +95,51 @@ class PathwaysModel  {
 		
 		/* For each pm:PathwaysModel element in the pathways models :
 		 *  Create an empty pathway model
-		 *  Load (slurp) the 
-		 * 
-		 * 
+		 *  Load (slurp) the pathway model
+		 *  [If there is an exception in slurp it implicitly gets passed up.]
 		 */
-		slurper."pm:PathwaysModels". {
+		slurper."pm:PathwaysModel".each { pathwaysModelElement ->
 
 			def pathwaysModel = new PathwaysModel()
-			pathwaysModel.slurp(item)
+			pathwaysModel.slurp(pathwaysModelElement)
 
 			//We get this far if there are no exceptions, so add to the list
 			pathwaysModels += pathwaysModel
 		}
-
+		
+		//TODO Something to do with the security domain
+		
+		//TODO Save the pathways into hibernate (as one transaction)
+		
 		return pathwaysModels;
+		
 	}
 
+	
+	protected def slurp(groovy.util.slurpersupport.NodeChild pathwaysModelElement) {
+		
+		//We must have a name
+		if (pathwaysModelElement.attributes().get('name') == null) {
+			throw new RuntimeException("Missing PathwaysModel/@name attribute")
+		}
+		this.name = pathwaysModelElement.@name
+		
+		//VersionNo can be null
+		this.versionNo = pathwaysModelElement.attributes().get('versionNo')
+		
+		//isDraft when true
+		String isDraftValue = pathwaysModelElement.attributes().get('isDraft')		
+		this.isDraft = isDraftValue != null && isDraftValue.toLowerCase().equals("true")
+			
+		//Description when present (We only allow one description item)
+		def descriptionCount = pathwaysModelElement.Description.size()
+		  
+		if (descriptionCount > 1) {
+			throw new RuntimeException("Too many Description elements. A maximum of one Description element is allowed in each PathwaysModel element.")
+		} else if (descriptionCount == 1) {
+			this.description = pathwaysModelElement.Description.text()
+		}
+			 
+	}
+	
 }

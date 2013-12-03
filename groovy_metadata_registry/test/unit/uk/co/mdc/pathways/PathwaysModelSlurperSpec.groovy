@@ -1,6 +1,3 @@
-
-
-
 package uk.co.mdc.pathways
 
 import grails.test.mixin.*
@@ -82,20 +79,139 @@ class PathwaysModelSlurperSpec extends spock.lang.Specification {
 	
 	/* Load single pathway */
 	
-	static final String XML_PATHWAYS_MODEL_INVALID_NO_NAME = XML_PI+"""
+	static final String XML_PATHWAYS_MODEL_NO_ATTRIBUTES = XML_PI+"""
 	<PathwaysModels xmlns="""+QUOTED_NS_PATHWAYS_MODEL+""">
 		<PathwaysModel/>
 	</PathwaysModels>
 	"""
 	 	
-	def "throw an exception when pathway model has no name" () {
-		when: "PathwaysModel does not have a name attribute"
-			def pathwaysModels = loadPathwaysModels(XML_PATHWAYS_MODEL_INVALID_NO_NAME)
+	static final String XML_PATHWAYS_MODEL_JUST_NAME_ATTRIBUTE = XML_PI+"""
+	<PathwaysModels xmlns="""+QUOTED_NS_PATHWAYS_MODEL+""">
+		<PathwaysModel name="name"/>
+	</PathwaysModels>
+	"""
+	
+	static final String XML_PATHWAYS_MODEL_WITH_ATTRIBUTES_1 = XML_PI+"""
+	<PathwaysModels xmlns="""+QUOTED_NS_PATHWAYS_MODEL+""">
+		<PathwaysModel versionNo="1.0" isDraft="true" name="name"/>
+	</PathwaysModels>
+	"""
+	
+	static final String XML_PATHWAYS_MODEL_WITH_ATTRIBUTES_2 = XML_PI+"""
+	<PathwaysModels xmlns="""+QUOTED_NS_PATHWAYS_MODEL+""">
+		<PathwaysModel versionNo="1.0" isDraft="false" name="name"/>
+	</PathwaysModels>
+	"""
+	
+	static final String XML_PATHWAYS_MODEL_WITH_DESCRIPTION_1 = XML_PI+"""
+	<PathwaysModels xmlns="""+QUOTED_NS_PATHWAYS_MODEL+""">
+		<PathwaysModel versionNo="1.0" isDraft="false" name="name">
+			<Description>desc</Description>
+		</PathwaysModel>
+	</PathwaysModels>
+	"""
+	
+	static final String XML_PATHWAYS_MODEL_WITH_TOO_MANY_DESCRIPTIONS = XML_PI+"""
+	<PathwaysModels xmlns="""+QUOTED_NS_PATHWAYS_MODEL+""">
+		<PathwaysModel versionNo="1.0" isDraft="false" name="name">
+			<Description>desc</Description>
+			<Description>desc</Description>
+		</PathwaysModel>
+	</PathwaysModels>
+	"""
+	
+	def "PathwaysModel with no name attribute is invalid" () {
+		when: "PathwaysModel has no attributes"
+			def pathwaysModels = loadPathwaysModels(XML_PATHWAYS_MODEL_NO_ATTRIBUTES)
 		
 		then: "an exception should be thrown"
-			RuntimeException e = thrown()
+			RuntimeException e = thrown()				
 	}
 
+	def "PathwaysModel with just name attribute" () {
+		when: "PathwaysModel has no attributes"
+			def pathwaysModels = loadPathwaysModels(XML_PATHWAYS_MODEL_JUST_NAME_ATTRIBUTE)
+		
+		then: "the fields are instantiated"
+			assert pathwaysModels[0].name.equals("name")
+			assert pathwaysModels[0].versionNo == null
+			assert pathwaysModels[0].isDraft == false
+			assert pathwaysModels[0].description == null
+			assert pathwaysModels[0].getNodes().isEmpty()
+			assert pathwaysModels[0].getLinks().isEmpty()
+	}
+	
+	def "PathwaysModel has some attributes 1" () {
+		when: "PathwaysModel has some attributes 1"
+			def pathwaysModels = loadPathwaysModels(XML_PATHWAYS_MODEL_WITH_ATTRIBUTES_1)
+		
+		then: "the fields are instantiated"
+			assert pathwaysModels[0].name.equals("name")
+			assert pathwaysModels[0].versionNo.equals("1.0")
+			assert pathwaysModels[0].isDraft == true
+			assert pathwaysModels[0].description == null
+			assert pathwaysModels[0].getNodes().isEmpty()
+			assert pathwaysModels[0].getLinks().isEmpty()
+	}
+	
+	def "PathwaysModel has some attributes 2" () {
+		when: "PathwaysModel has some attributes 2"
+			def pathwaysModels = loadPathwaysModels(XML_PATHWAYS_MODEL_WITH_ATTRIBUTES_2)
+		
+		then: "the fields are instantiated"
+			assert pathwaysModels[0].name.equals("name")
+			assert pathwaysModels[0].versionNo.equals("1.0")
+			assert pathwaysModels[0].isDraft == false
+			assert pathwaysModels[0].description == null
+			assert pathwaysModels[0].getNodes().isEmpty()
+			assert pathwaysModels[0].getLinks().isEmpty()
+	}
+	
+	def "PathwaysModel has a description 1" () {
+		when: "PathwaysModel has a description 1"
+			def pathwaysModels = loadPathwaysModels(XML_PATHWAYS_MODEL_WITH_DESCRIPTION_1)
+		
+		then: "the fields are instantiated"
+			assert pathwaysModels[0].name.equals("name")
+			assert pathwaysModels[0].versionNo.equals("1.0")
+			assert pathwaysModels[0].isDraft == false
+			assert pathwaysModels[0].description.equals("desc")
+			assert pathwaysModels[0].getNodes().isEmpty()
+			assert pathwaysModels[0].getLinks().isEmpty()
+	}
+	
+	def "PathwaysModel has too many descriptions" () {
+		when: "PathwaysModel has too many descriptions"
+			def pathwaysModels = loadPathwaysModels(XML_PATHWAYS_MODEL_WITH_TOO_MANY_DESCRIPTIONS)
+		
+		then: "an exception should be thrown"
+			RuntimeException e = thrown()	
+	}
+	
+	/* Pathways with nodes and links */
+	
+	static final String XML_PATHWAYS_MODEL_WITH_ONE_NODE = XML_PI+"""
+	<PathwaysModels xmlns="""+QUOTED_NS_PATHWAYS_MODEL+""">
+		<PathwaysModel versionNo="1.0" isDraft="false" name="name">
+			<Node id="id.1"/>			 
+		</PathwaysModel>
+	</PathwaysModels>
+	"""
+	
+	def "PathwaysModel has a node" () {
+		when: "PathwaysModel has a node"
+			def pathwaysModels = loadPathwaysModels(XML_PATHWAYS_MODEL_WITH_DESCRIPTION_1)
+		
+		then: "the fields are instantiated"
+			assert pathwaysModels[0].name.equals("name")
+			assert pathwaysModels[0].versionNo.equals("1.0")
+			assert pathwaysModels[0].isDraft == false
+			assert pathwaysModels[0].description.equals("desc")
+			assert pathwaysModels[0].getNodes().isEmpty()
+			assert pathwaysModels[0].getLinks().isEmpty()
+	}
+	
+	/* Pathways with sub-pathways */
 	
 	/* Load multiple pathways */
 	
