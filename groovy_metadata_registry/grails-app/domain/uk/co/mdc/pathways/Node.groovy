@@ -1,5 +1,7 @@
 package uk.co.mdc.pathways
 
+import java.util.Map;
+
 import uk.co.mdc.model.Collection;
 
 class Node extends PathwayElement{
@@ -29,6 +31,58 @@ class Node extends PathwayElement{
 		y nullable:true
     }
 	
+	protected def slurpModelsAndNodes(groovy.util.slurpersupport.NodeChild nodeElement) {
+		
+		//We must have an id
+		if (nodeElement.attributes().get('id') == null) {
+			throw new RuntimeException("Missing Node/@id attribute")
+		}
+		this.refId = nodeElement.@id
+		
+		//We must have a name
+		if (nodeElement.attributes().get('name') == null) {
+			throw new RuntimeException("Missing Node/@name attribute")
+		}
+		this.name = nodeElement.@name
+		
+		//Load x and y if available
+		this.x = nodeElement.attributes().get('x')
+		this.y = nodeElement.attributes().get('y')
+		
+		//Description when present (We only allow one description item)
+		def descriptionCount = nodeElement.Description.size()
+		  
+		if (descriptionCount > 1) {
+			throw new RuntimeException("Too many Description elements. A maximum of one Description element is allowed in each Node element.")
+		} else if (descriptionCount == 1) {
+			this.description = nodeElement.Description.text()
+		}
+		
+		//Make sure there is a submodel list to put items into
+		if (nodeElement."pm:PathwaysModel".size() > 0) {
+			this.subModel = []
+		}
+		//Load any submodels if present
+		/* For each pm:PathwaysModel element in the pathways models :
+		 *  Create an empty pathway model
+		 *  Load (slurp) the pathway model
+		 *  [If there is an exception in slurp it implicitly gets passed up.]
+		 */
+		nodeElement."pm:PathwaysModel".each { pathwaysModelElement ->
+
+			def pathwaysModel = new PathwaysModel()
+			pathwaysModel.slurp(pathwaysModelElement)
+
+			//We get this far if there are no exceptions, so add to the list
+			subModel = pathwaysModel
+		}
+	}
 	
+	protected def slurpLinks(Map<String,Node> idRefToNode, groovy.util.slurpersupport.NodeChild nodeElement) {
+		nodeElement."pm:PathwaysModel".each { pathwaysModelElement ->			
+			/* We know that the submodel must exist as we have already loaded it */
+			subModel.slurpLinks(idRefToNode, pathwaysModelElement)						
+		}		
+	}
 
 }
