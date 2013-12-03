@@ -2,19 +2,24 @@ package uk.co.mdc
 
 import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils
 
+import grails.plugins.springsecurity.Secured
+
+@Secured(['IS_AUTHENTICATED_ANONYMOUSLY'])
 class IndexController {
 	def springSecurityService
 
 	
 	def index() { 
 		
-		def roles = springSecurityService.getPrincipal().getAuthorities()
+		
 		if(SpringSecurityUtils.ifAllGranted("ROLE_ADMIN")){
-			render(view: "/index")
-			return true
-		}else{
+			render(view: "/admin_index")
+		} else if(SpringSecurityUtils.ifAllGranted("ROLE_USER")){
 			render(view: "/dashboard")
-			return true
+		} else {
+			render(view: "/index")
+		
 		}
+
 	}
 }
