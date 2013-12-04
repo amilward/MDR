@@ -17,7 +17,7 @@
                     foldback: 0.8
 				} ],]
 			});
-
+			
 // Usage: <div class="node" data-bind="makeNode: $data">....</div>
 ko.bindingHandlers.makeNode = {
     init: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
@@ -58,7 +58,6 @@ ko.bindingHandlers.makeNode = {
             	value.x = Math.round(ui.position.left) + "px"
             }
         });
-        
 
         $(element).bind('dblclick', function(){
         	$( "#dialog-confirm .modal-header h4" ).text('Delete node?');

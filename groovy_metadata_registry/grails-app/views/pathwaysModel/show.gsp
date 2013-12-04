@@ -13,8 +13,8 @@
 <link rel="stylesheet" href="${resource(dir: 'css', file: 'bootstrap-editable.css')}" type="text/css">
 <link rel="stylesheet" href="${resource(dir: 'css', file: 'layout.css')}" type="text/css">
 <link rel="stylesheet" href="${resource(dir: 'css', file: 'custom.css')}" type="text/css">
-
 <link rel="stylesheet" href="${resource(dir: 'css/pathways', file: 'style.css')}" type="text/css">
+<link rel="stylesheet" href="${resource(dir: 'css/pathways', file: 'treeView.css')}" type="text/css">
 <link rel="stylesheet" href="${resource(dir: 'css', file: 'font-awesome.min.css')}" type="text/css">
 
 </head>
@@ -27,11 +27,43 @@
 					<div class="panel-heading">Tree View</div>
 					<div class="panel-body" data-bind="with: pathwayModel">
 						<div class="pathway-title" data-bind="attr:{title: name">{{name}}</div>
-						<ul data-bind="foreach: nodes">
-							<li><a
-								data-bind="attr:{title: description}, click: $root.selectNode">{{name}}</a>
-							</li>
-						</ul>
+						
+						<div id="jsTreeView" class="treeview">
+								  <ul class="level1" data-bind="foreach: nodes">
+								    <li>
+								    <!-- ko if: subPathwayId != null -->
+								      <input type="checkbox" checked data-bind="click: function(){ getSubNodes(); return !self.checked;}, attr:{id: 'cb' + id}">
+								    <!-- /ko -->
+								      <label data-bind="attr:{for: 'cb' + id}">
+								        <span data-bind="attr:{title: description}, click: $root.selectNode, text: name"></span>
+								      </label>
+								      <!-- ko if: subNodes != null -->
+								      <ul class="level2" data-bind="foreach: subNodes">
+								        <li>
+								        	<!-- ko if: subPathwayId != null -->
+										      <input type="checkbox" checked data-bind="click: function(){ getSubNodes(); return !self.checked;}, attr:{id: 'cb' + id}">
+										    <!-- /ko -->
+										    <label data-bind="attr:{for: 'cb' + id}">
+								        	<span data-bind="text: name"></span>
+								        	 </label>
+								        	  <!-- ko if: subNodes != null -->
+								        	 <ul class="level3" data-bind="foreach: subNodes">
+										        <li>
+												    <label data-bind="attr:{for: 'cb' + id}">
+										        	<span data-bind="text: name"></span>
+										        	 </label>
+										        </li> 
+										      </ul>
+										      <!-- /ko -->
+								        </li> 
+								      </ul>
+								      <!-- /ko -->
+								      
+								    </li>
+								    
+								  </ul>
+						</div>
+						
 					</div>
 				</div>
 			</div>
@@ -60,11 +92,7 @@
                  <div class="form-group">
                       <h1 id="pathwayName">{{pathwayModel ? pathwayModel.name : ''}}</h1>
                 </div>
-
-            
-               
-                
-                
+ 
             </div>
             <div class="panel-body" data-bind="with: pathwayModel">
                 <div class="jsplumb-container" data-bind="foreach: nodes ">

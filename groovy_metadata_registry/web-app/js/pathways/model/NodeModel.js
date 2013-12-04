@@ -13,6 +13,7 @@
         self.subPathway = undefined;
         self.subPathwayId = undefined;
         self.subPathwayName = undefined;
+        self.subNodes = [];
         self.inputs = [];
         self.outputs = [];
         self.forms = [];
@@ -33,6 +34,31 @@
 	        	self.forms.push(form)
         	});
         	
+        }
+        
+        self.getSubNodes = function(){
+        	if(self.subPathwayId){
+        		
+        	$.when(pathwayService.getPathwayNodes(self.subPathwayId)).done(function (data) {
+            	if(data.success===true){
+            		console.log(data.nodes)
+            		//reset subNodes
+            		self.subNodes = [];
+            		$.each(data.nodes, function(index, value){
+            			var node = new NodeModel()
+                		node.id = value.id
+                		node.name = value.name
+                		if(value.subModelId){
+                			node.subPathwayId = value.subModelId;
+                		}else{
+                			node.subPathwayId = null;
+                		}
+                		self.subNodes.push(node);
+            		})
+            		console.log(self.subNodes)
+            		}
+            	});
+        	}
         }
         
         self.addForm = function(form){

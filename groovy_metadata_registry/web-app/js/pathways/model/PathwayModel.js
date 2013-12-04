@@ -17,7 +17,6 @@
         ko.track(self);
 
         //We can now use the observable without ()
-
     };
 
     //json marshaller(so we don't get cyclical problems)

@@ -15,9 +15,10 @@ function initPathways(param){
 
 
     //console.log('applying bindings')
-    
+
     //Bind the view model to <body> and its descendants
     ko.applyBindings(vm, document.getElementById('content'));
+    
 
     //Initial action on page load
     if(param==='create'){

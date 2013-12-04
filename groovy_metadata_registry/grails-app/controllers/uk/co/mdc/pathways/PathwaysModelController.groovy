@@ -98,6 +98,22 @@ class PathwaysModelController {
 	}
 
 
+	def getNodes(Long id){
+		def pathwaysModelInstance = findInstance(id);
+		def model
+		if(pathwaysModelInstance){
+			def nodes = pathwaysModelInstance.getNodes()
+			
+			model = [success: true, nodes: nodes]
+		
+		}else{
+			
+			 model = [errors: true, details: 'no model for this id included']
+		}
+		
+		
+		render model as JSON
+	}
 	
 	def saveREST() {
 		def unvalidated = request.JSON

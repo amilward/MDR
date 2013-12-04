@@ -84,6 +84,15 @@
     	
     };
     
+    self.getPathwayNodes = function(pathwayId){
+    	return $.ajax({
+    		type: "POST",
+    		url: "/groovy_metadata_registry/PathwaysModel/getNodes/" + pathwayId,
+    		contentType: 'application/json',
+    		dataType: 'json'
+    		});
+    }
+    
     self.updateNode = function(jsonNodeToServer){
     	return $.ajax({
     		type: "POST",

@@ -6,16 +6,18 @@
 
         //Pathway Model
         self.pathwayModel = undefined;
-        
+ 
+        //FIX ME not using this at the moment - might be worth using it it cache 
         self.containerPathway = undefined;
 
         //View related properties
         self.selectedNode = undefined;
 
         self.availableForms = [];
-
+        
         //Turn all self.XXX properties above this statement to observable{Array}
         ko.track(self);
+        
 
         //We can now use the observable without ()
 
@@ -115,6 +117,13 @@
             //Set current seletect node to bind to properties panel
         	//console.log(ko.toJSON(n))
             self.selectedNode = n;
+        };
+        
+        self.getNodeName = function (n) {
+            //Set current seletect node to bind to properties panel
+        	//console.log(ko.toJSON(n))
+        	return ko.toJSON(n)
+           // self.selectedNode = n;
         };
         
         self.loadNode = function(JSONNode) {
