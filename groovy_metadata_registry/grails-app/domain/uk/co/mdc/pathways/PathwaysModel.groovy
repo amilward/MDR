@@ -28,8 +28,7 @@ class PathwaysModel  {
 
 		this.pathwayElements.each{ element ->
 
-			if(element.instanceOf(Node)){
-
+			if(element instanceof Node){
 				nodes.push(element)
 			}
 		}
@@ -42,7 +41,7 @@ class PathwaysModel  {
 
 		this.pathwayElements.each{ element ->
 
-			if(element.instanceOf(Link)){
+			if(element instanceof Link){
 				links.push(element)
 			}
 		}
@@ -105,12 +104,9 @@ class PathwaysModel  {
 			pathwaysModel.slurpModelsAndNodes(pathwaysModelElement)
 			
 			//Work out a mapping from IDs to nodes
-			Map<String,Node> refIdToNode = {				
-				def map = new HashMap<String,Node>()				
-				addPathwaysModelID(pathwaysModel,map);				
-				return map
-			}
-			
+			HashMap<String,Node> refIdToNode = new HashMap<String,Node>()				
+			addPathwaysModelID(pathwaysModel,refIdToNode);				
+						
 			pathwaysModel.slurpLinks(refIdToNode, pathwaysModelElement)
 			
 			//We get this far if there are no exceptions, so add to the list
@@ -162,6 +158,11 @@ class PathwaysModel  {
 			this.description = pathwaysModelElement.Description.text()
 		}
 		
+		//Create a list to store the pathwaysModelElements
+		if (this.pathwayElements == null && pathwaysModelElement.Node.size() > 0) {
+			this.pathwayElements = []
+		}
+		
 		//Create nodes
 		pathwaysModelElement.Node.each {
 			
@@ -189,6 +190,11 @@ class PathwaysModel  {
 			
 			//Add to pathway elements
 			this.pathwayElements += link
+		}
+		
+		//Create a list to store the pathwaysModelElements
+		if ( this.pathwayElements == null && pathwaysModelElement.Link.size() > 0) {
+			this.pathwayElements = []
 		}
 		
 		//Traverse nodes
