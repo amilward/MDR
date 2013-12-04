@@ -41,9 +41,9 @@ class PathwaysModelSpec extends spock.lang.Specification {
 			pathwaysModel.pathwayElements = [ node1, node2, link ];
 			
 		then: "we can get the nodes and link back out"
-			assert pathwaysModel.getNodes()[0] == node1;
-			assert pathwaysModel.getNodes()[1] == node2;
-			assert pathwaysModel.getLinks()[0] == link;
+			assert pathwaysModel.getNodes().contains(node1)
+			assert pathwaysModel.getNodes().contains(node2)
+			assert pathwaysModel.getLinks().contains(link)
 	}
 	
 //    void testSomething() {
