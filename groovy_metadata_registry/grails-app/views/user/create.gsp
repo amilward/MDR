@@ -1,7 +1,7 @@
 <html>
 
 <head>
-	<meta name='layout' content='springSecurityUI'/>
+	<meta name='layout' content='main_no-sidebar'/>
 	<g:set var="entityName" value="${message(code: 'user.label', default: 'User')}"/>
 	<title><g:message code="default.create.label" args="[entityName]"/></title>
 </head>
@@ -18,9 +18,8 @@ tabData << [name: 'userinfo', icon: 'icon_user', messageCode: 'spring.security.u
 tabData << [name: 'roles',    icon: 'icon_role', messageCode: 'spring.security.ui.user.roles']
 %>
 
-<s2ui:tabs elementId='tabs' height='375' data="${tabData}">
-
-	<s2ui:tab name='userinfo' height='280'>
+<div>
+  <div>
 		<table>
 		<tbody>
 
@@ -40,28 +39,22 @@ tabData << [name: 'roles',    icon: 'icon_role', messageCode: 'spring.security.u
 			<s2ui:checkboxRow name='enabled' labelCode='user.enabled.label' bean="${user}"
                            labelCodeDefault='Enabled' value="${user?.enabled}"/>
 
-			<s2ui:checkboxRow name='accountExpired' labelCode='user.accountExpired.label' bean="${user}"
-                           labelCodeDefault='Account Expired' value="${user?.accountExpired}"/>
-
-			<s2ui:checkboxRow name='accountLocked' labelCode='user.accountLocked.label' bean="${user}"
-                           labelCodeDefault='Account Locked' value="${user?.accountLocked}"/>
-
-			<s2ui:checkboxRow name='passwordExpired' labelCode='user.passwordExpired.label' bean="${user}"
-                           labelCodeDefault='Password Expired' value="${user?.passwordExpired}"/>
 		</tbody>
 		</table>
-	</s2ui:tab>
-
-	<s2ui:tab name='roles' height='280'>
+  </div>
+  <div>
+  <h2>Roles</h2>
 		<g:each var="auth" in="${authorityList}">
-		<div>
-			<g:checkBox name="${auth.authority}" />
-			<g:link controller='role' action='edit' id='${auth.id}'>${auth.authority.encodeAsHTML()}</g:link>
-		</div>
-		</g:each>
-	</s2ui:tab>
 
-</s2ui:tabs>
+			<g:if test="${ auth.authority != "ROLE_PENDING" }">
+			<div>
+			   <g:checkBox name="${auth.authority}" />
+			   <g:link controller='role' action='edit' id='${auth.id}'>${auth.authority.encodeAsHTML()}</g:link>
+        </div>
+			</g:if>
+		</g:each>
+  </div>
+</div>
 
 <div style='float:left; margin-top: 10px; '>
 <s2ui:submitButton elementId='create' form='userCreateForm' messageCode='default.button.create.label'/>

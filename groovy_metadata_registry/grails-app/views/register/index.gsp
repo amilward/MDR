@@ -6,7 +6,7 @@
 
          
 
-<s2ui:form width='650' height='300' elementId='loginFormContainer'
+<s2ui:form width='650' height='350' elementId='loginFormContainer'
            titleCode='spring.security.ui.register.description' center='false'>
 
 <g:form action='register' name='registerForm'>
@@ -29,7 +29,12 @@
 
 		<s2ui:textFieldRow name='email' bean="${command}" value="${command.email}"
 		                   size='40' labelCode='user.email.label' labelCodeDefault='E-mail'/>
-
+		                   
+      <s2ui:textFieldRow name='firstName' labelCode='user.firstName.label' bean="${command}"
+                            labelCodeDefault='First name' value="${command?.firstName}"/>
+      <s2ui:textFieldRow name='lastName' labelCode='user.lastName.label' bean="${command}"
+                            labelCodeDefault='Last name' value="${command?.lastName}"/>                   
+                            
 		<s2ui:passwordFieldRow name='password' labelCode='user.password.label' bean="${command}"
                              size='40' labelCodeDefault='Password' value="${command.password}"/>
 

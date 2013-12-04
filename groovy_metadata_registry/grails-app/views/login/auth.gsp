@@ -74,7 +74,7 @@
 		<div class="text-center">
 			<ul class="inline">
 				<li><a id="forgottenPasswordLink" class="muted"
-					href="../forgotPassword/" data-toggle="tab">Forgot Password</a></li>
+					href="../register/forgotPassword" data-toggle="tab">Forgot Password</a></li>
 				<li><a id="registerLink" class="muted" href="../register/"
 					data-toggle="tab">Signup</a></li>
 			</ul>
