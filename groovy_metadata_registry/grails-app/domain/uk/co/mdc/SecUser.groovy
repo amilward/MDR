@@ -7,6 +7,9 @@ class SecUser {
 
 	String username
 	String password
+	String email
+	String firstName
+	String lastName
 	boolean enabled
 	boolean accountExpired
 	boolean accountLocked
@@ -18,6 +21,9 @@ class SecUser {
 	static constraints = {
 		username blank: false, unique: true
 		password blank: false
+		email nullable: true
+		firstName nullable: true
+		lastName nullable: true 
 		lastLoginDate nullable: true
 	}
 

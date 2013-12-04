@@ -10,14 +10,14 @@
 </sec:ifNotSwitched>
 
 <head>
-	<meta name='layout' content='springSecurityUI'/>
+	<meta name='layout' content='main_no-sidebar'/>
 	<g:set var="entityName" value="${message(code: 'user.label', default: 'User')}"/>
 	<title><g:message code="default.edit.label" args="[entityName]"/></title>
 </head>
 
 <body>
 
-<h3><g:message code="default.edit.label" args="[entityName]"/></h3>
+<h1><g:message code="default.edit.label" args="[entityName]"/></h1>
 
 <g:form action="update" name='userEditForm' class="button-style">
 <g:hiddenField name="id" value="${user?.id}"/>
@@ -33,9 +33,9 @@ if (isOpenId) {
 }
 %>
 
-<s2ui:tabs elementId='tabs' height='375' data="${tabData}">
+<div>
 
-	<s2ui:tab name='userinfo' height='275'>
+	<div>
 		<table>
 		<tbody>
 
@@ -44,6 +44,13 @@ if (isOpenId) {
 
 			<s2ui:passwordFieldRow name='password' labelCode='user.password.label' bean="${user}"
                                 labelCodeDefault='Password' value="${user?.password}"/>
+
+      <s2ui:textFieldRow name='firstName' labelCode='user.firstName.label' bean="${user}"
+                            labelCodeDefault='First name' value="${user?.firstName}"/>
+      <s2ui:textFieldRow name='lastName' labelCode='user.lastName.label' bean="${user}"
+                            labelCodeDefault='Last name' value="${user?.lastName}"/>                      
+      <s2ui:textFieldRow name='email' labelCode='user.email.label' bean="${user}"
+                            labelCodeDefault='Email' value="${user?.email}"/>       
 
 			<s2ui:checkboxRow name='enabled' labelCode='user.enabled.label' bean="${user}"
                            labelCodeDefault='Enabled' value="${user?.enabled}"/>
@@ -58,16 +65,16 @@ if (isOpenId) {
                            labelCodeDefault='Password Expired' value="${user?.passwordExpired}"/>
 		</tbody>
 		</table>
-	</s2ui:tab>
-
-	<s2ui:tab name='roles' height='275'>
+	</div>
+	<div>
+	<h2>Roles</h2>
 		<g:each var="entry" in="${roleMap}">
 		<div>
 			<g:checkBox name="${entry.key.authority}" value="${entry.value}"/>
 			<g:link controller='role' action='edit' id='${entry.key.id}'>${entry.key.authority.encodeAsHTML()}</g:link>
 		</div>
 		</g:each>
-	</s2ui:tab>
+	</div>
 
 	<g:if test='${isOpenId}'>
 	<s2ui:tab name='openIds' height='275'>
@@ -84,7 +91,7 @@ if (isOpenId) {
 	</s2ui:tab>
 	</g:if>
 
-</s2ui:tabs>
+</div>
 
 <div style='float:left; margin-top: 10px;'>
 <s2ui:submitButton elementId='update' form='userEditForm' messageCode='default.button.update.label'/>

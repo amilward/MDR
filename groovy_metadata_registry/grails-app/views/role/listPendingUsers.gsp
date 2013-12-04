@@ -2,7 +2,6 @@
 
 <head>
 <meta name="layout" content="main_no-sidebar">
-<g:set var="entityName" value="${message(code: 'role.label', default: 'Role')}" />
 <title>Activate pending users</title>
 </head>
 
