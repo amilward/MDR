@@ -2,6 +2,7 @@ package uk.co.mdc.authentication;
 import geb.spock.GebReportingSpec
 
 import uk.co.mdc.authentication.pages.*
+import uk.co.mdc.authentication.pages.pathways.*
 
 class UserLoginSpec extends GebReportingSpec {
 
@@ -72,17 +73,7 @@ class UserLoginSpec extends GebReportingSpec {
 	//When I authenticate with a correct username/password combination
 	//and I have navigated directly to the login screen
 	//Then I am redirected to the system dashboard
-	def "Successful login when going to the login page directly"() {
-		when: 'I enter the incorrect credentials'
-		to LoginPage
-		username = "baduser"
-		password = "badpassword"
-		submitButton.click()
-
-		then: 'Then an error message is displayed stating the combination is incorrect and I can try again'
-		at LoginPage
-		invalidUsernameOrPasswordError
-		
+	def "Successful login when going to the login page directly"() {		
 		when: 'I enter the correct credentials'
 		to LoginPage
 		username = "user1"
@@ -99,6 +90,25 @@ class UserLoginSpec extends GebReportingSpec {
 	//and I have been redirected to the login screen whilst trying to access another resource
 	//and I am authorised to access that resource
 	//Then I am redirected to the requested resource
+	def "Successful login when attempting to go somewhere else"() {
+		when: 'I go to a restricted page and I am not logged in'
+		go "pathwaysModel/list"
+		
+		then:'I am redirected to the login screen'
+		waitFor{
+			at LoginPage
+		}
+		
+		when:'I authenticate successfully'
+		username = "user1"
+		password = "password1"
+		submitButton.click(PathwayListPage)
+
+		then: 'I am redirected to my original destination'
+		waitFor{
+			at PathwayListPage
+		}
+	}
 	
 	//When I authenticate with a correct username/password combination
 	//and I have been redirected to the login screen whilst trying to access another resource
@@ -117,4 +127,39 @@ class UserLoginSpec extends GebReportingSpec {
 	//Given I am logged in
 	//When I click the "log out" button
 	//Then my session is terminated and I am returned to the log in page
+	
+	// Given I am logged in as a standard user
+	// When I visit the pathways, form designer or data model sections
+	// Then I am able to view them
+//	def "Standard user has permissions to view the main areas"(){
+//		given:"I am logged in as a standard user"
+//		to LoginPage
+//		username = "user1"
+//		password = "password1"
+//		submitButton.click(DashboardPage)
+//		
+//		when: "I click on the data model link in the navigation bar"
+//		nav.modelLink.click()
+//		
+//		then: "I am taken to the data model page"
+//		waitFor{
+//			at ModelListPage
+//		}
+//		
+//		when: "I click on the pathways link in the navigation bar"
+//		nav.pathwayLink.click()
+//		
+//		then: "I am taken to the pathways page"
+//		waitFor{
+//			at PathwayListPage
+//		}
+//		
+//		when: "I click on the form designer link in the navigation bar"
+//		nav.formLink.click()
+//		
+//		then: "I am taken to the form designer page"
+//		waitFor{
+//			at FormListPage
+//		}
+//	}
 }

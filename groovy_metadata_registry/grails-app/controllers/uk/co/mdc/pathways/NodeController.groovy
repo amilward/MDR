@@ -68,6 +68,8 @@ class NodeController {
 		def data = request.JSON
 		def model
 		
+		println(data)
+		
 		if(data?.nodeInstance?.id){
 			
 			def nodeInstance = findInstance(data.nodeInstance.id)

@@ -98,7 +98,23 @@ class PathwaysModelController {
 	}
 
     def create() {
-        [pathwaysModelInstance: new PathwaysModel(params)]
+		
+		println(params)
+		println()
+		
+		if(params.isDraft==null){
+			params.isDraft = false
+		}
+		
+		def pathwaysModelInstance = pathwaysService.create(params)
+		
+		if(pathwaysModelInstance.save(failOnError:true, flush:true)){
+			redirect(action: "show", id: pathwaysModelInstance.id)
+		}else{
+			redirect(action: "list")
+		}
+		
+        
     }
 	
 	def saveREST() {
@@ -135,14 +151,30 @@ class PathwaysModelController {
 	
 	
     def show() {
-        def pathwaysModelInstance = findInstance()
-        if (!pathwaysModelInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'pathwaysModel.label', default: 'PathwaysModel'), id])
-            redirect(action: "list")
-            return
-        }
-
-        [pathwaysModelInstance: pathwaysModelInstance as JSON]
+		
+		println(params)
+		if(params.name){
+			if(params.isDraft==null){
+				params.isDraft = false
+			}
+			
+			def pathwaysModelInstance = pathwaysService.create(params)
+			
+			if(pathwaysModelInstance.save(failOnError:true, flush:true)){
+				redirect(action: "show", id: pathwaysModelInstance.id)
+			}else{
+				redirect(action: "list")
+			}
+		}else{
+	        def pathwaysModelInstance = findInstance()
+	        if (!pathwaysModelInstance) {
+	            flash.message = message(code: 'default.not.found.message', args: [message(code: 'pathwaysModel.label', default: 'PathwaysModel'), id])
+	            redirect(action: "list")
+	            return
+	        }
+	
+	        [pathwaysModelInstance: pathwaysModelInstance as JSON]
+		}
     }
 	
 	

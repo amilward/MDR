@@ -22,46 +22,12 @@
 									
 					<div class="form-info">
 					
-					<p class="lead"><span data-bind="text: formDesignName"></span></p>
+					<p class="lead"><span data-bind="text: formDesignName"></span><button type="button" class="btn btn-link btn-xs pull-right" data-bind="click: editForm">
+                   	 <i class="fa fa-edit"></i> Edit Form Info
+                	</button></p>
 					
-					<table class="small-rounded">
 					
-						<tr>
-							<td>Form Name:</td>
-							<td><span id="pencil"><i class="icon-pencil"></i></span></td>
-							<td>
-								<a data-bind="editable: formDesignName, editableOptions: { mode: 'inline' }"></a>
-							</td>
-						</tr>
-						<tr>
-							<td>Collection Id:</td>
-							<td><span id="pencil"><i class="icon-pencil"></i></span></td>
-							<td>
-								<a data-bind="text: formCollectionId"></a>
-							</td>
-						</tr>
-						<tr>
-							<td>Description:</td>
-							<td><span id="pencil"><i class="icon-pencil"></i></span></td>
-							<td>
-								<a data-bind="editable: formDescription, editableOptions: { mode: 'inline' }"></a>
-							</td>
-						</tr>
-						<tr>
-							<td>Version Name:</td>
-							<td><span id="pencil"><i class="icon-pencil"></i></span></td>
-							<td>
-								<a data-bind="editable: versionNo, editableOptions: { mode: 'inline' }"></a>
-							</td>
-						</tr>
-						<tr>
-							<td>Is Draft:</td>
-							<td><span id="pencil"><i class="icon-pencil"></i></span></td>
-							<td>
-								<a data-bind="editable: isDraft, editableOptions: { mode: 'inline' }"></a>
-							</td>
-						</tr>
-					</table>
+					
 					</div>
 					
 					<div class="spacer30"></div>
@@ -381,7 +347,7 @@
 					<h5><span data-bind="text: name"></span></h5>
 					<ul data-bind="foreach: {data: elements, as: 'element'}">
 						<li class="palette-option" 
-							data-bind="draggable: { data: createComponent(element),
+							data-bind="draggable: { data: $root.createComponent(element),
 							connectClass: 'section',
 							options: { 
 										appendTo: '#center-panel',
@@ -405,7 +371,7 @@
 					<h5><span data-bind="text: name"></span></h5>
 					<ul data-bind="foreach: {data: elements, as: 'element'}">
 						<li class="palette-option" 
-							data-bind="draggable: { data: createComponent(element),
+							data-bind="draggable: { data: $root.createComponent(element),
 							connectClass: 'form-item',
 							options: { 
 										appendTo: '#center-panel',

@@ -2,7 +2,7 @@ package uk.co.mdc.forms
 
 import uk.co.mdc.model.Collection
 
-class FormDesign {
+class FormDesign extends Collection{
 	
 	String name 
 	String versionNo

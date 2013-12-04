@@ -32,7 +32,6 @@
 <link rel="stylesheet"
 	href="${resource(dir: 'css', file: 'datatable/jquery.dataTables.css')}"
 	type="text/css">
-
 <g:javascript library="jquery_lib" />
 <g:javascript library="jquery" plugin="jquery" />
 <!--  FIXME, there's duplication here -->
@@ -60,7 +59,6 @@
 	<!-- BEGIN WRAP -->
 	<div id="wrap">
 
-
 		<!-- BEGIN TOP BAR -->
 		<div id="top">
 			<!-- .navbar -->
@@ -73,7 +71,6 @@
 						</a> <a class="brand" href="${createLink(uri: '/')}">MDC</a>
 						<!-- .topnav -->
 						<div class="btn-toolbar topnav">
-
 							<div class="btn-group">
 								<a id="changeSidebarPos" class="btn btn-success" rel="tooltip"
 									data-original-title="Show / Hide Sidebar"
@@ -97,6 +94,7 @@
 								</g:link>
 							</div>
 						</div>
+
 
 						<div class="search-bar">
 							<div class="row-fluid">
@@ -125,8 +123,8 @@
 						<!-- /.topnav -->
 						<div class="nav-collapse collapse">
 							<!-- .nav -->
-							<ul class="nav">
-								<li class="active"><a href="index.html">Dashboard</a></li>
+							<ul id="navbar" class="nav">
+								<li><a href="/">Dashboard</a></li>
 
 								<li class="dropdown"><a data-toggle="dropdown"
 									class="dropdown-toggle" href="#"> Profile <b class="caret"></b>
@@ -138,22 +136,22 @@
 									</ul></li>
 								<sec:ifLoggedIn>
 
-									<!-- Value domains menu -->
-									<li><g:link action="list" controller="ValueDomain">
-											<i class="icon-angle-right"></i> Data model </g:link></li>
+                  <!-- Value domains menu -->
+                  <li id="nav-model-link"><g:link action="list" controller="ValueDomain"><i class="icon-angle-right"></i> Data model </g:link></li>
+                  
+                  <!-- Pathways menu -->
+                  <li class="dropdown"><a id="nav-pathway-expand" data-toggle="dropdown"
+                    class="dropdown-toggle" href="#"> Pathways <b
+                      class="caret"></b>
+                  </a>
+                    <ul class="dropdown-menu">
+                      <li id="nav-pathway-link"><g:link action="list" controller="PathwaysModel">
+                          <i class="icon-angle-right"></i> List pathways</g:link></li>
 
-									<!-- Pathways menu -->
-									<li class="dropdown"><a data-toggle="dropdown"
-										class="dropdown-toggle" href="#"> Pathways <b
-											class="caret"></b>
-									</a>
-										<ul class="dropdown-menu">
-											<li><g:link action="list" controller="PathwaysModel">
-													<i class="icon-angle-right"></i> List pathways</g:link></li>
-
-											<li><a id="openModalLink" href="#"> <i
-													class="icon-angle-right"></i> Create pathway
-											</a></li>
+                      <li><a id="openModalLink" href="#"> <i
+                          class="icon-angle-right"></i> Create pathway
+                      </a></li>
+   
 										</ul> <script>
 											// FIXME ryan refactor into JS file
 											$('#openModalLink')

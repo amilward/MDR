@@ -162,6 +162,10 @@ class FormDesignService {
 							 
 							 addPermission inputField, 'admin', BasePermission.ADMINISTRATION
 							 
+							 //FIXME Grant user user administrative permissions
+							 
+							 addPermission inputField, 'user', BasePermission.ADMINISTRATION
+							 
 							  
 						//create question
 							 
@@ -185,6 +189,10 @@ class FormDesignService {
 								 //Grant admin user administrative permissions
 								 
 								 addPermission question, 'admin', BasePermission.ADMINISTRATION
+								 
+								 //FIXME Grant user user administrative permissions
+								 
+								 addPermission question, 'user', BasePermission.ADMINISTRATION
 	
 								 questionNumber++
 								 
@@ -211,6 +219,10 @@ class FormDesignService {
 		
 		addPermission formDesignInstance, 'admin', BasePermission.ADMINISTRATION
 		
+		
+		//FIXME Grant user user administrative permissions
+		
+		addPermission formDesignInstance, 'user', BasePermission.ADMINISTRATION
 		
 		//return the data element to the consumer (the controller)
 		
@@ -264,11 +276,16 @@ class FormDesignService {
 	//no restriction on the getDataType MEthod at the moment
 	
 	def getDataType(String dataType, Integer valueDomainId){
+		println(dataType)
 		if(valueDomainId){
 			ValueDomain valueDomain = ValueDomain.get(valueDomainId);
+			println(valueDomain.dataType)
 			return valueDomain.dataType
-		}else{
+		}else if(DataType.findByName(dataType.capitalize())){
+			println(DataType.findByName(dataType.capitalize()))
 			return DataType.findByName(dataType.capitalize())
+		}else{
+			return DataType.findByName('String')
 		}
 	}
 	
@@ -287,8 +304,7 @@ class FormDesignService {
 		formDesignInstance.name = form.formDesignName
 		formDesignInstance.description = form.formDescription
 		formDesignInstance.versionNo = form.versionNo
-		formDesignInstance.isDraft= form.isDraft
-	   
+		formDesignInstance.isDraft = form.isDraft.toBoolean()
 		
 		//update questions.
 
@@ -405,6 +421,10 @@ class FormDesignService {
 				 //Grant admin user administrative permissions
 				 
 				 addPermission sectionInstance, 'admin', BasePermission.ADMINISTRATION
+				 
+				 //FIXME Grant user user administrative permissions
+				 
+				 addPermission sectionInstance, 'user', BasePermission.ADMINISTRATION
 
 				 def questions = section.questions
 				 
@@ -432,6 +452,10 @@ class FormDesignService {
 							 
 							 addPermission inputField, 'admin', BasePermission.ADMINISTRATION
 							 
+							 //FIXME Grant user user administrative permissions
+							 
+							 addPermission inputField, 'user', BasePermission.ADMINISTRATION
+							 
 							  
 						//create question
 							 
@@ -453,6 +477,10 @@ class FormDesignService {
 								 //Grant admin user administrative permissions
 								 
 								 addPermission newQuestion, 'admin', BasePermission.ADMINISTRATION
+								 
+								 //FIXME Grant user user administrative permissions
+								 
+								 addPermission newQuestion, 'user', BasePermission.ADMINISTRATION
 	
 								 questionNumber++
 								 
