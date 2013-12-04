@@ -43,28 +43,16 @@
         	 pm.id = pathwayJSON.id;
         	 self.pathwayModel = pm;
         	 var nodes = pathwayJSON.nodes;
-        	 
-        	 
-				        	 $.each(nodes, function( index, node ) {
-				        		self.loadNode(node);        	 
-				        	 });
-								     
-				   
-        	 
-        	 //console.log('finished creating nodes')
-        	 
-        	 setTimeout( function()
-							      {
-							       var links = pathwayJSON.links;
-							       $.each(links, function( index, link ) {
-							            		 //console.log('load link')
-							            		self.loadLink(link);        	 
-							         	 });
-							      }, 100);
-        	 
-        	 
-        	 
-
+        	    $.each(nodes, function( index, node ) {
+				        self.loadNode(node);        	 
+				 });
+			  setTimeout( function()
+				 {
+							var links = pathwayJSON.links;
+							 $.each(links, function( index, link ) {
+							      self.loadLink(link);        	 
+							 });
+				 }, 100);
         }
         
         self.createPathway = function (pathway) {
@@ -110,22 +98,19 @@
         
         self.loadNode = function(JSONNode) {
         	//create the node in the model
-        	//console.log('test')
+        	//create the node in the model
         	var node = new NodeModel();
             node.name = JSONNode.name;
             node.x = JSONNode.x ;
             node.y = JSONNode.y ;
             node.id = JSONNode.id
 	        node.version = JSONNode.nodeVersion
-	        node.setForms(JSONNode.optionalOutputs)
-	         self.pathwayModel.version = JSONNode.pathwaysModelVersion
-	         self.pathwayModel.nodes.push(node);
-	         //console.log("loadNodecomplete");
-
+	        node.setForms(JSONNode.optionalOutputs);
+            node.setCollections(JSONNode.optionalInputs);
+	        self.pathwayModel.version = JSONNode.pathwaysModelVersion
+	        self.pathwayModel.nodes.push(node);
         };
-        
-        
-        
+
         self.createNode = function(){
             	$('#CreateNode').modal({ show: true, keyboard: false, backdrop: 'static' });
         };
@@ -362,15 +347,15 @@
         	});
 
         }
-
         //#endregion
-
-        
         //FIXME  need to pu this into either the node model method and find a better way to call it or take all
         // he methods out of the node model and put them here 
-		self.addFormFinish = function(){
-		        	  $('#AddFormModal').modal('hide');
-		        }
+        self.addFormFinish = function(){
+      	    $('#AddFormModal').modal('hide');
+        }
+        self.addCollectionFinish = function(){
+        	$('#AddCollectionModal').modal('hide');
+        }
         
         //Initialize form list using FormService
         $.when(loadFormList()).done(function (data) {

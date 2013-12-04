@@ -79,9 +79,6 @@ class NodeService {
 			
 			//Grant admin user administrative permissions
 			addPermission nodeInstance, 'admin', BasePermission.ADMINISTRATION
-			
-			//FIXME we are grainting all users all permissions at the moment
-			addPermission  nodeInstance, 'user', BasePermission.ADMINISTRATION
 		
 		
 		if(nodeInstance && parameters?.pathwaysModelId){
@@ -149,21 +146,26 @@ class NodeService {
 	Node update(Node nodeInstance, Map parameters) {
 		 
 		def forms = []
-		if(parameters?.forms){
-			
+		if(parameters?.forms){			
 			//FIXME at the moment we are putting the forms into the optionalOutputs - as we develop the model this may change
-			def pForms = parameters?.forms
-			
+			def pForms = parameters?.forms			
 			pForms.each{ form->
 				forms.push(FormDesign.get(form.id))
 			}
-			
-			println(forms)
 			parameters?.optionalOutputs = forms
 		}
+		
+		def collections = []		
+		if(parameters?.collections){
+			//FIXME at the moment we are putting the collections into the optionalInputs - as we develop the model this may change
+			def pCollection = parameters?.collections
+			pCollection.each{ collection->
+				collections.push(uk.co.mdc.model.Collection.get(collection.id))
+			}  
+			parameters?.optionalInputs = collections			
+		}		
 		nodeInstance.properties = parameters
 		nodeInstance.save()
-
 		nodeInstance
 	}
 	
@@ -181,7 +183,7 @@ class NodeService {
 		
 		def sources  = Link.findAllWhere(source: nodeInstance)
 		
-		println('removing link sources and targets')
+		//println('removing link sources and targets')
 		
 		sources.each{ link ->
 			link.refresh()
