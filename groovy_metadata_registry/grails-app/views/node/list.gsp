@@ -29,9 +29,7 @@
 					
 						<th><g:message code="node.pathwaysModel.label" default="Pathways Model" /></th>
 					
-						<g:sortableColumn property="x" title="${message(code: 'node.x.label', default: 'X')}" />
-					
-						<g:sortableColumn property="y" title="${message(code: 'node.y.label', default: 'Y')}" />
+						<g:sortableColumn property="x" title="${message(code: 'node.x.label', default: 'SubModel')}" />
 					
 					</tr>
 				</thead>
@@ -45,9 +43,8 @@
 					
 						<td>${fieldValue(bean: nodeInstance, field: "pathwaysModel")}</td>
 					
-						<td>${fieldValue(bean: nodeInstance, field: "x")}</td>
+						<td>${fieldValue(bean: nodeInstance, field: "subModel")}</td>
 					
-						<td>${fieldValue(bean: nodeInstance, field: "y")}</td>
 					
 					</tr>
 				</g:each>

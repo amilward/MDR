@@ -16,10 +16,13 @@ public class PathwaysModelMarshaller {
 			'description'	: pathwayModel?.description,
 			'nodes' : pathwayModel.getNodes(),
 			'links' : pathwayModel.getLinks(),
-			'version' : pathwayModel.version
+			'version' : pathwayModel.version,
+			'parentNodeId': pathwayModel?.parentNode?.id,
+			'parentPathwayId': pathwayModel?.parentNode?.pathwaysModel?.id
 			]
 		}
 	}
+	
 
 	}
 

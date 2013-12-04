@@ -25,7 +25,7 @@
         	
 			$.when(pathwayService.updatePathway(self.pathwayModel)).done(function (data) {
 			        		//console.log(data)
-			        		//console.log('pathway saved')
+			        		alert('pathway saved')
 			        	});
 
         };
@@ -43,11 +43,14 @@
         
         self.loadPathway = function(pathwayJSON){
         	
+        	 self.selectedNode = undefined;
         	 var pm = new PathwayModel();
         	 pm.name = pathwayJSON.name;
         	 pm.description = pathwayJSON.description;
         	 pm.version = pathwayJSON.version;
         	 pm.id = pathwayJSON.id;
+        	 pm.parentPathwayId = pathwayJSON.parentPathwayId;
+        	 pm.parentNodeId = pathwayJSON.parentNodeId;
         	 self.pathwayModel = pm;
         	 var nodes = pathwayJSON.nodes;
         	 
@@ -59,15 +62,15 @@
 				   
         	 
         	 //console.log('finished creating nodes')
-        	 
-        	 setTimeout( function()
+        	 //FIXME timeout should be fixed
+				        	 setTimeout( function()
 							      {
 							       var links = pathwayJSON.links;
 							       $.each(links, function( index, link ) {
 							            		 //console.log('load link')
 							            		self.loadLink(link);        	 
 							         	 });
-							      }, 100);
+							      }, 200);
         	 
         	 
         	 
@@ -110,14 +113,19 @@
 
         self.selectNode = function (n) {
             //Set current seletect node to bind to properties panel
-        	console.log(ko.toJSON(n))
+        	//console.log(ko.toJSON(n))
             self.selectedNode = n;
         };
         
         self.loadNode = function(JSONNode) {
         	//create the node in the model
         	//console.log('test')
+        	
         	var node = new NodeModel();
+            node.name = JSONNode.name;
+            node.description = JSONNode.description;
+            node.subPathwayName = JSONNode.subModelName;
+            node.subPathwayId = JSONNode.subModelId;
             node.name = JSONNode.name;
             node.x = JSONNode.x ;
             node.y = JSONNode.y ;
@@ -175,7 +183,7 @@
         };
         
         self.deleteNode = function(nodeId){
-        	////console.log('deleting node');
+        	console.log('deleting node');
         	
         	//get ko node
         	var nodeToDelete;
@@ -201,18 +209,16 @@
 			      }
 			});
 		    
+		   
 		    $.each(linksToDelete, function( index, value ) {
-		    	
-		    	////console.log('deleting link ' + value.connectionId);
-		    	self.deleteLink(value.connectionId);
-		    	
+		    		self.deleteLink(value.connectionId);
 		    	});
 		    
         	
 		    
 		    //remove the ko node from pathway model
         	$.when(pathwayService.deleteNode(nodeId)).done(function (data) {
-		    	////console.log(self.pathwayModel.nodes);
+        		//console.log('test')
 			    ko.utils.arrayRemoveItem(self.pathwayModel.nodes, nodeToDelete);
 			    ////console.log(self.pathwayModel.nodes);
         	});
@@ -377,6 +383,31 @@
 		self.addFormFinish = function(){
 		        	  $('#AddFormModal').modal('hide');
 		        }
+		
+		
+		self.isSubPathway = function(){
+			if(self.pathwayModel){
+				if(self.pathwayModel.parentPathwayId!=undefined && self.pathwayModel.parentPathwayId!=null){
+					return true
+				}else{
+					return false
+				}
+			}else{
+				false
+			}
+		}
+		
+		self.goToParent = function(){
+			if(self.pathwayModel){
+				console.log(self.pathwayModel.parentPathwayId)
+				$.when(pathwayService.loadPathway(self.pathwayModel.parentPathwayId)).done(function (pathwayJSON) {
+					//console.log('test')
+					//console.log(pathwayJSON.pathwaysModelInstance)
+					self.loadPathway(pathwayJSON.pathwaysModelInstance);
+				});
+
+			}
+		}
                         
         self.gotoContainerPathway = function() {
             self.pathwayModel = self.containerPathway;

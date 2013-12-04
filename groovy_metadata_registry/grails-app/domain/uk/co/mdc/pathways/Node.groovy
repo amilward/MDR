@@ -4,11 +4,14 @@ import uk.co.mdc.model.Collection;
 
 class Node extends PathwayElement{
 	
-	PathwaysModel subModel
 	String x
 	String y
+	PathwaysModel subModel
+	PathwaysModel pathwaysModel
 
 	static belongsTo = [pathwaysModel: PathwaysModel]
+	
+	static hasOne = [subModel: PathwaysModel]
 	
 	public Node(String refId, String name,String x, String y, String desc, Collection peCollection){
 		super( refId, name, desc, peCollection)

@@ -154,13 +154,13 @@ modules = {
 		resource url: "js/pathways/pathwayAjaxFunctions.js"
 		resource url: "js/pathways/AppViewModel.js"
 		resource url: "js/pathways/show.js"
+		resource url: "js/pathways/service/FormService.js"
+		resource url: "js/pathways/service/PathwayService.js"
 		resource url: "js/pathways/binding/knockout.jsplumb.js"
 		resource url: "js/pathways/model/NodeModel.js"
 		resource url: "js/pathways/model/PathwayModel.js"
 		resource url: "js/pathways/model/LinkModel.js"
 		resource url: "js/pathways/model/FormModel.js"
-		resource url: "js/pathways/service/FormService.js"
-		resource url: "js/pathways/service/PathwayService.js"
 		resource url: "js/forms/formDesign.js"
 		
 	}

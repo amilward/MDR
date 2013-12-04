@@ -10,8 +10,9 @@
         self.type = 'node' //'node' | 'pathway'
         self.x = undefined
         self.y = undefined
-        self.subPathwayNameId = undefined;
-    	self.parentPathwayNameId = undefined;
+        self.subPathway = undefined;
+        self.subPathwayId = undefined;
+        self.subPathwayName = undefined;
         self.inputs = [];
         self.outputs = [];
         self.forms = [];
@@ -37,7 +38,7 @@
         self.addForm = function(form){
         	self.forms.push(form)
         	var jsonNodeToServer = pathwayService.createJsonNode(self)
-        	console.log(jsonNodeToServer)
+        	//console.log(jsonNodeToServer)
         	$.when(pathwayService.updateNode(jsonNodeToServer)).done(function (data) {
             	if(data.success===true){
             		console.log('form added on server')
@@ -80,13 +81,23 @@
         	//on close delete binding
         };
         
-        self.createSubPathway = function(root) {
-            self.subpathway = new PathwayModel();
-            self.subpathway.name = self.name;
+        
+        //create a subpathway
+        //called from show.gsp
+        //creates a subPathway in the Node
+        //and adds pathway on the server
+        
+        self.createSubPathway = function(data, e) {
+        	var bindingContext = ko.contextFor(e.target);
+            var subPathway = new PathwayModel();
+            subPathway.name = self.name;
+            subPathway.parentNodeId = self.id
             
-            $.when(pathwayService.createPathway(jsonNodeToServer)).done(function (data) {
+            $.when(pathwayService.savePathway(subPathway)).done(function (data) {
             	if(data.success===true){
-            		console.log('form added on server')
+            		
+            		self.subPathwayId = data.pathwayId;
+            		
             		}
             	});
             
@@ -97,9 +108,24 @@
         
         self.viewSubPathway = function(data, e) {
             var bindingContext = ko.contextFor(e.target);
-            bindingContext.$root.containerPathway = self.pathwayModel;
-            bindingContext.$root.pathwayModel = self.subpathway;
             
+             $.when(pathwayService.loadPathway(self.subPathwayId)).done(function (pathwayJSON) {
+            		console.log('test')
+            		
+            		var containerPathway = bindingContext.$root.pathwayModel;
+                    //containerPathway.subPathwayId = self.subPathwayId;
+                    //self.subPathway.parentPathwayId = containerPathway.id;
+                    
+            		//console.log(pathwayJSON)
+                    bindingContext.$root.containerPathway = containerPathway;
+                    bindingContext.$root.loadPathway(pathwayJSON.pathwaysModelInstance);
+                    
+            	});
+            
+            
+            
+            
+        
         };
         
     };
