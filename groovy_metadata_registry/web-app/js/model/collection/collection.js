@@ -153,7 +153,7 @@ function collectionListDraggable(){
 	oTable = $('#collectionTable').dataTable( {
         "bProcessing": true,
         "bServerSide": true,
-        "sAjaxSource": "/groovy_metadata_registry/collection/dataTables",
+        "sAjaxSource": "../../collection/dataTables",
         "sEmptyTable": "Loading data from server",
         "bAutoWidth": false,
         "aaSorting": [[ 0, "asc" ]],

@@ -333,14 +333,14 @@
 	<g:javascript disposition="defer" library="pathways" />
 	<r:script disposition="defer">
 	
-		<g:if test="${pathwaysModelInstance}">
-			pathwaysModel = ${pathwaysModelInstance}
+		<g:if test="${id}">
+			pathwaysModelId = ${id}
 		</g:if>
 		<g:else>
-			pathwaysModel = ''
+			pathwaysModelId = ''
 		</g:else>
 
-		initPathways(pathwaysModel);
+		initPathways(pathwaysModelId);
 	</r:script>
 
 </body>

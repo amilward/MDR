@@ -17,7 +17,7 @@
 			</div>
 			<div class="modal-body">
 			
-				<form class="form" role="form" id="createPathwayForm" action="/groovy_metadata_registry/pathwaysModel/show" method="post">
+				<form class="form" role="form" id="createPathwayForm" action="${request.contextPath}/pathwaysModel/show" method="post">
 					<div class="form-group">
 						<label for="txt-name" class="control-label">Name: </label> 
 						<input name="name"

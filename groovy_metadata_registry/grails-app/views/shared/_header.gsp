@@ -152,27 +152,8 @@
                           class="icon-angle-right"></i> Create pathway
                       </a></li>
    
-										</ul> <script>
-											// FIXME ryan refactor into JS file
-											$('#openModalLink')
-													.click(
-															function() {
-																$(
-																		'#createPathwayModal')
-																		.modal(
-																				{
-																					show : true,
-																					keyboard : false,
-																					backdrop : 'static'
-																				});
-																$(this)
-																		.closest(
-																				".dropdown")
-																		.removeClass(
-																				"open");
-																return false;
-															});
-										</script> <!-- Form design menu -->
+										</ul>
+											 <!-- Form design menu -->
 									<li><g:link action="list" controller="FormDesign">
 											<i class="icon-angle-right"></i> Form design </g:link></li>
 

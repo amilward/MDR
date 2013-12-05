@@ -12,6 +12,6 @@
         	
         	console.log('need to add form preview here')
         	
-        	window.location = 'http://localhost:8080/groovy_metadata_registry/formDesign/show/' + self.id
+        	window.location = '../../formDesign/show/' + self.id
         }
     }
