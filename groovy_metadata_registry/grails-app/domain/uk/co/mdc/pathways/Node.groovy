@@ -37,17 +37,17 @@ class Node extends PathwayElement{
 		if (nodeElement.attributes().get('id') == null) {
 			throw new RuntimeException("Missing Node/@id attribute")
 		}
-		this.refId = nodeElement.@id
+		this.refId = nodeElement.@id.toString()
 		
 		//We must have a name
 		if (nodeElement.attributes().get('name') == null) {
 			throw new RuntimeException("Missing Node/@name attribute")
 		}
-		this.name = nodeElement.@name
+		this.name = nodeElement.@name.toString()
 		
 		//Load x and y if available
-		this.x = nodeElement.attributes().get('x')
-		this.y = nodeElement.attributes().get('y')
+		this.x = nodeElement.attributes().get('x')?.toString()
+		this.y = nodeElement.attributes().get('y')?.toString()
 		
 		//Description when present (We only allow one description item)
 		def descriptionCount = nodeElement.Description.size()
@@ -71,14 +71,14 @@ class Node extends PathwayElement{
 		nodeElement."pm:PathwaysModel".each { pathwaysModelElement ->
 
 			def pathwaysModel = new PathwaysModel()
-			pathwaysModel.slurp(pathwaysModelElement)
+			pathwaysModel.slurpModelsAndNodes(pathwaysModelElement)
 
 			//We get this far if there are no exceptions, so add to the list
 			subModel = pathwaysModel
 		}
 	}
 	
-	protected def slurpLinks(Map<String,Node> idRefToNode, groovy.util.slurpersupport.NodeChild nodeElement) {
+	protected def slurpLinks(HashMap<String,Node> idRefToNode, groovy.util.slurpersupport.NodeChild nodeElement) {
 		nodeElement."pm:PathwaysModel".each { pathwaysModelElement ->			
 			/* We know that the submodel must exist as we have already loaded it */
 			subModel.slurpLinks(idRefToNode, pathwaysModelElement)						

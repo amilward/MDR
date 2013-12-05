@@ -15,24 +15,28 @@ class Link extends PathwayElement{
 		pathwaysModel nullable: true
 	}
 	
-	protected def slurpLinks(Map<String,Node> idRefToNode, groovy.util.slurpersupport.NodeChild linkElement) {
+	protected def slurpLinks(HashMap<String,Node> idRefToNode, groovy.util.slurpersupport.NodeChild linkElement) {
 		
 		//There must be a source and a target link id
 		if (linkElement.attributes().get('source') == null) {
 			throw new RuntimeException("Missing Link/@source attribute")
 		}
-		def sourceRefId = linkElement.@source
+		
+		String sourceRefId = linkElement.@source.toString()
 
 		if (linkElement.attributes().get('target') == null) {
 			throw new RuntimeException("Missing Link/@target attribute")
 		}
-		def targetRefId = linkElement.@target
-
+		
+		String targetRefId = linkElement.@target.toString()
+		
 		//We must be able to dereference the ids
 		if (!idRefToNode.containsKey(sourceRefId)) {
+					
 			throw new RuntimeException("Unable to find Node for Link with source='"+sourceRefId+"'")			
 		}
 		if (!idRefToNode.containsKey(targetRefId)) {
+						
 			throw new RuntimeException("Unable to find Node for Link with target='"+targetRefId+"'")
 		}
 	 
@@ -41,8 +45,8 @@ class Link extends PathwayElement{
 		this.target = idRefToNode[targetRefId]
 			
 		//Load id and name if available	 
-		this.refId = linkElement.attributes().get('refId')
-		this.name = linkElement.attributes().get('name')
+		this.refId = linkElement.attributes().get('id')?.toString()
+		this.name = linkElement.attributes().get('name')?.toString()
 		
 		//Description when present (We only allow one description item)
 		def descriptionCount = linkElement.Description.size()
