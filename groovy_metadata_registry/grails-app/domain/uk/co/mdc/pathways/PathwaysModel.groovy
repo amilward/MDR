@@ -104,10 +104,10 @@ class PathwaysModel  {
 			pathwaysModel.slurpModelsAndNodes(pathwaysModelElement)
 			
 			//Work out a mapping from IDs to nodes
-			HashMap<String,Node> refIdToNode = new HashMap<String,Node>()				
-			addPathwaysModelID(pathwaysModel,refIdToNode);				
-						
-			pathwaysModel.slurpLinks(refIdToNode, pathwaysModelElement)
+			HashMap<String,Node> idRefToNode = new HashMap<String,Node>()				
+			addPathwaysModelID(pathwaysModel,idRefToNode);				
+									
+			pathwaysModel.slurpLinks(idRefToNode, pathwaysModelElement)
 			
 			//We get this far if there are no exceptions, so add to the list
 			pathwaysModels += pathwaysModel
@@ -177,16 +177,18 @@ class PathwaysModel  {
 		}
 	}
 	
-	protected def slurpLinks(Map<String,Node> idRefToNode, groovy.util.slurpersupport.NodeChild pathwaysModelElement) {
+	protected def slurpLinks(HashMap<String,Node> idRefToNode, groovy.util.slurpersupport.NodeChild pathwaysModelElement) {
+		
+		assert idRefToNode != null
 		
 		//Create links
 		pathwaysModelElement.Link.each { linkElement ->
 			
 			//Create an empty node
 			uk.co.mdc.pathways.Link link = new uk.co.mdc.pathways.Link()
-			
+		
 			//Slurp data into it
-			link.slurpLink(idRefToNode, linkElement)
+			link.slurpLinks(idRefToNode, linkElement)
 			
 			//Add to pathway elements
 			this.pathwayElements += link
@@ -201,10 +203,10 @@ class PathwaysModel  {
 		pathwaysModelElement.Node.each { nodeElement ->
 			
 			//Find the idRef (we know it must exist at this point as it has already been loaded once)
-			def nodeIdRef = nodeElement.@id
-			
+			String nodeIdRef = nodeElement.@id.toString()
+						
 			//Find the node
-			def node = idRefToNode[nodeIdRef]
+			Node node = idRefToNode[nodeIdRef]
 			
 			//Slurp link data into it
 			node.slurpLinks(idRefToNode, nodeElement)
