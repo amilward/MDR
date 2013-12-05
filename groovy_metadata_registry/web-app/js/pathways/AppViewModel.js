@@ -18,7 +18,6 @@
         //Turn all self.XXX properties above this statement to observable{Array}
         ko.track(self);
         
-
         //We can now use the observable without ()
 
         //#region View related functions/logic
@@ -287,13 +286,13 @@
 	        	
 	        	if(source!=null && target!=null){
 	        	  	        
-	        		link.id = JSONLink.id
+	        		link.id = JSONLink.id;
 	        		
-		        	link.name = 'link_' + source.id + '_' + target.id;
+		        	link.name = JSONLink.name;
 		        	link.source = source;
 		        	link.target = target;
                                 link.description = JSONLink.description;
-		        	link.connectionId = 'connection_' + (new Date().getTime());	        	
+		        	link.connectionId = 'connection_' + source.id + '_' + target.id;        	
 		        	//If source is current node, and target node is not already in the outputs array, add it to outputs
 		            if (!ko.utils.arrayFirst(source.outputs, function (item) { return item === target })) {
 		                source.outputs.push(target);        

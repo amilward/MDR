@@ -24,6 +24,7 @@ class PathwaysModel  {
     }
 	
 	static mapping = {
+		pathwayElements(sort:'name', order:'asc')
 	}
 	
 	List getNodes(){

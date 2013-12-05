@@ -100,11 +100,9 @@ jsPlumb.bind("connection", function (info) {
 	    var source = ko.dataFor(info.source); //Get the source node model instance            
 	    var target = ko.dataFor(info.target); //Get the target node model instance
 	    
-	    var linkName = 'link_' + source.id + '_' + target.id;
+	    connectionId = 'connection_' + source.id + '_' + target.id;
 	    //ensure that there isn't a link that for the object already
-	    if (!ko.utils.arrayFirst(vm.pathwayModel.links, function (link) { return link.name === linkName })) {
-           
-		    connectionId = 'connection_' + (new Date().getTime())
+	    if (!ko.utils.arrayFirst(vm.pathwayModel.links, function (link) { return link.connectionId === connectionId })) {
 		   // //console.log(connectionId)
 		    info.connection.setParameter("connectionId", connectionId)
 		    vm.createLink(source, target, connectionId);

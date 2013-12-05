@@ -32,6 +32,8 @@ class Node extends PathwayElement{
 		y nullable:true
     }
 	
-	
+	static mapping = {
+		sort "name"
+	}
 
 }
