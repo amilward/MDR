@@ -20,6 +20,7 @@ class PathwaysModel  {
 	}
 
 	static mapping = {
+		
 	}
 
 	List getNodes(){
@@ -128,7 +129,7 @@ class PathwaysModel  {
 	}
 	
 	private static def addNodeID(uk.co.mdc.pathways.Node n, HashMap<String,uk.co.mdc.pathways.Node> map) {
-		map[ n.refId ] = n 
+		map[ n.transientId ] = n 
 		if (n.subModel != null) {
 			addPathwaysModelID(n.subModel,map)
 		}

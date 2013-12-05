@@ -37,7 +37,7 @@ class Node extends PathwayElement{
 		if (nodeElement.attributes().get('id') == null) {
 			throw new RuntimeException("Missing Node/@id attribute")
 		}
-		this.refId = nodeElement.@id.toString()
+		this.transientId = nodeElement.@id.toString()
 		
 		//We must have a name
 		if (nodeElement.attributes().get('name') == null) {
