@@ -26,15 +26,14 @@ abstract class ExtensibleObject {
 			this.save();
 			return true;
 		}catch(Exception e){
-			e.println 
+			e.printStackTrace();
 			return false;
 		}
 	}
 	
 	public Object getExtraAttributeValue(String name)
 	{
-		return this.extension.get(name);
-		
+		return this.extension?.get(name);		
 	}
 	
 }
