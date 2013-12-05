@@ -1,3 +1,5 @@
+import grails.plugins.springsecurity.SecurityConfigType
+import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils
 // locations to search for config files that get merged into the main config;
 // config files can be ConfigSlurper scripts, Java properties files, or classes
 // in the classpath in ConfigSlurper format
@@ -15,27 +17,42 @@ grails.project.groupId = appName // change this to alter the default package nam
 grails.mime.file.extensions = true // enables the parsing of file extensions from URLs into the request format
 grails.mime.use.accept.header = false
 grails.mime.types = [
-    all:           '*/*',
-    atom:          'application/atom+xml',
-    css:           'text/css',
-    csv:           'text/csv',
-    form:          'application/x-www-form-urlencoded',
-    html:          ['text/html','application/xhtml+xml'],
-    js:            'text/javascript',
-    json:          ['application/json', 'text/json'],
-    multipartForm: 'multipart/form-data',
-    rss:           'application/rss+xml',
-    text:          'text/plain',
-    xml:           ['text/xml', 'application/xml']
+	all:           '*/*',
+	atom:          'application/atom+xml',
+	css:           'text/css',
+	csv:           'text/csv',
+	form:          'application/x-www-form-urlencoded',
+	html:          [
+		'text/html',
+		'application/xhtml+xml'
+	],
+	js:            'text/javascript',
+	json:          [
+		'application/json',
+		'text/json'
+	],
+	multipartForm: 'multipart/form-data',
+	rss:           'application/rss+xml',
+	text:          'text/plain',
+	xml:           [
+		'text/xml',
+		'application/xml']
 ]
 
 // URL Mapping Cache Max Size, defaults to 5000
 //grails.urlmapping.cache.maxsize = 1000
 
 // What URL patterns should be processed by the resources plugin
-grails.resources.adhoc.patterns = ['/images/*','/img/*', '/css/**','/js/*','/js/vendor/*', '/plugins/*']
+grails.resources.adhoc.patterns = [
+	'/images/*',
+	'/img/*',
+	'/css/**',
+	'/js/*',
+	'/js/vendor/*',
+	'/plugins/*'
+]
 
-//NEED TO REMOVE IN PRODUCTION - DISABLING JAVASCRIPT BUNDLING 
+//NEED TO REMOVE IN PRODUCTION - DISABLING JAVASCRIPT BUNDLING
 grails.resources.debug=true
 
 // The default codec used to encode data with ${}
@@ -63,35 +80,37 @@ grails.exceptionresolver.params.exclude = ['password']
 grails.hibernate.cache.queries = false
 
 environments {
-    development {
-        grails.logging.jul.usebridge = true
-    }
-    production {
-        grails.logging.jul.usebridge = false
-        // TODO: grails.serverURL = "http://www.changeme.com"
-    }
+	development {
+		grails.logging.jul.usebridge = true
+	}
+	production {
+		grails.logging.jul.usebridge = false
+		// TODO: grails.serverURL = "http://www.changeme.com"
+	}
 }
 
 // log4j configuration
 log4j = {
-    // Example of changing the log pattern for the default console appender:
-    //
-    //appenders {
-    //    console name:'stdout', layout:pattern(conversionPattern: '%c{2} %m%n')
-    //}
+	// Example of changing the log pattern for the default console appender:
+	//
+	//appenders {
+	//    console name:'stdout', layout:pattern(conversionPattern: '%c{2} %m%n')
+	//}
 
-    error  'org.codehaus.groovy.grails.web.servlet',        // controllers
-           'org.codehaus.groovy.grails.web.pages',          // GSP
-           'org.codehaus.groovy.grails.web.sitemesh',       // layouts
-           'org.codehaus.groovy.grails.web.mapping.filter', // URL mapping
-           'org.codehaus.groovy.grails.web.mapping',        // URL mapping
-           'org.codehaus.groovy.grails.commons',            // core / classloading
-           'org.codehaus.groovy.grails.plugins',            // plugins
-           'org.codehaus.groovy.grails.orm.hibernate',      // hibernate integration
-           'org.springframework',
-           'org.hibernate',
-           'net.sf.ehcache.hibernate'
-	debug  'uk.co.mdc.mail'		// Dummy mail output for dev
+	error  'org.codehaus.groovy.grails.web.servlet',        // controllers
+			'org.codehaus.groovy.grails.web.pages',          // GSP
+			'org.codehaus.groovy.grails.web.sitemesh',       // layouts
+			'org.codehaus.groovy.grails.web.mapping.filter', // URL mapping
+			'org.codehaus.groovy.grails.web.mapping',        // URL mapping
+			'org.codehaus.groovy.grails.commons',            // core / classloading
+			'org.codehaus.groovy.grails.plugins',            // plugins
+			'org.codehaus.groovy.grails.orm.hibernate',      // hibernate integration
+			'org.springframework',
+			'org.hibernate',
+			'net.sf.ehcache.hibernate'
+	debug 	'grails.app.services.grails.plugin.springsecurity.ui.SpringSecurityUiService'
+	info 	'org.springframework.security'
+	debug  	'uk.co.mdc.mail'		// Dummy mail output for dev
 }
 
 
@@ -104,75 +123,85 @@ grails.views.javascript.library="jquery"
 
 grails.mail.disabled=true
 
-// Grails security password requirements
-conf.ui.password.minLength=8
-conf.ui.password.maxLength=64
-// Stupendously long password validation regex (courtedy of Ryan Brooks (ryan.brooks@ndm.ox.ac.uk). Checks for all permutations of digit, character, symbol.
-conf.ui.password.validationRegex='((?=.*\\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&]))|((?=.*\\d)(?=.*[!@#$%^&](?=.*[a-zA-Z])))|((?=.*[a-zA-Z])(?=.*\\d)(?=.*[!@#$%^&]))|((?=.*[a-zA-Z])(?=.*[!@#$%^&])(?=.*\\d))|((?=.*[!@#$%^&])(?=.*\\d)(?=.*[a-zA-Z]))|((?=.*[!@#$%^&])(?=.*[a-zA-Z])(?=.*\\d))'
+grails{
+	plugins{
+		springsecurity{
 
-// Added by the Spring Security Core plugin:
-grails.plugins.springsecurity.userLookup.userDomainClassName = 'co.uk.mdc.SecUser'
-grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'co.uk.mdc.SecUserSecRole'
-grails.plugins.springsecurity.authority.className = 'co.uk.mdc.SecRole'
+			// page to redirect to if a login attempt fails
+			failureHandler.defaultFailureUrl = '/?login_error=1'
+			
+			
+			// Added by the Spring Security Core plugin:
+			userLookup.userDomainClassName = 'uk.co.mdc.SecUser'
+			userLookup.authorityJoinClassName = 'uk.co.mdc.SecUserSecAuth'
+			authority.className = 'uk.co.mdc.SecAuth'
 
-// Added by the Spring Security Core plugin:
-grails.plugins.springsecurity.userLookup.userDomainClassName = 'uk.co.mdc.SecUser'
-grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'uk.co.mdc.SecUserSecAuth'
-grails.plugins.springsecurity.authority.className = 'uk.co.mdc.SecAuth'
+			//disable to prevent double encryption of passwords
+			ui.encodePassword = false
 
-//security config
+			// User registration: don't add user to any roles by default (this is done by an admin to approve the account)
+			ui.register.defaultRoleNames = ['ROLE_PENDING']
 
-import grails.plugins.springsecurity.SecurityConfigType
+			// Grails security password requirements
+			// Stupendously long password validation regex (courtesy of Ryan Brooks (ryan.brooks@ndm.ox.ac.uk). Checks for all permutations of digit, character, symbol.
+			//ui.password.validationRegex='((?=.*\\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&]))|((?=.*\\d)(?=.*[!@#$%^&](?=.*[a-zA-Z])))|((?=.*[a-zA-Z])(?=.*\\d)(?=.*[!@#$%^&]))|((?=.*[a-zA-Z])(?=.*[!@#$%^&])(?=.*\\d))|((?=.*[!@#$%^&])(?=.*\\d)(?=.*[a-zA-Z]))|((?=.*[!@#$%^&])(?=.*[a-zA-Z])(?=.*\\d))'
+			ui.password.minLength=8
+			ui.password.maxLength=64
 
+			securityConfigType = SecurityConfigType.InterceptUrlMap
+			useSecurityEventListener = true
 
-grails.plugins.springsecurity.securityConfigType = SecurityConfigType.InterceptUrlMap
-grails.plugins.springsecurity.interceptUrlMap = [
-	'/js/vendor/**':  ['IS_AUTHENTICATED_ANONYMOUSLY'],
-	'/css/**': ['IS_AUTHENTICATED_ANONYMOUSLY'],
-	'/images/**': ['IS_AUTHENTICATED_ANONYMOUSLY'],
-	'/img/**': ['IS_AUTHENTICATED_ANONYMOUSLY'],
-	'/login/*':    ['IS_AUTHENTICATED_ANONYMOUSLY'],
-	'/logout/*':    ['IS_AUTHENTICATED_ANONYMOUSLY'],
-	'/register/*':    ['IS_AUTHENTICATED_ANONYMOUSLY'],
-	'/securityInfo/**':  ["hasAnyRole('ROLE_ADMIN')", 'IS_AUTHENTICATED_FULLY'],
-	'/role':  ["hasAnyRole('ROLE_ADMIN')", 'IS_AUTHENTICATED_FULLY'],
-	'/role/**':  ["hasAnyRole('ROLE_ADMIN')", 'IS_AUTHENTICATED_FULLY'],
-	'/user':  ["hasAnyRole('ROLE_ADMIN')", 'IS_AUTHENTICATED_FULLY'],
-	'/user/**':  ["hasAnyRole('ROLE_ADMIN')", 'IS_AUTHENTICATED_FULLY'],
-	'/aclClass':  ["hasAnyRole('ROLE_ADMIN')", 'IS_AUTHENTICATED_FULLY'],
-	'/aclClass/**':  ["hasAnyRole('ROLE_ADMIN')", 'IS_AUTHENTICATED_FULLY'],
-	'/aclSid':  ["hasAnyRole('ROLE_ADMIN')", 'IS_AUTHENTICATED_FULLY'],
-	'/aclSid/**':  ["hasAnyRole('ROLE_ADMIN')", 'IS_AUTHENTICATED_FULLY'],
-	'/aclEntry':  ["hasAnyRole('ROLE_ADMIN')", 'IS_AUTHENTICATED_FULLY'],
-	'/aclEntry/**':  ["hasAnyRole('ROLE_ADMIN')", 'IS_AUTHENTICATED_FULLY'],
-	'/aclObjectIdentity':  ["hasAnyRole('ROLE_ADMIN')", 'IS_AUTHENTICATED_FULLY'],
-	'/aclObjectIdentity/*':  ["hasAnyRole('ROLE_ADMIN')", 'IS_AUTHENTICATED_FULLY'],
-	'/conceptualDomain/*':         ["hasAnyRole('ROLE_USER', 'ROLE_ADMIN')", 'IS_AUTHENTICATED_FULLY'],
-	'/valueDomain/*':         ["hasAnyRole('ROLE_USER', 'ROLE_ADMIN')", 'IS_AUTHENTICATED_FULLY'],
-	'/dataElement/*':         ["hasAnyRole('ROLE_USER', 'ROLE_ADMIN')", 'IS_AUTHENTICATED_FULLY'],
-	'/umlModel/*':         ["hasAnyRole('ROLE_USER', 'ROLE_ADMIN')", 'IS_AUTHENTICATED_FULLY'],
-	'/document/*':         ["hasAnyRole('ROLE_USER', 'ROLE_ADMIN')", 'IS_AUTHENTICATED_FULLY'],
-	'/**':         ["hasAnyRole('ROLE_USER', 'ROLE_ADMIN')", 'IS_AUTHENTICATED_FULLY']
-]
+			onInteractiveAuthenticationSuccessEvent = { e, appCtx ->
+				uk.co.mdc.SecUser.withTransaction {
+					def user = uk.co.mdc.SecUser.get(appCtx.springSecurityService.currentUser.id)
+					user.lastLoginDate = new Date()
+					user.save()
+				}
+			}
 
-grails.plugins.springsecurity.useSecurityEventListener = true
-
-grails.plugins.springsecurity.onInteractiveAuthenticationSuccessEvent = { e, appCtx ->
-   uk.co.mdc.SecUser.withTransaction {
-	   def user = uk.co.mdc.SecUser.get(appCtx.springSecurityService.currentUser.id)
-	   user.lastLoginDate = new Date()
-	   user.save()
-   }
+			securityConfigType = "Annotation"
+			controllerAnnotations.staticRules = [
+				// Javascript
+				'/js/**':      			['IS_AUTHENTICATED_ANONYMOUSLY'],
+				'/js/vendor/**':  		['IS_AUTHENTICATED_ANONYMOUSLY'],
+				'/plugins/**/js/**':	['IS_AUTHENTICATED_ANONYMOUSLY'],
+				// CSS
+				'/**/css/**':      		['IS_AUTHENTICATED_ANONYMOUSLY'],
+				'/css/**': 				['IS_AUTHENTICATED_ANONYMOUSLY'],
+				// Images
+				'/images/**': 			['IS_AUTHENTICATED_ANONYMOUSLY'],
+				'/img/**': 				['IS_AUTHENTICATED_ANONYMOUSLY'],
+				// Anonymously acessible pages, e.g. registration & login
+				'/login/*':    			['IS_AUTHENTICATED_ANONYMOUSLY'],
+				'/logout/*':    		['IS_AUTHENTICATED_ANONYMOUSLY'],
+				'/register/*':    		['IS_AUTHENTICATED_ANONYMOUSLY'],
+				
+				'/securityInfo/**': 	["hasAnyRole('ROLE_ADMIN')",'IS_AUTHENTICATED_FULLY'],
+				'/role':  				["hasAnyRole('ROLE_ADMIN')",'IS_AUTHENTICATED_FULLY'],
+				'/role/**':  			["hasAnyRole('ROLE_ADMIN')",'IS_AUTHENTICATED_FULLY'],
+				'/user':  				["hasAnyRole('ROLE_ADMIN')",'IS_AUTHENTICATED_FULLY'],
+				'/user/**':  			["hasAnyRole('ROLE_ADMIN')",'IS_AUTHENTICATED_FULLY'],
+				'/aclClass':  			["hasAnyRole('ROLE_ADMIN')",'IS_AUTHENTICATED_FULLY'],
+				'/aclClass/**': 	 	["hasAnyRole('ROLE_ADMIN')",'IS_AUTHENTICATED_FULLY'],
+				'/aclSid':  			["hasAnyRole('ROLE_ADMIN')",'IS_AUTHENTICATED_FULLY'],
+				'/aclSid/**':  			["hasAnyRole('ROLE_ADMIN')",'IS_AUTHENTICATED_FULLY'],
+				'/aclEntry':  			["hasAnyRole('ROLE_ADMIN')",'IS_AUTHENTICATED_FULLY'],
+				'/aclEntry/**': 		["hasAnyRole('ROLE_ADMIN')",'IS_AUTHENTICATED_FULLY'],
+				'/aclObjectIdentity':	["hasAnyRole('ROLE_ADMIN')",'IS_AUTHENTICATED_FULLY'],
+				'/aclObjectIdentity/*': ["hasAnyRole('ROLE_ADMIN')",'IS_AUTHENTICATED_FULLY'],
+				'/conceptualDomain/*':  ["hasAnyRole('ROLE_USER', 'ROLE_ADMIN')",'IS_AUTHENTICATED_FULLY'],
+				'/valueDomain/*':       ["hasAnyRole('ROLE_USER', 'ROLE_ADMIN')",'IS_AUTHENTICATED_FULLY'],
+				'/dataElement/*':       ["hasAnyRole('ROLE_USER', 'ROLE_ADMIN')",'IS_AUTHENTICATED_FULLY'],
+				'/umlModel/*':         	["hasAnyRole('ROLE_USER', 'ROLE_ADMIN')",'IS_AUTHENTICATED_FULLY'],
+				'/document/*':         	["hasAnyRole('ROLE_USER', 'ROLE_ADMIN')",'IS_AUTHENTICATED_FULLY'],
+				'/**':         			["hasAnyRole('ROLE_USER', 'ROLE_ADMIN')",'IS_AUTHENTICATED_FULLY']
+			]
+		}
+	}
 }
 
 
-//spring security ui - disable to prevent double encryption of passwords
-
-grails.plugins.springsecurity.ui.encodePassword = false
-
 //get username and add to audit logging
-
-import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils
 
 auditLog {
 	actorClosure = { request, session ->

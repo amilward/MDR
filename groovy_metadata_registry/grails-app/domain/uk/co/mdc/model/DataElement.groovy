@@ -1,7 +1,6 @@
 package uk.co.mdc.model
 
 import org.codehaus.groovy.grails.web.servlet.mvc.GrailsParameterMap
-import org.json.simple.JSONObject
 
 class DataElement extends ExtensibleObject {
 
@@ -28,6 +27,7 @@ class DataElement extends ExtensibleObject {
     } 
 	
 	static hasMany = [synonyms: Synonym, subElements: DataElement, dataElementValueDomains: DataElementValueDomain, dataElementCollections: DataElementCollection, externalReferences: ExternalReference]
+	
 	
 	static belongsTo = [parent: DataElement, dataElementConcept: DataElementConcept]
 	

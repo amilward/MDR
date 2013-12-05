@@ -6,15 +6,17 @@ import org.springframework.security.acls.model.NotFoundException
 class UrlMappings {
 
 	static mappings = {
-				
+		
 		// Default for controllers
 		"/$controller/$action?/$id?"{
 			constraints {
 				// apply constraints here
 			}
 		}
+		
+		"/role/pendingUsers"( controller: "role", action: "listPendingUsers" )
 
-		"/"(view:"/index")
+		"/"(controller:"index", action: "index")
 		"403"(controller: "errors", action: "error403") 
 		"404"(controller: "errors", action: "error404") 
 		"500"(controller: "errors", action: "error500") 

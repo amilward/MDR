@@ -27,7 +27,7 @@
         	
 			$.when(pathwayService.updatePathway(self.pathwayModel)).done(function (data) {
 			        		//console.log(data)
-			        		alert('pathway saved')
+			        		console.log('pathway saved')
 			        	});
 
         };
@@ -55,28 +55,18 @@
         	 pm.parentNodeId = pathwayJSON.parentNodeId;
         	 self.pathwayModel = pm;
         	 var nodes = pathwayJSON.nodes;
-        	 
-        	 
-				        	 $.each(nodes, function( index, node ) {
-				        		self.loadNode(node);        	 
-				        	 });
-								     
-				   
-        	 
+        	    $.each(nodes, function( index, node ) {
+				        self.loadNode(node);        	 
+				 });
+        	 				   
         	 //console.log('finished creating nodes')
-        	 //FIXME timeout should be fixed
 				        	 setTimeout( function()
-							      {
-							       var links = pathwayJSON.links;
-							       $.each(links, function( index, link ) {
-							            		 //console.log('load link')
-							            		self.loadLink(link);        	 
-							         	 });
+				 {
+							var links = pathwayJSON.links;
+							 $.each(links, function( index, link ) {
+							      self.loadLink(link);        	 
+							 });
 							      }, 200);
-        	 
-        	 
-        	 
-
         }
         
         self.createPathway = function (pathway) {
@@ -128,7 +118,7 @@
         
         self.loadNode = function(JSONNode) {
         	//create the node in the model
-        	//console.log('test')
+        	//create the node in the model
         	
         	var node = new NodeModel();
             node.name = JSONNode.name;
@@ -140,15 +130,12 @@
             node.y = JSONNode.y ;
             node.id = JSONNode.id
 	        node.version = JSONNode.nodeVersion
-	        node.setForms(JSONNode.optionalOutputs)
-	         self.pathwayModel.version = JSONNode.pathwaysModelVersion
-	         self.pathwayModel.nodes.push(node);
-	         //console.log("loadNodecomplete");
-
+	        node.setForms(JSONNode.optionalOutputs);
+            node.setCollections(JSONNode.optionalInputs);
+	        self.pathwayModel.version = JSONNode.pathwaysModelVersion
+	        self.pathwayModel.nodes.push(node);
         };
-        
-        
-        
+
         self.createNode = function(){
             	$('#CreateNode').modal({ show: true, keyboard: false, backdrop: 'static' });
         };
@@ -383,18 +370,20 @@
         	});
 
         }
-
         //#endregion
-
-        
         //FIXME  need to pu this into either the node model method and find a better way to call it or take all
         // he methods out of the node model and put them here 
-		self.addFormFinish = function(){
-		        	  $('#AddFormModal').modal('hide');
-		        }
-		
+        self.addFormFinish = function(){
+      	    $('#AddFormModal').modal('hide');
+        }
+	
+        self.addCollectionFinish = function(){
+        	$('#AddCollectionModal').modal('hide');
+        }
+	
 		
 		self.isSubPathway = function(){
+        
 			if(self.pathwayModel){
 				if(self.pathwayModel.parentPathwayId!=undefined && self.pathwayModel.parentPathwayId!=null){
 					return true

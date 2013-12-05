@@ -20,7 +20,10 @@ class CallPrinter {
 	def subject(String subject){
 		log.debug "Subject: ${subject}"
 	}
-	def html(String html){
+	def html(html){
 		log.debug "HTML content: ${html}"
+	}
+	def body(body){
+		log.debug "Body content: ${body}"
 	}
 }

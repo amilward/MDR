@@ -171,9 +171,17 @@
                 <button type="button" class="btn btn-link btn-xs pull-right" data-bind="click: addFormDialog">
                     <i class="fa fa-plus"></i> Add Form
                 </button>
-                 <button type="button" class="btn btn-link btn-xs pull-right" data-bind="click: addDEDialog">
-                    <i class="fa fa-plus"></i> Add Data Elements
+                  <div class="panel panel-primary">
+                    <div class="panel-heading">Collections</div>
+                    <div class="panel-body forms">
+                        <ul class="list-group" data-bind="foreach: collections">
+                            <li class="list-group-item"><a href="#" data-bind="click: previewCollections">{{name}}</a></li>
+                        </ul>
+                    </div>
+                    <button type="button" class="btn btn-link btn-xs pull-right" data-bind="click: addCollectionDialog">
+                    <i class="fa fa-plus"></i> Add Collections
                 </button>
+                </div>
             </div>
         </div>
     </div>
@@ -257,20 +265,20 @@
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
     
-    <!-- Add Data ElementModal -->
-    <div class="modal fade hide" id="AddDEModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <!-- Add CollectionModal -->
+    <div class="modal fade hide" id="AddCollectionModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>-->
-                    <h4 class="modal-title" id="myModalLabel">Add Data Element</h4>
+                    <h4 class="modal-title" id="myModalLabel">Add Data Element Collection</h4>
                 </div>
                 <div class="modal-body">
-                	<div id="formDesignCart">Drag Data Element <i style="display:block" class="fa fa-plus"></i> Here To Add</div>
-                   <div id="formDesignList" ></div>
+                	<div id="collectionsCart">Drag Collection <i style="display:block" class="fa fa-plus"></i> Here To Add</div>
+                   <div id="collectionList" ></div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-bind="click: $root.addFormFinish">Finish</button>
+                    <button type="button" class="btn btn-primary" data-bind="click: $root.addCollectionFinish">Finish</button>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
