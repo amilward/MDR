@@ -425,7 +425,7 @@ class DataElementController {
 	
 	/*check if the parent element is contained in any of data element's sub elements*/
 	
-	Boolean ChildParentValid(String parent, ArrayList children){
+	private Boolean ChildParentValid(String parent, ArrayList children){
 		
 		if(children.contains(parent)){
 			return false

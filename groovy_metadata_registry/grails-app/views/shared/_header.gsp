@@ -3,7 +3,7 @@
 <!-- --------------------------------------------------------------- -->
 <%@ page import="org.codehaus.groovy.grails.plugins.PluginManagerHolder"%>
 <%@ page
-  import="org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils"%>
+	import="org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils"%>
 <%@ page import="grails.plugins.springsecurity.SecurityConfigType"%>
 
 <!DOCTYPE html>
@@ -20,27 +20,27 @@
 <title><g:layoutTitle default="Grails" /></title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet"
-  href="${resource(dir: 'css', file: 'bootstrap.min.css')}"
-  type="text/css">
+	href="${resource(dir: 'css', file: 'bootstrap.min.css')}"
+	type="text/css">
 <link rel="stylesheet"
-  href="${resource(dir: 'css', file: 'bootstrap-responsive.min.css')}"
-  type="text/css">
+	href="${resource(dir: 'css', file: 'bootstrap-responsive.min.css')}"
+	type="text/css">
 <link rel="stylesheet" href="${resource(dir: 'css', file: 'style.css')}"
-  type="text/css">
+	type="text/css">
 <link rel="stylesheet" href="${resource(dir: 'css', file: 'theme.css')}"
-  type="text/css">
+	type="text/css">
 <link rel="stylesheet"
-  href="${resource(dir: 'css', file: 'datatable/jquery.dataTables.css')}"
-  type="text/css">
-  
+	href="${resource(dir: 'css', file: 'datatable/jquery.dataTables.css')}"
+	type="text/css">
 <g:javascript library="jquery_lib" />
-<g:javascript library="jquery" plugin="jquery"/><!--  FIXME, there's duplication here -->
+<g:javascript library="jquery" plugin="jquery" />
+<!--  FIXME, there's duplication here -->
 <g:javascript library="modernizr_lib" />
 <g:javascript>
         window.appContext = '${request.contextPath}';
         var root = location.protocol + '//' + location.host + window.appContext;
     </g:javascript>
-    
+
 
 
 <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -54,151 +54,128 @@
 </head>
 <body>
 
-  <g:render template="/pathwaysModel/createPathwayModal" />
+	<g:render template="/pathwaysModel/createPathwayModal" />
 
-  <!-- BEGIN WRAP -->
-  <div id="wrap">
+	<!-- BEGIN WRAP -->
+	<div id="wrap">
+
+		<!-- BEGIN TOP BAR -->
+		<div id="top">
+			<!-- .navbar -->
+			<div class="navbar navbar-inverse navbar-static-top">
+				<div class="navbar-inner">
+					<div class="container-fluid">
+						<a class="btn btn-navbar" data-toggle="collapse"
+							data-target=".nav-collapse"> <span class="icon-bar"></span> <span
+							class="icon-bar"></span> <span class="icon-bar"></span>
+						</a> <a class="brand" href="${createLink(uri: '/')}">MDC</a>
+						<!-- .topnav -->
+						<div class="btn-toolbar topnav">
+							<div class="btn-group">
+								<a id="changeSidebarPos" class="btn btn-success" rel="tooltip"
+									data-original-title="Show / Hide Sidebar"
+									data-placement="bottom"> <i class="icon-resize-horizontal"></i>
+								</a>
+							</div>
+							<div class="btn-group">
+								<a class="btn btn-inverse" rel="tooltip" href="#"
+									data-original-title="Document" data-placement="bottom"> <i
+									class="icon-file"></i>
+								</a> <a href="#helpModal" class="btn btn-inverse" rel="tooltip"
+									data-placement="bottom" data-original-title="Help"
+									data-toggle="modal"> <i class="icon-question-sign"></i>
+								</a>
+							</div>
+							<div class="btn-group">
+								<g:link data-placement="bottom" class="btn btn-inverse"
+									data-original-title="Logout" rel="tooltip" controller="logout">
+									<i class="icon-angle-right"></i>
+									<i class="icon-off"></i>
+								</g:link>
+							</div>
+						</div>
 
 
-    <!-- BEGIN TOP BAR -->
-    <div id="top">
-      <!-- .navbar -->
-      <div class="navbar navbar-inverse navbar-static-top">
-        <div class="navbar-inner">
-          <div class="container-fluid">
-            <a class="btn btn-navbar" data-toggle="collapse"
-              data-target=".nav-collapse"> <span class="icon-bar"></span> <span
-              class="icon-bar"></span> <span class="icon-bar"></span>
-            </a> <a class="brand" href="${createLink(uri: '/')}">MDC</a>
-            <!-- .topnav -->
-            <div class="btn-toolbar topnav">
+						<div class="search-bar">
+							<div class="row-fluid">
+								<div class="span12">
+									<div class="search-bar-inner">
+										<a id="menu-toggle" href="#menu" data-toggle="collapse"
+											class="accordion-toggle btn btn-inverse visible-phone"
+											rel="tooltip" data-placement="bottom"
+											data-original-title="Show/Hide Menu"> <i
+											class="icon-sort"></i>
+										</a>
+										<g:form url='[controller: "searchable", action: "index"]'
+											class="main-search" id="searchableForm" name="searchableForm"
+											method="get">
+											<g:textField name="q" class="input-block-level"
+												placeholder="Search Registry..." value="${params.q}" />
+											<button id="searchBtn" type="submit" class="btn btn-inverse">
+												<i class="icon-search"></i>
+											</button>
+										</g:form>
+									</div>
+								</div>
+							</div>
+						</div>
 
-              <div class="btn-group">
-                <a id="changeSidebarPos" class="btn btn-success" rel="tooltip"
-                  data-original-title="Show / Hide Sidebar"
-                  data-placement="bottom"> <i class="icon-resize-horizontal"></i>
-                </a>
-              </div>
-              <div class="btn-group">
-                <a class="btn btn-inverse" rel="tooltip" href="#"
-                  data-original-title="Document" data-placement="bottom"> <i
-                  class="icon-file"></i>
-                </a> <a href="#helpModal" class="btn btn-inverse" rel="tooltip"
-                  data-placement="bottom" data-original-title="Help"
-                  data-toggle="modal"> <i class="icon-question-sign"></i>
-                </a>
-              </div>
-              <div class="btn-group">
-                <g:link data-placement="bottom" class="btn btn-inverse"
-                  data-original-title="Logout" rel="tooltip" controller="logout">
-                  <i class="icon-angle-right"></i>
-                  <i class="icon-off"></i>
-                </g:link>
-              </div>
-            </div>
+						<!-- /.topnav -->
+						<div class="nav-collapse collapse">
+							<!-- .nav -->
+							<ul id="navbar" class="nav">
+								<li><a href="/">Dashboard</a></li>
 
-            <div class="search-bar">
-              <div class="row-fluid">
-                <div class="span12">
-                  <div class="search-bar-inner">
-                    <a id="menu-toggle" href="#menu" data-toggle="collapse"
-                      class="accordion-toggle btn btn-inverse visible-phone"
-                      rel="tooltip" data-placement="bottom"
-                      data-original-title="Show/Hide Menu"> <i
-                      class="icon-sort"></i>
-                    </a>
-                    <g:form url='[controller: "searchable", action: "index"]'
-                      class="main-search" id="searchableForm" name="searchableForm"
-                      method="get">
-                      <g:textField name="q" class="input-block-level"
-                        placeholder="Search Registry..." value="${params.q}" />
-                      <button id="searchBtn" type="submit" class="btn btn-inverse">
-                        <i class="icon-search"></i>
-                      </button>
-                    </g:form>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- /.topnav -->
-            <div class="nav-collapse collapse">
-              <!-- .nav -->
-              <ul class="nav">
-                <li class="active"><a href="index.html">Dashboard</a></li>
-
-                <li class="dropdown"><a data-toggle="dropdown"
-                  class="dropdown-toggle" href="#"> Profile <b class="caret"></b>
-                </a>
-                  <ul class="dropdown-menu">
-                    <li><a href="#">Options</a></li>
-                    <li><a href="#">My Collections</a></li>
-                    <li><a href="#">My Forms</a></li>
-                  </ul></li>
-                <sec:ifLoggedIn>
+								<li class="dropdown"><a data-toggle="dropdown"
+									class="dropdown-toggle" href="#"> Profile <b class="caret"></b>
+								</a>
+									<ul class="dropdown-menu">
+										<li><a href="#">Options</a></li>
+										<li><a href="#">My Collections</a></li>
+										<li><a href="#">My Forms</a></li>
+									</ul></li>
+								<sec:ifLoggedIn>
 
                   <!-- Value domains menu -->
-                  <li><g:link action="list" controller="ValueDomain"><i class="icon-angle-right"></i> Data model </g:link></li>
+                  <li id="nav-model-link"><g:link action="list" controller="ValueDomain"><i class="icon-angle-right"></i> Data model </g:link></li>
                   
                   <!-- Pathways menu -->
-                  <li class="dropdown"><a data-toggle="dropdown"
+                  <li class="dropdown"><a id="nav-pathway-expand" data-toggle="dropdown"
                     class="dropdown-toggle" href="#"> Pathways <b
                       class="caret"></b>
                   </a>
                     <ul class="dropdown-menu">
-                      <li><g:link action="list" controller="PathwaysModel">
+                      <li id="nav-pathway-link"><g:link action="list" controller="PathwaysModel">
                           <i class="icon-angle-right"></i> List pathways</g:link></li>
 
                       <li><a id="openModalLink" href="#"> <i
                           class="icon-angle-right"></i> Create pathway
                       </a></li>
-                    </ul> 
-                    
-                    <script>
-                      // FIXME ryan refactor into JS file
-                      $('#openModalLink')
-                          .click(
-                              function() {
-                            	  $('#createPathwayModal').modal({ show: true, keyboard: false, backdrop: 'static' });
-                                $(this).closest(".dropdown").removeClass("open");
-                                return false;
-                              });
-                    </script> 
-                    
-                    <!-- Form design menu -->
-                    <li><g:link action="list" controller="FormDesign"><i class="icon-angle-right"></i> Form design </g:link></li>
-                    
-                    <sec:ifAnyGranted roles="ROLE_ADMIN">
+   
+										</ul>
+											 <!-- Form design menu -->
+									<li><g:link action="list" controller="FormDesign">
+											<i class="icon-angle-right"></i> Form design </g:link></li>
 
-                    <li class="dropdown"><a data-toggle="dropdown"
-                      class="dropdown-toggle" href="#"> <g:message
-                          code="spring.security.ui.menu.users" /> <b class="caret"></b>
-                    </a>
-                      <ul class="dropdown-menu">
-                        <li><g:link controller="user" action='search'>
-                            <g:message code="spring.security.ui.search" />
-                          </g:link></li>
-                        <li><g:link controller="user" action='create'>
-                            <g:message code="spring.security.ui.create" />
-                          </g:link></li>
-                        <li><g:link controller="registrationCode"
-                            action='search'>
-                            <g:message code="spring.security.ui.menu.registrationCode" />
-                          </g:link></li>
-                      </ul></li>
-                    <li class="dropdown"><a data-toggle="dropdown"
-                      class="dropdown-toggle" href="#"> <g:message
-                          code="spring.security.ui.menu.roles" /> <b class="caret"></b>
-                    </a>
-                      <ul class="dropdown-menu">
-                        <li><g:link controller="role" action='search'>
-                            <g:message code="spring.security.ui.search" />
-                          </g:link></li>
-                        <li><g:link controller="role" action='create'>
-                            <g:message code="spring.security.ui.create" />
-                          </g:link></li>
-                      </ul></li>
+									<sec:ifAnyGranted roles="ROLE_ADMIN">
+										<li class="dropdown"><a data-toggle="dropdown"
+											class="dropdown-toggle" href="#"> Administration <b
+												class="caret"></b>
+										</a>
+											<ul class="dropdown-menu">
+												<li><g:link controller="user" action='search'>Search users</g:link></li>
+												<li><g:link controller="user" action='create'>Create user</g:link></li>
+												<li><g:link controller="registrationCode"
+														action='search'>
+														<g:message code="spring.security.ui.menu.registrationCode" />
+													</g:link></li>
 
+												<li><g:link controller="role" action='search'>Search roles</g:link></li>
+												<li><g:link controller="role" action='create'>Create role</g:link></li>
+
+												<li><g:link controller="role" action='listPendingUsers'>Activate pending users</g:link></li>
+											</ul></li>
+										<!--
                     <g:if
                       test='${SpringSecurityUtils.securityConfig.securityConfigType == SecurityConfigType.Requestmap}'>
 
@@ -270,7 +247,8 @@
                               code='spring.security.ui.menu.appinfo.providers' />
                           </g:link></li>
                       </ul></li>
-
+-->
+										<!-- 
                     <g:if
                       test="${PluginManagerHolder.pluginManager.hasGrailsPlugin('springSecurityAcl')}">
 
@@ -313,16 +291,16 @@
                         </ul></li>
 
                     </g:if>
+ -->
+									</sec:ifAnyGranted>
 
-                  </sec:ifAnyGranted>
-
-                </sec:ifLoggedIn>
-              </ul>
-              <!-- /.nav -->
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- /.navbar -->
-    </div>
-    <!-- END TOP BAR -->
+								</sec:ifLoggedIn>
+							</ul>
+							<!-- /.nav -->
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /.navbar -->
+		</div>
+		<!-- END TOP BAR -->

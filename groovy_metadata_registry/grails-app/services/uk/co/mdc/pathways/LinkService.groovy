@@ -80,8 +80,6 @@ class LinkService {
 					target: targetNode
 					)
 
-					println(linkInstance)
-					
 			if(!linkInstance.save(flush:true)){
 				// FIXME should throw an error here with the errors from the instance
 				return linkInstance
@@ -92,6 +90,9 @@ class LinkService {
 			
 			//Grant admin user administrative permissions
 			addPermission linkInstance, 'admin', BasePermission.ADMINISTRATION
+			
+			//FIXME we are grainting all users all permissions at the moment
+			addPermission linkInstance, 'user', BasePermission.ADMINISTRATION
 		}
 		
 		if(linkInstance && parameters?.pathwaysModelId){
@@ -102,8 +103,6 @@ class LinkService {
 				pathway.addToPathwayElements(linkInstance)
 			}
 		}
-		
-		println(linkInstance)
 		//return the data element to the consumer (the controller)
 		return linkInstance
 	}
@@ -150,7 +149,7 @@ class LinkService {
 	int count() { Link.count() }
 	
 	
-	/* ************************* UPDATE VALUE DOMAINS***********************************************
+	/* ************************* UPDATE LINKS***********************************************
 	 *  requires that the authenticated user have write or admin permission on the value domain instance to edit it
 	 ******************************************************************************************** */
 	

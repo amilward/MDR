@@ -4,7 +4,7 @@ html {
 
 body {
 	padding-bottom: 40px;
-	background-color: #F6F6F6;
+	/*background-color: #F6F6F6; */
 }
 
 label {
@@ -17,11 +17,14 @@ label {
 div.form-label{
 	float: left;
 	width: 40%;
+	text-align: right;
+	margin-bottom: 0.2em;
 }
 
 div.form-input{
 	float: right;
 	width: 58%;
+	margin-bottom: 0.2em;
 }
 
 .sidebar-nav {
@@ -227,4 +230,20 @@ textarea[readonly] {
 
 .search-bar-inner {
 	height: inherit;
+}
+
+.width60{
+	width:60%;
+}
+#panel-heading{
+	height:118px;
+}
+.form-group {
+    
+}
+
+.form-render-label{
+	float: left;
+    padding-top: 5px;
+    text-align: right;
 }

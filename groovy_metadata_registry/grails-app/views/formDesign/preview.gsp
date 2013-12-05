@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta name="layout" content="main">
+		<meta name="layout" content="main_no-sidebar">
 		<g:set var="entityName" value="${message(code: 'formDesign.label', default: 'FormDesign')}" />
 		<title><g:message code="default.show.label" args="[entityName]" /></title>
 		<parameter name="name" value=" FORM Builder - ${formDesignInstance?.name}" />

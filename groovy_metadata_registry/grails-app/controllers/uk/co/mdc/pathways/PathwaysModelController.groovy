@@ -97,9 +97,23 @@ class PathwaysModelController {
 		render model as JSON
 	}
 
-    def create() {
-        [pathwaysModelInstance: new PathwaysModel(params)]
-    }
+
+	def getNodes(Long id){
+		def pathwaysModelInstance = findInstance(id);
+		def model
+		if(pathwaysModelInstance){
+			def nodes = pathwaysModelInstance.getNodes()
+			
+			model = [success: true, nodes: nodes]
+		
+		}else{
+			
+			 model = [errors: true, details: 'no model for this id included']
+		}
+		
+		
+		render model as JSON
+	}
 	
 	def saveREST() {
 		def unvalidated = request.JSON
@@ -108,7 +122,7 @@ class PathwaysModelController {
 		//FIXME validate
 		def pathwaysModelInstance = pathwaysService.create(pathway)
 		
-		println pathwaysModelInstance.errors
+		//println pathwaysModelInstance.errors
 		if (pathwaysModelInstance.errors.hasErrors()) {
 			def responseMessage = [errors: true, details: pathwaysModelInstance.errors]
 			response.status = 400
@@ -135,14 +149,28 @@ class PathwaysModelController {
 	
 	
     def show() {
-        def pathwaysModelInstance = findInstance()
-        if (!pathwaysModelInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'pathwaysModel.label', default: 'PathwaysModel'), id])
-            redirect(action: "list")
-            return
-        }
-
-        [pathwaysModelInstance: pathwaysModelInstance as JSON]
+		
+		//if the entry point is from create pathways modal create a pathways modal first
+		if(params.name){
+			
+			if(params.isDraft==null){
+				params.isDraft = false
+			}
+			
+			def pathwaysModelInstance = pathwaysService.create(params)
+			
+			if(pathwaysModelInstance.save(failOnError:true, flush:true)){
+				redirect(action: "show", id: pathwaysModelInstance.id)
+			}else{
+				redirect(action: "list")
+			}
+			
+			//else show the pathway
+			
+		}else{
+		
+	        [id: params.long('id')]
+		}
     }
 	
 	
@@ -150,8 +178,6 @@ class PathwaysModelController {
 		
 			def data = request.JSON
 			def model
-			
-			println(data)
 			
 			def pathwayInstance = pathwaysService.create(data)
 			
@@ -231,46 +257,6 @@ class PathwaysModelController {
 		
 		render model as JSON
 	}
-	
-    def edit(Long id) {
-        def pathwaysModelInstance = PathwaysModel.get(id)
-        if (!pathwaysModelInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'pathwaysModel.label', default: 'PathwaysModel'), id])
-            redirect(action: "list")
-            return
-        }
-
-        [pathwaysModelInstance: pathwaysModelInstance]
-    }
-
-    def update(Long id, Long version) {
-        def pathwaysModelInstance = PathwaysModel.get(id)
-        if (!pathwaysModelInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'pathwaysModel.label', default: 'PathwaysModel'), id])
-            redirect(action: "list")
-            return
-        }
-
-        if (version != null) {
-            if (pathwaysModelInstance.version > version) {
-                pathwaysModelInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
-                          [message(code: 'pathwaysModel.label', default: 'PathwaysModel')] as Object[],
-                          "Another user has updated this PathwaysModel while you were editing")
-                render(view: "edit", model: [pathwaysModelInstance: pathwaysModelInstance])
-                return
-            }
-        }
-
-        pathwaysModelInstance.properties = params
-
-        if (!pathwaysModelInstance.save(flush: true)) {
-            render(view: "edit", model: [pathwaysModelInstance: pathwaysModelInstance])
-            return
-        }
-
-        flash.message = message(code: 'default.updated.message', args: [message(code: 'pathwaysModel.label', default: 'PathwaysModel'), pathwaysModelInstance.id])
-        redirect(action: "show", id: pathwaysModelInstance.id)
-    }
 
     def delete(Long id) {
         def pathwaysModelInstance = PathwaysModel.get(id)
@@ -367,6 +353,67 @@ class PathwaysModelController {
 		return field
 		
 	}
+	
+	
+	/* def create() {
+	 
+	 
+	 if(params.isDraft==null){
+		 params.isDraft = false
+	 }
+	 
+	 def pathwaysModelInstance = pathwaysService.create(params)
+	 
+	 if(pathwaysModelInstance.save(failOnError:true, flush:true)){
+		 redirect(action: "show", id: pathwaysModelInstance.id)
+	 }else{
+		 redirect(action: "list")
+	 }
+	 
+	 
+ }*/
+	
+	/*
+	 def edit(Long id) {
+		 def pathwaysModelInstance = PathwaysModel.get(id)
+		 if (!pathwaysModelInstance) {
+			 flash.message = message(code: 'default.not.found.message', args: [message(code: 'pathwaysModel.label', default: 'PathwaysModel'), id])
+			 redirect(action: "list")
+			 return
+		 }
+ 
+		 [pathwaysModelInstance: pathwaysModelInstance]
+	 }
+ 
+	 def update(Long id, Long version) {
+		 def pathwaysModelInstance = PathwaysModel.get(id)
+		 if (!pathwaysModelInstance) {
+			 flash.message = message(code: 'default.not.found.message', args: [message(code: 'pathwaysModel.label', default: 'PathwaysModel'), id])
+			 redirect(action: "list")
+			 return
+		 }
+ 
+		 if (version != null) {
+			 if (pathwaysModelInstance.version > version) {
+				 pathwaysModelInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
+						   [message(code: 'pathwaysModel.label', default: 'PathwaysModel')] as Object[],
+						   "Another user has updated this PathwaysModel while you were editing")
+				 render(view: "edit", model: [pathwaysModelInstance: pathwaysModelInstance])
+				 return
+			 }
+		 }
+ 
+		 pathwaysModelInstance.properties = params
+ 
+		 if (!pathwaysModelInstance.save(flush: true)) {
+			 render(view: "edit", model: [pathwaysModelInstance: pathwaysModelInstance])
+			 return
+		 }
+ 
+		 flash.message = message(code: 'default.updated.message', args: [message(code: 'pathwaysModel.label', default: 'PathwaysModel'), pathwaysModelInstance.id])
+		 redirect(action: "show", id: pathwaysModelInstance.id)
+	 }*/
+ 
 	
 	
 	

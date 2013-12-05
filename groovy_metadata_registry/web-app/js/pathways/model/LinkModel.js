@@ -2,11 +2,14 @@
     var LinkModel = function () {
         var self = this;
         self.id = undefined;
-        self.version = undefined
+        self.version = undefined;
         self.name = undefined;
+        self.description = undefined;
     	self.source = undefined;
     	self.target = undefined;
     	self.connectionId = undefined;
+        self.collections = [];
+        
         //Turn all self.XXX properties above this statement to observable{Array}
         ko.track(self);
 

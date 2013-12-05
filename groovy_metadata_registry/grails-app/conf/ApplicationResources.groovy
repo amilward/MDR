@@ -55,6 +55,8 @@ modules = {
 		resource url: "js/main.js"
     }
 	
+	
+	
 	dataTables {
 		dependsOn "application"
 		resource url: "js/datatable/jquery.dataTables.min.js"
@@ -68,6 +70,18 @@ modules = {
 	dataElement{
 		dependsOn "dataTables"
 		resource url: "js/model/dataElement/dataElement.js"
+	}
+	
+	conceptualDomain{
+		dependsOn "dataTables"
+		dependsOn "dualListBox"
+		resource url: "js/model/conceptualDomain/conceptualDomain.js"
+	}
+	
+	collection{
+		dependsOn "dataTables"
+		dependsOn "dualListBox"
+		resource url: "js/model/collection/collection.js"
 	}
 	
 	valueDomain{
@@ -97,8 +111,20 @@ modules = {
 		resource url: "js/vendor/knockout-2.2.1.js"
 		resource url: "js/vendor/knockout-sortable.js"
 		resource url: "js/vendor/knockout-x-editable.js"
-		resource url: "js/forms/viewModel.js"
-		resource url: "js/forms/fDesignerLayout.js"
+		resource url: "js/forms/formsDesigner/dataTypeTemplates.js"
+		resource url: "js/forms/formsDesigner/palette.js"
+		resource url: "js/forms/formsDesigner/model/Form.js"
+		resource url: "js/forms/formsDesigner/model/FormsModel.js"
+		resource url: "js/forms/formsDesigner/service/FormDesignService.js"
+		resource url: "js/forms/formsDesigner/model/Component.js"
+		resource url: "js/forms/formsDesigner/model/Property.js"
+		resource url: "js/forms/formsDesigner/model/Question.js"
+		resource url: "js/forms/formsDesigner/model/Component.js"
+		resource url: "js/forms/formsDesigner/model/Section.js"
+		resource url: "js/forms/formsDesigner/model/SelectOption.js"
+		resource url: "js/forms/formsDesigner/model/DataTypeInstance.js"
+		resource url: "js/forms/formsDesigner/viewModel.js"
+		resource url: "js/forms/formsDesigner/fDesignerLayout.js"
 		
 	}
 	
@@ -106,15 +132,14 @@ modules = {
 		
 		dependsOn "application"
 		dependsOn "jquery_layout_lib"
-		dependsOn "bootstap_editable_lib"
+		dependsOn "bootstrap_editable_lib"
 		resource url: "js/lib/bootstrap-datepicker.js"
 		resource url: "js/lib/bootstrap-timepicker.js"
 		resource url: "js/respond.min.js"
-		resource url: "js/forms/form_model.js"
-		resource url: "js/forms/constraint.js"
-		resource url: "js/forms/frenderer-theme-bootstrap.js"
-		resource url: "js/forms/frenderer.js"
-		resource url: "js/forms/frendererLayout.js"
+		resource url: "js/forms/formsRenderer/constraint.js"
+		resource url: "js/forms/formsRenderer/frenderer-theme-bootstrap.js"
+		resource url: "js/forms/formsRenderer/frenderer.js"
+		resource url: "js/forms/formsRenderer/frendererLayout.js"
 		
 	}
 	
@@ -131,14 +156,16 @@ modules = {
 		resource url: "js/pathways/pathwayAjaxFunctions.js"
 		resource url: "js/pathways/AppViewModel.js"
 		resource url: "js/pathways/show.js"
+		resource url: "js/pathways/service/FormService.js"
+		resource url: "js/pathways/service/PathwayService.js"
 		resource url: "js/pathways/binding/knockout.jsplumb.js"
+		resource url: "js/pathways/model/CollectionModel.js"
 		resource url: "js/pathways/model/NodeModel.js"
 		resource url: "js/pathways/model/PathwayModel.js"
 		resource url: "js/pathways/model/LinkModel.js"
 		resource url: "js/pathways/model/FormModel.js"
-		resource url: "js/pathways/service/FormService.js"
-		resource url: "js/pathways/service/PathwayService.js"
 		resource url: "js/forms/formDesign.js"
+		resource url: "js/model/collection/collection.js"
 		
 	}
 	
@@ -150,17 +177,6 @@ modules = {
 		dependsOn "dataTables"
 		dependsOn "knockout_lib"
 		resource url: "js/pathways/pathwaysList.js"
-	}
-
-	// Order is important for the creationModal scripts :)
-	pathwayCreationModal{
-		dependsOn: "application"
-		dependsOn: "knockout_lib"
-		resource url: "js/pathways/model/PathwayModel.js"
-	 	resource url: "js/pathways/creationModal/main.js"
-		resource url: "js/pathways/creationModal/service/FormService.js"
-		resource url: "js/pathways/creationModal/service/PathwayService.js"
-		resource url: "js/pathways/creationModal/AppViewModel.js"
 	}
 
 	dForms{

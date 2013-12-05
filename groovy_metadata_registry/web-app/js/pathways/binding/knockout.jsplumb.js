@@ -1,27 +1,32 @@
-﻿// setup some defaults for jsPlumb.	
+﻿
+// setup some defaults for jsPlumb.	
 			jsPlumb.importDefaults({
 				Endpoint : [ "Dot", {
-					radius : 2
+					radius : 1
 				} ],
 				HoverPaintStyle : {
 					strokeStyle : "#1e8151",
-					lineWidth : 2
+					lineWidth : 1
 				},
+				Connector: 'StateMachine',
+	            ConnectorStyle: { strokeStyle: "#5c96bc", lineWidth: 2, outlineColor: "transparent", outlineWidth: 4 },
 				ConnectionOverlays : [ [ "Arrow", {
-					location : 1,
-					id : "arrow",
-					length : 14,
-					foldback : 0.8
+					location: 1,
+                    id: "arrow",
+                    length: 14,
+                    foldback: 0.8
 				} ],]
 			});
-
+			
 // Usage: <div class="node" data-bind="makeNode: $data">....</div>
 ko.bindingHandlers.makeNode = {
     init: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
         var value = valueAccessor();
         
+        //console.log('making load nodes')
+        
         //Turn binded element into jsPlumb source node
-        jsPlumb.makeSource($('.anchor', element), {
+        jsPlumb.makeSource($('.ep', element), {
             parent: $(element),
             connector: 'StateMachine',
             connectorStyle: { strokeStyle: "#5c96bc", lineWidth: 2, outlineColor: "transparent", outlineWidth: 4 },
@@ -31,8 +36,10 @@ ko.bindingHandlers.makeNode = {
                       id: "arrow",
                       length: 14,
                       foldback: 0.8
-                  }]
+                  }],
+              
             ],
+            anchor : 'Continuous',
             endpoint: ["Dot", { radius: 1 }]
         });
 
@@ -40,39 +47,37 @@ ko.bindingHandlers.makeNode = {
         jsPlumb.makeTarget($(element), {
             anchor: 'Continuous',
             endpoint: ["Dot", { radius: 2 }]
+            
         });
 
         //Enable dragging of nodes
-        jsPlumb.draggable($(element), {
-            containment: "parent"
+        jsPlumb.draggable($(element), { 
+            containment: "parent",
+            stop: function( event, ui ) {
+            	//node = ko.contextFor(element)
+            	value.y = Math.round(ui.position.top) + "px"
+            	value.x = Math.round(ui.position.left) + "px"
+            }
         });
-        
+
         $(element).bind('dblclick', function(){
-        	$( "#dialog-confirm" ).text('Delete node?');
-        	$( "#dialog-confirm" ).dialog({
-   	   		 resizable: false,
-   	   		 height:140,
-   	   		 modal: true,
-   	   		 title: 'delete node',
-   	   		 buttons: {
-   	   		 "Delete Node": function() {
-   	   			$( this ).dialog( "close" );
-   	   			nodeInfo = ko.dataFor(element)
-   	   			//console.log(nodeInfo.id)
+        	$( "#dialog-confirm .modal-header h4" ).text('Delete node?');
+        	$( "#dialog-confirm" ).modal({ show: true, keyboard: false, backdrop: 'static' });
+        	$( "#deleteModalButton" ).bind('click', function(){
+        		nodeInfo = ko.dataFor(element)
    	   			vm.deleteNode(nodeInfo.id)
-   	   			jsPlumb.remove($(element))
-   	   		 },
-   	   		 Cancel: function() {
-   	   			 $( this ).dialog( "close" );
-   	   		 }
-   	   		 }
-   	   	 });
+   	   			jsPlumb.detachAllConnections($(element))
+   	   			$( "#deleteModalButton" ).unbind();
+        		$('.modal').modal('hide');
+        	})
         	
         });
         
     },
     update: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
         
+    	//console.log('testing update')
+    	
     }
 };
 
@@ -86,42 +91,46 @@ jsPlumb.bind("connection", function (info) {
 	 var connectionId = null;
 	 connectionId = info.connection.getParameter("connectionId", connectionId)
 	 
+	 //console.log(connectionId)
+	 
 	if(connectionId==null){
 
+		//console.log('create with conn id')
+		
 	    var source = ko.dataFor(info.source); //Get the source node model instance            
 	    var target = ko.dataFor(info.target); //Get the target node model instance
-	
-	    connectionId = 'connection_' + (new Date().getTime())
-	   // console.log(connectionId)
-	    info.connection.setParameter("connectionId", connectionId)
-	    vm.createLink(source, target, connectionId);
+	    
+	    connectionId = 'connection_' + source.id + '_' + target.id;
+	    //ensure that there isn't a link that for the object already
+	    if (!ko.utils.arrayFirst(vm.pathwayModel.links, function (link) { return link.connectionId === connectionId })) {
+		   // //console.log(connectionId)
+		    info.connection.setParameter("connectionId", connectionId)
+		    vm.createLink(source, target, connectionId);
+                    
+		}else{
+			jsPlumb.detach(info)
+		}
 	
 	}
 	 
     //binding for connection double click
     info.connection.bind("dblclick", function() {
-    	$( "#dialog-confirm" ).text('Delete connection?');
-	   	$( "#dialog-confirm" ).dialog({
-	   		 resizable: false,
-	   		 height:140,
-	   		 modal: true,
-	   		 title: 'delete connection',
-	   		 buttons: {
-	   		 "Delete Connection": function() {
-	   			$( this ).dialog( "close" );
-
+    	$( "#dialog-confirm .modal-header h4" ).text('Delete Connection?');
+    	$( "#dialog-confirm" ).modal({ show: true, keyboard: false, backdrop: 'static' });
+    	$( "#deleteModalButton" ).bind('click', function(){
 	   			var params = info.connection.getParameters()
-	   			
 	   			vm.deleteLink(params.connectionId);
 	   			jsPlumb.detach(info.connection);
-	   			
-	   		 },
-	   		 Cancel: function() {
-	   			 $( this ).dialog( "close" );
-	   		 }
-	   		 }
-	   	 });
+	   			$( "#deleteModalButton" ).unbind();
+	   			$('.modal').modal('hide');
+    	})
+    	
     	
     });
     
+    
+    info.connection.bind("click", function() {
+        var params = info.connection.getParameters();
+        vm.selectLink(params.connectionId);                
+    });
 });

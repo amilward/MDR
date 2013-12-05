@@ -13,6 +13,7 @@ class FormDesignMarshaller {
 			'description': formDesign.description,
 			'header' : '',
 			'footer' : '',
+			'isDraft' : formDesign.isDraft,
 			'containedElements' : formDesign.formDesignElements
 			]
 		}

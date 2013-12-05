@@ -9,6 +9,8 @@ import org.springframework.security.acls.model.Permission
 import org.springframework.transaction.annotation.Transactional
 import org.springframework.security.acls.model.Permission;
 import org.springframework.transaction.annotation.Transactional;
+import uk.co.mdc.forms.FormDesign;
+import uk.co.mdc.pathways.PathwaysModel;
 
 class NodeService {
 
@@ -52,10 +54,6 @@ class NodeService {
 	@Transactional
 	@PreAuthorize("hasRole('ROLE_USER')")
 	Node create(Map parameters) {
-		
-
-		println('new node')
-		println(parameters)
 
 		def sourceNode
 		def targetNode
@@ -89,7 +87,6 @@ class NodeService {
 			}
 		}
 		
-		println(nodeInstance)
 		//return the data element to the consumer (the controller)
 		return nodeInstance
 	}
@@ -144,11 +141,70 @@ class NodeService {
 	@PreAuthorize("hasPermission(#nodeInstance, write) or hasPermission(#nodeInstance, admin)")
 	Node update(Node nodeInstance, Map parameters) {
 		 
-		nodeInstance.properties = parameters
+		def forms = []
+		if(parameters?.forms){			
+			//FIXME at the moment we are putting the forms into the optionalOutputs - as we develop the model this may change
+			def pForms = parameters?.forms			
+			pForms.each{ form->
+				forms.push(FormDesign.get(form.id))
+			}
+			parameters?.optionalOutputs = forms
+		}
+		
+	def collections = []		
+		if(parameters?.collections){
+			//FIXME at the moment we are putting the collections into the optionalInputs - as we develop the model this may change
+			def pCollection = parameters?.collections
+			pCollection.each{ collection->
+				collections.push(uk.co.mdc.model.Collection.get(collection.id))
+			}  
+			parameters?.optionalInputs = collections			
+		}		
+		
+		
+		println(nodeInstance?.subModel)
+		nodeInstance.description = parameters.description
+		nodeInstance.name = parameters.name
+		nodeInstance.x = parameters.x
+		nodeInstance.y = parameters.y
 		nodeInstance.save()
+
+		println(nodeInstance?.subModel)
+		nodeInstance
+	}
+	
+	//method to call if there is a subPathway
+	
+	@Transactional
+	@PreAuthorize("hasPermission(#nodeInstance, write) or hasPermission(#nodeInstance, admin)")
+	Node update(Node nodeInstance, Map parameters, PathwaysModel subPathway) {
+		
+		def forms = []
+		if(parameters?.forms){
+			
+			//FIXME at the moment we are putting the forms into the optionalOutputs - as we develop the model this may change
+			def pForms = parameters?.forms
+			
+			pForms.each{ form->
+				forms.push(FormDesign.get(form.id))
+			}
+			
+			parameters?.optionalOutputs = forms
+		}
+		
+		nodeInstance.properties = parameters
+		
+		if(subPathway){
+			nodeInstance.subModel = subPathway
+		}
+		
+		nodeInstance.save()
+		println('test')
+		println(nodeInstance)
 		
 		nodeInstance
 	}
+	
 	
 	
 	/* ************************* DELETE DATA ELEMENTS***********************************************
@@ -163,11 +219,10 @@ class NodeService {
 		nodeInstance.refresh()
 		
 		def sources  = Link.findAllWhere(source: nodeInstance)
-		
-		println('removing link sources and targets')
-		
+
 		sources.each{ link ->
-			
+		
+			link.refresh()
 			link.delete(flush:true,failOnError:true)
 		}
 		
@@ -175,7 +230,7 @@ class NodeService {
 		def targets = Link.findAllWhere(target: nodeInstance)
 		
 		targets.each{ link->
-			
+			link.refresh()
 			link.delete(flush:true,failOnError:true)
 			
 		}

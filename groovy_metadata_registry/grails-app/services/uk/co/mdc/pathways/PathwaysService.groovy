@@ -20,6 +20,7 @@ class PathwaysService {
 	def aclService
 	def aclUtilService
 	def springSecurityService
+	
     
 	def nodeService
 	def linkService
@@ -57,13 +58,18 @@ class PathwaysService {
 	@PreAuthorize("hasRole('ROLE_USER')")
 	PathwaysModel create(Map parameters) {
 		
-		println(parameters)
-		
 		def pathwaysModelInstance = new PathwaysModel(
 			name: parameters?.name,
 			description: parameters?.description,
 			isDraft: parameters?.isDraft
 			);
+		
+		if(parameters?.parentNodeId){
+			def parentNode = nodeService.get(parameters?.parentNodeId)
+			pathwaysModelInstance.parentNode = parentNode
+		}
+		
+		println(pathwaysModelInstance.parentNode)
 		
 		//save the dataElement
 		if(!pathwaysModelInstance.save(flush:true)){
@@ -130,23 +136,37 @@ class PathwaysService {
 	@Transactional
 	@PreAuthorize("hasPermission(#pathwaysModelInstance, write) or hasPermission(#pathwaysModelInstance, admin)")
 	PathwaysModel update(PathwaysModel pathwaysModelInstance, Map parameters) {
-
-		println('updated info')
-		println(parameters)
-		println('model to update')
-		println(pathwaysModelInstance)
-		
+				
 		//update nodes
 		
+		//println(parameters)
+		
 		def updatedNodes = parameters.nodes
+		println("NODES =" + updatedNodes)
+		
+		
+		//println(pathwaysModelInstance?.parentNode)
 		
 		updatedNodes.each { updatedNode ->
-			
+
 			def nodeInstance = nodeService.get(updatedNode.id)
 			
-			def node = nodeService.update(nodeInstance, updatedNode)
-			
+			if(updatedNode?.subPathwayId){
+				
+				def subPathwayId = updatedNode?.subPathwayId
+				def subPathway = this.get(subPathwayId)
+				def node = nodeService.update(nodeInstance, updatedNode, subPathway)
+				
+			}else{
+				//println('before?')
+				//println(pathwaysModelInstance?.parentNode)
+				def node = nodeService.update(nodeInstance, updatedNode)
+				//println('after?')
+				println(pathwaysModelInstance?.parentNode)
+			}
+
 		}
+		
 		
 		//update links
 		
@@ -162,9 +182,8 @@ class PathwaysService {
 			
 		}
 		
-		
 	   pathwaysModelInstance.properties = parameters
-	   pathwaysModelInstance.save()
+	   pathwaysModelInstance.save();
 	   
 	   pathwaysModelInstance
 	   

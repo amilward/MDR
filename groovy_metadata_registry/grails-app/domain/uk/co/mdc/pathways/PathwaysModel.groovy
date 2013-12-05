@@ -8,6 +8,7 @@ class PathwaysModel  {
 	String versionNo
 	Boolean isDraft
 	String description
+	Node parentNode
 
 	static searchable = { content: spellCheck 'include' }
 
@@ -17,10 +18,12 @@ class PathwaysModel  {
 		description nullable: true
 		versionNo nullable:true
 		pathwayElements nullable:true
+		parentNode nullable:true
 	}
 
 	static mapping = {
 		
+		pathwayElements(sort:'name', order:'asc')
 	}
 
 	List getNodes(){

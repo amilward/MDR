@@ -6,11 +6,14 @@ import uk.co.mdc.model.Collection;
 
 class Node extends PathwayElement{
 	
-	PathwaysModel subModel
 	String x //ISSUE It seems strange to me that x and y are not integers. (@charlescrichton)
 	String y
+	PathwaysModel subModel
+	//PathwaysModel pathwaysModel - what is this for??
 
 	static belongsTo = [pathwaysModel: PathwaysModel]
+	
+	//static hasOne = [subModel: PathwaysModel] - ??
 	
 	public Node(String refId, String name,String x, String y, String desc, Collection peCollection){
 		super( refId, name, desc, peCollection)
@@ -25,11 +28,15 @@ class Node extends PathwayElement{
 		optionalOutputs: Collection]
 
     static constraints = {
-		pathwaysModel nullable: true
+		//pathwaysModel nullable: true - ??
 		subModel nullable: true
 		x nullable:true
 		y nullable:true
     }
+	
+	static mapping = {
+		sort "name"
+	}
 	
 	protected def slurpModelsAndNodes(groovy.util.slurpersupport.NodeChild nodeElement) {
 		
