@@ -1,13 +1,12 @@
 import grails.plugins.springsecurity.SecurityConfigType
 import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils
-// locations to search for config files that get merged into the main config;
-// config files can be ConfigSlurper scripts, Java properties files, or classes
-// in the classpath in ConfigSlurper format
 
-// grails.config.locations = [ "classpath:${appName}-config.properties",
-//                             "classpath:${appName}-config.groovy",
-//                             "file:${userHome}/.grails/${appName}-config.properties",
-//                             "file:${userHome}/.grails/${appName}-config.groovy"]
+// Additional configuration file locations. This is the default, but we need to load the contents of ~/.grails/model_catalogue-config.groovy
+// for the production DB connection/username/passord.
+ grails.config.locations = [ "classpath:${appName}-config.properties",
+                             "classpath:${appName}-config.groovy",
+                             "file:${userHome}/.grails/${appName}-config.properties",
+                             "file:${userHome}/.grails/${appName}-config.groovy"]
 
 // if (System.properties["${appName}.config.location"]) {
 //    grails.config.locations << "file:" + System.properties["${appName}.config.location"]
@@ -55,8 +54,8 @@ grails.resources.adhoc.patterns = [
 //NEED TO REMOVE IN PRODUCTION - DISABLING JAVASCRIPT BUNDLING
 grails.resources.debug=true
 
-// The default codec used to encode data with ${}
-grails.views.default.codec = "none" // none, html, base64
+// Automatically encode ${} variables in GSPs, to prevent XSS through user input
+grails.views.default.codec = "html" // none, html, base64
 grails.views.gsp.encoding = "UTF-8"
 grails.converters.encoding = "UTF-8"
 // enable Sitemesh preprocessing of GSP pages
