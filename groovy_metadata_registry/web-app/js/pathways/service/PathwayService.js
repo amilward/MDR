@@ -2,9 +2,22 @@
 	
 	var self = this;
 	
+	//FIXME at the moment the gsp passes in the json....we should probably change this
+	
     self.loadPathway = function (id) {
-        //Load a pathway model from server
+    	
+    	 //Load a pathway model from server
+    	
+    	return $.ajax({
+    		type : "POST",
+    		// FIXME remove static app name
+    		url : "/groovy_metadata_registry/pathwaysModel/jsonPathways/" + id,
+    		contentType: "application/json; charset=utf-8",
+    	});
+       
     };
+    
+    //update an existing pathway
 
     self.updatePathway = function(pathwayModel){
     	
@@ -26,8 +39,11 @@
 
     }
     
+    //create a pathway and save it
+    
     self.savePathway = function (model) {
 
+    	//console.log(ko.toJSON(model))
     	
     	return $.ajax({
     		type : "POST",
@@ -67,6 +83,15 @@
     	
     	
     };
+    
+    self.getPathwayNodes = function(pathwayId){
+    	return $.ajax({
+    		type: "POST",
+    		url: "/groovy_metadata_registry/PathwaysModel/getNodes/" + pathwayId,
+    		contentType: 'application/json',
+    		dataType: 'json'
+    		});
+    }
     
     self.updateNode = function(jsonNodeToServer){
     	return $.ajax({

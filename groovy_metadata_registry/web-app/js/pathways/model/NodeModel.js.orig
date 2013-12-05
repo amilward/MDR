@@ -18,8 +18,11 @@
         self.outputs = [];
         self.forms = [];
         self.collections = [];
+<<<<<<< HEAD
     	
 
+=======
+>>>>>>> develop
         ko.track(self);
 
         self.setForms = function(JSONforms){
@@ -59,15 +62,18 @@
         
         self.addForm = function(form){
         	
-        self.forms.push(form)
+        	self.forms.push(form)
+<<<<<<< HEAD
         	var jsonNodeToServer = pathwayService.createJsonNode(self)
         	//console.log(jsonNodeToServer)
         	$.when(pathwayService.updateNode(jsonNodeToServer)).done(function (data) {
             	if(data.success===true){
             		console.log('form added on server')
             		}
-});
-
+            	});
+=======
+        	
+>>>>>>> develop
         }
         
         self.setCollections = function(JSONCollections){
@@ -129,6 +135,7 @@
                 }
         	});	        	
         	//on close delete binding
+<<<<<<< HEAD
         };
         
         
@@ -152,7 +159,7 @@
             	});
             
             //root.pathwayModel = self.subPathway;
-            bindingContext.$root.updatePathway();
+            //root.savePathway();
             
         };
         
@@ -177,6 +184,10 @@
             
         
         };
+        
+=======
+        }       
+>>>>>>> develop
     };
   
   //json marshaller(so we don't get cyclical problems)

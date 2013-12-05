@@ -13,8 +13,8 @@
 <link rel="stylesheet" href="${resource(dir: 'css', file: 'bootstrap-editable.css')}" type="text/css">
 <link rel="stylesheet" href="${resource(dir: 'css', file: 'layout.css')}" type="text/css">
 <link rel="stylesheet" href="${resource(dir: 'css', file: 'custom.css')}" type="text/css">
-
 <link rel="stylesheet" href="${resource(dir: 'css/pathways', file: 'style.css')}" type="text/css">
+<link rel="stylesheet" href="${resource(dir: 'css/pathways', file: 'treeView.css')}" type="text/css">
 <link rel="stylesheet" href="${resource(dir: 'css', file: 'font-awesome.min.css')}" type="text/css">
 
 </head>
@@ -27,11 +27,43 @@
 					<div class="panel-heading">Tree View</div>
 					<div class="panel-body" data-bind="with: pathwayModel">
 						<div class="pathway-title" data-bind="attr:{title: name">{{name}}</div>
-						<ul data-bind="foreach: nodes">
-							<li><a
-								data-bind="attr:{title: description}, click: $root.selectNode">{{name}}</a>
-							</li>
-						</ul>
+						
+						<div id="jsTreeView" class="treeview">
+								  <ul class="level1" data-bind="foreach: nodes">
+								    <li>
+								    <!-- ko if: subPathwayId != null -->
+								      <input type="checkbox" checked data-bind="click: function(){ getSubNodes(); return !self.checked;}, attr:{id: 'cb' + id}">
+								    <!-- /ko -->
+								      <label data-bind="attr:{for: 'cb' + id}">
+								        <span data-bind="attr:{title: description}, click: $root.selectNode, text: name"></span>
+								      </label>
+								      <!-- ko if: subNodes != null -->
+								      <ul class="level2" data-bind="foreach: subNodes">
+								        <li>
+								        	<!-- ko if: subPathwayId != null -->
+										      <input type="checkbox" checked data-bind="click: function(){ getSubNodes(); return !self.checked;}, attr:{id: 'cb' + id}">
+										    <!-- /ko -->
+										    <label data-bind="attr:{for: 'cb' + id}">
+								        	<span data-bind="text: name"></span>
+								        	 </label>
+								        	  <!-- ko if: subNodes != null -->
+								        	 <ul class="level3" data-bind="foreach: subNodes">
+										        <li>
+												    <label data-bind="attr:{for: 'cb' + id}">
+										        	<span data-bind="text: name"></span>
+										        	 </label>
+										        </li> 
+										      </ul>
+										      <!-- /ko -->
+								        </li> 
+								      </ul>
+								      <!-- /ko -->
+								      
+								    </li>
+								    
+								  </ul>
+						</div>
+						
 					</div>
 				</div>
 			</div>
@@ -44,6 +76,9 @@
 					<div id="canvas-panel" class="panel panel-primary">
             <div id="panel-heading" class="panel-heading">
             
+                <button type="button" class="btn btn-link btn-xs pull-right" data-bind="if: isSubPathway(), click: goToParent()">
+                    <i class="fa fa-arrow-up"></i> Parent
+                </button>
            	 	<button type="button" class="btn btn-link btn-xs pull-right" data-bind="click: createNode">
                     <i class="fa fa-plus"></i> Add Node
                 </button>
@@ -57,17 +92,16 @@
                  <div class="form-group">
                       <h1 id="pathwayName">{{pathwayModel ? pathwayModel.name : ''}}</h1>
                 </div>
-
-            
-               
-                
-                
+ 
             </div>
             <div class="panel-body" data-bind="with: pathwayModel">
                 <div class="jsplumb-container" data-bind="foreach: nodes ">
                     <div class="node" data-bind="makeNode: $data, click: $root.selectNode, style: {top:y, left:x}, attr: { 'id': 'node' + id}">
                         <div data-bind="attr:{title: description}">{{name}}</div>
-                        <div class="anchor"></div>
+                        <div class="fa fa-chevron-right ep right"></div>
+			<div class="fa fa-chevron-left ep left"></div>
+			<div class="fa fa-chevron-up ep up"></div>
+			<div class="fa fa-chevron-down ep down"></div>
                     </div>
                 </div>
             </div>
@@ -93,6 +127,23 @@
                     </div>
                     
                 </form>
+                
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Pathways Model</div>
+                    <div class="panel-body">
+                        <div data-bind="if: subPathwayId != undefined">
+	                        <button type="button" class="btn btn-link btn-xs pull-right" data-bind="click: viewSubPathway">
+			                    <i class="fa fa-plus"></i> View
+			                </button>
+                        </div>
+                        <div data-bind="if: subPathwayId === null || subPathwayId === undefined">
+                        	<button type="button" class="btn btn-link btn-xs pull-right" data-bind="click: createSubPathway">
+			                    <i class="fa fa-plus"></i> Create
+			                </button>
+                        </div>
+                    </div>
+                </div>
+                    
                 <div class="panel panel-primary">
                     <div class="panel-heading">Inputs</div>
                     <div class="panel-body inputs">

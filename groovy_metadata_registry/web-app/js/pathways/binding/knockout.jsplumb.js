@@ -17,7 +17,7 @@
                     foldback: 0.8
 				} ],]
 			});
-
+			
 // Usage: <div class="node" data-bind="makeNode: $data">....</div>
 ko.bindingHandlers.makeNode = {
     init: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
@@ -26,7 +26,7 @@ ko.bindingHandlers.makeNode = {
         //console.log('making load nodes')
         
         //Turn binded element into jsPlumb source node
-        jsPlumb.makeSource($('.anchor', element), {
+        jsPlumb.makeSource($('.ep', element), {
             parent: $(element),
             connector: 'StateMachine',
             connectorStyle: { strokeStyle: "#5c96bc", lineWidth: 2, outlineColor: "transparent", outlineWidth: 4 },
@@ -46,10 +46,11 @@ ko.bindingHandlers.makeNode = {
         jsPlumb.makeTarget($(element), {
             anchor: 'Continuous',
             endpoint: ["Dot", { radius: 2 }]
+            
         });
 
         //Enable dragging of nodes
-        jsPlumb.draggable($(element), {
+        jsPlumb.draggable($(element), { 
             containment: "parent",
             stop: function( event, ui ) {
             	//node = ko.contextFor(element)
@@ -57,15 +58,14 @@ ko.bindingHandlers.makeNode = {
             	value.x = Math.round(ui.position.left) + "px"
             }
         });
-        
+
         $(element).bind('dblclick', function(){
         	$( "#dialog-confirm .modal-header h4" ).text('Delete node?');
         	$( "#dialog-confirm" ).modal({ show: true, keyboard: false, backdrop: 'static' });
         	$( "#deleteModalButton" ).bind('click', function(){
         		nodeInfo = ko.dataFor(element)
-   	   			////console.log(nodeInfo.id)
    	   			vm.deleteNode(nodeInfo.id)
-   	   			jsPlumb.remove($(element))
+   	   			jsPlumb.detachAllConnections($(element))
    	   			$( "#deleteModalButton" ).unbind();
         		$('.modal').modal('hide');
         	})
@@ -98,11 +98,18 @@ jsPlumb.bind("connection", function (info) {
 		
 	    var source = ko.dataFor(info.source); //Get the source node model instance            
 	    var target = ko.dataFor(info.target); //Get the target node model instance
-	
-	    connectionId = 'connection_' + (new Date().getTime())
-	   // //console.log(connectionId)
-	    info.connection.setParameter("connectionId", connectionId)
-	    vm.createLink(source, target, connectionId);
+	    
+	    var linkName = 'link_' + source.id + '_' + target.id;
+	    //ensure that there isn't a link that for the object already
+	    if (!ko.utils.arrayFirst(vm.pathwayModel.links, function (link) { return link.name === linkName })) {
+           
+		    connectionId = 'connection_' + (new Date().getTime())
+		   // //console.log(connectionId)
+		    info.connection.setParameter("connectionId", connectionId)
+		    vm.createLink(source, target, connectionId);
+		}else{
+			jsPlumb.detach(info)
+		}
 	
 	}
 	 

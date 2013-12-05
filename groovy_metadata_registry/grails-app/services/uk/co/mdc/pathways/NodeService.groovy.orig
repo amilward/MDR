@@ -148,20 +148,13 @@ class NodeService {
 			pForms.each{ form->
 				forms.push(FormDesign.get(form.id))
 			}
+<<<<<<< HEAD
+			
 			parameters?.optionalOutputs = forms
 		}
 		
-	def collections = []		
-		if(parameters?.collections){
-			//FIXME at the moment we are putting the collections into the optionalInputs - as we develop the model this may change
-			def pCollection = parameters?.collections
-			pCollection.each{ collection->
-				collections.push(uk.co.mdc.model.Collection.get(collection.id))
-			}  
-			parameters?.optionalInputs = collections			
-		}		
-		
-		
+		println('node parameters')
+		println(parameters)
 		println(nodeInstance?.subModel)
 		nodeInstance.description = parameters.description
 		nodeInstance.name = parameters.name
@@ -192,6 +185,20 @@ class NodeService {
 			parameters?.optionalOutputs = forms
 		}
 		
+=======
+			parameters?.optionalOutputs = forms
+		}
+		
+		def collections = []		
+		if(parameters?.collections){
+			//FIXME at the moment we are putting the collections into the optionalInputs - as we develop the model this may change
+			def pCollection = parameters?.collections
+			pCollection.each{ collection->
+				collections.push(uk.co.mdc.model.Collection.get(collection.id))
+			}  
+			parameters?.optionalInputs = collections			
+		}		
+>>>>>>> develop
 		nodeInstance.properties = parameters
 		
 		if(subPathway){
@@ -199,9 +206,13 @@ class NodeService {
 		}
 		
 		nodeInstance.save()
+<<<<<<< HEAD
+
 		println('test')
 		println(nodeInstance)
 		
+=======
+>>>>>>> develop
 		nodeInstance
 	}
 	
@@ -219,9 +230,13 @@ class NodeService {
 		nodeInstance.refresh()
 		
 		def sources  = Link.findAllWhere(source: nodeInstance)
-
-		sources.each{ link ->
 		
+<<<<<<< HEAD
+=======
+		//println('removing link sources and targets')
+		
+>>>>>>> develop
+		sources.each{ link ->
 			link.refresh()
 			link.delete(flush:true,failOnError:true)
 		}

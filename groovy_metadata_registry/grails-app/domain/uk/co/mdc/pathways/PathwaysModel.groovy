@@ -8,17 +8,19 @@ class PathwaysModel  {
 	String versionNo
 	Boolean isDraft
 	String description
+	Node parentNode
 	
 	static searchable = {
 		content: spellCheck 'include'
 	}
 	
-	static hasMany = [pathwayElements : PathwayElement] 
+	static hasMany = [pathwayElements : PathwayElement]
 
     static constraints = {
 		description nullable: true
 		versionNo nullable:true  
 		pathwayElements nullable:true
+		parentNode nullable:true
     }
 	
 	static mapping = {
