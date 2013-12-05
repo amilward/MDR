@@ -36,7 +36,8 @@ ko.bindingHandlers.makeNode = {
                       id: "arrow",
                       length: 14,
                       foldback: 0.8
-                  }]
+                  }],
+              
             ],
             anchor : 'Continuous',
             endpoint: ["Dot", { radius: 1 }]
@@ -107,6 +108,7 @@ jsPlumb.bind("connection", function (info) {
 		   // //console.log(connectionId)
 		    info.connection.setParameter("connectionId", connectionId)
 		    vm.createLink(source, target, connectionId);
+                    
 		}else{
 			jsPlumb.detach(info)
 		}
@@ -128,4 +130,9 @@ jsPlumb.bind("connection", function (info) {
     	
     });
     
+    
+    info.connection.bind("click", function() {
+        var params = info.connection.getParameters();
+        vm.selectLink(params.connectionId);                
+    });
 });

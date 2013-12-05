@@ -11,7 +11,7 @@
         self.containerPathway = undefined;
 
         //View related properties
-        self.selectedNode = undefined;
+        self.selectedItem = undefined;
 
         self.availableForms = [];
         
@@ -45,7 +45,7 @@
         
         self.loadPathway = function(pathwayJSON){
         	
-        	 self.selectedNode = undefined;
+        	 self.selectedItem = undefined;
         	 var pm = new PathwayModel();
         	 pm.name = pathwayJSON.name;
         	 pm.description = pathwayJSON.description;
@@ -106,14 +106,14 @@
         self.selectNode = function (n) {
             //Set current seletect node to bind to properties panel
         	//console.log(ko.toJSON(n))
-            self.selectedNode = n;
+            self.selectedItem = n;
         };
         
         self.getNodeName = function (n) {
             //Set current seletect node to bind to properties panel
         	//console.log(ko.toJSON(n))
         	return ko.toJSON(n)
-           // self.selectedNode = n;
+           // self.selectedItem = n;
         };
         
         self.loadNode = function(JSONNode) {
@@ -292,6 +292,7 @@
 		        	link.name = 'link_' + source.id + '_' + target.id;
 		        	link.source = source;
 		        	link.target = target;
+                                link.description = JSONLink.description;
 		        	link.connectionId = 'connection_' + (new Date().getTime());	        	
 		        	//If source is current node, and target node is not already in the outputs array, add it to outputs
 		            if (!ko.utils.arrayFirst(source.outputs, function (item) { return item === target })) {
@@ -320,7 +321,11 @@
 		       					"connectionId" : link.connectionId
 		       				},
 		       				anchor : 'Continuous',
-		       				paintStyle:{ strokeStyle: "#5c96bc", lineWidth: 2, outlineColor: "transparent", outlineWidth: 4  }
+		       				paintStyle:{ strokeStyle: "#5c96bc", lineWidth: 2, outlineColor: "transparent", outlineWidth: 4  },
+                                                /*
+                                                overlays:[ 
+                                                    [ "Label", { label: link.name, location:0.25, id:link.connectionId } ]
+                                                ],*/
 		        	});
 		        		
 		        		
@@ -370,6 +375,12 @@
         	});
 
         }
+        
+        self.selectLink = function(connectionId) {
+            var l = ko.utils.arrayFirst(self.pathwayModel.links, function (link) { return link.connectionId === connectionId });
+            self.selectedItem = l;
+        };
+        
         //#endregion
         //FIXME  need to pu this into either the node model method and find a better way to call it or take all
         // he methods out of the node model and put them here 

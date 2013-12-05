@@ -26,7 +26,7 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">Tree View</div>
 					<div class="panel-body" data-bind="with: pathwayModel">
-						<div class="pathway-title" data-bind="attr:{title: name">{{name}}</div>
+						<div class="pathway-title" data-bind="attr:{title: name}, text: name"></div>
 						
 						<div id="jsTreeView" class="treeview">
 								  <ul class="level1" data-bind="foreach: nodes">
@@ -90,7 +90,7 @@
                 </button>
             	
                  <div class="form-group">
-                      <h1 id="pathwayName">{{pathwayModel ? pathwayModel.name : ''}}</h1>
+                      <h1 id="pathwayName" data-bind="text: pathwayModel ? pathwayModel.name : ''"></h1>
                 </div>
  
             </div>
@@ -111,8 +111,8 @@
 			</div>
 
 
-<!-- If selectedNode is undefined, the right panel will be empty -->
-    <div id="properties-panel" class="ui-layout-east large-rounded" data-bind="with: selectedNode">
+<!-- If selectedItem is undefined, the right panel will be empty -->
+    <div id="properties-panel" class="ui-layout-east large-rounded" data-bind="with: selectedItem">
         <div class="panel panel-primary">
             <div class="panel-heading">Properties: {{id}}</div>
             <div class="panel-body">
@@ -127,7 +127,7 @@
                     </div>
                     
                 </form>
-                
+                <!-- ko if: !($data instanceof LinkModel) -->
                 <div class="panel panel-primary">
                     <div class="panel-heading">Pathways Model</div>
                     <div class="panel-body">
@@ -182,6 +182,7 @@
                     <i class="fa fa-plus"></i> Add Collections
                 </button>
                 </div>
+                <!-- /ko -->
             </div>
         </div>
     </div>
