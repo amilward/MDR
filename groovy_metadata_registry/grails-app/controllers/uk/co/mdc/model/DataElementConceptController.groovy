@@ -399,7 +399,7 @@ class DataElementConceptController {
 	
 	/*check if the parent concept is contained in any of data concept's sub concepts*/
 	
-	Boolean ChildParentValid(String parent, ArrayList children){
+	private Boolean ChildParentValid(String parent, ArrayList children){
 		
 		if(children.contains(parent)){
 			return false

@@ -31,7 +31,7 @@ class SecUser {
 		password column: '`password`'
 	}
 	
-	static hasOne = {collectionBasket: CollectionBasket}
+	static hasOne = [collectionBasket: CollectionBasket]
 
 	Set<SecAuth> getAuthorities() {
 		SecUserSecAuth.findAllBySecUser(this).collect { it.secAuth } as Set
