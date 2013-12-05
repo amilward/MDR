@@ -213,8 +213,8 @@ class PathwaysModelSlurperSpec extends spock.lang.Specification {
 		when: "PathwaysModel has a node"
 			def pathwaysModels = loadPathwaysModels(XML_PATHWAYS_MODEL_WITH_ONE_NODE)
 		
-		then: "the refId is instantiated"
-			assert pathwaysModels[0].getNodes()[0].refId == "id.1"			
+		then: "the transientId is instantiated"
+			assert pathwaysModels[0].getNodes()[0].transientId == "id.1"			
 	}
 	
 	def "PathwaysModel has two nodes and a link" () {
@@ -222,11 +222,11 @@ class PathwaysModelSlurperSpec extends spock.lang.Specification {
 			def pathwaysModels = loadPathwaysModels(XML_PATHWAYS_MODEL_TWO_NODES_ONE_LINK)
 		
 		then: "the link contains the nodes"
-			def node1 = pathwaysModels[0].getNodes().find { it.refId.equals("id.1") }
-			def node2 = pathwaysModels[0].getNodes().find { it.refId.equals("id.2") }
+			def node1 = pathwaysModels[0].getNodes().find { it.transientId.equals("id.1") }
+			def node2 = pathwaysModels[0].getNodes().find { it.transientId.equals("id.2") }
 			def link1 = pathwaysModels[0].getLinks()[0];
-			assert node1.refId == "id.1"
-			assert node2.refId == "id.2"
+			assert node1.transientId == "id.1"
+			assert node2.transientId == "id.2"
 			assert link1.source == node1
 			assert link1.target == node2			
 	}
@@ -270,23 +270,23 @@ class PathwaysModelSlurperSpec extends spock.lang.Specification {
 			def pathwaysModels = loadPathwaysModels(XML_PATHWAYS_MODEL_SUBPATHWAY_TWO_NODES_ONE_LINK)
 		
 		then: "the pathway is set up as follows"
-			Node node1 = pathwaysModels[0].getNodes().find { it.refId.equals("id.1") }
+			Node node1 = pathwaysModels[0].getNodes().find { it.transientId.equals("id.1") }
 			PathwaysModel subPathwaysModel = node1.subModel
 			assert subPathwaysModel != null
 			
-			Node node2 = subPathwaysModel.getNodes().find { it.refId.equals("id.2") }
+			Node node2 = subPathwaysModel.getNodes().find { it.transientId.equals("id.2") }
 			assert node2 != null
 						
-			Node node3 = subPathwaysModel.getNodes().find { it.refId.equals("id.3") }
+			Node node3 = subPathwaysModel.getNodes().find { it.transientId.equals("id.3") }
 			assert node3 != null
 			
-			Link link1 = subPathwaysModel.getLinks().find { it.refId.equals("l.1") }
+			Link link1 = subPathwaysModel.getLinks().find { it.transientId.equals("l.1") }
 			assert link1 != null
 			
-			assert node1.refId == "id.1"
-			assert node2.refId == "id.2"
-			assert node3.refId == "id.3"
-			assert link1.refId == "l.1"
+			assert node1.transientId == "id.1"
+			assert node2.transientId == "id.2"
+			assert node3.transientId == "id.3"
+			assert link1.transientId == "l.1"
 			assert link1.source == node2
 			assert link1.target == node3
 	}
@@ -296,45 +296,45 @@ class PathwaysModelSlurperSpec extends spock.lang.Specification {
 			def pathwaysModels = loadPathwaysModels(XML_PATHWAYS_MODEL_SUBPATHWAY_FOUR_NODES_THREE_LINKS)
 		
 		then: "the pathway is set up as follows"
-			Node node1 = pathwaysModels[0].getNodes().find { it.refId.equals("id.1") }
+			Node node1 = pathwaysModels[0].getNodes().find { it.transientId.equals("id.1") }
 			assert node1 != null
 			
 			
 			PathwaysModel subPathwaysModel = node1.subModel
 			assert subPathwaysModel != null
 			
-			Node node2 = subPathwaysModel.getNodes().find { it.refId.equals("id.2") }
+			Node node2 = subPathwaysModel.getNodes().find { it.transientId.equals("id.2") }
 			assert node2 != null
 						
-			Node node3 = subPathwaysModel.getNodes().find { it.refId.equals("id.3") }
+			Node node3 = subPathwaysModel.getNodes().find { it.transientId.equals("id.3") }
 			assert node3 != null
 			
-			Node node4 = pathwaysModels[0].getNodes().find { it.refId.equals("id.4") }
+			Node node4 = pathwaysModels[0].getNodes().find { it.transientId.equals("id.4") }
 			assert node1 != null
 			
-			Link link1 = subPathwaysModel.getLinks().find { it.refId.equals("l.1") }
+			Link link1 = subPathwaysModel.getLinks().find { it.transientId.equals("l.1") }
 			assert link1 != null
 
-			Link link2 = subPathwaysModel.getLinks().find { it.refId.equals("l.2") }
+			Link link2 = subPathwaysModel.getLinks().find { it.transientId.equals("l.2") }
 			assert link2 != null
 
-			Link link3 = pathwaysModels[0].getLinks().find { it.refId.equals("l.3") }
+			Link link3 = pathwaysModels[0].getLinks().find { it.transientId.equals("l.3") }
 			assert link3 != null
 			
-			assert node1.refId == "id.1"
-			assert node2.refId == "id.2"
-			assert node3.refId == "id.3"
-			assert node4.refId == "id.4"
+			assert node1.transientId == "id.1"
+			assert node2.transientId == "id.2"
+			assert node3.transientId == "id.3"
+			assert node4.transientId == "id.4"
 			
-			assert link1.refId == "l.1"
+			assert link1.transientId == "l.1"
 			assert link1.source == node2
 			assert link1.target == node3
 			
-			assert link2.refId == "l.2"
+			assert link2.transientId == "l.2"
 			assert link2.source == node3
 			assert link2.target == node4
 			
-			assert link3.refId == "l.3"
+			assert link3.transientId == "l.3"
 			assert link3.source == node1
 			assert link3.target == node4
 			

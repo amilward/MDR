@@ -45,7 +45,7 @@ class Link extends PathwayElement{
 		this.target = idRefToNode[targetRefId]
 			
 		//Load id and name if available	 
-		this.refId = linkElement.attributes().get('id')?.toString()
+		this.transientId = linkElement.attributes().get('id')?.toString()
 		this.name = linkElement.attributes().get('name')?.toString()
 		
 		//Description when present (We only allow one description item)
