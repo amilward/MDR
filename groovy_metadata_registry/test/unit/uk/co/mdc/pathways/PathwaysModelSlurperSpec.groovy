@@ -1,6 +1,10 @@
+
+
+
 package uk.co.mdc.pathways
 
 import grails.test.mixin.*
+
 import org.junit.*
 
 import com.sun.xml.internal.ws.client.sei.ResponseBuilder.InputStreamBuilder;
@@ -214,7 +218,11 @@ class PathwaysModelSlurperSpec extends spock.lang.Specification {
 			def pathwaysModels = loadPathwaysModels(XML_PATHWAYS_MODEL_WITH_ONE_NODE)
 		
 		then: "the transientId is instantiated"
-			assert pathwaysModels[0].getNodes()[0].transientId == "id.1"			
+			PathwaysModel pathwaysModel = pathwaysModels[0]
+			Node node1 = pathwaysModel.getNodes()[0]
+			assert node1.transientId == "id.1"
+			assert node1.pathwaysModel == pathwaysModel
+			assert pathwaysModel.parentNode == null	
 	}
 	
 	def "PathwaysModel has two nodes and a link" () {
@@ -222,13 +230,15 @@ class PathwaysModelSlurperSpec extends spock.lang.Specification {
 			def pathwaysModels = loadPathwaysModels(XML_PATHWAYS_MODEL_TWO_NODES_ONE_LINK)
 		
 		then: "the link contains the nodes"
-			def node1 = pathwaysModels[0].getNodes().find { it.transientId.equals("id.1") }
-			def node2 = pathwaysModels[0].getNodes().find { it.transientId.equals("id.2") }
-			def link1 = pathwaysModels[0].getLinks()[0];
+			PathwaysModel pathwaysModel = pathwaysModels[0]
+			Node node1 = pathwaysModel.getNodes().find { it.transientId.equals("id.1") }
+			Node node2 = pathwaysModel.getNodes().find { it.transientId.equals("id.2") }
+			Link link1 = pathwaysModel.getLinks()[0];
 			assert node1.transientId == "id.1"
 			assert node2.transientId == "id.2"
 			assert link1.source == node1
-			assert link1.target == node2			
+			assert link1.target == node2
+			assert node1.pathwaysModel == pathwaysModel		
 	}
 		
 	/* Pathways with sub-pathways */
@@ -242,6 +252,18 @@ class PathwaysModelSlurperSpec extends spock.lang.Specification {
 					<Node id="id.3" name="C"/>
 					<Link id="l.1" source="id.2" target="id.3"/>
 				</PathwaysModel>
+			</Node>
+		</PathwaysModel>
+	</PathwaysModels>
+	"""
+	
+	static final String XML_PATHWAYS_MODEL_MULTIPLE_SUBPATHWAY = XML_PI+"""
+	<PathwaysModels xmlns="""+QUOTED_NS_PATHWAYS_MODEL+""">
+		<PathwaysModel versionNo="1.0" isDraft="false" name="name">
+			<Node id="id.1" name="A">
+				<PathwaysModel name="B"/>
+				<!-- This next pathways model is not allowed -->
+				<PathwaysModel name="C"/>
 			</Node>
 		</PathwaysModel>
 	</PathwaysModels>
@@ -270,7 +292,8 @@ class PathwaysModelSlurperSpec extends spock.lang.Specification {
 			def pathwaysModels = loadPathwaysModels(XML_PATHWAYS_MODEL_SUBPATHWAY_TWO_NODES_ONE_LINK)
 		
 		then: "the pathway is set up as follows"
-			Node node1 = pathwaysModels[0].getNodes().find { it.transientId.equals("id.1") }
+			PathwaysModel pathwaysModel = pathwaysModels[0];
+			Node node1 = pathwaysModel.getNodes().find { it.transientId.equals("id.1") }
 			PathwaysModel subPathwaysModel = node1.subModel
 			assert subPathwaysModel != null
 			
@@ -289,6 +312,21 @@ class PathwaysModelSlurperSpec extends spock.lang.Specification {
 			assert link1.transientId == "l.1"
 			assert link1.source == node2
 			assert link1.target == node3
+			
+			assert pathwaysModel.parentNode == null
+			assert subPathwaysModel.parentNode == node1	
+			assert node1.pathwaysModel == pathwaysModel
+			assert node2.pathwaysModel == subPathwaysModel
+			assert node3.pathwaysModel == subPathwaysModel
+			
+	}
+	
+ 	def "PathwaysModel has a node with two subpathways is not allowed" () {
+		when: "PathwaysModel has two nodes and one link"
+			def pathwaysModels = loadPathwaysModels(XML_PATHWAYS_MODEL_MULTIPLE_SUBPATHWAY)
+				
+		then: "an exception should be thrown"
+		RuntimeException e = thrown()			
 	}
 	
 	def "PathwaysModel has two nodes with a subpathway that has two nodes and 3 links" () {
@@ -296,7 +334,8 @@ class PathwaysModelSlurperSpec extends spock.lang.Specification {
 			def pathwaysModels = loadPathwaysModels(XML_PATHWAYS_MODEL_SUBPATHWAY_FOUR_NODES_THREE_LINKS)
 		
 		then: "the pathway is set up as follows"
-			Node node1 = pathwaysModels[0].getNodes().find { it.transientId.equals("id.1") }
+			PathwaysModel pathwaysModel = pathwaysModels[0]
+			Node node1 = pathwaysModel.getNodes().find { it.transientId.equals("id.1") }
 			assert node1 != null
 			
 			
@@ -309,7 +348,7 @@ class PathwaysModelSlurperSpec extends spock.lang.Specification {
 			Node node3 = subPathwaysModel.getNodes().find { it.transientId.equals("id.3") }
 			assert node3 != null
 			
-			Node node4 = pathwaysModels[0].getNodes().find { it.transientId.equals("id.4") }
+			Node node4 = pathwaysModel.getNodes().find { it.transientId.equals("id.4") }
 			assert node1 != null
 			
 			Link link1 = subPathwaysModel.getLinks().find { it.transientId.equals("l.1") }
@@ -318,7 +357,7 @@ class PathwaysModelSlurperSpec extends spock.lang.Specification {
 			Link link2 = subPathwaysModel.getLinks().find { it.transientId.equals("l.2") }
 			assert link2 != null
 
-			Link link3 = pathwaysModels[0].getLinks().find { it.transientId.equals("l.3") }
+			Link link3 = pathwaysModel.getLinks().find { it.transientId.equals("l.3") }
 			assert link3 != null
 			
 			assert node1.transientId == "id.1"
@@ -338,6 +377,12 @@ class PathwaysModelSlurperSpec extends spock.lang.Specification {
 			assert link3.source == node1
 			assert link3.target == node4
 			
+			assert pathwaysModel.parentNode == null
+			assert subPathwaysModel.parentNode == node1
+			assert node1.pathwaysModel == pathwaysModel
+			assert node2.pathwaysModel == subPathwaysModel
+			assert node3.pathwaysModel == subPathwaysModel
+			assert node4.pathwaysModel == pathwaysModel
 			
 	}
 	

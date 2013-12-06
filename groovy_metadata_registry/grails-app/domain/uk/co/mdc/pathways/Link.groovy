@@ -9,11 +9,13 @@ class Link extends PathwayElement{
 	Node source
 	Node target
 
+	/*TOREMOVE
 	static belongsTo = [pathwaysModel: PathwaysModel]
 	
 	static constraints = {
 		pathwaysModel nullable: true
 	}
+	*/
 	
 	protected def slurpLinks(HashMap<String,Node> idRefToNode, groovy.util.slurpersupport.NodeChild linkElement) {
 		

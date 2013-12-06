@@ -8,19 +8,16 @@ class Node extends PathwayElement{
 	
 	String x //ISSUE It seems strange to me that x and y are not integers. (@charlescrichton)
 	String y
-	PathwaysModel subModel
-	//PathwaysModel pathwaysModel - what is this for??
-
-	static belongsTo = [pathwaysModel: PathwaysModel]
+	PathwaysModel subModel	
 	
 	//static hasOne = [subModel: PathwaysModel] - ??
-	
+	/*
 	public Node(String refId, String name,String x, String y, String desc, Collection peCollection){
 		super( refId, name, desc, peCollection)
 		this.x = x
 		this.y = y
 	}
-	
+	*/
 	static hasMany = [
 		mandatoryInputs: Collection,
 		mandatoryOutputs: Collection,
@@ -66,9 +63,11 @@ class Node extends PathwayElement{
 		}
 		
 		//Make sure there is a submodel list to put items into
-		if (nodeElement."pm:PathwaysModel".size() > 0) {
-			this.subModel = []
+		def numberOfsubModelElements = nodeElement."pm:PathwaysModel".size()
+		if (numberOfsubModelElements != 0 && numberOfsubModelElements !=1) {
+			throw new RuntimeException("A node may only contain a maximum of 1 PathwaysModel.")
 		}
+		if (numberOfsubModelElements )
 		//Load any submodels if present
 		/* For each pm:PathwaysModel element in the pathways models :
 		 *  Create an empty pathway model
@@ -77,11 +76,13 @@ class Node extends PathwayElement{
 		 */
 		nodeElement."pm:PathwaysModel".each { pathwaysModelElement ->
 
-			def pathwaysModel = new PathwaysModel()
-			pathwaysModel.slurpModelsAndNodes(pathwaysModelElement)
+			def createdPathwaysModel = new PathwaysModel()
+			createdPathwaysModel.slurpModelsAndNodes(pathwaysModelElement)
 
 			//We get this far if there are no exceptions, so add to the list
-			subModel = pathwaysModel
+			this.subModel = createdPathwaysModel
+			createdPathwaysModel.parentNode = this
+			
 		}
 	}
 	
