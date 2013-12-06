@@ -17,7 +17,12 @@ abstract class PathwayElement extends ExtensibleObject{
 	
 	String name
 	String description
-
+	
+	/**
+	 * The parent (IE containing) PathwaysModel
+	 */
+	PathwaysModel pathwaysModel 
+	
 	static belongsTo = [pathwaysModel: PathwaysModel]
 	
     static constraints = {

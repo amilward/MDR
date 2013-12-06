@@ -257,6 +257,18 @@ class PathwaysModelSlurperSpec extends spock.lang.Specification {
 	</PathwaysModels>
 	"""
 	
+	static final String XML_PATHWAYS_MODEL_MULTIPLE_SUBPATHWAY = XML_PI+"""
+	<PathwaysModels xmlns="""+QUOTED_NS_PATHWAYS_MODEL+""">
+		<PathwaysModel versionNo="1.0" isDraft="false" name="name">
+			<Node id="id.1" name="A">
+				<PathwaysModel name="B"/>
+				<!-- This next pathways model is not allowed -->
+				<PathwaysModel name="C"/>
+			</Node>
+		</PathwaysModel>
+	</PathwaysModels>
+	"""
+	
 	static final String XML_PATHWAYS_MODEL_SUBPATHWAY_FOUR_NODES_THREE_LINKS= XML_PI+"""
 	<PathwaysModels xmlns="""+QUOTED_NS_PATHWAYS_MODEL+""">
 		<PathwaysModel versionNo="1.0" isDraft="false" name="name">
@@ -307,6 +319,14 @@ class PathwaysModelSlurperSpec extends spock.lang.Specification {
 			assert node2.pathwaysModel == subPathwaysModel
 			assert node3.pathwaysModel == subPathwaysModel
 			
+	}
+	
+ 	def "PathwaysModel has a node with two subpathways is not allowed" () {
+		when: "PathwaysModel has two nodes and one link"
+			def pathwaysModels = loadPathwaysModels(XML_PATHWAYS_MODEL_MULTIPLE_SUBPATHWAY)
+				
+		then: "an exception should be thrown"
+		RuntimeException e = thrown()			
 	}
 	
 	def "PathwaysModel has two nodes with a subpathway that has two nodes and 3 links" () {

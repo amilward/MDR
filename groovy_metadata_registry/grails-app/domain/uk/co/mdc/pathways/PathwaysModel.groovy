@@ -8,6 +8,10 @@ class PathwaysModel  {
 	String versionNo
 	Boolean isDraft
 	String description
+	
+	/**
+	 * This is the parent node of the pathways. The top PathwayModel does not have a parent node, so it is null instead.
+	 */
 	Node parentNode
 
 	static searchable = { content: spellCheck 'include' }
@@ -178,11 +182,12 @@ class PathwaysModel  {
 			
 			//Add to pathway elements
 			this.pathwayElements += node
+			node.pathwaysModel = this
 		}
 	}
 	
 	protected def slurpLinks(HashMap<String,Node> idRefToNode, groovy.util.slurpersupport.NodeChild pathwaysModelElement) {
-		
+				
 		assert idRefToNode != null
 		
 		//Create links
@@ -190,12 +195,15 @@ class PathwaysModel  {
 			
 			//Create an empty node
 			uk.co.mdc.pathways.Link link = new uk.co.mdc.pathways.Link()
-		
+			
+			
+			
 			//Slurp data into it
 			link.slurpLinks(idRefToNode, linkElement)
 			
 			//Add to pathway elements
 			this.pathwayElements += link
+			link.pathwaysModel = this
 		}
 		
 		//Create a list to store the pathwaysModelElements
