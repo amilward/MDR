@@ -24,7 +24,7 @@
 			<div class="ui-layout-west large-rounded" id="tree-panel">
 				<div class="panel panel-default">
 					<div class="panel-heading">Tree View</div>
-					<div class="panel-body" data-bind="with: pathwayModel">
+					<div class="panel-body" data-bind="with: topLevelPathway">
 						<div class="pathway-title" data-bind="attr:{title: name}, text: name"></div>
 						
 						<div id="jsTreeView" class="treeview">
@@ -34,7 +34,7 @@
                                                           <input type="checkbox" checked data-bind="click: function(){ getSubNodes(); return !self.checked;}, attr:{id: 'cb' + id}">
                                                           <!-- /ko -->
                                                           <label data-bind="attr:{for: 'cb' + id}">
-                                                              <span data-bind="attr:{title: description}, click: $root.selectNode, css: {selectedItem: $data === $root.selectedItem}">{{name}}</span>
+                                                              <span data-bind="attr:{title: description}, click: $root.selectNode, css: {selectedItem: $root.itemEqualsToSelected($data)}">{{name}}</span>
                                                           </label>
                                                           <!-- ko if: subNodes != null -->
                                                           <ul class="level2" data-bind="foreach: subNodes">
@@ -43,13 +43,13 @@
                                                                   <input type="checkbox" checked data-bind="click: function(){ getSubNodes(); return !self.checked;}, attr:{id: 'cb' + id}">
                                                                   <!-- /ko -->
                                                                   <label data-bind="attr:{for: 'cb' + id}">
-                                                                      <span data-bind="click: $root.selectNode, css: {selectedItem: $data === $root.selectedItem}">{{name}}</span>
+                                                                      <span data-bind="click: $root.selectNode, css: {selectedItem: $root.itemEqualsToSelected($data)}">{{name}}</span>
                                                                   </label>
                                                                   <!-- ko if: subNodes != null -->
                                                                   <ul class="level3" data-bind="foreach: subNodes">
                                                                       <li>
                                                                           <label data-bind="attr:{for: 'cb' + id}">
-                                                                              <span data-bind="click: $root.selectNode, css: {selectedItem: $data === $root.selectedItem}">{{name}}</span>
+                                                                              <span data-bind="click: $root.selectNode, css: {selectedItem: $root.itemEqualsToSelected($data)}">{{name}}</span>
                                                                           </label>
                                                                       </li> 
                                                                   </ul>
@@ -93,7 +93,7 @@
             </div>
             <div class="panel-body" data-bind="with: pathwayModel">
                 <div class="jsplumb-container" data-bind="foreach: nodes ">
-                    <div class="node" data-bind="makeNode: $data, click: $root.selectNode, style: {top:y, left:x}, attr: { 'id': 'node' + id}, css: {selectedItem: $data === $root.selectedItem}">
+                    <div class="node" data-bind="makeNode: $data, click: $root.selectNode, style: {top:y, left:x}, attr: { 'id': 'node' + id}, css: {selectedItem: $root.itemEqualsToSelected($data)}">
                         <div data-bind="attr:{title: description}">{{name}}</div>
                         <div class="fa fa-chevron-right ep right"></div>
 			<div class="fa fa-chevron-left ep left"></div>
