@@ -47,6 +47,17 @@ class BootStrap {
 
 	def init = { servletContext ->
 
+		environments {
+			production {
+
+			}
+			development {
+
+			}
+		}
+		log.info("Bootstrapping")
+		println("bootstrap")
+		
 		def springContext = WebApplicationContextUtils.getWebApplicationContext( servletContext )
 
 		//register custom json Marshallers
