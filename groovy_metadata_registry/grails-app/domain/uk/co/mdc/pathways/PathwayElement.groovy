@@ -8,10 +8,12 @@ import uk.co.mdc.model.ExtensibleObject;
 
 abstract class PathwayElement extends ExtensibleObject{
 	
+	
+	
 	/**
 	 * This is a transient value which could well be removed in the future.
 	 */
-	protected String transientId
+	String transientId
 	
 	String name
 	String description
