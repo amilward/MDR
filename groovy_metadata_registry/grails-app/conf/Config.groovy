@@ -81,10 +81,26 @@ grails.hibernate.cache.queries = false
 environments {
 	development {
 		grails.logging.jul.usebridge = true
+		
+		//disable mail send functionality
+		grails.mail.disabled=true
 	}
 	production {
-		grails.logging.jul.usebridge = false
 		// TODO: grails.serverURL = "http://www.changeme.com"
+		grails {
+			logging.jul.usebridge = false
+			// TODO: serverURL = "http://www.changeme.com"
+			mail {
+			  host = "smtp.gmail.com"
+			  port = 465
+			  username = "brcmodelcatalogue@gmail.com"
+			  password = "Q}PJb4pxhT9,rG"
+			  props = ["mail.smtp.auth":"true",
+					   "mail.smtp.socketFactory.port":"465",
+					   "mail.smtp.socketFactory.class":"javax.net.ssl.SSLSocketFactory",
+					   "mail.smtp.socketFactory.fallback":"false"]
+			}
+		 }
 	}
 }
 
@@ -118,9 +134,6 @@ log4j = {
 grails.views.javascript.library="jquery"
 
 
-//disable mail send functionality
-
-grails.mail.disabled=true
 
 grails{
 	plugins{

@@ -1,17 +1,61 @@
+package uk.co.mdc.utils.importers
 import org.json.simple.JSONObject
-import uk.co.mdc.model.DataElement
-import uk.co.mdc.model.DataElementConcept
+import uk.co.mdc.model.SchemaSpecification;
+import uk.co.mdc.model.Collection;
+import uk.co.mdc.model.ExternalReference
 import uk.co.mdc.model.ValueDomain
-import uk.co.mdc.model.ConceptualDomain
+import uk.co.mdc.model.DataElement
 import uk.co.mdc.model.DataType
-import uk.co.mdc.model.DataTypeService
+import uk.co.mdc.model.DataElementConcept
+import uk.co.mdc.model.DataElementCollection
+import uk.co.mdc.model.ConceptualDomain
+import uk.co.mdc.model.Document
+import uk.co.mdc.model.DataElementValueDomain
+import uk.co.mdc.pathways.PathwaysModel
+import uk.co.mdc.pathways.Link
+import uk.co.mdc.pathways.Node
 
-class NHICImportConfig {
+class ImportNHICService {
 
+	static transactional = true
+	
+	def grailsApplication
+	def aclUtilService
 	def dataTypeService
+	
+	
+    def importData() {
+		def applicationContext = grailsApplication.mainContext
+		String basePath = applicationContext.getResource("/").getFile().toString()
+		
+		functions.keySet().each { filename ->
+			new File("${basePath}" + "/WEB-INF/bootstrap-data/NHIC" + filename).toCsvReader([charset:'UTF-8', skipLines : 1] ).eachLine { tokens ->
+				functions[filename](tokens);
+			}
+		}
+		
+		grantUserPermissions(DataElement.list())
+		grantUserPermissions(ValueDomain.list())
+		grantUserPermissions(ConceptualDomain.list())
+		grantUserPermissions(DataElementConcept.list())
+		grantUserPermissions(DataType.list())
+		grantUserPermissions(Document.list())
+		grantUserPermissions(ExternalReference.list())
+		grantUserPermissions(Collection.list())
+		grantUserPermissions(FormDesign.list())
+		grantUserPermissions(QuestionElement.list())
+		grantUserPermissions(InputField.list())
+		grantUserPermissions(PathwaysModel.list())
+    }
+	private grantUserPermissions(objectList){
+		for (object in objectList) {
+			aclUtilService.addPermission object, 'admin', ADMINISTRATION
+		}
+	}
 
-	public static functions = [
-		'/WEB-INF/bootstrap-data/NHIC/Initial/CAN.csv' :
+	
+	private static functions = [
+		'/Initial/CAN.csv' :
 		{ tokens ->
 			def categories = [tokens[2], tokens[1], "Initial Proposal - CUH","Ovarian Cancer", "NHIC Datasets"];
 			def dec = importDataElementConcepts(categories, null);
@@ -42,7 +86,7 @@ class NHICImportConfig {
 		},
 
 
-		'/WEB-INF/bootstrap-data/NHIC/Initial/ACS.csv' :
+		'/Initial/ACS.csv' :
 		{ tokens ->
 			def categories = [tokens[2], tokens[1], "Initial Proposal - IMP","Acute Coronary Syndromes", "NHIC Datasets"];
 			def dec = importDataElementConcepts(categories, null);
@@ -71,7 +115,7 @@ class NHICImportConfig {
 			println "importing: " + tokens[0]
 		},
 
-		'/WEB-INF/bootstrap-data/NHIC/Initial/HEP.csv' :
+		'/Initial/HEP.csv' :
 		{ tokens ->
 			def categories = [tokens[2], tokens[1], "Initial Proposal - OUH","Viral Hepatitis C/B", "NHIC Datasets"];
 			def dec = importDataElementConcepts(categories, null);
@@ -99,7 +143,7 @@ class NHICImportConfig {
 			println "importing: " + tokens[0]
 		},
 
-		'/WEB-INF/bootstrap-data/NHIC/Initial/TRA.csv' :
+		'/Initial/TRA.csv' :
 		{ tokens ->
 			def categories = [tokens[2], tokens[1], "Initial Proposal - GSTT","Renal Transplantation", "NHIC Datasets"];
 			def dec = importDataElementConcepts(categories, null);
@@ -125,7 +169,7 @@ class NHICImportConfig {
 			println "importing: " + tokens[0]
 		},
 
-		'/WEB-INF/bootstrap-data/NHIC/Initial/ICU.csv' :
+		'/Initial/ICU.csv' :
 		{ tokens ->
 			def categories = [tokens[2], tokens[1], "Initial Proposal - UCL","Intensive Care", "NHIC Datasets"];
 			def dec = importDataElementConcepts(categories, null);
@@ -151,7 +195,7 @@ class NHICImportConfig {
 			println "importing: " + tokens[0]
 		},
 
-		'/WEB-INF/bootstrap-data/NHIC/Round1/ACS/ACS_GSTT.csv' :
+		'/Round1/ACS/ACS_GSTT.csv' :
 		{ tokens ->
 			def categories = [tokens[2], tokens[1], "GSTT","Round 1", "Acute Coronary Syndromes", "NHIC Datasets"];
 			def dec = importDataElementConcepts(categories, null);
@@ -184,7 +228,7 @@ class NHICImportConfig {
 			println "importing: " + tokens[0] + "_Round1_GSTT"
 		},
 
-		'/WEB-INF/bootstrap-data/NHIC/Round1/ACS/ACS_OUH.csv' :
+		'/Round1/ACS/ACS_OUH.csv' :
 		{ tokens ->
 			def categories = [tokens[2], tokens[1], "OUH","Round 1", "Acute Coronary Syndromes", "NHIC Datasets"];
 			def dec = importDataElementConcepts(categories, null);
@@ -217,7 +261,7 @@ class NHICImportConfig {
 			println "importing: " + tokens[0] + "_Round1_OUH"
 		},
 
-		'/WEB-INF/bootstrap-data/NHIC/Round1/ACS/ACS_UCL.csv' :
+		'/Round1/ACS/ACS_UCL.csv' :
 		{ tokens ->
 			def categories = [tokens[2], tokens[1], "UCL","Round 1", "Acute Coronary Syndromes", "NHIC Datasets"];
 			def dec = importDataElementConcepts(categories, null);
@@ -250,7 +294,7 @@ class NHICImportConfig {
 			println "importing: " + tokens[0] + "_Round1_UCL"
 		},
 
-		'/WEB-INF/bootstrap-data/NHIC/Round1/CAN/CAN_CUH.csv' :
+		'/Round1/CAN/CAN_CUH.csv' :
 		{ tokens ->
 			def categories = [tokens[2], tokens[1], "CUH","Round 1", "Ovarian Cancer", "NHIC Datasets"];
 			def dec = importDataElementConcepts(categories, null);
@@ -288,7 +332,7 @@ class NHICImportConfig {
 			println "importing: " + tokens[0] + "_Round1_CAN"
 		},
 
-		'/WEB-INF/bootstrap-data/NHIC/Round1/CAN/CAN_GSTT.csv' :
+		'/Round1/CAN/CAN_GSTT.csv' :
 		{ tokens ->
 			def categories = [tokens[2], tokens[1], "GSTT","Round 1", "Ovarian Cancer", "NHIC Datasets"];
 			def dec = importDataElementConcepts(categories, null);
@@ -322,7 +366,7 @@ class NHICImportConfig {
 			println "importing: " + tokens[0] + "_Round1_GSTT"
 		},
 
-		'/WEB-INF/bootstrap-data/NHIC/Round1/CAN/CAN_IMP.csv' :
+		'/Round1/CAN/CAN_IMP.csv' :
 		{ tokens ->
 			def categories = [tokens[2], tokens[1], "IMP","Round 1", "Ovarian Cancer", "NHIC Datasets"];
 			def dec = importDataElementConcepts(categories, null);
@@ -358,7 +402,7 @@ class NHICImportConfig {
 			println "importing: " + tokens[0] + "_Round1_IMP"
 		},
 
-		'/WEB-INF/bootstrap-data/NHIC/Round1/CAN/CAN_UCL.csv' :
+		'/Round1/CAN/CAN_UCL.csv' :
 		{ tokens ->
 			def categories = [tokens[2], tokens[1], "UCL","Round 1", "Ovarian Cancer", "NHIC Datasets"];
 			def dec = importDataElementConcepts(categories, null);
@@ -394,7 +438,7 @@ class NHICImportConfig {
 			println "importing: " + tokens[0] + "_Round1_UCL"
 		},
 
-		'/WEB-INF/bootstrap-data/NHIC/Round1/HEP/HEP_OUH.csv' :
+		'/Round1/HEP/HEP_OUH.csv' :
 		{ tokens ->
 			def categories = [tokens[2], tokens[1], "OUH","Round 1", "Viral Hepatitis C/B", "NHIC Datasets"];
 			def dec = importDataElementConcepts(categories, null);
@@ -428,7 +472,7 @@ class NHICImportConfig {
 			println "importing: " + tokens[0] + "_Round1_OUH"
 		},
 
-		'/WEB-INF/bootstrap-data/NHIC/Round1/HEP/HEP_UCL.csv' :
+		'/Round1/HEP/HEP_UCL.csv' :
 		{ tokens ->
 			def categories = [tokens[2], tokens[1], "UCL","Round 1", "Viral Hepatitis C/B", "NHIC Datasets"];
 			def dec = importDataElementConcepts(categories, null);
@@ -462,7 +506,7 @@ class NHICImportConfig {
 			println "importing: " + tokens[0] + "_Round1_UCL"
 		},
 
-		'/WEB-INF/bootstrap-data/NHIC/Round1/ICU/ICU_GSTT.csv' :
+		'/Round1/ICU/ICU_GSTT.csv' :
 		{ tokens ->
 			def categories = [tokens[2], tokens[1], "GSTT","Round 1", "Intensive Care", "NHIC Datasets"];
 			def dec = importDataElementConcepts(categories, null);
@@ -493,7 +537,7 @@ class NHICImportConfig {
 			println "importing: " + tokens[0] + "_Round1_GSTT"
 		},
 
-		'/WEB-INF/bootstrap-data/NHIC/Round1/ICU/ICU_UCL.csv' :
+		'/Round1/ICU/ICU_UCL.csv' :
 		{ tokens ->
 			def categories = [tokens[2], tokens[1], "UCL","Round 1", "Intensive Care", "NHIC Datasets"];
 			def dec = importDataElementConcepts(categories, null);
@@ -524,7 +568,7 @@ class NHICImportConfig {
 			println "importing: " + tokens[0] + "_Round1_UCL"
 		},
 
-		'/WEB-INF/bootstrap-data/NHIC/Round1/TRA/TRA_CUH.csv' :
+		'/Round1/TRA/TRA_CUH.csv' :
 		{ tokens ->
 			def categories = [tokens[2], tokens[1], "CUH","Round 1", "Renal Transplantation", "NHIC Datasets"];
 			def dec = importDataElementConcepts(categories, null);
@@ -558,7 +602,7 @@ class NHICImportConfig {
 			println "importing: " + tokens[0] + "_Round1_CUH"
 		},
 
-		'/WEB-INF/bootstrap-data/NHIC/Round1/TRA/TRA_GSTT.csv' :
+		'/Round1/TRA/TRA_GSTT.csv' :
 		{ tokens ->
 			def categories = [tokens[2], tokens[1], "GSTT","Round 1", "Renal Transplantation", "NHIC Datasets"];
 			def dec = importDataElementConcepts(categories, null);
@@ -589,7 +633,7 @@ class NHICImportConfig {
 			println "importing: " + tokens[0] + "_Round1_GSTT"
 		},
 
-		'/WEB-INF/bootstrap-data/NHIC/Round1/TRA/TRA_OUH.csv' :
+		'/Round1/TRA/TRA_OUH.csv' :
 		{ tokens ->
 			def categories = [tokens[1], "OUH","Round 1", "Renal Transplantation", "NHIC Datasets"];
 			def dec = importDataElementConcepts(categories, null);
@@ -619,25 +663,11 @@ class NHICImportConfig {
 			de.save();
 			println "importing: " + tokens[0] + "_Round1_OUH"
 		}
-
-
-
-
-
-
-
-
-
-
 	]
 
 
 
-
-
-
-
-	static private importDataElementConcepts(nodenames, parent)
+	private static importDataElementConcepts(nodenames, parent)
 	{
 		nodenames.reverse().inject(parent) {dec, name ->
 			if(name.equals(""))
@@ -656,7 +686,7 @@ class NHICImportConfig {
 		}
 	}
 
-	static private importDataTypes(name, dataType){
+	private static importDataTypes(name, dataType){
 
 		def dataTypeReturn = DataType.findByName('String')
 
@@ -684,7 +714,6 @@ class NHICImportConfig {
 						}
 						enumerated = true
 						enumerations.put(key,value)
-
 					}
 				}
 
@@ -693,16 +722,12 @@ class NHICImportConfig {
 					enumerated: enumerated,
 					enumerations: enumerations).save(failOnError: true)
 				}
-
-
 			}
-
 		}
-
 		return dataTypeReturn
 	}
-
-	public static findOrCreateConceptualDomain(String name, String description){
+	
+	private static findOrCreateConceptualDomain(String name, String description){
 
 		def cd = ConceptualDomain.findByName(name)
 
