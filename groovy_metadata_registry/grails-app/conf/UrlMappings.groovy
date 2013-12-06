@@ -14,7 +14,8 @@ class UrlMappings {
 			}
 		}
 		
-		"/role/pendingUsers"( controller: "role", action: "listPendingUsers" )
+		name pendingUsers: "/role/pendingUsers"( controller: "role", action: "listPendingUsers" )
+		name importData: "/admin/importData"(view:"admin/importData")
 
 		"/"(controller:"index", action: "index")
 		"403"(controller: "errors", action: "error403") 

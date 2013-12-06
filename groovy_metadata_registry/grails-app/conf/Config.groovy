@@ -124,7 +124,7 @@ log4j = {
 			'org.hibernate',
 			'net.sf.ehcache.hibernate'
 	debug 	'grails.app.services.grails.plugin.springsecurity.ui.SpringSecurityUiService'
-	info 	'org.springframework.security',
+	info 	'org.springframework.security'
 	debug  	'uk.co.mdc.mail'		// Dummy mail output for dev
 }
 

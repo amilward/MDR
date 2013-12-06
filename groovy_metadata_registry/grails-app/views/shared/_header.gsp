@@ -124,7 +124,7 @@
 						<div class="nav-collapse collapse">
 							<!-- .nav -->
 							<ul id="navbar" class="nav">
-								<li><a href="/">Dashboard</a></li>
+								<li><a href="${createLink(uri: '/')}">Dashboard</a></li>
 
 								<li class="dropdown"><a data-toggle="dropdown"
 									class="dropdown-toggle" href="#"> Profile <b class="caret"></b>
@@ -174,6 +174,7 @@
 												<li><g:link controller="role" action='create'>Create role</g:link></li>
 
 												<li><g:link controller="role" action='listPendingUsers'>Activate pending users</g:link></li>
+												<li><g:link mapping="importData">Import data</g:link></li>
 											</ul></li>
 										<!--
                     <g:if
