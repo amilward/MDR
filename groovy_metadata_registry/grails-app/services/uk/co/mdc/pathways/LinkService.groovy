@@ -103,8 +103,6 @@ class LinkService {
 				pathway.addToPathwayElements(linkInstance)
 			}
 		}
-		
-		println(linkInstance)
 		//return the data element to the consumer (the controller)
 		return linkInstance
 	}
@@ -151,7 +149,7 @@ class LinkService {
 	int count() { Link.count() }
 	
 	
-	/* ************************* UPDATE VALUE DOMAINS***********************************************
+	/* ************************* UPDATE LINKS***********************************************
 	 *  requires that the authenticated user have write or admin permission on the value domain instance to edit it
 	 ******************************************************************************************** */
 	

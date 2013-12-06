@@ -4,7 +4,7 @@ var vm
 var pathwayService
 var nextSave
 
-function initPathways(param){
+function initPathways(pathwayId){
 	
 	ko.punches.interpolationMarkup.enable();
 
@@ -21,12 +21,17 @@ function initPathways(param){
     
 
     //Initial action on page load
-    if(param==='create'){
-    	$('#CreatePathwayModal').modal({ show: true, keyboard: false, backdrop: 'static' });
-    }else{
+    if(pathwayId){
     	
-    	//console.log(param)
-    	vm.loadPathway(param);
+    	$.when(pathwayService.loadPathway(pathwayId)).done(function (pathwayJSON) {
+			//console.log('test')
+			//console.log(pathwayJSON.pathwaysModelInstance)
+			vm.loadPathway(pathwayJSON.pathwaysModelInstance);
+		});
+    	
+    }else{
+    	$('#CreatePathwayModal').modal({ show: true, keyboard: false, backdrop: 'static' });
+    	
     }
     
     //save every 60 seconds

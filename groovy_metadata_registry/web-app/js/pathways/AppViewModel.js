@@ -3,6 +3,8 @@
     var AppViewModel = function () {
     	
         var self = this;
+        
+        self.topLevelPathway = undefined;
 
         //Pathway Model
         self.pathwayModel = undefined;
@@ -11,14 +13,13 @@
         self.containerPathway = undefined;
 
         //View related properties
-        self.selectedNode = undefined;
+        self.selectedItem = undefined;
 
         self.availableForms = [];
         
         //Turn all self.XXX properties above this statement to observable{Array}
         ko.track(self);
         
-
         //We can now use the observable without ()
 
         //#region View related functions/logic
@@ -45,7 +46,7 @@
         
         self.loadPathway = function(pathwayJSON){
         	
-        	 self.selectedNode = undefined;
+        	 //self.selectedItem = undefined;
         	 var pm = new PathwayModel();
         	 pm.name = pathwayJSON.name;
         	 pm.description = pathwayJSON.description;
@@ -60,13 +61,16 @@
 				 });
         	 				   
         	 //console.log('finished creating nodes')
-				        	 setTimeout( function()
-				 {
+//				        	 setTimeout( function()
+//				 {
 							var links = pathwayJSON.links;
 							 $.each(links, function( index, link ) {
 							      self.loadLink(link);        	 
 							 });
-							      }, 200);
+//							      }, 200);
+                if (!self.topLevelPathway || self.topLevelPathway.id === self.pathwayModel.id) {
+                    self.topLevelPathway = self.pathwayModel;
+                }
         }
         
         self.createPathway = function (pathway) {
@@ -103,17 +107,32 @@
         };
         
 
-        self.selectNode = function (n) {
-            //Set current seletect node to bind to properties panel
-        	//console.log(ko.toJSON(n))
-            self.selectedNode = n;
+        self.selectNode = function (n, e) {
+            if (e) {
+                //Check whether selected item has a parent node (i.e. whether in subpathway)
+                var bindingContext = ko.contextFor(e.target);
+                if (bindingContext.$parent && bindingContext.$parent instanceof NodeModel) {
+                    //Switch to subpathway
+                    $.when(pathwayService.loadPathway(bindingContext.$parent.subPathwayId)).done(function (pathwayJSON) {
+                        self.containerPathway = self.pathwayModel;
+                        self.loadPathway(pathwayJSON.pathwaysModelInstance);
+                        
+                        self.selectedItem = ko.utils.arrayFirst(self.pathwayModel.nodes, function (node) { return node.id === n.id });
+                    });
+                } else if (bindingContext.$parent && bindingContext.$parent === self.topLevelPathway && self.containerPathway) {
+                    self.goToParent();
+                    self.selectedItem = ko.utils.arrayFirst(self.pathwayModel.nodes, function (node) { return node.id === n.id });
+                }
+            }
+            self.selectedItem = n;
+            
         };
         
         self.getNodeName = function (n) {
             //Set current seletect node to bind to properties panel
         	//console.log(ko.toJSON(n))
-        	return ko.toJSON(n)
-           // self.selectedNode = n;
+        	return ko.toJSON(n);
+           // self.selectedItem = n;
         };
         
         self.loadNode = function(JSONNode) {
@@ -287,12 +306,13 @@
 	        	
 	        	if(source!=null && target!=null){
 	        	  	        
-	        		link.id = JSONLink.id
+	        		link.id = JSONLink.id;
 	        		
-		        	link.name = 'link_' + source.id + '_' + target.id;
+		        	link.name = JSONLink.name;
 		        	link.source = source;
 		        	link.target = target;
-		        	link.connectionId = 'connection_' + (new Date().getTime());	        	
+                                link.description = JSONLink.description;
+		        	link.connectionId = 'connection_' + source.id + '_' + target.id;        	
 		        	//If source is current node, and target node is not already in the outputs array, add it to outputs
 		            if (!ko.utils.arrayFirst(source.outputs, function (item) { return item === target })) {
 		                source.outputs.push(target);        
@@ -320,7 +340,11 @@
 		       					"connectionId" : link.connectionId
 		       				},
 		       				anchor : 'Continuous',
-		       				paintStyle:{ strokeStyle: "#5c96bc", lineWidth: 2, outlineColor: "transparent", outlineWidth: 4  }
+		       				paintStyle:{ strokeStyle: "#5c96bc", lineWidth: 2, outlineColor: "transparent", outlineWidth: 4  },
+                                                /*
+                                                overlays:[ 
+                                                    [ "Label", { label: link.name, location:0.25, id:link.connectionId } ]
+                                                ],*/
 		        	});
 		        		
 		        		
@@ -370,6 +394,12 @@
         	});
 
         }
+        
+        self.selectLink = function(connectionId) {
+            var l = ko.utils.arrayFirst(self.pathwayModel.links, function (link) { return link.connectionId === connectionId });
+            self.selectedItem = l;
+        };
+        
         //#endregion
         //FIXME  need to pu this into either the node model method and find a better way to call it or take all
         // he methods out of the node model and put them here 
@@ -410,7 +440,11 @@
         self.gotoContainerPathway = function() {
             self.pathwayModel = self.containerPathway;
             self.containerPathway = undefined;
-        }
+        };
+        
+        self.itemEqualsToSelected = function(item) {
+            return (item && self.selectedItem && item.id === self.selectedItem.id)
+        };
         
         //Initialize form list using FormService
         $.when(loadFormList()).done(function (data) {

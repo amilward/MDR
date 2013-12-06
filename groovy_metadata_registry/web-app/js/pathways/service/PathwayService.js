@@ -11,7 +11,7 @@
     	return $.ajax({
     		type : "POST",
     		// FIXME remove static app name
-    		url : "/groovy_metadata_registry/pathwaysModel/jsonPathways/" + id,
+    		url : "../../pathwaysModel/jsonPathways/" + id,
     		contentType: "application/json; charset=utf-8",
     	});
        
@@ -24,7 +24,7 @@
     	return $.ajax({
     		type : "POST",
     		// FIXME remove static app name
-    		url : "/groovy_metadata_registry/pathwaysModel/updatePathwayJSON",
+    		url : "../../pathwaysModel/updatePathwayJSON",
     		data : ko.toJSON(pathwayModel),
     		contentType: "application/json; charset=utf-8",
     		/*success : function(data){
@@ -48,7 +48,7 @@
     	return $.ajax({
     		type : "POST",
     		// FIXME remove static app name
-    		url : "/groovy_metadata_registry/pathwaysModel/createPathwayFromJSON",
+    		url : "../../pathwaysModel/createPathwayFromJSON",
     		data : ko.toJSON(model),
     		contentType: "application/json; charset=utf-8",
     		/*success : function(data){
@@ -67,7 +67,7 @@
 
     	return $.ajax({
     		type: "POST",
-    		url: "/groovy_metadata_registry/Node/createNodeFromJSON",
+    		url: "../../Node/createNodeFromJSON",
     		data: self.stringify(jsonNodeToServer),
     		/*success: function(data){
     			console.log(data);
@@ -87,7 +87,7 @@
     self.getPathwayNodes = function(pathwayId){
     	return $.ajax({
     		type: "POST",
-    		url: "/groovy_metadata_registry/PathwaysModel/getNodes/" + pathwayId,
+    		url: "../../PathwaysModel/getNodes/" + pathwayId,
     		contentType: 'application/json',
     		dataType: 'json'
     		});
@@ -96,7 +96,7 @@
     self.updateNode = function(jsonNodeToServer){
     	return $.ajax({
     		type: "POST",
-    		url: "/groovy_metadata_registry/Node/updateNodeFromJSON",
+    		url: "../../Node/updateNodeFromJSON",
     		data: self.stringify(jsonNodeToServer),
     		/*success: function(data){
     			console.log(data);
@@ -131,7 +131,7 @@
     		
     		return $.ajax({
     			type: "POST",
-    			url: '/groovy_metadata_registry/Link/createLinkFromJSON',
+    			url: '../../Link/createLinkFromJSON',
     			data: self.stringify(jsonLinkToServer),
     			/*success: function(data){
     				console.log(data.message);
@@ -151,7 +151,7 @@
     self.deleteNode = function(nodeId){
     	return $.ajax({
     		type: "POST",
-    		url: '/groovy_metadata_registry/Node/deleteNode/' + nodeId,
+    		url: '../../Node/deleteNode/' + nodeId,
     		/*success: function(data){
     			console.log(data.message);
     		},
@@ -196,7 +196,7 @@
     self.deleteLink = function(linkId){
     	return $.ajax({
     		type: "POST",
-    		url: '/groovy_metadata_registry/Link/deleteLink/' + linkId,
+    		url: '../../Link/deleteLink/' + linkId,
     		/*success: function(data){
     			console.log(data.message);
     		},

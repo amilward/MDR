@@ -169,17 +169,7 @@ class PathwaysModelController {
 			
 		}else{
 		
-	        def pathwaysModelInstance = findInstance()
-			
-	        if (!pathwaysModelInstance) {
-	            flash.message = message(code: 'default.not.found.message', args: [message(code: 'pathwaysModel.label', default: 'PathwaysModel'), id])
-	            redirect(action: "list")
-	            return
-	        }
-			
-			println(pathwaysModelInstance as JSON)
-	
-	        [pathwaysModelInstance: pathwaysModelInstance as JSON]
+	        [id: params.long('id')]
 		}
     }
 	

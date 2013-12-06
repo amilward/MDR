@@ -16,7 +16,7 @@ function formDesignList(){
 	oTable = $('#formDesignTable').dataTable( {
         "bProcessing": true,
         "bServerSide": true,
-        "sAjaxSource": "/groovy_metadata_registry/formDesign/dataTables",
+        "sAjaxSource": "../formDesign/dataTables",
         "sEmptyTable": "Loading data from server",
         "bAutoWidth": false,
         "aaSorting": [[ 1, "asc" ]],
@@ -80,7 +80,7 @@ function formDesignListDraggable(){
 	oTable = $('#formDesignTable').dataTable( {
         "bProcessing": true,
         "bServerSide": true,
-        "sAjaxSource": "/groovy_metadata_registry/formDesign/dataTables",
+        "sAjaxSource": "../../formDesign/dataTables",
         "sEmptyTable": "Loading data from server",
         "bAutoWidth": false,
         "aaSorting": [[ 1, "asc" ]],

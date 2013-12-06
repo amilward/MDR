@@ -179,17 +179,6 @@ modules = {
 		resource url: "js/pathways/pathwaysList.js"
 	}
 
-	// Order is important for the creationModal scripts :)
-	pathwayCreationModal{
-		dependsOn: "application"
-		dependsOn: "knockout_lib"
-		resource url: "js/pathways/model/PathwayModel.js"
-	 	resource url: "js/pathways/creationModal/main.js"
-		resource url: "js/pathways/creationModal/service/FormService.js"
-		resource url: "js/pathways/creationModal/service/PathwayService.js"
-		resource url: "js/pathways/creationModal/AppViewModel.js"
-	}
-
 	dForms{
 		dependsOn "application"
 		dependsOn "jquery_dform_lib"
