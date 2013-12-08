@@ -50,7 +50,7 @@ class PathwaysService {
 	
 	
 	
-	/* ************************* CREATE DATA ELEMENTS***********************************
+	/* ************************* CREATE PATHWAY***********************************
 	 * requires that the authenticated user to have ROLE_USER to create a data element
 	 ********************************************************************************* */
 	
@@ -68,8 +68,6 @@ class PathwaysService {
 			def parentNode = nodeService.get(parameters?.parentNodeId)
 			pathwaysModelInstance.parentNode = parentNode
 		}
-		
-		println(pathwaysModelInstance.parentNode)
 		
 		//save the dataElement
 		if(!pathwaysModelInstance.save(flush:true)){

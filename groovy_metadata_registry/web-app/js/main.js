@@ -49,7 +49,14 @@ $(function() {
 });
 
 
-$('#openModalLink').click(
+$('#createFormLink').click(
+	    function() {
+	  	  $('#createFormModal').modal({ show: true, keyboard: false, backdrop: 'static' });
+	      $(this).closest(".dropdown").removeClass("open");
+	      return false;
+	    });
+
+$('#createPathwayLink').click(
     function() {
   	  $('#createPathwayModal').modal({ show: true, keyboard: false, backdrop: 'static' });
       $(this).closest(".dropdown").removeClass("open");
@@ -63,7 +70,15 @@ $('.closeModalLink')
       return false;
     });
 
-$('#submitModalLink')
+$('#createFormSubmit')
+.click(
+    function() {
+    console.log('tet')
+  	  $('#createFormForm').submit();
+      return false;
+    });
+
+$('#createPathwaySubmit')
 .click(
     function() {
   	  $('#createPathwayForm').submit();

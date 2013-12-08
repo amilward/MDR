@@ -82,12 +82,16 @@
            	 	<button type="button" class="btn btn-link btn-xs pull-right" data-bind="click: createNode">
                     <i class="fa fa-plus"></i> Add Node
                 </button>
+                 <button type="button" class="btn btn-link btn-xs pull-right" data-bind="click: deletePathway">
+                    <i class="fa fa-edit"></i> Delete
+                </button>
                 <button type="button" class="btn btn-link btn-xs pull-right" data-bind="click: updatePathway">
-                    <i class="fa fa-save"></i> Save Pathway
+                    <i class="fa fa-save"></i> Save
                 </button>
                 <button type="button" class="btn btn-link btn-xs pull-right" data-bind="click: editPathway">
-                    <i class="fa fa-edit"></i> Edit Pathway Info
+                    <i class="fa fa-edit"></i> Edit Info
                 </button>
+               
             	
                  <div class="form-group">
                       <h1 id="pathwayName" data-bind="text: pathwayModel ? pathwayModel.name : ''"></h1>
@@ -138,7 +142,7 @@
                         </div>
                         <div data-bind="if: subPathwayId === null || subPathwayId === undefined">
                         	<button type="button" class="btn btn-link btn-xs pull-right" data-bind="click: createSubPathway">
-			                    <i class="fa fa-plus"></i> Create
+			                    <i class="fa fa-plus"></i> Add 
 			                </button>
                         </div>
                     </div>
@@ -152,6 +156,7 @@
                         </ul>
                     </div>
                 </div>
+                <!-- ko if: outputs!=[]-->
                 <div class="panel panel-primary">
                     <div class="panel-heading">Outputs</div>
                     <div class="panel-body outputs">
@@ -160,27 +165,35 @@
                         </ul>
                     </div>
                 </div>
+                <!-- /ko -->
                 <div class="panel panel-primary">
+                <!-- ko if: forms!=[]-->
                     <div class="panel-heading">Forms</div>
                     <div class="panel-body forms">
                         <ul class="list-group" data-bind="foreach: forms">
-                            <li class="list-group-item"><a href="#" data-bind="click: previewForm">{{name}}</a></li>
+                            <li class="list-group-item"><a href="#" data-bind="click: previewForm">{{name}}</a>
+                            <i class="fa icon-remove" data-bind="click: function(){$parent.removeForm(id);}"></i></li>
                         </ul>
                     </div>
+                <!-- /ko -->
+                    <button type="button" class="btn btn-link btn-xs pull-right" data-bind="click: addFormDialog">
+                  	  <i class="fa fa-plus"></i> Add Form
+                	</button>
                 </div>
-                <button type="button" class="btn btn-link btn-xs pull-right" data-bind="click: addFormDialog">
-                    <i class="fa fa-plus"></i> Add Form
-                </button>
-                  <div class="panel panel-primary">
+                
+                <div class="panel panel-primary">
+                <!-- ko if: collections!=[] -->
                     <div class="panel-heading">Collections</div>
                     <div class="panel-body forms">
                         <ul class="list-group" data-bind="foreach: collections">
-                            <li class="list-group-item"><a href="#" data-bind="click: previewCollections">{{name}}</a></li>
+                            <li class="list-group-item"><a href="#" data-bind="click: previewCollections">{{name}}</a>
+                             <i class="fa icon-remove" data-bind="click: function(){$parent.removeCollection(id);}"></i></li>
                         </ul>
                     </div>
+              	 <!-- /ko -->
                     <button type="button" class="btn btn-link btn-xs pull-right" data-bind="click: addCollectionDialog">
-                    <i class="fa fa-plus"></i> Add Collections
-                </button>
+                    	<i class="fa fa-plus"></i> Add Collections
+               		 </button>
                 </div>
                 <!-- /ko -->
             </div>

@@ -55,7 +55,8 @@
 <body>
 
 	<g:render template="/pathwaysModel/createPathwayModal" />
-
+	<g:render template="/formDesign/createFormModal" />
+	
 	<!-- BEGIN WRAP -->
 	<div id="wrap">
 
@@ -148,14 +149,31 @@
                       <li id="nav-pathway-link"><g:link action="list" controller="PathwaysModel">
                           <i class="icon-angle-right"></i> List pathways</g:link></li>
 
-                      <li><a id="openModalLink" href="#"> <i
+                      <li><a id="createPathwayLink" href="#"> <i
                           class="icon-angle-right"></i> Create pathway
                       </a></li>
    
-										</ul>
-											 <!-- Form design menu -->
-									<li><g:link action="list" controller="FormDesign">
-											<i class="icon-angle-right"></i> Form design </g:link></li>
+										</ul></li>
+
+									<!-- Form design menu -->
+									
+									<li class="dropdown"><a id="nav-form-expand"
+										data-toggle="dropdown" class="dropdown-toggle" href="#">
+											Forms <b class="caret"></b>
+									</a>
+
+										<ul class="dropdown-menu">
+											<li id="nav-form-link"><g:link action="list"
+													controller="FormDesign">
+													<i class="icon-angle-right"></i> List Forms</g:link></li>
+
+											<li><a id="createFormLink" href="#"> <i
+						                          class="icon-angle-right"></i> Create Form
+						                      </a></li>
+
+										</ul></li>
+
+
 
 									<sec:ifAnyGranted roles="ROLE_ADMIN">
 										<li class="dropdown"><a data-toggle="dropdown"

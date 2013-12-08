@@ -1,7 +1,8 @@
-
-<!-- --------------------------------------------------------------- -->
-<!-- Built using James Welch's Forms Builder ------------------------- -->
-<!-- --------------------------------------------------------------- -->
+<!-- Forms Builder Knockout View
+  Author: 
+  James Welch (james.welch@cs.ox.ac.uk)
+  Adam Milward (adam.milward@outlook.com)
+-->
 
 
 <%@ page import="uk.co.mdc.forms.FormDesign" %>

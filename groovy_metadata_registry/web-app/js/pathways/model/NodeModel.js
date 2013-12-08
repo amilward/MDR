@@ -22,14 +22,25 @@
 
         ko.track(self);
 
-        self.setForms = function(JSONforms){
+        
+        self.setCollections = function(JSONCollections){
+
+        	$.each(JSONCollections, function(index, JSONCollection){    
+        		if(JSONCollection.collectionType==='form'){
+        			var form = new FormModel()
+    	        	form.id = JSONCollection.id
+    	        	form.name = JSONCollection.name	        	
+    	        	self.forms.push(form);
+		        	
+        		}else{
+        			var collection = new CollectionModel()
+		        	collection.id = JSONCollection.id
+		        	collection.name = JSONCollection.name        	
+		        	self.collections.push(collection);
+        			
+        		}
+        	});
         	
-        	$.each(JSONforms, function(index, formJSON){        			
-	        	var form = new FormModel()
-	        	form.id = formJSON.id
-	        	form.name = formJSON.name	        	
-	        	self.forms.push(form);
-        	});       	
         }
         
         self.getSubNodes = function(){
@@ -59,30 +70,68 @@
         
         self.addForm = function(form){
         	
-        self.forms.push(form)
+	        self.forms.push(form)
+	        //FIXME this is a crude way to update the node
+	        	var jsonNodeToServer = pathwayService.createJsonNode(self)
+	        	//console.log(jsonNodeToServer)
+	        	$.when(pathwayService.updateNode(jsonNodeToServer)).done(function (data) {
+	            	if(data.success===true){
+	            		console.log('form added on server')
+	            		}
+				});
+
+        }
+        
+        self.removeForm = function(formId){
+        	
+        	ko.utils.arrayForEach(self.forms, function(form) {
+  		      if(form.id == formId){
+  		    	  formToRemove = form;
+  		      }
+  		    });
+        	//FIXME this is a crude way to update the node
+        	ko.utils.arrayRemoveItem(self.forms, formToRemove);
         	var jsonNodeToServer = pathwayService.createJsonNode(self)
         	//console.log(jsonNodeToServer)
         	$.when(pathwayService.updateNode(jsonNodeToServer)).done(function (data) {
             	if(data.success===true){
-            		console.log('form added on server')
+            		console.log('form removed from server')
             		}
-});
-
-        }
-        
-        self.setCollections = function(JSONCollections){
-
-        	$.each(JSONCollections, function(index, JSONCollection){       			
-	        	var collection = new CollectionModel()
-	        	collection.id = JSONCollection.id
-	        	collection.name = JSONCollection.name        	
-	        	self.collections.push(collection);
-        	});
+			});
         	
         }
         
+       
+        
         self.addCollection = function(collection){        	
         	self.collections.push(collection);
+        	//FIXME this is a crude way to update the node
+        	var jsonNodeToServer = pathwayService.createJsonNode(self)
+        	console.log(jsonNodeToServer)
+        	$.when(pathwayService.updateNode(jsonNodeToServer)).done(function (data) {
+            	if(data.success===true){
+            		console.log('collection added to server')
+            		}
+			});
+        }
+        
+        self.removeCollection = function(collectionId){
+        	
+        	ko.utils.arrayForEach(self.collections, function(collection) {
+  		      if(collection.id == collectionId){
+  		    	collectionToRemove = collection;
+  		      }
+  		    });
+        	//FIXME this is a crude way to update the node
+        	ko.utils.arrayRemoveItem(self.collections, collectionToRemove);
+        	var jsonNodeToServer = pathwayService.createJsonNode(self)
+        	//console.log(jsonNodeToServer)
+        	$.when(pathwayService.updateNode(jsonNodeToServer)).done(function (data) {
+            	if(data.success===true){
+            		console.log('collection removed from server')
+            		}
+			});
+        	
         }
         
 
@@ -92,12 +141,19 @@
         	 $("#collectionsCart").droppable({
                  drop: function(event, ui) {
                  	if(c.id){
-                 		var collection = new CollectionModel();
-                 		collection.id = c.id;
-                 		collection.name = c.name ;
-         	            $(c.li).remove();
-         	            $(c.helper).remove();
-         	            self.addCollection(collection);
+                 		if(c.type.indexOf("collection") !== -1){ 
+                 			var collection = new CollectionModel();
+                     		collection.id = c.id;
+                     		collection.name = c.name;
+                 			self.addCollection(collection);
+                 		}else{
+                 			var form = new FormModel();
+                    		form.id = c.id
+                    		form.name = c.name  
+                 			self.addForm(form);
+                 		}  
+                 		$(c.li).remove();
+                 		$(c.helper).remove();
                  	}
                  }
          	});	

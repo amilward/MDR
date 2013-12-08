@@ -11,7 +11,7 @@ abstract class PathwayElement extends ExtensibleObject{
 	/**
 	 * This is a transient value which could well be removed in the future.
 	 */
-	protected String transientId
+	//protected transientId
 	
 	String name
 	String description
@@ -19,16 +19,16 @@ abstract class PathwayElement extends ExtensibleObject{
 	static belongsTo = [pathwaysModel: PathwaysModel]
 	
     static constraints = {
-		transientId nullable:true
+		//transientId nullable:true
 		description nullable:true
 		pathwaysModel nullable:true
 		extension nullable: true
 		peCollection nullable:true
     }
 	
-	static transients =  {
+	/*static transients =  {
 		transientId
-	}
+	}*/
 	
 	static mapping = {
 		 

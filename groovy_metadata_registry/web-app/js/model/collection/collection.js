@@ -17,8 +17,12 @@ function collectionList(){
 				    // `data` refers to the data for the cell (defined by `mData`, which
 				    // defaults to the column being worked with, in this case is the first
 				    // Using `row[0]` is equivalent.
-				"mRender": function ( data, type, row ) {		
-					return '<a id="'+ row.id + '" href="' + root +'/collection/show/' + row.id + '">' + data + '</a>'
+				"mRender": function ( data, type, row ) {	
+					if(row.collectionType=='collection'){
+						return '<a id="'+ row.id + '" href="' + root +'/collection/show/' + row.id + '">' + data + '</a>'
+					}else{
+						return '<a id="'+ row.id + '" href="' + root +'/formDesign/show/' + row.id + '">' + data + '</a>'	
+					}
 			    },
 			    "mDataProp": "name",
 			    "sWidth":"20%",
@@ -147,8 +151,6 @@ function collectionForm(mandatoryDataElements, requiredDataElements, optionalDat
 
 function collectionListDraggable(){
 	
-	console.log("collectionListDraggable1");
-	
 	$('#collectionList').html( '<table cellpadding="0" cellspacing="0" border="0" class="table table-bordered table-condensed table-hover table-striped" id="collectionTable"></table>' );
 	oTable = $('#collectionTable').dataTable( {
         "bProcessing": true,
@@ -163,7 +165,11 @@ function collectionListDraggable(){
 				    // defaults to the column being worked with, in this case is the first
 				    // Using `row[0]` is equivalent.
 				"mRender": function ( data, type, row ) {		
-					return '<a id="'+ row.id + '" href="' + root +'/collection/show/' + row.id + '">' + data + '</a>'
+					if(row.collectionType=='collection'){
+						return '<a id="'+ row.id + '" href="' + root +'/collection/show/' + row.id + '">' + data + '</a>'
+					}else{
+						return '<a id="'+ row.id + '" href="' + root +'/formDesign/show/' + row.id + '">' + data + '</a>'	
+					}
 			    },
 			    "mDataProp": "name",
 			    "sWidth":"20%",
@@ -209,14 +215,14 @@ function collectionListDraggable(){
 		            c.tr = this;
 					c.name = $(this).find("td").eq(0).find("a").text();
 					c.id = $(this).find("td").eq(0).find("a").attr("id");
+					c.type = $(this).find("td").eq(0).find("a").attr("href");
 		            c.helper = ui.helper;
 		        }
 			});	
 			
 		}
 	} );	
-	
-	console.log("collectionListDraggable2");
+
 	oTable.fnSetFilteringDelay(1000);
 	
 }

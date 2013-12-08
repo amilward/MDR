@@ -59,7 +59,6 @@ class NodeService {
 		def targetNode
 
 		def nodeInstance = new Node(
-			refId: parameters?.refId,
 			name: parameters?.name,
 			x: parameters?.x,
 			y: parameters?.y,
@@ -133,7 +132,7 @@ class NodeService {
 	int count() { Node.count() }
 	
 	
-	/* ************************* UPDATE VALUE DOMAINS***********************************************
+	/* ************************* UPDATE NODE DOMAINS***********************************************
 	 *  requires that the authenticated user have write or admin permission on the value domain instance to edit it
 	 ******************************************************************************************** */
 	
@@ -141,35 +140,31 @@ class NodeService {
 	@PreAuthorize("hasPermission(#nodeInstance, write) or hasPermission(#nodeInstance, admin)")
 	Node update(Node nodeInstance, Map parameters) {
 		 
-		def forms = []
+		def collections = []	
+		
 		if(parameters?.forms){			
 			//FIXME at the moment we are putting the forms into the optionalOutputs - as we develop the model this may change
 			def pForms = parameters?.forms			
 			pForms.each{ form->
-				forms.push(FormDesign.get(form.id))
+				collections.push(FormDesign.get(form.id))
 			}
-			parameters?.optionalOutputs = forms
 		}
 		
-	def collections = []		
+		
 		if(parameters?.collections){
 			//FIXME at the moment we are putting the collections into the optionalInputs - as we develop the model this may change
 			def pCollection = parameters?.collections
 			pCollection.each{ collection->
 				collections.push(uk.co.mdc.model.Collection.get(collection.id))
-			}  
-			parameters?.optionalInputs = collections			
+			}  			
 		}		
 		
-		
-		println(nodeInstance?.subModel)
 		nodeInstance.description = parameters.description
 		nodeInstance.name = parameters.name
 		nodeInstance.x = parameters.x
 		nodeInstance.y = parameters.y
+		nodeInstance.optionalOutputs = collections
 		nodeInstance.save()
-
-		println(nodeInstance?.subModel)
 		nodeInstance
 	}
 	

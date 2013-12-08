@@ -11,6 +11,6 @@
         	
         	console.log('need to add Collection preview here')
         	
-        	window.location = 'http://localhost:8080/groovy_metadata_registry/collection/show/' + self.id
+        	window.location = '../../collection/show/' + self.id
         }
     }

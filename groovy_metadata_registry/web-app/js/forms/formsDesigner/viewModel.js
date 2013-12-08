@@ -256,11 +256,11 @@ function saveForm(){
 	
 	$.ajax({
 		type: "POST",
-		url: 'save',
+		url: '../save',
 		data: ko.toJSON(form),
 		success: function(data){
 			alert('saved')
-			window.location.href = 'show/' + data.formDesignId
+			window.location.href = '../show/' + data.formDesignId
 		},
 		contentType: 'application/json',
 		dataType: 'json'

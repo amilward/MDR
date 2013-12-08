@@ -17,6 +17,14 @@
        
     };
     
+    //delete a pathway
+    self.deletePathway = function(pathwaysModelId){
+	    return $.ajax({
+			type: "POST",
+			url: '../../pathwaysModel/delete/' + pathwaysModelId,
+			contentType: 'application/json',
+			});
+    }
     //update an existing pathway
 
     self.updatePathway = function(pathwayModel){
@@ -27,14 +35,6 @@
     		url : "../../pathwaysModel/updatePathwayJSON",
     		data : ko.toJSON(pathwayModel),
     		contentType: "application/json; charset=utf-8",
-    		/*success : function(data){
-    			console.log(data)
-    			vm.updatePathwayFromServer(data.id)
-    		},
-    		error : function(xhr, ajaxOptions, thrownError) {
-    			console.log("Creation of pathway failed: " + thrownError);
-    			failure();
-    		}*/
     	});
 
     }
@@ -98,14 +98,6 @@
     		type: "POST",
     		url: "../../Node/updateNodeFromJSON",
     		data: self.stringify(jsonNodeToServer),
-    		/*success: function(data){
-    			console.log(data);
-    			vm.updateNodeFromServer(data.nodeId)
-    		},
-    		error: function (xhr, ajaxOptions, thrownError) {
-    	        console.log(xhr.status);
-    	        alert(thrownError);
-    	      },*/
     		contentType: 'application/json',
     		dataType: 'json'
     		});
@@ -121,6 +113,7 @@
     	nodeInstance.x = node.x
     	nodeInstance.y = node.y
     	nodeInstance.forms = node.forms
+    	nodeInstance.collections = node.collections
     	nodeInstance.pathwaysModelId = pathwayId
     	jsonNodeToServer.nodeInstance = nodeInstance
     	//console.log(jsonNodeToServer)
@@ -162,6 +155,24 @@
     		contentType: 'application/json',
     		dataType: 'json'
     		});
+    }
+    
+    //FIXME need to implement this but ok at the moment to use the updateNodeFunction
+    self.addFormToNode = function(){
+    	
+    }
+    
+    //FIXME need to implement this but ok at the moment to use the updateNodeFunction
+    self.removeFormFromNode = function(){	
+    	
+    }
+    
+    //FIXME need to implement this but ok at the moment to use the updateNodeFunction
+    self.addCollectionToNode = function(){	
+    }
+    
+  //FIXME need to implement this but ok at the moment to use the updateNodeFunction
+    self.removeCollectionFromNode = function(){	
     }
     
     //this method gets around problems with references to other nodes

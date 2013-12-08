@@ -58,7 +58,8 @@ body {
 #right-panel .outputs {
   min-height: 0;
 }
-#formDesignCart {
+
+#formDesignCart, #collectionCart{
 	 height: 50px;
     margin-bottom: 10px;
     padding: 5px;

@@ -14,4 +14,6 @@
         	
         	window.location = '../../formDesign/show/' + self.id
         }
+        
+      
     }

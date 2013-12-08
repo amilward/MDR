@@ -163,16 +163,3 @@ function getQuestionNumber(idx, data){
 		
 }
 
-
-/*
-function newForm()
-{
-	var formID =  $('#newFormDialogFormID').val();
-	var formFullName = $('#newFormDialogFormFullName').val();
-	var formShortName = $('#newFormDialogFormShortName').val();
-	$('#newFormDialog').modal('hide');
-	viewModel.addForm(formID,formFullName,formShortName,[]);
-}
-*/
-
-//
