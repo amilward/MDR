@@ -3,8 +3,6 @@
     var AppViewModel = function () {
     	
         var self = this;
-        
-        self.topLevelPathway = undefined;
 
         //Pathway Model
         self.pathwayModel = undefined;
@@ -46,7 +44,7 @@
         
         self.loadPathway = function(pathwayJSON){
         	
-        	 //self.selectedItem = undefined;
+        	 self.selectedItem = undefined;
         	 var pm = new PathwayModel();
         	 pm.name = pathwayJSON.name;
         	 pm.description = pathwayJSON.description;
@@ -61,16 +59,13 @@
 				 });
         	 				   
         	 //console.log('finished creating nodes')
-//				        	 setTimeout( function()
-//				 {
+				        	 setTimeout( function()
+				 {
 							var links = pathwayJSON.links;
 							 $.each(links, function( index, link ) {
 							      self.loadLink(link);        	 
 							 });
-//							      }, 200);
-                if (!self.topLevelPathway || self.topLevelPathway.id === self.pathwayModel.id) {
-                    self.topLevelPathway = self.pathwayModel;
-                }
+							      }, 200);
         }
         
         self.createPathway = function (pathway) {
@@ -107,31 +102,16 @@
         };
         
 
-        self.selectNode = function (n, e) {
-            if (e) {
-                //Check whether selected item has a parent node (i.e. whether in subpathway)
-                var bindingContext = ko.contextFor(e.target);
-                if (bindingContext.$parent && bindingContext.$parent instanceof NodeModel) {
-                    //Switch to subpathway
-                    $.when(pathwayService.loadPathway(bindingContext.$parent.subPathwayId)).done(function (pathwayJSON) {
-                        self.containerPathway = self.pathwayModel;
-                        self.loadPathway(pathwayJSON.pathwaysModelInstance);
-                        
-                        self.selectedItem = ko.utils.arrayFirst(self.pathwayModel.nodes, function (node) { return node.id === n.id });
-                    });
-                } else if (bindingContext.$parent && bindingContext.$parent === self.topLevelPathway && self.containerPathway) {
-                    self.goToParent();
-                    self.selectedItem = ko.utils.arrayFirst(self.pathwayModel.nodes, function (node) { return node.id === n.id });
-                }
-            }
+        self.selectNode = function (n) {
+            //Set current seletect node to bind to properties panel
+        	//console.log(ko.toJSON(n))
             self.selectedItem = n;
-            
         };
         
         self.getNodeName = function (n) {
             //Set current seletect node to bind to properties panel
         	//console.log(ko.toJSON(n))
-        	return ko.toJSON(n);
+        	return ko.toJSON(n)
            // self.selectedItem = n;
         };
         
@@ -440,11 +420,7 @@
         self.gotoContainerPathway = function() {
             self.pathwayModel = self.containerPathway;
             self.containerPathway = undefined;
-        };
-        
-        self.itemEqualsToSelected = function(item) {
-            return (item && self.selectedItem && item.id === self.selectedItem.id)
-        };
+        }
         
         //Initialize form list using FormService
         $.when(loadFormList()).done(function (data) {

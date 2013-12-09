@@ -20,9 +20,8 @@ class NodeSpec extends spock.lang.Specification {
 		def node1
 
 		def expected = [
-			//transientId : "n.1",
 			name: "Bill",
-			description: "One half of the flowerpot men",
+			desc: "One half of the flowerpot men",
 			x: 10,
 			y: 15,
 			peCollection: new Collection()

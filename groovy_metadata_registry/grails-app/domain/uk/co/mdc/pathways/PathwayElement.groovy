@@ -8,38 +8,19 @@ import uk.co.mdc.model.ExtensibleObject;
 
 abstract class PathwayElement extends ExtensibleObject{
 	
-	
-	
-	/**
-	 * This is a transient value which could well be removed in the future.
-	 */
-	String transientId
-	
+	String refId
 	String name
 	String description
-	
-	/**
-	 * The parent (IE containing) PathwaysModel
-	 */
-	PathwaysModel pathwaysModel 
-	
+
 	static belongsTo = [pathwaysModel: PathwaysModel]
 	
     static constraints = {
-		transientId nullable:true
+		refId unique:true, nullable:true
 		description nullable:true
 		pathwaysModel nullable:true
 		extension nullable: true
 		peCollection nullable:true
     }
-	
-	static transients =  {
-		transientId
-	}
-	
-	static mapping = {
-		 
-	}
 	
 	Collection peCollection
 		
@@ -48,6 +29,4 @@ abstract class PathwayElement extends ExtensibleObject{
 					  optionalInputs: Collection,
 					  optionalOutputs: Collection]
 
-	
-	
 }

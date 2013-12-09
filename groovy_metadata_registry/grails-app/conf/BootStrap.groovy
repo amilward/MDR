@@ -17,6 +17,7 @@ import uk.co.mdc.pathways.Node
 
 import org.codehaus.groovy.grails.plugins.springsecurity.SecurityFilterPosition
 import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils
+import org.codehaus.groovy.grails.commons.ApplicationHolder
 
 import grails.util.Environment
 import grails.util.DomainBuilder
@@ -47,31 +48,15 @@ class BootStrap {
 	def init = { servletContext ->
 
 		def springContext = WebApplicationContextUtils.getWebApplicationContext( servletContext )
-		
-		environments {
-			production {
-				//register custom json Marshallers
-				registerJSONMarshallers(springContext)
-		
-				//register spring filters (in this case the rest api security filter)
-				registerSpringFilters()
-				
-				createAdminAccount()
-			}
-			staging{
-				importDevData()
-			}
-			test{
-				importDevData()
-			}
-			development {
-				importDevData()
-			}
-		}
-	}
 
-	private importDevData(){
-		if(!SecUser.findByUsername('user1')){
+		//register custom json Marshallers
+		registerJSONMarshallers(springContext)
+
+
+		//register spring filters (in this case the rest api security filter)
+		registerSpringFilters()
+
+		if(!SecUser.findByUsername('user1') && Environment.current != Environment.PRODUCTION){
 			//this if needs to be removed....only for development purposes
 
 			//create user if none exists
@@ -93,18 +78,7 @@ class BootStrap {
 		}
 	}
 
-	private createAdminAccount(){
-		def roleUser = SecAuth.findByAuthority('ROLE_USER') ?: new SecAuth(authority: 'ROLE_USER').save(failOnError: true)
-		def roleAdmin = SecAuth.findByAuthority('ROLE_ADMIN') ?: new SecAuth(authority: 'ROLE_ADMIN').save(failOnError: true)
-		
-		def admin = SecUser.findByUsername('localadmin') ?: new SecUser(username: 'localadmin', emailAddress: "brcmodelcatalogue@gmail.com", enabled: true, password: 'QpAsN#6HVP.6da').save(failOnError: true)
-		
-				if (!admin.authorities.contains(roleAdmin)) {
-					SecUserSecAuth.create admin, roleUser
-					SecUserSecAuth.create admin, roleAdmin, true
-				}
-	}
-	
+
 	private registerSpringFilters(){
 
 		SpringSecurityUtils.clientRegisterFilter('apiAuthFilter', SecurityFilterPosition.SECURITY_CONTEXT_FILTER.order + 10)
@@ -114,6 +88,7 @@ class BootStrap {
 	private registerJSONMarshallers(springContext) {
 
 		//register custom marshallers
+
 		springContext.getBean('customObjectMarshallers').register()
 	}
 
@@ -698,11 +673,27 @@ class BootStrap {
 						pathway2.addToPathwayElements(link22)
 						pathway2.save(flush:true)
 
-		}		
+		}
+
+
+		if(Environment.current == Environment.PRODUCTION){
+			//importNHICData(basePath)
+		}
+		
 	}
 	
 
 
+	private importNHICData(basePath){
+		
+		
+		NHICImportConfig.functions.keySet().each { filename -> 
+			new File("${basePath}" + filename).toCsvReader([charset:'UTF-8', skipLines : 1] ).eachLine { tokens ->
+				NHICImportConfig.functions[filename](tokens);
+			}
+		}
+
+	}
 	
 }
 	

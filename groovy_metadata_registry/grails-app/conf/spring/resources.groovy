@@ -17,12 +17,9 @@ import grails.util.Environment
 // Place your Spring DSL code here
 beans = {
 
-	Environment.executeForCurrentEnvironment {
-		// Override mail server for dummy in 'development' mode only.
-		development {
-			mailService(uk.co.mdc.mail.DummyMailService)
-		}
-	}
+	// FIXME remove prior to release!
+	mailService(uk.co.mdc.mail.DummyMailService)
+	
 	
 	apiAuthFilter(APIAuthenticationFilters) {
 		authenticationManager = ref("authenticationManager")
