@@ -47,7 +47,7 @@ class PathwayCreationSpec extends GebReportingSpec {
 		def varPathwayName = "Sample Pathway"
 		nav.newPathwayName = varPathwayName
 		nav.newPathwayDescription = "This is a sample pathway"
-		nav.newPathwaySubmit.click(PathwayShowPage)
+		nav.newPathwaySubmit.click()
 		
 		then: "a new pathway is created and I am taken to the show page for it"
 		waitFor{

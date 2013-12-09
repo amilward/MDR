@@ -3,6 +3,7 @@ import geb.spock.GebReportingSpec
 
 import uk.co.mdc.authentication.pages.*
 import uk.co.mdc.authentication.pages.pathways.*
+import uk.co.mdc.pages.pathways.*
 
 class UserLoginSpec extends GebReportingSpec {
 

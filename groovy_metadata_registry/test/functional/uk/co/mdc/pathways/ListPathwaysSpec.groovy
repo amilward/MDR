@@ -49,13 +49,13 @@ class ListPathwaysSpec extends GebReportingSpec {
 		
 	}*/
 	
-	def "Search existing pathways from the list page"() {
+	def "Search existing pathways from the list page as admin"() {
 		
 		given:"I am on the dashboard view in a 1024x768 browser window"
 		driver.manage().window().setSize(new Dimension(1028, 768))
 		to LoginPage
-		username = "user1"
-		password = "password1"
+		username = "admin"
+		password = "admin123"
 		submitButton.click(DashboardPage)
 
 		waitFor{
