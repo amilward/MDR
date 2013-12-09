@@ -11,7 +11,7 @@ class DashboardPage extends Page{
 	
 	static at = {
 		url == "/" &&
-		title == "Welcome to the MDC Metadata Registry"
+		title == "Model Catalogue - Home"
 	}
 	
 	static content = {

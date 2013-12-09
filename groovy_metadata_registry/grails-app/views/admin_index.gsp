@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta name="layout" content="main"/>
-		<title>Welcome to the MDC Metadata Registry</title>
+		<title>Model Catalogue - Home</title>
 		<parameter name="name" value="Dashboard" />
 	</head>
 	<body>

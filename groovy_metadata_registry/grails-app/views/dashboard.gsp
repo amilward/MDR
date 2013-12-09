@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Model Catalogue Dashboard</title>
+<title>Model Catalogue - Home</title>
 <style type="text/css">
 html, body{
 	font-family: helvetica,sans-serif;

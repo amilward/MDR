@@ -1,51 +1,16 @@
 package uk.co.mdc.pathways
 
+// FIXME needs implementing
+
 import grails.test.mixin.*
 import org.junit.*
 
+/**
+ * See the API for {@link grails.test.mixin.domain.DomainClassUnitTestMixin} for usage instructions
+ */
 @TestFor(PathwaysModel)
-class PathwaysModelSpec extends spock.lang.Specification {
+class PathwaysModelSpec {
 
-	def "empty pathways models have no nodes" () {
-		
-		when: "we create a blank PathwaysModel"
-			PathwaysModel pathwaysModel = new PathwaysModel()
-		
-		then: "there are no nodes or links"
-			assert pathwaysModel.getNodes().isEmpty();
-			assert pathwaysModel.getLinks().isEmpty();
-		
-	}
-	
-	def "pathways models can return a node placed into it" () {
-		
-		when: "we create a PathwaysModel with a node"
-			PathwaysModel pathwaysModel = new PathwaysModel()
-			Node node = new Node();
-			pathwaysModel.pathwayElements = [ node ];
-			
-		then: "we can get the node back out"
-			assert pathwaysModel.getNodes()[0] == node;		
-	}
-	
-	def "pathways models can return a couple of nodes and a link placed into it" () {
-		
-		when: "we create a PathwaysModel with a node"
-			PathwaysModel pathwaysModel = new PathwaysModel()
-			Node node1 = new Node();
-			Node node2 = new Node();
-			Link link = new Link();
-			link.source = node1;
-			link.source = node2;
-			
-			pathwaysModel.pathwayElements = [ node1, node2, link ];
-			
-		then: "we can get the nodes and link back out"
-			assert pathwaysModel.getNodes().contains(node1)
-			assert pathwaysModel.getNodes().contains(node2)
-			assert pathwaysModel.getLinks().contains(link)
-	}
-	
 //    void testSomething() {
 //       fail "Implement me"
 //    }

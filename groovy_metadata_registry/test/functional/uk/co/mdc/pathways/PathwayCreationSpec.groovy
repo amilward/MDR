@@ -12,13 +12,13 @@ import org.openqa.selenium.Dimension
 
 class PathwayCreationSpec extends GebReportingSpec {
 
-	def "Creating a new pathway using the nav menu"() {
+	def "Creating a new pathway using the nav menu as admin"() {
 
 		given:"I am on the dashboard view in a 1024x768 browser window"
 		driver.manage().window().setSize(new Dimension(1028, 768))
 		to LoginPage
-		username = "user1"
-		password = "password1"
+		username = "admin"
+		password = "admin123"
 		submitButton.click(DashboardPage)
 
 		waitFor{

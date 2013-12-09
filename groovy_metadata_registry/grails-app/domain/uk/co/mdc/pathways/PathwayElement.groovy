@@ -26,6 +26,7 @@ abstract class PathwayElement extends ExtensibleObject{
 		peCollection nullable:true
     }
 	
+
 	/*static transients =  {
 		transientId
 	}*/
@@ -34,6 +35,7 @@ abstract class PathwayElement extends ExtensibleObject{
 		 
 	}
 	
+
 	Collection peCollection
 		
 	static hasMany = [mandatoryInputs: Collection,
@@ -41,6 +43,4 @@ abstract class PathwayElement extends ExtensibleObject{
 					  optionalInputs: Collection,
 					  optionalOutputs: Collection]
 
-	
-	
 }
