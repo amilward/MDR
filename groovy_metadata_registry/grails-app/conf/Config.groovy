@@ -140,7 +140,7 @@ grails{
 		springsecurity{
 
 			// page to redirect to if a login attempt fails
-			failureHandler.defaultFailureUrl = '/?login_error=1'
+			failureHandler.defaultFailureUrl = '/login/authfail/?login_error=1'
 			
 			
 			// Added by the Spring Security Core plugin:
