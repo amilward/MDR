@@ -39,7 +39,6 @@
         	$( "#deleteModalButton" ).bind('click', function(){
     	   			
 	        		$.when(pathwayService.deletePathway(self.pathwayModel.id)).done(function (data) {
-		        		console.log('pathway deleted')
 		        		$( "#deleteModalButton" ).unbind();
 	    	   			$('.modal').modal('hide');
 	    	   			if(data.success){

@@ -8,7 +8,7 @@
 <title><g:message code="default.create.label" args="[entityName]" /></title>
 <link rel="stylesheet"
 	href="${resource(dir: 'css', file: 'pathway.css')}" type="text/css">
-<parameter name="name" value="Create Pathways" />
+<parameter name="name" value="Show Pathways" />
 
 <link rel="stylesheet" href="${resource(dir: 'css', file: 'bootstrap-editable.css')}" type="text/css">
 <link rel="stylesheet" href="${resource(dir: 'css', file: 'layout.css')}" type="text/css">

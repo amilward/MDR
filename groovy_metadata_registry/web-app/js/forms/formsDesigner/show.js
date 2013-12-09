@@ -58,7 +58,7 @@ function getIcon(dataType, isEnumerated){
 
 function createEmptyForm(){
 
-	viewModel = new FormsModel();
+	viewModel = new AppViewModel();
 	var components = [];
 	
 	viewModel.addForm('','','', '', true,'','', components);
@@ -78,7 +78,7 @@ function createFormFromCollection(collectionId, jsonQuestions){
 
 	// Activates knockout.js	
 	
-	viewModel = new FormsModel();
+	viewModel = new AppViewModel();
 	
 	var components = []
 	
@@ -160,7 +160,7 @@ function openForms(formDesignId, formDesignName, formDesignDescription, formVers
 
 	// Activates knockout.js
 	
-	viewModel = new FormsModel();
+	viewModel = new AppViewModel();
 		
 	var components = []
 		

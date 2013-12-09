@@ -42,10 +42,45 @@
 	</div>
 	
 	
+<!-- Update Section Info -->
+    <div id="EditSectionModal" class="modal fade hide" tabindex="-1"	role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop = "true" >
+	<div class="modal-dialog">
+		<div class="modal-content" data-bind="">
+			<div class="modal-header">
+				<!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>-->
+				<h4 class="modal-title" id="myModalLabel">Update Section</h4>
+			</div>
+			<div class="modal-body">
+			
+				<form class="form" role="form" data-bind="with: currentlySelectedFormSection()" id="updateSection" action="#" method="post">
+					<div class="form-group">
+						<label for="txt-name" class="control-label">Title: </label> 
+						<input name="name"
+							id="txt-name" type="text" class="form-control" data-bind="value: section().title, valueUpdate: 'input'" 
+							 />
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+        <button class="closeModalLink" type="button" class="btn"
+          >Save</button>
+      </div>
+      
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+	
+	
+	
+	
+	
 	<!-- Update Form Info -->
     <div id="EditFormModal" class="modal fade hide" tabindex="-1"	role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop = "true" >
 	<div class="modal-dialog">
-		<div class="modal-content" data-bind="">
+		<div class="modal-content">
 			<div class="modal-header">
 				<!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>-->
 				<h4 class="modal-title" id="myModalLabel">Update Form</h4>

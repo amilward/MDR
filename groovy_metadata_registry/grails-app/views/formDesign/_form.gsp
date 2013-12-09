@@ -50,6 +50,7 @@
 									
 											
 										<p><span class="lead" data-bind="text: section().title()"></span>
+										<span data-bind="click: $parents[0].editComponent"> edit /</span>
 										 <span data-bind="click: $parents[0].deleteComponent"> delete </span></p>
 										
 										
@@ -138,47 +139,7 @@
 					<span>Properties</span>
 				</div>
 				
-				<!-- 
-				<!- - ko if: currentlySelectedQuestion() == null && forms().length > 0 - ->
-        			<div class="alert alert-info">
-        				<p><strong>No component selected: </strong> Select a component from your form.</p>
-        			</div>
-    			<!- - /ko - ->
-    			 -->
-    			 <!-- ko if: currentlySelectedFormSection() != null -->
-    			 <table id="properties-table" data-bind="with: currentlySelectedFormSection()">
-					<thead>
-						<tr>
-							<th style="width: 30%;">Name</th>
-							<th style="width: 1em;"></th>
-							<th>Value</th>
-						</tr>
-					</thead>
-					<tbody>
-					
-					<tr>
-							<td>Section Title</td>
-							<td><span id="pencil"><i class="icon-pencil"></i></span></td>
-							<td>
-								<a data-bind="editable: section().title, editableOptions: { mode: 'inline' }"></a>
-							</td>
-					</tr>
-					
-					 <!-- ko if: section().rules != null -->
-					<tr>
-							<td>Rule Predicate</td>
-							<td><span id="pencil"><i class="icon-pencil"></i></span></td>
-							<td></td>
-					</tr>
-
-					<!-- /ko -->
-					
-					</tbody>
-					</table>
-					
-					
-				<div class="spacer30"></div> 	
-    			<!-- /ko -->
+				
     			 
     			<!-- ko if: currentlySelectedQuestion() != null -->
     			<table id="properties-table" data-bind="with: currentlySelectedQuestion()">

@@ -5,7 +5,7 @@
 	<head>
 <meta name="layout" content="main_no-sidebar">
 <g:set var="entityName" value="${message(code: 'pathwaysModel.label', default: 'PathwaysModel')}" />
-		<title><g:message code="default.list.label" args="[entityName]" /></title>
+		<title>List Pathways Models</title>
 		<parameter name="name" value="Pathways" />
 	</head>
 	<body>

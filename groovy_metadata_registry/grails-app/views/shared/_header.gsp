@@ -146,7 +146,7 @@
                       class="caret"></b>
                   </a>
                     <ul class="dropdown-menu">
-                      <li id="nav-pathway-link"><g:link action="list" controller="PathwaysModel">
+                      <li id="nav-pathway-link"><g:link elementId="listPathwaysLink" action="list" controller="PathwaysModel">
                           <i class="icon-angle-right"></i> List pathways</g:link></li>
 
                       <li><a id="createPathwayLink" href="#"> <i

@@ -13,7 +13,7 @@ class Node extends PathwayElement{
 
 	static belongsTo = [pathwaysModel: PathwaysModel]
 	
-	//static hasOne = [subModel: PathwaysModel] - ??
+	static hasOne = [subModel: PathwaysModel]
 	
 	public Node(String refId, String name,String x, String y, String desc, Collection peCollection){
 		super( refId, name, desc, peCollection)
@@ -28,7 +28,7 @@ class Node extends PathwayElement{
 		optionalOutputs: Collection]
 
     static constraints = {
-		//pathwaysModel nullable: true - ??
+		pathwaysModel nullable: true
 		subModel nullable: true
 		x nullable:true
 		y nullable:true
