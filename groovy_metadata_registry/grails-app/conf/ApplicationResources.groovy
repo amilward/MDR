@@ -114,7 +114,7 @@ modules = {
 		resource url: "js/forms/formsDesigner/dataTypeTemplates.js"
 		resource url: "js/forms/formsDesigner/palette.js"
 		resource url: "js/forms/formsDesigner/model/Form.js"
-		resource url: "js/forms/formsDesigner/model/FormsModel.js"
+		resource url: "js/forms/formsDesigner/AppViewModel.js"
 		resource url: "js/forms/formsDesigner/service/FormDesignService.js"
 		resource url: "js/forms/formsDesigner/model/Component.js"
 		resource url: "js/forms/formsDesigner/model/Property.js"
@@ -123,7 +123,7 @@ modules = {
 		resource url: "js/forms/formsDesigner/model/Section.js"
 		resource url: "js/forms/formsDesigner/model/SelectOption.js"
 		resource url: "js/forms/formsDesigner/model/DataTypeInstance.js"
-		resource url: "js/forms/formsDesigner/viewModel.js"
+		resource url: "js/forms/formsDesigner/show.js"
 		resource url: "js/forms/formsDesigner/fDesignerLayout.js"
 		
 	}

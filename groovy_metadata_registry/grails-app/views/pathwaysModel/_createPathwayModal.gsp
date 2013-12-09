@@ -16,8 +16,8 @@
 				<h4 class="modal-title" id="myModalLabel">Create Pathway</h4>
 			</div>
 			<div class="modal-body">
-			
 				<form class="form" role="form" id="createPathwayForm" action="${request.contextPath}/pathwaysModel/show" method="post">
+					<input type="hidden" name="createPathway" value="createPathway">
 					<div class="form-group">
 						<label for="txt-name" class="control-label">Name: </label> 
 						<input name="name"
@@ -42,7 +42,7 @@
 				</form>
 			</div>
 			<div class="modal-footer">
-        <button id="submitModalLink" type="submit" class="btn btn-primary"
+        <button id="createPathwaySubmit" type="submit" class="btn btn-primary"
           >Create</button>
         <button class="closeModalLink" type="button" class="btn"
           >Cancel</button>

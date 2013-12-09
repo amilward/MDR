@@ -13,7 +13,8 @@ class TopNavElements extends Module{
 		
 		// Pathways menu
 		expandPathwayMenuLink { $("a#nav-pathway-expand") }
-		createPathwayLink { $("a#openModalLink") }
+		listPathwaysLink { $("a#listPathwaysLink") }
+		createPathwayLink { $("a#createPathwayLink") }
 		
 		formLink  { 	$("li#nav-form-link a:first", text: "Form design") }
 		

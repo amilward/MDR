@@ -30,6 +30,7 @@ class FormDesign extends Collection{
 		description nullable:true
 		collection nullable: true
 		formDesignElements nullable:true
+		versionNo nullable:true
     }
 
 	static mapping = {

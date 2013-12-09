@@ -111,19 +111,46 @@ class FormDesignController {
 	
 	def show(Long id) {
 		
-		//use the find instance method to get the form design in question
+		//if the entry point is from create pathways modal create a pathways modal first
+		if(params.createForm){
+			
+			if(params.isDraft==null){
+				params.isDraft = false
+			}
+			
+			def formDesignInstance = formDesignService.create(params)
+			
+			if(formDesignInstance.save(failOnError:true, flush:true)){
+				redirect(action: "show", id: formDesignInstance.id)
+			}else{
+				redirect(action: "list")
+			}
+			
+			//else show the pathway
+			
+		}else{
+			if(params.id){
+				//use the find instance method to get the form design in question
 		
-		def formDesignInstance = findInstance()
-		
-		//if you can't find it or don't have permission go back to the list page
-		
-		if (!formDesignInstance) {
-			flash.message = message(code: 'default.not.found.message', args: [message(code: 'formDesign.label', default: 'FormDesign'), id])
-			redirect(action: "list")
-			return
+				def formDesignInstance = findInstance()
+				
+				//if you can't find it or don't have permission go back to the list page
+				
+				if (!formDesignInstance) {
+					flash.message = message(code: 'default.not.found.message', args: [message(code: 'formDesign.label', default: 'FormDesign'), id])
+					redirect(action: "list")
+					return
+				}
+				
+				[formDesignInstance: formDesignInstance]
+			
+			}else{
+				
+				redirect(action: "list")
+			}
 		}
 		
-		[formDesignInstance: formDesignInstance]
+		
 	}
 	
 	
@@ -260,7 +287,7 @@ class FormDesignController {
 		
 		def form = request.JSON
 		
-		def formDesignInstance = formDesignService.create(form)
+		def formDesignInstance = formDesignService.createFromCollection(form)
 	   
 	   def model = [success: true, formDesignId: formDesignInstance.id]
 	   
@@ -307,7 +334,7 @@ class FormDesignController {
 
 		 def formDesignId = form.formDesignId
 		 
-		 def formDesignVersion = form.formVersionNo
+		 def formDesignVersion = form.version
 		 
 		 def formDesignInstance = findInstance(formDesignId.toInteger())
 		 

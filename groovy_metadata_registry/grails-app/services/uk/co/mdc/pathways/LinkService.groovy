@@ -74,7 +74,6 @@ class LinkService {
 		if(sourceNode && targetNode){
 
 			 linkInstance = new Link(
-					refId: parameters?.refId,
 					name: parameters?.name,
 					source: sourceNode,
 					target: targetNode
@@ -157,7 +156,6 @@ class LinkService {
 	@PreAuthorize("hasPermission(#linkInstance, write) or hasPermission(#linkInstance, admin)")
 	Link update(Link linkInstance, Map parameters) {
 
-		linkInstance.refId = parameters?.refId
 		linkInstance.name = parameters?.name
 		linkInstance.description = parameters?.description
 		

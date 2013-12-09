@@ -49,7 +49,14 @@ $(function() {
 });
 
 
-$('#openModalLink').click(
+$('#createFormLink').click(
+	    function() {
+	  	  $('#createFormModal').modal({ show: true, keyboard: false, backdrop: 'static' });
+	      $(this).closest(".dropdown").removeClass("open");
+	      return false;
+	    });
+
+$('#createPathwayLink').click(
     function() {
   	  $('#createPathwayModal').modal({ show: true, keyboard: false, backdrop: 'static' });
       $(this).closest(".dropdown").removeClass("open");
@@ -63,7 +70,14 @@ $('.closeModalLink')
       return false;
     });
 
-$('#submitModalLink')
+$('#createFormSubmit')
+.click(
+    function() {
+  	  $('#createFormForm').submit();
+      return false;
+    });
+
+$('#createPathwaySubmit')
 .click(
     function() {
   	  $('#createPathwayForm').submit();
@@ -106,22 +120,18 @@ function getObjectTable(jsonArray, classname){
 }
 
 function deleteItem(item){
-	 $( "#dialog-confirm" ).text('Delete ' + item + '?');
-	 $( "#dialog-confirm" ).dialog({
-		 resizable: false,
-		 height:140,
-		 modal: true,
-		 title: 'delete',
-		 buttons: {
-		 "Delete Item": function() {
-			$( this ).dialog( "close" );
-			$('#deleteForm').submit();
-		 },
-		 Cancel: function() {
-			 $( this ).dialog( "close" );
-		 }
-		 }
-	 });
+	
+	$( "#dialog-confirm .modal-header h4" ).text('Delete ' + item + '?');
+	$( "#dialog-confirm" ).modal({ show: true, keyboard: false, backdrop: 'static' });
+	$( "#deleteModalButton" ).bind('click', function(){
+   			
+    		$('#deleteForm').submit();
+    		$( "#deleteModalButton" ).unbind();
+   			$('.modal').modal('hide');
+	
+	});
+	
+	
 }
 
 function updateForm(){

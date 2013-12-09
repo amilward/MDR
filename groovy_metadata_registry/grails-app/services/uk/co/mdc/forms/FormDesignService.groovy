@@ -90,7 +90,51 @@ class FormDesignService {
 	}
 	
 	
-	/* ************************* CREATE DATA ELEMENTS***********************************
+	/* ************************* CREATE Form from collection***********************************
+	 * requires that the authenticated user to have ROLE_USER to create a data element
+	 ********************************************************************************* */
+	
+	@Transactional
+	@PreAuthorize("hasRole('ROLE_USER')")
+	//!!!!!!!!!!!!!!!!need to change this from object
+	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	FormDesign create(Map parameters) {
+		
+		//create the form design
+		
+		FormDesign formDesignInstance = new FormDesign(
+			name : parameters?.name,
+			description : parameters?.description,
+			versionNo : parameters?.versionNo,
+			isDraft : parameters?.isDraft
+			)
+		
+		if(!formDesignInstance.save(flush:true)){
+			return formDesignInstance
+		}
+		
+		
+		// Grant the current user principal administrative permission
+		
+		addPermission formDesignInstance, springSecurityService.authentication.name, BasePermission.ADMINISTRATION
+		
+		//Grant admin user administrative permissions
+		
+		addPermission formDesignInstance, 'admin', BasePermission.ADMINISTRATION
+		
+		
+		//FIXME Grant user user administrative permissions
+		
+		addPermission formDesignInstance, 'user', BasePermission.ADMINISTRATION
+		
+		//return the data element to the consumer (the controller)
+		
+		formDesignInstance
+		
+		}
+	
+	
+	/* ************************* CREATE Form from collection***********************************
 	 * requires that the authenticated user to have ROLE_USER to create a data element
 	 ********************************************************************************* */
 	
@@ -98,7 +142,7 @@ class FormDesignService {
 	@PreAuthorize("hasRole('ROLE_USER')") 
 	//!!!!!!!!!!!!!!!!need to change this from object
 	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	FormDesign create(Object form) { 
+	FormDesign createFromCollection(Object form) { 
 
 		def components = form.components
 		def section

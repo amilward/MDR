@@ -1,4 +1,4 @@
-function FormsModel() {
+function AppViewModel() {
     var self = this;
     self.forms = ko.observableArray([]);
     self.activeFormId = ko.observable(null);
@@ -42,9 +42,10 @@ function FormsModel() {
     		
 	    	if(self.currentlySelectedFormSectionIdx() != null && self.activeForm() != null && self.activeForm().components().length > 0)
 	    	{
+	    		console.log(self.activeForm().components()[self.currentlySelectedFormSectionIdx()])
 	    		return self.activeForm().components()[self.currentlySelectedFormSectionIdx()];
 	    	} else {
-	    		return null;
+	    		return null
 	    	}
 	    	
 	    	console.log(value)
@@ -103,7 +104,7 @@ function FormsModel() {
 
     self.addForm = function(id, fullName, description, versionNo, isDraft, collectionId, formVersionNo, components){
     	//self.palette = questionPallette;
-    	
+    	console.log('test')
     	self.forms.push(new Form(id, fullName, description, versionNo, isDraft, collectionId, formVersionNo, components));
     	self.setActiveFormId(id);
     	//self.palette = questionPallette;

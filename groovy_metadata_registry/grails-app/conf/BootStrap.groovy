@@ -48,13 +48,14 @@ class BootStrap {
 
 		def springContext = WebApplicationContextUtils.getWebApplicationContext( servletContext )
 		
+		//register custom json Marshallers
+		registerJSONMarshallers(springContext)
+
+		//register spring filters (in this case the rest api security filter)
+		registerSpringFilters()
+		
 		environments {
 			production {
-				//register custom json Marshallers
-				registerJSONMarshallers(springContext)
-		
-				//register spring filters (in this case the rest api security filter)
-				registerSpringFilters()
 				
 				createAdminAccount()
 			}

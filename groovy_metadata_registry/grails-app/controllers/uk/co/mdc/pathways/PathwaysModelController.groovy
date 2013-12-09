@@ -151,7 +151,7 @@ class PathwaysModelController {
     def show() {
 		
 		//if the entry point is from create pathways modal create a pathways modal first
-		if(params.name){
+		if(params.createPathway){
 			
 			if(params.isDraft==null){
 				params.isDraft = false
@@ -168,8 +168,11 @@ class PathwaysModelController {
 			//else show the pathway
 			
 		}else{
-		
-	        [id: params.long('id')]
+			if(params.id){
+				[id: params.long('id')]
+			}else{
+				redirect(action: "list")
+			}
 		}
     }
 	
@@ -259,22 +262,27 @@ class PathwaysModelController {
 	}
 
     def delete(Long id) {
-        def pathwaysModelInstance = PathwaysModel.get(id)
+        def pathwaysModelInstance = findInstance(id)
+		
+		def model
+		def msg
+		
         if (!pathwaysModelInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'pathwaysModel.label', default: 'PathwaysModel'), id])
-            redirect(action: "list")
-            return
+            msg = message(code: 'default.not.found.message', args: [message(code: 'pathwaysModel.label', default: 'PathwaysModel'), id])
+            model = [success: false, message: msg]
         }
 
         try {
-            pathwaysModelInstance.delete(flush: true)
-            flash.message = message(code: 'default.deleted.message', args: [message(code: 'pathwaysModel.label', default: 'PathwaysModel'), id])
-            redirect(action: "list")
+            pathwaysService.delete(pathwaysModelInstance)
+            msg = message(code: 'default.deleted.message', args: [message(code: 'pathwaysModel.label', default: 'PathwaysModel'), id])
+            model = [success: true, message: msg]
         }
         catch (DataIntegrityViolationException e) {
-            flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'pathwaysModel.label', default: 'PathwaysModel'), id])
-            redirect(action: "show", id: id)
+            msg = message(code: 'default.not.deleted.message', args: [message(code: 'pathwaysModel.label', default: 'PathwaysModel'), id])
+            model = [success: false, message: msg]
         }
+		
+		render model as JSON
     }
 	
 	

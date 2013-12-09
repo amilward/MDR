@@ -33,6 +33,27 @@
 
         };
         
+        //delete the current pathway
+        
+        self.deletePathway = function(){
+        	$( "#dialog-confirm .modal-header h4" ).text('Delete PathwaysModel?');
+        	$( "#dialog-confirm" ).modal({ show: true, keyboard: false, backdrop: 'static' });
+        	$( "#deleteModalButton" ).bind('click', function(){
+    	   			
+	        		$.when(pathwayService.deletePathway(self.pathwayModel.id)).done(function (data) {
+		        		$( "#deleteModalButton" ).unbind();
+	    	   			$('.modal').modal('hide');
+	    	   			if(data.success){
+		        			window.location = '../list';
+		        		}
+		        	});
+        		
+    	   			
+        	})
+        	
+        }
+      
+        
         //displays a modal that is bound to the pathway and allows you to edit the pathway info
         //i.e. name, description etc
         
@@ -105,7 +126,6 @@
         	});
         	
         };
-        
 
         self.selectNode = function (n, e) {
             if (e) {
@@ -149,8 +169,7 @@
             node.y = JSONNode.y ;
             node.id = JSONNode.id
 	        node.version = JSONNode.nodeVersion
-	        node.setForms(JSONNode.optionalOutputs);
-            node.setCollections(JSONNode.optionalInputs);
+            node.setCollections(JSONNode.optionalOutputs);
 	        self.pathwayModel.version = JSONNode.pathwaysModelVersion
 	        self.pathwayModel.nodes.push(node);
         };
@@ -198,7 +217,6 @@
         };
         
         self.deleteNode = function(nodeId){
-        	console.log('deleting node');
         	
         	//get ko node
         	var nodeToDelete;

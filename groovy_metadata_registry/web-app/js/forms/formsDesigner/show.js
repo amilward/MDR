@@ -58,7 +58,7 @@ function getIcon(dataType, isEnumerated){
 
 function createEmptyForm(){
 
-	viewModel = new FormsModel();
+	viewModel = new AppViewModel();
 	var components = [];
 	
 	viewModel.addForm('','','', '', true,'','', components);
@@ -78,7 +78,7 @@ function createFormFromCollection(collectionId, jsonQuestions){
 
 	// Activates knockout.js	
 	
-	viewModel = new FormsModel();
+	viewModel = new AppViewModel();
 	
 	var components = []
 	
@@ -160,7 +160,7 @@ function openForms(formDesignId, formDesignName, formDesignDescription, formVers
 
 	// Activates knockout.js
 	
-	viewModel = new FormsModel();
+	viewModel = new AppViewModel();
 		
 	var components = []
 		
@@ -256,11 +256,11 @@ function saveForm(){
 	
 	$.ajax({
 		type: "POST",
-		url: 'save',
+		url: '../save',
 		data: ko.toJSON(form),
 		success: function(data){
 			alert('saved')
-			window.location.href = 'show/' + data.formDesignId
+			window.location.href = '../show/' + data.formDesignId
 		},
 		contentType: 'application/json',
 		dataType: 'json'

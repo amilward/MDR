@@ -62,7 +62,7 @@ var questionPallette = [
                  	            	  properties: [], 
                  	            	  type: "question"
                  	              }]
-                    },
+                    }/*,
                     {
                  	   name: "Complex Questions",
                  	   elements: [{
@@ -82,4 +82,4 @@ var questionPallette = [
                  	            	  properties: [], 
                  	            	  type: "question"
                  	              }]
-                    }];
+                    }*/];
