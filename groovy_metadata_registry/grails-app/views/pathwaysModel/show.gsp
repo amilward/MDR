@@ -266,7 +266,10 @@
                     <h4 class="modal-title" id="myModalLabel">Add Form</h4>
                 </div>
                 <div class="modal-body">
-                	<div id="formDesignCart">Drag Form <i style="display:block" class="fa fa-plus"></i> Here To Add</div>
+                	<div id="formDesignCart">Drag Form Here To Add <i style="display:block" class="fa fa-plus"></i>
+                	<ul class="pull-left" id="formCartList">
+                	</ul>
+                	</div>
                    <div id="formDesignList" ></div>
                 </div>
                 <div class="modal-footer">
@@ -285,7 +288,10 @@
                     <h4 class="modal-title" id="myModalLabel">Add Data Element Collection</h4>
                 </div>
                 <div class="modal-body">
-                	<div id="collectionsCart">Drag Collection <i style="display:block" class="fa fa-plus"></i> Here To Add</div>
+                	<div id="collectionCart">Drag Collection Here To Add <i style="display:block" class="fa fa-plus"></i>
+                	<ul class="pull-left" id="collectionCartList">
+                	</ul>
+                	</div>
                    <div id="collectionList" ></div>
                 </div>
                 <div class="modal-footer">
