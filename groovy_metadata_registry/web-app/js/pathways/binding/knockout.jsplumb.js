@@ -55,8 +55,9 @@ ko.bindingHandlers.makeNode = {
             containment: "parent",
             stop: function( event, ui ) {
             	//node = ko.contextFor(element)
-            	value.y = Math.round(ui.position.top) + "px"
-            	value.x = Math.round(ui.position.left) + "px"
+            	value.y = Math.round(ui.position.top) + "px";
+            	value.x = Math.round(ui.position.left) + "px";
+            	vm.savePathway();
             }
         });
 
