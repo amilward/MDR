@@ -305,3 +305,8 @@ label .selectedItem {
     padding: 5px;
     transition-duration: 0 !important;
 }
+
+.pathway-title {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
