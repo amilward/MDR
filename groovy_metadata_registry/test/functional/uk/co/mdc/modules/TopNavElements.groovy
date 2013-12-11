@@ -26,10 +26,6 @@ class TopNavElements extends Module{
 		newPathwayDraft 	{ pathwayCreationModal.find('#bool-isDraft') }
 		newPathwaySubmit	{ pathwayCreationModal.find('#createPathwaySubmit') }
 		
-		
-		navPresentAndVisible(required:false) {
-			$("div", class: "navbar") 
-			&& homeLink
-		}
+
 	}
 }
