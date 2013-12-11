@@ -67,6 +67,49 @@ class RegisterController extends grails.plugins.springsecurity.ui.RegisterContro
 		render view: 'index', model: [emailSent: true]
 	}
 	
+	static final betterPasswordValidator = { String password, command ->
+		// Username cannot be password
+		if (command.username && command.username.equals(password)) {
+			return 'command.password.error.username'
+		}
+		
+		if (!checkPasswordMinLength(password, command) ||
+			!checkPasswordMaxLength(password, command)){
+			return 'command.password.error.length'
+		}
+			
+		if (!checkPasswordMinLength(password, command) ||
+			!checkPasswordMaxLength(password, command) ||
+			!checkPasswordRegex(password, command)) {
+			return 'command.password.error.strength'
+		}
+	}
+	
+	static boolean checkPasswordMinLength(String password, command) {
+		def conf = SpringSecurityUtils.securityConfig
+
+		int minLength = conf.ui.password.minLength instanceof Number ? conf.ui.password.minLength : 8
+
+		password && password.length() >= minLength
+	}
+
+	static boolean checkPasswordMaxLength(String password, command) {
+		def conf = SpringSecurityUtils.securityConfig
+
+		int maxLength = conf.ui.password.maxLength instanceof Number ? conf.ui.password.maxLength : 64
+
+		password && password.length() <= maxLength
+	}
+
+	static boolean checkPasswordRegex(String password, command) {
+		def conf = SpringSecurityUtils.securityConfig
+
+		String passValidationRegex = conf.ui.password.validationRegex ?:
+				'^.*(?=.*\\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&]).*$'
+
+		password && password.matches(passValidationRegex)
+	}
+
 }
 
 /**
@@ -88,15 +131,32 @@ class RegisterCommand {
 		static constraints = {
 			username blank: false, nullable: false, validator: { value, command ->
 				if (value) {
-					def User = command.grailsApplication.getDomainClass(
-						SpringSecurityUtils.securityConfig.userLookup.userDomainClassName).clazz
+					def User = command.grailsApplication.getDomainClass(SpringSecurityUtils.securityConfig.userLookup.userDomainClassName).clazz
 					if (User.findByUsername(value)) {
 						return 'registerCommand.username.unique'
+					}
+					if(value.length() > 64 || value.length() < 6){
+						return 'registerCommand.username.length'
+					}
+					if(value.contains(' ')){
+						return 'registerCommand.username.spaces'
 					}
 				}
 			}
 			email blank: false, nullable: false, email: true
-			password blank: false, nullable: false, validator: RegisterController.passwordValidator
-			password2 validator: RegisterController.password2Validator
+			password blank: false, nullable: false, validator: uk.co.mdc.register.RegisterController.betterPasswordValidator
+			password2 validator: uk.co.mdc.register.RegisterController.password2Validator
 		}
 	}
+
+class ResetPasswordCommand {
+	String username
+	String password
+	String password2
+
+	static constraints = {
+		username nullable: false
+		password blank: false, nullable: false, validator: uk.co.mdc.register.RegisterController.betterPasswordValidator
+		password2 validator: uk.co.mdc.register.RegisterController.password2Validator
+	}
+}
