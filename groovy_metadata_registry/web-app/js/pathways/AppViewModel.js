@@ -138,6 +138,8 @@
                         self.loadPathway(pathwayJSON.pathwaysModelInstance);
                         
                         self.selectedItem = ko.utils.arrayFirst(self.pathwayModel.nodes, function (node) { return node.id === n.id });
+                        $('#properties-panel .form-group input').css({'max-width': $('#properties-panel').width() - 15, 'min-width': $('#properties-panel').width() - 15});
+                        $('#properties-panel .form-group textarea').css({'max-width': $('#properties-panel').width() - 15, 'min-width': $('#properties-panel').width() - 15});
                     });
                 } else if (bindingContext.$parent && bindingContext.$parent === self.topLevelPathway && self.containerPathway) {
                     self.goToParent();
@@ -145,6 +147,10 @@
                 }
             }
             self.selectedItem = n;
+            
+            $('#properties-panel .form-group input').css({'max-width': $('#properties-panel').width() - 15, 'min-width': $('#properties-panel').width() - 15});
+            $('#properties-panel .form-group textarea').css({'max-width': $('#properties-panel').width() - 15, 'min-width': $('#properties-panel').width() - 15});
+            
             
         };
         
