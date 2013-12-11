@@ -102,7 +102,7 @@ function formDesignListDraggable(){
 			    // Using `row[0]` is equivalent.
 			    "mRender": function ( data, type, row ) {
 			    	
-							return data + '<img class="floatright" src="../images/details_open.png" />'
+							return data + '<img class="floatright" src="../../images/details_open.png" />'
 
 			    },
 			    "mDataProp": "description", 
@@ -119,13 +119,13 @@ function formDesignListDraggable(){
 				if ( oTable.fnIsOpen(nTr) )
 				{
 				/* This row is already open - close it */
-				this.src = "../images/details_open.png";
+				this.src = "../../images/details_open.png";
 				oTable.fnClose( nTr );
-				}
+				} 
 				else
 				{
 				/* Open this row */
-				this.src = "../images/details_close.png";
+				this.src = "../../images/details_close.png";
 				oTable.fnOpen( nTr, formatFormDesignDetails(nTr), 'details' );
 				}
 			} );

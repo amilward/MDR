@@ -4,17 +4,17 @@
 package uk.co.mdc.pathways;
 import geb.spock.GebReportingSpec
 
-import uk.co.mdc.pages.authentication.LoginPage
-import uk.co.mdc.pages.DashboardPage
+import  uk.co.mdc.authentication.pages.LoginPage
+import  uk.co.mdc.authentication.pages.DashboardPage
 import uk.co.mdc.pages.pathways.PathwayListPage
 import uk.co.mdc.pages.pathways.PathwayShowPage
 
 import org.openqa.selenium.Dimension
 
-class AddFormToNodeSpec extends GebReportingSpec {
-	def "View a Pathway and add a form to a Node on the pathway as admin"() {
+class MoveNodeAndSaveSpec extends GebReportingSpec {
+	def "Move a node when viewing a pathway with new position saved"() {
 		
-			given:"I am on the dashboard view in a 1024x768 browser window"
+			given:"I am on the dashboard view in a 1024x768 browser window and login as admin"
 					driver.manage().window().setSize(new Dimension(1028, 768))
 					to LoginPage
 					username = "admin"
@@ -45,7 +45,6 @@ class AddFormToNodeSpec extends GebReportingSpec {
 						dataTableRows.size() > 0
 					}
 					
-					
 					when: "I click on the first pathway link"
 					dataTableFirstRowLink.click()
 					
@@ -59,32 +58,50 @@ class AddFormToNodeSpec extends GebReportingSpec {
 						pathwayName.text() == "Transplanting and Monitoring Pathway"
 					}
 					
-					when: "I click on a node"
-					node2.click()
-				
-					then: "the add form button is visible in the properties panel"
-					addFormButton.@type=="button"
-					"Anaesthesia and Operating Patient."
-					
-					when: "I click on the add form button"
-					addFormButton.click()
-					
-					then: "the add form modal is displayed"
-					waitFor{
-						addFormModal.displayed
-						formDesignTableRows.size() > 0
-					}
-					
 					when: "I drag and drop the first row of the form list"
+					def node2Y = node2.y
 					interact {
-						dragAndDropBy(formDesignTableFirstRow, 0, -175)
+						dragAndDropBy(node2, 0, 100)
 					}
 					
-					then: "the form name is added to the form list"
-					def formName = formDesignTableFRLink.text()
+					then: "The node position has moved by 100px down"
+					node2.y == node2Y + 100
+					
+					
+					when: "I click the pathways dropdown menu"
+					nav.expandPathwayMenuLink.click()
+			
+					then: "The list pathways link is visible"
 					waitFor{
-						formDesignCartListFirstItem.text() == formName
+						nav.listPathwaysLink.displayed
 					}
+			
+					when: "I click pathways -> list pathway"
+					nav.listPathwaysLink.click()
+			
+					then: "I go to the list pathways page"
+					waitFor{
+						at PathwayListPage
+					}
+					and: "it displays some rows in the data table"
+					waitFor{
+						dataTableRows.size() > 0
+					}
+					
+					when: "I click on the first pathway link"
+					dataTableFirstRowLink.click()
+					
+					then: "I am taken to the show pathway page for it"
+					waitFor{
+						at PathwayShowPage
+					}
+			
+					and: "it displays the name of the pathway"
+					waitFor{
+						pathwayName.text() == "Transplanting and Monitoring Pathway"
+						node2.y == node2Y + 100
+					}
+					
 					
 					
 					
