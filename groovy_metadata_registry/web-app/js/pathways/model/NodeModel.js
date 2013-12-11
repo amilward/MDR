@@ -148,7 +148,7 @@
                      		collection.name = c.name;
                  			self.addCollection(collection);
                  		}else{
-                 			$('#collectionCartList').append('<li>' + c.name + '</li>')
+                 			//$('#collectionCartList').append('<li>' + c.name + '</li>')
                  			var form = new FormModel();
                     		form.id = c.id
                     		form.name = c.name  

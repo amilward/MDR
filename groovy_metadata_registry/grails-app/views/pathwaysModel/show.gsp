@@ -173,7 +173,7 @@
                         </ul>
                     </div>
                 <!-- /ko -->
-                    <button type="button" class="btn btn-link btn-xs pull-right" data-bind="click: addFormDialog">
+                    <button type="button" id="addFormToNode" class="btn btn-link btn-xs pull-right" data-bind="click: addFormDialog">
                   	  <i class="fa fa-plus"></i> Add Form
                 	</button>
                 </div>
