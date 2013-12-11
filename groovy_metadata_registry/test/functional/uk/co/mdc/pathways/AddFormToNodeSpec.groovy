@@ -41,7 +41,10 @@ class AddFormToNodeSpec extends GebReportingSpec {
 						at PathwayListPage
 					}
 					and: "it displays some rows in the data table"
-					dataTableRows.size() > 0
+					waitFor{
+						dataTableRows.size() > 0
+					}
+					
 					
 					when: "I click on the first pathway link"
 					dataTableFirstRowLink.click()
