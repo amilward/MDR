@@ -57,7 +57,7 @@ ko.bindingHandlers.makeNode = {
             	//node = ko.contextFor(element)
             	value.y = Math.round(ui.position.top) + "px";
             	value.x = Math.round(ui.position.left) + "px";
-            	vm.savePathway();
+            	vm.updatePathway();
             }
         });
 
