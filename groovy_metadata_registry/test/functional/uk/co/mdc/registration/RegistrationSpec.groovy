@@ -6,7 +6,7 @@ import uk.co.mdc.pages.registration.RegistrationErrorPage
 
 class RegistrationSpec extends GebReportingSpec {
 	
-	static String validUsername = "user5"
+	static String validUsername = "user55"
 	static String invalidSpaceyUsername = "This is a username"
 	static String invalidShortUsername = "me"
 	static String invalidLongUsername = "thisisahugeusernamethisisahugeusernamethisisahugeusernamethisisahugeusernamethisisahugeusernamethisisahugeusernamethisisahugeusername"
@@ -46,7 +46,7 @@ class RegistrationSpec extends GebReportingSpec {
 		waitFor{
 			at RegistrationErrorPage
 		}
-		usernameError == "Username must be at least 6 characters"
+		usernameError == "Username must be between 6 and 64 characters"
 		
 		when: "The username is too long"
 		username = invalidLongUsername
@@ -59,9 +59,9 @@ class RegistrationSpec extends GebReportingSpec {
 		
 		then:
 		waitFor{
-			at RegistratioRegistrationErrorPagenPage
+			at RegistrationErrorPage
 		}
-		usernameError == "Username must be at fewer than 64 characters"
+		usernameError == "Username must be between 6 and 64 characters"
 		
 		when: "The username has spaces in it"
 		username = invalidSpaceyUsername
