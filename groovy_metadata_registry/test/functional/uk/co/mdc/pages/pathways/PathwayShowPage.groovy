@@ -23,4 +23,5 @@ class PathwayShowPage extends BasePageWithNav{
 		formDesignTableFRLink { formDesignTableFirstRow.find("a") } 
 		formDesignCartListFirstItem { $("#formCartList li") }
 	}
+	
 }
