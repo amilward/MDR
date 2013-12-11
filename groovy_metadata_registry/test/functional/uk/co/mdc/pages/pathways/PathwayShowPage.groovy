@@ -15,5 +15,13 @@ class PathwayShowPage extends BasePageWithNav{
 	
 	static content = {
 		pathwayName  { 	$("h1#pathwayName") }
+		node2 { $("#node2") }
+		addFormModal { $("#AddFormModal") }
+		addFormButton { $("#addFormToNode") }
+		formDesignTableFirstRow { $("#formDesignTable tbody tr", 0) }
+		formDesignTableRows { $("#formDesignTable tbody tr") }
+		formDesignTableFRLink { formDesignTableFirstRow.find("a") } 
+		formDesignCartListFirstItem { $("#formCartList li") }
 	}
+	
 }

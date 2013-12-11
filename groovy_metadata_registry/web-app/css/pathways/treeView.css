@@ -40,6 +40,8 @@
   -ms-transition-duration: 1s;
   -o-transition-duration: 1s;
   transition-duration: 1s;
+  
+  white-space: nowrap;
 }
 .treeview ul li span:hover {
   color: black;
@@ -91,12 +93,18 @@
   border-bottom-color: transparent;
   border-left-color: black;
 }
-.level1 ul li{
-	padding-left:20px;
+
+.level1 label {
+    padding-left: 5px;
 }
-.level2 ul li{
-	padding-left:40px;
+
+.level1 li{
+	padding-left: 10px;
 }
-.level3 ul li{
-	padding-left:60px;
+.level2 li{
+	padding-left: 15px;
 }
+.level3 li{
+	padding-left: 15px;
+}
+

@@ -138,6 +138,8 @@
                         self.loadPathway(pathwayJSON.pathwaysModelInstance);
                         
                         self.selectedItem = ko.utils.arrayFirst(self.pathwayModel.nodes, function (node) { return node.id === n.id });
+                        $('#properties-panel .form-group input').css({'max-width': $('#properties-panel').width() - 15, 'min-width': $('#properties-panel').width() - 15});
+                        $('#properties-panel .form-group textarea').css({'max-width': $('#properties-panel').width() - 15, 'min-width': $('#properties-panel').width() - 15});
                     });
                 } else if (bindingContext.$parent && bindingContext.$parent === self.topLevelPathway && self.containerPathway) {
                     self.goToParent();
@@ -145,6 +147,10 @@
                 }
             }
             self.selectedItem = n;
+            
+            $('#properties-panel .form-group input').css({'max-width': $('#properties-panel').width() - 15, 'min-width': $('#properties-panel').width() - 15});
+            $('#properties-panel .form-group textarea').css({'max-width': $('#properties-panel').width() - 15, 'min-width': $('#properties-panel').width() - 15});
+            
             
         };
         
@@ -255,6 +261,14 @@
 			    ko.utils.arrayRemoveItem(self.pathwayModel.nodes, nodeToDelete);
 			    ////console.log(self.pathwayModel.nodes);
         	});
+                
+                //Only modify the right panel if the currently displayed properties belong to the deleted node
+                if (self.selectedItem === nodeToDelete) {
+                    self.selectedItem = undefined;
+                }
+                
+                //Notify treeview that the content have changed
+                ko.getObservable(self, 'topLevelPathway').valueHasMutated();
         }
         
         

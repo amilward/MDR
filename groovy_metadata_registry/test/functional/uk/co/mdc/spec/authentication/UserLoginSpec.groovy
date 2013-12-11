@@ -1,8 +1,7 @@
-package uk.co.mdc.authentication;
+package uk.co.mdc.spec.authentication;
 import geb.spock.GebReportingSpec
-
-import uk.co.mdc.authentication.pages.*
-import uk.co.mdc.authentication.pages.pathways.*
+import uk.co.mdc.pages.DashboardPage;
+import uk.co.mdc.pages.authentication.LoginPage
 import uk.co.mdc.pages.pathways.*
 
 class UserLoginSpec extends GebReportingSpec {
@@ -81,7 +80,7 @@ class UserLoginSpec extends GebReportingSpec {
 		password = "password1"
 		submitButton.click(DashboardPage)
 
-		then: 'Then an error message is displayed stating the combination is incorrect and I can try again'
+		then: 'Then I am redirected to the system dashboard'
 		waitFor{
 			at DashboardPage
 		}

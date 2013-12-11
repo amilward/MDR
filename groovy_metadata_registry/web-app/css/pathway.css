@@ -305,3 +305,7 @@ label .selectedItem {
     padding: 5px;
     transition-duration: 0 !important;
 }
+
+#properties-panel .form-group label {
+    padding-left: 0;
+}

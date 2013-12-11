@@ -1,8 +1,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<meta name="layout" content="main_no-sidebar"/>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Model Catalogue - Home</title>
+<!-- FIXME Styles in HTML is bad, bad, bad! Extract to generic CSS file.... -->
 <style type="text/css">
 html, body{
 	font-family: helvetica,sans-serif;
@@ -112,6 +114,7 @@ td{
 <script type="text/javascript" src="js/vendor/jquery/jquery-ui.1.10.2.js"></script>
 <script type="text/javascript" src="js/vendor/bootstrap/bootstrap.js"></script>
 
+<!-- FIXME Refactor this into an included JS file - JS in HTML is bad :) -->
 <script type="text/javascript">
 
 $(function() {

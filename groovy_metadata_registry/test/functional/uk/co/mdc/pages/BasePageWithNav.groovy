@@ -7,6 +7,10 @@ import uk.co.mdc.modules.TopNavElements
 
 class BasePageWithNav extends Page{
 	
+	static at = {
+		assert navPresentAndVisible
+	}
+	
 	static content = {
 		nav { module TopNavElements }
 	}

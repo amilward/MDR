@@ -4,8 +4,8 @@
 package uk.co.mdc.pathways;
 import geb.spock.GebReportingSpec
 
-import  uk.co.mdc.authentication.pages.LoginPage
-import  uk.co.mdc.authentication.pages.DashboardPage
+import uk.co.mdc.pages.authentication.LoginPage
+import uk.co.mdc.pages.DashboardPage
 import uk.co.mdc.pages.pathways.PathwayListPage
 
 import org.openqa.selenium.Dimension
