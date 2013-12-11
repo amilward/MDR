@@ -1,4 +1,4 @@
-package uk.co.mdc.authentication.pages.forms;
+package uk.co.mdc.pages.forms;
 
 import geb.Browser
 import geb.Page

@@ -25,5 +25,11 @@ class TopNavElements extends Module{
 		newPathwayVersion 	{ pathwayCreationModal.find('#txt-version') }
 		newPathwayDraft 	{ pathwayCreationModal.find('#bool-isDraft') }
 		newPathwaySubmit	{ pathwayCreationModal.find('#createPathwaySubmit') }
+		
+		
+		navPresentAndVisible(required:false) {
+			$("div", class: "navbar") 
+			&& homeLink
+		}
 	}
 }
