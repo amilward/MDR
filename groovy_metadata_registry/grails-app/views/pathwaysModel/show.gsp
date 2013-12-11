@@ -22,11 +22,12 @@
 	<div class="box">
 		<div id="container">
 			<div class="ui-layout-west large-rounded" id="tree-panel">
-				<div class="panel panel-default">
-					<div class="panel-heading">Tree View</div>
-					<div class="panel-body" data-bind="with: topLevelPathway">
+				<div class="panel panel-default" data-bind="with: topLevelPathway">
+					<div class="panel-heading" data-bind="attr:{title: name}, text: name">Tree View</div>
+					<div class="panel-body">
+                                            <!--
 						<div class="pathway-title" data-bind="attr:{title: name}, text: name"></div>
-						
+						-->
 						<div id="jsTreeView" class="treeview">
                                                     <ul class="level1" data-bind="foreach: nodes">
                                                       <li>
