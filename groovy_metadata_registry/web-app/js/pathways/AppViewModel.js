@@ -255,6 +255,14 @@
 			    ko.utils.arrayRemoveItem(self.pathwayModel.nodes, nodeToDelete);
 			    ////console.log(self.pathwayModel.nodes);
         	});
+                
+                //Only modify the right panel if the currently displayed properties belong to the deleted node
+                if (self.selectedItem === nodeToDelete) {
+                    self.selectedItem = undefined;
+                }
+                
+                //Notify treeview that the content have changed
+                ko.getObservable(self, 'topLevelPathway').valueHasMutated();
         }
         
         
