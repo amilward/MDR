@@ -7,9 +7,9 @@ import geb.Module
 class TopNavElements extends Module{
 	
 	static content = {
-		homeLink  { 	$("li#projectHomeLink a:first", text: "MDC") }
-		modelLink  { 	$("li#nav-model-link a:first", text: "Data model") }
-		pathwayLink { 	$("li#nav-pathway-link a:first", text: "Pathways") }
+		homeLink  { 	$("li#projectHomeLink").find("a:first", text: "MDC") }
+		modelLink  { 	$("li#nav-model-link").find("a:first", text: "Data model") }
+		pathwayLink { 	$("li#nav-pathway-link").find("a:first", text: "Pathways") }
 		
 		// Pathways menu
 		expandPathwayMenuLink { $("a#nav-pathway-expand") }
@@ -28,7 +28,7 @@ class TopNavElements extends Module{
 		
 		
 		navPresentAndVisible(required:false) {
-			$("div", class: "navbar").displayed && homeLink
+			$("div", class: "navbar") 
 		}
 	}
 }
