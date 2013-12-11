@@ -306,7 +306,6 @@ label .selectedItem {
     transition-duration: 0 !important;
 }
 
-.pathway-title {
-    white-space: nowrap;
-    text-overflow: ellipsis;
+#properties-panel .form-group label {
+    padding-left: 0;
 }
