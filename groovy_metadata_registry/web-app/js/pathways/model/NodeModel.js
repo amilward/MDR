@@ -138,15 +138,17 @@
         self.addCollectionDialog = function(){
         	 $('#AddCollectionModal').modal({ show: true, keyboard: false, backdrop: 'static' });
         	 collectionListDraggable();
-        	 $("#collectionsCart").droppable({
+        	 $("#collectionCart").droppable({
                  drop: function(event, ui) {
                  	if(c.id){
                  		if(c.type.indexOf("collection") !== -1){ 
+                 			$('#collectionCartList').append('<li>' + c.name + '</li>')
                  			var collection = new CollectionModel();
                      		collection.id = c.id;
                      		collection.name = c.name;
                  			self.addCollection(collection);
                  		}else{
+                 			//$('#collectionCartList').append('<li>' + c.name + '</li>')
                  			var form = new FormModel();
                     		form.id = c.id
                     		form.name = c.name  
@@ -175,6 +177,7 @@
         	$("#formDesignCart").droppable({
                 drop: function(event, ui) {
                 	if(c.id){
+                		$('#formCartList').append('<li>' + c.name + '</li>')
                 		var form = new FormModel();
                 		form.id = c.id
                 		form.name = c.name               		
