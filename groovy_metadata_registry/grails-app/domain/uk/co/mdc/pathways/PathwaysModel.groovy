@@ -33,7 +33,7 @@ class PathwaysModel  {
 				
 		this.pathwayElements.each{ element ->
 			
-			if(element.instanceOf(Node)){
+			if(element instanceof Node){
 			
 				nodes.push(element)
 			}
@@ -48,7 +48,7 @@ class PathwaysModel  {
 				
 		this.pathwayElements.each{ element ->
 			
-			if(element.instanceOf(Link)){
+			if(element instanceof Link){
 				links.push(element)
 			}
 		}
