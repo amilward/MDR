@@ -31,14 +31,16 @@
 					</div>
 					<div class="form-group">
             <label for="txt-version" class="control-label">Version: </label> <input
-              id="txt-version" type="text" name="version" class="form-control"
+              id="txt-version" type="text" name="versionNo" class="form-control"
               />
           </div>
-          <div class="form-group"> 
-            <label for="bool-isDraft" class="control-label">Draft: </label> <input
-              id="bool-isDraft" value="true" type="checkbox" name="isDraft" class="form-control"
-              />
-          </div>
+        	<div class="form-group"> 
+			            <label for="bool-isDraft" class="control-label">Draft: </label> 
+			            <select id="bool-isDraft" name="isDraft">
+								<option value="true">true</option>
+   								<option value="false">false</option>
+						</select>
+			          </div>
 				</form>
 			</div>
 			<div class="modal-footer">

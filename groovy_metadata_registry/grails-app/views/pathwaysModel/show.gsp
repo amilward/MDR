@@ -74,19 +74,19 @@
 					<div id="canvas-panel" class="panel panel-primary">
             <div id="panel-heading" class="panel-heading">
             
-                <button type="button" class="btn btn-link btn-xs pull-right" data-bind="if: isSubPathway(), click: goToParent()">
+                <button type="button" class="btn btn-link btn-xs pull-right" id="goToParent" data-bind="if: isSubPathway(), click: goToParent()">
                     <i class="fa fa-arrow-up"></i> Parent
                 </button>
-           	 	<button type="button" class="btn btn-link btn-xs pull-right" data-bind="click: createNode">
+           	 	<button type="button" class="btn btn-link btn-xs pull-right" id="addNode" data-bind="click: createNode">
                     <i class="fa fa-plus"></i> Add Node
                 </button>
-                 <button type="button" class="btn btn-link btn-xs pull-right" data-bind="click: deletePathway">
+                 <button type="button" class="btn btn-link btn-xs pull-right" id="deletePathway" data-bind="click: deletePathway">
                     <i class="fa fa-edit"></i> Delete
                 </button>
-                <button type="button" class="btn btn-link btn-xs pull-right" data-bind="click: updatePathway">
+                <button type="button" class="btn btn-link btn-xs pull-right" id="updatePathway" data-bind="click: updatePathway">
                     <i class="fa fa-save"></i> Save
                 </button>
-                <button type="button" class="btn btn-link btn-xs pull-right" data-bind="click: editPathway">
+                <button type="button" class="btn btn-link btn-xs pull-right" id="editPathwayInfo" data-bind="click: editPathway">
                     <i class="fa fa-edit"></i> Edit Info
                 </button>
                
@@ -316,7 +316,7 @@
 					<div class="form-group">
 						<label for="txt-name" class="control-label">Name: </label> 
 						<input name="name"
-							id="txt-name" type="text" class="form-control" data-bind="value: name, valueUpdate: 'input'" 
+							id="txt-nameU" type="text" class="form-control" data-bind="value: name, valueUpdate: 'input'" 
 							 />
 					</div>
 					<div class="form-group">
@@ -331,7 +331,7 @@
           </div>
           <div class="form-group"> 
 			            <label for="bool-isDraft" class="control-label">Draft: </label> 
-			            <select data-bind="optionsText: 'isDraft', value: isDraft, optionsCaption: 'Choose...'">
+			            <select name="isDraft" data-bind="optionsText: 'isDraft', value: isDraft, optionsCaption: 'Choose...'">
 									<option value="true">true</option>
    									 <option value="false">false</option>
 								</select>

@@ -22,8 +22,8 @@ class TopNavElements extends Module{
 		pathwayCreationModal {  $("div#createPathwayModal") } 
 		newPathwayName 	{ pathwayCreationModal.find('#txt-name') }
 		newPathwayDescription 	{ pathwayCreationModal.find('#txt-desc') }
-		newPathwayVersion 	{ pathwayCreationModal.find('#txt-version') }
-		newPathwayDraft 	{ pathwayCreationModal.find('#bool-isDraft') }
+		newPathwayVersionNo 	{ pathwayCreationModal.find('#txt-version') }
+		newPathwayIsDraft 	{ pathwayCreationModal.find('#bool-isDraft') }
 		newPathwaySubmit	{ pathwayCreationModal.find('#createPathwaySubmit') }
 		
 

@@ -22,6 +22,13 @@ class PathwayShowPage extends BasePageWithNav{
 		formDesignTableRows { $("#formDesignTable tbody tr") }
 		formDesignTableFRLink { formDesignTableFirstRow.find("a") } 
 		formDesignCartListFirstItem { $("#formCartList li") }
+		editInfoButton { $("#editPathwayInfo") }
+		updatePathwayModal { $("#updatePathwayModal") }
+		createPathwayForm { $("form#createPathwayForm") }
+		pathwayInfoName { js.exec("return document.getElementById('txt-nameU').value")}
+		pathwayInfoDescription { createPathwayForm.find("input", name: "description")}
+		pathwayInfoVersionNo { createPathwayForm.find("input", name: "versionNo")}
+		pathwayInfoIsDraft { createPathwayForm.find("input", name: "isDraft")}
 	}
 	
 }
