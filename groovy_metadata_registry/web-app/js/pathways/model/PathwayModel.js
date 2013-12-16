@@ -6,7 +6,7 @@
         self.name = undefined;
     	self.description = undefined;
     	self.version = undefined;
-    	self.isDraft = true;
+    	self.isDraft = undefined;
     	self.parentPathwayId = undefined;
     	self.parentNodeId = undefined;
     	self.nodes = [];
