@@ -56,6 +56,7 @@ grails.project.dependency.resolution = {
 
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes
         compile 'com.googlecode.json-simple:json-simple:1.1.1'
+        compile "org.compass-project:compass:2.2.1"
 
         // Testing modules
         test "org.gebish:geb-spock:0.9.2"
