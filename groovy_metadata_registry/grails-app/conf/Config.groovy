@@ -12,7 +12,7 @@ import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils
 //    grails.config.locations << "file:" + System.properties["${appName}.config.location"]
 // }
 
-grails.project.groupId = appName // change this to alter the default package name and Maven publishing destination
+grails.project.groupId = uk.co.mdc // change this to alter the default package name and Maven publishing destination
 grails.mime.file.extensions = true // enables the parsing of file extensions from URLs into the request format
 grails.mime.use.accept.header = false
 grails.mime.types = [
@@ -54,12 +54,8 @@ grails.resources.adhoc.patterns = [
 //NEED TO REMOVE IN PRODUCTION - DISABLING JAVASCRIPT BUNDLING
 grails.resources.debug=true
 
-// Automatically encode ${} variables in GSPs, to prevent XSS through user input
-grails.views.default.codec = "html" // none, html, base64
-grails.views.gsp.encoding = "UTF-8"
 grails.converters.encoding = "UTF-8"
-// enable Sitemesh preprocessing of GSP pages
-grails.views.gsp.sitemesh.preprocess = true
+
 // scaffolding templates configuration
 grails.scaffolding.templates.domainSuffix = 'Instance'
 
@@ -210,6 +206,27 @@ grails{
 			]
 		}
 	}
+	
+	views {
+		codec = "html" // none, html, base64
+		gsp {
+			encoding = 'UTF-8'
+			htmlcodec = 'xml' // use xml escaping instead of HTML4 escaping
+			codecs {
+				expression = 'html' // escapes values inside ${}
+				scriptlet = 'html' // escapes output from scriptlets in GSPs
+				taglib = 'none' // escapes output from taglibs
+				staticparts = 'none' // escapes output from static template parts
+			}
+			sitemesh {
+				preprocess = true
+			}
+		}
+		// escapes all not-encoded output at final stage of outputting
+		filteringCodecForContentType {
+			//'text/html' = 'html'
+		}
+	}
 }
 
 
@@ -230,3 +247,27 @@ auditLog {
 
 
 
+
+// Uncomment and edit the following lines to start using Grails encoding & escaping improvements
+
+/* remove this line 
+// GSP settings
+grails {
+    views {
+        gsp {
+            encoding = 'UTF-8'
+            htmlcodec = 'xml' // use xml escaping instead of HTML4 escaping
+            codecs {
+                expression = 'html' // escapes values inside null
+                scriptlet = 'none' // escapes output from scriptlets in GSPs
+                taglib = 'none' // escapes output from taglibs
+                staticparts = 'none' // escapes output from static template parts
+            }
+        }
+        // escapes all not-encoded output at final stage of outputting
+        filteringCodecForContentType {
+            //'text/html' = 'html'
+        }
+    }
+}
+remove this line */
