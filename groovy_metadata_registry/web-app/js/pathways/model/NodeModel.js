@@ -48,7 +48,7 @@
         		
         	$.when(pathwayService.getPathwayNodes(self.subPathwayId)).done(function (data) {
             	if(data.success===true){
-            		console.log(data.nodes)
+            		
             		//reset subNodes
             		self.subNodes = [];
             		$.each(data.nodes, function(index, value){
@@ -62,7 +62,7 @@
                 		}
                 		self.subNodes.push(node);
             		})
-            		console.log(self.subNodes)
+            		
             		}
             	});
         	}

@@ -47,6 +47,7 @@ class AddSubPathwayToNodeSpec extends GebReportingSpec {
 					
 					
 					when: "I click on the first pathway link"
+					def pName = dataTableFirstRowLink.text()
 					dataTableFirstRowLink.click()
 					
 					then: "I am taken to the show pathway page for it"
@@ -56,7 +57,7 @@ class AddSubPathwayToNodeSpec extends GebReportingSpec {
 			
 					and: "it displays the name of the pathway"
 					waitFor{
-						pathwayName.text() == "Transplanting and Monitoring Pathway"
+						pathwayName.text() == pName
 					}
 					
 					when: "I click on a node"
