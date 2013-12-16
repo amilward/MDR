@@ -161,7 +161,7 @@ class PathwaysService {
 				//println(pathwaysModelInstance?.parentNode)
 				def node = nodeService.update(nodeInstance, updatedNode)
 				//println('after?')
-				println(pathwaysModelInstance?.parentNode)
+				//println(pathwaysModelInstance?.parentNode)
 			}
 
 		}

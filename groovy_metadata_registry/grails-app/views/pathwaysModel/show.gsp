@@ -305,7 +305,7 @@
     <!-- Update Pathway Info -->
     <div id="updatePathwayModal" class="modal fade hide" tabindex="-1"	role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop = "true" >
 	<div class="modal-dialog">
-		<div class="modal-content" data-bind="">
+		<div class="modal-content">
 			<div class="modal-header">
 				<!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>-->
 				<h4 class="modal-title" id="myModalLabel">Update Pathway</h4>
@@ -316,22 +316,22 @@
 					<div class="form-group">
 						<label for="txt-name" class="control-label">Name: </label> 
 						<input name="name"
-							id="txt-nameU" type="text" class="form-control" data-bind="value: name, valueUpdate: 'input'" 
+							id="txt-nameUpdate" type="text" class="form-control" data-bind="value: name, valueUpdate: 'input'" 
 							 />
 					</div>
 					<div class="form-group">
 						<label for="txt-desc" class="control-label">Description: </label>
-						<textarea name="description" id="txt-desc" rows="3" class="form-control" data-bind="value: description, valueUpdate: 'input'" 
+						<textarea name="description" id="txt-descUpdate" rows="3" class="form-control" data-bind="value: description, valueUpdate: 'input'" 
 							></textarea>
 					</div>
 					<div class="form-group">
             <label for="txt-version" class="control-label">Version: </label> <input
-              id="txt-version" type="text" name="version" class="form-control" data-bind="value: versionNo, valueUpdate: 'input'" 
+              id="txt-versionNoUpdate" type="text" name="version" class="form-control" data-bind="value: versionNo, valueUpdate: 'input'" 
               />
           </div>
           <div class="form-group"> 
 			            <label for="bool-isDraft" class="control-label">Draft: </label> 
-			            <select name="isDraft" data-bind="optionsText: 'isDraft', value: isDraft, optionsCaption: 'Choose...'">
+			            <select id="select-isDraftUpdate" name="isDraft" data-bind="optionsText: 'isDraft', value: isDraft, optionsCaption: 'Choose...'">
 									<option value="true">true</option>
    									 <option value="false">false</option>
 								</select>

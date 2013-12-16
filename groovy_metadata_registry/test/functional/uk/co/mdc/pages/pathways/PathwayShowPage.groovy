@@ -1,3 +1,8 @@
+/**
+ * Author: Ryan Brooks (ryan.brooks@ndm.ox.ac.uk)
+ * 		   Adam Milward (adam.milward@outlook.com)
+ */
+
 package uk.co.mdc.pages.pathways;
 
 import uk.co.mdc.pages.BasePageWithNav;
@@ -25,10 +30,10 @@ class PathwayShowPage extends BasePageWithNav{
 		editInfoButton { $("#editPathwayInfo") }
 		updatePathwayModal { $("#updatePathwayModal") }
 		createPathwayForm { $("form#createPathwayForm") }
-		pathwayInfoName { js.exec("return document.getElementById('txt-nameU').value")}
-		pathwayInfoDescription { createPathwayForm.find("input", name: "description")}
-		pathwayInfoVersionNo { createPathwayForm.find("input", name: "versionNo")}
-		pathwayInfoIsDraft { createPathwayForm.find("input", name: "isDraft")}
+		pathwayInfoName { js.exec("return document.getElementById('txt-nameUpdate').value")}
+		pathwayInfoDescription { js.exec("return document.getElementById('txt-descUpdate').value")}
+		pathwayInfoVersionNo { js.exec("return document.getElementById('txt-versionNoUpdate').value")}
+		pathwayInfoIsDraft  { js.exec("return document.getElementById('select-isDraftUpdate').value")}
 	}
 	
 }

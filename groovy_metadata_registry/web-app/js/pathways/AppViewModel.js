@@ -58,7 +58,7 @@
         //i.e. name, description etc
         
         self.editPathway = function() {
-        	console.log(ko.toJSON(self.isDraft))
+        	console.log(ko.toJSON(self.pathwayModel.isDraft))
         	$('#updatePathwayModal').modal({ show: true, keyboard: false, backdrop: 'static' });
 
         };
@@ -74,7 +74,7 @@
         	 pm.version = pathwayJSON.version;
         	 pm.versionNo = pathwayJSON.versionNo;
         	 pm.id = pathwayJSON.id;
-        	 pm.isDraft = pathwayJSON.isDraft;
+        	 pm.isDraft = pathwayJSON.isDraft.toString();
         	 pm.parentPathwayId = pathwayJSON.parentPathwayId;
         	 pm.parentNodeId = pathwayJSON.parentNodeId;
         	 self.pathwayModel = pm;

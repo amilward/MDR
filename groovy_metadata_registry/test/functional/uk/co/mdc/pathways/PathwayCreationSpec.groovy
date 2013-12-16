@@ -1,5 +1,6 @@
 /**
  * Author: Ryan Brooks (ryan.brooks@ndm.ox.ac.uk)
+ * 		   Adam Milward (adam.milward@outlook.com)
  */
 package uk.co.mdc.pathways;
 import geb.spock.GebReportingSpec
@@ -49,7 +50,7 @@ class PathwayCreationSpec extends GebReportingSpec {
 		def varPathwayName = "Sample Pathway"
 		def varDescription = "This is a sample pathway"
 		def varVersionNo = "1a"
-		def varIsDraft = false
+		def varIsDraft = "false"
 		nav.newPathwayName = varPathwayName
 		nav.newPathwayDescription = varDescription
 		nav.newPathwayVersionNo = varVersionNo
@@ -80,9 +81,9 @@ class PathwayCreationSpec extends GebReportingSpec {
 		
 		waitFor{
 			pathwayInfoName == varPathwayName
-			//pathwayInfoDescription.val() == varDescription
-			//pathwayInfoVersionNo.val() == varVersionNo
-			//pathwayInfoIsDraft.val() == varIsDraft
+			pathwayInfoDescription == varDescription
+			pathwayInfoVersionNo == varVersionNo
+			pathwayInfoIsDraft == varIsDraft
 		}
 		
 	}
