@@ -51,17 +51,26 @@ $(function() {
 
 $('#createFormLink').click(
 	    function() {
-	  	  $('#createFormModal').modal({ show: true, keyboard: false, backdrop: 'static' });
-	      $(this).closest(".dropdown").removeClass("open");
-	      return false;
+	    	createForm();
 	    });
 
+
+function createForm(){
+	$('#createFormModal').modal({ show: true, keyboard: false, backdrop: 'static' });
+    $(this).closest(".dropdown").removeClass("open");
+}
+
 $('#createPathwayLink').click(
-    function() {
-  	  $('#createPathwayModal').modal({ show: true, keyboard: false, backdrop: 'static' });
-      $(this).closest(".dropdown").removeClass("open");
-      return false;
-    });
+		function(){
+			createPathway();
+			}
+    );
+
+
+function createPathway(){
+	  	  $('#createPathwayModal').modal({ show: true, keyboard: false, backdrop: 'static' });
+	      $(this).closest(".dropdown").removeClass("open");
+}
 
 $('.closeModalLink')
 .click(
