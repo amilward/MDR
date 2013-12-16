@@ -184,11 +184,11 @@ class PathwaysModelController {
 			
 			def pathwayInstance = pathwaysService.create(data)
 			
-			if(pathwayInstance){
+			if(pathwayInstance && !pathwayInstance.errors.hasErrors()){
 				model = [success: true, pathwayId: pathwayInstance.id, pathwayVersion: pathwayInstance.version, message: 'saved']
 			}else{
 			
-				model = [success: false]
+				model = [success: false, details: pathwayInstance.errors]
 			
 			}
 			render model  as JSON

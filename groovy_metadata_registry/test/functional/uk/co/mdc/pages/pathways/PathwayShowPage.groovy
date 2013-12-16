@@ -28,6 +28,8 @@ class PathwayShowPage extends BasePageWithNav{
 		formDesignTableFRLink { formDesignTableFirstRow.find("a") } 
 		formDesignCartListFirstItem { $("#formCartList li") }
 		editInfoButton { $("#editPathwayInfo") }
+		viewSubPathwayButton { $("#viewSubPathway") }
+		addSubPathwayButton { $("#addSubPathway") }
 		updatePathwayModal { $("#updatePathwayModal") }
 		createPathwayForm { $("form#createPathwayForm") }
 		pathwayInfoName { js.exec("return document.getElementById('txt-nameUpdate').value")}
