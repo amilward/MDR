@@ -1,11 +1,11 @@
-package uk.co.mdc.pages;
+package uk.co.mdc.pages
 
 import geb.Browser
 import geb.Page
 import geb.Module
 import uk.co.mdc.modules.TopNavElements
 
-class DashboardPage extends Page{
+class DashboardPage extends BasePageWithNav{
 	
 	static url = "/"
 	
