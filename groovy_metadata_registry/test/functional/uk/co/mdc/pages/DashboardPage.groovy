@@ -16,5 +16,9 @@ class DashboardPage extends BasePageWithNav{
 	
 	static content = {
 		nav { module TopNavElements }
+		dashboardOptions { $("#dashboard-options")}
+		pathwaysLink { $("#pathways") }
+		dashboardPathways { $("#dashboard-pathways") }
+		createPathwaysLink { $("#dashCreatePathway") }
 	}
 }
