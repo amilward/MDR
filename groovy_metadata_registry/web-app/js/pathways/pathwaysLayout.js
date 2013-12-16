@@ -18,11 +18,16 @@ $(document).ready(function () {
 		,	livePaneResizing:			true
 		,	showDebugMessages:			true    // log and/or display messages from debugging & testing code
 		,	west: {
-			size: '20%',
-                        }
-                ,	east: {
-			size: '20%',
-                        }
+				size: '20%',
+            }
+		,	
+            east: {
+            	size: '20%',
+            }
+		,
+            north: {
+            	size: '80' ,    		
+                	}
 	});
 
 	modelLayout = $('#center-panel').layout({
@@ -34,12 +39,7 @@ $(document).ready(function () {
 		,	south: {
 			size: '20%',
 		}
-//	,	east: {
-//		size: '30%',
-//	}
 	});
-
-
 	
 	$('#changeSidebarPos').on('click', function(e) {		
 		setTimeout(function(){
@@ -53,7 +53,7 @@ $(document).ready(function () {
 	});
 
 	function resizeWindows(){
-		$('#container').height($('html').height() + 205);
+		$('#container').height($('html').height());
 	}
 
 

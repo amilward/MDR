@@ -42,7 +42,7 @@ div.form-input{
 	display: inline-block;
 }
 
-#model-panel, #properties-panel, #tree-panel {
+#model-panel, #properties-panel, #tree-panel, #header-panel {
 	border: 1px solid #E5E5E5;
 	background-color: white;
 	padding: 10px;	
