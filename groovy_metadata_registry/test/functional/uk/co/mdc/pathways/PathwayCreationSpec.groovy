@@ -1,5 +1,6 @@
 /**
  * Author: Ryan Brooks (ryan.brooks@ndm.ox.ac.uk)
+ * 		   Adam Milward (adam.milward@outlook.com)
  */
 package uk.co.mdc.pathways;
 import geb.spock.GebReportingSpec
@@ -42,11 +43,18 @@ class PathwayCreationSpec extends GebReportingSpec {
 		}
 		nav.newPathwayName.@type == "text"
 		nav.newPathwayDescription.@type == "textarea"
+		nav.newPathwayVersionNo.@type == "text"
+		nav.newPathwayIsDraft.@type == "select-one"
 		
 		when: "I enter a name and description and click submit"
 		def varPathwayName = "Sample Pathway"
+		def varDescription = "This is a sample pathway"
+		def varVersionNo = "1a"
+		def varIsDraft = "false"
 		nav.newPathwayName = varPathwayName
-		nav.newPathwayDescription = "This is a sample pathway"
+		nav.newPathwayDescription = varDescription
+		nav.newPathwayVersionNo = varVersionNo
+		nav.newPathwayIsDraft = varIsDraft
 		nav.newPathwaySubmit.click()
 		
 		then: "a new pathway is created and I am taken to the show page for it"
@@ -59,6 +67,24 @@ class PathwayCreationSpec extends GebReportingSpec {
 			pathwayName.text() == varPathwayName
 		}
 		
+		when: "I click on the edit info"
+		editInfoButton.click()
+		
+		
+		then: "the update pathway info modal is displayed"
+		waitFor{
+			updatePathwayModal.displayed
+		}
+		
+		and: "the pathways Info is the same as the info entered when we created the pathway"
+		
+		
+		waitFor{
+			pathwayInfoName == varPathwayName
+			pathwayInfoDescription == varDescription
+			pathwayInfoVersionNo == varVersionNo
+			pathwayInfoIsDraft == varIsDraft
+		}
 		
 	}
 	

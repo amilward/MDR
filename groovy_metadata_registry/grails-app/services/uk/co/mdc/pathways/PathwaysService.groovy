@@ -61,6 +61,7 @@ class PathwaysService {
 		def pathwaysModelInstance = new PathwaysModel(
 			name: parameters?.name,
 			description: parameters?.description,
+			versionNo: parameters?.versionNo,
 			isDraft: parameters?.isDraft
 			);
 		
@@ -140,7 +141,7 @@ class PathwaysService {
 		//println(parameters)
 		
 		def updatedNodes = parameters.nodes
-		println("NODES =" + updatedNodes)
+
 		
 		
 		//println(pathwaysModelInstance?.parentNode)
@@ -160,7 +161,7 @@ class PathwaysService {
 				//println(pathwaysModelInstance?.parentNode)
 				def node = nodeService.update(nodeInstance, updatedNode)
 				//println('after?')
-				println(pathwaysModelInstance?.parentNode)
+				//println(pathwaysModelInstance?.parentNode)
 			}
 
 		}

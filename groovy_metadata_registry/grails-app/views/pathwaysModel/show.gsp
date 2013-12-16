@@ -74,19 +74,19 @@
 					<div id="canvas-panel" class="panel panel-primary">
             <div id="panel-heading" class="panel-heading">
             
-                <button type="button" class="btn btn-link btn-xs pull-right" data-bind="if: isSubPathway(), click: goToParent()">
+                <button type="button" class="btn btn-link btn-xs pull-right" id="goToParent" data-bind="if: isSubPathway(), click: goToParent()">
                     <i class="fa fa-arrow-up"></i> Parent
                 </button>
-           	 	<button type="button" class="btn btn-link btn-xs pull-right" data-bind="click: createNode">
+           	 	<button type="button" class="btn btn-link btn-xs pull-right" id="addNode" data-bind="click: createNode">
                     <i class="fa fa-plus"></i> Add Node
                 </button>
-                 <button type="button" class="btn btn-link btn-xs pull-right" data-bind="click: deletePathway">
+                 <button type="button" class="btn btn-link btn-xs pull-right" id="deletePathway" data-bind="click: deletePathway">
                     <i class="fa fa-edit"></i> Delete
                 </button>
-                <button type="button" class="btn btn-link btn-xs pull-right" data-bind="click: updatePathway">
+                <button type="button" class="btn btn-link btn-xs pull-right" id="updatePathway" data-bind="click: updatePathway">
                     <i class="fa fa-save"></i> Save
                 </button>
-                <button type="button" class="btn btn-link btn-xs pull-right" data-bind="click: editPathway">
+                <button type="button" class="btn btn-link btn-xs pull-right" id="editPathwayInfo" data-bind="click: editPathway">
                     <i class="fa fa-edit"></i> Edit Info
                 </button>
                
@@ -134,12 +134,12 @@
                     <div class="panel-heading">Pathways Model</div>
                     <div class="panel-body">
                         <div data-bind="if: subPathwayId != undefined">
-	                        <button type="button" class="btn btn-link btn-xs pull-right" data-bind="click: viewSubPathway">
+	                        <button id="viewSubPathway" type="button" class="btn btn-link btn-xs pull-right" data-bind="click: viewSubPathway">
 			                    <i class="fa fa-plus"></i> View
 			                </button>
                         </div>
                         <div data-bind="if: subPathwayId === null || subPathwayId === undefined">
-                        	<button type="button" class="btn btn-link btn-xs pull-right" data-bind="click: createSubPathway">
+                        	<button id="addSubPathway" type="button" class="btn btn-link btn-xs pull-right" data-bind="click: createSubPathway">
 			                    <i class="fa fa-plus"></i> Add 
 			                </button>
                         </div>
@@ -305,7 +305,7 @@
     <!-- Update Pathway Info -->
     <div id="updatePathwayModal" class="modal fade hide" tabindex="-1"	role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop = "true" >
 	<div class="modal-dialog">
-		<div class="modal-content" data-bind="">
+		<div class="modal-content">
 			<div class="modal-header">
 				<!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>-->
 				<h4 class="modal-title" id="myModalLabel">Update Pathway</h4>
@@ -316,24 +316,26 @@
 					<div class="form-group">
 						<label for="txt-name" class="control-label">Name: </label> 
 						<input name="name"
-							id="txt-name" type="text" class="form-control" data-bind="value: name, valueUpdate: 'input'" 
+							id="txt-nameUpdate" type="text" class="form-control" data-bind="value: name, valueUpdate: 'input'" 
 							 />
 					</div>
 					<div class="form-group">
 						<label for="txt-desc" class="control-label">Description: </label>
-						<textarea name="description" id="txt-desc" rows="3" class="form-control" data-bind="value: description, valueUpdate: 'input'" 
+						<textarea name="description" id="txt-descUpdate" rows="3" class="form-control" data-bind="value: description, valueUpdate: 'input'" 
 							></textarea>
 					</div>
 					<div class="form-group">
             <label for="txt-version" class="control-label">Version: </label> <input
-              id="txt-version" type="text" name="version" class="form-control" data-bind="value: version, valueUpdate: 'input'" 
+              id="txt-versionNoUpdate" type="text" name="version" class="form-control" data-bind="value: versionNo, valueUpdate: 'input'" 
               />
           </div>
           <div class="form-group"> 
-            <label for="bool-isDraft" class="control-label">Draft: </label> <input
-              id="bool-isDraft" value="true" type="checkbox" name="isDraft" class="form-control" data-bind="value: isDraft, valueUpdate: 'input'" 
-              />
-          </div>
+			            <label for="bool-isDraft" class="control-label">Draft: </label> 
+			            <select id="select-isDraftUpdate" name="isDraft" data-bind="optionsText: 'isDraft', value: isDraft, optionsCaption: 'Choose...'">
+									<option value="true">true</option>
+   									 <option value="false">false</option>
+								</select>
+			          </div>
 				</form>
 			</div>
 			<div class="modal-footer">

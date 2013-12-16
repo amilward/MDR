@@ -201,6 +201,7 @@
             var subPathway = new PathwayModel();
             subPathway.name = self.name;
             subPathway.parentNodeId = self.id
+            subPathway.isDraft = true
             
             $.when(pathwayService.savePathway(subPathway)).done(function (data) {
             	if(data.success===true){
@@ -219,7 +220,6 @@
             var bindingContext = ko.contextFor(e.target);
             
              $.when(pathwayService.loadPathway(self.subPathwayId)).done(function (pathwayJSON) {
-            		console.log('test')
             		
             		var containerPathway = bindingContext.$root.pathwayModel;
                     //containerPathway.subPathwayId = self.subPathwayId;

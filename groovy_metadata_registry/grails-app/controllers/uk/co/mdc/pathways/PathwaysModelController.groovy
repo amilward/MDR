@@ -117,7 +117,7 @@ class PathwaysModelController {
 	
 	def saveREST() {
 		def unvalidated = request.JSON
-		def pathway = [name: unvalidated.name, description: unvalidated.description, versionNo: unvalidated.version, isDraft: unvalidated.isDraft]
+		def pathway = [name: unvalidated.name, description: unvalidated.description, versionNo: unvalidated.versionNo, isDraft: unvalidated.isDraft]
 		
 		//FIXME validate
 		def pathwaysModelInstance = pathwaysService.create(pathway)
@@ -184,11 +184,11 @@ class PathwaysModelController {
 			
 			def pathwayInstance = pathwaysService.create(data)
 			
-			if(pathwayInstance){
+			if(pathwayInstance && !pathwayInstance.errors.hasErrors()){
 				model = [success: true, pathwayId: pathwayInstance.id, pathwayVersion: pathwayInstance.version, message: 'saved']
 			}else{
 			
-				model = [success: false]
+				model = [success: false, details: pathwayInstance.errors]
 			
 			}
 			render model  as JSON
