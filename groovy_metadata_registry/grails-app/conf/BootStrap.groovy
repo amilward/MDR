@@ -688,7 +688,7 @@ class BootStrap {
 			
 			
 						def pathway2 = new PathwaysModel(
-								name: 'Transplanting and Monitoring Pathway',
+								name: 'Transplanting and Monitoring Pathway 2',
 								versionNo: '0.2',
 								isDraft: true
 						)

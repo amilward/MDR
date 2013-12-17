@@ -47,8 +47,8 @@ class AddSubPathwayToNodeSpec extends GebReportingSpec {
 					
 					
 					when: "I click on the first pathway link"
-					def pName = dataTableFirstRowLink.text()
-					dataTableFirstRowLink.click()
+					def pName = dataTableTMLink.text()
+					dataTableTMLink.click()
 					
 					then: "I am taken to the show pathway page for it"
 					waitFor{
