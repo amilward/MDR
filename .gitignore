@@ -2,65 +2,65 @@
 # Please use this one rather than creating .gitignore files lower down in the directory structure.
 
 # web application files
-/groovy_metadata_registry/web-app/WEB-INF
+/web-app/WEB-INF
 
 # IDEA support files
-/groovy_metadata_registry/.idea/
-/groovy_metadata_registry/groovy_metadata_registry.iml
-/groovy_metadata_registry/out/
-/groovy_metadata_registry/atlassian-ide-plugin.xml
-/groovy_metadata_registry/groovy_metadata_registry-grailsPlugins.iml
+/.idea/
+/groovy_metadata_registry.iml
+/out/
+/atlassian-ide-plugin.xml
+/groovy_metadata_registry-grailsPlugins.iml
 
 # Eclipse support files
-/groovy_metadata_registry/.classpath
-/groovy_metadata_registry/.launch
-/groovy_metadata_registry/.project
-/groovy_metadata_registry/.settings
-/groovy_metadata_registry/*.launch
-/groovy_metadata_registry/*.tmproj
-/groovy_metadata_registry/ivy*
-/groovy_metadata_registry/eclipse
-/groovy_metadata_registry/.metadata
-/groovy_metadata_registry/*.iws #Was *.iws (but have restricted to dir)
+/.classpath
+/.launch
+/.project
+/.settings
+/*.launch
+/*.tmproj
+/ivy*
+/eclipse
+/.metadata
+/*.iws #Was *.iws (but have restricted to dir)
 /.metadata
 
 # Sonar cache
-/groovy_metadata_registry/.sonar
+/.sonar
 
 # default HSQL database files for production mode
-/groovy_metadata_registry/prodDb.*
+/prodDb.*
 
 # general HSQL database files
 *Db.properties
 *Db.script
 
 # logs
-/groovy_metadata_registry/stacktrace.log
-/groovy_metadata_registry/test/reports
-/groovy_metadata_registry/logs
+/stacktrace.log
+/test/reports
+/logs
 
 # project release file
-/groovy_metadata_registry/*.war
+/*.war
 
 # plugin release file
-/groovy_metadata_registry/*.zip
+/*.zip
 
 # older plugin install locations
-/groovy_metadata_registry/plugins
-/groovy_metadata_registry/web-app/plugins
-/groovy_metadata_registry/web-app/WEB-INF/classes
-/groovy_metadata_registry/.link_to_grails_plugins
+/plugins
+/web-app/plugins
+/web-app/WEB-INF/classes
+/.link_to_grails_plugins
 
 # "temporary" build files
-/groovy_metadata_registry/target
-/groovy_metadata_registry/target-eclipse
-/groovy_metadata_registry/bin
+/target
+/target-eclipse
+/bin
 
 # test report output
-/groovy_metadata_registry/reports
+/reports
 
 # Geb testing cache
-/groovy_metadata_registry/test/drivers 
+/test/drivers 
 
 # OS generated files #
 ######################
