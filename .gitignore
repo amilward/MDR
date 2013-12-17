@@ -20,6 +20,7 @@
 /groovy_metadata_registry/*.tmproj
 /groovy_metadata_registry/ivy*
 /groovy_metadata_registry/eclipse
+/groovy_metadata_registry/.metadata
 /groovy_metadata_registry/*.iws #Was *.iws (but have restricted to dir)
 
 # Sonar cache
