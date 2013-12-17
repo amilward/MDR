@@ -45,7 +45,7 @@ class MoveNodeAndSaveSpec extends GebReportingSpec {
 						dataTableRows.size() > 0
 					}
 					
-					when: "I click on the first pathway link"
+					when: "I click on the correct pathway link"
 					def pName = dataTableTMLink.text()
 					dataTableTMLink.click()
 					
