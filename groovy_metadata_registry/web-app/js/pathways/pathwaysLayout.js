@@ -26,7 +26,7 @@ $(document).ready(function () {
             }
 		,
             north: {
-            	size: '80' ,    		
+            	size: '60' ,    		
                 	}
 	});
 
@@ -53,7 +53,7 @@ $(document).ready(function () {
 	});
 
 	function resizeWindows(){
-		$('#container').height($('html').height());
+		$('#container').height($('html').height()-90);
 	}
 
 

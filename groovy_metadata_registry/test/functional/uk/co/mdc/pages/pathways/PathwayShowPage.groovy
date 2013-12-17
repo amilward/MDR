@@ -36,6 +36,7 @@ class PathwayShowPage extends BasePageWithNav{
 		pathwayInfoDescription { js.exec("return document.getElementById('txt-descUpdate').value")}
 		pathwayInfoVersionNo { js.exec("return document.getElementById('txt-versionNoUpdate').value")}
 		pathwayInfoIsDraft  { js.exec("return document.getElementById('select-isDraftUpdate').value")}
+		pathwayCanvas { $(".jsplumb-container") }
 	}
 	
 }
