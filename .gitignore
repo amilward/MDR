@@ -8,6 +8,8 @@
 /groovy_metadata_registry/.idea/
 /groovy_metadata_registry/groovy_metadata_registry.iml
 /groovy_metadata_registry/out/
+/groovy_metadata_registry/atlassian-ide-plugin.xml
+/groovy_metadata_registry/groovy_metadata_registry-grailsPlugins.iml
 
 # Eclipse support files
 /groovy_metadata_registry/.classpath
