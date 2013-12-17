@@ -195,19 +195,6 @@ class BootStrap {
 
 		//populate with test data
 		def applicationContext = grailsApplication.mainContext
-		String basePath = applicationContext.getResource("/").getFile().toString()
-
-
-		//assumes the first line of the file has the field names
-
-
-		if (!ExternalReference.count()) {
-			def externalReferences = new XmlSlurper().parse( new File("${basePath}/WEB-INF/bootstrap-data/ExternalReference.xml"))
-			externalReferences.externalReference.each() { e ->
-				new ExternalReference(e.attributes()).save(failOnError: true) //assumes the keys match the ExternalReference properties
-			}
-
-		}
 
 		def string
 		
