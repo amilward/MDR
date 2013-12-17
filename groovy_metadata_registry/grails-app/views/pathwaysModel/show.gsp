@@ -21,6 +21,36 @@
 <body>
 	<div class="box">
 		<div id="container">
+		
+		<div id="header-panel" class="panel-heading ui-layout-north large-rounded">
+            <div class="panel panel-default" >
+          	  <div class="panel-body">
+                <button type="button" class="btn btn-link btn-xs pull-right" id="goToParent" data-bind="if: isSubPathway(), click: goToParent()">
+                    <i class="fa fa-arrow-up"></i> Parent
+                </button>
+           	 	<button type="button" class="btn btn-link btn-xs pull-right" id="addNode" data-bind="click: createNode">
+                    <i class="fa fa-plus"></i> Add Node
+                </button>
+                 <button type="button" class="btn btn-link btn-xs pull-right" id="deletePathway" data-bind="click: deletePathway">
+                    <i class="fa fa-edit"></i> Delete
+                </button>
+                <button type="button" class="btn btn-link btn-xs pull-right" id="updatePathway" data-bind="click: updatePathway">
+                    <i class="fa fa-save"></i> Save
+                </button>
+                <button type="button" class="btn btn-link btn-xs pull-right" id="editPathwayInfo" data-bind="click: editPathway">
+                    <i class="fa fa-edit"></i> Edit Info
+                </button>
+               
+            	
+                 <div class="form-group">
+                      <h1 id="pathwayName" data-bind="text: pathwayModel ? pathwayModel.name : ''"></h1>
+                </div>
+                
+                </div>
+ 				</div>
+            </div>
+		
+		
 			<div class="ui-layout-west large-rounded" id="tree-panel">
 				<div class="panel panel-default" data-bind="with: topLevelPathway">
 					<div class="panel-heading" data-bind="attr:{title: name}, text: name">Tree View</div>
@@ -69,33 +99,9 @@
 
 
 			<div class="ui-layout-center" id="center-panel">
-				<div id="model-panel" class="ui-layout-center large-rounded">
+			<div id="model-panel" class="ui-layout-center  large-rounded">
 
-					<div id="canvas-panel" class="panel panel-primary">
-            <div id="panel-heading" class="panel-heading">
-            
-                <button type="button" class="btn btn-link btn-xs pull-right" id="goToParent" data-bind="if: isSubPathway(), click: goToParent()">
-                    <i class="fa fa-arrow-up"></i> Parent
-                </button>
-           	 	<button type="button" class="btn btn-link btn-xs pull-right" id="addNode" data-bind="click: createNode">
-                    <i class="fa fa-plus"></i> Add Node
-                </button>
-                 <button type="button" class="btn btn-link btn-xs pull-right" id="deletePathway" data-bind="click: deletePathway">
-                    <i class="fa fa-edit"></i> Delete
-                </button>
-                <button type="button" class="btn btn-link btn-xs pull-right" id="updatePathway" data-bind="click: updatePathway">
-                    <i class="fa fa-save"></i> Save
-                </button>
-                <button type="button" class="btn btn-link btn-xs pull-right" id="editPathwayInfo" data-bind="click: editPathway">
-                    <i class="fa fa-edit"></i> Edit Info
-                </button>
-               
-            	
-                 <div class="form-group">
-                      <h1 id="pathwayName" data-bind="text: pathwayModel ? pathwayModel.name : ''"></h1>
-                </div>
- 
-            </div>
+			<div id="canvas-panel" class="panel panel-primary">
             <div class="panel-body" data-bind="with: pathwayModel">
                 <div class="jsplumb-container" data-bind="foreach: nodes ">
                     <div class="node" data-bind="makeNode: $data, click: $root.selectNode, style: {top:y, left:x}, attr: { 'id': 'node' + id}, css: {selectedItem: $root.itemEqualsToSelected($data)}">

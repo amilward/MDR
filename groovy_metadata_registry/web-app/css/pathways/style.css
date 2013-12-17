@@ -16,6 +16,12 @@ body {
   padding-left: 5px;
   padding-right: 5px;
 }
+
+.jsplumb-container{
+	height:3000px;
+	width:3000px;
+}
+
 #left-panel .panel-heading .add-node-link,
 #canvas-panel .panel-heading .add-node-link,
 #right-panel .panel-heading .add-node-link {
@@ -24,13 +30,13 @@ body {
 #left-panel .panel-body,
 #canvas-panel .panel-body,
 #right-panel .panel-body {
-  min-height: 750px;
+  min-height: 500px;
 }
 #left-panel .panel-body .jsplumb-container,
 #canvas-panel .panel-body .jsplumb-container,
 #right-panel .panel-body .jsplumb-container {
   position: relative;
-  min-height: 750px;
+  min-height: 500px;
 }
 #left-panel .panel-body .jsplumb-container .node,
 #canvas-panel .panel-body .jsplumb-container .node,
@@ -58,9 +64,13 @@ body {
 #right-panel .outputs {
   min-height: 0;
 }
+#pathwayName{
+	font-size: 20px;
+	margin-top:-2px;
+}
 
 #formDesignCart, #collectionCart{
-	 height: 50px;
+	height: 50px;
     margin-bottom: 10px;
     padding: 5px;
     text-align: center;

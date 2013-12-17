@@ -65,6 +65,9 @@ class PathwayCreationSpec extends GebReportingSpec {
 		and: "it displays the name of the pathway"
 		waitFor{
 			pathwayName.text() == varPathwayName
+			pathwayCanvas.height == 3000
+			pathwayCanvas.width == 3000
+			
 		}
 		
 		when: "I click on the edit info"

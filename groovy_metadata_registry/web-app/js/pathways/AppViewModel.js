@@ -26,11 +26,10 @@
         
         self.updatePathway = function() {
         	
-			$.when(pathwayService.updatePathway(self.pathwayModel)).done(function (data) {
-			        		//console.log(data)
-			        		console.log('pathway saved')
-			        	});
-
+			$.when(pathwayService.updatePathway(self.pathwayModel)).fail(function(){
+				window.location = '../login/auth'
+			});
+			
         };
         
         //delete the current pathway
@@ -94,6 +93,17 @@
                 if (!self.topLevelPathway || self.topLevelPathway.id === self.pathwayModel.id) {
                     self.topLevelPathway = self.pathwayModel;
                 }
+        }
+        
+        self.logoutFromApp = function(){
+        	
+        	var jqxhr = $.ajax({
+        		type: "POST",
+        		url: "../../logout/index",
+        		contentType: 'application/json',
+        		dataType: 'json'
+        		});
+        	alert("logoutFromApp::DONE : ../../logout/index");        	
         }
         
         self.createPathway = function (pathway) {

@@ -28,13 +28,13 @@
     //update an existing pathway
 
     self.updatePathway = function(pathwayModel){
-    	
     	return $.ajax({
     		type : "POST",
     		// FIXME remove static app name
     		url : "../../pathwaysModel/updatePathwayJSON",
     		data : ko.toJSON(pathwayModel),
-    		contentType: "application/json; charset=utf-8",
+    		contentType: "application/json; charset=utf-8"
+    		
     	});
 
     }
@@ -43,22 +43,12 @@
     
     self.savePathway = function (model) {
 
-    	//console.log(ko.toJSON(model))
-    	
     	return $.ajax({
     		type : "POST",
     		// FIXME remove static app name
     		url : "../../pathwaysModel/createPathwayFromJSON",
     		data : ko.toJSON(model),
-    		contentType: "application/json; charset=utf-8",
-    		/*success : function(data){
-    			console.log(data)
-    			vm.updatePathwayFromServer(data.id)
-    		},
-    		error : function(xhr, ajaxOptions, thrownError) {
-    			console.log("Creation of pathway failed: " + thrownError);
-    			failure();
-    		}*/
+    		contentType: "application/json; charset=utf-8"
     	});
 
     };
