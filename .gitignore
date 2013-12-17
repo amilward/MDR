@@ -22,6 +22,7 @@
 /groovy_metadata_registry/eclipse
 /groovy_metadata_registry/.metadata
 /groovy_metadata_registry/*.iws #Was *.iws (but have restricted to dir)
+/.metadata
 
 # Sonar cache
 /groovy_metadata_registry/.sonar
