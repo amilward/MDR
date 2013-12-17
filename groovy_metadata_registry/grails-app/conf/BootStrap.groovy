@@ -1,39 +1,19 @@
-import uk.co.mdc.*
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
+import org.springframework.security.core.authority.AuthorityUtils
+import org.springframework.security.core.context.SecurityContextHolder as SCH
+import org.springframework.web.context.support.WebApplicationContextUtils
+import uk.co.mdc.SecAuth
+import uk.co.mdc.SecUser
+import uk.co.mdc.SecUserSecAuth
 import uk.co.mdc.forms.*
-import uk.co.mdc.model.SchemaSpecification;
-import uk.co.mdc.model.Collection;
-import uk.co.mdc.model.ExternalReference
-import uk.co.mdc.model.ValueDomain
-import uk.co.mdc.model.DataElement
-import uk.co.mdc.model.DataType
-import uk.co.mdc.model.DataElementConcept
-import uk.co.mdc.model.DataElementCollection
-import uk.co.mdc.model.ConceptualDomain
-import uk.co.mdc.model.Document
-import uk.co.mdc.model.DataElementValueDomain
-import uk.co.mdc.pathways.PathwaysModel
+import uk.co.mdc.model.*
 import uk.co.mdc.pathways.Link
 import uk.co.mdc.pathways.Node
-
+import uk.co.mdc.pathways.PathwaysModel
 import org.codehaus.groovy.grails.plugins.springsecurity.SecurityFilterPosition
 import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils
 
-import grails.util.Environment
-import grails.util.DomainBuilder
-import groovy.json.JsonSlurper
-
-import org.springframework.web.context.support.WebApplicationContextUtils
-
 import static org.springframework.security.acls.domain.BasePermission.ADMINISTRATION
-import static org.springframework.security.acls.domain.BasePermission.DELETE
-import static org.springframework.security.acls.domain.BasePermission.READ
-import static org.springframework.security.acls.domain.BasePermission.WRITE
-
-import org.springframework.security.authentication. UsernamePasswordAuthenticationToken
-import org.springframework.security.core.authority.AuthorityUtils
-import org.springframework.security.core.context.SecurityContextHolder as SCH
-import org.grails.plugins.csv.CSVMapReader
-import org.json.simple.JSONObject
 
 
 class BootStrap {

@@ -1,9 +1,8 @@
 package uk.co.mdc.utils
 
-import org.springframework.transaction.annotation.Transactional
-import grails.plugins.springsecurity.Secured;
+import org.springframework.security.access.annotation.Secured
 
-
+@Secured(['ROLE_ADMIN'])
 class DataImportController {
 
 	static allowedMethods = [importDataSet: "GET", ]
