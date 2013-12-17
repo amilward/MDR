@@ -26,11 +26,10 @@
         
         self.updatePathway = function() {
         	
-			$.when(pathwayService.updatePathway(self.pathwayModel)).done(function (data) {
-			        		console.log("updatePathway" + data);
-			        		console.log('pathway saved');
-			        	});
-
+			$.when(pathwayService.updatePathway(self.pathwayModel)).fail(function(){
+				window.location = '../login/auth'
+			});
+			
         };
         
         //delete the current pathway
