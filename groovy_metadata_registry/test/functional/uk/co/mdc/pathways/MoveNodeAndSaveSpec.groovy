@@ -46,7 +46,8 @@ class MoveNodeAndSaveSpec extends GebReportingSpec {
 					}
 					
 					when: "I click on the first pathway link"
-					dataTableFirstRowLink.click()
+					def pName = dataTableTMLink.text()
+					dataTableTMLink.click()
 					
 					then: "I am taken to the show pathway page for it"
 					waitFor{
@@ -55,7 +56,7 @@ class MoveNodeAndSaveSpec extends GebReportingSpec {
 			
 					and: "it displays the name of the pathway"
 					waitFor{
-						pathwayName.text() == "Transplanting and Monitoring Pathway"
+						pathwayName.text() == pName
 					}
 					
 					when: "I drag and drop the first row of the form list"
@@ -89,7 +90,7 @@ class MoveNodeAndSaveSpec extends GebReportingSpec {
 					}
 					
 					when: "I click on the first pathway link"
-					dataTableFirstRowLink.click()
+					dataTableTMLink.click()
 					
 					then: "I am taken to the show pathway page for it"
 					waitFor{
@@ -98,13 +99,9 @@ class MoveNodeAndSaveSpec extends GebReportingSpec {
 			
 					and: "it displays the name of the pathway"
 					waitFor{
-						pathwayName.text() == "Transplanting and Monitoring Pathway"
+						pathwayName.text() == pName
 						node2.y == node2Y + 100
-					}
-					
-					
-					
+					}		
 					
 		}
-	
 }

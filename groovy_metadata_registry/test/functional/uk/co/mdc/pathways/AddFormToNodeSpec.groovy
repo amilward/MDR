@@ -47,7 +47,8 @@ class AddFormToNodeSpec extends GebReportingSpec {
 					
 					
 					when: "I click on the first pathway link"
-					dataTableFirstRowLink.click()
+					def pName = dataTableTMLink.text()
+					dataTableTMLink.click()
 					
 					then: "I am taken to the show pathway page for it"
 					waitFor{
@@ -56,15 +57,14 @@ class AddFormToNodeSpec extends GebReportingSpec {
 			
 					and: "it displays the name of the pathway"
 					waitFor{
-						pathwayName.text() == "Transplanting and Monitoring Pathway"
+						pathwayName.text() == pName
 					}
 					
 					when: "I click on a node"
 					node2.click()
 				
 					then: "the add form button is visible in the properties panel"
-					addFormButton.@type=="button"
-					"Anaesthesia and Operating Patient."
+					addFormButton.@type=="button"					
 					
 					when: "I click on the add form button"
 					addFormButton.click()

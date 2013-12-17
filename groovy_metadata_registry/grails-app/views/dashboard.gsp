@@ -139,6 +139,14 @@ $(function() {
 		currentDiv = '#dashboard-options';
 		$('#dashboard-options').effect("slide", {direction: 'left', mode: 'show'}, 500);
     });
+
+    $("#dashCreatePathway").click(function(){
+    	createPathway();
+        });
+
+    $("#dashCreateForm").click(function(){
+    	createForm();
+        });
 });
 
 </script>
@@ -228,7 +236,7 @@ $(function() {
 		  				</tr>
 		  			</tbody>
 		  		</table>
-	  			<button class="btn btn-default"><i style="color: green;" class="icon-plus"></i>&nbsp;Create a new Pathway Model</button>
+	  			<button id="dashCreatePathway" class="btn btn-default"><i style="color: green;" class="icon-plus"></i>&nbsp;Create a new Pathway Model</button>
 		  		
 		  		<button class="dashboard-return btn btn-default"><i class="icon-arrow-left"></i>&nbsp;Return to the Dashboard</button>
 	  		</div>
@@ -267,7 +275,7 @@ $(function() {
 		  				</tr>
 		  			</tbody>
 		  		</table>
-	  			<button class="btn btn-default"><i style="color: green;" class="icon-plus"></i>&nbsp;Create a new Form Model</button>
+	  			<button id="dashCreateForm" class="btn btn-default"><i style="color: green;" class="icon-plus"></i>&nbsp;Create a new Form Model</button>
 		  		<button class="dashboard-return btn btn-default"><i class="icon-arrow-left"></i>&nbsp;Return to the Dashboard</button>
 	  		</div>
 	  	</div>

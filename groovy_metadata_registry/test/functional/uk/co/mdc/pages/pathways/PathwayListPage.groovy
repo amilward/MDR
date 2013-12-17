@@ -16,7 +16,11 @@ class PathwayListPage extends BasePageWithNav{
 	static content = {
 		dataTableRows  { 	$("#documentTable tbody tr") }
 		dataTableFirstRow  { $("#documentTable tbody tr", 0) }
+		dataTableSecondRow  { $("#documentTable tbody tr", 1) }
 		dataTableFirstRowLink { dataTableFirstRow.find("a") }
+		dataTableSecondRowLink { dataTableSecondRow.find("a") }
+		dataTableTMLink { dataTableRows.find("a", text: "Transplanting and Monitoring Pathway") }
+		
 		searchBox  { 	$("#documentTable_filter input") }
 	}
 }

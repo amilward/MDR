@@ -13,7 +13,7 @@ class PathwayShowPage extends BasePageWithNav{
 	
 	static at = {
 		url == "/pathwaysModel/show/*" &&
-		title == "Create PathwaysModel"
+		title == "Show Pathway"
 	}
 	
 	
@@ -25,7 +25,7 @@ class PathwayShowPage extends BasePageWithNav{
 		addFormButton { $("#addFormToNode") }
 		formDesignTableFirstRow { $("#formDesignTable tbody tr", 0) }
 		formDesignTableRows { $("#formDesignTable tbody tr") }
-		formDesignTableFRLink { formDesignTableFirstRow.find("a") } 
+		formDesignTableFRLink { formDesignTableFirstRow.find("a") }
 		formDesignCartListFirstItem { $("#formCartList li") }
 		editInfoButton { $("#editPathwayInfo") }
 		viewSubPathwayButton { $("#viewSubPathway") }
