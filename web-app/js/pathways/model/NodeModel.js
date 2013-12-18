@@ -197,7 +197,7 @@
         //and adds pathway on the server
         
         self.createSubPathway = function(data, e) {
-        	var bindingContext = ko.contextFor(e.target);
+            var bindingContext = ko.contextFor(e.target);
             var subPathway = new PathwayModel();
             subPathway.name = self.name;
             subPathway.parentNodeId = self.id
