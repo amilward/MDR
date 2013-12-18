@@ -6,7 +6,7 @@
 
 # IDEA support files
 /.idea/
-/groovy_metadata_registry.iml
+/*.iml
 /out/
 /atlassian-ide-plugin.xml
 /groovy_metadata_registry-grailsPlugins.iml
