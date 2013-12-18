@@ -5,7 +5,7 @@
         //TODO: better id generation
         self.id = undefined
         self.name = undefined
-        self.version = undefined
+        self.versionOnServer = undefined
         self.description = undefined;
         self.type = 'node' //'node' | 'pathway'
         self.x = undefined
@@ -197,7 +197,7 @@
         //and adds pathway on the server
         
         self.createSubPathway = function(data, e) {
-        	var bindingContext = ko.contextFor(e.target);
+            var bindingContext = ko.contextFor(e.target);
             var subPathway = new PathwayModel();
             subPathway.name = self.name;
             subPathway.parentNodeId = self.id
@@ -219,22 +219,30 @@
         self.viewSubPathway = function(data, e) {
             var bindingContext = ko.contextFor(e.target);
             
-             $.when(pathwayService.loadPathway(self.subPathwayId)).done(function (pathwayJSON) {
-            		
-            		var containerPathway = bindingContext.$root.pathwayModel;
-                    //containerPathway.subPathwayId = self.subPathwayId;
-                    //self.subPathway.parentPathwayId = containerPathway.id;
-                    
-            		//console.log(pathwayJSON)
+            if (!self.subPathwayId) {
+                var subPathway = new PathwayModel();
+                subPathway.name = self.name;
+                subPathway.parentNodeId = self.id;
+                subPathway.isDraft = true;
+                $.when(pathwayService.savePathway(subPathway)).done(function (data) {
+                    if(data.success===true){
+                        self.subPathwayId = data.pathwayId;
+                        $.when(pathwayService.loadPathway(self.subPathwayId)).done(function (pathwayJSON) {
+                            var containerPathway = bindingContext.$root.pathwayModel;
+                            bindingContext.$root.containerPathway = containerPathway;
+                            bindingContext.$root.loadPathway(pathwayJSON.pathwaysModelInstance);
+                        });
+                    }
+            	});
+            } else {
+                $.when(pathwayService.loadPathway(self.subPathwayId)).done(function (pathwayJSON) {
+                    var containerPathway = bindingContext.$root.pathwayModel;
                     bindingContext.$root.containerPathway = containerPathway;
                     bindingContext.$root.loadPathway(pathwayJSON.pathwaysModelInstance);
-                    
             	});
+            }
             
-            
-            
-            
-        
+            bindingContext.$root.updatePathway();
         };
     };
   

@@ -5,7 +5,9 @@
         self.id = undefined;
         self.name = undefined;
     	self.description = undefined;
-    	self.version = undefined;
+    	self.versionOnServer = undefined;
+    	//this is a string that the user chooses to call a version (rather than an underlying version)
+    	self.versionNo = undefined;
     	self.isDraft = undefined;
     	self.parentPathwayId = undefined;
     	self.parentNodeId = undefined;

@@ -2,7 +2,7 @@
     var LinkModel = function () {
         var self = this;
         self.id = undefined;
-        self.version = undefined;
+        self.versionOnServer = undefined;
         self.name = undefined;
         self.description = undefined;
     	self.source = undefined;

@@ -9,6 +9,7 @@ class PathwaysModel  {
 	Boolean isDraft
 	String description
 	Node parentNode
+	String auditLog
 	
 	static searchable = {
 		content: spellCheck 'include'
@@ -21,6 +22,7 @@ class PathwaysModel  {
 		versionNo nullable:true  
 		pathwayElements nullable:true
 		parentNode nullable:true
+		auditLog nullable:true
     }
 	
 	static mapping = {

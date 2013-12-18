@@ -52,10 +52,6 @@ class LinkService {
 	@Transactional
 	@PreAuthorize("hasRole('ROLE_USER')")
 	Link create(Map parameters) {
-		
-		
-		println('new link')
-		println(parameters)
 
 		def sourceNode
 		def targetNode

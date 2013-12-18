@@ -24,6 +24,7 @@ class NodeMarshaller {
 			'mandatoryOutputs': node?.mandatoryOutputs,
 			'optionalInputs': node?.optionalInputs,
 			'optionalOutputs': node?.optionalOutputs,
+			'pathwaysModelVersion': node?.pathwaysModel.version,
 			'version' : node.version
 			]
 		}
