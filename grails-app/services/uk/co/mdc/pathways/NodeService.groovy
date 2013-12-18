@@ -152,7 +152,7 @@ class NodeService {
 		
 		
 		if(parameters?.collections){
-			//FIXME at the moment we are putting the collections into the optionalInputs - as we develop the model this may change
+			//FIXME at the moment we are putting the collections into the optionalOutputs - as we develop the model this may change
 			def pCollection = parameters?.collections
 			pCollection.each{ collection->
 				collections.push(uk.co.mdc.model.Collection.get(collection.id))
@@ -194,8 +194,7 @@ class NodeService {
 		}
 		
 		nodeInstance.save()
-		println('test')
-		println(nodeInstance)
+
 		
 		nodeInstance
 	}

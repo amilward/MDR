@@ -26,8 +26,22 @@
         
         self.updatePathway = function() {
         	
-			$.when(pathwayService.updatePathway(self.pathwayModel)).fail(function(){
-				window.location = '../login/auth'
+        	//console.log(ko.toJSON(self.pathwayModel.versionOnServer))
+			$.when(pathwayService.updatePathway(self.pathwayModel))
+			.done(function(data){
+				if(data.success){
+					self.pathwayModel.versionOnServer = data.versionOnServer;
+				}else if(data.errors){
+					alert(data.details)
+				}
+			})
+			.fail(function(request, status, error){
+					if(error == "Internal Server Error"){
+						alert("you do not have permissions to modify this pathway please contact your system administrator")
+					}else if(error == "Unauthorized"){
+						location.reload()
+					}
+					
 			});
 			
         };
@@ -57,7 +71,6 @@
         //i.e. name, description etc
         
         self.editPathway = function() {
-        	console.log(ko.toJSON(self.pathwayModel.isDraft))
         	$('#updatePathwayModal').modal({ show: true, keyboard: false, backdrop: 'static' });
 
         };
@@ -70,7 +83,7 @@
         	 var pm = new PathwayModel();
         	 pm.name = pathwayJSON.name;
         	 pm.description = pathwayJSON.description;
-        	 pm.version = pathwayJSON.version;
+        	 pm.versionOnServer = pathwayJSON.version;
         	 pm.versionNo = pathwayJSON.versionNo;
         	 pm.id = pathwayJSON.id;
         	 pm.isDraft = pathwayJSON.isDraft.toString();
@@ -128,7 +141,7 @@
         		self.pathwayModel = pathway;
         		 //Set the new pathway model id given the id created on the server
                 self.pathwayModel.id = data.pathwayId;
-                self.pathwayModel.version = data.pathwayVersion
+                self.pathwayModel.versionOnServer = data.versionOnServer
                // //console.log(self.pathwayModel.id)
                 //Add a default node
                 self.saveNode();
@@ -176,7 +189,7 @@
         self.loadNode = function(JSONNode) {
         	//create the node in the model
         	//create the node in the model
-        	
+        	//console.log(JSONNode.pathwaysModelVersion)
         	var node = new NodeModel();
             node.name = JSONNode.name;
             node.description = JSONNode.description;
@@ -186,9 +199,9 @@
             node.x = JSONNode.x ;
             node.y = JSONNode.y ;
             node.id = JSONNode.id
-	        node.version = JSONNode.nodeVersion
+	        node.versionOnServer = JSONNode.nodeVersion
             node.setCollections(JSONNode.optionalOutputs);
-	        self.pathwayModel.version = JSONNode.pathwaysModelVersion
+	        self.pathwayModel.versionOnServer = JSONNode.pathwaysModelVersion
 	        self.pathwayModel.nodes.push(node);
         };
 
@@ -221,8 +234,8 @@
             $.when(pathwayService.createNode(jsonNodeToServer)).done(function (data) {
             	if(data.success===true){
 	                node.id = data.nodeId
-	                node.version = data.nodeVersion
-	                self.pathwayModel.version = data.pathwaysModelVersion
+	                node.versionOnServer = data.nodeVersion
+	                self.pathwayModel.versionOnServer = data.pathwaysModelVersion
 	                self.pathwayModel.nodes.push(node);
 	                ////console.log(ko.toJSON(self.pathwayModel.nodes));
             	}else{
@@ -308,8 +321,8 @@
 	        	$.when(pathwayService.createLink(jsonLink)).done(function (data) {
 	        		////console.log(data);
 	        		link.id = data.linkId;
-	        		link.version = data.linkVersion;
-	        		self.pathwayModel.version = data.pathwaysModelVersion
+	        		link.versionOnServer = data.linkVersion;
+	        		self.pathwayModel.versionOnServer = data.pathwaysModelVersion
 	        		self.pathwayModel.links.push(link);
 	        	});
 	        		
@@ -366,7 +379,7 @@
 		                target.inputs.push(source);
 		            }
 		            
-		        	link.version = JSONLink.linkVersion;	
+		        	link.versionOnServer = JSONLink.linkVersion;	
 		        	self.pathwayModel.links.push(link);	 
 		        	
 		        	var sourceDiv = "node" + source.id
@@ -471,7 +484,7 @@
 		
 		self.goToParent = function(){
 			if(self.pathwayModel){
-				console.log(self.pathwayModel.parentPathwayId)
+				
 				$.when(pathwayService.loadPathway(self.pathwayModel.parentPathwayId)).done(function (pathwayJSON) {
 					//console.log('test')
 					//console.log(pathwayJSON.pathwaysModelInstance)

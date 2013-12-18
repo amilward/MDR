@@ -98,6 +98,7 @@
     	var jsonNodeToServer = {}
     	var nodeInstance = {}
     	nodeInstance.id = node.id
+    	nodeInstance.versionOnServer = node.version
     	nodeInstance.name = node.name
     	nodeInstance.description = node.description
     	nodeInstance.x = node.x
@@ -188,6 +189,7 @@
     	linkInstance.target = link.target.id
     	linkInstance.name = link.name
     	linkInstance.pathwaysModelId = pathwayId
+    	linkInstance.versionOnServer = link.version
     	
     	jsonLinkToServer.linkInstance = linkInstance;
     	return jsonLinkToServer

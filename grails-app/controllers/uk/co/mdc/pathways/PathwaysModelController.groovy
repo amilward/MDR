@@ -115,7 +115,7 @@ class PathwaysModelController {
 		render model as JSON
 	}
 	
-	def saveREST() {
+	/*def saveREST() {
 		def unvalidated = request.JSON
 		def pathway = [name: unvalidated.name, description: unvalidated.description, versionNo: unvalidated.versionNo, isDraft: unvalidated.isDraft]
 		
@@ -132,7 +132,7 @@ class PathwaysModelController {
 
 		render pathwaysModelInstance as JSON
 		
-	}
+	}*/
 
     def save() {
 
@@ -185,10 +185,10 @@ class PathwaysModelController {
 			def pathwayInstance = pathwaysService.create(data)
 			
 			if(pathwayInstance && !pathwayInstance.errors.hasErrors()){
-				model = [success: true, pathwayId: pathwayInstance.id, pathwayVersion: pathwayInstance.version, message: 'saved']
+				model = [success: true, pathwayId: pathwayInstance.id, versionOnServer: pathwayInstance.version, message: 'saved']
 			}else{
 			
-				model = [success: false, details: pathwayInstance.errors]
+				model = [errors: true, details: pathwayInstance.errors]
 			
 			}
 			render model  as JSON
@@ -210,7 +210,7 @@ class PathwaysModelController {
 				return
 			}
 				
-			def pathwayVersion = data?.version
+			def pathwayVersion = data?.versionOnServer
 
 			//check that we have the right version i.e. no one else has updated the form design whilst we have been
 			 //looking at it
@@ -220,23 +220,21 @@ class PathwaysModelController {
 					 pathwayInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
 							   [message(code: 'formDesign.label', default: 'DataElement')] as Object[],
 							   "Another user has updated this Node while you were editing")
-					 model = [success: true, pathwayId: pathwayInstance.id, message: 'version number conflict, please reload page and try again']
+					 model = [errors: true, pathwayId: pathwayInstance.id, details: 'Version number conflict. ' + pathwayInstance.auditLog + ' please reload page and try again']
 					 render model  as JSON
+				}else{
+				
+					pathwayInstance = pathwaysService.update(pathwayInstance, data)
+					 
+					if (pathwayInstance.errors.hasErrors()) {
+						model = [errors: true, pathwayId: pathwayInstance.id, details: pathwayInstance.errors]
+					}
+					 
+							
+					model = [success: true, pathwayId: pathwayInstance.id, versionOnServer: pathwayInstance.version, message: 'saved']
 				}
 			 }
-			 
-			 pathwayInstance = pathwaysService.update(pathwayInstance, data)
-			 
-						 if (pathwayInstance.errors.hasErrors()) {
-							 def responseMessage = [errors: true, details: pathwayInstance.errors]
-							 response.status = 400
-							 render responseMessage as JSON
-							 return
-						 }
-			 
-					
-			model = [success: true, pathwayId: pathwayInstance.id, pathwayVersion: pathwayInstance.version, message: 'saved']
-		
+
 		}else{
 			
 			 model = [errors: true, details: 'no id included']
@@ -269,17 +267,17 @@ class PathwaysModelController {
 		
         if (!pathwaysModelInstance) {
             msg = message(code: 'default.not.found.message', args: [message(code: 'pathwaysModel.label', default: 'PathwaysModel'), id])
-            model = [success: false, message: msg]
+            model = [errors: true, details: msg]
         }
 
         try {
             pathwaysService.delete(pathwaysModelInstance)
             msg = message(code: 'default.deleted.message', args: [message(code: 'pathwaysModel.label', default: 'PathwaysModel'), id])
-            model = [success: true, message: msg]
+            model = [success: true, details: msg]
         }
         catch (DataIntegrityViolationException e) {
             msg = message(code: 'default.not.deleted.message', args: [message(code: 'pathwaysModel.label', default: 'PathwaysModel'), id])
-            model = [success: false, message: msg]
+            model = [errors: true, details: msg]
         }
 		
 		render model as JSON
@@ -361,68 +359,6 @@ class PathwaysModelController {
 		return field
 		
 	}
-	
-	
-	/* def create() {
-	 
-	 
-	 if(params.isDraft==null){
-		 params.isDraft = false
-	 }
-	 
-	 def pathwaysModelInstance = pathwaysService.create(params)
-	 
-	 if(pathwaysModelInstance.save(failOnError:true, flush:true)){
-		 redirect(action: "show", id: pathwaysModelInstance.id)
-	 }else{
-		 redirect(action: "list")
-	 }
-	 
-	 
- }*/
-	
-	/*
-	 def edit(Long id) {
-		 def pathwaysModelInstance = PathwaysModel.get(id)
-		 if (!pathwaysModelInstance) {
-			 flash.message = message(code: 'default.not.found.message', args: [message(code: 'pathwaysModel.label', default: 'PathwaysModel'), id])
-			 redirect(action: "list")
-			 return
-		 }
- 
-		 [pathwaysModelInstance: pathwaysModelInstance]
-	 }
- 
-	 def update(Long id, Long version) {
-		 def pathwaysModelInstance = PathwaysModel.get(id)
-		 if (!pathwaysModelInstance) {
-			 flash.message = message(code: 'default.not.found.message', args: [message(code: 'pathwaysModel.label', default: 'PathwaysModel'), id])
-			 redirect(action: "list")
-			 return
-		 }
- 
-		 if (version != null) {
-			 if (pathwaysModelInstance.version > version) {
-				 pathwaysModelInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
-						   [message(code: 'pathwaysModel.label', default: 'PathwaysModel')] as Object[],
-						   "Another user has updated this PathwaysModel while you were editing")
-				 render(view: "edit", model: [pathwaysModelInstance: pathwaysModelInstance])
-				 return
-			 }
-		 }
- 
-		 pathwaysModelInstance.properties = params
- 
-		 if (!pathwaysModelInstance.save(flush: true)) {
-			 render(view: "edit", model: [pathwaysModelInstance: pathwaysModelInstance])
-			 return
-		 }
- 
-		 flash.message = message(code: 'default.updated.message', args: [message(code: 'pathwaysModel.label', default: 'PathwaysModel'), pathwaysModelInstance.id])
-		 redirect(action: "show", id: pathwaysModelInstance.id)
-	 }*/
- 
-	
 	
 	
 }

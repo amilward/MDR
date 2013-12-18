@@ -182,7 +182,9 @@ class PathwaysService {
 		}
 		
 	   pathwaysModelInstance.properties = parameters
-	   pathwaysModelInstance.save();
+	   //FIXME we need to create a custom audit log class that all the classes implement
+	   pathwaysModelInstance.auditLog =  springSecurityService.getCurrentUser().username + " edited this pathway on: " + new Date().toString()
+	   pathwaysModelInstance.save(flush:true);
 	   
 	   pathwaysModelInstance
 	   
