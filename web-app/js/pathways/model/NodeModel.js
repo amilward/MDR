@@ -219,22 +219,30 @@
         self.viewSubPathway = function(data, e) {
             var bindingContext = ko.contextFor(e.target);
             
-             $.when(pathwayService.loadPathway(self.subPathwayId)).done(function (pathwayJSON) {
-            		
-            		var containerPathway = bindingContext.$root.pathwayModel;
-                    //containerPathway.subPathwayId = self.subPathwayId;
-                    //self.subPathway.parentPathwayId = containerPathway.id;
-                    
-            		//console.log(pathwayJSON)
+            if (!self.subPathwayId) {
+                var subPathway = new PathwayModel();
+                subPathway.name = self.name;
+                subPathway.parentNodeId = self.id;
+                subPathway.isDraft = true;
+                $.when(pathwayService.savePathway(subPathway)).done(function (data) {
+                    if(data.success===true){
+                        self.subPathwayId = data.pathwayId;
+                        $.when(pathwayService.loadPathway(self.subPathwayId)).done(function (pathwayJSON) {
+                            var containerPathway = bindingContext.$root.pathwayModel;
+                            bindingContext.$root.containerPathway = containerPathway;
+                            bindingContext.$root.loadPathway(pathwayJSON.pathwaysModelInstance);
+                        });
+                    }
+            	});
+            } else {
+                $.when(pathwayService.loadPathway(self.subPathwayId)).done(function (pathwayJSON) {
+                    var containerPathway = bindingContext.$root.pathwayModel;
                     bindingContext.$root.containerPathway = containerPathway;
                     bindingContext.$root.loadPathway(pathwayJSON.pathwaysModelInstance);
-                    
             	});
+            }
             
-            
-            
-            
-        
+            bindingContext.$root.updatePathway();
         };
     };
   

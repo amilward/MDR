@@ -61,17 +61,18 @@ ko.bindingHandlers.makeNode = {
             }
         });
 
-        $(element).bind('dblclick', function(){
-        	$( "#dialog-confirm .modal-header h4" ).text('Delete node?');
-        	$( "#dialog-confirm" ).modal({ show: true, keyboard: false, backdrop: 'static' });
-        	$( "#deleteModalButton" ).bind('click', function(){
-        		nodeInfo = ko.dataFor(element)
-   	   			vm.deleteNode(nodeInfo.id)
-   	   			jsPlumb.detachAllConnections($(element))
-   	   			$( "#deleteModalButton" ).unbind();
-        		$('.modal').modal('hide');
-        	})
-        	
+        $(element).bind('dblclick', function(e){
+            if (!value.subPathwayId) {
+                $( "#dialog-confirm .modal-header h4" ).text('Create Sub-Pathway?');
+                $( "#dialog-confirm" ).modal({ show: true, keyboard: false, backdrop: 'static' });
+                $( "#deleteModalButton" ).on('click', function(){
+                        value.viewSubPathway(value, e);
+                        $( "#deleteModalButton" ).unbind();
+                        $('.modal').modal('hide');
+                });
+            } else {
+                value.viewSubPathway(value, e);
+            }
         });
         
     },

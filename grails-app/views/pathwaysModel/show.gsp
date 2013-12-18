@@ -139,16 +139,18 @@
                 <div class="panel panel-primary">
                     <div class="panel-heading">Pathways Model</div>
                     <div class="panel-body">
-                        <div data-bind="if: subPathwayId != undefined">
-	                        <button id="viewSubPathway" type="button" class="btn btn-link btn-xs pull-right" data-bind="click: viewSubPathway">
-			                    <i class="fa fa-plus"></i> View
-			                </button>
+                        <div>
+                            <button id="viewSubPathway" type="button" class="btn btn-link btn-xs pull-right" data-bind="click: viewSubPathway">
+                                <i class="fa fa-plus"></i> View
+                            </button>
                         </div>
+                        <!--
                         <div data-bind="if: subPathwayId === null || subPathwayId === undefined">
                         	<button id="addSubPathway" type="button" class="btn btn-link btn-xs pull-right" data-bind="click: createSubPathway">
 			                    <i class="fa fa-plus"></i> Add 
 			                </button>
                         </div>
+                        -->
                     </div>
                 </div>
                     
