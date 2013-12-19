@@ -4,6 +4,8 @@
 <meta name="layout" content="main_no-sidebar"/>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Model Catalogue - Home</title>
+
+
 <!-- FIXME Styles in HTML is bad, bad, bad! Extract to generic CSS file.... -->
 <style type="text/css">
 html, body{
@@ -110,47 +112,6 @@ td{
 </style>
 <link href="css/bootstrap.min.css" rel="stylesheet"/>
 
-<script type="text/javascript" src="js/vendor/jquery/jquery-2.0.3.js"></script>
-<script type="text/javascript" src="js/vendor/jquery/jquery-ui.1.10.2.js"></script>
-<script type="text/javascript" src="js/vendor/bootstrap/bootstrap.js"></script>
-
-<!-- FIXME Refactor this into an included JS file - JS in HTML is bad :) -->
-<script type="text/javascript">
-
-$(function() {
-	var currentDiv = '#dashboard-options';
-    $('div.dashboard_option').mouseenter(function() {
-		
-			$(this).addClass("dashboard_option_highlighted").removeClass("dashboard_option_not_highlighted");
-			$(this).find(".colour").fadeIn(200);
-		})
-		.mouseleave(function() {
-			$(this).addClass("dashboard_option_not_highlighted").removeClass("dashboard_option_highlighted");
-			$(this).find(".colour").fadeOut(200);
-		}).click(function(){
-			$(this).trigger('mouseleave');
-			currentDiv = '#dashboard-' + $(this).attr('id');
-			$('#dashboard-options').effect("slide", {direction: 'left', mode: 'hide'}, 500);
-			$(currentDiv).effect("slide", {direction: 'right', mode: 'show'}, 500);
-		});
-    
-    $('.dashboard-return').click(function(){
-		$(currentDiv).effect("slide", {direction: 'right', mode: 'hide'}, 500);
-		currentDiv = '#dashboard-options';
-		$('#dashboard-options').effect("slide", {direction: 'left', mode: 'show'}, 500);
-    });
-
-    $("#dashCreatePathway").click(function(){
-    	createPathway();
-        });
-
-    $("#dashCreateForm").click(function(){
-    	createForm();
-        });
-});
-
-</script>
-
 </head>
 <body>
   	<div id="dashboard">
@@ -159,46 +120,46 @@ $(function() {
 		    <h4>Where would you like to start?</h4>
 			<div class="options-box">
 				<div class="dashboard_option dashboard_option_not_highlighted" id="pathways">
-					<div class="imgbox"> 
+					<div class="imgbox">
 						<img src="images/dashboard/Pathways_gray.png" class="gray"/>
 						<img src="images/dashboard/Pathways_colour.png" class="colour" style="display: none;"/>
-					</div>	
+					</div>
 					<span>Pathway Models</span>
 				</div>
 			</div>
 			<div class="dashboard_option dashboard_option_not_highlighted" id="forms">
-				<div class="imgbox"> 
+				<div class="imgbox">
 					<img src="images/dashboard/Forms_gray.png" class="gray"/>
 					<img src="images/dashboard/Forms_colour.png" class="colour" style="display: none;"/>
-				</div>	
+				</div>
 				<span>Form Models</span>
 			</div>
 			<div class="dashboard_option dashboard_option_not_highlighted" id="deployments">
-				<div class="imgbox"> 
+				<div class="imgbox">
 					<img src="images/dashboard/Deployment_gray.png" class="gray"/>
 					<img src="images/dashboard/Deployment_colour.png" class="colour" style="display: none;"/>
-				</div>	
+				</div>
 				<span>Deployment Models</span>
 			</div>
 			<div class="dashboard_option dashboard_option_not_highlighted" id="projects">
-				<div class="imgbox"> 
+				<div class="imgbox">
 					<img src="images/dashboard/Projects_gray.png" class="gray"/>
 					<img src="images/dashboard/Projects_colour.png" class="colour" style="display: none;"/>
-				</div>	
+				</div>
 				<span>Projects</span>
 			</div>
 			<div class="dashboard_option dashboard_option_not_highlighted" id="metadata">
-				<div class="imgbox"> 
+				<div class="imgbox">
 					<img src="images/dashboard/Advanced_gray.png" class="gray"/>
 					<img src="images/dashboard/Advanced_colour.png" class="colour" style="display: none;"/>
-				</div>	
+				</div>
 				<span>Metadata Curation</span>
 			</div>
 			<div class="dashboard_option dashboard_option_not_highlighted" id="profile">
-				<div class="imgbox"> 
+				<div class="imgbox">
 					<img src="images/dashboard/Profile_gray.png" class="gray"/>
 					<img src="images/dashboard/Profile_colour.png" class="colour" style="display: none;"/>
-				</div>	
+				</div>
 				<span>My Profile</span>
 			</div>
 		</div>
@@ -209,7 +170,7 @@ $(function() {
 					previously finalised ${finalizedPathways.size()} pathway model(s). Click a model below to edit or
 					view, or start creating a new pathway model by clicking the button below...
 				</p>
-				
+
 				<table class="table table-bordered" style="width: 100%">
 					<thead>
 		  				<tr>
@@ -237,7 +198,7 @@ $(function() {
 		  			</tbody>
 		  		</table>
 	  			<button id="dashCreatePathway" class="btn btn-default"><i style="color: green;" class="icon-plus"></i>&nbsp;Create a new Pathway Model</button>
-		  		
+
 		  		<button class="dashboard-return btn btn-default"><i class="icon-arrow-left"></i>&nbsp;Return to the Dashboard</button>
 	  		</div>
 	  	</div>
@@ -248,7 +209,7 @@ $(function() {
 					previously finalised ${finalizedForms.size()} form model(s). Click a model below to edit or
 					view, or start creating a new form model by clicking the button below...
 				</p>
-				
+
 				<table class="table table-bordered" style="width: 100%">
 					<thead>
 		  				<tr>
@@ -287,7 +248,7 @@ $(function() {
 		  		<p>This feature is not yet finished! In time, users will be able
 					to model databases, schemas and tables, services and data-feeds,
 					and physical locations. Please try again soon!</p>
-		  		  
+
 		  		<button class="dashboard-return btn btn-default"><i class="icon-arrow-left"></i>&nbsp;Return to the Dashboard</button>
 	  		</div>
 	  	</div>
@@ -320,6 +281,7 @@ $(function() {
 	  		</div>
 	  	</div>
 	</div><!-- End div dashboard -->
+    <g:javascript disposition="defer" library="dashboard" />
 </body>
 
 </html>
