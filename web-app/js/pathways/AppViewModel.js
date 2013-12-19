@@ -45,24 +45,30 @@
 			});
 			
         };
-        
+
         //delete the current pathway
-        
         self.deletePathway = function(){
-        	$( "#dialog-confirm .modal-header h4" ).text('Delete PathwaysModel?');
-        	$( "#dialog-confirm" ).modal({ show: true, keyboard: false, backdrop: 'static' });
-        	$( "#deleteModalButton" ).bind('click', function(){
-    	   			
-	        		$.when(pathwayService.deletePathway(self.pathwayModel.id)).done(function (data) {
-		        		$( "#deleteModalButton" ).unbind();
-	    	   			$('.modal').modal('hide');
-	    	   			if(data.success){
-		        			window.location = '../list';
-		        		}
-		        	});
-        		
-    	   			
-        	})
+            // Reset the confirmation divs on modal close
+            $('#updatePathwayModal').on('hidden.bs.modal', function (e) {
+                $( "#deletePathway-confirmation" ).hide();
+                $( "#deletePathway-initial" ).show();
+            })
+
+        	$( "#deletePathway-confirmation" ).show();
+            $( "#deletePathway-initial").hide();
+
+        	$( "#confirmDeletePathway" ).bind('click', function(){
+	        	$.when(pathwayService.deletePathway(self.pathwayModel.id)).done(function (data) {
+	    	   		// FIXME What about failure?
+                    if(data.success){
+		        		window.location = '../list';
+		        	}
+		        });
+        	});
+            $( "#cancelDeletePathway" ).bind('click', function(){
+                $( "#deletePathway-confirmation" ).hide();
+                $( "#deletePathway-initial" ).show();
+            });
         	
         }
       

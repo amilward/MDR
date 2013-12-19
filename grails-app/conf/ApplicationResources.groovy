@@ -185,5 +185,9 @@ modules = {
 		resource url: "js/forms/formDesign.js"
 		}
 
+    dashboard{
+        dependsOn "application"
+        resource url: "js/dashboard.js"
+    }
 }
 

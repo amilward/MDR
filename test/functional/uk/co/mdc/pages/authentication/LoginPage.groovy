@@ -1,8 +1,7 @@
 package uk.co.mdc.pages.authentication;
 
-import geb.Browser
 import geb.Page
-import geb.Module
+import uk.co.mdc.pages.DashboardPage
 
 class LoginPage extends Page{
 	
@@ -32,4 +31,25 @@ class LoginPage extends Page{
 			errors.filter(text:contains("Sorry, we were not able to find a user with that username and password."))
 		}
 	}
+
+    def loginAdminUser(){
+        loginUser("admin","admin123")
+    }
+
+    def loginRegularUser(){
+        loginUser("user1", "password1")
+    }
+
+    /**
+     * Logs a user into the system with the given password.
+     * Note that this is pretty poor practice (Passwords should be chararrays), but it's a test harness so it's okay :)
+     * @param user The username to log in
+     * @param pass The password for the user
+     */
+    def loginUser(String user, String pass){
+        username = user
+        password = pass
+        submitButton.click()
+
+    }
 }

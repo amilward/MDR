@@ -27,7 +27,7 @@ class PathwayShowPage extends BasePageWithNav{
 		formDesignTableRows { $("#formDesignTable tbody tr") }
 		formDesignTableFRLink { formDesignTableFirstRow.find("a") }
 		formDesignCartListFirstItem { $("#formCartList li") }
-		editInfoButton { $("#editPathwayInfo") }
+        editInfoButton { $("#editPathwayInfo") }
 		viewSubPathwayButton { $("#viewSubPathway") }
 		addSubPathwayButton { $("#addSubPathway") }
 		updatePathwayModal { $("#updatePathwayModal") }
@@ -37,6 +37,8 @@ class PathwayShowPage extends BasePageWithNav{
 		pathwayInfoVersionNo { js.exec("return document.getElementById('txt-versionNoUpdate').value")}
 		pathwayInfoIsDraft  { js.exec("return document.getElementById('select-isDraftUpdate').value")}
 		pathwayCanvas { $(".jsplumb-container") }
+
+        editModal { module PathwayEditModal }
 	}
 	
 }

@@ -13,7 +13,7 @@ class TopNavElements extends Module{
 		
 		// Pathways menu
 		expandPathwayMenuLink { $("a#nav-pathway-expand") }
-		listPathwaysLink { $("a#listPathwaysLink") }
+		listPathwaysLink(wait: true) { $("a#listPathwaysLink") }
 		createPathwayLink { $("a#createPathwayLink") }
 		
 		formLink  { 	$("li#nav-form-link a:first", text: "Form design") }
@@ -31,4 +31,14 @@ class TopNavElements extends Module{
 			$("div", class: "navbar") 
 		}
 	}
+
+    /**
+     * Go to the list page for pathways
+     */
+    void goToPathwayListPage(){
+        println "going to pathways"
+
+        expandPathwayMenuLink.click()
+        listPathwaysLink.click()
+    }
 }

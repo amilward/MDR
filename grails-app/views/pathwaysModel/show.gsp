@@ -31,9 +31,6 @@
            	 	<button type="button" class="btn btn-link btn-xs pull-right" id="addNode" data-bind="click: createNode">
                     <i class="fa fa-plus"></i> Add Node
                 </button>
-                 <button type="button" class="btn btn-link btn-xs pull-right" id="deletePathway" data-bind="click: deletePathway">
-                    <i class="fa fa-edit"></i> Delete
-                </button>
                 <button type="button" class="btn btn-link btn-xs pull-right" id="updatePathway" data-bind="click: updatePathway">
                     <i class="fa fa-save"></i> Save
                 </button>
@@ -347,9 +344,19 @@
 				</form>
 			</div>
 			<div class="modal-footer">
-        <button class="closeModalLink" type="button" class="btn"
-          >Close</button>
-      </div>
+                <button class="closeModalLink" type="button" class="btn">Close</button>
+                <div class="pull-left">
+                    <div id="deletePathway-initial">
+                        <button type="button" class="btn btn-danger btn-xs pull-right" id="deletePathway" data-bind="click: deletePathway">
+                            <span class="glyphicon glyphicon-remove"></span> Delete Pathway
+                        </button>
+                    </div>
+                    <div id="deletePathway-confirmation" class="pull-right" aria-hidden="true" style="display: none;">
+                        <button type="button" id="cancelDeletePathway" class="btn">Abort deletion</button>
+                        <button type="button" id="confirmDeletePathway" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span>Confirm (WARNING: this cannot be undone)</button>
+                    </div>
+                </div>
+            </div>
       
 		</div>
 		<!-- /.modal-content -->
