@@ -79,10 +79,7 @@
 								</a>
 							</div>
 							<div class="btn-group">
-								<a class="btn btn-inverse" rel="tooltip" href="#"
-									data-original-title="Document" data-placement="bottom"> <i
-									class="icon-file"></i>
-								</a> <a href="#helpModal" class="btn btn-inverse" rel="tooltip"
+								<a href="#helpModal" class="btn btn-inverse" rel="tooltip"
 									data-placement="bottom" data-original-title="Help"
 									data-toggle="modal"> <i class="icon-question-sign"></i>
 								</a>
@@ -107,15 +104,6 @@
 											data-original-title="Show/Hide Menu"> <i
 											class="icon-sort"></i>
 										</a>
-										<g:form url='[controller: "searchable", action: "index"]'
-											class="main-search" id="searchableForm" name="searchableForm"
-											method="get">
-											<g:textField name="q" class="input-block-level"
-												placeholder="Search Registry..." value="${params.q}" />
-											<button id="searchBtn" type="submit" class="btn btn-inverse">
-												<i class="icon-search"></i>
-											</button>
-										</g:form>
 									</div>
 								</div>
 							</div>
