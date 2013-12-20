@@ -30,9 +30,9 @@ class PathwaysService {
 	 * permission input
 	 ********************************************************************************* */
 		
-	void addPermission(PathwaysModel pathwaysModel, String username, int permission){
+	void addPermission(PathwaysModel pathwaysModel, String roleOrUsername, int permission){
 		
-		addPermission pathwaysModel, username,
+		addPermission pathwaysModel, roleOrUsername,
 			aclPermissionFactory.buildFromMask(permission)
 			
 	}
@@ -44,8 +44,8 @@ class PathwaysService {
 	
 	@PreAuthorize("hasPermission(#pathwaysModel, admin)")
 	@Transactional
-	void addPermission(PathwaysModel pathwaysModel, String username, Permission permission) {
-	   aclUtilService.addPermission pathwaysModel, username, permission
+	void addPermission(PathwaysModel pathwaysModel, String roleOrUsername, Permission permission) {
+	   aclUtilService.addPermission pathwaysModel, roleOrUsername, permission
 	}
 	
 	
@@ -79,8 +79,11 @@ class PathwaysService {
 		// Grant the current user principal administrative permission
 		addPermission pathwaysModelInstance, springSecurityService.authentication.name, BasePermission.ADMINISTRATION
 		
-		//Grant admin user administrative permissions
-		addPermission pathwaysModelInstance, 'admin', BasePermission.ADMINISTRATION
+		// Grant all users in the same group the current user principal administrative permission
+		addPermission pathwaysModelInstance, springSecurityService.authentication.name, BasePermission.ADMINISTRATION
+		
+		//Grant admin users administrative permissions
+		addPermission pathwaysModelInstance, 'ROLE_ADMIN', BasePermission.ADMINISTRATION
 		
 		//return the data element to the consumer (the controller)
 		pathwaysModelInstance
@@ -138,13 +141,13 @@ class PathwaysService {
 				
 		//update nodes
 		
-		//println(parameters)
+
 		
 		def updatedNodes = parameters.nodes
 
 		
 		
-		//println(pathwaysModelInstance?.parentNode)
+
 		
 		updatedNodes.each { updatedNode ->
 
@@ -157,11 +160,11 @@ class PathwaysService {
 				def node = nodeService.update(nodeInstance, updatedNode, subPathway)
 				
 			}else{
-				//println('before?')
-				//println(pathwaysModelInstance?.parentNode)
+				
+			
 				def node = nodeService.update(nodeInstance, updatedNode)
-				//println('after?')
-				//println(pathwaysModelInstance?.parentNode)
+				
+
 			}
 
 		}
@@ -183,7 +186,7 @@ class PathwaysService {
 		
 	   pathwaysModelInstance.properties = parameters
 	   //FIXME we need to create a custom audit log class that all the classes implement
-	   pathwaysModelInstance.auditLog =  springSecurityService.getCurrentUser().username + " edited this pathway on: " + new Date().toString()
+	   pathwaysModelInstance.auditLog =  springSecurityService.getCurrentUser().roleOrUsername + " edited this pathway on: " + new Date().toString()
 	   pathwaysModelInstance.save(flush:true);
 	   
 	   pathwaysModelInstance
@@ -213,7 +216,7 @@ class PathwaysService {
 	 ******************************************************************************************** */
 	
 	@Transactional @PreAuthorize("hasPermission(#pathwaysModelInstance, admin)")
-	void deletePermission(PathwaysModel pathwaysModelInstance, String username, Permission permission) {
+	void deletePermission(PathwaysModel pathwaysModelInstance, String roleOrUsername, Permission permission) {
 		def acl = aclUtilService.readAcl(pathwaysModelInstance)
 		
 		// Remove all permissions associated with this particular
