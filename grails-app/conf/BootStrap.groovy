@@ -12,8 +12,7 @@ import uk.co.mdc.pathways.Node
 import uk.co.mdc.pathways.PathwaysModel
 import org.codehaus.groovy.grails.plugins.springsecurity.SecurityFilterPosition
 import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils
-
-import static org.springframework.security.acls.domain.BasePermission.ADMINISTRATION
+import org.springframework.security.acls.domain.BasePermission
 
 
 class BootStrap {
@@ -101,7 +100,6 @@ class BootStrap {
 	private void createUsers() {
 		
 		def rolePending = SecAuth.findByAuthority('ROLE_PENDING') ?: new SecAuth(authority: 'ROLE_PENDING').save(failOnError: true)
-		//FIXME (standard user role is probably redundant)
 		def roleUser = SecAuth.findByAuthority('ROLE_USER') ?: new SecAuth(authority: 'ROLE_USER').save(failOnError: true)
 		def roleUCL = SecAuth.findByAuthority('ROLE_UCL') ?: new SecAuth(authority: 'ROLE_UCL').save(failOnError: true)
 		def roleOxford = SecAuth.findByAuthority('ROLE_OXFORD') ?: new SecAuth(authority: 'ROLE_OXFORD').save(failOnError: true)
@@ -113,47 +111,51 @@ class BootStrap {
 
 		if(!SecUser.findByUsername('uclUser1') ){	
 			def user = new SecUser(username: "uclUser1", enabled: true, emailAddress: "uclUser1@example.org", password: "password1").save(failOnError: true)
-
+			SecUserSecAuth.create user, roleUser
 			SecUserSecAuth.create user, roleUCL
 			
 		}
 		
 		if(!SecUser.findByUsername('oxfordUser1') ){
 			def user = new SecUser(username: "oxfordUser1", enabled: true, emailAddress: "oxfordUser1@example.org", password: "password1").save(failOnError: true)
-
+			SecUserSecAuth.create user, roleUser
 			SecUserSecAuth.create user, roleOxford
 		}
 		
 		if(!SecUser.findByUsername('oxfordUser2') ){
 			def user = new SecUser(username: "oxfordUser2", enabled: true, emailAddress: "oxfordUser2@example.org", password: "password2").save(failOnError: true)
-
+			SecUserSecAuth.create user, roleUser
 			SecUserSecAuth.create user, roleOxford
 		}
 		
 		if(!SecUser.findByUsername('cambridgeUser1') ){
 			def user = new SecUser(username: "cambridgeUser1", enabled: true, emailAddress: "cambridgeUser1@example.org", password: "password1").save(failOnError: true)
-
+			SecUserSecAuth.create user, roleUser
 			SecUserSecAuth.create user, roleCambridge
 		}
 		
 		if(!SecUser.findByUsername('cambridgeUser2') ){
 			def user = new SecUser(username: "cambridgeUser2", enabled: true, emailAddress: "cambridgeUser2@example.org", password: "password2").save(failOnError: true)
+			SecUserSecAuth.create user, roleUser
 			SecUserSecAuth.create user, roleCambridge
 		}
 		
 		if(!SecUser.findByUsername('imperialUser1') ){
 			def user = new SecUser(username: "imperialUser1", enabled: true, emailAddress: "imperialUser1@example.org", password: "password1").save(failOnError: true)
+			SecUserSecAuth.create user, roleUser
 			SecUserSecAuth.create user, roleImperial
 		}
 		
 		if(!SecUser.findByUsername('gstUser1') ){
 			def user = new SecUser(username: "gstUser1", enabled: true, emailAddress: "gstUser1@example.org", password: "password1").save(failOnError: true)
+			SecUserSecAuth.create user, roleUser
 			SecUserSecAuth.create user, roleGST
 		}
 
 		def admin = SecUser.findByUsername('admin') ?: new SecUser(username: 'admin', emailAddress: "testadmin1@example.org", enabled: true, password: 'admin123').save(failOnError: true)
 
 		if (!admin.authorities.contains(roleAdmin)) {
+			SecUserSecAuth.create admin, roleUser
 			SecUserSecAuth.create admin, roleAdmin, true
 		}
 
@@ -186,7 +188,7 @@ class BootStrap {
 		grantAdminPermissions(Link.list())
 		grantAdminPermissions(PathwaysModel.list())
 		
-		/* Grant ROLE_USER on everything
+		// Grant ROLE_USER on everything
 		grantUserPermissions(DataElement.list())
 		grantUserPermissions(ValueDomain.list())
 		grantUserPermissions(ConceptualDomain.list())
@@ -198,25 +200,24 @@ class BootStrap {
 		grantUserPermissions(FormDesign.list())
 		grantUserPermissions(QuestionElement.list())
 		grantUserPermissions(InputField.list())
-		grantUserPermissions(PathwaysModel.list())*/
+		grantUserPermissions(PathwaysModel.list())
 
 	}
 
 
 	def grantAdminPermissions(objectList){
 		for (object in objectList) {
-			aclUtilService.addPermission object, 'ROLE_ADMIN', ADMINISTRATION
+			aclUtilService.addPermission object, 'ROLE_ADMIN', BasePermission.ADMINISTRATION
 			
 		}
 	}
+	
+	
 	def grantUserPermissions(objectList){
 		for (object in objectList) {
 			//FIX me - by default user will have the 
-			aclUtilService.addPermission object, 'ROLE_UCL', READ
-			aclUtilService.addPermission object, 'ROLE_OXFORD', READ
-			aclUtilService.addPermission object, 'ROLE_CAMBRIDGE', READ
-			aclUtilService.addPermission object, 'ROLE_IMPERIAL', READ
-			aclUtilService.addPermission object, 'ROLE_GST', READ
+			aclUtilService.addPermission object, 'ROLE_USER', BasePermission.READ
+
 		}
 	}
 	
