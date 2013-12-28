@@ -1,8 +1,8 @@
 package uk.co.mdc.forms
 
-import uk.co.mdc.model.ExtensibleObject;
+import uk.co.mdc.model.ModelElement;
 
-class FormDesignElement extends ExtensibleObject  {
+class FormDesignElement extends ModelElement  {
 	
 	String label
 	String style

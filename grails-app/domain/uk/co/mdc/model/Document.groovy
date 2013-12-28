@@ -1,6 +1,6 @@
 package uk.co.mdc.model
 
-class Document extends ExtensibleObject  {
+class Document extends ModelElement  {
 
 	String name
 	String description

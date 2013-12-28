@@ -1,6 +1,6 @@
 package uk.co.mdc.model
 
-class DataElementConcept extends ExtensibleObject  {
+class DataElementConcept extends ModelElement  {
 	
 	String name
 	String description
@@ -20,10 +20,12 @@ class DataElementConcept extends ExtensibleObject  {
 		name blank: false
 		parent nullable: true
 		description nullable: true
-		
+		extension nullable: true
+		relations nullable: true
 		}
 	
 	static mapping = {
+		name type: 'text'
 		description type: 'text'
 		dataElements cascade: 'save-update'
 		subConcepts cascade: 'save-update'

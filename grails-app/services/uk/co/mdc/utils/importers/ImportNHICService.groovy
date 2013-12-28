@@ -2,7 +2,6 @@ package uk.co.mdc.utils.importers
 import org.json.simple.JSONObject
 import uk.co.mdc.model.SchemaSpecification;
 import uk.co.mdc.model.Collection;
-import uk.co.mdc.model.ExternalReference
 import uk.co.mdc.model.ValueDomain
 import uk.co.mdc.model.DataElement
 import uk.co.mdc.model.DataType

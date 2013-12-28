@@ -1,9 +1,8 @@
 package uk.co.mdc.model
 
-class DataElementValueDomain extends ExtensibleObject  {
+class DataElementValueDomain  {
 	
 	DataElement dataElement
-	
 	ValueDomain valueDomain
 
     static constraints = {

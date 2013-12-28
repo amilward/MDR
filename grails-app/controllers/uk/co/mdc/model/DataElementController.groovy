@@ -5,10 +5,16 @@ import org.springframework.dao.DataIntegrityViolationException
 import org.codehaus.groovy.grails.plugins.searchable.*
 import org.springframework.security.acls.model.Permission
 import grails.plugins.springsecurity.Secured
+import grails.rest.RestfulController
+import grails.transaction.*
+import static org.springframework.http.HttpStatus.*
+import static org.springframework.http.HttpMethod.*
+
+@Transactional(readOnly = true)
 
 @Secured(['ROLE_USER']) 
 
-class DataElementController {
+class DataElementController extends RestfulController{
 
     static allowedMethods = [listJSON: "GET",save: "POST", update: "POST", delete: "POST"]
 	
@@ -74,7 +80,6 @@ class DataElementController {
 				data=[]
 			}
 			
-			println(data as JSON)
 			//otherwise list the data elements using the data elements service and pass the relevant data
 			//back to the data tables plugin request as json
 			
@@ -191,7 +196,7 @@ class DataElementController {
 			return
 		}
 
-		[valueDomains: ValueDomain.list(), selectedValueDomains: dataElementInstance.dataElementValueDomains() , dataElements: dataElementService.list(), externalReferences: ExternalReference.list(), dataElementInstance: dataElementInstance]
+		[valueDomains: ValueDomain.list(), selectedValueDomains: dataElementInstance.dataElementValueDomains() , dataElements: dataElementService.list(), dataElementInstance: dataElementInstance]
 	}
 	
 	/* **************************************************************************************

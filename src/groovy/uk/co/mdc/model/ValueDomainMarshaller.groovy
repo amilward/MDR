@@ -17,8 +17,7 @@ class ValueDomainMarshaller extends CustomMarshaller{
 			'dataType_name' : valueDomain?.dataType?.name,
 			'unitOfMeasure': valueDomain?.unitOfMeasure,
 			'dataElements': limitRender(valueDomain.dataElementValueDomains()),
-			'regexDef': valueDomain.regexDef,
-			'externalReferences': valueDomain?.externalReferences?.name,
+			'regexDef': valueDomain.regexDef
 			]
 		}
 	}

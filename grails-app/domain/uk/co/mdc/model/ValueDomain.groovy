@@ -2,7 +2,7 @@ package uk.co.mdc.model
 
 import java.util.List;
 
-class ValueDomain extends ExtensibleObject  {
+class ValueDomain extends ModelElement  {
 
 	String name
 	String unitOfMeasure
@@ -19,7 +19,7 @@ class ValueDomain extends ExtensibleObject  {
         content: spellCheck 'include'
     } 
 	
-	static hasMany = [dataElementValueDomains: DataElementValueDomain, externalReferences: ExternalReference]
+	static hasMany = [dataElementValueDomains: DataElementValueDomain]
 	
 	static belongsTo = [conceptualDomain: ConceptualDomain]
 	

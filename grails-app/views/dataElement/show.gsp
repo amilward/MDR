@@ -89,9 +89,9 @@
 						</td>
 					</tr>
 				</g:if>
-				<g:if test="${dataElementInstance.synonyms()}">
+				<g:if test="${dataElementInstance.relations()}">
 					<tr>
-						<td colspan="2"><span id="name-label" class="label">Synonyms</span></td>
+						<td colspan="2"><span id="name-label" class="label">relations</span></td>
 					</tr>
 					<tr>
 						<td colspan="2">
@@ -103,7 +103,7 @@
 									<th>Definition</th>
 								</tr>
 							</thead>
-							<g:each var="dataElement" in="${dataElementInstance.synonyms()}">
+							<g:each var="dataElement" in="${dataElementInstance.relations()}">
 								<tr>
 									<td><g:link action="show" controller="DataElement" id="${dataElement?.id}">${dataElement?.name} </g:link></td>
 									<td>${dataElement?.description}</td>
@@ -138,30 +138,7 @@
 						</table>
 						</td>
 					</tr>
-				</g:if>
-				<g:if test="${dataElementInstance?.externalReferences}">
-					<tr>
-						<td class="left_col_show"><span id="name-label" class="label">External Synonyms</span></td>
-						<td class="right_col_show">
-							<table>
-							<thead>
-								<tr>
-									<th>Name</th>
-									<th>URL</th>
-									<th>Attributes</th>
-								</tr>
-							</thead>
-							<g:each var="externalReference" in="${dataElementInstance.externalReferences}">
-								<tr>
-									<td><g:link action="show" controller="ExternalReference" id="${externalReference?.id}">${externalReference?.name} </g:link></td>
-									<td>${externalReference?.url}</td>
-									<td>${externalReference?.attributes} </td>
-								</tr>
-							</g:each>
-						</table>
-						</td>
-					</tr>
-				</g:if>				
+				</g:if>	
 				<g:if test="\$ {dataElementInstance?.extension}">
 					<tr>
 						<td><h5>Additional Information</h5></td>

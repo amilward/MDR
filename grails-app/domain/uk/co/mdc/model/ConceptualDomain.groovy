@@ -1,6 +1,6 @@
 package uk.co.mdc.model
 
-class ConceptualDomain extends ExtensibleObject  {
+class ConceptualDomain extends ModelElement  {
 
 	String name
 	String description
@@ -14,6 +14,8 @@ class ConceptualDomain extends ExtensibleObject  {
 	static constraints = {
 		valueDomains nullable:true
 		name blank: false
+		extension nullable: true
+		relations nullable: true
 	}
 
 	def prepareForDelete(){

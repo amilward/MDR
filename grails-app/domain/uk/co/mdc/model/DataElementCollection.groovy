@@ -1,6 +1,6 @@
 package uk.co.mdc.model
 
-class DataElementCollection extends ExtensibleObject  {
+class DataElementCollection  {
 	
 	SchemaSpecification schemaSpecification	
 	DataElement dataElement	
@@ -14,10 +14,8 @@ class DataElementCollection extends ExtensibleObject  {
 	}
 
     static constraints = {
-		
 		schemaSpecification nullable: true
-		
-		}
+	}
 	
 	
 	

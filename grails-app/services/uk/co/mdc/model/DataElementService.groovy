@@ -69,9 +69,9 @@ class DataElementService {
 		
 		linkValueDomains(dataElementInstance, parameters?.valueDomains)
 		
-		//link any synonyms that were selected with data element
+		//link any relations that were selected with data element
 		
-		linkSynonyms(dataElementInstance, parameters?.synonyms)
+		linkRelations(dataElementInstance, parameters?.relations)
 		
 		// Grant the current user principal administrative permission 
 		
@@ -148,14 +148,11 @@ class DataElementService {
 	   // remove any subelements that have specified for removal
 	   unLinkSubElements(dataElementInstance, parameters?.subElements)
 	   
-	   //remove any external references that have specified for removal
-	   unLinkExternalReferences(dataElementInstance, parameters?.externalReferences)
-	   
 	   dataElementInstance.properties = parameters
 	   
 	   if(dataElementInstance.save(flush: true)){
-		   //add/remove synonyms that have specified for addition or removal
-		   linkSynonyms(dataElementInstance, parameters?.synonyms)
+		   //add/remove relations that have specified for addition or removal
+		   linkRelations(dataElementInstance, parameters?.relations)
 	   }
 	   
 	   if(dataElementInstance.save(flush: true)){
@@ -207,57 +204,57 @@ class DataElementService {
 	
 	
 	/* ************************* DATA ELEMENT LINKAGE FUNCTIONS************************
-	 * links the data element with the synonyms specified via a link table
+	 * links the data element with the relations specified via a link table
 	 ********************************************************************************* */
 	
-	def linkSynonyms(dataElementInstance, synonyms){
+	def linkRelations(dataElementInstance, relations){
 		
-		//get the synonyms already associated with the data element before the update
-		def associatedSynonyms = dataElementInstance.synonyms()
+		//get the relations already associated with the data element before the update
+		def associatedRelations = dataElementInstance.relations()
 		
-		//if there are no new synonyms i.e. all have been removed in the edit data element form, then 
-		//remove all synonyms from the data element
+		//if there are no new relations i.e. all have been removed in the edit data element form, then 
+		//remove all relations from the data element
 		
-		if(synonyms!=null){
+		if(relations!=null){
 			
-			//if there is only one synonym (rather than a list of them)
+			//if there is only one relations (rather than a list of them)
 			
-			if (synonyms instanceof String) {
+			if (relations instanceof String) {
 				
-				DataElement synonym =  DataElement.get(synonyms)
+				DataElement relationA =  DataElement.get(relations)
 				
-				//remove any synonyms that aren't this one
-				associatedSynonyms.each{ vd ->
-					if(synonyms!=vd.id.toString()){
-							Synonym.unlink(dataElementInstance, vd)
+				//remove any relations that aren't this one
+				associatedRelations.each{ relation ->
+					if(relationA!=relation.id.toString()){
+							Relationship.unlink(dataElementInstance, relation)
 					}
 				}
 				
 				//add this one to the data element
 				
-				if(synonym){					
-					Synonym.link(dataElementInstance, synonym)
+				if(relationA){					
+					Relationship.link(dataElementInstance, relationA)
 				}
 				
 			}
 			
-			//if there is a list of synonyms
+			//if there is a list of relations
 			
-			if (synonyms instanceof String[]) {
+			if (relations instanceof String[]) {
 				
-				//remove all the synonyms that aren't in the list
-				associatedSynonyms.each{ vd ->
-					if(!synonyms.contains(vd.id.toString())){
-							Synonym.unlink(dataElementInstance, vd)
+				//remove all the relations that aren't in the list
+				associatedRelations.each{ relation ->
+					if(!relations.contains(relation.id.toString())){
+							Relationship.unlink(dataElementInstance, relation)
 					}
 				}
 				
-				//add all the synonyms in the list
+				//add all the relations in the list
 				
-				  for (synonymID in synonyms){
-					  DataElement synonym =  DataElement.get(synonymID)
-					  if(synonym){
-						  	Synonym.link(dataElementInstance, synonym)
+				  for (relationsID in relations){
+					  DataElement relation =  DataElement.get(relationsID)
+					  if(relation){
+						  	Relationship.link(dataElementInstance, relation)
 						}
 				  }
   
@@ -266,10 +263,10 @@ class DataElementService {
 
 		}else{
 		
-		//remove all the synonyms that aren't this one
-		associatedSynonyms.each{ vd ->
+		//remove all the relations that aren't this one
+		associatedRelations.each{ relation ->
 			
-				Synonym.unlink(dataElementInstance, vd)
+				Relationship.unlink(dataElementInstance, relation)
 
 		}
 		
@@ -283,7 +280,7 @@ class DataElementService {
 	
 	def linkValueDomains(dataElementInstance, valueDomains){
 		
-		//get the synonyms value domains already associated with the data element before the update
+		//get the relations value domains already associated with the data element before the update
 		
 		def associatedValueDomains = dataElementInstance.dataElementValueDomains()
 		
@@ -314,7 +311,7 @@ class DataElementService {
 				
 			}
 			
-			//if there is a list of synonyms
+			//if there is a list of relations
 			
 			if (valueDomains instanceof String[]) {
 				
@@ -402,56 +399,6 @@ class DataElementService {
 		}
 	}
 	
-	
-	/* ************************* DATA ELEMENT LINKAGE FUNCTIONS************************
-	 * unlinks the external references that have been removed from the data element during an update
-	 ********************************************************************************* */
-	
-	def unLinkExternalReferences(dataElementInstance, extReferences){
-		
-		//if there are no external references i.e. ALL external references need to be removed 
-		//from the data element after the edit (presuming there were external references in the data element before the edit)
-		
-			if(extReferences==null && dataElementInstance?.externalReferences.size()>0){
-				
-				//pass all the objects external synonyms into a new array (otherwise we get all sorts or problems)
-				def externalReferences = []
-				externalReferences += dataElementInstance?.externalReferences
-				
-				//remove ALL the external references
-				externalReferences.each{ externalReference->
-					dataElementInstance.removeFromExternalReferences(externalReference)
-				}
-				
-	
-			//if there are some external references
-			}else if(extReferences){
-			
-				//but there are also sub elements to remove
-				//if(extReferences.size() < dataElementInstance?.externalReferences.size()){
-			
-					//pass all the objects external references into a new array (otherwise we get all sorts or problems)	
-					def externalReferences = []
-					externalReferences += dataElementInstance?.externalReferences
-				
-					
-					//remove the external references that need removing
-					
-					externalReferences.each{ externalReference->
-					
-					if(extReferences instanceof String){						
-							if(extReferences!=externalReference){						
-								dataElementInstance.removeFromExternalReferences(externalReference)							
-							}						
-						}else{							
-							if(!extReferences.contains(externalReference)){								
-								dataElementInstance.removeFromExternalReferences(externalReference)								
-							}						
-						}
-					}
-				//}
-			}
-	}
 	
 	
 }

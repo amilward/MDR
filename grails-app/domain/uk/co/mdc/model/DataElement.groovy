@@ -2,10 +2,7 @@ package uk.co.mdc.model
 
 import org.codehaus.groovy.grails.web.servlet.mvc.GrailsParameterMap
 
-class DataElement extends ExtensibleObject {
-
-	
-	String externalIdentifier
+class DataElement extends ModelElement {
 	
 	String name
 	
@@ -17,7 +14,7 @@ class DataElement extends ExtensibleObject {
 	
 	DataElementConcept dataElementConcept
 	
-	Set synonyms
+	Set relations
 	
 	static auditable = true
 	
@@ -26,26 +23,24 @@ class DataElement extends ExtensibleObject {
 		except = ["extension"]
     } 
 	
-	static hasMany = [synonyms: Synonym, subElements: DataElement, dataElementValueDomains: DataElementValueDomain, dataElementCollections: DataElementCollection, externalReferences: ExternalReference]
-	
-	
+	static hasMany = [subElements: DataElement, dataElementValueDomains: DataElementValueDomain, dataElementCollections: DataElementCollection]
+
 	static belongsTo = [parent: DataElement, dataElementConcept: DataElementConcept]
 	
     static constraints = {
+		description nullable:true
 		parent nullable: true
 		dataElementConcept nullable: true
 		definition nullable: true
-		description nullable:true
-		externalIdentifier nullable:true
 		name blank: false
 		extension nullable: true
+		relations nullable: true
     }
 	
 	static mapping = {
-		description type: 'text'
-		definition type: 'text'
-		extension sqlType: 'blob'
-		subElements cascade: 'save-update'
+		description type: "text"
+		definition type: "text"
+		subElements cascade: "save-update"
 	}
 	
 	/******************************************************************************************************************/
@@ -73,32 +68,32 @@ class DataElement extends ExtensibleObject {
 	
 	
 	/******************************************************************************************************************/
-	/****functions for linking data elements to other data elements (synonyms) using DataElementDataElement class************/
+	/****functions for linking data elements to other data elements (relations) using DataElementDataElement class************/
 	/******************************************************************************************************************/
 	
-	List synonyms() {
+	List relations() {
 		
-		def synonymsR = []
+		def relationsR = []
 		
-		if(synonyms.collect{it.dataElement1Id}[0] == this.id){
+		if(relations.collect{it.dataElement1Id}[0] == this.id){
 			
-			def synonymIds = synonyms.collect{it.dataElement2Id}
+			def relationshipIds = relations.collect{it.dataElement2Id}
 			
-			synonymIds.each{ synonymId->
-				synonymsR.add(DataElement.get(synonymId))
+			relationshipIds.each{ relationshipId->
+				relationsR.add(DataElement.get(relationshipId))
 			}
 			
 		}else{
 			
-			def synonymIds = synonyms.collect{it.dataElement1Id}
+			def relationshipIds = relations.collect{it.dataElement1Id}
 			
-			synonymIds.each{ synonymId->
-				synonymsR.add(DataElement.get(synonymId))
+			relationshipIds.each{ relationshipId->
+				relationsR.add(DataElement.get(relationshipId))
 			}
 	
 		}
 		
-		return synonymsR
+		return relationsR
 		
 	}
 	
@@ -145,12 +140,12 @@ class DataElement extends ExtensibleObject {
 		}
 		
 		
-		if(this.synonyms.size()!=0){
+		if(this.relations.size()!=0){
 			
-			dataForDelete = this.synonyms()
+			dataForDelete = this.relations()
 			
-			dataForDelete.each{ synonym->
-				this.removeFromSynonyms(synonym)
+			dataForDelete.each{ relationship->
+				this.removeFromRelations(relationship)
 			}
 		}
 		
@@ -164,26 +159,5 @@ class DataElement extends ExtensibleObject {
 		}
 		
 	}
-	
-	static final String HELP = "A data element describes a logical unit of data that has precise meaning or precise semantics." + 
-	"Alternatively one can understand a data element as something close to a column in a database table.  <br/>" +
-	"i.e. Address - City <br/>" +
-	"<br/>" +
-	"It is important to include a clear data element <strong>definition</strong><br/>" +
-	"A good definition is:<br/>" +
-	"Precise - The definition should use words that have a precise meaning. Try to avoid words that have multiple meanings or multiple word senses.<br/>" +
-	"Concise - The definition should use the shortest description possible that is still clear.<br/>" +
-	"Non Circular - The definition should not use the term you are trying to define in the definition itself. This is known as a circular definition.<br/>" +
-	"Distinct - The definition should differentiate a data element from other data elements. This process is called disambiguation.<br/>" +
-	"Unencumbered - The definition should be free of embedded rationale, functional usage, domain information, or procedural information.<br/>" +
-	"<br/><br/>" +
-	"An example of a bad data element definition would be:" +
-	"City - the name of the city that forms a part of an address" +
-	"An example of a better definition would be:" +
-	"A component of an address that specifies a location by identification of an urban area.<br/>" +
-	"<br/>" +
-	"A data element can have a number of different <strong>value domains</strong><br/>" +
-	"A value domain expresses the set of allowed values for a data element."
-	
 	
 }

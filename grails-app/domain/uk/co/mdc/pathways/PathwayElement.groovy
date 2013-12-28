@@ -4,9 +4,9 @@ import uk.co.mdc.model.Collection
 import uk.co.mdc.model.DataElement
 import uk.co.mdc.model.DataElementCollection
 import uk.co.mdc.model.DataElementConcept
-import uk.co.mdc.model.ExtensibleObject;
+import uk.co.mdc.model.ModelElement;
 
-abstract class PathwayElement extends ExtensibleObject{
+abstract class PathwayElement extends ModelElement{
 	
 	/**
 	 * This is a transient value which could well be removed in the future.
@@ -23,6 +23,7 @@ abstract class PathwayElement extends ExtensibleObject{
 		description nullable:true
 		pathwaysModel nullable:true
 		extension nullable: true
+		relations nullable: true
 		peCollection nullable:true
     }
 	

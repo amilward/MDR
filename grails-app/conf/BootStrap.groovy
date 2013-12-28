@@ -179,7 +179,6 @@ class BootStrap {
 		grantAdminPermissions(DataElementConcept.list())
 		grantAdminPermissions(DataType.list())
 		grantAdminPermissions(Document.list())
-		grantAdminPermissions(ExternalReference.list())
 		grantAdminPermissions(Collection.list())
 		grantAdminPermissions(FormDesign.list())
 		grantAdminPermissions(QuestionElement.list())
@@ -195,7 +194,6 @@ class BootStrap {
 		grantUserPermissions(DataElementConcept.list())
 		grantUserPermissions(DataType.list())
 		grantUserPermissions(Document.list())
-		grantUserPermissions(ExternalReference.list())
 		grantUserPermissions(Collection.list())
 		grantUserPermissions(FormDesign.list())
 		grantUserPermissions(QuestionElement.list())
@@ -381,12 +379,12 @@ class BootStrap {
 
 							}
 							
-							def dataElement = DataElement.get(1);
+							/*def dataElement = DataElement.get(1);
 							
 							DataElementCollection.link(dataElement,
 								new Collection(refId: 'Col1',
 								name: 'TestCol',
-								description: 'blah blah blah').save(failOnError: true), SchemaSpecification.MANDATORY)
+								description: 'blah blah blah').save(failOnError: true), SchemaSpecification.MANDATORY)*/
 
 
 
@@ -555,7 +553,7 @@ class BootStrap {
 					x: '5px',
 					y: '0px',
 					description: 'transfer patient to the Operating Room'
-					).save(flush:true)
+					).save(flush:true,failOnError:true)
 
 			def node2 = new Node(
 					

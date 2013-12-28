@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Set;
 import uk.co.mdc.forms.FormDesign
 
-class Collection extends ExtensibleObject  {
+class Collection extends ModelElement  {
 	 
 	String name
 	String description
@@ -21,6 +21,8 @@ class Collection extends ExtensibleObject  {
 	 
     static constraints = {
 		name blank: false
+		extension nullable: true
+		relations nullable: true
     }
 	
 	static mapping = {

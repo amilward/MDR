@@ -1,6 +1,8 @@
 package uk.co.mdc.forms
 
-class MediaElement extends PresentationElement {
+import uk.co.mdc.model.ModelElement
+
+class MediaElement extends ModelElement {
 
 	String url
 	

@@ -65,12 +65,12 @@
 						</td>
 					</tr>
 					<tr>
-						<td class="left_col_show"><span id="name-label" class="label">Synonyms</span></td>
+						<td class="left_col_show"><span id="name-label" class="label">Relations</span></td>
 						<td class="right_col_show">
 							<g:select
-									title="tooltip.dataElement.synonyms"
-						            name="synonyms"
-						            id="synonyms"
+									title="tooltip.dataElement.relations"
+						            name="relations"
+						            id="relations"
 						            noSelection="${['':'Select One...']}"
 						            from="${dataElements.minus(dataElementInstance)}"
 						            value="${params.list('dataElements')}"
@@ -98,23 +98,7 @@
 						    />
 						</td>
 					</tr>
-					<tr>
-						<td class="left_col_show"><span id="name-label" class="label">External References</span></td>
-						<td class="right_col_show">
-						<g:select
-								title="tooltip.dataElement.externalReferences"
-					            name="externalReferences"
-					            id="externalReferences"
-					            noSelection="${['':'Select One...']}"
-					            from="${externalReferences}"
-					            value="${params.list('externalReferences')}"
-					            optionKey="id"
-					            optionValue="name"
-					            multiple="true"
-					            size="6"
-					    />
-						</td>
-					</tr>
+					
 				</tbody>
 			</table>
 <g:javascript library="dataElement"/>
@@ -128,11 +112,11 @@
 		selectedValueDomains = ${selectedValueDomains*.id}
 	</g:else>
 	
-	<g:if test="${!dataElementInstance?.synonyms()*.id}">
-		synonyms = ' '
+	<g:if test="${!dataElementInstance?.relations()*.id}">
+		relations = ' '
 	</g:if>
 	<g:else>
-		synonyms =${dataElementInstance?.synonyms()*.id}
+		relations =${dataElementInstance?.relations()*.id}
 	</g:else>
 	
 	<g:if test="${!dataElementInstance?.subElements*.id}">
@@ -142,15 +126,9 @@
 		subElements =${dataElementInstance?.subElements*.id}
 	</g:else>
 
-	<g:if test="${!dataElementInstance?.externalReferences*.id}">
-		externalReferences = ' '
-	</g:if>
-	<g:else>
-		externalReferences = ${dataElementInstance?.externalReferences*.id}
-	</g:else>
 
 	$(document).ready(function() {
-		dataElementForm(selectedValueDomains, synonyms, subElements, externalReferences);
+		dataElementForm(selectedValueDomains, relations, subElements, '');
     });
 				
 </r:script>
