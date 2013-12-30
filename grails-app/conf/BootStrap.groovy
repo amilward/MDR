@@ -109,39 +109,44 @@ class BootStrap {
 		def roleAdmin = SecAuth.findByAuthority('ROLE_ADMIN') ?: new SecAuth(authority: 'ROLE_ADMIN').save(failOnError: true)
 
 
-		if(!SecUser.findByUsername('uclUser1') ){	
-			def user = new SecUser(username: "uclUser1", enabled: true, emailAddress: "uclUser1@example.org", password: "password1").save(failOnError: true)
+		if(!SecUser.findByUsername('user1') ){
+			def user = new SecUser(username: "user1", enabled: true, emailAddress: "user1@example.org", password: "password1").save(failOnError: true)
+			SecUserSecAuth.create user, roleUser			
+		}
+		
+		if(!SecUser.findByUsername('ucl1') ){	
+			def user = new SecUser(username: "ucl1", enabled: true, emailAddress: "ucl1@example.org", password: "password1").save(failOnError: true)
 			SecUserSecAuth.create user, roleUser
 			SecUserSecAuth.create user, roleUCL
 			
 		}
 		
-		if(!SecUser.findByUsername('oxfordUser1') ){
-			def user = new SecUser(username: "oxfordUser1", enabled: true, emailAddress: "oxfordUser1@example.org", password: "password1").save(failOnError: true)
+		if(!SecUser.findByUsername('oxford1') ){
+			def user = new SecUser(username: "oxford1", enabled: true, emailAddress: "oxford1@example.org", password: "password1").save(failOnError: true)
 			SecUserSecAuth.create user, roleUser
 			SecUserSecAuth.create user, roleOxford
 		}
 		
-		if(!SecUser.findByUsername('oxfordUser2') ){
-			def user = new SecUser(username: "oxfordUser2", enabled: true, emailAddress: "oxfordUser2@example.org", password: "password2").save(failOnError: true)
+		if(!SecUser.findByUsername('oxford2') ){
+			def user = new SecUser(username: "oxford2", enabled: true, emailAddress: "oxford2@example.org", password: "password2").save(failOnError: true)
 			SecUserSecAuth.create user, roleUser
 			SecUserSecAuth.create user, roleOxford
 		}
 		
-		if(!SecUser.findByUsername('cambridgeUser1') ){
-			def user = new SecUser(username: "cambridgeUser1", enabled: true, emailAddress: "cambridgeUser1@example.org", password: "password1").save(failOnError: true)
+		if(!SecUser.findByUsername('cambridge1') ){
+			def user = new SecUser(username: "cambridge1", enabled: true, emailAddress: "cambridge1@example.org", password: "password1").save(failOnError: true)
 			SecUserSecAuth.create user, roleUser
 			SecUserSecAuth.create user, roleCambridge
 		}
 		
-		if(!SecUser.findByUsername('cambridgeUser2') ){
-			def user = new SecUser(username: "cambridgeUser2", enabled: true, emailAddress: "cambridgeUser2@example.org", password: "password2").save(failOnError: true)
+		if(!SecUser.findByUsername('cambridge2') ){
+			def user = new SecUser(username: "cambridge2", enabled: true, emailAddress: "cambridge2@example.org", password: "password2").save(failOnError: true)
 			SecUserSecAuth.create user, roleUser
 			SecUserSecAuth.create user, roleCambridge
 		}
 		
-		if(!SecUser.findByUsername('imperialUser1') ){
-			def user = new SecUser(username: "imperialUser1", enabled: true, emailAddress: "imperialUser1@example.org", password: "password1").save(failOnError: true)
+		if(!SecUser.findByUsername('imperial1') ){
+			def user = new SecUser(username: "imperial1", enabled: true, emailAddress: "imperial1@example.org", password: "password1").save(failOnError: true)
 			SecUserSecAuth.create user, roleUser
 			SecUserSecAuth.create user, roleImperial
 		}
@@ -330,7 +335,7 @@ class BootStrap {
 							string = new DataType(name:"String", enumerated: false).save(failOnError: true)
 							new DataType(name:"Text", enumerated: false).save(failOnError: true)
 							new DataType(name:"Integer", enumerated: false).save(failOnError: true)
-							new DataType(name:"Date", enumerated: false).save(failOnError: true)
+							date = new DataType(name:"Date", enumerated: false).save(failOnError: true)
 							new DataType(name:"Datetime", enumerated: false).save(failOnError: true)
 							new DataType(name:"Time", enumerated: false).save(failOnError: true)
 							new DataType(name:"Float", enumerated: false).save(failOnError: true)
