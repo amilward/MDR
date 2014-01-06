@@ -199,6 +199,11 @@
                		 </button>
                 </div>
                 <!-- /ko -->
+                <div class="pull-right">
+                    <button type="button" class="btn btn-danger btn-xs pull-right" data-bind="click: $parent.deleteSelectedElement">
+                        <span class="glyphicon glyphicon-remove"></span> Delete
+                    </button>
+                </div>
             </div>
         </div>
     </div>
