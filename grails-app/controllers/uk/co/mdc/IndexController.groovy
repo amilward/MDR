@@ -10,20 +10,19 @@ import uk.co.mdc.forms.FormDesign
 @Secured(['IS_AUTHENTICATED_ANONYMOUSLY'])
 class IndexController {
 	def springSecurityService
-
+	def pathwaysService
 	
 	def index() { 
-		
 		
 		if(SpringSecurityUtils.ifAllGranted("ROLE_ADMIN")){
 			render(view: "/admin_index")
 		} else if(SpringSecurityUtils.ifAllGranted("ROLE_USER")){
 		
 		
-			def finalizedPathways = PathwaysModel.findAll {
+			def finalizedPathways = pathwaysService.findAll {
 				isDraft == false
 			}
-			def draftPathways = PathwaysModel.findAll {
+			def draftPathways = pathwaysService.findAll {
 				isDraft == true
 			}
 			def finalizedForms = FormDesign.findAll {

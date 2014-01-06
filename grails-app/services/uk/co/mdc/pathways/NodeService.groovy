@@ -1,7 +1,9 @@
 package uk.co.mdc.pathways
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+
 import org.springframework.security.access.prepost.PostFilter
 import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.security.acls.domain.BasePermission
@@ -9,6 +11,7 @@ import org.springframework.security.acls.model.Permission
 import org.springframework.transaction.annotation.Transactional
 import org.springframework.security.acls.model.Permission;
 import org.springframework.transaction.annotation.Transactional;
+
 import uk.co.mdc.forms.FormDesign;
 import uk.co.mdc.pathways.PathwaysModel;
 
@@ -32,6 +35,27 @@ class NodeService {
 		addPermission node, username,
 			aclPermissionFactory.buildFromMask(permission)
 			
+	}
+	
+	/* **************************** ADD GROUP PERMISSIONS *****************************************
+	 * adds permission to the relevant groups
+	 ********************************************************************************* */
+	
+	void addGroupPermissions(Node nodeInstance, Collection roles){
+		
+		//Grant admin users administrative permissions
+		addPermission nodeInstance, 'ROLE_ADMIN', BasePermission.ADMINISTRATION
+		
+		//grant users in the same groups as the current user read/write/delete permissions on the nodeInstance
+		roles.each{ role ->
+			role = role.toString()
+			if(role!="ROLE_USER"){
+				addPermission nodeInstance, role , BasePermission.READ
+				addPermission nodeInstance, role , BasePermission.WRITE
+				addPermission nodeInstance, role , BasePermission.DELETE
+			}
+		}
+		
 	}
 	
 	/*
@@ -73,8 +97,8 @@ class NodeService {
 			// Grant the current user principal administrative permission
 			addPermission nodeInstance, springSecurityService.authentication.name, BasePermission.ADMINISTRATION
 			
-			//Grant admin user administrative permissions
-			addPermission nodeInstance, 'admin', BasePermission.ADMINISTRATION
+			// Grant all users in the same group apart from the ROLE_USER group the current user principal permission to read and write  and delete
+			addGroupPermissions nodeInstance, springSecurityService.principal.getAuthorities()
 		
 		
 		if(nodeInstance && parameters?.pathwaysModelId){

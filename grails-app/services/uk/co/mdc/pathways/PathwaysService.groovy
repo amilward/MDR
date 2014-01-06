@@ -30,12 +30,34 @@ class PathwaysService {
 	 * permission input
 	 ********************************************************************************* */
 		
-	void addPermission(PathwaysModel pathwaysModel, String username, int permission){
+	void addPermission(PathwaysModel pathwaysModel, String roleOrUsername, int permission){
 		
-		addPermission pathwaysModel, username,
+		addPermission pathwaysModel, roleOrUsername,
 			aclPermissionFactory.buildFromMask(permission)
 			
 	}
+	
+	/* **************************** ADD GROUP PERMISSIONS *****************************************
+	 * adds permission to the relevant groups
+	 ********************************************************************************* */
+	
+	void addGroupPermissions(PathwaysModel pathwaysModelInstance, Collection roles){
+		
+		//Grant admin users administrative permissions
+		addPermission pathwaysModelInstance, 'ROLE_ADMIN', BasePermission.ADMINISTRATION
+		
+		//grant users in the same groups as the current user read/write/delete permissions on the pathwaysModelInstance
+		roles.each{ role ->
+			role = role.toString()
+			if(role!="ROLE_USER"){
+				addPermission pathwaysModelInstance, role , BasePermission.READ
+				addPermission pathwaysModelInstance, role , BasePermission.WRITE
+				addPermission pathwaysModelInstance, role , BasePermission.DELETE
+			}
+		}
+		
+	}
+	
 	
 	/*
 	 * requires that the authenticated user have admin permission on the report instance
@@ -44,12 +66,11 @@ class PathwaysService {
 	
 	@PreAuthorize("hasPermission(#pathwaysModel, admin)")
 	@Transactional
-	void addPermission(PathwaysModel pathwaysModel, String username, Permission permission) {
-	   aclUtilService.addPermission pathwaysModel, username, permission
+	void addPermission(PathwaysModel pathwaysModel, String roleOrUsername, Permission permission) {
+	   aclUtilService.addPermission pathwaysModel, roleOrUsername, permission
 	}
 	
-	
-	
+
 	/* ************************* CREATE PATHWAY***********************************
 	 * requires that the authenticated user to have ROLE_USER to create a data element
 	 ********************************************************************************* */
@@ -79,8 +100,8 @@ class PathwaysService {
 		// Grant the current user principal administrative permission
 		addPermission pathwaysModelInstance, springSecurityService.authentication.name, BasePermission.ADMINISTRATION
 		
-		//Grant admin user administrative permissions
-		addPermission pathwaysModelInstance, 'admin', BasePermission.ADMINISTRATION
+		// Grant all users in the same group apart from the ROLE_USER group the current user principal permission to read and write  and delete
+		addGroupPermissions pathwaysModelInstance, springSecurityService.principal.getAuthorities()
 		
 		//return the data element to the consumer (the controller)
 		pathwaysModelInstance
@@ -123,6 +144,19 @@ class PathwaysService {
 		PathwaysModel.list parameters
 	}
 	
+	/* ************************* LIST VALUED DOMAINS***********************************************
+	 * requires that the authenticated user have ROLE_USER and read or admin permission on each
+	 * returned Data Element; instances that don't have granted permissions will be removed from the returned
+	 * List
+	 ******************************************************************************************** */
+	
+	@PreAuthorize("hasRole('ROLE_USER')")
+	@PostFilter("hasPermission(filterObject, read) or hasPermission(filterObject, admin)")
+	List<PathwaysModel> findAll(Closure closure) {
+		PathwaysModel.findAll closure
+	}
+	
+	
 	//no restrictions on the count method
 	
 	int count() { PathwaysModel.count() }
@@ -138,13 +172,13 @@ class PathwaysService {
 				
 		//update nodes
 		
-		//println(parameters)
+
 		
 		def updatedNodes = parameters.nodes
 
 		
 		
-		//println(pathwaysModelInstance?.parentNode)
+
 		
 		updatedNodes.each { updatedNode ->
 
@@ -157,11 +191,11 @@ class PathwaysService {
 				def node = nodeService.update(nodeInstance, updatedNode, subPathway)
 				
 			}else{
-				//println('before?')
-				//println(pathwaysModelInstance?.parentNode)
+				
+			
 				def node = nodeService.update(nodeInstance, updatedNode)
-				//println('after?')
-				//println(pathwaysModelInstance?.parentNode)
+				
+
 			}
 
 		}
@@ -213,7 +247,7 @@ class PathwaysService {
 	 ******************************************************************************************** */
 	
 	@Transactional @PreAuthorize("hasPermission(#pathwaysModelInstance, admin)")
-	void deletePermission(PathwaysModel pathwaysModelInstance, String username, Permission permission) {
+	void deletePermission(PathwaysModel pathwaysModelInstance, String roleOrUsername, Permission permission) {
 		def acl = aclUtilService.readAcl(pathwaysModelInstance)
 		
 		// Remove all permissions associated with this particular

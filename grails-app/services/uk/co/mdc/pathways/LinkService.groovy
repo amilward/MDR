@@ -1,7 +1,9 @@
 package uk.co.mdc.pathways
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+
 import org.springframework.security.access.prepost.PostFilter
 import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.security.acls.domain.BasePermission
@@ -31,6 +33,30 @@ class LinkService {
 			aclPermissionFactory.buildFromMask(permission)
 			
 	}
+	
+	
+	/* **************************** ADD GROUP PERMISSIONS *****************************************
+	 * adds permission to the relevant groups
+	 ********************************************************************************* */
+	
+	void addGroupPermissions(Link link, Collection roles){
+		
+		//Grant admin users administrative permissions
+		addPermission link, 'ROLE_ADMIN', BasePermission.ADMINISTRATION
+		
+		//grant users in the same groups as the current user read/write/delete permissions on the nodeInstance
+		roles.each{ role ->
+			role = role.toString()
+			if(role!="ROLE_USER"){
+				addPermission link, role , BasePermission.READ
+				addPermission link, role , BasePermission.WRITE
+				addPermission link, role , BasePermission.DELETE
+			}
+		}
+		
+	}
+	
+	
 	
 	/*
 	 * requires that the authenticated user have admin permission on the report instance
@@ -83,11 +109,8 @@ class LinkService {
 			// Grant the current user principal administrative permission
 			addPermission linkInstance, springSecurityService.authentication.name, BasePermission.ADMINISTRATION
 			
-			//Grant admin user administrative permissions
-			addPermission linkInstance, 'admin', BasePermission.ADMINISTRATION
-			
-			//FIXME we are grainting all users all permissions at the moment
-			addPermission linkInstance, 'user', BasePermission.ADMINISTRATION
+			// Grant all users in the same group apart from the ROLE_USER group the current user principal permission to read and write  and delete
+			addGroupPermissions linkInstance, springSecurityService.principal.getAuthorities()
 		}
 		
 		if(linkInstance && parameters?.pathwaysModelId){

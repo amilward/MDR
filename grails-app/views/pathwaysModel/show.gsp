@@ -50,7 +50,7 @@
 		
 			<div class="ui-layout-west large-rounded" id="tree-panel">
 				<div class="panel panel-default" data-bind="with: topLevelPathway">
-					<div class="panel-heading" data-bind="attr:{title: name}, text: name">Tree View</div>
+					<!--<div class="panel-heading" data-bind="attr:{title: name}, text: name">Tree View</div>-->
 					<div class="panel-body">
                                             <!--
 						<div class="pathway-title" data-bind="attr:{title: name}, text: name"></div>
@@ -119,7 +119,7 @@
 <!-- If selectedItem is undefined, the right panel will be empty -->
     <div id="properties-panel" class="ui-layout-east large-rounded" data-bind="with: selectedItem">
         <div class="panel panel-primary">
-            <div class="panel-heading">Properties: {{id}}</div>
+            <div class="panel-heading">Properties:</div>
             <div class="panel-body">
                 <form class="form" role="form">
                     <div class="form-group">
