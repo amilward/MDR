@@ -1,5 +1,7 @@
 package uk.co.mdc.model
 
+import java.util.List;
+
 import org.codehaus.groovy.grails.web.servlet.mvc.GrailsParameterMap
 
 class DataElement extends ModelElement {
@@ -14,8 +16,6 @@ class DataElement extends ModelElement {
 	
 	DataElementConcept dataElementConcept
 	
-	Set relations
-	
 	static auditable = true
 	
 	static searchable = {
@@ -23,7 +23,7 @@ class DataElement extends ModelElement {
 		except = ["extension"]
     } 
 	
-	static hasMany = [subElements: DataElement, dataElementValueDomains: DataElementValueDomain, dataElementCollections: DataElementCollection]
+	static hasMany = [relations: Relationship, subElements: DataElement, dataElementValueDomains: DataElementValueDomain, dataElementCollections: DataElementCollection]
 
 	static belongsTo = [parent: DataElement, dataElementConcept: DataElementConcept]
 	
@@ -34,7 +34,6 @@ class DataElement extends ModelElement {
 		definition nullable: true
 		name blank: false
 		extension nullable: true
-		relations nullable: true
     }
 	
 	static mapping = {
@@ -70,31 +69,40 @@ class DataElement extends ModelElement {
 	/******************************************************************************************************************/
 	/****functions for linking data elements to other data elements (relations) using DataElementDataElement class************/
 	/******************************************************************************************************************/
+	/******************************************************************************************************************/
+	/****functions for specifying relationships between model elements (using the Relationship class) ************/
+	/******************************************************************************************************************/
 	
 	List relations() {
-		
-		def relationsR = []
-		
-		if(relations.collect{it.dataElement1Id}[0] == this.id){
-			
-			def relationshipIds = relations.collect{it.dataElement2Id}
-			
-			relationshipIds.each{ relationshipId->
-				relationsR.add(DataElement.get(relationshipId))
-			}
-			
-		}else{
-			
-			def relationshipIds = relations.collect{it.dataElement1Id}
-			
-			relationshipIds.each{ relationshipId->
-				relationsR.add(DataElement.get(relationshipId))
-			}
 	
+	def relationsR = []
+	
+	if(relations.collect{it.dataElement1Id}[0] == this.id){
+		
+		def relationshipIds = relations.collect{it.dataElement2Id}
+		
+		relationshipIds.each{ relationshipId->
+			relationsR.add(DataElement.get(relationshipId))
 		}
 		
-		return relationsR
+	}else{
 		
+		def relationshipIds = relations.collect{it.dataElement1Id}
+		
+		relationshipIds.each{ relationshipId->
+			relationsR.add(DataElement.get(relationshipId))
+		}
+
+	}
+	
+	return relationsR
+	
+}
+	
+	
+
+	public void addToRelations(Relationship relationship){
+		relations.add(relationship)
 	}
 	
 	/******************************************************************************************************************/

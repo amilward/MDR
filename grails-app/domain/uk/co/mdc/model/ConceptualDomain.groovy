@@ -15,7 +15,6 @@ class ConceptualDomain extends ModelElement  {
 		valueDomains nullable:true
 		name blank: false
 		extension nullable: true
-		relations nullable: true
 	}
 
 	def prepareForDelete(){

@@ -23,7 +23,6 @@ abstract class PathwayElement extends ModelElement{
 		description nullable:true
 		pathwaysModel nullable:true
 		extension nullable: true
-		relations nullable: true
 		peCollection nullable:true
     }
 	

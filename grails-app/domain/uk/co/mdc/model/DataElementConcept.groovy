@@ -21,7 +21,6 @@ class DataElementConcept extends ModelElement  {
 		parent nullable: true
 		description nullable: true
 		extension nullable: true
-		relations nullable: true
 		}
 	
 	static mapping = {

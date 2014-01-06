@@ -7,53 +7,15 @@ import org.json.simple.JSONObject;
 abstract class ModelElement {
 		
 		JSONObject extension
-		Set<Relationship> relations
 	
+		static hasMany = { relations: Relationship }
+		
 		static constraints = {
 			extension nullable:true
-			relations nullable:true
 		}
-		
-		static hasMany = { relations: Relationship }
 		
 		static mapping = {
 			extension sqlType: 'blob'
-		}
-		
-		
-		/******************************************************************************************************************/
-		/****functions for specifying relationships between model elements (using the Relationship class) ************/
-		/******************************************************************************************************************/
-		
-		/*List relations() {
-			
-			def relationshipList = []
-			
-			if(relations.collect{it.objectXId}[0] == this.id){
-				
-				def relationIds = relations.collect{it.objectYId}
-				
-				relationIds.each{ relationId->
-					relationshipList.add(DataElement.get(relationId))
-				}
-				
-			}else{
-				
-				def relationIds = relations.collect{it.objectXId}
-				
-				relationIds.each{ relationId->
-					relationshipList.add(DataElement.get(relationId))
-				}
-		
-			}
-			
-			return relationshipList
-			
-		}*/
-		
-	
-		public void addToRelations(Relationship relationship){
-			relations.add(relationship)
 		}
 		
 		

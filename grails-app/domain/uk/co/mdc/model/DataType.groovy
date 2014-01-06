@@ -16,7 +16,6 @@ class DataType extends ModelElement  {
 		enumerations nullable: true
 		name blank: false
 		extension nullable: true
-		relations nullable: true
     }
 	
 	static hasMany = {valueDomains: ValueDomain}

@@ -117,7 +117,7 @@ class DataElementController extends RestfulController{
 		//use the find instance method to get the data element in question
 
 		def dataElementInstance = findInstance()
-		
+
 		//if you can't find it or don't have permission go back to the list page
 
 		if (!dataElementInstance) {
@@ -208,7 +208,7 @@ class DataElementController extends RestfulController{
 	def update(Long id, Long version) {
 		
 		/* ***
-		 * validate the data element looking at it's parent-children-synonyms and ensuring they are mutually exclusive
+		 * validate the data element for parent-children-synonym relationships and ensure they are mutually exclusive
 		 * i.e. a dataElement cannot have a subElement that is the same as it's parent element
 		 * ******/
 		
@@ -242,13 +242,14 @@ class DataElementController extends RestfulController{
 			}
 		}
 
-		dataElementService.update(dataElementInstance, params)
+		dataElementInstance = dataElementService.update(dataElementInstance, params)
+		dataElementInstance.save(flush:true, failOnError: true)
+		dataElementInstance.refresh()
 		
 		if (!renderWithErrors('edit', dataElementInstance)) {
-			redirectShow message(code: 'default.updated.message', args: [message(code: 'dataElement.label', default: 'DataElement'), dataElementInstance.id]), dataElementInstance.id
+			redirectShow message(code: 'default.updated.message', args: [message(code: 'dataElement.label', default: 'DataElement'), id]), id
 		}
 		 
-		
 	}
 	
 	/* **************************************************************************************

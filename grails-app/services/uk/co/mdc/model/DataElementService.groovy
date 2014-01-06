@@ -143,22 +143,32 @@ class DataElementService {
 	
 	@Transactional
 	@PreAuthorize("hasPermission(#dataElementInstance, write) or hasPermission(#dataElementInstance, admin)")
-	void update(DataElement dataElementInstance, Map parameters) {
-
-	   // remove any subelements that have specified for removal
-	   unLinkSubElements(dataElementInstance, parameters?.subElements)
+	DataElement update(DataElement dataElementInstance, Map parameters) {
+		
+		def subElements = parameters?.subElements
+		def relations = parameters?.relations
+		parameters.remove('relations')
+		def valueDomains = parameters?.valueDomains
+		parameters.remove('valueDomains')
+		
+	   // remove any subelements that have been specified for removal
+	   unLinkSubElements(dataElementInstance, subElements)
 	   
 	   dataElementInstance.properties = parameters
 	   
 	   if(dataElementInstance.save(flush: true)){
+		   
 		   //add/remove relations that have specified for addition or removal
-		   linkRelations(dataElementInstance, parameters?.relations)
+		   linkRelations(dataElementInstance, relations)
 	   }
 	   
 	   if(dataElementInstance.save(flush: true)){
+		   
 		   // add/remove value domains
-		   linkValueDomains(dataElementInstance, parameters?.valueDomains)
+		   linkValueDomains(dataElementInstance, valueDomains)
 	   }
+	   
+	   dataElementInstance
 	   
 	}
 	
@@ -370,12 +380,6 @@ class DataElementService {
 				
 			}else if(pSubElements){
 			
-			//but there are also sub elements to remove
-			//NEED TO DOUBLE CHECK THIS
-			//!!!!!!! NEED what if they are the same size 
-		
-		//	if(pSubElements.size() < dataElementInstance?.subElements.size()){
-			
 				//pass all the objects sub elements into a new array (otherwise we get all sorts or problems)
 				def subElements = []				
 				subElements += dataElementInstance?.subElements
@@ -394,7 +398,6 @@ class DataElementService {
 							}						
 						}
 					}
-			//}
 			
 		}
 	}

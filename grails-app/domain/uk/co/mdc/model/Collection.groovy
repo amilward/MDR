@@ -22,7 +22,6 @@ class Collection extends ModelElement  {
     static constraints = {
 		name blank: false
 		extension nullable: true
-		relations nullable: true
     }
 	
 	static mapping = {

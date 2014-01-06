@@ -25,15 +25,14 @@ class Relationship  {
 		}else{
 		
 			s = new Relationship( 	dataElement1Id: dataElement1.id,
-							 		dataElement2Id: dataElement2.id)
+							 		dataElement2Id: dataElement2.id).save(flush:true)
 			
 			 
 			dataElement1.addToRelations(s)
 			dataElement2.addToRelations(s)
 
-			dataElement1.save()
-			dataElement2.save()
-			s.save(flush:true)
+			dataElement1.save(failOnError:true)
+			dataElement2.save(failOnError:true)
 			
 		}
 		
