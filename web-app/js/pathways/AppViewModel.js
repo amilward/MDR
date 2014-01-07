@@ -260,6 +260,18 @@
 	                node.versionOnServer = data.nodeVersion
 	                self.pathwayModel.versionOnServer = data.pathwaysModelVersion
 	                self.pathwayModel.nodes.push(node);
+	                
+	                //refresh the top level pathway if there have been updates
+	                
+	                if(self.pathwayModel.id == self.topLevelPathway.id){
+	                	self.topLevelPathway = self.pathwayModel
+	                }else if(node.pathwayId == self.topLevelPathway.id){
+	                	$.when(pathwayService.loadPathway(self.topLevelPathway.id)).done(function (data) {
+                			var tlpm = self.createPathway(data.pathwaysModelInstance);
+                   		 	self.topLevelPathway = tlpm;
+                		});
+	                }
+	                
             	}else{
             		alert('node creation failed')
             	}

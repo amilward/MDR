@@ -109,7 +109,7 @@
                                   <ul class="level1" data-bind="foreach: nodes">
                                       <li>
                                           <!-- ko if: subPathwayId != null -->
-                                              <input type="checkbox" data-bind="click: getSubNodes(); return !self.checked; , attr:{id: 'cb' + id}">
+                                              <input type="checkbox" data-bind="click: getSubNodes(); return !self.checked; , attr:{id: 'cb' + id}, checked: $root.itemEqualsToSelected($data)">
                                           <!-- /ko -->
                                           <label data-bind="attr:{for: 'cb' + id}">
                                              <span data-bind="click: $root.selectNode, css: {selectedItem: $root.itemEqualsToSelected($data)}">{{name}}</span>
@@ -163,7 +163,7 @@
 		                                          <ul class="level2" data-bind="foreach: subNodes">
 		                                               <li>
 		                                                  <!-- ko if: subPathwayId != null -->
-					                                           <input type="checkbox" data-bind="click: getSubNodes(); return !self.checked; , attr:{id: 'cb' + id}">
+					                                           <input type="checkbox" data-bind="click: getSubNodes(); return !self.checked; , attr:{id: 'cb' + id}, checked: $root.itemEqualsToSelected($data)">
 					                                      <!-- /ko -->
 					                                      <label data-bind="attr:{for: 'cb' + id}">
 					                                           <span data-bind="click: $root.selectNode, css: {selectedItem: $root.itemEqualsToSelected($data)}">{{name}}</span>
@@ -203,7 +203,7 @@
 					                                                  <ul class="level3" data-bind="foreach: subNodes">
 					                                                      <li>
 					                                                          <!-- ko if: subPathwayId != null -->
-							                                                      <input type="checkbox" data-bind="click: getSubNodes(); return !self.checked; , attr:{id: 'cb' + id}">
+							                                                      <input type="checkbox" data-bind="click: getSubNodes(); return !self.checked; , attr:{id: 'cb' + id}, checked: $root.itemEqualsToSelected($data)">
 							                                                  <!-- /ko -->
 							                                                  <label data-bind="attr:{for: 'cb' + id}">
 							                                                       <span data-bind="click: $root.selectNode, css: {selectedItem: $root.itemEqualsToSelected($data)}">{{name}}</span>
