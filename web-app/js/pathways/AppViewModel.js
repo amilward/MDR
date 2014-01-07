@@ -9,7 +9,7 @@
         //Pathway Model
         self.pathwayModel = undefined;
  
-        //FIX ME not using this at the moment - might be worth using it it cache 
+        //Container pathway i.e. the parent of the current pathway
         self.containerPathway = undefined;
 
         //View related properties
@@ -71,6 +71,7 @@
             });
         	
         }
+      
         
         //displays a modal that is bound to the pathway and allows you to edit the pathway info
         //i.e. name, description etc
@@ -85,30 +86,30 @@
         self.loadPathway = function(pathwayJSON){
         	
         	 //self.selectedItem = undefined;
-        	 var pm = new PathwayModel();
-        	 pm.name = pathwayJSON.name;
-        	 pm.description = pathwayJSON.description;
-        	 pm.versionOnServer = pathwayJSON.version;
-        	 pm.versionNo = pathwayJSON.versionNo;
-        	 pm.id = pathwayJSON.id;
-        	 pm.isDraft = pathwayJSON.isDraft.toString();
-        	 pm.parentPathwayId = pathwayJSON.parentPathwayId;
-        	 pm.parentNodeId = pathwayJSON.parentNodeId;
+        	 var pm = self.createPathway(pathwayJSON)
         	 self.pathwayModel = pm;
-        	 var nodes = pathwayJSON.nodes;
-        	    $.each(nodes, function( index, node ) {
-				        self.loadNode(node);        	 
-				 });
-
+        	    
+        	 //console.log('finished creating nodes')
 //				        	 setTimeout( function()
 //				 {
 							var links = pathwayJSON.links;
 							 $.each(links, function( index, link ) {
 							      self.loadLink(link);        	 
 							 });
+
 //							      }, 200);
-                if (!self.topLevelPathway || self.topLevelPathway.id === self.pathwayModel.id) {
-                    self.topLevelPathway = self.pathwayModel;
+                if (!self.topLevelPathway) {
+                	if(pm.topLevelPathwayId){
+                		$.when(pathwayService.loadPathway(pm.topLevelPathwayId)).done(function (data) {
+                			var tlpm = self.createPathway(data.pathwaysModelInstance);
+                   		 	self.topLevelPathway = tlpm;
+                   		 	//console.log(self.topLevelPathway);
+                		});
+                		 
+                	}else{
+                		self.topLevelPathway = self.pathwayModel;
+                	}
+                    
                 }
         }
         
@@ -123,9 +124,24 @@
         	alert("logoutFromApp::DONE : ../../logout/index");        	
         }
         
-        self.createPathway = function (pathway) {
-        	//FIXME this isn't used yet...presumable this will be for the sub pathways
-            var pm = new PathwayModel(pathway);
+        self.createPathway = function (pathwayJSON) {
+        	
+        	var pm = new PathwayModel();
+	       	 pm.name = pathwayJSON.name;
+	       	 pm.description = pathwayJSON.description;
+	       	 pm.versionOnServer = pathwayJSON.version;
+	       	 pm.versionNo = pathwayJSON.versionNo;
+	       	 pm.id = pathwayJSON.id;
+	       	 pm.isDraft = pathwayJSON.isDraft.toString();
+	       	 pm.parentPathwayId = pathwayJSON.parentPathwayId;
+	       	 pm.parentNodeId = pathwayJSON.parentNodeId;
+	       	 pm.topLevelPathwayId = pathwayJSON.topLevelPathwayId
+	       	 
+	       	var nodes = pathwayJSON.nodes;
+     	    $.each(nodes, function( index, node ) {
+				        self.loadNode(node, pm);        	 
+				 });
+	       	 
             return pm;
         };
         
@@ -144,6 +160,7 @@
         		 //Set the new pathway model id given the id created on the server
                 self.pathwayModel.id = data.pathwayId;
                 self.pathwayModel.versionOnServer = data.versionOnServer
+               // //console.log(self.pathwayModel.id)
                 //Add a default node
                 self.saveNode();
 
@@ -157,10 +174,11 @@
             if (e) {
                 //Check whether selected item has a parent node (i.e. whether in subpathway)
                 var bindingContext = ko.contextFor(e.target);
-                if (bindingContext.$parent && bindingContext.$parent instanceof NodeModel) {
+                if (bindingContext.$parent instanceof NodeModel) {
                     //Switch to subpathway
                     $.when(pathwayService.loadPathway(bindingContext.$parent.subPathwayId)).done(function (pathwayJSON) {
-                        self.containerPathway = self.pathwayModel;
+                        
+                    	self.containerPathway = self.pathwayModel;
                         self.loadPathway(pathwayJSON.pathwaysModelInstance);
                         
                         self.selectedItem = ko.utils.arrayFirst(self.pathwayModel.nodes, function (node) { return node.id === n.id });
@@ -168,11 +186,15 @@
                         $('#properties-panel .form-group textarea').css({'max-width': $('#properties-panel').width() - 15, 'min-width': $('#properties-panel').width() - 15});
                     });
                 } else if (bindingContext.$parent && bindingContext.$parent === self.topLevelPathway && self.containerPathway) {
-                    self.goToParent();
-                    self.selectedItem = ko.utils.arrayFirst(self.pathwayModel.nodes, function (node) { return node.id === n.id });
+                	$.when(pathwayService.loadPathway(n.pathwayId)).done(function (pathwayJSON) {
+						self.loadPathway(pathwayJSON.pathwaysModelInstance);
+						self.selectedItem = ko.utils.arrayFirst(self.pathwayModel.nodes, function (node) { return node.id === n.id });
+			              
+					});
                 }
             }
             self.selectedItem = n;
+            
             $('#properties-panel .form-group input').css({'max-width': $('#properties-panel').width() - 15, 'min-width': $('#properties-panel').width() - 15});
             $('#properties-panel .form-group textarea').css({'max-width': $('#properties-panel').width() - 15, 'min-width': $('#properties-panel').width() - 15});
             
@@ -181,16 +203,19 @@
         
         self.getNodeName = function (n) {
             //Set current seletect node to bind to properties panel
+        	//console.log(ko.toJSON(n))
         	return ko.toJSON(n);
            // self.selectedItem = n;
         };
         
-        self.loadNode = function(JSONNode) {
+        self.loadNode = function(JSONNode, pm) {
         	//create the node in the model
         	//create the node in the model
+        	//console.log(JSONNode.pathwaysModelVersion)
         	var node = new NodeModel();
             node.name = JSONNode.name;
             node.description = JSONNode.description;
+            node.pathwayId = pm.id
             node.subPathwayName = JSONNode.subModelName;
             node.subPathwayId = JSONNode.subModelId;
             node.name = JSONNode.name;
@@ -199,8 +224,8 @@
             node.id = JSONNode.id
 	        node.versionOnServer = JSONNode.nodeVersion
             node.setCollections(JSONNode.optionalOutputs);
-	        self.pathwayModel.versionOnServer = JSONNode.pathwaysModelVersion
-	        self.pathwayModel.nodes.push(node);
+            pm.versionOnServer = JSONNode.pathwaysModelVersion
+            pm.nodes.push(node);
         };
 
         self.createNode = function(){
@@ -235,17 +260,32 @@
 	                node.versionOnServer = data.nodeVersion
 	                self.pathwayModel.versionOnServer = data.pathwaysModelVersion
 	                self.pathwayModel.nodes.push(node);
+	                
+	                //refresh the top level pathway if there have been updates
+	                
+	                if(self.pathwayModel.id == self.topLevelPathway.id){
+	                	self.topLevelPathway = self.pathwayModel
+	                }else if(node.pathwayId == self.topLevelPathway.id){
+	                	$.when(pathwayService.loadPathway(self.topLevelPathway.id)).done(function (data) {
+                			var tlpm = self.createPathway(data.pathwaysModelInstance);
+                   		 	self.topLevelPathway = tlpm;
+                		});
+	                }
+	                
             	}else{
             		alert('node creation failed')
             	}
             });
+            
+            
+            
             $('#createNodeName').val('');
     		$('#createNodeDescription').val('');
             $('#CreateNode').modal('hide');
         };
         
         self.deleteNode = function(nodeId){
-
+        	
         	//get ko node
         	var nodeToDelete;
 		    ko.utils.arrayForEach(self.pathwayModel.nodes, function(node) {
@@ -279,6 +319,7 @@
 		    
 		    //remove the ko node from pathway model
         	$.when(pathwayService.deleteNode(nodeId)).done(function (data) {
+        		
 			    ko.utils.arrayRemoveItem(self.pathwayModel.nodes, nodeToDelete);
 			    ////console.log(self.pathwayModel.nodes);
         	});
@@ -405,9 +446,11 @@
 	        }
         	
         };
-
+        
         self.deleteLink = function(connectionId){
-
+        	
+        	////console.log(connectionId)
+        	
         	var link;
 		    ko.utils.arrayForEach(self.pathwayModel.links, function(connection) {
 		      if(connection.connectionId == connectionId){
@@ -420,6 +463,9 @@
 		    
 		    var source = link.source; //Get the source node model instance            
    		    var target = link.target; //Get the target node model instance
+   		    
+   		    ////console.log(source.outputs)
+   			////console.log(target.inputs)
    			
    			//If source is current node, and target node is not already in the outputs array, add it to outputs
 		    if (ko.utils.arrayFirst(source.outputs, function (item) { return item === target })) {
@@ -434,35 +480,18 @@
 		    
 		    
 		    //remove the link itself
-
+		    
 		    $.when(pathwayService.deleteLink(link.id)).done(function (data) {
+		    	////console.log(self.pathwayModel.links);
 			    ko.utils.arrayRemoveItem(self.pathwayModel.links, link);
+			   // //console.log(self.pathwayModel.links);
         	});
 
-            //Only modify the right panel if the currently displayed properties belong to the deleted node
-            if (self.selectedItem === link) {
-                self.selectedItem = undefined;
-            }
-
-            ko.utils.arrayForEach( jsPlumb.getConnections(), function(connection) {
-                if(connection.getParameter("connectionId") == link.connectionId){
-                    jsPlumb.detach(connection);
-                }
-            });
         }
         
         self.selectLink = function(connectionId) {
             var l = ko.utils.arrayFirst(self.pathwayModel.links, function (link) { return link.connectionId === connectionId });
             self.selectedItem = l;
-        };
-
-        self.deleteSelectedElement = function(){
-            if(self.selectedItem instanceof LinkModel){
-                self.deleteLink(self.selectedItem.connectionId);
-            }else{
-                //assume it's a node instead
-                self.deleteNode(self.selectedItem.id);
-            }
         };
         
         //#endregion
@@ -494,6 +523,8 @@
 			if(self.pathwayModel){
 				
 				$.when(pathwayService.loadPathway(self.pathwayModel.parentPathwayId)).done(function (pathwayJSON) {
+					
+					//console.log(pathwayJSON.pathwaysModelInstance)
 					self.loadPathway(pathwayJSON.pathwaysModelInstance);
 				});
 

@@ -154,7 +154,6 @@ modules = {
 		//resource url: "js/pathways/pathway_model.js"
 		//resource url: "js/pathways/pathway.js"
 		resource url: "js/pathways/pathwaysLayout.js"
-		resource url: "js/pathways/pathwayAjaxFunctions.js"
 		resource url: "js/pathways/AppViewModel.js"
 		resource url: "js/pathways/show.js"
 		resource url: "js/pathways/service/FormService.js"
@@ -168,10 +167,6 @@ modules = {
 		resource url: "js/forms/formDesign.js"
 		resource url: "js/model/collection/collection.js"
 		
-	}
-	
-	ajaxfunctions{
-		resource url: "js/pathways/pathwayAjaxFunctions.js"
 	}
 	
 	pathwaysList{
