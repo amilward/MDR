@@ -114,22 +114,7 @@ jsPlumb.bind("connection", function (info) {
 		}
 	
 	}
-	 
-    //binding for connection double click
-    info.connection.bind("dblclick", function() {
-    	$( "#dialog-confirm .modal-header h4" ).text('Delete Connection?');
-    	$( "#dialog-confirm" ).modal({ show: true, keyboard: false, backdrop: 'static' });
-    	$( "#deleteModalButton" ).bind('click', function(){
-	   			var params = info.connection.getParameters()
-	   			vm.deleteLink(params.connectionId);
-	   			jsPlumb.detach(info.connection);
-	   			$( "#deleteModalButton" ).unbind();
-	   			$('.modal').modal('hide');
-    	})
-    	
-    	
-    });
-    
+
     
     info.connection.bind("click", function() {
         var params = info.connection.getParameters();

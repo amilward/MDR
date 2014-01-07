@@ -190,8 +190,7 @@
         	});	        	
         	//on close delete binding
         };
-        
-        
+
         //create a subpathway
         //called from show.gsp
         //creates a subPathway in the Node

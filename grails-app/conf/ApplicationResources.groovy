@@ -2,7 +2,7 @@ modules = {
 	
 	// Standard libraries
 	jquery_lib {
-		resource url: "js/vendor/jquery/jquery-2.0.3.js"
+		resource url: "js/vendor/jquery/jquery-2.0.3.js", disposition: 'head'
 		resource url: "js/vendor/jquery/jquery-ui.1.10.2.js"
 	}
 	
@@ -50,6 +50,7 @@ modules = {
 	// Application libraries
 	
     application {
+        dependsOn "style"
 		dependsOn "jquery_lib"
 		dependsOn "bootstrap_lib"
 		resource url: "js/main.js"
@@ -183,6 +184,16 @@ modules = {
     dashboard{
         dependsOn "application"
         resource url: "js/dashboard.js"
+    }
+
+    /**
+     * LESS & CSS
+     */
+    style{
+        resource url:[dir: 'less', file: 'application.less'], attrs:[rel: "stylesheet/less", type:'css']
+        resource url: "js/vendor/less/less-1.6.0.min.js", disposition: 'head'
+        resource url:'css/theme.css'
+        resource url:'css/style.css'
     }
 }
 

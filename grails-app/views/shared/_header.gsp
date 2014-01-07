@@ -25,14 +25,10 @@
 <link rel="stylesheet"
 	href="${resource(dir: 'css', file: 'bootstrap-responsive.min.css')}"
 	type="text/css">
-<link rel="stylesheet" href="${resource(dir: 'css', file: 'style.css')}"
-	type="text/css">
-<link rel="stylesheet" href="${resource(dir: 'css', file: 'theme.css')}"
-	type="text/css">
 <link rel="stylesheet"
 	href="${resource(dir: 'css', file: 'datatable/jquery.dataTables.css')}"
 	type="text/css">
-<g:javascript library="jquery_lib" />
+
 <g:javascript library="jquery" plugin="jquery" />
 <!--  FIXME, there's duplication here -->
 <g:javascript library="modernizr_lib" />
@@ -40,6 +36,8 @@
         window.appContext = '${request.contextPath}';
         var root = location.protocol + '//' + location.host + window.appContext;
     </g:javascript>
+
+
 <g:javascript library="application"/>
 
 
