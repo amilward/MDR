@@ -50,44 +50,211 @@
 		
 			<div class="ui-layout-west large-rounded" id="tree-panel">
 				<div class="panel panel-default" data-bind="with: topLevelPathway">
-					<!--<div class="panel-heading" data-bind="attr:{title: name}, text: name">Tree View</div>-->
 					<div class="panel-body">
-                                            <!--
-						<div class="pathway-title" data-bind="attr:{title: name}, text: name"></div>
-						-->
 						<div id="jsTreeView" class="treeview">
-                                                    <ul class="level1" data-bind="foreach: nodes">
-                                                      <li>
-                                                          <!-- ko if: subPathwayId != null -->
-                                                          <input type="checkbox" checked data-bind="click: function(){ getSubNodes(); return !self.checked;}, attr:{id: 'cb' + id}">
-                                                          <!-- /ko -->
-                                                          <label data-bind="attr:{for: 'cb' + id}">
-                                                              <span data-bind="attr:{title: description}, click: $root.selectNode, css: {selectedItem: $root.itemEqualsToSelected($data)}">{{name}}</span>
-                                                          </label>
-                                                          <!-- ko if: subNodes != null -->
-                                                          <ul class="level2" data-bind="foreach: subNodes">
-                                                              <li>
-                                                                  <!-- ko if: subPathwayId != null -->
-                                                                  <input type="checkbox" checked data-bind="click: function(){ getSubNodes(); return !self.checked;}, attr:{id: 'cb' + id}">
-                                                                  <!-- /ko -->
-                                                                  <label data-bind="attr:{for: 'cb' + id}">
-                                                                      <span data-bind="click: $root.selectNode, css: {selectedItem: $root.itemEqualsToSelected($data)}">{{name}}</span>
-                                                                  </label>
-                                                                  <!-- ko if: subNodes != null -->
-                                                                  <ul class="level3" data-bind="foreach: subNodes">
-                                                                      <li>
-                                                                          <label data-bind="attr:{for: 'cb' + id}">
-                                                                              <span data-bind="click: $root.selectNode, css: {selectedItem: $root.itemEqualsToSelected($data)}">{{name}}</span>
-                                                                          </label>
-                                                                      </li> 
-                                                                  </ul>
-                                                                  <!-- /ko -->
-                                                              </li> 
-                                                          </ul>
-                                                          <!-- /ko -->
+                        	
+                        	<!-- ko if: id ==  $root.pathwayModel.id -->
+	                       	 	<!-- ko with: $root.pathwayModel -->
+                        	
+	                        	 <ul class="level1" data-bind="foreach: nodes">
+		                              <li>
+			                                <!-- ko if: subPathwayId != null -->
+		                                    	<input type="checkbox" checked data-bind="click: function(){ getSubNodes(); return !self.checked;}, attr:{id: 'cb' + id}">
+		                                    <!-- /ko -->
+		                                    <label data-bind="attr:{for: 'cb' + id}">
+		                                        <span data-bind="click: $root.selectNode, css: {selectedItem: $root.itemEqualsToSelected($data)}">{{name}}</span>
+		                                    </label>
+		                                    
+		                                    <!-- ko if: subNodes != null -->
+		                                          <ul class="level2" data-bind="foreach: subNodes">
+		                                               <li>
+		                                                  <!-- ko if: subPathwayId != null -->
+					                                           <input type="checkbox" checked data-bind="click: function(){ getSubNodes(); return !self.checked;}, attr:{id: 'cb' + id}">
+					                                      <!-- /ko -->
+					                                      <label data-bind="attr:{for: 'cb' + id}">
+					                                           <span data-bind="click: $root.selectNode, css: {selectedItem: $root.itemEqualsToSelected($data)}">{{name}}</span>
+					                                      </label>
+					                                             <!-- ko if: subNodes != null -->
+					                                                  <ul class="level3" data-bind="foreach: subNodes">
+					                                                      <li>
+					                                                          <!-- ko if: subPathwayId != null -->
+							                                                      <input type="checkbox" checked data-bind="click: function(){ getSubNodes(); return !self.checked;}, attr:{id: 'cb' + id}">
+							                                                  <!-- /ko -->
+							                                                  <label data-bind="attr:{for: 'cb' + id}">
+							                                                       <span data-bind="click: $root.selectNode, css: {selectedItem: $root.itemEqualsToSelected($data)}">{{name}}</span>
+							                                                   </label>
+							                                                          <!-- ko if: subNodes != null -->
+							                                                                <ul class="level4" data-bind="foreach: subNodes">
+							                                                                      <li>
+							                                                                          <label data-bind="attr:{for: 'cb' + id}">
+							                                                                              <span data-bind="click: $root.selectNode, css: {selectedItem: $root.itemEqualsToSelected($data)}">{{name}}</span>
+							                                                                          </label>
+							                                                                      </li> 
+							                                                                  </ul>
+							                                                           <!-- /ko -->
+					                                                          </li> 
+					                                                   </ul>
+					                                               <!-- /ko -->
+		                                                    </li> 
+		                                               </ul>
+		                                       <!-- /ko -->
+		                               </li>
+		                         </ul>
+		                         
+                        		<!-- /ko -->
+                        	<!-- /ko -->
+                        	
+                        	
+							<!-- ko if: id !=  $root.pathwayModel.id -->
+                                  <ul class="level1" data-bind="foreach: nodes">
+                                      <li>
+                                          <!-- ko if: subPathwayId != null -->
+                                              <input type="checkbox" data-bind="click: getSubNodes(); return !self.checked; , attr:{id: 'cb' + id}">
+                                          <!-- /ko -->
+                                          <label data-bind="attr:{for: 'cb' + id}">
+                                             <span data-bind="click: $root.selectNode, css: {selectedItem: $root.itemEqualsToSelected($data)}">{{name}}</span>
+                                          </label>
+                                          
+                                          
+                                          <!-- ko if: subPathwayId ==  $root.pathwayModel.id -->
+	                                           	<!-- ko with: $root.pathwayModel -->
+	                                           	
+	                                           	<ul class="level2" data-bind="foreach: nodes">
+						                              <li>
+							                                <!-- ko if: subPathwayId != null -->
+						                                    	<input type="checkbox" checked data-bind="click: function(){ getSubNodes(); return !self.checked;}, attr:{id: 'cb' + id}">
+						                                    <!-- /ko -->
+						                                    <label data-bind="attr:{for: 'cb' + id}">
+						                                        <span data-bind="click: $root.selectNode, css: {selectedItem: $root.itemEqualsToSelected($data)}">{{name}}</span>
+						                                    </label>
+						                                    
+						                                    <!-- ko if: subNodes != null -->
+						                                          <ul class="level3" data-bind="foreach: subNodes">
+						                                               <li>
+						                                                  <!-- ko if: subPathwayId != null -->
+									                                           <input type="checkbox" checked data-bind="click: function(){ getSubNodes(); return !self.checked;}, attr:{id: 'cb' + id}">
+									                                      <!-- /ko -->
+									                                      <label data-bind="attr:{for: 'cb' + id}">
+									                                           <span data-bind="click: $root.selectNode, css: {selectedItem: $root.itemEqualsToSelected($data)}">{{name}}</span>
+									                                      </label>
+									                                             <!-- ko if: subNodes != null -->
+									                                                  <ul class="level4" data-bind="foreach: subNodes">
+									                                                      <li>
+									                                                          <!-- ko if: subPathwayId != null -->
+											                                                      <input type="checkbox" checked data-bind="click: function(){ getSubNodes(); return !self.checked;}, attr:{id: 'cb' + id}">
+											                                                  <!-- /ko -->
+											                                                  <label data-bind="attr:{for: 'cb' + id}">
+											                                                       <span data-bind="click: $root.selectNode, css: {selectedItem: $root.itemEqualsToSelected($data)}">{{name}}</span>
+											                                                   </label>
+									                                                          </li> 
+									                                                   </ul>
+									                                               <!-- /ko -->
+						                                                    </li> 
+						                                               </ul>
+						                                       <!-- /ko -->
+						                               </li>
+						                         </ul>
+	                                           	
+                                          	 	<!-- /ko -->
+                                          <!-- /ko -->
+                                          
+                                          <!-- ko if: subPathwayId !=  $root.pathwayModel.id -->
+                                         	 <!-- ko if: subNodes != null -->
+		                                          <ul class="level2" data-bind="foreach: subNodes">
+		                                               <li>
+		                                                  <!-- ko if: subPathwayId != null -->
+					                                           <input type="checkbox" data-bind="click: getSubNodes(); return !self.checked; , attr:{id: 'cb' + id}">
+					                                      <!-- /ko -->
+					                                      <label data-bind="attr:{for: 'cb' + id}">
+					                                           <span data-bind="click: $root.selectNode, css: {selectedItem: $root.itemEqualsToSelected($data)}">{{name}}</span>
+					                                      </label>
+					                                      
+					                                      
+					                                      
+					                                      <!-- ko if: subPathwayId ==  $root.pathwayModel.id -->
+	                                           					<!-- ko with: $root.pathwayModel -->
+	                                           						<ul class="level3" data-bind="foreach: nodes">
+					                                                      <li>
+					                                                          <!-- ko if: subPathwayId != null -->
+							                                                      <input type="checkbox" checked data-bind="click: function(){ getSubNodes(); return !self.checked;}, attr:{id: 'cb' + id}">
+							                                                  <!-- /ko -->
+							                                                  <label data-bind="attr:{for: 'cb' + id}">
+							                                                       <span data-bind="click: $root.selectNode, css: {selectedItem: $root.itemEqualsToSelected($data)}">{{name}}</span>
+							                                                   </label>
+							                                                          <!-- ko if: subNodes != null -->
+							                                                                <ul class="level4" data-bind="foreach: subNodes">
+							                                                                      <li>
+							                                                                          <label data-bind="attr:{for: 'cb' + id}">
+							                                                                              <span data-bind="click: $root.selectNode, css: {selectedItem: $root.itemEqualsToSelected($data)}">{{name}}</span>
+							                                                                          </label>
+							                                                                      </li> 
+							                                                                  </ul>
+							                                                           <!-- /ko -->
+					                                                          </li> 
+					                                                   </ul>
+	                                           					
+	                                           					 <!-- /ko -->
+					                                       <!-- /ko -->
+					                                      
+					                                      
+					                                      
+					                                      <!-- ko if: subPathwayId !=  $root.pathwayModel.id -->
+					                                             <!-- ko if: subNodes != null -->
+					                                                  <ul class="level3" data-bind="foreach: subNodes">
+					                                                      <li>
+					                                                          <!-- ko if: subPathwayId != null -->
+							                                                      <input type="checkbox" data-bind="click: getSubNodes(); return !self.checked; , attr:{id: 'cb' + id}">
+							                                                  <!-- /ko -->
+							                                                  <label data-bind="attr:{for: 'cb' + id}">
+							                                                       <span data-bind="click: $root.selectNode, css: {selectedItem: $root.itemEqualsToSelected($data)}">{{name}}</span>
+							                                                   </label>
+							                                                   
+							                                                   <!-- ko if: subPathwayId ==  $root.pathwayModel.id -->
+	                                           										<!-- ko with: $root.pathwayModel -->
+	                                           											<ul class="level4" data-bind="foreach: nodes">
+							                                                                      <li>
+							                                                                          <label data-bind="attr:{for: 'cb' + id}">
+							                                                                              <span data-bind="click: $root.selectNode, css: {selectedItem: $root.itemEqualsToSelected($data)}">{{name}}</span>
+							                                                                          </label>
+							                                                                      </li> 
+							                                                             </ul>
+	                                           										
+	                                           										<!-- /ko -->
+							                                                    <!-- /ko -->	
+							                                                   
+							                                                  	 <!-- ko if: subPathwayId !=  $root.pathwayModel.id -->
+							                                                          <!-- ko if: subPathwayId != null -->
+							                                                                <ul class="level4" data-bind="foreach: subNodes">
+							                                                                      <li>							                                                                      
+							                                                                          <label data-bind="attr:{for: 'cb' + id}">							                                                                          
+							                                                                              <span data-bind="click: $root.selectNode, css: {selectedItem: $root.itemEqualsToSelected($data)}">{{name}}</span>
+							                                                                          
+							                                                                          </label>
+							                                                                          
+							                                                                      </li> 
+							                                                                      
+							                                                                  </ul>
+							                                                           <!-- /ko -->
+							                                                     <!-- /ko -->
+					                                                          </li> 
+					                                                   </ul>
+					                                               <!-- /ko -->
+					                                        <!-- /ko -->
+					                                        
+					                                        
+					                                        
+		                                                    </li> 
+		                                               </ul>
+		                                   		<!-- /ko -->
+                                          <!-- /ko -->
+                                          
+                                          
+                                          
+                                       </li>
+                                   </ul>   
+                                   
+                            <!-- /ko --> 
 
-                                                      </li>
-                                                  </ul>
 						</div>
 					</div>
 				</div>

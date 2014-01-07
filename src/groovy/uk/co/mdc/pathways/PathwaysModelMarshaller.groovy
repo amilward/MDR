@@ -18,7 +18,8 @@ public class PathwaysModelMarshaller {
 			'links' : pathwayModel.getLinks(),
 			'version' : pathwayModel.version,
 			'parentNodeId': pathwayModel?.parentNode?.id,
-			'parentPathwayId': pathwayModel?.parentNode?.pathwaysModel?.id
+			'parentPathwayId': pathwayModel?.parentNode?.pathwaysModel?.id, 
+			'topLevelPathwayId': pathwayModel.getTopLevelPathwaysModel()?.id
 			]
 		}
 	}

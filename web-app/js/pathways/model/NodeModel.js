@@ -10,6 +10,7 @@
         self.type = 'node' //'node' | 'pathway'
         self.x = undefined
         self.y = undefined
+        self.pathwayId = undefined
         self.subPathway = undefined;
         self.subPathwayId = undefined;
         self.subPathwayName = undefined;

@@ -549,33 +549,33 @@ class BootStrap {
 			
 			
 			def pathway1 = new PathwaysModel(
-				name: 'Transplanting and Monitoring Pathway',
+				name: 'Guarding Patient on recovery and transfer to nursing ward',
 				versionNo: '0.1',
 				isDraft: true
 				).save(failOnError:true)
 				
 			def node1 = new Node(
 					
-					name: 'transfer to O.R.',
+					name: 'Guard Patient',
 					x: '5px',
 					y: '0px',
-					description: 'transfer patient to the Operating Room'
+					description: 'guard patient on recovery'
 					).save(flush:true)
 
 			def node2 = new Node(
 					
-					name: 'Anaesthesia and Operating Patient.',
+					name: 'Recovery',
 					x: '150px',
 					y: '100px',
-					description: 'perform the operation'
+					description: 'recover'
 					).save(flush:true)
 
 			def node3 = new Node(
 					
-					name: 'Guarding Patient on recovery and transfer to nursing ward',
+					name: 'Transfer to nursing ward',
 					x: '250px',
 					y: '300px',
-					description: 'transfer patient to the Operating Room'
+					description: 'transfer patient to the nursing ward'
 					).save(flush:true)
 
 			def link1 = new Link(
@@ -767,6 +767,7 @@ class BootStrap {
 								x: '325px',
 								y: '330px',
 								description: 'transfer patient to the Operating Room',
+								subModel: pathway1
 								).save(flush:true)
 			
 			
