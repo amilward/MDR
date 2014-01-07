@@ -208,9 +208,13 @@
             		
             		self.subPathwayId = data.pathwayId;
             		
-            		}
+            		$.when(pathwayService.loadPathway(bindingContext.$root.topLevelPathway.id)).done(function (data) {
+                			var tlpm = self.createPathway(data.pathwaysModelInstance);
+                			bindingContext.$root.topLevelPathway = tlpm;
+                	});
+            	}
             	});
-            
+
             //root.pathwayModel = self.subPathway;
             bindingContext.$root.updatePathway();
             

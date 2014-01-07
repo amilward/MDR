@@ -111,6 +111,8 @@
                 	}
                     
                 }
+                
+             self.selectedItem = undefined;
         }
         
         self.logoutFromApp = function(){
