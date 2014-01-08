@@ -1,5 +1,6 @@
 modules = {
-	
+
+
 	// Standard libraries
 	jquery_lib {
 		resource url: "js/vendor/jquery/jquery-2.0.3.js", disposition: 'head'
@@ -194,6 +195,18 @@ modules = {
         resource url: "js/vendor/less/less-1.6.0.min.js", disposition: 'head'
         resource url:'css/theme.css'
         resource url:'css/style.css'
+    }
+
+    /**
+     * Angular support
+     */
+    angular {
+        resource id: 'js', url: [dir: 'bower_components/angular', file: "angular.js"], nominify: true
+    }
+
+    angularPathwaysApp {
+        dependsOn 'angular'
+        resource id: 'js', url: [dir: 'js/angular/', file: "angular-app.js"], nominify: true
     }
 }
 
