@@ -290,8 +290,8 @@
             <div class="panel-body">
                 <form class="form" role="form">
                     <div class="form-group">
-                        <label for="txt-name" class="control-label">Name: </label>
-                        <input id="txt-name" type="text" class="form-control" data-bind="value: name, valueUpdate: 'input'" />
+                        <label for="txt-properties-name" class="control-label">Name: </label>
+                        <input id="txt-properties-name" type="text" class="form-control" data-bind="value: name, valueUpdate: 'input'" />
                     </div>
                     <div class="form-group">
                         <label for="txt-desc" class="control-label">Description: </label>
@@ -367,7 +367,7 @@
                 </div>
                 <!-- /ko -->
                 <div class="pull-right">
-                    <button type="button" class="btn btn-danger btn-xs pull-right" data-bind="click: $parent.deleteSelectedElement">
+                    <button type="button" id="deleteSelectedElement" class="btn btn-danger btn-xs pull-right" data-bind="click: $parent.deleteSelectedElement">
                         <span class="glyphicon glyphicon-remove"></span> Delete
                     </button>
                 </div>
