@@ -12,7 +12,7 @@ import uk.co.mdc.pages.pathways.PathwayShowPage
 
 import org.openqa.selenium.Dimension
 
-class DeleteNodeSpec extends GebReportingSpec {
+class PathwayDeleteNodeSpec extends GebReportingSpec {
 	def "View a Pathway and delete a Node on the pathway as admin"() {
 		
 			given:"I am on the dashboard view in a 1024x768 browser window"
