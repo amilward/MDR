@@ -61,10 +61,6 @@
 	transition: background-color 0.25s ease-in;
 }
 
-.aLabel._jsPlumb_hover,._jsPlumb_source_hover,._jsPlumb_target_hover {
-	background-color: #1e8151;
-	color: white;
-}
 
 .aLabel {
 	background-color: white;
@@ -232,8 +228,7 @@ background-image: linear-gradient(#def 2px, transparent 2px),
 }
 
 .aLabel._jsPlumb_hover,._jsPlumb_source_hover,._jsPlumb_target_hover {
-	background-color: #1e8151;
-	color: white;
+	
 }
 
 .aLabel {
