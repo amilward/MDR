@@ -4,11 +4,7 @@
 				Endpoint : [ "Dot", {
 					radius : 1
 				} ],
-				HoverPaintStyle : {
-					strokeStyle : "#1e8151",
-					lineWidth : 1
-				},
-				Connector: 'StateMachine',
+				Connector: 'Flowchart',
 	            ConnectorStyle: { strokeStyle: "#5c96bc", lineWidth: 2, outlineColor: "transparent", outlineWidth: 4 },
 				ConnectionOverlays : [ [ "Arrow", {
 					location: 1,
@@ -114,10 +110,10 @@ jsPlumb.bind("connection", function (info) {
 		}
 	
 	}
-
     
     info.connection.bind("click", function() {
         var params = info.connection.getParameters();
-        vm.selectLink(params.connectionId);                
+        vm.selectLink(params.connectionId);
     });
+    
 });

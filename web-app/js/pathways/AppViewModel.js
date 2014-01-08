@@ -287,7 +287,7 @@
         };
         
         self.deleteNode = function(nodeId){
-        	
+
         	//get ko node
         	var nodeToDelete;
 		    ko.utils.arrayForEach(self.pathwayModel.nodes, function(node) {
@@ -321,7 +321,6 @@
 		    
 		    //remove the ko node from pathway model
         	$.when(pathwayService.deleteNode(nodeId)).done(function (data) {
-        		
 			    ko.utils.arrayRemoveItem(self.pathwayModel.nodes, nodeToDelete);
 			    ////console.log(self.pathwayModel.nodes);
         	});
@@ -450,9 +449,7 @@
         };
         
         self.deleteLink = function(connectionId){
-        	
-        	////console.log(connectionId)
-        	
+
         	var link;
 		    ko.utils.arrayForEach(self.pathwayModel.links, function(connection) {
 		      if(connection.connectionId == connectionId){
@@ -465,9 +462,6 @@
 		    
 		    var source = link.source; //Get the source node model instance            
    		    var target = link.target; //Get the target node model instance
-   		    
-   		    ////console.log(source.outputs)
-   			////console.log(target.inputs)
    			
    			//If source is current node, and target node is not already in the outputs array, add it to outputs
 		    if (ko.utils.arrayFirst(source.outputs, function (item) { return item === target })) {
@@ -482,13 +476,21 @@
 		    
 		    
 		    //remove the link itself
-		    
+
 		    $.when(pathwayService.deleteLink(link.id)).done(function (data) {
-		    	////console.log(self.pathwayModel.links);
 			    ko.utils.arrayRemoveItem(self.pathwayModel.links, link);
-			   // //console.log(self.pathwayModel.links);
         	});
 
+            //Only modify the right panel if the currently displayed properties belong to the deleted node
+            if (self.selectedItem === link) {
+                self.selectedItem = undefined;
+            }
+
+            ko.utils.arrayForEach( jsPlumb.getConnections(), function(connection) {
+                if(connection.getParameter("connectionId") == link.connectionId){
+                    jsPlumb.detach(connection);
+                }
+            });
         }
         
         self.selectLink = function(connectionId) {
@@ -506,6 +508,16 @@
         self.addCollectionFinish = function(){
         	$('#AddCollectionModal').modal('hide');
         }
+        
+        self.deleteSelectedElement = function(){
+            if(self.selectedItem instanceof LinkModel){
+                self.deleteLink(self.selectedItem.connectionId);
+            }else{
+                //assume it's a node instead
+                self.deleteNode(self.selectedItem.id);
+            }
+        };
+        
 	
 		
 		self.isSubPathway = function(){

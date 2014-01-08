@@ -2,19 +2,20 @@
  * Author: Adam Milward (adam.milward@outlook.com)
  */
 package uk.co.mdc.pathways;
+import geb.error.RequiredPageContentNotPresent
 import geb.spock.GebReportingSpec
 
-import  uk.co.mdc.pages.authentication.LoginPage
-import  uk.co.mdc.pages.DashboardPage
+import uk.co.mdc.pages.authentication.LoginPage
+import uk.co.mdc.pages.DashboardPage
 import uk.co.mdc.pages.pathways.PathwayListPage
 import uk.co.mdc.pages.pathways.PathwayShowPage
 
 import org.openqa.selenium.Dimension
 
-class PathwaysTreeViewSpec extends GebReportingSpec {
-	def "Navigate to a pathway view tree view and click on subtree node"() {
+class PathwayDeleteNodeSpec extends GebReportingSpec {
+	def "View a Pathway and delete a Node on the pathway as admin"() {
 		
-			given:"I am on the dashboard view in a 1024x768 browser window and login as admin"
+			given:"I am on the dashboard view in a 1024x768 browser window"
 					driver.manage().window().setSize(new Dimension(1028, 768))
 					to LoginPage
 					username = "admin"
@@ -45,7 +46,8 @@ class PathwaysTreeViewSpec extends GebReportingSpec {
 						dataTableRows.size() > 0
 					}
 					
-					when: "I click on the correct pathway link"
+					
+					when: "I click on the first pathway link"
 					def pName = dataTableTMLink.text()
 					dataTableTMLink.click()
 					
@@ -54,28 +56,32 @@ class PathwaysTreeViewSpec extends GebReportingSpec {
 						at PathwayShowPage
 					}
 			
-					and: "it displays the pathway name and tree view with 3 nodes (1 with a sub pathway)"
+					and: "it displays the name of the pathway"
 					waitFor{
 						pathwayName.text() == pName
-						checkBox.value() == "on" 
-						treeLevel1.size() == 2
 					}
 					
-					when: "I click on the node with a subpathway"
-					js.exec("document.getElementById('cb8').click()")
-					
-					then: "the tree view expands to show the nodes in the subpathway"
+					when: "I click on a node"
+					node2.click()
+				
+					then: "the delete node button is visible in the properties panel"
 					waitFor{
-						treeLevel2.size()==3
+						deleteSelectedElementButton.@type=="button"	
+						propertiesName == "Anaesthesia and Operating Patient."
 					}
 					
-					when: "I click on one of the nodes"
-					guardPatientNode.click()
+					when: "I click on the delete node button"
+					deleteSelectedElementButton.click()
 					
-					then: "the subpathway for that node is displayed"
+					then: "the node is deleted"
 					waitFor{
-						pathwayName.text() == "Guarding Patient on recovery and transfer to nursing ward"
-					}
-					
+							try {
+								!node2.present
+							} catch (RequiredPageContentNotPresent e) {
+								thrown = true
+							}
+						}
+							
 		}
+	
 }
