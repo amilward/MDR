@@ -58,7 +58,7 @@ class PathwaysTreeViewSpec extends GebReportingSpec {
 					waitFor{
 						pathwayName.text() == pName
 						checkBox.value() == "on" 
-						treeLevel1.size() == 2
+						treeLevel1.size() == 3
 					}
 					
 					when: "I click on the node with a subpathway"

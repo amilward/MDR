@@ -426,7 +426,7 @@
 			        </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-bind="click: $root.saveNode">Create</button>
+                    <button id="createNodeButton" type="button" class="btn btn-primary" data-bind="click: $root.saveNode">Create</button>
                     <button class="closeModalLink" type="button" class="btn"
           >Cancel</button>
                 </div>
