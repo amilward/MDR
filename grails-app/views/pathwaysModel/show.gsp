@@ -25,9 +25,7 @@
 		<div id="header-panel" class="panel-heading ui-layout-north large-rounded">
             <div class="panel panel-default" >
           	  <div class="panel-body">
-                <button type="button" class="btn btn-link btn-xs pull-right" id="goToParent" data-bind="if: isSubPathway(), click: goToParent()">
-                    <i class="fa fa-arrow-up"></i> Parent
-                </button>
+
            	 	<button type="button" class="btn btn-link btn-xs pull-right" id="addNode" data-bind="click: createNode">
                     <i class="fa fa-plus"></i> Add Node
                 </button>
@@ -37,10 +35,12 @@
                 <button type="button" class="btn btn-link btn-xs pull-right" id="editPathwayInfo" data-bind="click: editPathway">
                     <i class="fa fa-edit"></i> Edit Info
                 </button>
-               
+                  <button type="button" class="btn btn-link btn-xs pull-right" id="goToParent" data-bind="visible: isSubPathway(), click: goToParent()" style="display:none">
+                      <i class="fa fa-arrow-up"></i> Parent
+                  </button>
             	
                  <div class="form-group">
-                      <h1 id="pathwayName" data-bind="text: pathwayModel ? pathwayModel.name : ''"></h1>
+                      <h1 id="pathwayName" data-bind="text: pathwayModel ? pathwayModel.name : ''">&nbsp;</h1>
                 </div>
                 
                 </div>
@@ -51,8 +51,8 @@
 			<div class="ui-layout-west large-rounded" id="tree-panel">
 				<div class="panel panel-default" data-bind="with: topLevelPathway">
 					<div class="panel-body">
-						<div id="jsTreeView" class="treeview">
-                        	
+						<div id="jsTreeView" class="treeview"  data-bind="visible: true" style="display:none">
+
                         	<!-- ko if: id ==  $root.pathwayModel.id -->
 	                       	 	<!-- ko with: $root.pathwayModel -->
                         	
@@ -263,22 +263,20 @@
 
 
 			<div class="ui-layout-center" id="center-panel">
-			<div id="model-panel" class="ui-layout-center  large-rounded">
-
-			<div id="canvas-panel" class="panel panel-primary">
-            <div class="panel-body" data-bind="with: pathwayModel">
-                <div class="jsplumb-container" data-bind="foreach: nodes ">
-                    <div class="node" data-bind="makeNode: $data, click: $root.selectNode, style: {top:y, left:x}, attr: { 'id': 'node' + id}, css: {selectedItem: $root.itemEqualsToSelected($data)}">
-                        <div data-bind="attr:{title: description}, text: name"></div>
-                        <div class="fa fa-chevron-right ep right"></div>
-			<div class="fa fa-chevron-left ep left"></div>
-			<div class="fa fa-chevron-up ep up"></div>
-			<div class="fa fa-chevron-down ep down"></div>
+			    <div id="model-panel" class="ui-layout-center  large-rounded">
+			        <div id="canvas-panel" class="panel panel-primary">
+                        <div class="panel-body" data-bind="with: pathwayModel">
+                            <div class="jsplumb-container" data-bind="foreach: nodes, visible: true" style="display:none">
+                                <div class="node" data-bind="makeNode: $data, click: $root.selectNode, style: {top:y, left:x}, attr: { 'id': 'node' + id}, css: {selectedItem: $root.itemEqualsToSelected($data)}">
+                                    <div data-bind="attr:{title: description}, text: name">&nbsp;</div>
+                                    <div class="fa fa-chevron-right ep right"></div>
+			                        <div class="fa fa-chevron-left ep left"></div>
+			                        <div class="fa fa-chevron-up ep up"></div>
+			                        <div class="fa fa-chevron-down ep down"></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-        </div>
-
 				</div>
 			</div>
 
