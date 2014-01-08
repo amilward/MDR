@@ -221,8 +221,8 @@
 
 	                                           										<!-- /ko -->
 							                                                    <!-- /ko -->
-
-							                                                  	 <!-- ko if: subPathwayId !=  $root.pathwayModel.id -->
+							                                                    
+							                                                    <!-- ko if: subPathwayId !=  $root.pathwayModel.id -->
 							                                                          <!-- ko if: subPathwayId != null -->
 							                                                                <ul class="level4" data-bind="foreach: subNodes">
 							                                                                      <li>
@@ -236,6 +236,7 @@
 							                                                                  </ul>
 							                                                           <!-- /ko -->
 							                                                     <!-- /ko -->
+	
 					                                                          </li>
 					                                                   </ul>
 					                                               <!-- /ko -->
@@ -409,7 +410,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>-->
-                    <h4 class="modal-title" id="myModalLabel">Create Node</h4>
+                    <h4 class="modal-title" id="createNodeModalLabel">Create Node</h4>
                 </div>
                 <div class="modal-body">
                     <form class="form" role="form">

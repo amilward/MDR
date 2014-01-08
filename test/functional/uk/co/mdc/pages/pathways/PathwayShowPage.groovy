@@ -44,10 +44,11 @@ class PathwayShowPage extends BasePageWithNav{
 		guardPatientNode { treeLevel2.find("span", text: "Guard Patient") }
 		deleteSelectedElementButton {$("#deleteSelectedElement")}
 		propertiesName {js.exec("return document.getElementById('txt-properties-name').value")}
-		modalLabel { $("#myModalLabel") }
+		modalLabel { $("#createNodeModalLabel") }
 		createNodeName { $("#createNodeName") }
 		createNodeDescription { $("#createNodeDescription") }
 		createNodeButton { $("#createNodeButton") }
+		newNodeTitleDiv { pathwayCanvas.find("div", text: "testNode")}
 
         editModal { module PathwayEditModal }
 	}

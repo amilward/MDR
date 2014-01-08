@@ -3,6 +3,7 @@
  */
 package uk.co.mdc.pathways;
 import geb.error.RequiredPageContentNotPresent
+import geb.error.UnresolvablePropertyException
 import geb.spock.GebReportingSpec
 
 import uk.co.mdc.pages.authentication.LoginPage
@@ -64,7 +65,9 @@ class PathwayAddDeleteNodeSpec extends GebReportingSpec {
 					addNodeButton.click()
 					
 					then: "the create node modal pops up"
-					modalLabel.text() == "Create Node"
+					waitFor{
+						modalLabel.text() == "Create Node"
+					}
 					
 					when: "I fill in the information"
 					createNodeName = "testNode"
@@ -72,17 +75,18 @@ class PathwayAddDeleteNodeSpec extends GebReportingSpec {
 					createNodeButton.click()
 					
 					then: "the node appears in the interface with the testNode title"
-					def newNodeTitleDiv = $(".node").find("a", text: "Transplanting and Monitoring Pathway")
-					def newNode = newNodeTitleDiv.parent()
-					newNodeTitle.text() =="testNode" 
-					
+
+					waitFor{
+						newNodeTitleDiv.displayed
+					}
+
 					when: "I click on the node I have just created"
-					newNode.click()
+					newNodeTitleDiv.click()
 				
 					then: "the delete node button is visible in the properties panel"
 					waitFor{
 						deleteSelectedElementButton.@type=="button"	
-						propertiesName == "Anaesthesia and Operating Patient."
+						propertiesName == "testNode"
 					}
 					
 					when: "I click on the delete node button"
@@ -91,10 +95,12 @@ class PathwayAddDeleteNodeSpec extends GebReportingSpec {
 					then: "the node is deleted"
 					waitFor{
 							try {
-								!newNode.present
+								newNodeTitleDiv.text() != "testNode"
+							} catch (UnresolvablePropertyException e) {
+								return true
 							} catch (RequiredPageContentNotPresent e) {
-								thrown = true
-							}
+								return true
+							} 
 						}
 							
 		}
