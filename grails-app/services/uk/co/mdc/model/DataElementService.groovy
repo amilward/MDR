@@ -71,7 +71,7 @@ class DataElementService {
 		
 		//link any relations that were selected with data element
 		
-		linkRelations(dataElementInstance, parameters?.relations)
+		linkRelations(dataElementInstance, parameters?.relations, "Synonym")
 		
 		// Grant the current user principal administrative permission 
 		
@@ -159,7 +159,7 @@ class DataElementService {
 	   if(dataElementInstance.save(flush: true)){
 		   
 		   //add/remove relations that have specified for addition or removal
-		   linkRelations(dataElementInstance, relations)
+		   linkRelations(dataElementInstance, relations, "Synonym")
 	   }
 	   
 	   if(dataElementInstance.save(flush: true)){
@@ -217,7 +217,10 @@ class DataElementService {
 	 * links the data element with the relations specified via a link table
 	 ********************************************************************************* */
 	
-	def linkRelations(dataElementInstance, relations){
+	def linkRelations(dataElementInstance, relations, relationshipType){
+		
+		//get relationship type
+		def relationType = RelationshipType.findByName(relationshipType)
 		
 		//get the relations already associated with the data element before the update
 		def associatedRelations = dataElementInstance.relations()
@@ -243,7 +246,7 @@ class DataElementService {
 				//add this one to the data element
 				
 				if(relationA){					
-					Relationship.link(dataElementInstance, relationA)
+					Relationship.link(dataElementInstance, relationA, relationType)
 				}
 				
 			}
@@ -264,7 +267,7 @@ class DataElementService {
 				  for (relationsID in relations){
 					  DataElement relation =  DataElement.get(relationsID)
 					  if(relation){
-						  	Relationship.link(dataElementInstance, relation)
+						  	Relationship.link(dataElementInstance, relation, relationType)
 						}
 				  }
   

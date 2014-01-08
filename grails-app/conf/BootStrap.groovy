@@ -241,6 +241,12 @@ class BootStrap {
 		
 		def date
 		
+		if (!RelationshipType.count()) {
+			
+			new RelationshipType(name: "Synonym").save()
+			
+		}
+		
 		
 		if (!ConceptualDomain.count()) {
 			ConceptualDomain COSD = new ConceptualDomain(name:"TESTDOMAIN", description:"Cancer Outcomes and Services Dataset").save(failOnError: true)

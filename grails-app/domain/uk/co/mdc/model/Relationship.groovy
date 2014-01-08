@@ -2,17 +2,18 @@ package uk.co.mdc.model
 
 class Relationship  {
 	
-	Integer dataElement1Id
-	Integer dataElement2Id
+	Integer objectXId
+	Integer objectYId
+	RelationshipType relationshipType
 
     static constraints = {
     }
 	
-	static link(DataElement dataElement1, DataElement dataElement2){
+	static link(objectX, objectY, RelationshipType relationshipType){
 		
 		def s
-		def s1 = Relationship.findByDataElement1IdAndDataElement2Id(dataElement1.id, dataElement2.id)
-		def s2 = Relationship.findByDataElement1IdAndDataElement2Id(dataElement2.id, dataElement1.id)
+		def s1 = Relationship.findByObjectXIdAndObjectYId(objectX.id, objectY.id)
+		def s2 = Relationship.findByObjectXIdAndObjectYId(objectY.id, objectX.id)
 		
 		if(s1){
 			
@@ -24,15 +25,16 @@ class Relationship  {
 		
 		}else{
 		
-			s = new Relationship( 	dataElement1Id: dataElement1.id,
-							 		dataElement2Id: dataElement2.id).save(flush:true)
+			s = new Relationship( 	objectXId: objectX.id,
+							 		objectYId: objectY.id,
+									relationshipType: relationshipType).save(flush:true)
 			
 			 
-			dataElement1.addToRelations(s)
-			dataElement2.addToRelations(s)
+			objectX.addToRelations(s)
+			objectY.addToRelations(s)
 
-			dataElement1.save(failOnError:true)
-			dataElement2.save(failOnError:true)
+			objectX.save(failOnError:true)
+			objectY.save(failOnError:true)
 			
 		}
 		
@@ -41,17 +43,17 @@ class Relationship  {
 	}
 	
 	
-	static unlink(DataElement dataElement1, DataElement dataElement2){
+	static unlink(objectX, objectY){
 		
-		def s1 = dataElement1.relations.find{ it.dataElement2Id == dataElement2.id }
-		def s2 = dataElement1.relations.find{ it.dataElement1Id == dataElement2.id }
+		def s1 = objectX.relations.find{ it.objectYId == objectY.id }
+		def s2 = objectX.relations.find{ it.objectXId == objectY.id }
 		
 		if (s1)
 		{
-			dataElement1.removeFromRelations(s1)
-			dataElement2.removeFromRelations(s1)
-			dataElement1.save()
-			dataElement2.save()
+			objectX.removeFromRelations(s1)
+			objectY.removeFromRelations(s1)
+			objectX.save()
+			objectY.save()
 			
 			s1.delete(flush:true)
 			
@@ -59,10 +61,10 @@ class Relationship  {
 		
 		if (s2)
 		{
-			dataElement1.removeFromRelations(s2)
-			dataElement2.removeFromRelations(s2)
-			dataElement1.save()
-			dataElement2.save()
+			objectX.removeFromRelations(s2)
+			objectY.removeFromRelations(s2)
+			objectX.save()
+			objectY.save()
 			
 			s2.delete(flush:true)
 			

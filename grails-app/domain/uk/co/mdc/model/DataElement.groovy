@@ -77,9 +77,9 @@ class DataElement extends ModelElement {
 	
 	def relationsR = []
 	
-	if(relations.collect{it.dataElement1Id}[0] == this.id){
+	if(relations.collect{it.objectXId}[0] == this.id){
 		
-		def relationshipIds = relations.collect{it.dataElement2Id}
+		def relationshipIds = relations.collect{it.objectYId}
 		
 		relationshipIds.each{ relationshipId->
 			relationsR.add(DataElement.get(relationshipId))
@@ -87,7 +87,7 @@ class DataElement extends ModelElement {
 		
 	}else{
 		
-		def relationshipIds = relations.collect{it.dataElement1Id}
+		def relationshipIds = relations.collect{it.objectXId}
 		
 		relationshipIds.each{ relationshipId->
 			relationsR.add(DataElement.get(relationshipId))
