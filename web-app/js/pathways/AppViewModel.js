@@ -72,14 +72,7 @@
         	
         }
       
-        
-        //displays a modal that is bound to the pathway and allows you to edit the pathway info
-        //i.e. name, description etc
-        
-        self.editPathway = function() {
-        	$('#updatePathwayModal').modal({ show: true, keyboard: false, backdrop: 'static' });
 
-        };
         
         //this is used to display a pathway when given pathway JSON
         

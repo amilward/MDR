@@ -60,24 +60,6 @@ function createForm(){
     $(this).closest(".dropdown").removeClass("open");
 }
 
-$('#createPathwayLink').click(
-		function(){
-			createPathway();
-			}
-    );
-
-
-function createPathway(){
-	  	  $('#createPathwayModal').modal({ show: true, keyboard: false, backdrop: 'static' });
-	      $(this).closest(".dropdown").removeClass("open");
-}
-
-$('.closeModalLink')
-.click(
-    function() {
-  	  $('.modal').modal('hide');
-      return false;
-    });
 
 $('#createFormSubmit')
 .click(

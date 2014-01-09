@@ -2,7 +2,7 @@
   Author: Adam Milward (adam.milward@outlook.com)
 -->
 	<!-- Create Form Modal -->
-    <div id="createFormModal" class="modal fade hide" tabindex="-1"	role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop = "true" >
+    <div id="createFormModal" class="modal fade" tabindex="-1"	role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop = "true" >
 	<div class="modal-dialog">
 		<div class="modal-content" data-bind="">
 			<div class="modal-header">

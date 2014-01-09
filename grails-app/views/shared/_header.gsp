@@ -65,7 +65,7 @@
                             <a id="nav-pathway-expand" class="dropdown-toggle" data-toggle="dropdown" href="#">Pathways <b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li id="nav-pathway-link"><g:link elementId="listPathwaysLink" action="list" controller="PathwaysModel"> List pathways </g:link></li>
-                                <li><a id="createPathwayLink" href="#"> Create pathway </a></li>
+                                <li><a id="createPathwayLink" href="#" data-toggle="modal" data-target="#createPathwayModal"> Create pathway </a></li>
                             </ul>
                         </li>
 

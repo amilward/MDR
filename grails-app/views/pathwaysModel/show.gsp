@@ -31,7 +31,7 @@
                 <button type="button" class="btn btn-link btn-xs pull-right" id="updatePathway" data-bind="click: updatePathway">
                     <i class="fa fa-save"></i> Save
                 </button>
-                <button type="button" class="btn btn-link btn-xs pull-right" id="editPathwayInfo" data-bind="click: editPathway">
+                <button type="button" class="btn btn-link btn-xs pull-right" id="editPathwayInfo" data-toggle="modal" data-target="#updatePathwayModal">
                     <i class="fa fa-edit"></i> Edit Info
                 </button>
                   <button type="button" class="btn btn-link btn-xs pull-right" id="goToParent" data-bind="visible: isSubPathway(), click: goToParent()" style="display:none">
@@ -376,7 +376,7 @@
 
 
 	<!-- Add Pathway Modal -->
-    <div class="modal fade hide" id="CreatePathwayModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal fade" id="CreatePathwayModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content" >
                 <div class="modal-header">
@@ -403,7 +403,7 @@
     </div><!-- /.modal -->
     
     <!-- Add Node Modal -->
-    <div class="modal fade hide" id="CreateNode" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal fade" id="CreateNode" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -424,8 +424,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" data-bind="click: $root.saveNode">Create</button>
-                    <button class="closeModalLink" type="button" class="btn"
-          >Cancel</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
@@ -433,7 +432,7 @@
     
     
     <!-- Add Form Modal -->
-    <div class="modal fade hide" id="AddFormModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal fade" id="AddFormModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -455,7 +454,7 @@
     </div><!-- /.modal -->
     
     <!-- Add CollectionModal -->
-    <div class="modal fade hide" id="AddCollectionModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal fade" id="AddCollectionModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -477,7 +476,7 @@
     </div><!-- /.modal -->
     
     <!-- Update Pathway Info -->
-    <div id="updatePathwayModal" class="modal fade hide" tabindex="-1"	role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop = "true" >
+    <div id="updatePathwayModal" class="modal fade" tabindex="-1"	role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop = "true" >
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -513,15 +512,15 @@
 				</form>
 			</div>
 			<div class="modal-footer">
-                <button class="closeModalLink" type="button" class="btn">Close</button>
+                <button class="closeModalLink" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 <div class="pull-left">
                     <div id="deletePathway-initial">
-                        <button type="button" class="btn btn-danger btn-xs pull-right" id="deletePathway" data-bind="click: deletePathway">
+                        <button type="button" id="deletePathway" class="btn btn-danger" data-bind="click: deletePathway">
                             <span class="glyphicon glyphicon-remove"></span> Delete Pathway
                         </button>
                     </div>
                     <div id="deletePathway-confirmation" class="pull-right" aria-hidden="true" style="display: none;">
-                        <button type="button" id="cancelDeletePathway" class="btn">Abort deletion</button>
+                        <button type="button" id="cancelDeletePathway" class="btn btn-default">Abort deletion</button>
                         <button type="button" id="confirmDeletePathway" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span>Confirm (WARNING: this cannot be undone)</button>
                     </div>
                 </div>
