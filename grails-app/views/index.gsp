@@ -1,36 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
+<meta name="layout" content="main_no-sidebar"/>
 <title>Model Catalogue - Home</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="">
-<meta name="author" content="">
 
-<!-- Le styles -->
-<link rel="stylesheet" href="${resource(dir: 'css', file: 'bootstrap.min.css')}" type="text/css">
-<link rel="stylesheet" href="${resource(dir: 'css', file: 'bootstrap-responsive.min.css')}" type="text/css">
 
 <!-- FIXME this custom CSS file should be abstracted away so it's shared for all "big, informationy pages" -->
 <link rel="stylesheet" href="${resource(dir: 'css', file: 'index_custom.css')}" type="text/css">
 
-
-
 <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>
-      <script src="../assets/js/html5shiv.js"></script>
-    <![endif]-->
+    <script src="../assets/js/html5shiv.js"></script>
+<![endif]-->
 
-<!-- Fav and touch icons -->
-<link rel="apple-touch-icon-precomposed" sizes="144x144"
-	href="../assets/ico/apple-touch-icon-144-precomposed.png">
-<link rel="apple-touch-icon-precomposed" sizes="114x114"
-	href="../assets/ico/apple-touch-icon-114-precomposed.png">
-<link rel="apple-touch-icon-precomposed" sizes="72x72"
-	href="../assets/ico/apple-touch-icon-72-precomposed.png">
-<link rel="apple-touch-icon-precomposed"
-	href="../assets/ico/apple-touch-icon-57-precomposed.png">
-<link rel="shortcut icon" href="../assets/ico/favicon.png">
 </head>
 
 <body>
@@ -113,14 +95,4 @@
 		</div>
 
 	</div>
-	<!-- /container --> 
-
-	<!-- Le javascript
-    ================================================== -->
-	<!-- Placed at the end of the document so the pages load faster -->
-	<script src="./js/vendor/jquery/jquery-2.0.3.js"></script>
-	<script src="./js/vendor/bootstrap/bootstrap.js"></script>
-	<script src="./js/application.js"></script>
-
-</body>
-</html>
+	<!-- /container -->

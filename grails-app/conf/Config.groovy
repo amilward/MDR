@@ -41,16 +41,6 @@ grails.mime.types = [
 // URL Mapping Cache Max Size, defaults to 5000
 //grails.urlmapping.cache.maxsize = 1000
 
-// What URL patterns should be processed by the resources plugin
-grails.resources.adhoc.patterns = [
-	'/images/*',
-	'/img/*',
-	'/css/**',
-	'/js/*',
-	'/js/vendor/*',
-	'/plugins/*'
-]
-
 //NEED TO REMOVE IN PRODUCTION - DISABLING JAVASCRIPT BUNDLING
 grails.resources.debug=true
 
@@ -170,6 +160,8 @@ grails{
 
 			securityConfigType = "Annotation"
 			controllerAnnotations.staticRules = [
+                // Bower dependencies
+                '/bower_components/**': ['IS_AUTHENTICATED_ANONYMOUSLY'],
 				// Javascript
 				'/js/**':      			['IS_AUTHENTICATED_ANONYMOUSLY'],
 				'/js/vendor/**':  		['IS_AUTHENTICATED_ANONYMOUSLY'],
@@ -177,6 +169,7 @@ grails{
 				// CSS
 				'/**/css/**':      		['IS_AUTHENTICATED_ANONYMOUSLY'],
 				'/css/**': 				['IS_AUTHENTICATED_ANONYMOUSLY'],
+                '/**/*.less':           ['IS_AUTHENTICATED_ANONYMOUSLY'],
 				// Images
 				'/images/**': 			['IS_AUTHENTICATED_ANONYMOUSLY'],
 				'/img/**': 				['IS_AUTHENTICATED_ANONYMOUSLY'],
