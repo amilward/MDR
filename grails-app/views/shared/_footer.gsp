@@ -1,6 +1,6 @@
 
   </div>
-  <!-- END WRAP -->
+  <!-- END WRAP (from header) -->
 
 
   <!-- BEGIN FOOTER -->

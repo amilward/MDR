@@ -1,7 +1,7 @@
 <html>
 
 <head>
-<meta name="layout" content="main_no-sidebar">
+<meta name="layout" content="main">
 <title>Activate pending users</title>
 </head>
 

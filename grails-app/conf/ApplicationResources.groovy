@@ -40,8 +40,6 @@ modules = {
 	}
 	
 	bootstrap_lib{
-        resource url: "bower_components/bootstrap/dist/css/bootstrap.min.css"
-        resource url: "bower_components/bootstrap/dist/css/bootstrap-theme.min.css"
         resource url: "bower_components/bootstrap/dist/js/bootstrap.min.js"
 	}
 	

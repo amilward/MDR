@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta name="layout" content="main_no-sidebar"/>
+<head><meta name="layout" content="main"/>
 <title>Model Catalogue - Home</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="">
 
 
 <!-- FIXME this custom CSS file should be abstracted away so it's shared for all "big, informationy pages" -->
@@ -57,7 +59,7 @@
 		<hr>
 
 		<!-- Example row of columns -->
-		<div class="row-fluid">
+		<div class="row">
 			<div class="span4">
 				<h2>Forms</h2>
 				<p>Build forms from standard data elements in our friendly
@@ -95,4 +97,4 @@
 		</div>
 
 	</div>
-	<!-- /container -->
+	<!-- /container --> 

@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta name="layout" content="main">
+		<meta name="layout" content="metadata_curation">
 		<g:set var="entityName" value="${message(code: 'dataElementConcept.label', default: 'Section (Data Element Concept)')}" />
 		<title><g:message code="default.show.label" args="[entityName]" /></title>
 		<parameter name="name" value=" DATA ELEMENT CONCEPT - ${dataElementConceptInstance?.name}" />

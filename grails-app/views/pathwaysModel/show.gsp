@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="layout" content="main_no-sidebar">
+<meta name="layout" content="main_fullwidth">
 <g:set var="entityName"
 	value="${message(code: 'pathwaysModel.label', default: 'PathwaysModel')}" />
 <title>Show Pathway</title>
