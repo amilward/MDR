@@ -3,7 +3,7 @@
 START EDIT DATAELEMENT  SCRIPTS
 ---------------------------------------------------------*/
 
-function selectDataElementStuff(selectedValueDomains, relations, subElements, externalReferences){
+function selectDataElementStuff(selectedValueDomains, selectedSynonyms, subElements){
 	// create a deferred object
 	  var r = $.Deferred();
 
@@ -16,11 +16,11 @@ function selectDataElementStuff(selectedValueDomains, relations, subElements, ex
 			});
 		}
 		
-		if(relations.length==1){
-			$('select[name="relations"]').find('option[value="'+relations+'"]').attr("selected",true);
-		}else if(relations.length>1){
-			$.each(relations, function(index, item) {
-				$('select[name="relations"]').find('option[value="'+item+'"]').attr("selected",true);
+		if(selectedSynonyms.length==1){
+			$('select[name="synonyms"]').find('option[value="'+selectedSynonyms+'"]').attr("selected",true);
+		}else if(selectedSynonyms.length>1){
+			$.each(synonyms, function(index, item) {
+				$('select[name="synonyms"]').find('option[value="'+item+'"]').attr("selected",true);
 			});
 		}
 		
@@ -32,13 +32,6 @@ function selectDataElementStuff(selectedValueDomains, relations, subElements, ex
 			});
 		}
 		
-		if(externalReferences.length==1){
-			$('select[name="externalReferences"]').find('option[value="'+externalReferences+'"]').attr("selected",true);
-		}else if(externalReferences.length>1){
-			$.each(externalReferences, function(index, item) {
-				$('select[name="externalReferences"]').find('option[value="'+item+'"]').attr("selected",true);
-			});
-		}
 		r.resolve();
 		return r
 
@@ -46,7 +39,7 @@ function selectDataElementStuff(selectedValueDomains, relations, subElements, ex
 
 function dataElementDualListBox(){
 	
-	//set up dual list box for valueDomains, relations, subElements and external Reference
+	//set up dual list box for valueDomains, synonyms, subElements and external Reference
 	
 	$('#valueDomains').bootstrapDualListbox({
 	    nonselectedlistlabel: 'Available Value Domains',
@@ -55,9 +48,9 @@ function dataElementDualListBox(){
 	    moveonselect: false
 	});
 	
-	$('#relations').bootstrapDualListbox({
-	    nonselectedlistlabel: 'Choose Relations',
-	    selectedlistlabel: 'relations',
+	$('#synonyms').bootstrapDualListbox({
+	    nonselectedlistlabel: 'Choose synonyms',
+	    selectedlistlabel: 'synonyms',
 	    preserveselectiononmove: 'moved',
 	    moveonselect: false
 	});
@@ -73,11 +66,11 @@ function dataElementDualListBox(){
 }
 
 
-function dataElementForm(selectedValueDomains, relations, subElements, externalReferences){
+function dataElementForm(selectedValueDomains, synonyms, subElements){
 	
 	//set up form selecting the data elements that have been included
 	//and when this is done set up the dual list boxes (otherwise it may miss some)
-	selectDataElementStuff(selectedValueDomains, relations, subElements, externalReferences).done(dataElementDualListBox())
+	selectDataElementStuff(selectedValueDomains, synonyms, subElements).done(dataElementDualListBox())
 	
 }
 

@@ -59,9 +59,12 @@
 					</tr>
 				</g:if>
 				
-				<g:if test="${dataElementInstance?.dataElementValueDomains}">
+				
+				<g:if test="${relationshipTypes}">
+					<g:each var="relationshipType" in="${relationshipTypes}">
+					
 					<tr>
-							<td colspan="2"><span id="name-label" class="label">Associated Value Domains</span></td>
+							<td colspan="2"><span id="name-label" class="label">${relationshipType.name}</span></td>
 					</tr>
 					<tr>
 						<td colspan="2">
@@ -70,49 +73,19 @@
 								<tr>
 									<th>Name</th>
 									<th>Description</th>
-									<th>Data Type</th>
-									<th>Unit of Measure</th>
-									<th>Regex definition</th>
-		
 								</tr>
 							</thead>
-							<g:each var="valueDomain" in="${dataElementInstance.dataElementValueDomains()}">
+							<g:each var="relation" in="${dataElementInstance.relations(relationshipType.name)}">
 								<tr>
-									<td><g:link action="show" controller="ValueDomain" id="${valueDomain?.id}">${valueDomain?.name} </g:link></td>
-									<td>${valueDomain?.description}</td>
-									<td><g:link action="show" controller="DataType" id="${valueDomain?.dataType?.id}">${valueDomain?.dataType?.name}</g:link></td>
-									<td>${valueDomain?.unitOfMeasure} </td>
-									<td>${valueDomain?.regexDef} </td>
+									<td><g:link action="show" controller="${relation.getClass().getSimpleName()}" id="${relation?.id}">${relation?.name} </g:link></td>
+									<td>${relation?.description}</td>
 								</tr>
 							</g:each>
 						</table>
 						</td>
 					</tr>
-				</g:if>
-				<g:if test="${dataElementInstance.relations()}">
-					<tr>
-						<td colspan="2"><span id="name-label" class="label">relations</span></td>
-					</tr>
-					<tr>
-						<td colspan="2">
-							<table>
-							<thead>
-								<tr>
-									<th>Name</th>
-									<th>Description</th>
-									<th>Definition</th>
-								</tr>
-							</thead>
-							<g:each var="dataElement" in="${dataElementInstance.relations()}">
-								<tr>
-									<td><g:link action="show" controller="DataElement" id="${dataElement?.id}">${dataElement?.name} </g:link></td>
-									<td>${dataElement?.description}</td>
-									<td>${dataElement?.definition} </td>
-								</tr>
-							</g:each>
-						</table>
-						</td>
-					</tr>
+					
+					</g:each>
 				</g:if>
 				<g:if test="${dataElementInstance?.subElements}">
 					<tr>

@@ -27,7 +27,7 @@ class Relationship  {
 		
 			s = new Relationship( 	objectXId: objectX.id,
 							 		objectYId: objectY.id,
-									relationshipType: relationshipType).save(flush:true)
+									relationshipType: relationshipType).save(flush:true, failOnError:true)
 			
 			 
 			objectX.addToRelations(s)

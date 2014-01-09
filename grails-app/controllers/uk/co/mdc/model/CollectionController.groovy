@@ -13,7 +13,7 @@ class CollectionController {
 	def messageSource
 	def collectionService
 	def dataElementService
-	def MDRService
+	def modelElementService
 
 	/* **************************************************************************************
 	 * ************************************* INDEX *********************************************************
@@ -410,7 +410,7 @@ class CollectionController {
 		def referenceDataElements = params.referenceDataElements
 		
 		if(mandatoryDataElements && requiredDataElements){
-			if(MDRService.parameterContains(mandatoryDataElements, requiredDataElements)){
+			if(modelElementService.parameterContains(mandatoryDataElements, requiredDataElements)){
 				
 				flash.message = 'Added data elements must either be mandatory or required for any given collection, not both'
 				
@@ -420,7 +420,7 @@ class CollectionController {
 		
 	
 		if(mandatoryDataElements && optionalDataElements){
-			if(MDRService.parameterContains(mandatoryDataElements, optionalDataElements)){
+			if(modelElementService.parameterContains(mandatoryDataElements, optionalDataElements)){
 				flash.message = 'Added data elements must either be mandatory or optional for any given collection, not both.'
 				return false
 			}
@@ -428,28 +428,28 @@ class CollectionController {
 		
 
 		if(mandatoryDataElements && referenceDataElements){
-			if(MDRService.parameterContains(mandatoryDataElements, referenceDataElements)){
+			if(modelElementService.parameterContains(mandatoryDataElements, referenceDataElements)){
 				flash.message = 'Added data elements must either be mandatory or reference for any given collection, not both'
 				return false
 			}
 		}
 		
 		if(requiredDataElements && referenceDataElements){
-			if(MDRService.parameterContains(requiredDataElements, referenceDataElements)){
+			if(modelElementService.parameterContains(requiredDataElements, referenceDataElements)){
 				flash.message = 'Added data elements must either be mandatory or reference for any given collection, not both'
 				return false
 			}
 		}
 		
 		if(requiredDataElements && optionalDataElements){
-			if(MDRService.parameterContains(requiredDataElements, optionalDataElements)){
+			if(modelElementService.parameterContains(requiredDataElements, optionalDataElements)){
 				flash.message = 'Added data elements must either be required or optional for any given collection, not both'
 				return false
 			}
 		}
 		
 		if(optionalDataElements && referenceDataElements){
-			if(MDRService.parameterContains(optionalDataElements, referenceDataElements)){
+			if(modelElementService.parameterContains(optionalDataElements, referenceDataElements)){
 				flash.message = 'Added data elements must either be required or reference for any given collection, not both'
 				return false
 			}

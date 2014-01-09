@@ -10,7 +10,7 @@ class ConceptualDomainController {
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
 	def conceptualDomainService
-	def MDRService
+	def modelElementService
 	def valueDomainService
 	
 	/* **************************************************************************************

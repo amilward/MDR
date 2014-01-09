@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Angular + jsPlumb Test</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
+        <link rel="stylesheet" type="text/css" href="css/jquery-ui-1.8.24.custom.css" />
+        <link rel="stylesheet" type="text/css" href="css/pathways/pathway.css" />
+        <link rel="stylesheet" type="text/css" href="css/pathway.css" />
+        <link rel="stylesheet" type="text/css" href="css/pathways/style.css" />
+        <style>
+            .jsplumb-container {
+                height:3000px;
+                width:3000px;
+                position: relative;
+                min-height: 500px;
+                background-color: #F4F4F4;
+                border: 1px solid #000000;
+            }
+
+            .jsplumb-container .node {
+                position: absolute;
+                float: left;
+            }
+        </style>
+    </head>
+    <body>
+        <div ng-app="pathwayApp" ng-controller="MainController">
+            <div graph-container class="jsplumb-container">
+                <div graph-node="node" ng-repeat="node in nodes">
+                    <div class="node-content">{{node.name}}</div>
+                </div>
+                <div graph-link source="{{link.source}}" target="{{link.target}}" id="{{link.connectionId}}" ng-repeat="link in links"></div>
+            </div>
+        </div>
+        
+        <script type="text/javascript" src="js/vendor/angular/angular.min.js"></script>
+        <!--
+        <script type="text/javascript" src="js/vendor/angular/angular-route.min.js"></script>
+        <script type="text/javascript" src="js/vendor/angular/angular-animate.min.js"></script>
+        <script type="text/javascript" src="js/vendor/angular/angular-resource.min.js"></script>
+        -->
+        <script type="text/javascript" src="js/vendor/jquery/jquery-2.0.3.js"></script>
+        <script type="text/javascript" src="js/vendor/jquery/jquery-ui.1.10.2.js"></script>
+        <script type="text/javascript" src="js/vendor/jsplumb/jquery.jsPlumb-1.5.4-min.js"></script>
+        
+        <script>
+
+            var pathwayApp = angular.module('pathwayApp', []);
+            
+            pathwayApp.controller('MainController', function($scope) {
+                $scope.nodes = [
+                    {
+                        id: 'nodeA', 
+                        name: 'Node A',
+                        x: (Math.floor(Math.random()*300)) + 'px',
+                        y: (Math.floor(Math.random()*300)) + 'px'
+                    },
+                    {
+                        id: 'nodeB', 
+                        name: 'Node B',
+                        x: (Math.floor(Math.random()*300)) + 'px',
+                        y: (Math.floor(Math.random()*300)) + 'px'
+                    },
+                    {
+                        id: 'nodeC', 
+                        name: 'Node C',
+                        x: (Math.floor(Math.random()*300)) + 'px',
+                        y: (Math.floor(Math.random()*300)) + 'px'
+                    },
+                    {
+                        id: 'nodeD', 
+                        name: 'Node D',
+                        x: (Math.floor(Math.random()*300)) + 'px',
+                        y: (Math.floor(Math.random()*300)) + 'px'
+                    }
+                ];
+                
+                $scope.links = [
+                    {
+                        source: $scope.nodes[1].id, 
+                        target: $scope.nodes[2].id,
+                        connectionId: 'connection_' + $scope.nodes[1].id + '_' + $scope.nodes[2].id
+                    },
+                    {
+                        source: $scope.nodes[3].id, 
+                        target: $scope.nodes[1].id,
+                        connectionId: 'connection_' + $scope.nodes[3].id + '_' + $scope.nodes[1].id
+                    },
+                    {
+                        source: $scope.nodes[0].id, 
+                        target: $scope.nodes[3].id,
+                        connectionId: 'connection_' + $scope.nodes[3].id + '_' + $scope.nodes[1].id
+                    }
+                ];
+            });
+            
+            //Do jsPlumb initialization here
+            pathwayApp.directive('graphContainer', function() {
+                var defaultOptions = {
+                    Endpoint : [ 'Dot', { radius : 1 } ],
+                    Anchor : 'Continuous',
+                    Connector: 'Flowchart',
+                    ConnectorStyle: { 
+                        strokeStyle: '#5c96bc', 
+                        lineWidth: 2, 
+                        outlineColor: 'transparent', 
+                        outlineWidth: 4 
+                    },
+                    ConnectionOverlays : [ 
+                        [ 
+                            'Arrow', {
+                                location: 1,
+                                id: 'arrow',
+                                length: 10,
+                                foldback: 1,
+                                width: 10
+                            } 
+                        ]
+                    ],
+                    HoverPaintStyle : {
+                        strokeStyle : '#1e8151',
+                        lineWidth : 2
+                    },
+                    PaintStyle:{ 
+                        strokeStyle: '#5c96bc', 
+                        lineWidth: 2, 
+                        outlineColor: 'transparent', 
+                        outlineWidth: 4  
+                    }
+                };
+                
+                return {
+                    restrict: 'A',
+                    replace: false,
+                    scope: {
+                        options: '@'
+                    },
+                    link: function(scope, iElement, iAttrs) {
+                        if (scope.options) {
+                            jsPlumb.importDefaults(scope.options);
+                        } else {
+                            jsPlumb.importDefaults(defaultOptions);
+                        }
+                        
+                        //Setup global events handling here (e.g. connection event)
+                        
+                    }
+                };
+            });
+            
+            //Handle the nodes
+            pathwayApp.directive('graphNode', function() {
+                return {
+                    restrict: 'A',
+                    replace: true,
+                    transclude: true,
+                    requires: '^graphContainer', //Tie this directive to graphContainer
+                    scope: {
+                        node: '=graphNode',
+                        epClass: '@'
+                    },
+                    //templateUrl: 'templates/graph-node.html',
+                    template:'<div class="node" id="{{node.id}}" style="left: {{node.x}}; top: {{node.y}}">' +
+                                '<div ng-transclude></div>' + 
+                                '<div class="fa fa-chevron-right ep right">' + 
+                                '</div><div class="fa fa-chevron-left ep left"></div>' + 
+                                '<div class="fa fa-chevron-up ep up"></div>' + 
+                                '<div class="fa fa-chevron-down ep down"></div>' + 
+                             '</div>',
+                    link: function(scope, iElement, iAttrs) {
+                        var ep = '.' + (scope.epClass || 'ep');
+                        iElement.on('mouseover', function() {
+                            $(ep, this).show();
+                        });
+                        iElement.on('mouseout', function() {
+                            $(ep, this).hide();
+                        });
+                        
+                        jsPlumb.makeSource($(ep, iElement), {
+                            parent: iElement
+                        });
+                        
+                        jsPlumb.makeTarget(iElement);
+                        
+                        jsPlumb.draggable(iElement, { 
+                            containment: 'parent',
+                            stop: function( event, ui ) {
+                                scope.node.y = Math.floor(ui.position.top) + 'px';
+                                scope.node.x = Math.floor(ui.position.left) + 'px';
+                            }
+                        });
+                    }
+                };
+            });
+            
+            //Handle the links
+            pathwayApp.directive('graphLink', function() {
+                return {
+                    restrict: 'A',
+                    requires: '^graphContainer',  //Tie this directive to graphContainer
+                    scope: {
+                        source: '@',
+                        target: '@',
+                        id: '@'
+                    },
+                    link: function(scope, iElement, iAttrs) {
+                        //FIXME: Needed the timeout to make sure the dom nodes are available. Need a better solution.
+                        setTimeout(function() {
+                            jsPlumb.connect({
+                                source: scope.source,
+                                target: scope.target,
+                                parameters: {
+                                    connectionId: scope.id
+                                }
+                            }).canvas.id = scope.id; //Give the resulting svg node an id for simpler retrieval
+                        }, 1);
+                    }
+                };
+            });
+        </script>
+    </body>
+</html>

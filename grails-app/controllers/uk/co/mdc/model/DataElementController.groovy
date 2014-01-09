@@ -20,7 +20,7 @@ class DataElementController extends RestfulController{
 	
 	def dataElementService
 	def valueDomainService
-	def MDRService
+	def modelElementService
 	
 	/* **************************************************************************************
 	 * ************************************* INDEX *********************************************************
@@ -126,7 +126,7 @@ class DataElementController extends RestfulController{
 			return
 		}
 
-		[dataElementInstance: dataElementInstance]
+		[dataElementInstance: dataElementInstance, relationshipTypes: RelationshipType.list()]
 	}
 	
 	/* **************************************************************************************
@@ -137,7 +137,7 @@ class DataElementController extends RestfulController{
 	 *************************************************************************************** */
 	
 	def create = {
-		[valueDomains: valueDomainService.list(), dataElements: dataElementService.list(), externalReferences: ExternalReference.list(), dataElementInstance: new DataElement(params)]
+		[valueDomains: valueDomainService.list(), dataElements: dataElementService.list(), dataElementInstance: new DataElement(params)]
 	}
 	
 	//NOTE TO SELF - NEED TO UPDATE WHEN RELEVANT SERVICES ARE CREATED
@@ -195,8 +195,11 @@ class DataElementController extends RestfulController{
 			redirect(action: "list")
 			return
 		}
-
-		[valueDomains: ValueDomain.list(), selectedValueDomains: dataElementInstance.dataElementValueDomains() , dataElements: dataElementService.list(), dataElementInstance: dataElementInstance]
+		
+		[valueDomains: ValueDomain.list(), selectedValueDomains: dataElementInstance.relations("ValueDomain"), 
+			selectedSynonyms: dataElementInstance.relations("Synonym"), dataElements: dataElementService.list(), 
+			dataElementInstance: dataElementInstance, relationshipTypes: RelationshipType.list(), 
+			subElements: dataElementInstance.relations("ParentChild")]
 	}
 	
 	/* **************************************************************************************
@@ -407,7 +410,7 @@ class DataElementController extends RestfulController{
 		
 		if(params.synonyms!=null){
 			if(params?.subElements!=null){
-				if(MDRService.parameterContains(params.synonyms, params?.subElements)){
+				if(modelElementService.parameterContains(params.synonyms, params?.subElements)){
 					params.subElements = ''
 					flash.message = 'Error: Data Element Sub elements and Data Element Synonyms must be mutually exclusive'
 					return false
@@ -415,7 +418,7 @@ class DataElementController extends RestfulController{
 			}
 			
 			if(params?.parent!=null){
-				if(MDRService.parameterContains(params.synonyms, params?.parent)){
+				if(modelElementService.parameterContains(params.synonyms, params?.parent)){
 					params.parent = ''
 					flash.message = 'Error: Data Element Parent Elements and Data Element Synonyms must be mutually exclusive'
 					return false

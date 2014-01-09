@@ -24,6 +24,7 @@ class DataElementService {
 	def aclUtilService
 	def springSecurityService
 	def searchableService
+	def modelElementService
 	
 	
 	/* **************************** ADD PERMISSIONS *****************************************
@@ -67,11 +68,12 @@ class DataElementService {
 		
 		//link any value domains that were selected with data element
 		
-		linkValueDomains(dataElementInstance, parameters?.valueDomains)
+		//linkValueDomains(dataElementInstance, parameters?.valueDomains)
+		modelElementService.linkRelations(dataElementInstance, parameters?.valueDomains, "ValueDomain")
 		
 		//link any relations that were selected with data element
 		
-		linkRelations(dataElementInstance, parameters?.relations, "Synonym")
+		modelElementService.linkRelations(dataElementInstance, parameters?.synonyms, "Synonym")
 		
 		// Grant the current user principal administrative permission 
 		
@@ -146,27 +148,38 @@ class DataElementService {
 	DataElement update(DataElement dataElementInstance, Map parameters) {
 		
 		def subElements = parameters?.subElements
-		def relations = parameters?.relations
-		parameters.remove('relations')
+		parameters.remove('subElements')
+		//def relations = parameters?.relations
+		//parameters.remove('relations')
+		def synonyms = parameters?.synonyms
+		parameters.remove('synonyms')
 		def valueDomains = parameters?.valueDomains
 		parameters.remove('valueDomains')
 		
 	   // remove any subelements that have been specified for removal
-	   unLinkSubElements(dataElementInstance, subElements)
+	  // unLinkSubElements(dataElementInstance, subElements)
 	   
 	   dataElementInstance.properties = parameters
 	   
 	   if(dataElementInstance.save(flush: true)){
 		   
 		   //add/remove relations that have specified for addition or removal
-		   linkRelations(dataElementInstance, relations, "Synonym")
+		   modelElementService.linkRelations(dataElementInstance, synonyms, "Synonym")
 	   }
 	   
 	   if(dataElementInstance.save(flush: true)){
+		   modelElementService.linkRelations(dataElementInstance, valueDomains, "ValueDomain")
+	   }
+	   
+	   if(dataElementInstance.save(flush: true)){
+		   modelElementService.linkRelations(dataElementInstance, subElements, "ParentChild")
+	   }
+	   
+	   /*if(dataElementInstance.save(flush: true)){
 		   
 		   // add/remove value domains
-		   linkValueDomains(dataElementInstance, valueDomains)
-	   }
+		   modelElementService.linkRelations(dataElementInstance, parameters?.valueDomains, "ValueDomain")
+	   }*/
 	   
 	   dataElementInstance
 	   
@@ -211,151 +224,7 @@ class DataElementService {
 		aclService.updateAcl acl
 		
 		}
-	
-	
-	/* ************************* DATA ELEMENT LINKAGE FUNCTIONS************************
-	 * links the data element with the relations specified via a link table
-	 ********************************************************************************* */
-	
-	def linkRelations(dataElementInstance, relations, relationshipType){
-		
-		//get relationship type
-		def relationType = RelationshipType.findByName(relationshipType)
-		
-		//get the relations already associated with the data element before the update
-		def associatedRelations = dataElementInstance.relations()
-		
-		//if there are no new relations i.e. all have been removed in the edit data element form, then 
-		//remove all relations from the data element
-		
-		if(relations!=null){
-			
-			//if there is only one relations (rather than a list of them)
-			
-			if (relations instanceof String) {
-				
-				DataElement relationA =  DataElement.get(relations)
-				
-				//remove any relations that aren't this one
-				associatedRelations.each{ relation ->
-					if(relationA!=relation.id.toString()){
-							Relationship.unlink(dataElementInstance, relation)
-					}
-				}
-				
-				//add this one to the data element
-				
-				if(relationA){					
-					Relationship.link(dataElementInstance, relationA, relationType)
-				}
-				
-			}
-			
-			//if there is a list of relations
-			
-			if (relations instanceof String[]) {
-				
-				//remove all the relations that aren't in the list
-				associatedRelations.each{ relation ->
-					if(!relations.contains(relation.id.toString())){
-							Relationship.unlink(dataElementInstance, relation)
-					}
-				}
-				
-				//add all the relations in the list
-				
-				  for (relationsID in relations){
-					  DataElement relation =  DataElement.get(relationsID)
-					  if(relation){
-						  	Relationship.link(dataElementInstance, relation, relationType)
-						}
-				  }
-  
-				  
-			}
 
-		}else{
-		
-		//remove all the relations that aren't this one
-		associatedRelations.each{ relation ->
-			
-				Relationship.unlink(dataElementInstance, relation)
-
-		}
-		
-		}
-		
-	}
-	
-	/* ************************* DATA ELEMENT LINKAGE FUNCTIONS************************
-	 * links the data element with the value domains specified via a link table
-	 ********************************************************************************* */
-	
-	def linkValueDomains(dataElementInstance, valueDomains){
-		
-		//get the relations value domains already associated with the data element before the update
-		
-		def associatedValueDomains = dataElementInstance.dataElementValueDomains()
-		
-		//if there are no new value domains i.e. all have been removed in the edit data element form, then
-		//remove all value domains from the data element
-		
-		if(valueDomains!=null){
-			
-			//if there is only one value domain (rather than a list of them)
-			
-			if (valueDomains instanceof String) {
-				
-				ValueDomain valueDomain =  ValueDomain.get(valueDomains)
-				
-				//remove all the value domains that aren't this one
-				associatedValueDomains.each{ vd ->
-					if(valueDomains!=vd.id.toString()){
-							DataElementValueDomain.unlink(dataElementInstance, vd)
-					}
-				}
-				
-				//add this one to the data element
-				
-				if(valueDomain){
-					
-					DataElementValueDomain.link(dataElementInstance, valueDomain)
-				}
-				
-			}
-			
-			//if there is a list of relations
-			
-			if (valueDomains instanceof String[]) {
-				
-				//remove all the value domains that aren't this one
-				associatedValueDomains.each{ vd ->
-					if(!valueDomains.contains(vd.id.toString())){
-							DataElementValueDomain.unlink(dataElementInstance, vd)
-					}
-				}
-				
-				//add all the value domains in the list
-				
-				  for (valueDomainID in valueDomains){
-					  ValueDomain valueDomain =  ValueDomain.get(valueDomainID)
-					  if(valueDomain){
-							DataElementValueDomain.link(dataElementInstance, valueDomain)
-						}
-				  }
-  
-				  
-			}
-
-		}else{
-		
-		//remove all the value domains that aren't this one
-		associatedValueDomains.each{ vd ->
-					DataElementValueDomain.unlink(dataElementInstance, vd)
-		}
-		
-		}
-	}
 	
 	/* ************************* DATA ELEMENT LINKAGE FUNCTIONS************************
 	 * unlinks the sub elements that have been removed during an update of the data element

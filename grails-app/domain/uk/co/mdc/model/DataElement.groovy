@@ -67,45 +67,6 @@ class DataElement extends ModelElement {
 	
 	
 	/******************************************************************************************************************/
-	/****functions for linking data elements to other data elements (relations) using DataElementDataElement class************/
-	/******************************************************************************************************************/
-	/******************************************************************************************************************/
-	/****functions for specifying relationships between model elements (using the Relationship class) ************/
-	/******************************************************************************************************************/
-	
-	List relations() {
-	
-	def relationsR = []
-	
-	if(relations.collect{it.objectXId}[0] == this.id){
-		
-		def relationshipIds = relations.collect{it.objectYId}
-		
-		relationshipIds.each{ relationshipId->
-			relationsR.add(DataElement.get(relationshipId))
-		}
-		
-	}else{
-		
-		def relationshipIds = relations.collect{it.objectXId}
-		
-		relationshipIds.each{ relationshipId->
-			relationsR.add(DataElement.get(relationshipId))
-		}
-
-	}
-	
-	return relationsR
-	
-}
-	
-	
-
-	public void addToRelations(Relationship relationship){
-		relations.add(relationship)
-	}
-	
-	/******************************************************************************************************************/
 	/****************functions for linking dataElements and Collections using dataElementCollections class***************************/
 	/******************************************************************************************************************/
 

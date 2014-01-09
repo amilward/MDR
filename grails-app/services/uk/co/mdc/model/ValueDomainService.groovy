@@ -144,7 +144,7 @@ class ValueDomainService {
 
 	   
 	   //remove any external synonyms that have specified for removal
-	   unLinkExternalReferences(valueDomainInstance, parameters?.externalReferences)
+	   //unLinkExternalReferences(valueDomainInstance, parameters?.externalReferences)
 	   
 	   valueDomainInstance.properties = parameters
 	   
@@ -254,7 +254,7 @@ class ValueDomainService {
 	 * unlinks the external synonyms that have been removed from the value domain during an update
 	 ********************************************************************************* */
 	
-	def unLinkExternalReferences(valueDomainInstance, pExternalReferences){
+	/*def unLinkExternalReferences(valueDomainInstance, pExternalReferences){
 		
 			//if all data elements need to be removed or only a few elements need to be removed
 			
@@ -301,5 +301,7 @@ class ValueDomainService {
 			}
 	}
 	
-	
+*/	
 }
+
+	

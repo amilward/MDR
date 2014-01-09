@@ -19,7 +19,7 @@ class ValueDomain extends ModelElement  {
         content: spellCheck 'include'
     } 
 	
-	static hasMany = [dataElementValueDomains: DataElementValueDomain]
+	static hasMany = [relations: Relationship, dataElementValueDomains: DataElementValueDomain]
 	
 	static belongsTo = [conceptualDomain: ConceptualDomain]
 	

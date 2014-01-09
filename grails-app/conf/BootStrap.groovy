@@ -244,6 +244,8 @@ class BootStrap {
 		if (!RelationshipType.count()) {
 			
 			new RelationshipType(name: "Synonym").save()
+			new RelationshipType(name: "ValueDomain").save()
+			new RelationshipType(name: "ParentChild", xYRelationship: "Parent", yXRelationship: "Child").save()
 			
 		}
 		

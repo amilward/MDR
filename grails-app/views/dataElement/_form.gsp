@@ -65,12 +65,12 @@
 						</td>
 					</tr>
 					<tr>
-						<td class="left_col_show"><span id="name-label" class="label">Relations</span></td>
+						<td class="left_col_show"><span id="name-label" class="label">Synonyms</span></td>
 						<td class="right_col_show">
 							<g:select
-									title="tooltip.dataElement.relations"
-						            name="relations"
-						            id="relations"
+									title="tooltip.dataElement.synonyms"
+						            name="synonyms"
+						            id="synonyms"
 						            noSelection="${['':'Select One...']}"
 						            from="${dataElements.minus(dataElementInstance)}"
 						            value="${params.list('dataElements')}"
@@ -112,11 +112,11 @@
 		selectedValueDomains = ${selectedValueDomains*.id}
 	</g:else>
 	
-	<g:if test="${!dataElementInstance?.relations()*.id}">
-		relations = ' '
+	<g:if test="${!selectedSynonyms*.id}">
+		selectedSynonyms = ' '
 	</g:if>
 	<g:else>
-		relations =${dataElementInstance?.relations()*.id}
+		selectedSynonyms =${selectedSynonyms*.id}
 	</g:else>
 	
 	<g:if test="${!dataElementInstance?.subElements*.id}">
@@ -128,7 +128,7 @@
 
 
 	$(document).ready(function() {
-		dataElementForm(selectedValueDomains, relations, subElements, '');
+		dataElementForm(selectedValueDomains, selectedSynonyms, subElements);
     });
 				
 </r:script>
