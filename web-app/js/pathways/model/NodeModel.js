@@ -18,6 +18,7 @@
         self.outputs = [];
         self.forms = [];
         self.collections = [];
+        self.deCollection = [];
     	
 
         ko.track(self);
@@ -101,10 +102,17 @@
         	
         }
         
-       
+        self.addDataElement = function(dataElement){
+            self.deCollection.push(dataElement);
+            addToCollectionBasket(dataElement.id);
+            console.log("Add to collection basket");
+        }
         
-        self.addCollection = function(collection){        	
+         self.addCollection = function(collection){
+             console.log("addCollection-1");
+
         	self.collections.push(collection);
+             console.log("addCollection0")
         	//FIXME this is a crude way to update the node
         	var jsonNodeToServer = pathwayService.createJsonNode(self)
         	console.log(jsonNodeToServer)
@@ -133,19 +141,45 @@
 			});
         	
         }
+
+        self.hideCollectionDialog = function(){
+            $('#AddCollectionModal').modal('hide');
+        }
+        self.showCollectionDialog = function(){
+            $('#AddCollectionModal').modal('show');
+        }
+        self.hideNewDECollectionDialog = function(){
+            //console.log("hideNewDECollectionDialog" + self.deCollection[0].name);
+           // self.addCollection(self.deCollection);
+            var cntr = Math.floor((Math.random()*100)+1);
+            var deName = prompt("Please enter a name for the new Data Element Collection","pathway_"+ cntr);
+            var deDesc = prompt("Please enter a description for the new Data Element Collection","blah_"+ cntr);
+            var newCollection = self.deCollection;
+            newCollection.name = deName;
+            newCollection.description = deDesc;
+            createCollection(newCollection);
+            console.log("hideNewDECollectionDialog" + self.deCollection[0].name);
+            $('#AddNewDECollectionModal').modal('hide');
+        }
+        self.showNewDECollectionDialog = function(){
+            $('#AddNewDECollectionModal').modal('show');
+            self.addNewDECollectionDialog();
+        }
         
 
         self.addCollectionDialog = function(){
         	 $('#AddCollectionModal').modal({ show: true, keyboard: false, backdrop: 'static' });
-        	 collectionListDraggable();
+            collectionListDraggable();
         	 $("#collectionCart").droppable({
                  drop: function(event, ui) {
                  	if(c.id){
+                        console.log("collectionName=" + c.name);
                  		if(c.type.indexOf("collection") !== -1){ 
                  			$('#collectionCartList').append('<li>' + c.name + '</li>')
                  			var collection = new CollectionModel();
                      		collection.id = c.id;
                      		collection.name = c.name;
+                            console.log("collectionName=" + c.name);
                  			self.addCollection(collection);
                  		}else{
                  			//$('#collectionCartList').append('<li>' + c.name + '</li>')
@@ -160,6 +194,30 @@
                  }
          	});	
         	 
+        }
+
+
+        self.addNewDECollectionDialog = function(){
+            $('#AddNewDECollectionModal').modal({ show: true, keyboard: false, backdrop: 'static' });
+            deCollectionListDraggable();
+            console.log("1:addNewDECollectionDialog");
+            $("#deCollectionCart").droppable({
+                drop: function(event, ui) {
+                    if(c.id){
+                        console.log("dataElement=" + c.name);
+                        //if(c.type.indexOf("dataElement") !== -1){
+                            $('#deCollectionCartList').append('<li>' + c.name + '</li>')
+                            var de = new DataElementModel();
+                            de.id = c.id;
+                            de.name = c.name;
+                            self.addDataElement(de);
+                        //}
+                        $(c.li).remove();
+                        $(c.helper).remove();
+                    }
+                }
+            });
+
         }
         
         self.addFormDialog = function(){

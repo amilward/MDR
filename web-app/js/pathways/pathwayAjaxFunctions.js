@@ -67,6 +67,70 @@ function deleteNode(id){
 		});
 }
 
+function jsonBasket(result){
+    var jsonString = "[ saveBasketCollection:Save Collection, collection_basket_id:" + result.id + ",";
+    console.log(result);
+    console.log(result.class);
+    console.log(result.id);
+        var de = result.dataElements;
+        var decol = "dataElementIds:[";
+        for (j in de)
+        {
+            var rid = result.dataElements[j].id;
+            console.log("de id = " + rid);
+            jsonString = jsonString + "dataElement_" + rid + ":mandatory,";
+            if(j == 0){
+                decol = decol + rid ;
+            }else{
+                decol = decol + "," + rid ;
+            }
+
+        }
+    jsonString = jsonString + decol + "],";
+    jsonString = jsonString + " action:saveBasketCollection,controller:collection]";
+
+   return jsonString;
+}
+
+function createCollection(collection){
+
+    console.log("startCollectionBasket" + collection.name);
+    //startCollectionBasket();
+    var ncollection = "";
+
+    $.ajax({
+        type: "GET",
+        url: root + "/collectionBasket/collectionAsJSON",
+        success: function(result){
+            if(result!=null){
+                console.log(result.id);
+                ncollection = jsonBasket(result);
+                console.log("ncollection=" +  ncollection);
+               // ncollection = result;
+                console.log("ncollection=" +  ncollection);
+            }
+        },
+        dataType: "json"
+    });
+
+    console.log("new collection=" + ncollection);
+    $.ajax({
+        type: "POST",
+        url: '../../collection/saveBasketCollection',
+        data: ncollection,
+        success: function(data){
+            console.log(data.message);
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log(xhr.status);
+            alert(thrownError);
+        },
+        contentType: 'application/json'
+    });
+
+
+
+}
 function getLink(linkId){
 	
 console.log('get the link')

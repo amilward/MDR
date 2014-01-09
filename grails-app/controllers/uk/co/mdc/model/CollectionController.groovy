@@ -1,7 +1,7 @@
 package uk.co.mdc.model
 
 import grails.converters.JSON
-
+import grails.orm.PagedResultList
 import org.springframework.dao.DataIntegrityViolationException
 
 import uk.co.mdc.CollectionBasket
@@ -66,6 +66,7 @@ class CollectionController {
 			
 			if(total>0){
 				data = searchResults
+                println "Collections" + data
 			}else{
 				data=[]
 			}
@@ -75,24 +76,43 @@ class CollectionController {
 			
 			
 		}else{
-		
 			order = params?.sSortDir_0
 			sortColName = getSortField(params?.iSortCol_0.toInteger())
 			
 			data = collectionService.list(max: params.iDisplayLength, offset: params.iDisplayStart, sort: sortColName, order: order)
-			total = collectionService.count()
-			displayTotal = collectionService.count()
-			
+			data = formfilter(data)
+            total = data.size()
+			displayTotal = total
 		}
-		
 		def model = [sEcho: params.sEcho, iTotalRecords: total, iTotalDisplayRecords: displayTotal, aaData: data]
-		
 		//NB. when the json is rendered it uses a custom json marshaller so that it includes the relevant
 		//information (and doesn't return the whole database)
 		//the corresponding json marshaller is stored in src/groovy/uk/co/mdc/model/xxxxxxMarshaller.groovy
-				
 		render model as JSON
+
 	}
+
+    def formfilter(PagedResultList results){
+        /* sorry about the java :-(  */
+        Iterator iterator = results.iterator()
+        ArrayList formlist = new ArrayList();
+
+        for (int i = 0; i < results.size(); i++){
+            def obj = results.get(i)
+            if(obj instanceof uk.co.mdc.forms.FormDesign){
+                formlist.add(obj)
+            }
+        }
+
+        if(formlist.size() > 0){
+            for (int i = 0; i < formlist.size(); i++){
+                uk.co.mdc.forms.FormDesign form = formlist.get(i)
+                results.remove(form)
+            }
+        }
+
+        return results
+    }
 	
 	/* **************************************************************************************
 	 * *********************************** SHOW *****************************************************
@@ -141,12 +161,11 @@ class CollectionController {
 	
 	
 	def saveBasketCollection(){
-		
-		
+
 		//create the collection with the parameters passed from the collection basket
-		
+        println "in:" + params
 		def collectionInstance = collectionService.createFromBasket(params)
-		
+		println "out:" +params
 		//if there are any errors in the collection put them into a format
 		//that we can display and redirect
 			
@@ -170,6 +189,37 @@ class CollectionController {
 		
 		redirect(action: "show", id: collectionInstance.id)
 	}
+
+    def saveDEBasketCollection(CollectionBasket basketCase){
+
+        //create the collection with the parameters passed from the collection basket
+        println "1in:" + params
+
+        def collectionInstance = collectionService.createFromBasket(params)
+        println "1out:" +params
+        //if there are any errors in the collection put them into a format
+        //that we can display and redirect
+
+        def errors = []
+
+        if(collectionInstance.errors){
+
+            def locale = Locale.getDefault()
+
+            for (fieldErrors in collectionInstance.errors) {
+                for (error in fieldErrors.allErrors) {
+                    errors.add(messageSource.getMessage(error, locale))
+                }
+            }
+            if(errors.size()>0){
+                //redirect to the collection basket controller any errors displayed
+                redirect(controller: "CollectionBasket", action:"show", id: params?.collection_basket_id, params: ['errors': errors, name: params?.name, description: params?.description])
+                return
+            }
+        }
+
+        redirect(action: "show", id: collectionInstance.id)
+    }
 	
 	/* **************************************************************************************
 	 * ************************************ SAVE ****************************************************

@@ -464,14 +464,27 @@
         };
         
         //#endregion
-        //FIXME  need to pu this into either the node model method and find a better way to call it or take all
-        // he methods out of the node model and put them here 
         self.addFormFinish = function(){
       	    $('#AddFormModal').modal('hide');
         }
 	
         self.addCollectionFinish = function(){
-        	$('#AddCollectionModal').modal('hide');
+            self.selectedItem.hideCollectionDialog();
+        }
+
+        self.addNewDECollection = function(){
+            self.selectedItem.hideCollectionDialog();
+            self.selectedItem.showNewDECollectionDialog();
+        }
+
+        self.addNewDECollectionFinish = function(){
+            //add current cart to form a new data element collection
+           // var dec = self.selectedItem.deCollection.pop(0);
+           // console.log("Data Element=" + dec.name);
+
+            //refresh datatables to get new collection as a visible option
+            self.selectedItem.hideNewDECollectionDialog();
+            self.selectedItem.showCollectionDialog();
         }
 	
 		

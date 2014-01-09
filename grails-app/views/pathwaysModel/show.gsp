@@ -183,20 +183,26 @@
                   	  <i class="fa fa-plus"></i> Add Form
                 	</button>
                 </div>
-                
+
                 <div class="panel panel-primary">
-                <!-- ko if: collections!=[] -->
+                    <!-- ko if: collections!=[] -->
                     <div class="panel-heading">Collections</div>
                     <div class="panel-body forms">
                         <ul class="list-group" data-bind="foreach: collections">
                             <li class="list-group-item"><a href="#" data-bind="click: previewCollections">{{name}}</a>
-                             <i class="fa icon-remove" data-bind="click: function(){$parent.removeCollection(id);}"></i></li>
+                                <i class="fa icon-remove" data-bind="click: function(){$parent.removeCollection(id);}"></i></li>
                         </ul>
                     </div>
-              	 <!-- /ko -->
+                    <!-- /ko -->
                     <button type="button" class="btn btn-link btn-xs pull-right" data-bind="click: addCollectionDialog">
-                    	<i class="fa fa-plus"></i> Add Collections
-               		 </button>
+                        <i class="fa fa-plus"></i> Add Data Elements
+                    </button>
+                    <!--button type="button" class="btn btn-link btn-xs pull-right" data-bind="click: addCollectionDialog">
+                        <i class="fa fa-plus"></i> Add Collections
+                    </button-->
+                    <!--button type="button" class="btn btn-link btn-xs pull-right" data-bind="click: AddNewDECollectionModal">
+                        <i class="fa fa-plus"></i> Add Collections
+                    </button-->
                 </div>
                 <!-- /ko -->
             </div>
@@ -284,30 +290,54 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
-    
-    <!-- Add CollectionModal -->
-    <div class="modal fade hide" id="AddCollectionModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>-->
-                    <h4 class="modal-title" id="myModalLabel">Add Data Element Collection</h4>
+
+<!-- Add CollectionModal -->
+<div class="modal fade hide" id="AddCollectionModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>-->
+                <h4 class="modal-title" id="myModalLabel">Add Data Element Collection</h4>
+            </div>
+            <div class="modal-body">
+                <div id="collectionCart">Drag Collection Here To Add <i style="display:block" class="fa fa-plus"></i>
+                    <ul class="pull-left" id="collectionCartList">
+                    </ul>
                 </div>
-                <div class="modal-body">
-                	<div id="collectionCart">Drag Collection Here To Add <i style="display:block" class="fa fa-plus"></i>
-                	<ul class="pull-left" id="collectionCartList">
-                	</ul>
-                	</div>
-                   <div id="collectionList" ></div>
+                <div id="collectionList" ></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bind="click: $root.addNewDECollection">Add New DE Collection</button>
+                <button type="button" class="btn btn-primary" data-bind="click: $root.addCollectionFinish">Finish</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- Add NewDECollectionModal -->
+<div class="modal fade hide" id="AddNewDECollectionModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>-->
+                <h4 class="modal-title" id="myModalLabel">Add Data Element </h4>
+            </div>
+            <div class="modal-body">
+                <div id="deCollectionCart">Drag Data Element Here To Add <i style="display:block" class="fa fa-plus"></i>
+                    <ul class="pull-left" id="deCollectionCartList">
+                    </ul>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-bind="click: $root.addCollectionFinish">Finish</button>
-                </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
-    
-    <!-- Update Pathway Info -->
+                <div id="deCollectionList" ></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bind="click: $root.addNewDECollectionFinish">Finish</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<!-- Update Pathway Info -->
     <div id="updatePathwayModal" class="modal fade hide" tabindex="-1"	role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop = "true" >
 	<div class="modal-dialog">
 		<div class="modal-content">
