@@ -126,6 +126,11 @@ class DataElementController extends RestfulController{
 			return
 		}
 
+		def relations = dataElementInstance.relations()
+		def parentChild = dataElementInstance.relations("ParentChild")
+		def valueDomain = dataElementInstance.relations("ValueDomain")
+		def synonyms = dataElementInstance.relations("Synonym")
+		
 		[dataElementInstance: dataElementInstance, relationshipTypes: RelationshipType.list()]
 	}
 	
@@ -196,6 +201,11 @@ class DataElementController extends RestfulController{
 			return
 		}
 		
+		println(dataElementInstance.relations("ParentChild"))
+		println(dataElementInstance.relations("ValueDomain"))
+		println(dataElementInstance.relations("Synonym"))
+		
+		
 		[valueDomains: ValueDomain.list(), selectedValueDomains: dataElementInstance.relations("ValueDomain"), 
 			selectedSynonyms: dataElementInstance.relations("Synonym"), dataElements: dataElementService.list(), 
 			dataElementInstance: dataElementInstance, relationshipTypes: RelationshipType.list(), 
@@ -248,6 +258,10 @@ class DataElementController extends RestfulController{
 		dataElementInstance = dataElementService.update(dataElementInstance, params)
 		dataElementInstance.save(flush:true, failOnError: true)
 		dataElementInstance.refresh()
+		
+		println(dataElementInstance.relations("ParentChild"))
+		println(dataElementInstance.relations("ValueDomain"))
+		println(dataElementInstance.relations("Synonym"))
 		
 		if (!renderWithErrors('edit', dataElementInstance)) {
 			redirectShow message(code: 'default.updated.message', args: [message(code: 'dataElement.label', default: 'DataElement'), id]), id

@@ -73,12 +73,14 @@
 								<tr>
 									<th>Name</th>
 									<th>Description</th>
+									<th></th>
 								</tr>
 							</thead>
 							<g:each var="relation" in="${dataElementInstance.relations(relationshipType.name)}">
 								<tr>
 									<td><g:link action="show" controller="${relation.getClass().getSimpleName()}" id="${relation?.id}">${relation?.name} </g:link></td>
 									<td>${relation?.description}</td>
+									<td>${relation?.relationshipType}</td>
 								</tr>
 							</g:each>
 						</table>

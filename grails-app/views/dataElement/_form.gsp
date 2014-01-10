@@ -82,7 +82,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td class="left_col_show"><span id="name-label" class="label">SubElements</span></td>
+						<td class="left_col_show"><span id="name-label" class="label">Children</span></td>
 						<td class="right_col_show">
 							<g:select
 									title="tooltip.dataElement.subElements"
@@ -119,11 +119,11 @@
 		selectedSynonyms =${selectedSynonyms*.id}
 	</g:else>
 	
-	<g:if test="${!dataElementInstance?.subElements*.id}">
+	<g:if test="${!subElements*.id}">
 		subElements = ' '
 	</g:if>
 	<g:else>
-		subElements =${dataElementInstance?.subElements*.id}
+		subElements =${subElements*.id}
 	</g:else>
 
 
