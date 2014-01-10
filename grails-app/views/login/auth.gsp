@@ -1,16 +1,7 @@
 <html>
 <head>
-<<<<<<< Updated upstream
-<title><g:message code="springSecurity.login.title" /></title>
-<link rel="stylesheet"
-	href="${resource(dir: 'css', file: 'bootstrap.min.css')}"
-	type="text/css">
-<link rel="stylesheet" href="${resource(dir: 'css', file: 'login.css')}"
-	type="text/css">
-=======
     <meta name="layout" content="main"/>
     <title><g:message code="springSecurity.login.title" /></title>
->>>>>>> Stashed changes
 </head>
 
 <body>
