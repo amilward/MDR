@@ -67,81 +67,60 @@ function deleteNode(id){
 		});
 }
 
-function jsonBasket(result){
-    var jsonString = "[ saveBasketCollection:Save Collection, collection_basket_id:" + result.id + ",";
-    console.log(result);
-    console.log(result.class);
-    console.log(result.id);
-        var de = result.dataElements;
-        var decol = "dataElementIds:[";
-        for (j in de)
-        {
-            var rid = result.dataElements[j].id;
-            console.log("de id = " + rid);
-            jsonString = jsonString + "dataElement_" + rid + ":mandatory,";
-            if(j == 0){
-                decol = decol + rid ;
-            }else{
-                decol = decol + "," + rid ;
-            }
 
-        }
-    jsonString = jsonString + decol + "],";
-    jsonString = jsonString + " action:saveBasketCollection,controller:collection]";
-
-   return jsonString;
+function jsonWrap(result, collection){
+     var ids = [];
+    var de = result.dataElements;
+    for (j in de){
+        var rid = result.dataElements[j].id;
+        ids.push(rid);
+    }
+    var jsonObject ={saveBasketCollection:"Save Collection",
+        collection_basket_id:result.id ,
+        name:collection.name ,
+        description:collection.description,
+        dataElementIds:ids
+    };
+    var jsonStuff = JSON.stringify(jsonObject);
+    return jsonStuff;
 }
 
 function createCollection(collection){
 
     console.log("startCollectionBasket" + collection.name);
-    //startCollectionBasket();
     var ncollection = "";
-
+    //I need to get the current collection basket reference if (thread safe? I suspect not)
     $.ajax({
         type: "GET",
         url: root + "/collectionBasket/collectionAsJSON",
         success: function(result){
             if(result!=null){
-                console.log(result.id);
-                ncollection = jsonBasket(result);
-                console.log("ncollection=" +  ncollection);
-               // ncollection = result;
-                console.log("ncollection=" +  ncollection);
+                ncollection = jsonWrap(result,collection);
             }
         },
         dataType: "json"
     });
-
-    console.log("new collection=" + ncollection);
-    $.ajax({
-        type: "POST",
-        url: '../../collection/saveBasketCollection',
-        data: ncollection,
-        success: function(data){
-            console.log(data.message);
-        },
-        error: function (xhr, ajaxOptions, thrownError) {
-            console.log(xhr.status);
-            alert(thrownError);
-        },
-        contentType: 'application/json'
-    });
-
-
-
+    //FIXME : not a very elegant way to ensure method is called with data available
+    setTimeout(function(){
+        var data =  ncollection;
+        $.ajax({
+            type: "POST",
+            url: root + "/collection/saveDEBasketCollection",
+            data: {jsonobject: data},
+            success: function(e){
+            },
+            dataType: "json"
+        });
+    },300);
 }
 function getLink(linkId){
-	
-console.log('get the link')
-	
+
 	$.getJSON('../../Link/getLinkJSON/' + linkId, function(data) {
 		console.log(JSON.stringify(data))
 		return data
 	})
 	.fail(function(jqXHR, textStatus, errorThrown) { console.log('getJSON request failed! ' + textStatus); })
-	
-	
+
 }
 
 function updateLink(updatedLinkJSON){

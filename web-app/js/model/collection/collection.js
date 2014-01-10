@@ -4,7 +4,6 @@ START COLLECTION LIST  SCRIPTS
 
 function collectionList(){
 
-    console.log("TEST");
 	$('#collectionList').html( '<table cellpadding="0" cellspacing="0" border="0" class="table table-bordered table-condensed table-hover table-striped" id="collectionTable"></table>' );
 	oTable = $('#collectionTable').dataTable( {
         "bProcessing": true,
@@ -66,10 +65,8 @@ function collectionList(){
 		}
 	} );
 
-    console.log("TEST2");
 	oTable.fnSetFilteringDelay(1000);
 
-	
 }
 
 
@@ -152,7 +149,6 @@ function collectionForm(mandatoryDataElements, requiredDataElements, optionalDat
 
 
 function collectionListDraggable(){
-	
 	$('#collectionList').html( '<table cellpadding="0" cellspacing="0" border="0" class="table table-bordered table-condensed table-hover table-striped" id="collectionTable"></table>' );
 	oTable = $('#collectionTable').dataTable( {
         "bProcessing": true,
@@ -230,7 +226,6 @@ function collectionListDraggable(){
 }
 
 function deCollectionListDraggable(){
-    console.log("deCollection")
     $('#deCollectionList').html( '<table cellpadding="0" cellspacing="0" border="0" class="table table-bordered table-condensed table-hover table-striped" id="deCollectionTable"></table>' );
     oTable = $('#deCollectionTable').dataTable( {
         "bProcessing": true,

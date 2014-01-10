@@ -186,7 +186,7 @@
 
                 <div class="panel panel-primary">
                     <!-- ko if: collections!=[] -->
-                    <div class="panel-heading">Collections</div>
+                    <div class="panel-heading">Data Elements</div>
                     <div class="panel-body forms">
                         <ul class="list-group" data-bind="foreach: collections">
                             <li class="list-group-item"><a href="#" data-bind="click: previewCollections">{{name}}</a>
@@ -307,6 +307,7 @@
                 <div id="collectionList" ></div>
             </div>
             <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bind="click: $root.refreshCollections">Refresh</button>
                 <button type="button" class="btn btn-primary" data-bind="click: $root.addNewDECollection">Add New DE Collection</button>
                 <button type="button" class="btn btn-primary" data-bind="click: $root.addCollectionFinish">Finish</button>
             </div>

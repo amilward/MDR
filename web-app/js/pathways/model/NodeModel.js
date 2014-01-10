@@ -142,6 +142,10 @@
         	
         }
 
+        self.refreshCollections = function(){
+            collectionListDraggable();
+        }
+
         self.hideCollectionDialog = function(){
             $('#AddCollectionModal').modal('hide');
         }
@@ -160,6 +164,7 @@
             createCollection(newCollection);
             console.log("hideNewDECollectionDialog" + self.deCollection[0].name);
             $('#AddNewDECollectionModal').modal('hide');
+
         }
         self.showNewDECollectionDialog = function(){
             $('#AddNewDECollectionModal').modal('show');

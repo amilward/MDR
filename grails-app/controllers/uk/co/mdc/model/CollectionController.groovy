@@ -162,10 +162,10 @@ class CollectionController {
 	
 	def saveBasketCollection(){
 
-		//create the collection with the parameters passed from the collection basket
-        println "in:" + params
+
+
 		def collectionInstance = collectionService.createFromBasket(params)
-		println "out:" +params
+
 		//if there are any errors in the collection put them into a format
 		//that we can display and redirect
 			
@@ -178,6 +178,7 @@ class CollectionController {
 			for (fieldErrors in collectionInstance.errors) {
 				for (error in fieldErrors.allErrors) {
 					   errors.add(messageSource.getMessage(error, locale))
+                       println messageSource.getMessage(error, locale)
 				}
 			}
 			if(errors.size()>0){
@@ -190,13 +191,26 @@ class CollectionController {
 		redirect(action: "show", id: collectionInstance.id)
 	}
 
-    def saveDEBasketCollection(CollectionBasket basketCase){
+    def saveDEBasketCollection(){
 
         //create the collection with the parameters passed from the collection basket
-        println "1in:" + params
-
+        //If we are calling this from pathways then we need to get the jsonObject out and add the parameters in piecemeal
+        def jsonObject = JSON.parse(params.jsonobject)
+        def it = params.entrySet ().iterator()
+        while (it.hasNext()) {
+            def entry = it.next()
+            if (entry.key == "jsonobject"){
+                jsonObject = JSON.parse(entry.value)
+                it.remove()
+            }
+        }
+        def jit = jsonObject.iterator()
+        while (jit.hasNext()) {
+            def collectionDetails = jit.next()
+            //Now add the key parameters of the new de Collection in
+            params.put(collectionDetails.key,collectionDetails.value)
+        }
         def collectionInstance = collectionService.createFromBasket(params)
-        println "1out:" +params
         //if there are any errors in the collection put them into a format
         //that we can display and redirect
 
@@ -209,6 +223,7 @@ class CollectionController {
             for (fieldErrors in collectionInstance.errors) {
                 for (error in fieldErrors.allErrors) {
                     errors.add(messageSource.getMessage(error, locale))
+                    println messageSource.getMessage(error, locale)
                 }
             }
             if(errors.size()>0){
