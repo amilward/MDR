@@ -226,10 +226,6 @@
             pm.versionOnServer = JSONNode.pathwaysModelVersion;
             pm.nodes.push(node);
         };
-
-        self.createNode = function(){
-            	$('#CreateNode').modal({ show: true, keyboard: false, backdrop: 'static' });
-        };
         
         self.saveNode = function (createFrom) {
         	

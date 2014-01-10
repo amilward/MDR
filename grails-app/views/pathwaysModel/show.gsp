@@ -20,7 +20,7 @@
 <body>
     <div class="row">
         <div class="col-xs-12">
-            <button type="button" class="btn btn-link btn-xs pull-right" id="addNode" data-bind="click: createNode">
+            <button type="button" class="btn btn-link btn-xs pull-right" id="addNode" data-toggle="modal" data-target="#CreateNode">
                 <i class="fa fa-plus"></i> Add Node
             </button>
             <button type="button" class="btn btn-link btn-xs pull-right" id="updatePathway" data-bind="click: updatePathway">
@@ -65,24 +65,11 @@
        </div>
 
         <div id="center-panel" class="ui-layout-center">
-        <div id="model-panel" class="ui-layout-center  large-rounded" data-bind="with: pathwayModel">
+        <div id="model-panel" class="ui-layout-center  large-rounded  " data-bind="with: pathwayModel">
 
-	        <div id="canvas-panel" class="panel panel-primary">
-	        
-	          <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" style="position: absolute; ">
-			        <defs>
-			          <pattern id="smallGrid" width="8" height="8" patternUnits="userSpaceOnUse">
-			            <path d="M 8 0 L 0 0 0 8" fill="none" stroke="gray" stroke-width="0.5"/>
-			          </pattern>
-			          <pattern id="grid" width="80" height="80" patternUnits="userSpaceOnUse">
-			            <rect width="80" height="80" fill="url(#smallGrid)"/>
-			            <path d="M 80 0 L 0 0 0 80" fill="none" stroke="gray" stroke-width="1"/>
-			          </pattern>
-			        </defs>
-			      
-			        <rect width="100%" height="100%" fill="url(#grid)" />
-			      </svg>
-            <div class="jsplumb-container panel-body" data-bind="foreach: nodes, visible: true" style="display:none">
+	        <div id="canvas-panel" class="panel">
+
+            <div class="jsplumb-container panel-body graph-paper" data-bind="foreach: nodes, visible: true" style="display:none">
                 <div class="node" data-bind="makeNode: $data, click: $root.selectNode, style: {top:y, left:x}, attr: { 'id': 'node' + id}, css: {selectedItem: $root.itemEqualsToSelected($data)}">
                     <div data-bind="attr:{title: description}, text: name">&nbsp;</div>
                     <div class="fa fa-chevron-right ep right"></div>
