@@ -17,7 +17,7 @@ class DataElementMarshaller extends CustomMarshaller{
 			'dataElementConcept_id' : dataElement?.dataElementConcept?.id,
 			'dataElementConcept_name' : dataElement?.dataElementConcept?.name,
 			'subElements': limitRender(dataElement?.subElements),
-			'valueDomains': limitRender(dataElement?.dataElementValueDomains()),
+			'valueDomains': limitRender(dataElement?.relations("ValueDomain")),
 			'collections': limitRender(dataElement?.dataElementCollections())
 			]
 		}

@@ -9,7 +9,6 @@ import uk.co.mdc.model.DataElementConcept
 import uk.co.mdc.model.DataElementCollection
 import uk.co.mdc.model.ConceptualDomain
 import uk.co.mdc.model.Document
-import uk.co.mdc.model.DataElementValueDomain
 import uk.co.mdc.pathways.PathwaysModel
 import uk.co.mdc.pathways.Link
 import uk.co.mdc.pathways.Node

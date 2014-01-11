@@ -19,7 +19,7 @@ class ValueDomain extends ModelElement  {
         content: spellCheck 'include'
     } 
 	
-	static hasMany = [relations: Relationship, dataElementValueDomains: DataElementValueDomain]
+	static hasMany = [relations: Relationship]
 	
 	static belongsTo = [conceptualDomain: ConceptualDomain]
 	
@@ -37,43 +37,18 @@ class ValueDomain extends ModelElement  {
 		description type: 'text'
 	}
 	
-	
-	/******************************************************************************************************************/
-	/**************functions for linking data elements and value domains using dataElementValueDomains class*************************/
-	/******************************************************************************************************************/
-	
-	
-	List dataElementValueDomains() {
-		return dataElementValueDomains.collect{it.dataElement}
-	}
 
-	//add a dataElement to list of dataElements who have signed up the game
-	
-	List addToDataElementValueDomains(DataElement dataElement) {
-		DataElementValueDomain.link(dataElement, this)
-		return dataElementValueDomains()
-	}
-
-	//remove a dataElement from list of dataElements who have signed up to the game
-	
-	List removeFromDataElementValueDomains(DataElement dataElement) {
-		
-		DataElementValueDomain.unlink(dataElement, this)
-		return dataElementValueDomains()
-	}
-	
-	
 	/******************************************************************************************************************/
-	/*********************remove all the associated valueDomains and collections before deleting data element*****************************/
+	/*********************remove all the associated relations*****************************/
 	/******************************************************************************************************************/
 	
 	def prepareForDelete(){
-		if(this.dataElementValueDomains.size()!=0){
+		if(this.relations.size()!=0){
 			
-			def dataForDelete = this.dataElementValueDomains()
+			dataForDelete = this.relations()
 			
-			dataForDelete.each{ dataElement->
-				this.removeFromDataElementValueDomains(dataElement)
+			dataForDelete.each{ relationship->
+				this.removeFromRelations(relationship)
 			}
 		}
 	}

@@ -23,7 +23,7 @@ class DataElement extends ModelElement {
 		except = ["extension"]
     } 
 	
-	static hasMany = [relations: Relationship, subElements: DataElement, dataElementValueDomains: DataElementValueDomain, dataElementCollections: DataElementCollection]
+	static hasMany = [relations: Relationship, subElements: DataElement, dataElementCollections: DataElementCollection]
 
 	static belongsTo = [parent: DataElement, dataElementConcept: DataElementConcept]
 	
@@ -42,30 +42,7 @@ class DataElement extends ModelElement {
 		subElements cascade: "save-update"
 	}
 	
-	/******************************************************************************************************************/
-	/**************functions for linking data elements and value domains using dataElementValueDomains class*************************/
-	/******************************************************************************************************************/
-	
-	List dataElementValueDomains() {
-		return dataElementValueDomains.collect{it.valueDomain}
-	}
 
-	//add a valueDomain to list of valueDomains 
-	
-	List addToDataElementValueDomains(ValueDomain valueDomain) {
-		DataElementValueDomain.link(this, valueDomain)
-		return dataElementValueDomains()
-	}
-
-	//remove a valueDomain from list of valueDomains 
-	
-	List removeFromDataElementValueDomains(ValueDomain valueDomain) {
-		
-		DataElementValueDomain.unlink(this, valueDomain)
-		return dataElementValueDomains()
-	}
-	
-	
 	/******************************************************************************************************************/
 	/****************functions for linking dataElements and Collections using dataElementCollections class***************************/
 	/******************************************************************************************************************/

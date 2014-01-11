@@ -6,8 +6,9 @@ import org.json.simple.JSONObject;
 
 abstract class ModelElement {
 		
-		JSONObject extension
 		def storage = [:]
+		
+		JSONObject extension
 		
 		static hasMany = { relations: Relationship }
 		
@@ -120,7 +121,7 @@ abstract class ModelElement {
 		
 	
 		public void addToRelations(Relationship relationship){
-			relations.add(relationship)
+			this.relations.add(relationship)
 		}
 		
 		

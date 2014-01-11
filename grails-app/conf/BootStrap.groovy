@@ -22,6 +22,7 @@ class BootStrap {
 	def sessionFactory
 	def springSecurityService
 	def grailsApplication
+	def modelElementService
 
 	def init = { servletContext ->
 
@@ -238,13 +239,14 @@ class BootStrap {
 		def applicationContext = grailsApplication.mainContext
 		def DEM
 		def string
+		def valueDomain
 		
 		def date
 		
 		if (!RelationshipType.count()) {
 			
 			new RelationshipType(name: "Synonym").save()
-			new RelationshipType(name: "ValueDomain").save()
+			valueDomain = new RelationshipType(name: "ValueDomain").save(flush:true)
 			new RelationshipType(name: "ParentChild", xYRelationship: "Parent", yXRelationship: "Child").save()
 			
 		}
@@ -345,17 +347,19 @@ class BootStrap {
 
 							if (!DataElement.count()&&!ValueDomain.count()) {
 
-									DataElementValueDomain.link(new DataElement(name:"SOURCE OF REFERRAL FOR OUT-PATIENTS",
+									def d1 = new DataElement(name:"SOURCE OF REFERRAL FOR OUT-PATIENTS",
 									description:"This identifies the source of referral of each Consultant Out-Patient Episode.",
-									dataElementConcept: REF).save(failOnError: true),
-									new ValueDomain(name:"NHS SOURCE OF REFERRAL FOR OUT-PATIENTS",
+									dataElementConcept: REF, relations: []).save(failOnError: true, flush:true)
+									
+									def v1 = new ValueDomain(name:"NHS SOURCE OF REFERRAL FOR OUT-PATIENTS",
 									description:"",
 									dataType: OP_REF,
 									conceptualDomain: COSD,
-									format:"an2").save(failOnError: true))
+									format:"an2", relations: []).save(failOnError: true, flush:true)
+									
+									Relationship.link(d1, v1, valueDomain).save(failOnError:true, flush:true)
 
-
-									DataElementValueDomain.link(new DataElement(name:"ETHNIC CATEGORY",
+									/*Relationship.link(new DataElement(name:"ETHNIC CATEGORY",
 									description:"The ethnicity of a PERSON, as specified by the PERSON.. The 16+1 ethnic data categories defined in the 2001 census is the national mandatory standard for the collection and analysis of ethnicity.(The Office for National Statistics has developed a further breakdown of the group from that given, which may be used locally.)",
 									dataElementConcept: DEM).save(failOnError: true),
 									new ValueDomain(name:"NHS ETHNIC CATEGORY",
@@ -364,23 +368,23 @@ class BootStrap {
 									conceptualDomain: COSD,
 									format:"an2").save(failOnError: true))
 
-									DataElementValueDomain.link(new DataElement(name:"PERSON FAMILY NAME (AT BIRTH)",
+									Relationship.link(new DataElement(name:"PERSON FAMILY NAME (AT BIRTH)",
 									description:"The PATIENTs surname at birth.",
 									dataElementConcept: DEM).save(failOnError: true),
 									new ValueDomain(name:"NHS PERSON FAMILY NAME (AT BIRTH)",
 									description:"",
 									dataType: string,
 									conceptualDomain: COSD,
-									format:"max 35 characters").save(failOnError: true))
+									format:"max 35 characters").save(failOnError: true), relationshipType: valueDomain)
 
-									DataElementValueDomain.link(new DataElement(name:"GENERAL MEDICAL PRACTICE CODE (PATIENT REGISTRATION)",
+									Relationship.link(new DataElement(name:"GENERAL MEDICAL PRACTICE CODE (PATIENT REGISTRATION)",
 									description:"The GENERAL MEDICAL PRACTICE CODE (PATIENT REGISTRATION) is an ORGANISATION CODE. This is the code of the GP Practice that the PATIENT is registered with.",
 									dataElementConcept: DEM).save(failOnError: true),
 									new ValueDomain(name:"NHS GENERAL MEDICAL PRACTICE CODE (PATIENT REGISTRATION)",
 									description:"",
 									dataType: string,
 									conceptualDomain: COSD,
-									format:"an6").save(failOnError: true))
+									format:"an6").save(failOnError: true), relationshipType: valueDomain)*/
 
 
 									
