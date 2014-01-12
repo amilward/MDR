@@ -10,6 +10,7 @@
         self.type = 'node' //'node' | 'pathway'
         self.x = undefined
         self.y = undefined
+        self.pathwayId = undefined
         self.subPathway = undefined;
         self.subPathwayId = undefined;
         self.subPathwayName = undefined;
@@ -189,8 +190,7 @@
         	});	        	
         	//on close delete binding
         };
-        
-        
+
         //create a subpathway
         //called from show.gsp
         //creates a subPathway in the Node
@@ -208,9 +208,13 @@
             		
             		self.subPathwayId = data.pathwayId;
             		
-            		}
+            		$.when(pathwayService.loadPathway(bindingContext.$root.topLevelPathway.id)).done(function (data) {
+                			var tlpm = self.createPathway(data.pathwaysModelInstance);
+                			bindingContext.$root.topLevelPathway = tlpm;
+                	});
+            	}
             	});
-            
+
             //root.pathwayModel = self.subPathway;
             bindingContext.$root.updatePathway();
             

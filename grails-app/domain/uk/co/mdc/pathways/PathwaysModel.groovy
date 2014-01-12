@@ -59,5 +59,35 @@ class PathwaysModel extends ModelElement{
 		
 	}
 	
+	//get the top level pathway that contains this particular pathways model
+	
+	PathwaysModel getTopLevelPathwaysModel(){
+		
+		if(getParentPathwaysModel()){
+			
+			//initiate the top level pathway as this pathway for loop
+			PathwaysModel topLevelPathway = this
+			
+			//loop through all the parent pathways until you get to the top i.e. there is no higher level pathway
+			while(topLevelPathway.getParentPathwaysModel()){
+				topLevelPathway = topLevelPathway.getParentPathwaysModel()
+			}
+			
+			return topLevelPathway
+			
+		}else{
+			return null
+		}
+		
+	}
+	
+	PathwaysModel getParentPathwaysModel(){
+		if(parentNode?.pathwaysModel){
+			return parentNode?.pathwaysModel
+		}else{
+			return null
+		}
+	}
+	
 	
 }
