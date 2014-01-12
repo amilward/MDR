@@ -177,7 +177,6 @@ class BootStrap {
 		grantAdminPermissions(DataElement.list())
 		grantAdminPermissions(ValueDomain.list())
 		grantAdminPermissions(ConceptualDomain.list())
-		grantAdminPermissions(DataElementConcept.list())
 		grantAdminPermissions(DataType.list())
 		grantAdminPermissions(Document.list())
 		grantAdminPermissions(Collection.list())
@@ -192,7 +191,6 @@ class BootStrap {
 		grantUserPermissions(DataElement.list())
 		grantUserPermissions(ValueDomain.list())
 		grantUserPermissions(ConceptualDomain.list())
-		grantUserPermissions(DataElementConcept.list())
 		grantUserPermissions(DataType.list())
 		grantUserPermissions(Document.list())
 		grantUserPermissions(Collection.list())
@@ -253,22 +251,7 @@ class BootStrap {
 		
 		
 		if (!ConceptualDomain.count()) {
-			ConceptualDomain COSD = new ConceptualDomain(name:"TESTDOMAIN", description:"Cancer Outcomes and Services Dataset").save(failOnError: true)
-
-			if (!DataElementConcept.count()) {
-					DataElementConcept CORE = new DataElementConcept(name:"CORE", description:"CORE data set").save(failOnError: true)
-					DataElementConcept HAEMA = new DataElementConcept(name:"HAEMATOLOGY", description:"HAEMATOLOGY data set").save(failOnError: true)
-					new DataElementConcept(name:"CORE - DIAGNOSTIC DETAILS", parent: CORE).save(failOnError: true)
-					new DataElementConcept(name:"CORE - PATIENT IDENTITY DETAILS", parent: CORE).save(failOnError: true)
-					DEM = new DataElementConcept(name:"CORE - DEMOGRAPHICS",  parent: CORE).save(failOnError: true)
-					DataElementConcept REF = new DataElementConcept(name:"CORE - REFERRALS", parent: CORE).save(failOnError: true)
-					new DataElementConcept(name:"CORE - IMAGING", parent: CORE).save(failOnError: true)
-					new DataElementConcept(name:"CORE - DIAGNOSIS", parent: CORE).save(failOnError: true)
-					new DataElementConcept(name:"CORE - CANCER CARE PLAN", parent: CORE).save(failOnError: true)
-					new DataElementConcept(name:"CORE - CLINICAL TRIALS", parent: CORE).save(failOnError: true)
-					new DataElementConcept(name:"CORE - STAGING", parent: CORE).save(failOnError: true)
-
-
+				ConceptualDomain COSD = new ConceptualDomain(name:"TESTDOMAIN", description:"Cancer Outcomes and Services Dataset").save(failOnError: true)
 
 					if (!DataType.count()) {
 
@@ -344,12 +327,27 @@ class BootStrap {
 							new DataType(name:"Float", enumerated: false).save(failOnError: true)
 							new DataType(name:"Boolean", enumerated: false).save(failOnError: true)
 							new DataType(name:"Blob", enumerated: false).save(failOnError: true)
+							
+							
+							/*DataElementConcept CORE = new DataElementConcept(name:"CORE", description:"CORE data set").save(failOnError: true)
+							DataElementConcept HAEMA = new DataElementConcept(name:"HAEMATOLOGY", description:"HAEMATOLOGY data set").save(failOnError: true)
+							new DataElementConcept(name:"CORE - DIAGNOSTIC DETAILS", parent: CORE).save(failOnError: true)
+							new DataElementConcept(name:"CORE - PATIENT IDENTITY DETAILS", parent: CORE).save(failOnError: true)
+							DEM = new DataElementConcept(name:"CORE - DEMOGRAPHICS",  parent: CORE).save(failOnError: true)
+							DataElementConcept REF = new DataElementConcept(name:"CORE - REFERRALS", parent: CORE).save(failOnError: true)
+							new DataElementConcept(name:"CORE - IMAGING", parent: CORE).save(failOnError: true)
+							new DataElementConcept(name:"CORE - DIAGNOSIS", parent: CORE).save(failOnError: true)
+							new DataElementConcept(name:"CORE - CANCER CARE PLAN", parent: CORE).save(failOnError: true)
+							new DataElementConcept(name:"CORE - CLINICAL TRIALS", parent: CORE).save(failOnError: true)
+							new DataElementConcept(name:"CORE - STAGING", parent: CORE).save(failOnError: true)
+							*/
+							
 
 							if (!DataElement.count()&&!ValueDomain.count()) {
 
 									def d1 = new DataElement(name:"SOURCE OF REFERRAL FOR OUT-PATIENTS",
 									description:"This identifies the source of referral of each Consultant Out-Patient Episode.",
-									dataElementConcept: REF, relations: []).save(failOnError: true, flush:true)
+									relations: []).save(failOnError: true, flush:true)
 									
 									def v1 = new ValueDomain(name:"NHS SOURCE OF REFERRAL FOR OUT-PATIENTS",
 									description:"",
@@ -359,51 +357,48 @@ class BootStrap {
 									
 									Relationship.link(d1, v1, valueDomain).save(failOnError:true, flush:true)
 
-									/*Relationship.link(new DataElement(name:"ETHNIC CATEGORY",
+									def d2 = new DataElement(name:"ETHNIC CATEGORY",
 									description:"The ethnicity of a PERSON, as specified by the PERSON.. The 16+1 ethnic data categories defined in the 2001 census is the national mandatory standard for the collection and analysis of ethnicity.(The Office for National Statistics has developed a further breakdown of the group from that given, which may be used locally.)",
-									dataElementConcept: DEM).save(failOnError: true),
-									new ValueDomain(name:"NHS ETHNIC CATEGORY",
+									relations: []).save(failOnError: true, flush:true)
+									
+									def v2 =  new ValueDomain(name:"NHS ETHNIC CATEGORY",
 									description:"",
 									dataType: ETH_CAT,
 									conceptualDomain: COSD,
-									format:"an2").save(failOnError: true))
+									format:"an2", relations: []).save(failOnError: true, flush:true)
+									
+									Relationship.link(d2, v2, valueDomain).save(failOnError:true, flush:true)
 
-									Relationship.link(new DataElement(name:"PERSON FAMILY NAME (AT BIRTH)",
+									def d3 = new DataElement(name:"PERSON FAMILY NAME (AT BIRTH)",
 									description:"The PATIENTs surname at birth.",
-									dataElementConcept: DEM).save(failOnError: true),
-									new ValueDomain(name:"NHS PERSON FAMILY NAME (AT BIRTH)",
+									dataElementConcept: DEM, relations: []).save(failOnError: true, flush:true)
+									
+									def v3 =  new ValueDomain(name:"NHS PERSON FAMILY NAME (AT BIRTH)",
 									description:"",
 									dataType: string,
 									conceptualDomain: COSD,
-									format:"max 35 characters").save(failOnError: true), relationshipType: valueDomain)
+									format:"max 35 characters", relations: []).save(failOnError: true, flush:true)
+									
+									Relationship.link(d3, v3, valueDomain).save(failOnError:true, flush:true)
 
-									Relationship.link(new DataElement(name:"GENERAL MEDICAL PRACTICE CODE (PATIENT REGISTRATION)",
+									def d4 = new DataElement(name:"GENERAL MEDICAL PRACTICE CODE (PATIENT REGISTRATION)",
 									description:"The GENERAL MEDICAL PRACTICE CODE (PATIENT REGISTRATION) is an ORGANISATION CODE. This is the code of the GP Practice that the PATIENT is registered with.",
-									dataElementConcept: DEM).save(failOnError: true),
-									new ValueDomain(name:"NHS GENERAL MEDICAL PRACTICE CODE (PATIENT REGISTRATION)",
+									relations: []).save(failOnError: true, flush:true)
+									
+									def v4 =  new ValueDomain(name:"NHS GENERAL MEDICAL PRACTICE CODE (PATIENT REGISTRATION)",
 									description:"",
 									dataType: string,
 									conceptualDomain: COSD,
-									format:"an6").save(failOnError: true), relationshipType: valueDomain)*/
+									format:"an6", relations: []).save(failOnError: true, flush:true)
 
-
+									Relationship.link(d4, v4, valueDomain).save(failOnError:true, flush:true)
 									
 
 							}
 							
-							/*def dataElement = DataElement.get(1);
-							
-							DataElementCollection.link(dataElement,
-								new Collection(refId: 'Col1',
-								name: 'TestCol',
-								description: 'blah blah blah').save(failOnError: true), SchemaSpecification.MANDATORY)*/
-
-
-
-							
 							}
 					}
-			}
+
 		
 		
 		
