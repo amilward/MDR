@@ -50,9 +50,9 @@ modules = {
 
 	dataTables {
 		dependsOn "application"
-		resource url: "js/datatable/jquery.dataTables.fnSetFilteringDelay.js"
         resource url: "bower_components/datatables/media/js/jquery.dataTables.js"
         resource url: "bower_components/datatables/media/css/jquery.dataTables.css"
+        resource url: "js/datatable/jquery.dataTables.fnSetFilteringDelay.js"
 	}
 	
 	dualListBox {

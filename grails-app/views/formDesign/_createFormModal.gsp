@@ -42,8 +42,7 @@
 			<div class="modal-footer">
           <button id="createFormSubmit" type="submit" class="btn btn-primary"
           >Create</button>
-        <button class="closeModalLink" type="button" class="btn"
-          >Close</button>
+        <button class="closeModalLink" type="button" class="btn" data-dismiss="modal">Close</button>
       </div>
       
 		</div>

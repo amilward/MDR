@@ -196,7 +196,7 @@ td{
 		  				</tr>
 		  			</tbody>
 		  		</table>
-	  			<button id="dashCreatePathway" class="btn btn-default"><i style="color: green;" class="icon-plus"></i>&nbsp;Create a new Pathway Model</button>
+	  			<button id="dashCreatePathway" class="btn btn-default" data-toggle="modal" data-target="#createPathwayModal"><i style="color: green;" class="icon-plus"></i>&nbsp;Create a new Pathway Model</button>
 
 		  		<button class="dashboard-return btn btn-default"><i class="icon-arrow-left"></i>&nbsp;Return to the Dashboard</button>
 	  		</div>
@@ -235,7 +235,7 @@ td{
 		  				</tr>
 		  			</tbody>
 		  		</table>
-	  			<button id="dashCreateForm" class="btn btn-default"><i style="color: green;" class="icon-plus"></i>&nbsp;Create a new Form Model</button>
+	  			<button id="dashCreateForm" class="btn btn-default" data-toggle="modal" data-target="createFormModal"><i style="color: green;" class="icon-plus"></i>&nbsp;Create a new Form Model</button>
 		  		<button class="dashboard-return btn btn-default"><i class="icon-arrow-left"></i>&nbsp;Return to the Dashboard</button>
 	  		</div>
 	  	</div>
