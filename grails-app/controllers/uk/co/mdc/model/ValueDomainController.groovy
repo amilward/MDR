@@ -113,7 +113,7 @@ class ValueDomainController {
 			return
 		}
 
-		[valueDomainInstance: valueDomainInstance]
+		[valueDomainInstance: valueDomainInstance, relationshipTypes: RelationshipType.list()]
 	}
 	
 	

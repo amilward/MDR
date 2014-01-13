@@ -63,9 +63,11 @@
 						<td class="right_col_show"><g:fieldValue bean="${valueDomainInstance}" field="unitOfMeasure"/></td>
 					</tr>
 				</g:if>
-				<g:if test="${valueDomainInstance?.dataElementValueDomains}">
+				<g:if test="${relationshipTypes}">
+					<g:each var="relationshipType" in="${relationshipTypes}">
+					
 					<tr>
-						<td colspan="2"><span id="name-label" class="label">Associated Data Elements</span></td>
+							<td colspan="2"><span id="name-label" class="label">${relationshipType.name}</span></td>
 					</tr>
 					<tr>
 						<td colspan="2">
@@ -74,43 +76,21 @@
 								<tr>
 									<th>Name</th>
 									<th>Description</th>
-									<th>Parent</th>
-		
+									<th></th>
 								</tr>
 							</thead>
-							<g:each var="dataElement" in="${valueDomainInstance.dataElementValueDomains()}">
-							<tr>
-								<td><g:link action="show" controller="DataElement" id="${dataElement?.id}">${dataElement?.name} </g:link></td>
-								<td>${dataElement?.description}</td>
-								<td><g:link action="show" controller="DataElement" id="${dataElement?.parent?.id}">${dataElement?.parent?.name} </g:link> </td>
-							</tr>
-						</g:each>
-						</table>
-						</td>
-					</tr>
-				</g:if>
-				<g:if test="${valueDomainInstance?.externalReferences}">
-					<tr>
-						<td class="left_col_show"><span id="name-label" class="label">External Reference</span></td>
-						<td class="right_col_show">
-							<table>
-							<thead>
+							<g:each var="relation" in="${valueDomainInstance.relations(relationshipType.name)}">
 								<tr>
-									<th>Name</th>
-									<th>URL</th>
-									<th>Attributes</th>
-								</tr>
-							</thead>
-							<g:each var="externalReference" in="${valueDomainInstance.externalReferences}">
-								<tr>
-									<td><g:link action="show" controller="ExternalReference" id="${externalReference?.id}">${externalReference?.name} </g:link></td>
-									<td>${externalReference?.url}</td>
-									<td>${externalReference?.attributes} </td>
+									<td><g:link action="show" controller="${relation.getClass().getSimpleName()}" id="${relation?.id}">${relation?.name} </g:link></td>
+									<td>${relation?.description}</td>
+									<td>${relation?.relationshipType}</td>
 								</tr>
 							</g:each>
 						</table>
 						</td>
 					</tr>
+					
+					</g:each>
 				</g:if>
 				</tbody>
 			</table>

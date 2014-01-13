@@ -126,10 +126,6 @@ class DataElementController extends RestfulController{
 			return
 		}
 
-		def relations = dataElementInstance.relations()
-		def parentChild = dataElementInstance.relations("ParentChild")
-		def valueDomain = dataElementInstance.relations("ValueDomain")
-		def synonyms = dataElementInstance.relations("Synonym")
 		
 		[dataElementInstance: dataElementInstance, relationshipTypes: RelationshipType.list()]
 	}
@@ -490,12 +486,8 @@ class DataElementController extends RestfulController{
 				field = "parent"
 			break
 			
-			case '2':
-				field = "dataElementConcept"
-			break
-			
 			default:
-				field = "dataElementConcept"
+				field = "name"
 			break
 		}
 		

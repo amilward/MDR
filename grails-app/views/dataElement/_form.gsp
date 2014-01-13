@@ -15,22 +15,7 @@
 						<td class="left_col_show"><span id="name-label" class="label"><g:message code="dataElement.definition.label" default="Definition" /></span></td>
 						<td class="right_col_show"><g:textArea title="tooltip.dataElement.definition" class="input-block-level" name="definition" value="${dataElementInstance?.definition}"/></td>
 					</tr>
-					<tr>
-						<td class="left_col_show"><span id="name-label" class="label"><g:message code="dataElement.dataElementConcept.label" default="Data Element Concept" /></span></td>
-						<td class="right_col_show">
-						<g:select 
-							title="tooltip.dataElement.dataElementConcept"
-							id="dataElementConcept" 
-							name="dataElementConcept.id" 
-							from="${uk.co.mdc.model.DataElementConcept.list()}" 
-							optionKey="id" 
-							optionValue="name"
-							value="${dataElementInstance?.dataElementConcept?.id}" 
-							class="many-to-one" 
-							noSelection="${[null:'Select One...']}"
-							/>
-						</td>
-					</tr>
+					
 					<tr>
 						<td class="left_col_show"><span id="name-label" class="label"><g:message code="dataElement.parent.label" default="Parent" /></span></td>
 						<td>

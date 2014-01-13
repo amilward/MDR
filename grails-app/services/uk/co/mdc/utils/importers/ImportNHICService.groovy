@@ -5,7 +5,6 @@ import uk.co.mdc.model.Collection;
 import uk.co.mdc.model.ValueDomain
 import uk.co.mdc.model.DataElement
 import uk.co.mdc.model.DataType
-import uk.co.mdc.model.DataElementConcept
 import uk.co.mdc.model.DataElementCollection
 import uk.co.mdc.model.ConceptualDomain
 import uk.co.mdc.model.Document
@@ -672,15 +671,16 @@ class ImportNHICService {
 			{
 				return dec;
 			}
-			def matches = DataElementConcept.findAllWhere("name" : name, "parent" : dec)
+		/*	def matches = DataElementConcept.findAllWhere("name" : name, "parent" : dec)
 			if(matches.empty)
 			{
-				new DataElementConcept('name': name, 'parent': dec).save()
+				ne w  DataEl ementConcept('name': name, 'parent': dec).save()
 			}
 			else
 			{
 				matches.first();
 			}
+			*/
 		}
 	}
 

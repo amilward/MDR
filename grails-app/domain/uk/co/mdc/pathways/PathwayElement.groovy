@@ -3,7 +3,6 @@ package uk.co.mdc.pathways
 import uk.co.mdc.model.Collection
 import uk.co.mdc.model.DataElement
 import uk.co.mdc.model.DataElementCollection
-import uk.co.mdc.model.DataElementConcept
 import uk.co.mdc.model.ModelElement;
 
 abstract class PathwayElement extends ModelElement{

@@ -14,8 +14,6 @@ class DataElement extends ModelElement {
 	
 	DataElement parent
 	
-	DataElementConcept dataElementConcept
-	
 	static auditable = true
 	
 	static searchable = {
@@ -25,12 +23,11 @@ class DataElement extends ModelElement {
 	
 	static hasMany = [relations: Relationship, subElements: DataElement, dataElementCollections: DataElementCollection]
 
-	static belongsTo = [parent: DataElement, dataElementConcept: DataElementConcept]
+	static belongsTo = [parent: DataElement]
 	
     static constraints = {
 		description nullable:true
 		parent nullable: true
-		dataElementConcept nullable: true
 		definition nullable: true
 		name blank: false
 		extension nullable: true

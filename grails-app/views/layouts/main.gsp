@@ -75,17 +75,7 @@
 						<li><g:link action="create" controller="ValueDomain">
 								<i class="icon-angle-right"></i> Create </g:link></li>
 					</ul></li>
-				<li class="accordion-group "><a data-parent="#menu"
-					data-toggle="collapse" class="accordion-toggle"
-					data-target="#dataElementConcepts-nav"> <i
-						class="icon-sitemap icon-large"></i> Data Element Concepts
-				</a>
-					<ul class="collapse " id="dataElementConcepts-nav">
-						<li><g:link action="list" controller="DataElementConcept">
-								<i class="icon-angle-right"></i> List </g:link></li>
-						<li><g:link action="create" controller="DataElementConcept">
-								<i class="icon-angle-right"></i> Create </g:link></li>
-					</ul></li>
+				
 				<li class="accordion-group "><a data-parent="#menu"
 					data-toggle="collapse" class="accordion-toggle"
 					data-target="#conceptualDomains-nav"> <i
@@ -108,7 +98,7 @@
 						<li><g:link action="create" controller="DataType">
 								<i class="icon-angle-right"></i> Create </g:link></li>
 					</ul></li>
-				<li class="accordion-group "><a data-parent="#menu"
+				<!--   <li class="accordion-group "><a data-parent="#menu"
 					data-toggle="collapse" class="accordion-toggle"
 					data-target="#documents-nav"> <i class="icon-book icon-large"></i>
 						Documents
@@ -118,18 +108,7 @@
 								<i class="icon-angle-right"></i> List </g:link></li>
 						<li><g:link action="create" controller="Document">
 								<i class="icon-angle-right"></i> Create </g:link></li>
-					</ul></li>
-				<li class="accordion-group "><a data-parent="#menu"
-					data-toggle="collapse" class="accordion-toggle"
-					data-target="#externalReference-nav"> <i
-						class="icon-external-link icon-large"></i> External References
-				</a>
-					<ul class="collapse " id="externalReference-nav">
-						<li><g:link action="list" controller="ExternalReference">
-								<i class="icon-angle-right"></i> List </g:link></li>
-						<li><g:link action="create" controller="ExternalReference">
-								<i class="icon-angle-right"></i> Create </g:link></li>
-					</ul></li>
+					</ul></li>-->
 				<li class="accordion-group "><a data-parent="#menu"
 					data-toggle="collapse" class="accordion-toggle"
 					data-target="#formDesign-nav"> <i
