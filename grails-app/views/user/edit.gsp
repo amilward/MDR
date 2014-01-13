@@ -10,7 +10,7 @@
 </sec:ifNotSwitched>
 
 <head>
-	<meta name='layout' content='main_no-sidebar'/>
+	<meta name='layout' content='main'/>
 	<g:set var="entityName" value="${message(code: 'user.label', default: 'User')}"/>
 	<title><g:message code="default.edit.label" args="[entityName]"/></title>
 </head>

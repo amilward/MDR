@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta name="layout" content="main_no-sidebar">
+    <meta name="layout" content="main">
     <title>Import data</title>
   </head>
   <body>
@@ -17,6 +17,12 @@
       </div>
       
     </div>
-    <div id="flash" class="alert alert-info"><g:message code="${flash.message}" args="${flash.args}" default="${flash.default}"/></div>
+    <g:if test="${flash.error}">
+        <div class="alert alert-error"><g:message code="${flash.message}" args="${flash.args}" default="${flash.default}"/></div>
+    </g:if>
+    <g:if test="${flash.message}">
+        <div class="message" style="display: block">${flash.message}</div>
+    </g:if>
+
   </body>
 </html>

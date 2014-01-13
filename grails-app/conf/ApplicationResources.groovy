@@ -1,8 +1,9 @@
 modules = {
-	
+
+
 	// Standard libraries
 	jquery_lib {
-		resource url: "js/vendor/jquery/jquery-2.0.3.js", disposition: 'head'
+		resource url: "bower_components/jquery/jquery.min.js", disposition: "head"
 		resource url: "js/vendor/jquery/jquery-ui.1.10.2.js"
 	}
 	
@@ -39,29 +40,19 @@ modules = {
 	}
 	
 	bootstrap_lib{
-		resource url: "js/vendor/bootstrap.min.js"
+        resource url: "bower_components/bootstrap/dist/js/bootstrap.min.js"
 	}
 	
 	bootstrap_editable_lib{
 		dependsOn "bootstrap_lib"
 		resource url: "js/vendor/bootstrap-editable.js"
 	}
-	
-	// Application libraries
-	
-    application {
-        dependsOn "style"
-		dependsOn "jquery_lib"
-		dependsOn "bootstrap_lib"
-		resource url: "js/main.js"
-    }
-	
-	
-	
+
 	dataTables {
 		dependsOn "application"
-		resource url: "js/datatable/jquery.dataTables.min.js"
-		resource url: "js/datatable/jquery.dataTables.fnSetFilteringDelay.js"
+        resource url: "bower_components/datatables/media/js/jquery.dataTables.js"
+        resource url: "bower_components/datatables/media/css/jquery.dataTables.css"
+        resource url: "js/datatable/jquery.dataTables.fnSetFilteringDelay.js"
 	}
 	
 	dualListBox {
@@ -166,6 +157,8 @@ modules = {
 		resource url: "js/pathways/model/FormModel.js"
 		resource url: "js/forms/formDesign.js"
 		resource url: "js/model/collection/collection.js"
+
+        resource url: "css/pathways/style.css"
 		
 	}
 	
@@ -186,14 +179,36 @@ modules = {
         resource url: "js/dashboard.js"
     }
 
+
     /**
-     * LESS & CSS
+     * Angular support
      */
-    style{
+    angular {
+        resource id: 'js', url: [dir: 'bower_components/angular', file: "angular.js"], nominify: true
+    }
+
+    angularPathwaysApp {
+        dependsOn 'angular'
+        resource id: 'js', url: [dir: 'js/angular/', file: "angular-app.js"], nominify: true
+    }
+
+    /**
+     *  Application libraries
+     */
+    application_libraries {
+        dependsOn "jquery_lib"
+        dependsOn "bootstrap_lib"
+        dependsOn "modernizr_lib"
+    }
+
+    application {
+        dependsOn "application_libraries"
+        resource url: "js/main.js"
+
+        // Keep this at the end, otherwise we'll override our classes with vendor defaults :(
+        resource url:'css/style.css'
         resource url:[dir: 'less', file: 'application.less'], attrs:[rel: "stylesheet/less", type:'css']
         resource url: "js/vendor/less/less-1.6.0.min.js", disposition: 'head'
-        resource url:'css/theme.css'
-        resource url:'css/style.css'
     }
 }
 

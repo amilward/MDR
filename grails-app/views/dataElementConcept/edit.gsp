@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta name="layout" content="main">
+		<meta name="layout" content="metadata_curation">
 		<g:set var="entityName" value="${message(code: 'dataElementConcept.label', default: 'DataElementConcept')}" />
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'bootstrap-duallistbox.css')}" type="text/css">
 		<title><g:message code="default.edit.label" args="[entityName]" /></title>

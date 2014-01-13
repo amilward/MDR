@@ -1,7 +1,7 @@
 <g:render template="/shared/header" />
 
 <!-- BEGIN MAIN CONTENT -->
-<div class="container">
+<div class="fullwidth-container">
     <div class="row">
         <div class="col-xs-12">
             <g:layoutBody />

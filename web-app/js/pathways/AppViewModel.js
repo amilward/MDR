@@ -78,14 +78,7 @@
         	
         }
       
-        
-        //displays a modal that is bound to the pathway and allows you to edit the pathway info
-        //i.e. name, description etc
-        
-        self.editPathway = function() {
-        	$('#updatePathwayModal').modal({ show: true, keyboard: false, backdrop: 'static' });
 
-        };
         
         //this is used to display a pathway when given pathway JSON
         
@@ -221,23 +214,23 @@
         	//create the node in the model
         	//console.log(JSONNode.pathwaysModelVersion)
         	var node = new NodeModel();
+            var subNodes;
             node.name = JSONNode.name;
             node.description = JSONNode.description;
-            node.pathwayId = pm.id
+            node.pathwayId = pm.id;
             node.subPathwayName = JSONNode.subModelName;
             node.subPathwayId = JSONNode.subModelId;
             node.name = JSONNode.name;
             node.x = JSONNode.x ;
             node.y = JSONNode.y ;
-            node.id = JSONNode.id
-	        node.versionOnServer = JSONNode.nodeVersion
-            node.setCollections(JSONNode.optionalOutputs);
-            pm.versionOnServer = JSONNode.pathwaysModelVersion
-            pm.nodes.push(node);
-        };
+            node.id = JSONNode.id;
+	        node.versionOnServer = JSONNode.nodeVersion;
+            // FIXME the following does lots of AJAX calls, we should probably grab the tree in one JSON hit.
+            subNodes = node.getSubNodes();
 
-        self.createNode = function(){
-            	$('#CreateNode').modal({ show: true, keyboard: false, backdrop: 'static' });
+            node.setCollections(JSONNode.optionalOutputs);
+            pm.versionOnServer = JSONNode.pathwaysModelVersion;
+            pm.nodes.push(node);
         };
         
         self.saveNode = function (createFrom) {

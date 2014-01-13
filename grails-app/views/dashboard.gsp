@@ -1,46 +1,15 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta name="layout" content="main_no-sidebar"/>
+<meta name="layout" content="main"/>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Model Catalogue - Home</title>
 
 
 <!-- FIXME Styles in HTML is bad, bad, bad! Extract to generic CSS file.... -->
 <style type="text/css">
-html, body{
-	font-family: helvetica,sans-serif;
-	background-color: black !important;
-	
-}
 
-#dashboard{
-	width: 740px;
-	height: 540px;
-	color: #555555;
-	margin-left: auto;
-	margin-right: auto;
-	background-color: white;
-	text-align: left;
-	position: relative;
-	margin-top: 20px;
-}
 
-#dashboard div.dashboard-page{
-	position: absolute;
-	top: 0;
-	left: 0;
-	height: 460px;
-	padding: 40px;
-}
-
-#dashboard-options{
-	text-align: center;
-	padding-left: 40px !important;
-	padding-right: 25px !important;
-	padding-top: 10px !important;
-	padding-bottom: 10px !important; 
-}
 
 
 .dashboard_option{
@@ -76,41 +45,7 @@ html, body{
 	left: 0;
 }
 
-
-.dashboard_option_highlighted{
-	border: 3px solid #555555;
-	color: #555555;
-}
-.dashboard_option_not_highlighted{
-	border: 3px solid #3399FF;
-	color: #3399FF;
-}
-
-.dashboard-wrapper{
-	height: 460px; 
-	width: 660px; 
-	position: relative;
-} 
-
-ul{
-	list-style-type: none;	
-}
-
-ul, li{
-	margin-left: 0 !important;
-	padding-left: 0 !important;
-}
-td{
-	vertical-align: top !important;
-}
-.dashboard-return{
-	position: absolute;
-	bottom: 0;
-	right: 0;
-}
-
 </style>
-<link href="css/bootstrap.min.css" rel="stylesheet"/>
 
 </head>
 <body>
@@ -197,7 +132,7 @@ td{
 		  				</tr>
 		  			</tbody>
 		  		</table>
-	  			<button id="dashCreatePathway" class="btn btn-default"><i style="color: green;" class="icon-plus"></i>&nbsp;Create a new Pathway Model</button>
+	  			<button id="dashCreatePathway" class="btn btn-default" data-toggle="modal" data-target="#createPathwayModal"><i style="color: green;" class="icon-plus"></i>&nbsp;Create a new Pathway Model</button>
 
 		  		<button class="dashboard-return btn btn-default"><i class="icon-arrow-left"></i>&nbsp;Return to the Dashboard</button>
 	  		</div>
@@ -236,7 +171,7 @@ td{
 		  				</tr>
 		  			</tbody>
 		  		</table>
-	  			<button id="dashCreateForm" class="btn btn-default"><i style="color: green;" class="icon-plus"></i>&nbsp;Create a new Form Model</button>
+	  			<button id="dashCreateForm" class="btn btn-default" data-toggle="modal" data-target="createFormModal"><i style="color: green;" class="icon-plus"></i>&nbsp;Create a new Form Model</button>
 		  		<button class="dashboard-return btn btn-default"><i class="icon-arrow-left"></i>&nbsp;Return to the Dashboard</button>
 	  		</div>
 	  	</div>

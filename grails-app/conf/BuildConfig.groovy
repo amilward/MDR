@@ -100,6 +100,7 @@ grails.project.dependency.resolution = {
         runtime ":hibernate:3.6.10.6"
         runtime ":jquery:1.8.3"
         runtime ":resources:1.1.6"
+        runtime ":coffeescript-resources:0.3.8"
 
         // The following are dead, we shouldn't use them!
         // compile ":csv:0.3.1"

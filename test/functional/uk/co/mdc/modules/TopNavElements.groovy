@@ -28,7 +28,7 @@ class TopNavElements extends Module{
 		
 		
 		navPresentAndVisible(required:false) {
-			$("div", class: "navbar") 
+			$("nav", class: "navbar")
 		}
 	}
 
