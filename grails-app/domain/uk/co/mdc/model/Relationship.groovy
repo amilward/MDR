@@ -29,7 +29,12 @@ class Relationship  {
 							 		objectYId: objectY.id,
 									relationshipType: relationshipType).save(flush:true, failOnError:true)
 			
-			 
+			
+			//if relations not intialised for objects then initialise						
+									
+			if(!objectX.relations){objectX.relations = []}	
+			if(!objectY.relations){objectY.relations = []}
+								 
 			objectX.addToRelations(s)
 			objectY.addToRelations(s)
 

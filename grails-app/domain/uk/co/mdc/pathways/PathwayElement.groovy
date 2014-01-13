@@ -1,6 +1,6 @@
 package uk.co.mdc.pathways
 
-import uk.co.mdc.model.Collection
+import uk.co.mdc.model.Model
 import uk.co.mdc.model.DataElement
 import uk.co.mdc.model.DataElementCollection
 import uk.co.mdc.model.ModelElement;
@@ -35,11 +35,11 @@ abstract class PathwayElement extends ModelElement{
 	}
 	
 
-	Collection peCollection
+	Model peCollection
 		
-	static hasMany = [mandatoryInputs: Collection,
-					  mandatoryOutputs: Collection,
-					  optionalInputs: Collection,
-					  optionalOutputs: Collection]
+	static hasMany = [mandatoryInputs: Model,
+					  mandatoryOutputs: Model,
+					  optionalInputs: Model,
+					  optionalOutputs: Model]
 
 }

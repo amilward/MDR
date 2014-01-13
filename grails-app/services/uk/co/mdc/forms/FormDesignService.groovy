@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional
 import uk.co.mdc.model.DataElement;
 import uk.co.mdc.model.ValueDomain;
 import uk.co.mdc.model.DataType;
-import uk.co.mdc.model.Collection;
+import uk.co.mdc.model.Model;
 import grails.converters.JSON
 
 import org.codehaus.groovy.grails.web.json.*;
@@ -148,7 +148,7 @@ class FormDesignService {
 		def section
 		def inputField
 		def questions	
-		def collection = (form?.formCollectionId) ? Collection.get(form?.formCollectionId.toInteger()) : null
+		def collection = (form?.formCollectionId) ? Model.get(form?.formCollectionId.toInteger()) : null
 		
 		//create the form design
 		

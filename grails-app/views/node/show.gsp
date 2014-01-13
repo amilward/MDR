@@ -65,7 +65,7 @@
 					<span id="mandatoryInputs-label" class="property-label"><g:message code="node.mandatoryInputs.label" default="Mandatory Inputs" /></span>
 					
 						<g:each in="${nodeInstance.mandatoryInputs}" var="m">
-						<span class="property-value" aria-labelledby="mandatoryInputs-label"><g:link controller="collection" action="show" id="${m.id}">${m?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="mandatoryInputs-label"><g:link controller="model" action="show" id="${m.id}">${m?.encodeAsHTML()}</g:link></span>
 						</g:each>
 					
 				</li>
@@ -76,7 +76,7 @@
 					<span id="mandatoryOutputs-label" class="property-label"><g:message code="node.mandatoryOutputs.label" default="Mandatory Outputs" /></span>
 					
 						<g:each in="${nodeInstance.mandatoryOutputs}" var="m">
-						<span class="property-value" aria-labelledby="mandatoryOutputs-label"><g:link controller="collection" action="show" id="${m.id}">${m?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="mandatoryOutputs-label"><g:link controller="model" action="show" id="${m.id}">${m?.encodeAsHTML()}</g:link></span>
 						</g:each>
 					
 				</li>
@@ -96,7 +96,7 @@
 					<span id="optionalInputs-label" class="property-label"><g:message code="node.optionalInputs.label" default="Optional Inputs" /></span>
 					
 						<g:each in="${nodeInstance.optionalInputs}" var="o">
-						<span class="property-value" aria-labelledby="optionalInputs-label"><g:link controller="collection" action="show" id="${o.id}">${o?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="optionalInputs-label"><g:link controller="model" action="show" id="${o.id}">${o?.encodeAsHTML()}</g:link></span>
 						</g:each>
 					
 				</li>
@@ -107,7 +107,7 @@
 					<span id="optionalOutputs-label" class="property-label"><g:message code="node.optionalOutputs.label" default="Optional Outputs" /></span>
 					
 						<g:each in="${nodeInstance.optionalOutputs}" var="o">
-						<span class="property-value" aria-labelledby="optionalOutputs-label"><g:link controller="collection" action="show" id="${o.id}">${o?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="optionalOutputs-label"><g:link controller="model" action="show" id="${o.id}">${o?.encodeAsHTML()}</g:link></span>
 						</g:each>
 					
 				</li>

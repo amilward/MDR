@@ -179,7 +179,7 @@ class BootStrap {
 		grantAdminPermissions(ConceptualDomain.list())
 		grantAdminPermissions(DataType.list())
 		grantAdminPermissions(Document.list())
-		grantAdminPermissions(Collection.list())
+		grantAdminPermissions(Model.list())
 		grantAdminPermissions(FormDesign.list())
 		grantAdminPermissions(QuestionElement.list())
 		grantAdminPermissions(InputField.list())
@@ -193,7 +193,7 @@ class BootStrap {
 		grantUserPermissions(ConceptualDomain.list())
 		grantUserPermissions(DataType.list())
 		grantUserPermissions(Document.list())
-		grantUserPermissions(Collection.list())
+		grantUserPermissions(Model.list())
 		grantUserPermissions(FormDesign.list())
 		grantUserPermissions(QuestionElement.list())
 		grantUserPermissions(InputField.list())
@@ -246,7 +246,10 @@ class BootStrap {
 			new RelationshipType(name: "Synonym").save()
 			valueDomain = new RelationshipType(name: "ValueDomain").save(flush:true)
 			new RelationshipType(name: "ParentChild", xYRelationship: "Parent", yXRelationship: "Child").save()
-			
+			new RelationshipType(name: "OptionalModelElement", xYRelationship: "Model", yXRelationship: "OptionalElement").save()
+			new RelationshipType(name: "MandatoryModelElement", xYRelationship: "Model", yXRelationship: "MandatoryElement").save()
+			new RelationshipType(name: "RequiredModelElement", xYRelationship: "Model", yXRelationship: "RequiredElement").save()
+			new RelationshipType(name: "ReferenceModelElement", xYRelationship: "Model", yXRelationship: "ReferenceElement").save()
 		}
 		
 		

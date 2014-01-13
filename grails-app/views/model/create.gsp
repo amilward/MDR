@@ -1,17 +1,17 @@
-<%@ page import="uk.co.mdc.model.Collection" %>
+<%@ page import="uk.co.mdc.model.Model" %>
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta name="layout" content="main">
-		<g:set var="entityName" value="${message(code: 'collection.label', default: 'Collection')}" />
+		<g:set var="entityName" value="${message(code: 'model.label', default: 'Model')}" />
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'bootstrap-duallistbox.css')}" type="text/css">
 		<title><g:message code="default.create.label" args="[entityName]" /></title>
 	<parameter name="name" value=" CREATE COLLECTION " />
 	</head>
 	<body>
 		<header>
-			<g:form url="[action:'save',controller:'collection']">
-				<g:hiddenField name="id" value="${collectionInstance?.id}" />
+			<g:form url="[action:'save',controller:'model']">
+				<g:hiddenField name="id" value="${modelInstance?.id}" />
 			    	<div class="navbar">
 					    <div class="navbar-inner">
 						    <ul class="nav">
@@ -23,18 +23,18 @@
 			   </g:form>
 		</header>
 		<div class="box">
-		<div id="create-collection" class="content scaffold-create" role="main">
+		<div id="create-model" class="content scaffold-create" role="main">
 			<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
-			<g:hasErrors bean="${collectionInstance}">
+			<g:hasErrors bean="${modelInstance}">
 			<ul class="errors" role="alert">
-				<g:eachError bean="${collectionInstance}" var="error">
+				<g:eachError bean="${modelInstance}" var="error">
 				<li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
 				</g:eachError>
 			</ul>
 			</g:hasErrors>
-			<g:form id="createForm" method="post" url="[action:'save',controller:'collection']">
+			<g:form id="createForm" method="post" url="[action:'save',controller:'model']">
 				<fieldset class="form">
 					<g:render template="form"/>
 				</fieldset>

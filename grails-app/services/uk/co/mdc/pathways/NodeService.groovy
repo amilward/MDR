@@ -179,7 +179,7 @@ class NodeService {
 			//FIXME at the moment we are putting the collections into the optionalOutputs - as we develop the model this may change
 			def pCollection = parameters?.collections
 			pCollection.each{ collection->
-				collections.push(uk.co.mdc.model.Collection.get(collection.id))
+				collections.push(uk.co.mdc.model.Model.get(collection.id))
 			}  			
 		}		
 		

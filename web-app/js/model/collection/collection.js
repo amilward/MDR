@@ -2,10 +2,10 @@
 START COLLECTION LIST  SCRIPTS
 ---------------------------------------------------------*/
 
-function collectionList(){
+function modelList(){
 	
-	$('#collectionList').html( '<table cellpadding="0" cellspacing="0" border="0" class="table table-bordered table-condensed table-hover table-striped" id="collectionTable"></table>' );
-	oTable = $('#collectionTable').dataTable( {
+	$('#modelList').html( '<table cellpadding="0" cellspacing="0" border="0" class="table table-bordered table-condensed table-hover table-striped" id="modelTable"></table>' );
+	oTable = $('#modelTable').dataTable( {
         "bProcessing": true,
         "bServerSide": true,
         "sAjaxSource": "dataTables",
@@ -18,8 +18,8 @@ function collectionList(){
 				    // defaults to the column being worked with, in this case is the first
 				    // Using `row[0]` is equivalent.
 				"mRender": function ( data, type, row ) {	
-					if(row.collectionType=='collection'){
-						return '<a id="'+ row.id + '" href="' + root +'/collection/show/' + row.id + '">' + data + '</a>'
+					if(row.modelType=='model'){
+						return '<a id="'+ row.id + '" href="' + root +'/model/show/' + row.id + '">' + data + '</a>'
 					}else{
 						return '<a id="'+ row.id + '" href="' + root +'/formDesign/show/' + row.id + '">' + data + '</a>'	
 					}
@@ -46,7 +46,7 @@ function collectionList(){
 			//bind the click handler to the + image within the datatable to show information that is too long for data columns i.e. description/definition
 			
 			
-			$('#collectionTable tbody td img').on( 'click', function () {
+			$('#modelTable tbody td img').on( 'click', function () {
 				var nTr = $(this).parents('tr')[0];
 				if ( oTable.fnIsOpen(nTr) )
 				{
@@ -58,7 +58,7 @@ function collectionList(){
 				{
 				/* Open this row */
 				this.src = "../images/details_close.png";
-				oTable.fnOpen( nTr, formatCollectionDetails(nTr), 'details' );
+				oTable.fnOpen( nTr, formatModelDetails(nTr), 'details' );
 				}
 			} );
 			
@@ -74,7 +74,7 @@ function collectionList(){
 /* Formating function for row details - this is for the description and definition columns.....
  * potentially need to add more info from the data elements class
  *  */
-function formatCollectionDetails ( nTr )
+function formatModelDetails ( nTr )
 {
 	var aData = oTable.fnGetData( nTr );
 	var dataElements = getObjectTable(aData.dataElements, "dataElement");
@@ -100,7 +100,7 @@ END COLLECTION LIST  SCRIPTS
 
 
 
-function collectionDualListBox(){
+function modelDualListBox(){
 	//set up dual list box for DataElements, subElements and external Reference
 	
 	
@@ -140,22 +140,22 @@ function collectionDualListBox(){
 }
 
 
-function collectionForm(mandatoryDataElements, requiredDataElements, optionalDataElements, referenceDataElements){
+function modelForm(mandatoryDataElements, requiredDataElements, optionalDataElements, referenceDataElements){
 	
-	//set up form selecting the data elements that have been included in the collection 
+	//set up form selecting the data elements that have been included in the model 
 	//and when this is done set up the dual list boxes (otherwise it may miss some)
-	selectCollectionDataElements(mandatoryDataElements, requiredDataElements, optionalDataElements, referenceDataElements).done(collectionDualListBox())
+	selectModelDataElements(mandatoryDataElements, requiredDataElements, optionalDataElements, referenceDataElements).done(modelDualListBox())
 
 }
 
 
-function collectionListDraggable(){
+function modelListDraggable(){
 	
-	$('#collectionList').html( '<table cellpadding="0" cellspacing="0" border="0" class="table table-bordered table-condensed table-hover table-striped" id="collectionTable"></table>' );
-	oTable = $('#collectionTable').dataTable( {
+	$('#modelList').html( '<table cellpadding="0" cellspacing="0" border="0" class="table table-bordered table-condensed table-hover table-striped" id="modelTable"></table>' );
+	oTable = $('#modelTable').dataTable( {
         "bProcessing": true,
         "bServerSide": true,
-        "sAjaxSource": "../../collection/dataTables",
+        "sAjaxSource": "../../model/dataTables",
         "sEmptyTable": "Loading data from server",
         "bAutoWidth": false,
         "aaSorting": [[ 0, "asc" ]],
@@ -165,8 +165,8 @@ function collectionListDraggable(){
 				    // defaults to the column being worked with, in this case is the first
 				    // Using `row[0]` is equivalent.
 				"mRender": function ( data, type, row ) {		
-					if(row.collectionType=='collection'){
-						return '<a id="'+ row.id + '" href="' + root +'/collection/show/' + row.id + '">' + data + '</a>'
+					if(row.modelType=='model'){
+						return '<a id="'+ row.id + '" href="' + root +'/model/show/' + row.id + '">' + data + '</a>'
 					}else{
 						return '<a id="'+ row.id + '" href="' + root +'/formDesign/show/' + row.id + '">' + data + '</a>'	
 					}
@@ -193,7 +193,7 @@ function collectionListDraggable(){
 			//bind the click handler to the + image within the datatable to show information that is too long for data columns i.e. description/definition
 			
 			
-			$('#collectionTable tbody td img').on( 'click', function () {
+			$('#modelTable tbody td img').on( 'click', function () {
 				var nTr = $(this).parents('tr')[0];
 				if ( oTable.fnIsOpen(nTr) )
 				{
@@ -205,11 +205,11 @@ function collectionListDraggable(){
 				{
 				/* Open this row */
 				this.src = "../images/details_close.png";
-				oTable.fnOpen( nTr, formatCollectionDetails(nTr), 'details' );
+				oTable.fnOpen( nTr, formatModelDetails(nTr), 'details' );
 				}
 			} );
 			
-			$("#collectionTable tr").draggable({
+			$("#modelTable tr").draggable({
 		        helper: "clone",
 		        start: function(event, ui) {
 		            c.tr = this;

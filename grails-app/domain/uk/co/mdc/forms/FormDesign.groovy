@@ -1,8 +1,8 @@
 package uk.co.mdc.forms
 
-import uk.co.mdc.model.Collection
+import uk.co.mdc.model.Model
 
-class FormDesign extends Collection{
+class FormDesign extends Model{
 	
 	String name 
 	String versionNo
@@ -12,7 +12,7 @@ class FormDesign extends Collection{
 	FormDesignElement header
 	FormDesignElement footer
 	//collection - link to the metadata registry model
-	Collection collection
+	Model collection
 	List <FormDesignElement> formDesignElements
 	
 	static searchable = {

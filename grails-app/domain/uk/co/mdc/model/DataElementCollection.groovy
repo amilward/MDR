@@ -4,10 +4,10 @@ class DataElementCollection  {
 	
 	SchemaSpecification schemaSpecification	
 	DataElement dataElement	
-	Collection collection
+	Model collection
 	
 	
-	public DataElementCollection(DataElement de, Collection col, SchemaSpecification  scs) {
+	public DataElementCollection(DataElement de, Model col, SchemaSpecification  scs) {
 		this.schemaSpecification = scs
 		this.dataElement = de
 		this.collection = col	

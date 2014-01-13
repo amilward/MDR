@@ -79,7 +79,7 @@ modules = {
 		resource url: "js/model/conceptualDomain/conceptualDomain.js"
 	}
 	
-	collection{
+	model{
 		dependsOn "dataTables"
 		dependsOn "dualListBox"
 		resource url: "js/model/collection/collection.js"

@@ -2,7 +2,7 @@ package uk.co.mdc
 
 import uk.co.mdc.model.DataElement
 
-class CollectionBasket {
+class ModelBasket {
 	
 	/* The collection basket  is like a traditional shopping cart. When a user is created a corresponding collection cart is created which belongs to that user. 
 	 * The collection basket  is persisted across sessions and allows users to add data elements via drag and drop on the dashboard using javascript and ajax

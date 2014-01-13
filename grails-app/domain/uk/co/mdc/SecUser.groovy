@@ -15,7 +15,7 @@ class SecUser {
 	boolean accountLocked
 	boolean passwordExpired
 	Date lastLoginDate
-	CollectionBasket collectionBasket = new CollectionBasket();
+	ModelBasket modelBasket = new ModelBasket();
 	
 
 	static constraints = {
@@ -31,7 +31,7 @@ class SecUser {
 		password column: '`password`'
 	}
 	
-	static hasOne = [collectionBasket: CollectionBasket]
+	static hasOne = [modelBasket: ModelBasket]
 
 	Set<SecAuth> getAuthorities() {
 		SecUserSecAuth.findAllBySecUser(this).collect { it.secAuth } as Set

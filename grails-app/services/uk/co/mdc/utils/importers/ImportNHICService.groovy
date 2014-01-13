@@ -1,7 +1,7 @@
 package uk.co.mdc.utils.importers
 import org.json.simple.JSONObject
 import uk.co.mdc.model.SchemaSpecification;
-import uk.co.mdc.model.Collection;
+import uk.co.mdc.model.Model;
 import uk.co.mdc.model.ValueDomain
 import uk.co.mdc.model.DataElement
 import uk.co.mdc.model.DataType
@@ -38,7 +38,7 @@ class ImportNHICService {
 		grantUserPermissions(DataType.list())
 		grantUserPermissions(Document.list())
 		grantUserPermissions(ExternalReference.list())
-		grantUserPermissions(Collection.list())
+		grantUserPermissions(Model.list())
 		grantUserPermissions(FormDesign.list())
 		grantUserPermissions(QuestionElement.list())
 		grantUserPermissions(InputField.list())

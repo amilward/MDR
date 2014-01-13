@@ -15,7 +15,7 @@ class FormDesignController {
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
 	def formDesignService
-	def collectionService
+	def modelService
 	
 	
 	/* **************************************************************************************
@@ -170,7 +170,7 @@ class FormDesignController {
 		if(params?.createFromCollection=='true'){
 		
 			//get the collection using the id passed from collection show screen
-			def collectionInstance = collectionService.get(params.collectionId.toInteger())
+			def collectionInstance = modelService.get(params.collectionId.toInteger())
 			
 			def dataElements = collectionInstance.dataElementCollections()
 			
@@ -255,7 +255,7 @@ class FormDesignController {
 			
 			if(invalidDataElements.size()>0){
 					flash.message = "Cannot generate form with data elements : " + invalidDataElements.toListString() + ", as no value domain exists for them"
-					redirect(controller: "collection", action: "show", id: params.collectionId.toInteger())
+					redirect(controller: "model", action: "show", id: params.collectionId.toInteger())
 					return
 			}else{
 			

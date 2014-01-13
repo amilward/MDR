@@ -5,7 +5,7 @@ import grails.plugins.springsecurity.SpringSecurityService
 import org.springframework.dao.DataIntegrityViolationException
 import uk.co.mdc.model.DataElement
 
-class CollectionBasketController {
+class ModelBasketController {
 	
 	SpringSecurityService springSecurityService
 
@@ -18,12 +18,12 @@ class CollectionBasketController {
 	
 	def dataElementsAsJSON() {
 		def current_user = SecUser.get(springSecurityService.currentUser.id)
-		def collectionBasketInstance = current_user.collectionBasket
+		def modelBasketInstance = current_user.modelBasket
 		
 		def model = ["message":"fail"]
 		
-		if(collectionBasketInstance){
-			model = [dataElements: collectionBasketInstance?.dataElements]
+		if(modelBasketInstance){
+			model = [dataElements: modelBasketInstance?.dataElements]
 		}
 		
 		render model as JSON
@@ -35,15 +35,15 @@ class CollectionBasketController {
 	def addElement(){
 		def current_user = SecUser.get(springSecurityService.currentUser.id)
 		def dataElement = DataElement.get(params.id)
-		def collectionBasketInstance = current_user.collectionBasket
+		def modelBasketInstance = current_user.modelBasket
 		def model = [message:"fail"]
-		if(!collectionBasketInstance){
+		if(!modelBasketInstance){
 			render model as JSON
 		}
 		
-		collectionBasketInstance.addToDataElements(dataElement)
+		modelBasketInstance.addToDataElements(dataElement)
 		
-		if(collectionBasketInstance.save(flush:true)){
+		if(modelBasketInstance.save(flush:true)){
 			model = [message:"success"]
 		}
 		
@@ -57,15 +57,15 @@ class CollectionBasketController {
 	def removeElement(){
 		def current_user = SecUser.get(springSecurityService.currentUser.id)
 		def dataElement = DataElement.get(params.id)
-		def collectionBasketInstance = current_user.collectionBasket
+		def modelBasketInstance = current_user.modelBasket
 		def model = [message:"fail"]
-		if(!collectionBasketInstance){
+		if(!modelBasketInstance){
 			render model as JSON
 		}
 		
-		collectionBasketInstance.removeFromDataElements(dataElement)
+		modelBasketInstance.removeFromDataElements(dataElement)
 		
-		if(collectionBasketInstance.save(flush:true)){
+		if(modelBasketInstance.save(flush:true)){
 			model = [message:"success"]
 		}
 		
@@ -80,14 +80,14 @@ class CollectionBasketController {
 
     def show() {
         def current_user = SecUser.get(springSecurityService.currentUser.id)
-		def collectionBasketInstance = current_user.collectionBasket
-        if (!collectionBasketInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'collectionBasket.label', default: 'CollectionBasket'), id])
+		def modelBasketInstance = current_user.modelBasket
+        if (!modelBasketInstance) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'modelBasket.label', default: 'modelBasket'), id])
             redirect(controller: "index")
             return
         }
 
-        [collectionBasketInstance: collectionBasketInstance, errors: params?.errors, name: params?.name, description: params?.description]
+        [modelBasketInstance: modelBasketInstance, errors: params?.errors, name: params?.name, description: params?.description]
     }
 
 }

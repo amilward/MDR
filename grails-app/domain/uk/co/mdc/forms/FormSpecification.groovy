@@ -7,17 +7,17 @@ package uk.co.mdc.forms
  * */
 
 
-import uk.co.mdc.model.Collection
+import uk.co.mdc.model.Model
 
 class FormSpecification {
 	
-	Collection collection
+	Model collection
 	
 	String name 
 	
 	static hasMany = [fields: Field]
 	
-	static belongsTo = [collection: Collection]
+	static belongsTo = [collection: Model]
 	
     static constraints = {
     }

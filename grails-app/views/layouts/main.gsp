@@ -33,24 +33,24 @@
 			<ul id="menu" class="unstyled accordion collapse in">
 				<li id="cart" class="accordion-group cart"><a
 					data-parent="#menu" data-toggle="collapse"
-					class="accordion-toggle cart" data-target="#collection_basket_list">
-						<i class="icon-shopping-cart icon-large cart"></i> Collection
+					class="accordion-toggle cart" data-target="#model_basket_list">
+						<i class="icon-shopping-cart icon-large cart"></i> Model
 						Basket <span class="label label-inverse pull-right">0</span>
 				</a>
-					<ul class="collapse cart" id="collection_basket_list">
+					<ul class="collapse cart" id="model_basket_list">
 						<li><g:link action="show" params="[id: 1]"
-								controller="CollectionBasket">
-								<i class="icon-angle-right"></i> view collection </g:link></li>
+								controller="ModelBasket">
+								<i class="icon-angle-right"></i> view model </g:link></li>
 					</ul></li>
 				<li class="accordion-group "><a data-parent="#menu"
 					data-toggle="collapse" class="accordion-toggle"
-					data-target="#collections-nav"> <i
-						class="icon-list-ol icon-large"></i> Collections
+					data-target="#models-nav"> <i
+						class="icon-list-ol icon-large"></i> Models
 				</a>
-					<ul class="collapse" id="collections-nav">
-						<li><g:link action="list" controller="Collection">
+					<ul class="collapse" id="models-nav">
+						<li><g:link action="list" controller="Model">
 								<i class="icon-angle-right"></i> List </g:link></li>
-						<li><g:link action="create" controller="Collection">
+						<li><g:link action="create" controller="Model">
 								<i class="icon-angle-right"></i> Create </g:link></li>
 					</ul></li>
 				<li class="accordion-group "><a data-parent="#menu"
@@ -112,7 +112,7 @@
 				<li class="accordion-group "><a data-parent="#menu"
 					data-toggle="collapse" class="accordion-toggle"
 					data-target="#formDesign-nav"> <i
-						class="icon-file-text-alt icon-large"></i> Form Design
+						class="icon-file-text-alt icon-large"></i> Forms
 				</a>
 					<ul class="collapse " id="formDesign-nav">
 						<li><g:link action="list" controller="FormDesign">

@@ -7,7 +7,7 @@ import uk.co.mdc.forms.FormDesignMarshaller
 import uk.co.mdc.forms.SectionElementMarshaller
 import uk.co.mdc.model.ValueDomainMarshaller
 import uk.co.mdc.model.ConceptualDomainMarshaller
-import uk.co.mdc.model.CollectionMarshaller
+import uk.co.mdc.model.ModelMarshaller
 import uk.co.mdc.pathways.PathwaysModelMarshaller
 import uk.co.mdc.pathways.LinkMarshaller
 import uk.co.mdc.pathways.NodeMarshaller
@@ -35,7 +35,7 @@ beans = {
 		new DataElementMarshaller(),
 		new FieldMarshaller(),
 		new ValueDomainMarshaller(),
-		new CollectionMarshaller(),
+		new ModelMarshaller(),
 		new ConceptualDomainMarshaller(),
 		new QuestionElementMarshaller(),
 		new PathwaysModelMarshaller(),

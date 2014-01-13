@@ -62,7 +62,7 @@
 				
 				<g:if test="${relationshipTypes}">
 					<g:each var="relationshipType" in="${relationshipTypes}">
-					
+					<g:if test="${dataElementInstance.relations(relationshipType.name)}" >
 					<tr>
 							<td colspan="2"><span id="name-label" class="label">${relationshipType.name}</span></td>
 					</tr>
@@ -86,7 +86,7 @@
 						</table>
 						</td>
 					</tr>
-					
+					</g:if>
 					</g:each>
 				</g:if>
 				<g:if test="${dataElementInstance?.subElements}">

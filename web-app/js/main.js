@@ -181,7 +181,7 @@ END SHARED FUNCTIONS
  ---------------------------------------------------------*/
 function dashboard() {
 
-	startCollectionBasket();
+	startModelBasket();
 	
 	
 }
@@ -193,22 +193,22 @@ function dashboard() {
 BEGIN COLLECTION BASKET SCRIPTS
 ---------------------------------------------------------*/
 
-/* The collection basket  is like a traditional shopping cart. When a user is created a corresponding collection cart is created which belongs to that user. 
- * The collection basket is persisted across sessions and allows users to add data elements via drag and drop on the dashboard using javascript and ajax
- * (please see the collectionBasket model and controller
- *  Once they have added all the data elements needed they can view their data elements and then create a collection from them.
+/* The model basket  is like a traditional shopping cart. When a user is created a corresponding model cart is created which belongs to that user. 
+ * The model basket is persisted across sessions and allows users to add data elements via drag and drop on the dashboard using javascript and ajax
+ * (please see the modelBasket model and controller
+ *  Once they have added all the data elements needed they can view their data elements and then create a model from them.
  * */
 
 
-/* this function starts the collection basket on the dashboard
- * it makes an ajax request to the controller to get the data elements in the collections cart for the current user
+/* this function starts the model basket on the dashboard
+ * it makes an ajax request to the controller to get the data elements in the models cart for the current user
  * and displays them */
 
-function startCollectionBasket() {
+function startModelBasket() {
 
 	$.ajax({
 		type: "GET",
-		url: root + "/collectionBasket/dataElementsAsJSON",
+		url: root + "/modelBasket/dataElementsAsJSON",
 		success: function(result){
 			if(result!=null){
 				$.each(result.dataElements, function(){
@@ -230,9 +230,9 @@ function startCollectionBasket() {
 	
 	
 	
-	/* bind the droppable behaviour for the data elements in the collection basket
-	* This allows you to drag data elements out of the collection basket. This in bound
-	* to the whole page so that the user can drag a data element out of the collections cart 
+	/* bind the droppable behaviour for the data elements in the model basket
+	* This allows you to drag data elements out of the model basket. This in bound
+	* to the whole page so that the user can drag a data element out of the models cart 
 	* anywhere on the page to remove them
 	*/
 	
@@ -241,7 +241,7 @@ function startCollectionBasket() {
         	if(c.id){
 	            $(c.li).remove();
 	            $(c.helper).remove();
-	            removeFromCollectionBasket(c.id)
+	            removeFromModelBasket(c.id)
         	}
         }
 	});	
@@ -251,12 +251,12 @@ function startCollectionBasket() {
 
 /* This function is called when the user is looking at the data elements list page 
  * This binds droppable functionality to the cart (i.e. when you are on the data elements list page
- * you can drag the data elements that you want and DROP them onto the collections basket to add them to your basket)
+ * you can drag the data elements that you want and DROP them onto the models basket to add them to your basket)
  * */
 
 function dataElementDragStart(){
 	
-	//bind the click handler to the collections cart to enable the user to drag data elements onto the cart
+	//bind the click handler to the models cart to enable the user to drag data elements onto the cart
 
 	$( ".cart" ).droppable({
 		activeClass: "ui-state-default",
@@ -265,7 +265,7 @@ function dataElementDragStart(){
 		greedy: true,
 		drop: function( event, ui ) {
 		
-		// change the data element link text to include the reference id...this will be useful when we are trying to create a collection from the cart
+		// change the data element link text to include the reference id...this will be useful when we are trying to create a model from the cart
 		var link = $(c.name);
 		link.text(c.refId + ' - ' + $(c.name).text());
 
@@ -277,24 +277,24 @@ function dataElementDragStart(){
 	            c.helper = ui.helper;
 	        }
 		});
-		addToCollectionBasket(c.id);
+		addToModelBasket(c.id);
 		}
 		})
 }
 
 
 /* This function is called when the user drops a data element onto the cart
- * This is an ajax request to collection basket controller to add the dataElement to the basket
+ * This is an ajax request to model basket controller to add the dataElement to the basket
  * is passes the information via json and should receive a json success message
  */
 
-function addToCollectionBasket(dataElementId){
+function addToModelBasket(dataElementId){
 	
 	var data = {id: dataElementId};
 	
 	$.ajax({
 		type: "POST",
-		url: root + "/collectionBasket/addElement",
+		url: root + "/modelBasket/addElement",
 		data: data,
 		success: function(e){
 		},
@@ -305,12 +305,12 @@ function addToCollectionBasket(dataElementId){
 	
 }
 
-/* This function is called when the user drags and drops a data element out of the collection basket that they no longer want
- * This is an ajax request to collection basket controller to remove the dataElement from the basket
+/* This function is called when the user drags and drops a data element out of the model basket that they no longer want
+ * This is an ajax request to model basket controller to remove the dataElement from the basket
  * is passes the information via json and should receive a json success message
  */
 
-function removeFromCollectionBasket(dataElementId){
+function removeFromModelBasket(dataElementId){
 	
 	if($( ".cart ul li" ).size()>0){
 		
@@ -318,7 +318,7 @@ function removeFromCollectionBasket(dataElementId){
 		
 		$.ajax({
 			type: "POST",
-			url: root + "/collectionBasket/removeElement",
+			url: root + "/modelBasket/removeElement",
 			data: data,
 			success: function(e){
 			},
@@ -374,7 +374,7 @@ function conceptualDomainList(){
 	
 	//initialise datatable with custom hide/show columns
 	//and server side processing
-	//and draggable columns - so that the data elements within the table can be dragged onto the collection cart
+	//and draggable columns - so that the data elements within the table can be dragged onto the model cart
 	
 	$('#conceptualDomainList').html( '<table cellpadding="0" cellspacing="0" border="0" class="table table-bordered table-condensed table-hover table-striped" id="conceptualDomainTable"></table>' );
 	oTable = $('#conceptualDomainTable').dataTable( {
@@ -515,186 +515,7 @@ function documentList(){
 END DOCUMENT LIST  SCRIPTS
 ---------------------------------------------------------*/
 
-/*--------------------------------------------------------
-START EXTERNAL SYNONYM LIST  SCRIPTS
----------------------------------------------------------*/
 
-function externalReferenceList(){
-	
-	$('#externalReferenceList').html( '<table cellpadding="0" cellspacing="0" border="0" class="table table-bordered table-condensed table-hover table-striped" id="externalReferenceTable"></table>' );
-	oTable = $('#externalReferenceTable').dataTable( {
-        "bProcessing": true,
-        "bServerSide": true,
-        "sAjaxSource": "dataTables",
-        "sEmptyTable": "Loading data from server",
-        "bAutoWidth": false,
-        "aaSorting": [[ 1, "asc" ]],
-		"aoColumns": [
-			{
-				    // `data` refers to the data for the cell (defined by `mData`, which
-				    // defaults to the column being worked with, in this case is the first
-				    // Using `row[0]` is equivalent.
-				"mRender": function ( data, type, row ) {		
-					return '<a id="'+ row.id + '" href="' + root +'/externalReference/show/' + row.id + '">' + data + '</a>'
-			    },
-			    "mDataProp": "name",
-			    "sWidth":"50%",
-			    "sTitle":"name"
-			},
-			{
-			    // `data` refers to the data for the cell (defined by `mData`, which
-			    // defaults to the column being worked with, in this case is the first
-			    // Using `row[0]` is equivalent.
-			    "mRender": function ( data, type, row ) {
-			    	
-							return data + '<img class="floatright" src="../images/details_open.png" />'
-
-			    },
-			    "mDataProp": "url", 
-			    "sWidth":"50%",
-			    "sTitle":"Url"
-			}
-		],
-		"fnDrawCallback": function () {
-			
-			//bind the click handler to the + image within the datatable to show information that is too long for data columns i.e. description/definition
-
-
-			$('#externalReferenceTable tbody td img').on( 'click', function () {
-				var nTr = $(this).parents('tr')[0];
-				if ( oTable.fnIsOpen(nTr) )
-				{
-				/* This row is already open - close it */
-				this.src = "../images/details_open.png";
-				oTable.fnClose( nTr );
-				}
-				else
-				{
-				/* Open this row */
-				this.src = "../images/details_close.png";
-				oTable.fnOpen( nTr, formatExtSynonymDetails(nTr), 'details' );
-				}
-			} );
-		}
-	} );	
-	
-
-	oTable.fnSetFilteringDelay(1000);
-
-
-
-}
-
-/* Formating function for row details - this is for the description and definition columns.....
-* potentially need to add more info from the data elements class
-*  */
-function formatExtSynonymDetails ( nTr )
-{
-	var aData = oTable.fnGetData( nTr );
-	var attributes = aData.attributes;
-	
-	var sOut = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
-	
-	$.each(attributes, function( key, value ) {
-	sOut += '<tr><td>' + key + '</td><td>' + value + '</td></tr>';
-	});
-	
-	sOut += '</table>';
-	 
-	return sOut;
-}
-
-
-/*--------------------------------------------------------
-END EXTERNAL SYNONYM LIST  SCRIPTS
----------------------------------------------------------*/
-
-/*--------------------------------------------------------
-START EXTERNAL REFERENCE LIST  SCRIPTS
----------------------------------------------------------*/
-
-function externalReferenceList(){
-	
-	$('#externalReferenceList').html( '<table cellpadding="0" cellspacing="0" border="0" class="table table-bordered table-condensed table-hover table-striped" id="externalReferenceTable"></table>' );
-	oTable = $('#externalReferenceTable').dataTable( {
-        "bProcessing": true,
-        "bServerSide": true,
-        "sAjaxSource": "dataTables",
-        "sEmptyTable": "Loading data from server",
-        "bAutoWidth": false,
-        "aaSorting": [[ 1, "asc" ]],
-		"aoColumns": [
-			{
-				    // `data` refers to the data for the cell (defined by `mData`, which
-				    // defaults to the column being worked with, in this case is the first
-				    // Using `row[0]` is equivalent.
-				"mRender": function ( data, type, row ) {		
-					return '<a id="'+ row.id + '" href="' + root +'/externalReference/show/' + row.id + '">' + data + '</a>'
-			    },
-			    "mDataProp": "name",
-			    "sWidth":"50%",
-			    "sTitle":"name"
-			},
-			{
-			    // `data` refers to the data for the cell (defined by `mData`, which
-			    // defaults to the column being worked with, in this case is the first
-			    // Using `row[0]` is equivalent.
-			    "mRender": function ( data, type, row ) {
-			    	
-							return data + '<img class="floatright" src="../images/details_open.png" />'
-
-			    },
-			    "mDataProp": "url", 
-			    "sWidth":"50%",
-			    "sTitle":"Url"
-			}
-		], 
-		"fnInitComplete": function() {
-		      $('#externalReferenceTable tbody td img').on('click', function () {
-		  		var nTr = $(this).parents('tr')[0];
-		  		if ( oTable.fnIsOpen(nTr) )
-		  		{
-		  		/* This row is already open - close it */
-		  		this.src = "../images/details_open.png";
-		  		oTable.fnClose( nTr );
-		  		}
-		  		else
-		  		{
-		  		/* Open this row */
-		  		this.src = "../images/details_close.png";
-		  		oTable.fnOpen( nTr, formatExtSynonymDetails(nTr), 'details' );
-		  		}
-		  	} );
-		}
-	} );	
-	
-	oTable.fnSetFilteringDelay(1000);
-	
- }
-
- 
-	/* Formating function for row details - this is for the description and definition columns.....
-	* potentially need to add more info from the data elements class
-	*  */
-	function formatExtSynonymDetails ( nTr )
-	{
-		var aData = oTable.fnGetData( nTr );
-		var attributes = aData.attributes;
-		
-		var sOut = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
-		
-		$.each(attributes, function( key, value ) {
-		sOut += '<tr><td>' + key + '</td><td>' + value + '</td></tr>';
-		});
-		
-		sOut += '</table>';
-		 
-		return sOut;
-	}
-
-/*--------------------------------------------------------
-END EXTERNAL REFERENCE LIST  SCRIPTS
----------------------------------------------------------*/
 
 
 
@@ -753,11 +574,11 @@ END EDIT CONCEPTUALDOMAIN  SCRIPTS
 
 
 /*--------------------------------------------------------
-START collection  SCRIPTS
+START model  SCRIPTS
 ---------------------------------------------------------*/
 
 
- function selectCollectionDataElements(mandatoryDataElements, requiredDataElements, optionalDataElements, referenceDataElements){
+ function selectModelDataElements(mandatoryDataElements, requiredDataElements, optionalDataElements, referenceDataElements){
 	
 	// create a deferred object
 	  var r = $.Deferred();
@@ -806,7 +627,7 @@ START collection  SCRIPTS
 
 
 /*--------------------------------------------------------
-END EDIT collection  SCRIPTS
+END EDIT model  SCRIPTS
 ---------------------------------------------------------*/
 
 

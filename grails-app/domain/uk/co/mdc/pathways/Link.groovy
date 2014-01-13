@@ -1,6 +1,6 @@
 package uk.co.mdc.pathways
 
-import uk.co.mdc.model.Collection;
+import uk.co.mdc.model.Model;
 
 class Link extends PathwayElement{
 	

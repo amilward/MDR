@@ -1,6 +1,6 @@
 package uk.co.mdc.pathways
 
-import uk.co.mdc.model.Collection;
+import uk.co.mdc.model.Model;
 
 class Node extends PathwayElement{
 	
@@ -13,17 +13,17 @@ class Node extends PathwayElement{
 	
 	static hasOne = [subModel: PathwaysModel]
 	
-	public Node(String refId, String name,String x, String y, String desc, Collection peCollection){
+	public Node(String refId, String name,String x, String y, String desc, Model peCollection){
 		super( refId, name, desc, peCollection)
 		this.x = x
 		this.y = y
 	}
 	
 	static hasMany = [
-		mandatoryInputs: Collection,
-		mandatoryOutputs: Collection,
-		optionalInputs: Collection,
-		optionalOutputs: Collection]
+		mandatoryInputs: Model,
+		mandatoryOutputs: Model,
+		optionalInputs: Model,
+		optionalOutputs: Model]
 
     static constraints = {
 		pathwaysModel nullable: true
