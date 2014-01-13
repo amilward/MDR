@@ -34,7 +34,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" id="deleteModalButton" class="btn btn-primary">Confirm</button>
-                    <button type="button" class="closeModalLink btn btn-primary">Cancel</button>
+                    <button type="button" class="closeModalLink btn btn-primary" data-dismiss="modal">Cancel</button>
                 </div>
             </div><!-- /.modal-content -->
       </div> <!-- /.modal-dialog -->

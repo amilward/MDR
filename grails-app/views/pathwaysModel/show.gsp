@@ -119,24 +119,6 @@
                 </div>
 
                 <div class="panel panel-default">
-                    <div class="panel-heading">Inputs</div>
-                    <div class="panel-body inputs">
-                        <ul class="list-group" data-bind="foreach: inputs">
-                            <li class="list-group-item, text: name"></li>
-                        </ul>
-                    </div>
-                </div>
-                <!-- ko if: outputs!=[]-->
-                <div class="panel panel-default">
-                    <div class="panel-heading">Outputs</div>
-                    <div class="panel-body outputs">
-                        <ul class="list-group" data-bind="foreach: outputs">
-                            <li class="list-group-item, text: name"></li>
-                        </ul>
-                    </div>
-                </div>
-                <!-- /ko -->
-                <div class="panel panel-default">
                     <!-- ko if: forms!=[]-->
                     <div class="panel-heading">Forms</div>
                     <div class="panel-body forms">
