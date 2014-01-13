@@ -6,9 +6,6 @@
 
 <body>
 	<div class="container">
-		<div class="text-center">
-			<p class="muted text-center">MetaData OpenSourced</p>
-		</div>
 		<div class="tab-content">
 			<div id="login" class="tab-pane active">
 
@@ -20,9 +17,9 @@
 					</div>
 				</g:if>
 
-				<form action='${postUrl}' method='POST' id='loginForm'
-					class="form-signin" autocomplete='off'>
-					<p class="muted text-center">Please Login</p>
+                <p class="text-center">Please Login</p>
+
+				<form action='${postUrl}' method='POST' id='loginForm' class="form-signin" autocomplete='off'>
 
 					<input type='text' placeholder="Username"
 						class='text_ input-block-level' name='j_username' id='username' />
@@ -47,33 +44,12 @@
 					</p>
 				</form>
 			</div>
-			<div id="forgot" class="tab-pane">
-				<form action="index.html" class="form-signin">
-					<p class="muted text-center">Enter your valid e-mail</p>
-					<input type="email" placeholder="mail@domain.com"
-						required="required" class="input-block-level"> <br> <br>
-					<button class="btn btn-large btn-danger btn-block" type="submit">Recover
-						Password</button>
-				</form>
-			</div>
-			<div id="signup" class="tab-pane">
-				<form action="index.html" class="form-signin">
-					<input type="text" placeholder="username" class="input-block-level">
-					<input type="email" placeholder="mail@domain.com"
-						class="input-block-level"> <input type="password"
-						placeholder="password" class="input-block-level">
-					<button class="btn btn-large btn-success btn-block" type="submit">Register</button>
-
-				</form>
-			</div>
 		</div>
 		<div class="text-center">
-			<ul class="inline">
-				<li><a id="forgottenPasswordLink" class="muted"
-					href="../register/forgotPassword" data-toggle="tab">Forgot Password</a></li>
-				<li><a id="registerLink" class="muted" href="../register/"
-					data-toggle="tab">Signup</a></li>
-			</ul>
+				<a id="forgottenPasswordLink" class="muted" href="../register/forgotPassword">Forgot Password</a>
+        </div>
+        <div class="text-center">
+				<a id="registerLink" class="muted" href="../register/">Signup</a>
 		</div>
 
 
