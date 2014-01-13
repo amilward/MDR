@@ -79,8 +79,6 @@ environments {
 			mail {
 			  host = "smtp.gmail.com"
 			  port = 465
-			  username = "brcmodelcatalogue@gmail.com"
-			  password = "Q}PJb4pxhT9,rG"
 			  props = ["mail.smtp.auth":"true",
 					   "mail.smtp.socketFactory.port":"465",
 					   "mail.smtp.socketFactory.class":"javax.net.ssl.SSLSocketFactory",

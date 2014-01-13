@@ -3,6 +3,7 @@
  */
 package uk.co.mdc.pathways;
 import geb.error.RequiredPageContentNotPresent
+import geb.error.UnresolvablePropertyException
 import geb.spock.GebReportingSpec
 
 import uk.co.mdc.pages.authentication.LoginPage
@@ -12,8 +13,8 @@ import uk.co.mdc.pages.pathways.PathwayShowPage
 
 import org.openqa.selenium.Dimension
 
-class PathwayDeleteNodeSpec extends GebReportingSpec {
-	def "View a Pathway and delete a Node on the pathway as admin"() {
+class PathwayAddDeleteNodeSpec extends GebReportingSpec {
+	def "View a Pathway add a new node and then delete as admin"() {
 		
 			given:"I am on the dashboard view in a 1024x768 browser window"
 					driver.manage().window().setSize(new Dimension(1028, 768))
@@ -45,8 +46,7 @@ class PathwayDeleteNodeSpec extends GebReportingSpec {
 					waitFor{
 						dataTableRows.size() > 0
 					}
-					
-					
+
 					when: "I click on the first pathway link"
 					def pName = dataTableTMLink.text()
 					dataTableTMLink.click()
@@ -61,13 +61,32 @@ class PathwayDeleteNodeSpec extends GebReportingSpec {
 						pathwayName.text() == pName
 					}
 					
-					when: "I click on a node"
-					node2.click()
+					when: "I click on add node"
+					addNodeButton.click()
+					
+					then: "the create node modal pops up"
+					waitFor{
+						modalLabel.text() == "Create Node"
+					}
+					
+					when: "I fill in the information"
+					createNodeName = "testNode"
+					createNodeDescription = "testDesc"
+					createNodeButton.click()
+					
+					then: "the node appears in the interface with the testNode title"
+
+					waitFor{
+						newNodeTitleDiv.displayed
+					}
+
+					when: "I click on the node I have just created"
+					newNodeTitleDiv.click()
 				
 					then: "the delete node button is visible in the properties panel"
 					waitFor{
 						deleteSelectedElementButton.@type=="button"	
-						propertiesName == "Anaesthesia and Operating Patient."
+						propertiesName == "testNode"
 					}
 					
 					when: "I click on the delete node button"
@@ -76,10 +95,12 @@ class PathwayDeleteNodeSpec extends GebReportingSpec {
 					then: "the node is deleted"
 					waitFor{
 							try {
-								!node2.present
+								newNodeTitleDiv.text() != "testNode"
+							} catch (UnresolvablePropertyException e) {
+								return true
 							} catch (RequiredPageContentNotPresent e) {
-								thrown = true
-							}
+								return true
+							} 
 						}
 							
 		}

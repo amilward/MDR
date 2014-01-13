@@ -15,6 +15,9 @@
         //View related properties
         self.selectedItem = undefined;
 
+        //is the current view read only (defaults to false)
+        self.readOnly = false;
+        
         self.availableForms = [];
         
         //Turn all self.XXX properties above this statement to observable{Array}
@@ -37,7 +40,10 @@
 			})
 			.fail(function(request, status, error){
 					if(error == "Internal Server Error"){
-						alert("you do not have permissions to modify this pathway please contact your system administrator")
+						if(!self.readOnly){
+							alert("You do not have permissions to modify this pathway and none of your changes will be saved. Please contact your system administrator for permissions")
+							self.readOnly = true
+						}
 					}else if(error == "Unauthorized"){
 						location.reload()
 					}

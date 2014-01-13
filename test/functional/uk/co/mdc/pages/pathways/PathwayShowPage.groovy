@@ -20,6 +20,7 @@ class PathwayShowPage extends BasePageWithNav{
 	
 	static content = {
 		pathwayName  { 	$("h1#pathwayName") }
+		addNodeButton { $("#addNode") }
 		node2(required:false) { $("#node7") }
 		addFormModal { $("#AddFormModal") }
 		addFormButton { $("#addFormToNode") }
@@ -43,7 +44,11 @@ class PathwayShowPage extends BasePageWithNav{
 		guardPatientNode { treeLevel2.find("span", text: "Guard Patient") }
 		deleteSelectedElementButton {$("#deleteSelectedElement")}
 		propertiesName {js.exec("return document.getElementById('txt-properties-name').value")}
-		
+		modalLabel { $("#createNodeModalLabel") }
+		createNodeName { $("#createNodeName") }
+		createNodeDescription { $("#createNodeDescription") }
+		createNodeButton { $("#createNodeButton") }
+		newNodeTitleDiv { pathwayCanvas.find("div", text: "testNode")}
 
         editModal { module PathwayEditModal }
 	}
