@@ -46,6 +46,7 @@ grails.project.dependency.resolution = {
         mavenRepo 'http://maven.restlet.org'
         mavenRepo "http://repo.grails.org/grails/core"
         mavenRepo 'http://repo.spring.io/milestone'
+		mavenRepo 'http://repo.compass-project.org'
     }
 
     dependencies {
@@ -56,7 +57,7 @@ grails.project.dependency.resolution = {
 
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes
         compile 'com.googlecode.json-simple:json-simple:1.1.1'
-        //compile "org.compass-project:compass:2.2.1" // Removed search for 0.1
+        compile "org.compass-project:compass:2.2.1" // Removed search for 0.1
 
         // Testing modules
         test "org.gebish:geb-spock:0.9.2"
@@ -77,7 +78,7 @@ grails.project.dependency.resolution = {
     plugins {
 		
 		compile ":scaffolding:2.0.0"
-        //compile ":searchable:0.6.5" // removed search for 0.1
+        compile ":searchable:0.6.6"
         compile ":spring-security-ui:0.2"
         compile ':spring-security-core:1.2.7.3'
         compile ":spring-security-acl:1.1.1"

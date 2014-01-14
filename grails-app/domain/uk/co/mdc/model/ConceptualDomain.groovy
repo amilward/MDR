@@ -7,8 +7,6 @@ class ConceptualDomain extends ModelElement  {
 
 	static auditable = true
 
-	static searchable = { content: spellCheck 'include' }
-
 	static hasMany = [valueDomains: ValueDomain]
 
 	static constraints = {

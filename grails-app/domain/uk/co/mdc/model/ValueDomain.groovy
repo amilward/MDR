@@ -10,14 +10,8 @@ class ValueDomain extends ModelElement  {
 	String format	
 	String description	
 	DataType dataType	
-	Set dataElementValueDomains = []	
-	ConceptualDomain conceptualDomain
 	
 	static auditable = true
-	
-	static searchable = {
-        content: spellCheck 'include'
-    } 
 	
 	static hasMany = [relations: Relationship]
 	

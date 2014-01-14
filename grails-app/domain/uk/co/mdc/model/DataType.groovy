@@ -8,10 +8,6 @@ class DataType extends ModelElement  {
 
 	static auditable = true
 	
-	static searchable = {
-        content: spellCheck 'include'
-    } 
-	
     static constraints = {
 		enumerations nullable: true
 		name blank: false

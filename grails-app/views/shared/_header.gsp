@@ -58,7 +58,32 @@
                         <li><a href="${createLink(uri: '/')}">Home</a></li>
 <sec:ifLoggedIn>
                         <!-- Metadata curation menu -->
-                        <li><g:link action="list" controller="ValueDomain"> Data model </g:link></li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Data Curation <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+
+                                <li class="dropdown-header">Models</li>
+                                <li><g:link controller="Model" action='List'>List</g:link></li>
+                                <li><g:link controller="Model" action='create'>Create</g:link></li>
+                                <li class="dropdown-header">Data Elements</li>
+                                <li><g:link controller="DataElement" action='List'>List</g:link></li>
+                                <li><g:link controller="DataElement" action='create'>Create</g:link></li>
+                                <li class="dropdown-header">Conceptual Domains</li>
+                                <li><g:link controller="ConceptualDomain" action='List'>List</g:link></li>
+                                <li><g:link controller="ConceptualDomain" action='create'>Create</g:link></li>
+                                <li class="dropdown-header">Value Domain</li>
+                                <li><g:link controller="ValueDomain" action='List'>List</g:link></li>
+                                <li><g:link controller="ValueDomain" action='create'>Create</g:link></li>
+                                <li class="dropdown-header">Relationships</li>
+                                <li><g:link controller="Relationship" action='List'>List</g:link></li>
+                                <li><g:link controller="Relationship" action='create'>Create</g:link></li>
+                                <li class="dropdown-header">Relationship Types</li>
+                                <li><g:link controller="RelationshipType" action='List'>List</g:link></li>
+                                <li><g:link controller="RelationshipType" action='create'>Create</g:link></li>
+
+ 
+                            </ul>
+                        </li>
 
                         <!-- Pathways menu -->
                         <li class="dropdown">

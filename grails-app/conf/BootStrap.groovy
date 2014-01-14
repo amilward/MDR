@@ -409,7 +409,7 @@ class BootStrap {
 
 		if(!FormDesign.count()){
 			
-			def rule1 = new Rule(
+			def rule1 = new FormRule(
 				name: 'display section rule',
 				predicate: 'question1 > 5',
 				consequence: 'display'
@@ -605,7 +605,7 @@ class BootStrap {
 			
 			//Add a form to the pathways
 			
-						def rulepw1 = new Rule(
+						def rulepw1 = new FormRule(
 								name: 'display section rule',
 								predicate: 'question1 > 5',
 								consequence: 'display'

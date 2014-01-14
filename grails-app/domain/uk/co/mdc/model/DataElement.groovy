@@ -17,8 +17,9 @@ class DataElement extends ModelElement {
 	static auditable = true
 	
 	static searchable = {
-        content: spellCheck 'include'
-		except = ["extension"]
+		except = ["extension", "storage", "relations"]
+		spellCheck "include"
+
     } 
 	
 	static hasMany = [relations: Relationship, subElements: DataElement]

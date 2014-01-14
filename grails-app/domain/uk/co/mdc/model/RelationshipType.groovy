@@ -10,9 +10,16 @@ class RelationshipType {
 	
 	//the both sides of the relationship i.e. for parentChild this would be child (for synonym this is synonym, so the same on both sides)
 	String yXRelationship
+	
+	//this is the rule that describes the relationship in terms of X and Y
+	//for instance this could be custom validation, display etc.....i.e. if the relationship 
+	//type is a mandatory data element then the model x must contain a value for the data element y
+	
+	Rule relationshipTypeRule
 
     static constraints = {
 		xYRelationship nullable:true
 		yXRelationship nullable:true
+		relationshipTypeRule nullable:true
     }
 }

@@ -14,11 +14,7 @@ class FormDesign extends Model{
 	//collection - link to the metadata registry model
 	Model collection
 	List <FormDesignElement> formDesignElements
-	
-	static searchable = {
-		content: spellCheck 'include'
-	}
-	
+
 	static hasMany = [formDesignElements: FormDesignElement]
 
 	static fetchMode = [formDesignElements: 'eager']

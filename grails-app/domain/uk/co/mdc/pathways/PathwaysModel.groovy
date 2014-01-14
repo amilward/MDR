@@ -11,10 +11,6 @@ class PathwaysModel extends ModelElement{
 	Node parentNode
 	String auditLog
 	
-	static searchable = {
-		content: spellCheck 'include'
-	}
-	
 	static hasMany = [pathwayElements : PathwayElement]
 
     static constraints = {

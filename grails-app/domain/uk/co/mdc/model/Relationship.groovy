@@ -4,9 +4,15 @@ class Relationship  {
 	
 	Integer objectXId
 	Integer objectYId
+	
 	RelationshipType relationshipType
+	
+	Rule relationshipRule
 
     static constraints = {
+		
+		relationshipRule nullable:true
+		
     }
 	
 	static link(objectX, objectY, RelationshipType relationshipType){

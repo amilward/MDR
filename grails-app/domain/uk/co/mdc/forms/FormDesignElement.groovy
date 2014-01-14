@@ -12,7 +12,7 @@ class FormDesignElement extends ModelElement  {
 	
 	//N.B. At present rules contains the hide/show logic for the given element
 	
-	static hasMany = [rules: Rule]
+	static hasMany = [rules: FormRule]
 	static belongsTo = [formDesign: FormDesign]
 	
     static constraints = {

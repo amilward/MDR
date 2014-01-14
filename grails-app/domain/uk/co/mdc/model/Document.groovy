@@ -10,11 +10,6 @@ class Document extends ModelElement  {
 	
 	static auditable = true
 	
-	static searchable = {
-		only=['name', 'fileName']
-		content: spellCheck 'include'
-	}
-	
     static constraints = {
 		name blank: false, nullable: false, size: 2..20
 		description blank: false, nullable: false, size: 2..500

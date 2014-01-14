@@ -10,11 +10,7 @@ class Model extends ModelElement  {
 	String description
 	 
 	static auditable = true
-	
-	static searchable = {
-		content: spellCheck 'include'
-	}
-	
+
 	static hasMany = [relations: Relationship]
 	 
     static constraints = {

@@ -1,6 +1,6 @@
 package uk.co.mdc.forms
 
-class Rule {
+class FormRule {
 	
 	//In Steve's model these are called local definitions not rules
 	String name
