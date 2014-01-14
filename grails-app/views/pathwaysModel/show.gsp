@@ -263,7 +263,7 @@
 </div><!-- /.modal -->
 
 <!-- Add NewDECollectionModal -->
-<div class="modal fade hide" id="AddNewDECollectionModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="AddNewDECollectionModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -286,7 +286,7 @@
 
 
 <!-- Update Pathway Info -->
-    <div id="updatePathwayModal" class="modal fade hide" tabindex="-1"	role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop = "true" >
+    <div id="updatePathwayModal" class="modal fade" tabindex="-1"	role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop = "true" >
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
