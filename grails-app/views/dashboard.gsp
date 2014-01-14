@@ -10,8 +10,6 @@
 <style type="text/css">
 
 
-
-
 .dashboard_option{
 	width: 200px;
 	height: 200px;
@@ -21,6 +19,18 @@
 	cursor: pointer;
 	margin-right:15px;
 	font-weight: bold;
+
+    opacity: 0.4;
+    filter: alpha(opacity=40); /* msie */
+
+    transition: opacity 0.5s;
+    -webkit-transition: opacity 0.5s; /* Safari */
+
+}
+.dashboard_option:hover{
+    opacity: 1;
+    filter: alpha(opacity=100); /* msie */
+
 }
 
 .dashboard_option span{
@@ -28,76 +38,45 @@
 	width: 100%;
 	white-space: nowrap;
 }
-
-.dashboard_option .imgbox{
-	margin-bottom: 0.8em;
-	margin-top: 0.4em;
-	height: 160px;
-	width: 160px;
-	position: relative;
-	margin-right: auto;
-	margin-left: auto;
-}
-
-.dashboard_option .imgbox img{
-	position: absolute;
-	top: 0;
-	left: 0;
-}
-
 </style>
 
 </head>
 <body>
-  	<div id="dashboard">
+  	<div id="dashboard" min-height="300px">
 	  	<div class="dashboard-page" id="dashboard-options">
-		    <h3>Welcome to the Model Catalogue!</h3>
-		    <h4>Where would you like to start?</h4>
 			<div class="options-box">
-				<div class="dashboard_option dashboard_option_not_highlighted" id="pathways">
-					<div class="imgbox">
-						<img src="images/dashboard/Pathways_gray.png" class="gray"/>
-						<img src="images/dashboard/Pathways_colour.png" class="colour" style="display: none;"/>
-					</div>
+				<div class="dashboard_option" id="pathways">
+					<img src="images/dashboard/Pathways_colour.png"/>
 					<span>Pathway Models</span>
 				</div>
 			</div>
-			<div class="dashboard_option dashboard_option_not_highlighted" id="forms">
-				<div class="imgbox">
-					<img src="images/dashboard/Forms_gray.png" class="gray"/>
-					<img src="images/dashboard/Forms_colour.png" class="colour" style="display: none;"/>
-				</div>
+			<div class="dashboard_option" id="forms">
+				<img src="images/dashboard/Forms_colour.png"/>
 				<span>Form Models</span>
 			</div>
-			<div class="dashboard_option dashboard_option_not_highlighted" id="deployments">
-				<div class="imgbox">
-					<img src="images/dashboard/Deployment_gray.png" class="gray"/>
-					<img src="images/dashboard/Deployment_colour.png" class="colour" style="display: none;"/>
-				</div>
+            <!--
+			<div class="dashboard_option" id="deployments">
+				<img src="images/dashboard/Deployment_colour.png"/>
 				<span>Deployment Models</span>
 			</div>
-			<div class="dashboard_option dashboard_option_not_highlighted" id="projects">
-				<div class="imgbox">
-					<img src="images/dashboard/Projects_gray.png" class="gray"/>
-					<img src="images/dashboard/Projects_colour.png" class="colour" style="display: none;"/>
-				</div>
+			<div class="dashboard_option" id="projects">
+				<img src="images/dashboard/Projects_colour.png"/>
 				<span>Projects</span>
 			</div>
-			<div class="dashboard_option dashboard_option_not_highlighted" id="metadata">
-				<div class="imgbox">
-					<img src="images/dashboard/Advanced_gray.png" class="gray"/>
-					<img src="images/dashboard/Advanced_colour.png" class="colour" style="display: none;"/>
-				</div>
+			-->
+			<div class="dashboard_option" id="metadata">
+				<img src="images/dashboard/Advanced_colour.png"/>
 				<span>Metadata Curation</span>
 			</div>
-			<div class="dashboard_option dashboard_option_not_highlighted" id="profile">
-				<div class="imgbox">
-					<img src="images/dashboard/Profile_gray.png" class="gray"/>
-					<img src="images/dashboard/Profile_colour.png" class="colour" style="display: none;"/>
-				</div>
+            <!--
+			<div class="dashboard_option" id="profile">
+				<img src="images/dashboard/Profile_colour.png"/>
 				<span>My Profile</span>
 			</div>
+			-->
 		</div>
+
+
 	  	<div class="dashboard-page" id="dashboard-pathways" style="display: none;">
 	  		<div class="dashboard-wrapper">
 		  		<h2>Pathway Models</h2>
@@ -175,7 +154,7 @@
 		  		<button class="dashboard-return btn btn-default"><i class="icon-arrow-left"></i>&nbsp;Return to the Dashboard</button>
 	  		</div>
 	  	</div>
-	  	<div class="dashboard-page" id="dashboard-deployments" style="display: none;">
+        <div class="dashboard-page" id="dashboard-deployments" style="display: none;">
 	  		<div class="dashboard-wrapper">
 		  		<h2>Deployment Models</h2>
 		  		<br/><br/>
@@ -202,6 +181,7 @@
 	  	<div class="dashboard-page" id="dashboard-metadata" style="display: none;">
 	  		<div class="dashboard-wrapper">
 		  		<h2>Metadata Curation</h2>
+                <h3>Under construction!</h3>
 		  		<button class="dashboard-return btn btn-default"><i class="icon-arrow-left"></i>&nbsp;Return to the Dashboard</button>
 	  		</div>
 	  	</div>
