@@ -5,7 +5,6 @@ import uk.co.mdc.model.Model;
 import uk.co.mdc.model.ValueDomain
 import uk.co.mdc.model.DataElement
 import uk.co.mdc.model.DataType
-import uk.co.mdc.model.DataElementCollection
 import uk.co.mdc.model.ConceptualDomain
 import uk.co.mdc.model.Document
 import uk.co.mdc.pathways.PathwaysModel

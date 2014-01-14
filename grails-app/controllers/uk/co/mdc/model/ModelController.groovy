@@ -223,7 +223,7 @@ class ModelController {
             return
         }
 
-        [dataElements: dataElementService.list(), mandatoryDataElements: modelInstance.mandatoryDataElementModels(), requiredDataElements: modelInstance.requiredDataElementModels(), optionalDataElements: modelInstance.optionalDataElementModels(), referenceDataElements: modelInstance.referenceDataElementModels(), modelInstance: modelInstance]
+        [dataElements: dataElementService.list(), mandatoryDataElements: modelInstance.relations('MandatoryModelElement'), requiredDataElements: modelInstance.relations('RequiredModelElement'), optionalDataElements: modelInstance.relations('OptionalModelElement'), referenceDataElements: modelInstance.relations('ReferenceModelElement'), modelInstance: modelInstance]
     }
 	
 	/* **************************************************************************************
