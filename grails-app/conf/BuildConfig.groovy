@@ -103,7 +103,7 @@ grails.project.dependency.resolution = {
         runtime ":coffeescript-resources:0.3.8"
 
         // The following are dead, we shouldn't use them!
-        // compile ":csv:0.3.1"
+        compile ":csv:0.3.1"
     }
  }
 
