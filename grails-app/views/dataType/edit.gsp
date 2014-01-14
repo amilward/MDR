@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta name="layout" content="main">
+		<meta name="layout" content="metadata_curation">
 		<g:set var="entityName" value="${message(code: 'dataType.label', default: 'DataType')}" />
 		<title><g:message code="default.edit.label" args="[entityName]" /></title>
 		<parameter name="name" value=" EDIT DATA TYPE - ${dataTypeInstance?.name}" />

@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta name="layout" content="main">
+		<meta name="layout" content="metadata_curation">
 		<g:set var="entityName" value="${message(code: 'externalReference.label', default: 'ExternalReference')}" />
 		<title><g:message code="default.list.label" args="[entityName]" /></title>
 		<parameter name="name" value="External References" />

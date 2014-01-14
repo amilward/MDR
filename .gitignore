@@ -62,6 +62,8 @@
 # Geb testing cache
 /test/drivers 
 
+web-app/bower_components/
+
 # OS generated files #
 ######################
 .DS_Store

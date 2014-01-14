@@ -28,9 +28,9 @@ class PathwayListPage extends BasePageWithNav{
 	}
 
     boolean goToPathway(id){
-        def link = dataTableFirstRow.find("a", id: "$id")
+        def link = dataTableRows.find("a", id: "$id")
         if(link){
-            dataTableFirstRow.find("a", id: "$id").click()
+            link.click()
             return true
         }else{
             return false

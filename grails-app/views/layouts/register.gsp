@@ -2,8 +2,7 @@
 <!-- ----- Build using the opensource METIS - twitter bootstrap dashboard----------- -->
 <!-- --------------------------------------------------------------- -->
 <%@ page import="org.codehaus.groovy.grails.plugins.PluginManagerHolder"%>
-<%@ page
-  import="org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils"%>
+<%@ page import="org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils"%>
 <%@ page import="grails.plugins.springsecurity.SecurityConfigType"%>
 
 <!DOCTYPE html>
@@ -18,16 +17,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet"
-  href="${resource(dir: 'css', file: 'bootstrap.min.css')}"
-  type="text/css">
-<link rel="stylesheet"
-  href="${resource(dir: 'css', file: 'bootstrap-responsive.min.css')}"
-  type="text/css">
-<link rel="stylesheet" href="${resource(dir: 'css', file: 'style.css')}"
-  type="text/css">
-<link rel="stylesheet" href="${resource(dir: 'css', file: 'theme.css')}"
-  type="text/css">
+
 <link rel="stylesheet"
   href="${resource(dir: 'css', file: 'datatable/jquery.dataTables.css')}"
   type="text/css">

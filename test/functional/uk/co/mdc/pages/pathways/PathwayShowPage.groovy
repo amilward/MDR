@@ -38,10 +38,7 @@ class PathwayShowPage extends BasePageWithNav{
 		pathwayInfoVersionNo { js.exec("return document.getElementById('txt-versionNoUpdate').value")}
 		pathwayInfoIsDraft  { js.exec("return document.getElementById('select-isDraftUpdate').value")}
 		pathwayCanvas { $(".jsplumb-container") }
-		checkBox { $("#cb8") } 
-		treeLevel1 { $("ul.level1 li") }
-		treeLevel2 { $("ul.level2 li") }
-		guardPatientNode { treeLevel2.find("span", text: "Guard Patient") }
+
 		deleteSelectedElementButton {$("#deleteSelectedElement")}
 		propertiesName {js.exec("return document.getElementById('txt-properties-name').value")}
 		modalLabel { $("#createNodeModalLabel") }

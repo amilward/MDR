@@ -1,0 +1,1 @@
+appName = Pathway design tool

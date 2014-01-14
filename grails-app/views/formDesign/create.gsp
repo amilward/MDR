@@ -11,7 +11,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta name="layout" content="main_no-sidebar">
+		<meta name="layout" content="main">
 		<g:set var="entityName" value="${message(code: 'formDesign.label', default: 'FormDesign')}" />
 		<title><g:message code="default.show.label" args="[entityName]" /></title>
 		<parameter name="name" value=" FORM Builder - Create Form" />
@@ -39,7 +39,7 @@
 	</div>
 	
 	<!-- Update Form Info -->
-    <div id="EditFormModal" class="modal fade hide" tabindex="-1"	role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop = "true" >
+    <div id="EditFormModal" class="modal fade" tabindex="-1"	role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop = "true" >
 	<div class="modal-dialog">
 		<div class="modal-content" data-bind="">
 			<div class="modal-header">

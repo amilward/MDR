@@ -20,12 +20,4 @@ $(function() {
         currentDiv = '#dashboard-options';
         $('#dashboard-options').effect("slide", {direction: 'left', mode: 'show'}, 500);
     });
-
-    $("#dashCreatePathway").click(function(){
-        createPathway();
-    });
-
-    $("#dashCreateForm").click(function(){
-        createForm();
-    });
 });

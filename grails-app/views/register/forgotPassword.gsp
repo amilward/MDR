@@ -2,15 +2,15 @@
 
 <head>
 <title><g:message code='spring.security.ui.forgotPassword.title'/></title>
-<meta name='layout' content='register'/>
+<meta name='layout' content='main'/>
 </head>
 
 <body>
 
 <p/>
 
-<s2ui:form width='350' height='220' elementId='forgotPasswordFormContainer'
-           titleCode='spring.security.ui.forgotPassword.header' center='true'>
+<s2ui:form width='350' height='350' elementId='forgotPasswordFormContainer'
+           titleCode='spring.security.ui.forgotPassword.header' center='false'>
 
 	<g:form action='forgotPassword' name="forgotPasswordForm" autocomplete='off'>
 
@@ -31,7 +31,7 @@
 		</tr>
 	</table>
 
-	<s2ui:submitButton elementId='reset' form='forgotPasswordForm' messageCode='spring.security.ui.forgotPassword.submit'/>
+	<s2ui:submitButton class="btn btn-large btn-primary" elementId='reset' form='forgotPasswordForm' messageCode='spring.security.ui.forgotPassword.submit'/>
 
 	</g:else>
 

@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta name="layout" content="main">
+		<meta name="layout" content="metadata_curation">
 		<g:set var="entityName" value="${message(code: 'collection.label', default: 'Collection')}" />
 		<title><g:message code="default.show.label" args="[entityName]" /></title>
 		<parameter name="name" value=" COLLECTION - ${collectionInstance?.name}" />
