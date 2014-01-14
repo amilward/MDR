@@ -149,6 +149,7 @@ function collectionForm(mandatoryDataElements, requiredDataElements, optionalDat
 
 
 function collectionListDraggable(){
+    console.log("collectionListDraggable");
 	$('#collectionList').html( '<table cellpadding="0" cellspacing="0" border="0" class="table table-bordered table-condensed table-hover table-striped" id="collectionTable"></table>' );
 	oTable = $('#collectionTable').dataTable( {
         "bProcessing": true,

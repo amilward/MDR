@@ -255,7 +255,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" data-bind="click: $root.refreshCollections">Refresh</button>
-                    <button type="button" class="btn btn-primary" data-bind="click: $root.addNewDECollection">Add New DE Collection</button>
+                    <button type="button" class="btn btn-primary" data-bind="click: $root.addNewDECollection">Add Data Elements</button>
                     <button type="button" class="btn btn-primary" data-bind="click: $root.addCollectionFinish">Finish</button>
                 </div>
             </div><!-- /.modal-content -->

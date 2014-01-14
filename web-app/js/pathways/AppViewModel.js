@@ -195,6 +195,8 @@
                 }
             }
             self.selectedItem = n;
+            console.log("SELECTED:" + n.name);
+            console.log("SELECTED:" + self.selectedItem.name);
             
             $('#properties-panel .form-group input').css({'max-width': $('#properties-panel').width() - 15, 'min-width': $('#properties-panel').width() - 15});
             $('#properties-panel .form-group textarea').css({'max-width': $('#properties-panel').width() - 15, 'min-width': $('#properties-panel').width() - 15});
@@ -493,6 +495,9 @@
         }
 
         self.addNewDECollection = function(){
+
+            //console.log("addNewDECollection" + self.selectedItem.name );
+
             self.selectedItem.hideCollectionDialog();
             self.selectedItem.showNewDECollectionDialog();
         }
