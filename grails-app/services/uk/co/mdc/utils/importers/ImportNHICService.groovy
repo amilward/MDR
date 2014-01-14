@@ -1,5 +1,6 @@
 package uk.co.mdc.utils.importers
 import org.json.simple.JSONObject
+import org.springframework.security.acls.domain.BasePermission
 import uk.co.mdc.model.SchemaSpecification;
 import uk.co.mdc.model.Collection;
 import uk.co.mdc.model.ExternalReference
@@ -49,7 +50,8 @@ class ImportNHICService {
     }
 	private grantUserPermissions(objectList){
 		for (object in objectList) {
-			aclUtilService.addPermission object, 'admin', ADMINISTRATION
+			aclUtilService.addPermission object, 'ROLE_ADMIN', BasePermission.ADMINISTRATION
+            aclUtilService.addPermission object, 'ROLE_USER', BasePermission.READ
 		}
 	}
 
@@ -114,7 +116,7 @@ class ImportNHICService {
 			de.save();
 			println "importing: " + tokens[0]
 		},
-
+/**
 		'/Initial/HEP.csv' :
 		{ tokens ->
 			def categories = [tokens[2], tokens[1], "Initial Proposal - OUH","Viral Hepatitis C/B", "NHIC Datasets"];
@@ -141,7 +143,7 @@ class ImportNHICService {
 			de.addToDataElementValueDomains(vd);
 			de.save();
 			println "importing: " + tokens[0]
-		},
+		},**/
 
 		'/Initial/TRA.csv' :
 		{ tokens ->
@@ -194,7 +196,7 @@ class ImportNHICService {
 			de.save();
 			println "importing: " + tokens[0]
 		},
-
+/**
 		'/Round1/ACS/ACS_GSTT.csv' :
 		{ tokens ->
 			def categories = [tokens[2], tokens[1], "GSTT","Round 1", "Acute Coronary Syndromes", "NHIC Datasets"];
@@ -663,6 +665,7 @@ class ImportNHICService {
 			de.save();
 			println "importing: " + tokens[0] + "_Round1_OUH"
 		}
+ **/
 	]
 
 

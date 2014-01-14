@@ -14,9 +14,7 @@ class IndexController {
 	
 	def index() { 
 		
-		if(SpringSecurityUtils.ifAllGranted("ROLE_ADMIN")){
-			render(view: "/admin_index")
-		} else if(SpringSecurityUtils.ifAllGranted("ROLE_USER")){
+		if(SpringSecurityUtils.ifAllGranted("ROLE_USER")){
 		
 		
 			def finalizedPathways = pathwaysService.findAll {
