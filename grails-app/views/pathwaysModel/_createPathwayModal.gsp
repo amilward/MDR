@@ -8,7 +8,7 @@
 <!--  <g :javascript library="pathwa yCreationModal"/> -->
 
 <!-- TODO include JS library (knockout + view model) -->
-<div id="createPathwayModal" class="modal fade hide" tabindex="-1"	role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop = "true" >
+<div id="createPathwayModal" class="modal fade" tabindex="-1"	role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop = "true" >
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -30,11 +30,9 @@
 							></textarea>
 					</div>
 					<div class="form-group">
-            <label for="txt-version" class="control-label">Version: </label> <input
-              id="txt-version" type="text" name="versionNo" class="form-control"
-              />
-          </div>
-        	<div class="form-group"> 
+                        <label for="txt-version" class="control-label">Version: </label> <input id="txt-version" type="text" name="versionNo" class="form-control"/>
+                    </div>
+        	        <div class="form-group">
 			            <label for="bool-isDraft" class="control-label">Draft: </label> 
 			            <select id="bool-isDraft" name="isDraft">
 								<option value="true">true</option>
@@ -44,12 +42,9 @@
 				</form>
 			</div>
 			<div class="modal-footer">
-        <button id="createPathwaySubmit" type="submit" class="btn btn-primary"
-          >Create</button>
-        <button class="closeModalLink" type="button" class="btn"
-          >Cancel</button>
-      </div>
-      
+                <button id="createPathwaySubmit" type="submit" class="btn btn-primary">Create</button>
+                <button type="button" class="btn" data-dismiss="modal">Cancel</button>
+            </div>
 		</div>
 		<!-- /.modal-content -->
 	</div>

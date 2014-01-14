@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta name="layout" content="main">
+		<meta name="layout" content="metadata_curation">
 		<g:set var="entityName" value="${message(code: 'dataElement.label', default: 'DataElement')}" />
 		<title><g:message code="default.show.label" args="[entityName]" /></title>
 		<parameter name="name" value=" DATA ELEMENT - ${dataElementInstance?.name}" />
@@ -14,7 +14,7 @@
 				<g:hiddenField name="id" value="${dataElementInstance?.id}" />
 			    	<div class="navbar">
 					    <div class="navbar-inner">
-						    <ul class="nav">
+						    <ul class="nav nav-tabs">
 						  		<li class="active"><g:link action="show" id="${dataElementInstance?.id}"><g:message code="default.button.show.label" default="Show" /></g:link></li>
 							    <li><g:link action="edit" id="${dataElementInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link></li>
 							    <li><g:link action="create" id="${dataElementInstance?.id}"><g:message code="default.button.create.label" default="Create" /></g:link></li>

@@ -41,16 +41,6 @@ grails.mime.types = [
 // URL Mapping Cache Max Size, defaults to 5000
 //grails.urlmapping.cache.maxsize = 1000
 
-// What URL patterns should be processed by the resources plugin
-grails.resources.adhoc.patterns = [
-	'/images/*',
-	'/img/*',
-	'/css/**',
-	'/js/*',
-	'/js/vendor/*',
-	'/plugins/*'
-]
-
 //NEED TO REMOVE IN PRODUCTION - DISABLING JAVASCRIPT BUNDLING
 grails.resources.debug=true
 
@@ -106,6 +96,7 @@ log4j = {
 	//    console name:'stdout', layout:pattern(conversionPattern: '%c{2} %m%n')
 	//}
 
+    //debug "org.grails.plugin.resource"
 	error  'org.codehaus.groovy.grails.web.servlet',        // controllers
 			'org.codehaus.groovy.grails.web.pages',          // GSP
 			'org.codehaus.groovy.grails.web.sitemesh',       // layouts
@@ -131,6 +122,7 @@ grails.views.javascript.library="jquery"
 
 grails{
 	plugins{
+
 		springsecurity{
 
 			// page to redirect to if a login attempt fails
@@ -167,6 +159,8 @@ grails{
 
 			securityConfigType = "Annotation"
 			controllerAnnotations.staticRules = [
+                // Bower dependencies
+                '/bower_components/**': ['IS_AUTHENTICATED_ANONYMOUSLY'],
 				// Javascript
 				'/js/**':      			['IS_AUTHENTICATED_ANONYMOUSLY'],
 				'/js/vendor/**':  		['IS_AUTHENTICATED_ANONYMOUSLY'],
@@ -174,6 +168,7 @@ grails{
 				// CSS
 				'/**/css/**':      		['IS_AUTHENTICATED_ANONYMOUSLY'],
 				'/css/**': 				['IS_AUTHENTICATED_ANONYMOUSLY'],
+                '/**/*.less':           ['IS_AUTHENTICATED_ANONYMOUSLY'],
 				// Images
 				'/images/**': 			['IS_AUTHENTICATED_ANONYMOUSLY'],
 				'/img/**': 				['IS_AUTHENTICATED_ANONYMOUSLY'],
@@ -243,29 +238,17 @@ auditLog {
 	}
 }
 
-
-
-
-// Uncomment and edit the following lines to start using Grails encoding & escaping improvements
-
-/* remove this line 
-// GSP settings
-grails {
-    views {
-        gsp {
-            encoding = 'UTF-8'
-            htmlcodec = 'xml' // use xml escaping instead of HTML4 escaping
-            codecs {
-                expression = 'html' // escapes values inside null
-                scriptlet = 'none' // escapes output from scriptlets in GSPs
-                taglib = 'none' // escapes output from taglibs
-                staticparts = 'none' // escapes output from static template parts
-            }
-        }
-        // escapes all not-encoded output at final stage of outputting
-        filteringCodecForContentType {
-            //'text/html' = 'html'
-        }
+coffeescript.modules = {
+    angularApp {
+        String src = 'src/coffee/angular'
+        files "${src}/services", "${src}/filters", "${src}/controllers", "${src}/app.coffee"
+        output 'js/angular/angular-app.js'
+        defaultBundle angularApp
+    }
+    angularTests {
+        String src = 'src/coffee/angular'
+        files "${src}/servicesSpec", "${src}/filtersSpec", "${src}/controllersSpec"
+        output 'js/angular/test/unit/angularTests.js'
+        defaultBundle angularTests
     }
 }
-remove this line */

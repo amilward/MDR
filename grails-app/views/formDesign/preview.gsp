@@ -8,12 +8,11 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta name="layout" content="main_no-sidebar">
+		<meta name="layout" content="main">
 		<g:set var="entityName" value="${message(code: 'formDesign.label', default: 'FormDesign')}" />
 		<title><g:message code="default.show.label" args="[entityName]" /></title>
 		<parameter name="name" value=" FORM Builder - ${formDesignInstance?.name}" />
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'bootstrap-editable.css')}" type="text/css">
-		<link rel="stylesheet" href="${resource(dir: 'css', file: 'bootstrap-responsive.css')}" type="text/css">
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'bootstrap-timepicker.css')}" type="text/css">
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'layout.css')}" type="text/css">
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'custom.css')}" type="text/css">
