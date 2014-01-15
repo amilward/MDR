@@ -4,16 +4,16 @@
 <table class="table table-hovered">
 				<tbody>
 					<tr class="${hasErrors(bean: modelInstance, field: 'name', 'error')} ">
-						<td class="left_col_show"><span id="name-label" class="label"><g:message code="model.name.label" default="Name" /></span></td>
+						<td class="left_col_show"><span id="name-label" ><g:message code="model.name.label" default="Name" /></span></td>
 						<td class="right_col_show"><g:textField title="tooltip.model.name" class="input-large input-block-level"  name="name" value="${modelInstance?.name}"/></td>
 					</tr>
 					<tr class="${hasErrors(bean: modelInstance, field: 'description', 'error')} ">
-						<td class="left_col_show"><span id="name-label" class="label"><g:message code="model.description.label" default="Description" /></span></td>
+						<td class="left_col_show"><span id="name-label" ><g:message code="model.description.label" default="Description" /></span></td>
 						<td class="right_col_show"><g:textArea title="tooltip.model.description" class="input-block-level" name="description" value="${modelInstance?.description}"/></td>
 					</tr>
 
 					<tr>
-						<td class="left_col_show"><span id="name-label" class="label"><g:message code="model.modelConcept.label" default="Mandatory Data Elements" /></span></td>
+						<td class="left_col_show"><span id="name-label" ><g:message code="model.modelConcept.label" default="Mandatory Data Elements" /></span></td>
 						<td class="right_col_show">
 						<g:select
 						title="tooltip.model.mandatoryElements"
@@ -30,7 +30,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td class="left_col_show"><span id="name-label" class="label"><g:message code="model.modelConcept.label" default="Required Data Elements" /></span></td>
+						<td class="left_col_show"><span id="name-label" ><g:message code="model.modelConcept.label" default="Required Data Elements" /></span></td>
 						<td class="right_col_show">
 						<g:select
 						title="tooltip.model.requiredElements"
@@ -47,7 +47,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td class="left_col_show"><span id="name-label" class="label"><g:message code="model.modelConcept.label" default="Optional Data Elements" /></span></td>
+						<td class="left_col_show"><span id="name-label" ><g:message code="model.modelConcept.label" default="Optional Data Elements" /></span></td>
 						<td class="right_col_show">
 						<g:select
 						title="tooltip.model.optionalElements"
@@ -64,7 +64,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td class="left_col_show"><span id="name-label" class="label"><g:message code="model.modelConcept.label" default="Reference Data Elements" /></span></td>
+						<td class="left_col_show"><span id="name-label" ><g:message code="model.modelConcept.label" default="Reference Data Elements" /></span></td>
 						<td class="right_col_show">
 						<g:select
 						title="tooltip.model.referenceElements"

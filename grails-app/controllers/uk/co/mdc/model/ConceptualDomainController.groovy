@@ -10,7 +10,7 @@ class ConceptualDomainController {
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
 	def conceptualDomainService
-	def modelElementService
+	def catalogueElementService
 	def valueDomainService
 	
 	/* **************************************************************************************
@@ -206,7 +206,9 @@ class ConceptualDomainController {
 		
 		//update the conceptualDomain using the conceptualDomain service
 		
-		conceptualDomainService.update(conceptualDomainInstance, params)
+		conceptualDomainInstance = conceptualDomainService.update(conceptualDomainInstance, params)
+		
+		conceptualDomainInstance.refresh()
 		
 		if (!renderWithErrors('edit', conceptualDomainInstance)) {
 			redirectShow message(code: 'default.updated.message', args: [message(code: 'conceptualDomain.label', default: 'ConceptualDomain'), conceptualDomainInstance.id]), conceptualDomainInstance.id

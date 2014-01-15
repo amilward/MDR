@@ -13,7 +13,7 @@ class ModelController {
 	def messageSource
 	def modelService
 	def dataElementService
-	def modelElementService
+	def catalogueElementService
 
 	/* **************************************************************************************
 	 * ************************************* INDEX *********************************************************
@@ -115,7 +115,7 @@ class ModelController {
 			return
 		}
 
-		[modelInstance: modelInstance]
+		[modelInstance: modelInstance, relationshipTypes: RelationshipType.list()]
 	}
 	
 
@@ -410,7 +410,7 @@ class ModelController {
 		def referenceDataElements = params.referenceDataElements
 		
 		if(mandatoryDataElements && requiredDataElements){
-			if(modelElementService.parameterContains(mandatoryDataElements, requiredDataElements)){
+			if(catalogueElementService.parameterContains(mandatoryDataElements, requiredDataElements)){
 				
 				flash.message = 'Added data elements must either be mandatory or required for any given model, not both'
 				
@@ -420,7 +420,7 @@ class ModelController {
 		
 	
 		if(mandatoryDataElements && optionalDataElements){
-			if(modelElementService.parameterContains(mandatoryDataElements, optionalDataElements)){
+			if(catalogueElementService.parameterContains(mandatoryDataElements, optionalDataElements)){
 				flash.message = 'Added data elements must either be mandatory or optional for any given model, not both.'
 				return false
 			}
@@ -428,28 +428,28 @@ class ModelController {
 		
 
 		if(mandatoryDataElements && referenceDataElements){
-			if(modelElementService.parameterContains(mandatoryDataElements, referenceDataElements)){
+			if(catalogueElementService.parameterContains(mandatoryDataElements, referenceDataElements)){
 				flash.message = 'Added data elements must either be mandatory or reference for any given model, not both'
 				return false
 			}
 		}
 		
 		if(requiredDataElements && referenceDataElements){
-			if(modelElementService.parameterContains(requiredDataElements, referenceDataElements)){
+			if(catalogueElementService.parameterContains(requiredDataElements, referenceDataElements)){
 				flash.message = 'Added data elements must either be mandatory or reference for any given model, not both'
 				return false
 			}
 		}
 		
 		if(requiredDataElements && optionalDataElements){
-			if(modelElementService.parameterContains(requiredDataElements, optionalDataElements)){
+			if(catalogueElementService.parameterContains(requiredDataElements, optionalDataElements)){
 				flash.message = 'Added data elements must either be required or optional for any given model, not both'
 				return false
 			}
 		}
 		
 		if(optionalDataElements && referenceDataElements){
-			if(modelElementService.parameterContains(optionalDataElements, referenceDataElements)){
+			if(catalogueElementService.parameterContains(optionalDataElements, referenceDataElements)){
 				flash.message = 'Added data elements must either be required or reference for any given model, not both'
 				return false
 			}

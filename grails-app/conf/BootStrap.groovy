@@ -22,7 +22,7 @@ class BootStrap {
 	def sessionFactory
 	def springSecurityService
 	def grailsApplication
-	def modelElementService
+	def catalogueElementService
 
 	def init = { servletContext ->
 
@@ -238,6 +238,8 @@ class BootStrap {
 		def DEM
 		def string
 		def valueDomain
+		def modelElement
+		def parentChild
 		
 		def date
 		
@@ -245,8 +247,9 @@ class BootStrap {
 			
 			new RelationshipType(name: "Synonym").save()
 			valueDomain = new RelationshipType(name: "ValueDomain").save(flush:true)
-			new RelationshipType(name: "ParentChild", xYRelationship: "Parent", yXRelationship: "Child").save()
+			parentChild = new RelationshipType(name: "ParentChild", xYRelationship: "Parent", yXRelationship: "Child").save()
 			new RelationshipType(name: "OptionalModelElement", xYRelationship: "Model", yXRelationship: "OptionalElement").save()
+			modelElement = new RelationshipType(name: "ModelElement", xYRelationship: "Model", yXRelationship: "DataElement").save()
 			new RelationshipType(name: "MandatoryModelElement", xYRelationship: "Model", yXRelationship: "MandatoryElement").save()
 			new RelationshipType(name: "RequiredModelElement", xYRelationship: "Model", yXRelationship: "RequiredElement").save()
 			new RelationshipType(name: "ReferenceModelElement", xYRelationship: "Model", yXRelationship: "ReferenceElement").save()
@@ -332,25 +335,39 @@ class BootStrap {
 							new DataType(name:"Blob", enumerated: false).save(failOnError: true)
 							
 							
-							/*DataElementConcept CORE = new DataElementConcept(name:"CORE", description:"CORE data set").save(failOnError: true)
-							DataElementConcept HAEMA = new DataElementConcept(name:"HAEMATOLOGY", description:"HAEMATOLOGY data set").save(failOnError: true)
-							new DataElementConcept(name:"CORE - DIAGNOSTIC DETAILS", parent: CORE).save(failOnError: true)
-							new DataElementConcept(name:"CORE - PATIENT IDENTITY DETAILS", parent: CORE).save(failOnError: true)
-							DEM = new DataElementConcept(name:"CORE - DEMOGRAPHICS",  parent: CORE).save(failOnError: true)
-							DataElementConcept REF = new DataElementConcept(name:"CORE - REFERRALS", parent: CORE).save(failOnError: true)
-							new DataElementConcept(name:"CORE - IMAGING", parent: CORE).save(failOnError: true)
-							new DataElementConcept(name:"CORE - DIAGNOSIS", parent: CORE).save(failOnError: true)
-							new DataElementConcept(name:"CORE - CANCER CARE PLAN", parent: CORE).save(failOnError: true)
-							new DataElementConcept(name:"CORE - CLINICAL TRIALS", parent: CORE).save(failOnError: true)
-							new DataElementConcept(name:"CORE - STAGING", parent: CORE).save(failOnError: true)
-							*/
+
 							
 
 							if (!DataElement.count()&&!ValueDomain.count()) {
+								
+								
+								Model CORE = new Model(name:"CORE", description:"CORE data set").save(failOnError: true)
+								Model HAEMA = new Model(name:"HAEMATOLOGY", description:"HAEMATOLOGY data set").save(failOnError: true)
+								def m1 = new Model(name:"CORE - DIAGNOSTIC DETAILS", description: "DIAGNOSTIC DETAILS").save(failOnError: true)
+								def m2 = new Model(name:"CORE - PATIENT IDENTITY DETAILS", description: "PATIENT IDENTITY DETAILS").save(failOnError: true)
+								DEM = new Model(name:"CORE - DEMOGRAPHICS", description: "DEMOGRAPHICS").save(failOnError: true)
+								Model REF = new Model(name:"CORE - REFERRALS", description: "REFERRALS").save(failOnError: true)
+								def m3 = new Model(name:"CORE - IMAGING", description: "IMAGING").save(failOnError: true)
+								def m4 = new Model(name:"CORE - DIAGNOSIS", description: "DIAGNOSIS").save(failOnError: true)
+								def m5 = new Model(name:"CORE - CANCER CARE PLAN", description: "CANCER CARE PLAN").save(failOnError: true)
+								def m6 = new Model(name:"CORE - CLINICAL TRIALS", description: "CLINICAL TRIALS").save(failOnError: true)
+								def m7 = new Model(name:"CORE - STAGING", description: "STAGING").save(failOnError: true)
+								
+									Relationship.link(CORE, m1, parentChild)
+									Relationship.link(CORE, m2, parentChild)
+									Relationship.link(CORE, m3, parentChild)
+									Relationship.link(CORE, m4, parentChild)
+									Relationship.link(CORE, m5, parentChild)
+									Relationship.link(CORE, m6, parentChild)
+									Relationship.link(CORE, m7, parentChild)
+									Relationship.link(REF, m7, parentChild)
+									Relationship.link(HAEMA, m7, parentChild)
 
 									def d1 = new DataElement(name:"SOURCE OF REFERRAL FOR OUT-PATIENTS",
 									description:"This identifies the source of referral of each Consultant Out-Patient Episode.",
 									relations: []).save(failOnError: true, flush:true)
+									
+									Relationship.link(REF, d1, modelElement)
 									
 									def v1 = new ValueDomain(name:"NHS SOURCE OF REFERRAL FOR OUT-PATIENTS",
 									description:"",
@@ -361,8 +378,10 @@ class BootStrap {
 									Relationship.link(d1, v1, valueDomain).save(failOnError:true, flush:true)
 
 									def d2 = new DataElement(name:"ETHNIC CATEGORY",
-									description:"The ethnicity of a PERSON, as specified by the PERSON.. The 16+1 ethnic data categories defined in the 2001 census is the national mandatory standard for the collection and analysis of ethnicity.(The Office for National Statistics has developed a further breakdown of the group from that given, which may be used locally.)",
+									description:"The ethnicity of a PERSON, as specified by the PERSON.)",
 									relations: []).save(failOnError: true, flush:true)
+									
+									Relationship.link(REF, d2, modelElement)
 									
 									def v2 =  new ValueDomain(name:"NHS ETHNIC CATEGORY",
 									description:"",
@@ -374,7 +393,9 @@ class BootStrap {
 
 									def d3 = new DataElement(name:"PERSON FAMILY NAME (AT BIRTH)",
 									description:"The PATIENTs surname at birth.",
-									dataElementConcept: DEM, relations: []).save(failOnError: true, flush:true)
+									Model: DEM, relations: []).save(failOnError: true, flush:true)
+									
+									Relationship.link(REF, d3, modelElement)
 									
 									def v3 =  new ValueDomain(name:"NHS PERSON FAMILY NAME (AT BIRTH)",
 									description:"",
@@ -385,8 +406,10 @@ class BootStrap {
 									Relationship.link(d3, v3, valueDomain).save(failOnError:true, flush:true)
 
 									def d4 = new DataElement(name:"GENERAL MEDICAL PRACTICE CODE (PATIENT REGISTRATION)",
-									description:"The GENERAL MEDICAL PRACTICE CODE (PATIENT REGISTRATION) is an ORGANISATION CODE. This is the code of the GP Practice that the PATIENT is registered with.",
+									description:"The GENERAL MEDICAL PRACTICE CODE (PATIENT REGISTRATION) is an ORGANISATION CODE. ",
 									relations: []).save(failOnError: true, flush:true)
+									
+									Relationship.link(REF, d4, modelElement)
 									
 									def v4 =  new ValueDomain(name:"NHS GENERAL MEDICAL PRACTICE CODE (PATIENT REGISTRATION)",
 									description:"",

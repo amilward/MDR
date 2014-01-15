@@ -2,7 +2,7 @@ package uk.co.mdc.model
 
 import java.util.List;
 
-class ValueDomain extends ModelElement  {
+class ValueDomain extends CatalogueElement  {
 
 	String name
 	String unitOfMeasure

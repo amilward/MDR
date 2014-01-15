@@ -26,7 +26,7 @@ class ModelService {
 	def aclService
 	def aclUtilService
 	def springSecurityService
-	def modelElementService
+	def catalogueElementService
 	
 	
 	/* **************************** ADD PERMISSIONS *****************************************
@@ -98,7 +98,7 @@ class ModelService {
 				
 				//DataElementModel.link(dataElement, modelInstance, schemaSpecification)
 				
-				modelElementService.linkRelations(modelInstance, parameters?.synonyms, relationshipType)
+				catalogueElementService.linkRelations(modelInstance, parameters?.synonyms, relationshipType)
 				
 			}
 			
@@ -140,16 +140,16 @@ class ModelService {
 		}
 		
 		if(parameters?.requiredDataElements){
-			modelElementService.linkRelations(modelInstance, parameters?.requiredDataElements, 'RequiredModelElement')
+			catalogueElementService.linkRelations(modelInstance, parameters?.requiredDataElements, 'RequiredModelElement')
 		}
 		if(parameters?.optionalDataElements){
-			modelElementService.linkRelations(modelInstance, parameters?.optionalDataElements, 'OptionalModelElement')
+			catalogueElementService.linkRelations(modelInstance, parameters?.optionalDataElements, 'OptionalModelElement')
 		}
 		if(parameters?.referenceDataElements){
-			modelElementService.linkRelations(modelInstance, parameters?.referenceDataElements, 'ReferenceModelElement')
+			catalogueElementService.linkRelations(modelInstance, parameters?.referenceDataElements, 'ReferenceModelElement')
 		}
 		if(parameters?.mandatoryDataElements){
-			modelElementService.linkRelations(modelInstance, parameters?.mandatoryDataElements, 'MandatoryModelElement')
+			catalogueElementService.linkRelations(modelInstance, parameters?.mandatoryDataElements, 'MandatoryModelElement')
 		}
 		// Grant the current user principal administrative permission
 		
@@ -221,16 +221,16 @@ class ModelService {
 	   
 	   // add/remove value domains
 	   if(parameters?.requiredDataElements){
-			modelElementService.linkRelations(modelInstance, parameters?.requiredDataElements, 'RequiredModelElement')
+			catalogueElementService.linkRelations(modelInstance, parameters?.requiredDataElements, 'RequiredModelElement')
 		}
 		if(parameters?.optionalDataElements){
-			modelElementService.linkRelations(modelInstance, parameters?.optionalDataElements, 'OptionalModelElement')
+			catalogueElementService.linkRelations(modelInstance, parameters?.optionalDataElements, 'OptionalModelElement')
 		}
 		if(parameters?.referenceDataElements){
-			modelElementService.linkRelations(modelInstance, parameters?.referenceDataElements, 'ReferenceModelElement')
+			catalogueElementService.linkRelations(modelInstance, parameters?.referenceDataElements, 'ReferenceModelElement')
 		}
 		if(parameters?.mandatoryDataElements){
-			modelElementService.linkRelations(modelInstance, parameters?.mandatoryDataElements, 'MandatoryModelElement')
+			catalogueElementService.linkRelations(modelInstance, parameters?.mandatoryDataElements, 'MandatoryModelElement')
 		}
 	}
 	

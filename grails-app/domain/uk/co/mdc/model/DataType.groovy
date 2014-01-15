@@ -1,6 +1,6 @@
 package uk.co.mdc.model
 
-class DataType extends ModelElement  {
+class DataType extends CatalogueElement  {
 	
 	String name
 	Boolean enumerated

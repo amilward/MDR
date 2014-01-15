@@ -56,6 +56,7 @@ modules = {
 	}
 	
 	dualListBox {
+		resource url: "css/bootstrap-duallistbox.css"
 		resource url: "js/lib/jquery.bootstrap-duallistbox.js"
 	}
 	
@@ -73,7 +74,7 @@ modules = {
 	model{
 		dependsOn "dataTables"
 		dependsOn "dualListBox"
-		resource url: "js/model/collection/collection.js"
+		resource url: "js/model/model/model.js"
 	}
 	
 	valueDomain{
@@ -150,13 +151,13 @@ modules = {
 		resource url: "js/pathways/service/FormService.js"
 		resource url: "js/pathways/service/PathwayService.js"
 		resource url: "js/pathways/binding/knockout.jsplumb.js"
-		resource url: "js/pathways/model/CollectionModel.js"
+		//resource url: "js/pathways/model/modelModel.js"
 		resource url: "js/pathways/model/NodeModel.js"
 		resource url: "js/pathways/model/PathwayModel.js"
 		resource url: "js/pathways/model/LinkModel.js"
 		resource url: "js/pathways/model/FormModel.js"
 		resource url: "js/forms/formDesign.js"
-		resource url: "js/model/collection/collection.js"
+		resource url: "js/model/model/model.js"
 
         resource url: "css/pathways/style.css"
 		
@@ -189,7 +190,7 @@ modules = {
 
     angularPathwaysApp {
         dependsOn 'angular'
-        resource id: 'js', url: [dir: 'js/angular/', file: "angular-app.js"], nominify: true
+        //resource id: 'js', url: [dir: 'js/angular/', file: "angular-app.js"], nominify: true
     }
 
     /**

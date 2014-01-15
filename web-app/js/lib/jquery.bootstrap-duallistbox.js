@@ -2,29 +2,35 @@
 /*global jQuery: true */
 
 /*!=========================================================================
- *  Bootstrap Dual Listbox
- *  v1.0.6
- *
- *  Responsive dual multiple select with filtering. Designed to work on
- *  small touch devices.
- *
- *  https://github.com/istvan-meszaros/bootstrap-duallistbox
- *  http://www.virtuosoft.eu/code/bootstrap-duallistbox/
- *
- *  Copyright 2013 István Ujj-Mészáros
- *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
- * ====================================================================== */
+* Bootstrap Dual Listbox
+* v2.0.3
+*
+* Responsive dual multiple select with filtering. Designed to work on
+* small touch devices.
+*
+* https://github.com/istvan-meszaros/bootstrap-duallistbox
+* http://www.virtuosoft.eu/code/bootstrap-duallistbox/
+*
+* Copyright 2013 Istvan Ujj-Meszaros
+*
+* Thanks for the contributors:
+* Ninir - https://github.com/Ninir
+* Christophe Coevoet - https://github.com/stof
+* Ed Ng - https://github.com/gnedster
+* ssafejava - https://github.com/ssafejava
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+* http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+* ====================================================================== */
 
 (function($) {
     "use strict";
@@ -46,24 +52,33 @@
             }
 
             var settings = $.extend( {
-                preserveselectiononmove : false,            // 'all' / 'moved' / false
-                moveonselect            : true,             // true/false (forced true on androids, see the comment later)
-                initialfilterfrom       : '',               // string, filter selectables list on init
-                initialfilterto         : '',               // string, filter selected list on init
-                helperselectnamepostfix     : '_helper',    // 'string_of_postfix' / false
-                infotext                : 'Showing all {0}',// text when all options are visible / false for no info text
-                infotextfiltered        : '<span class="label label-warning">Filtered</span> {0} from {1}',// when not all of the options are visible due to the filter
-                infotextempty           : 'Empty list',      // when there are no options present in the list
-                selectorminimalheight   : 100,
-                showfilterinputs        : true,
-                filterplaceholder       : 'Filter',
-                filtertextclear         : 'show all',
-                nonselectedlistlabel    : false,            // 'string', false
-                selectedlistlabel       : false             // 'string', false
+                bootstrap2compatible : false,
+                preserveselectiononmove : false, // 'all' / 'moved' / false
+                moveonselect : true, // true/false (forced true on androids, see the comment later)
+                initialfilterfrom : '', // string, filter selectables list on init
+                initialfilterto : '', // string, filter selected list on init
+                helperselectnamepostfix : '_helper', // 'string_of_postfix' / false
+                infotext : 'Showing all {0}',// text when all options are visible / false for no info text
+                infotextfiltered : '<span class="label label-warning">Filtered</span> {0} from {1}',// when not all of the options are visible due to the filter
+                infotextempty : 'Empty list', // when there are no options present in the list
+                selectorminimalheight : 100,
+                showfilterinputs : true,
+                filterplaceholder : 'Filter',
+                filtertextclear : 'show all',
+                nonselectedlistlabel : false, // 'string', false
+                selectedlistlabel : false // 'string', false
             }, options);
 
-            var container = $('<div class="row-fluid bootstrap-duallistbox-container"><div class="span6 box1"><span class="info-container"><span class="info"></span><button type="button" class="btn btn-mini clear1 pull-right">' + settings.filtertextclear + '</button></span><input placeholder="' + settings.filterplaceholder + '" class="filter" type="text"><div class="btn-group buttons"><button type="button" class="btn moveall" title="Move all"><i class="icon-arrow-right"></i><i class="icon-arrow-right"></i></button><button type="button" class="btn move" title="Move selected"><i class="icon-arrow-right"></i></button></div><select multiple="multiple" data-duallistbox_generated="true"></select></div><div class="span6 box2"><span class="info-container"><span class="info"></span><button type="button" class="btn btn-mini clear2 pull-right">' + settings.filtertextclear + '</button></span><input placeholder="' + settings.filterplaceholder + '" class="filter" type="text"><div class="btn-group buttons"><button type="button" class="btn remove" title="Remove selected"><i class="icon-arrow-left"></i></button><button type="button" class="btn removeall" title="Remove all"><i class="icon-arrow-left"></i><i class="icon-arrow-left"></i></button></div><select multiple="multiple" data-duallistbox_generated="true"></select></div></div>').insertBefore($this),
-                elements = {
+            var container;
+
+            if (settings.bootstrap2compatible) {
+                container = $('<div class="row-fluid bootstrap-duallistbox-container bs2compatible"><div class="span6 box1"><span class="info-container"><span class="info"></span><button type="button" class="btn btn-mini clear1 pull-right">' + settings.filtertextclear + '</button></span><input placeholder="' + settings.filterplaceholder + '" class="filter" type="text"><div class="btn-group buttons"><button type="button" class="btn moveall" title="Move all"><i class="icon-arrow-right"></i><i class="icon-arrow-right"></i></button><button type="button" class="btn move" title="Move selected"><i class="icon-arrow-right"></i></button></div><select multiple="multiple" data-duallistbox_generated="true"></select></div><div class="span6 box2"><span class="info-container"><span class="info"></span><button type="button" class="btn btn-mini clear2 pull-right">' + settings.filtertextclear + '</button></span><input placeholder="' + settings.filterplaceholder + '" class="filter" type="text"><div class="btn-group buttons"><button type="button" class="btn remove" title="Remove selected"><i class="icon-arrow-left"></i></button><button type="button" class="btn removeall" title="Remove all"><i class="icon-arrow-left"></i><i class="icon-arrow-left"></i></button></div><select multiple="multiple" data-duallistbox_generated="true"></select></div></div>').insertBefore($this);
+            }
+            else {
+                container = $('<div class="row bootstrap-duallistbox-container"><div class="col-md-6 box1"><span class="info-container"><span class="info"></span><button type="button" class="btn btn-default btn-xs clear1 pull-right">' + settings.filtertextclear + '</button></span><input placeholder="' + settings.filterplaceholder + '" class="filter form-control" type="text"><div class="btn-group buttons"><button type="button" class="btn btn-default moveall" title="Move all"><i class="glyphicon glyphicon-arrow-right"></i><i class="glyphicon glyphicon-arrow-right"></i></button><button type="button" class="btn btn-default move" title="Move selected"><i class="glyphicon glyphicon-arrow-right"></i></button></div><select multiple="multiple" class="form-control" data-duallistbox_generated="true"></select></div><div class="col-md-6 box2"><span class="info-container"><span class="info"></span><button type="button" class="btn btn-default btn-xs clear2 pull-right">' + settings.filtertextclear + '</button></span><input placeholder="' + settings.filterplaceholder + '" class="filter form-control" type="text"><div class="btn-group buttons"><button type="button" class="btn btn-default remove" title="Remove selected"><i class="glyphicon glyphicon-arrow-left"></i></button><button type="button" class="btn btn-default removeall" title="Remove all"><i class="glyphicon glyphicon-arrow-left"></i><i class="glyphicon glyphicon-arrow-left"></i></button></div><select multiple="multiple" class="form-control" data-duallistbox_generated="true"></select></div></div>').insertBefore($this);
+            }
+
+            var elements = {
                     originalselect: $this,
                     box1: $('.box1', container),
                     box2: $('.box2', container),
@@ -127,6 +142,10 @@
 
                 if (typeof c !== 'undefined' && c) {
                     c = c.match(/\bspan[1-9][0-2]?/);
+                    if (!c) {
+                        c = elements.originalselect.attr('class');
+                        c = c.match(/\bcol-md-[1-9][0-2]?/);
+                    }
                 }
 
                 if (!!c) {
@@ -188,10 +207,12 @@
                     }
                 });
 
-                filter1();
-                filter2();
+                if (settings.showfilterinputs) {
+                    filter1();
+                    filter2();
 
-                refreshinfo();
+                    refreshinfo();
+                }
             }
 
             function formatstring(s, args)
@@ -224,7 +245,7 @@
                 }
 
                 elements.info1.html(content);
-                elements.box1.toggleClass('filtered', !(visible1 === all1 || all1 === 0));
+                elements.box1.toggleClass('filtered', !(visible1 === all1 || all1 === 0));
 
                 if (all2 === 0) {
                     content = settings.infotextempty;
@@ -237,7 +258,7 @@
                 }
 
                 elements.info2.html(content);
-                elements.box2.toggleClass('filtered', !(visible2 === all1 || all2 === 0));
+                elements.box2.toggleClass('filtered', !(visible2 === all2 || all2 === 0));
             }
 
             function bindevents()
@@ -342,6 +363,10 @@
             }
 
             function filter1() {
+                if (!settings.showfilterinputs) {
+                    return;
+                }
+
                 saveselections1();
 
                 elements.select1.empty().scrollTop(0);
@@ -364,6 +389,10 @@
             }
 
             function filter2() {
+                if (!settings.showfilterinputs) {
+                    return;
+                }
+
                 saveselections2();
 
                 elements.select2.empty().scrollTop(0);
@@ -413,6 +442,7 @@
                     saveselections1();
                 }
 
+
                 elements.select1.find('option:selected').each(function(index, item) {
                     var $item = $(item);
 
@@ -422,6 +452,7 @@
                 });
 
                 refreshselects();
+                triggerchangeevent();
 
                 sortoptions(elements.select2);
             }
@@ -445,6 +476,7 @@
                 });
 
                 refreshselects();
+                triggerchangeevent();
 
                 sortoptions(elements.select1);
             }
@@ -468,6 +500,7 @@
                 });
 
                 refreshselects();
+                triggerchangeevent();
             }
 
             function removeall()
@@ -489,9 +522,16 @@
                 });
 
                 refreshselects();
+                triggerchangeevent();
+            }
+
+            function triggerchangeevent()
+            {
+                elements.originalselect.trigger('change');
             }
         });
 
     };
 
 })(jQuery);
+

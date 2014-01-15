@@ -1,6 +1,6 @@
 package uk.co.mdc.model
 
-class ConceptualDomain extends ModelElement  {
+class ConceptualDomain extends CatalogueElement  {
 
 	String name
 	String description

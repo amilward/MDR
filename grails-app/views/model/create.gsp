@@ -14,7 +14,7 @@
 				<g:hiddenField name="id" value="${modelInstance?.id}" />
 			    	<div class="navbar">
 					    <div class="navbar-inner">
-						    <ul class="nav">
+						    <ul class="nav nav-tabs">
 							    <li class="active"><g:link action="create" ><g:message code="default.button.create.label" default="Create" /></g:link></li>
 							    <li><a href="#" onclick="saveCreate()">Save</a></li>
 							   </ul>

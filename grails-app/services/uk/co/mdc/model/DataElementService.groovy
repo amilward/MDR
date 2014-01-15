@@ -24,7 +24,7 @@ class DataElementService {
 	def aclUtilService
 	def springSecurityService
 	def searchableService
-	def modelElementService
+	def catalogueElementService
 	
 	
 	/* **************************** ADD PERMISSIONS *****************************************
@@ -69,11 +69,11 @@ class DataElementService {
 		//link any value domains that were selected with data element
 		
 		//linkValueDomains(dataElementInstance, parameters?.valueDomains)
-		modelElementService.linkRelations(dataElementInstance, parameters?.valueDomains, "ValueDomain")
+		catalogueElementService.linkRelations(dataElementInstance, parameters?.valueDomains, "ValueDomain")
 		
 		//link any relations that were selected with data element
 		
-		modelElementService.linkRelations(dataElementInstance, parameters?.synonyms, "Synonym")
+		catalogueElementService.linkRelations(dataElementInstance, parameters?.synonyms, "Synonym")
 		
 		// Grant the current user principal administrative permission 
 		
@@ -164,22 +164,17 @@ class DataElementService {
 	   if(dataElementInstance.save(flush: true)){
 		   
 		   //add/remove relations that have specified for addition or removal
-		   modelElementService.linkRelations(dataElementInstance, synonyms, "Synonym")
+		   catalogueElementService.linkRelations(dataElementInstance, synonyms, "Synonym")
 	   }
 	   
 	   if(dataElementInstance.save(flush: true)){
-		   modelElementService.linkRelations(dataElementInstance, valueDomains, "ValueDomain")
+		   catalogueElementService.linkRelations(dataElementInstance, valueDomains, "ValueDomain")
 	   }
 	   
 	   if(dataElementInstance.save(flush: true)){
-		   modelElementService.linkRelations(dataElementInstance, subElements, "ParentChild")
+		   catalogueElementService.linkRelations(dataElementInstance, subElements, "ParentChild")
 	   }
 	   
-	   /*if(dataElementInstance.save(flush: true)){
-		   
-		   // add/remove value domains
-		   modelElementService.linkRelations(dataElementInstance, parameters?.valueDomains, "ValueDomain")
-	   }*/
 	   
 	   dataElementInstance
 	   

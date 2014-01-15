@@ -1,8 +1,8 @@
 package uk.co.mdc.pathways
 
-import uk.co.mdc.model.ModelElement;
+import uk.co.mdc.model.CatalogueElement;
 
-class PathwaysModel extends ModelElement{
+class PathwaysModel extends CatalogueElement{
 	
 	String name
 	String versionNo

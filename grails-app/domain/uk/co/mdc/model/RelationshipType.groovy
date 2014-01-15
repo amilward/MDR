@@ -18,6 +18,7 @@ class RelationshipType {
 	Rule relationshipTypeRule
 
     static constraints = {
+		name unique:true
 		xYRelationship nullable:true
 		yXRelationship nullable:true
 		relationshipTypeRule nullable:true

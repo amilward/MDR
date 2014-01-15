@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta name="layout" content="metadata_curation">
+		<meta name="layout" content="main">
 		<g:set var="entityName" value="${message(code: 'conceptualDomain.label', default: 'ConceptualDomain')}" />
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'bootstrap-duallistbox.css')}" type="text/css">
 		<title><g:message code="default.edit.label" args="[entityName]" /></title>
@@ -14,12 +14,13 @@
 				<g:hiddenField name="id" value="${conceptualDomainInstance?.id}" />
 			    	<div class="navbar">
 					    <div class="navbar-inner">
-						    <ul class="nav">
+						    <ul class="nav nav-tabs">
 						  		<li><g:link action="show" id="${conceptualDomainInstance?.id}"><g:message code="default.button.show.label" default="Show" /></g:link></li>
 							    <li class="active"><g:link action="edit" id="${conceptualDomainInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link></li>
 							    <li><g:link action="create" id="${conceptualDomainInstance?.id}"><g:message code="default.button.create.label" default="Create" /></g:link></li>
 							    <li><a href="#" onclick="updateForm()">Update</a></li>
 							    <li><a href="#" onclick="deleteItem('${conceptualDomainInstance?.name}')">Delete</a></li>
+								<li><g:link action="list" ><g:message code="default.button.list.label" default="List" /></g:link></li>
 							</ul>
 					    </div>
 			    	</div>

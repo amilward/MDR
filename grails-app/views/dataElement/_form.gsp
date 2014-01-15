@@ -4,20 +4,20 @@
 <table class="table table-hovered">
 				<tbody>
 					<tr class="${hasErrors(bean: dataElementInstance, field: 'name', 'error')} ">
-						<td class="left_col_show"><span id="name-label" class="label"><g:message code="dataElement.name.label" default="Name" /></span></td>
+						<td class="left_col_show"><span id="name-label" ><g:message code="dataElement.name.label" default="Name" /></span></td>
 						<td class="right_col_show"><g:textField title="tooltip.dataElement.name" class="input-large input-block-level"  name="name" value="${dataElementInstance?.name}"/></td>
 					</tr>
 					<tr class="${hasErrors(bean: dataElementInstance, field: 'description', 'error')} ">
-						<td class="left_col_show"><span id="name-label" class="label"><g:message code="dataElement.description.label" default="Description" /></span></td>
+						<td class="left_col_show"><span id="name-label" ><g:message code="dataElement.description.label" default="Description" /></span></td>
 						<td class="right_col_show"><g:textArea title="tooltip.dataElement.description" class="input-block-level" name="description" value="${dataElementInstance?.description}"/></td>
 					</tr>
 					<tr>
-						<td class="left_col_show"><span id="name-label" class="label"><g:message code="dataElement.definition.label" default="Definition" /></span></td>
+						<td class="left_col_show"><span id="name-label" ><g:message code="dataElement.definition.label" default="Definition" /></span></td>
 						<td class="right_col_show"><g:textArea title="tooltip.dataElement.definition" class="input-block-level" name="definition" value="${dataElementInstance?.definition}"/></td>
 					</tr>
 					
 					<tr>
-						<td class="left_col_show"><span id="name-label" class="label"><g:message code="dataElement.parent.label" default="Parent" /></span></td>
+						<td class="left_col_show"><span id="name-label" ><g:message code="dataElement.parent.label" default="Parent" /></span></td>
 						<td>
 						<g:select 
 						title="tooltip.dataElement.parent"
@@ -33,7 +33,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td class="left_col_show"><span id="name-label" class="label">Associated Value Domains</span></td>
+						<td class="left_col_show"><span id="name-label" >Associated Value Domains</span></td>
 						<td class="right_col_show">
 							<g:select
 								title="tooltip.dataElement.ValueDomains"
@@ -50,7 +50,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td class="left_col_show"><span id="name-label" class="label">Synonyms</span></td>
+						<td class="left_col_show"><span id="name-label" >Synonyms</span></td>
 						<td class="right_col_show">
 							<g:select
 									title="tooltip.dataElement.synonyms"
@@ -67,7 +67,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td class="left_col_show"><span id="name-label" class="label">Children</span></td>
+						<td class="left_col_show"><span id="name-label" >Children</span></td>
 						<td class="right_col_show">
 							<g:select
 									title="tooltip.dataElement.subElements"

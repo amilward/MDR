@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Set;
 import uk.co.mdc.forms.FormDesign
 
-class Model extends ModelElement  {
+class Model extends CatalogueElement  {
 	 
 	String name
 	String description

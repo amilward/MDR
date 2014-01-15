@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.codehaus.groovy.grails.web.servlet.mvc.GrailsParameterMap
 
-class DataElement extends ModelElement {
+class DataElement extends CatalogueElement {
 	
 	String name
 	

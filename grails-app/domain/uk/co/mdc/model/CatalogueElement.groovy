@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.json.simple.JSONObject;
 
-abstract class ModelElement {
+abstract class CatalogueElement {
 		
 		def storage = [:]
 		
@@ -55,7 +55,7 @@ abstract class ModelElement {
 					objectId = relation.objectYId
 				}
 				
-				def modelElement = ModelElement.get(objectId)
+				def modelElement = CatalogueElement.get(objectId)
 				modelElement.relationshipType = relation.relationshipType
 				relationsR.add(modelElement)
 			}
@@ -106,7 +106,7 @@ abstract class ModelElement {
 							
 						}
 						
-						def modelElement = ModelElement.get(objectId)
+						def modelElement = CatalogueElement.get(objectId)
 						modelElement.relationshipType = relationTypeName
 						relationsR.add(modelElement)
 					}

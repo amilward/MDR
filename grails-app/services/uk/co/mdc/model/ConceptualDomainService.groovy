@@ -60,8 +60,17 @@ class ConceptualDomainService {
 		
 		//save the conceptualDomain
 		
+		def valueDomains = parameters?.valueDomains
+		parameters.remove('valueDomains')
+		
 		ConceptualDomain conceptualDomainInstance = new ConceptualDomain(parameters)
-		if(!conceptualDomainInstance.save(flush:true)){
+		
+		if(conceptualDomainInstance.save(flush:true)){
+			
+			linkValueDomains(conceptualDomainInstance, valueDomains)
+			
+		}else{
+		
 			return conceptualDomainInstance
 		}
 		
@@ -127,15 +136,24 @@ class ConceptualDomainService {
 	
 	@Transactional
 	@PreAuthorize("hasPermission(#conceptualDomainInstance, write) or hasPermission(#conceptualDomainInstance, admin)")
-	void update(ConceptualDomain conceptualDomainInstance, Map parameters) {
+	ConceptualDomain update(ConceptualDomain conceptualDomainInstance, Map parameters) {
 
-	   // remove valueDomains (if needed)
+		def valueDomains = parameters?.valueDomains
+		parameters.remove('valueDomains')
+		
+		// check if updated conceptual domain has removed valueDomains and remove
+		unlinkValueDomains(conceptualDomainInstance, parameters?.valueDomains)
+		
+		conceptualDomainInstance.properties = parameters
 	   
-	   unLinkValueDomains(conceptualDomainInstance, parameters?.valueDomains)
-	   
-	   conceptualDomainInstance.properties = parameters
-	   
-	   conceptualDomainInstance.save(flush: true)
+		
+		if(conceptualDomainInstance.save(flush:true)){
+			
+			linkValueDomains(conceptualDomainInstance, valueDomains)
+			
+		}
+		
+		conceptualDomainInstance
 
 	   }
 	
@@ -194,11 +212,34 @@ class ConceptualDomainService {
 		}
 	
 	
+	
+	def linkValueDomains(conceptualDomainInstance, valueDomains){
+		
+		//There is a bug in hibernate/grails hasMany on object during creation,
+		//so we need to add the value domains with addToValueDomains
+		//to ensure hibernate makes two way connection
+		// between vd and cd (only needed when creating)
+		
+		if(valueDomains instanceof String){
+			def vd = ValueDomain.get(valueDomains)
+			conceptualDomainInstance.addToValueDomains(vd)
+		}else{
+			valueDomains.each{ valueDomainId ->
+				def vd = ValueDomain.get(valueDomainId)
+				if(vd){
+					conceptualDomainInstance.addToValueDomains(vd)
+				}
+				
+			}
+		}
+		
+	}
+	
 	/* ************************* CONCEPTUAL DOMAIN LINKAGE FUNCTIONS************************
 	 * unlinks the value domains that have been removed during an update of the conceptualDomain
 	 ********************************************************************************* */
 	
-	def unLinkValueDomains(conceptualDomainInstance, pValueDomains){
+	def unlinkValueDomains(conceptualDomainInstance, pValueDomains){
 		
 		//if all data elements need to be removed or only a few elements need to be removed
 		
@@ -214,7 +255,6 @@ class ConceptualDomainService {
 	
 			}else if(pValueDomains){
 		
-			//if(pValueDomains.size() < conceptualDomainInstance?.valueDomains.size()){
 			
 				def valueDomains = []
 				
@@ -225,7 +265,7 @@ class ConceptualDomainService {
 	
 					if(pValueDomains instanceof String){
 						
-							if(pValueDomains!=valueDomain){
+							if(pValueDomains!=valueDomain.id.toString()){
 						
 								conceptualDomainInstance.removeFromValueDomains(valueDomain)
 							
@@ -233,7 +273,7 @@ class ConceptualDomainService {
 						
 						}else{
 							
-							if(!pValueDomains.contains(valueDomain)){
+							if(!pValueDomains.contains(valueDomain.id.toString())){
 								
 								conceptualDomainInstance.removeFromValueDomains(valueDomain)
 								
@@ -241,7 +281,7 @@ class ConceptualDomainService {
 						
 						}
 					}
-			//}
+			
 			
 		}
 	}

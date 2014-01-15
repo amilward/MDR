@@ -30,31 +30,31 @@
 				<tbody>
 				<g:if test="${dataElementInstance?.name}">
 					<tr>
-						<td class="left_col_show"><span id="name-label" class="label"><g:message code="dataElement.name.label" default="Data Element" /></span></td>
+						<td class="left_col_show"><span id="name-label" ><g:message code="dataElement.name.label" default="Data Element" /></span></td>
 						<td class="right_col_show"><g:fieldValue bean="${dataElementInstance}" field="name"/></td>
 					</tr>
 				</g:if>
 				<g:if test="${dataElementInstance?.description}">
 					<tr>
-						<td class="left_col_show"><span id="name-label" class="label"><g:message code="dataElement.description.label" default="Description" /></span></td>
+						<td class="left_col_show"><span id="name-label" ><g:message code="dataElement.description.label" default="Description" /></span></td>
 						<td class="right_col_show"><g:fieldValue bean="${dataElementInstance}" field="description"/></td>
 					</tr>
 				</g:if>
 				<g:if test="${dataElementInstance?.definition}">
 					<tr>
-						<td class="left_col_show"><span id="name-label" class="label"><g:message code="dataElement.definition.label" default="Definition" /></span></td>
+						<td class="left_col_show"><span id="name-label" ><g:message code="dataElement.definition.label" default="Definition" /></span></td>
 						<td class="right_col_show"><g:fieldValue bean="${dataElementInstance}" field="definition"/></td>
 					</tr>
 				</g:if>
 				<g:if test="${dataElementInstance?.dataElementConcept}">
 					<tr>
-						<td class="left_col_show"><span id="name-label" class="label"><g:message code="dataElement.dataElementConcept.label" default="Data Element Concept" /></span></td>
+						<td class="left_col_show"><span id="name-label" ><g:message code="dataElement.dataElementConcept.label" default="Data Element Concept" /></span></td>
 						<td class="right_col_show"><g:link controller="dataElementConcept" action="show" id="${dataElementInstance?.dataElementConcept?.id}">${dataElementInstance?.dataElementConcept?.name?.encodeAsHTML()}</g:link></td>
 					</tr>
 				</g:if>
 				<g:if test="${dataElementInstance?.parent}">
 					<tr>
-						<td class="left_col_show"><span id="name-label" class="label"><g:message code="dataElement.parent.label" default="Parent" /></span></td>
+						<td class="left_col_show"><span id="name-label" ><g:message code="dataElement.parent.label" default="Parent" /></span></td>
 						<td class="right_col_show"><g:link controller="dataElement" action="show" id="${dataElementInstance?.parent?.id}">${dataElementInstance?.parent?.name?.encodeAsHTML()}</g:link></td>
 					</tr>
 				</g:if>
@@ -64,11 +64,11 @@
 					<g:each var="relationshipType" in="${relationshipTypes}">
 					<g:if test="${dataElementInstance.relations(relationshipType.name)}" >
 					<tr>
-							<td colspan="2"><span id="name-label" class="label">${relationshipType.name}</span></td>
+							<td colspan="2"><span id="name-label heading" >${relationshipType.name}</span></td>
 					</tr>
 					<tr>
 						<td colspan="2">
-							<table>
+							<table class="table table-bordered">
 							<thead>
 								<tr>
 									<th>Name</th>
@@ -91,7 +91,7 @@
 				</g:if>
 				<g:if test="${dataElementInstance?.subElements}">
 					<tr>
-						<td colspan="2"><span id="name-label" class="label">Sub Elements</span></td>
+						<td colspan="2"><span id="name-label" >Sub Elements</span></td>
 					</tr>
 					<tr>
 						<td colspan="2">
@@ -120,7 +120,7 @@
 					</tr>
 					<g:each var="ext" in="${dataElementInstance?.extension?.keySet()}">
  					<tr>
-						<td class="left_col_show"><span id="name-label" class="label">${ext}</span></td>
+						<td class="left_col_show"><span id="name-label" >${ext}</span></td>
 						<td class="right_col_show">${dataElementInstance?.extension?.get(ext)}</td>
 					</tr>  
 					</g:each>

@@ -11,7 +11,6 @@ function modelList(){
         "sAjaxSource": "dataTables",
         "sEmptyTable": "Loading data from server",
         "bAutoWidth": false,
-        "aaSorting": [[ 0, "asc" ]],
 		"aoColumns": [
 			{
 				    // `data` refers to the data for the cell (defined by `mData`, which

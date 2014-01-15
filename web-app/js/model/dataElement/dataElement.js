@@ -67,7 +67,6 @@ function dataElementDualListBox(){
 
 
 function dataElementForm(selectedValueDomains, synonyms, subElements){
-	
 	//set up form selecting the data elements that have been included
 	//and when this is done set up the dual list boxes (otherwise it may miss some)
 	selectDataElementStuff(selectedValueDomains, synonyms, subElements).done(dataElementDualListBox())
@@ -131,11 +130,11 @@ function dataElementList(){
 			    // defaults to the column being worked with, in this case is the first
 			    // Using `row[0]` is equivalent.
 			"mRender": function ( data, type, row ) {		
-				return '<a href="' + root +'/dataElementConcept/show/' + data + '">' + row.dataElementConcept_name + '</a>' + '<img class="floatright" src="../images/details_open.png" />'
+				return '<a href="' + root +'/Model/show/' + data + '">' + row.model_name + '</a>' + '<img class="floatright" src="../images/details_open.png" />'
 		    },
-		   "mDataProp": "dataElementConcept_id", 
+		   "mDataProp": "model_id", 
 		   "sWidth":"30%",
-		   "sTitle":"dataElementConcept"
+		   "sTitle":"model"
 			},
 			{ "mDataProp": "id", "bVisible":    false }
 		],

@@ -9,7 +9,7 @@ class DocumentController {
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
 	def documentService
-	def modelElementService
+	def catalogueElementService
 	
 	/* **************************************************************************************
 	 * ************************************* INDEX *********************************************************

@@ -10,7 +10,7 @@ class DataTypeController {
 
 	
 	def dataTypeService
-	def modelElementService
+	def catalogueElementService
 	
 	/* **************************************************************************************
 	 * ************************************* INDEX *********************************************************

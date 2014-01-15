@@ -1,6 +1,6 @@
 package uk.co.mdc.model
 
-class Document extends ModelElement  {
+class Document extends CatalogueElement  {
 
 	String name
 	String description

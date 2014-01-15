@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta name="layout" content="metadata_curation">
+		<meta name="layout" content="main">
 		<g:set var="entityName" value="${message(code: 'conceptualDomain.label', default: 'ConceptualDomain')}" />
 		<title><g:message code="default.list.label" args="[entityName]" /></title>
 		<parameter name="name" value="Conceptual Domains" />

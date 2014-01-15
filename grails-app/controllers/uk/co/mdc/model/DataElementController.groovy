@@ -20,7 +20,7 @@ class DataElementController extends RestfulController{
 	
 	def dataElementService
 	def valueDomainService
-	def modelElementService
+	def catalogueElementService
 	
 	/* **************************************************************************************
 	 * ************************************* INDEX *********************************************************
@@ -197,11 +197,6 @@ class DataElementController extends RestfulController{
 			return
 		}
 		
-		println(dataElementInstance.relations("ParentChild"))
-		println(dataElementInstance.relations("ValueDomain"))
-		println(dataElementInstance.relations("Synonym"))
-		
-		
 		[valueDomains: ValueDomain.list(), selectedValueDomains: dataElementInstance.relations("ValueDomain"), 
 			selectedSynonyms: dataElementInstance.relations("Synonym"), dataElements: dataElementService.list(), 
 			dataElementInstance: dataElementInstance, relationshipTypes: RelationshipType.list(), 
@@ -254,10 +249,6 @@ class DataElementController extends RestfulController{
 		dataElementInstance = dataElementService.update(dataElementInstance, params)
 		dataElementInstance.save(flush:true, failOnError: true)
 		dataElementInstance.refresh()
-		
-		println(dataElementInstance.relations("ParentChild"))
-		println(dataElementInstance.relations("ValueDomain"))
-		println(dataElementInstance.relations("Synonym"))
 		
 		if (!renderWithErrors('edit', dataElementInstance)) {
 			redirectShow message(code: 'default.updated.message', args: [message(code: 'dataElement.label', default: 'DataElement'), id]), id
@@ -420,7 +411,7 @@ class DataElementController extends RestfulController{
 		
 		if(params.synonyms!=null){
 			if(params?.subElements!=null){
-				if(modelElementService.parameterContains(params.synonyms, params?.subElements)){
+				if(catalogueElementService.parameterContains(params.synonyms, params?.subElements)){
 					params.subElements = ''
 					flash.message = 'Error: Data Element Sub elements and Data Element Synonyms must be mutually exclusive'
 					return false
@@ -428,7 +419,7 @@ class DataElementController extends RestfulController{
 			}
 			
 			if(params?.parent!=null){
-				if(modelElementService.parameterContains(params.synonyms, params?.parent)){
+				if(catalogueElementService.parameterContains(params.synonyms, params?.parent)){
 					params.parent = ''
 					flash.message = 'Error: Data Element Parent Elements and Data Element Synonyms must be mutually exclusive'
 					return false

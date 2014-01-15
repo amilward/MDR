@@ -14,6 +14,8 @@ class DataElementMarshaller extends CustomMarshaller{
 			'definition' : dataElement.definition,
 			'parent_id' : dataElement?.parent?.id,
 			'parent_name' : dataElement?.parent?.name,
+			'model_id' : dataElement?.relations("ModelElement")?.id,
+			'model_name' : dataElement?.relations("ModelElement")?.name,
 			'model_mandatory_id' : dataElement?.relations("MandatoryModelElement")?.id,
 			'model_mandatory_name' : dataElement?.relations("MandatoryModelElement")?.name,
 			'model_required_id' : dataElement?.relations("RequiredModelElement")?.id,
