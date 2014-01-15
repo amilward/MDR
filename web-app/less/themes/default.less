@@ -14,27 +14,6 @@
 **/
 
 
-html,
-body {
-  height: 100%;
-  /* The html and body elements cannot have any padding or margin. */
-}
-
-/* Wrapper for page content to push down footer */
-#wrap {
-  min-height: 100%;
-  height: auto;
-  /* Negative indent footer by its height */
-  margin: 0 auto -60px;
-  /* Pad bottom by footer height */
-  padding: 0 0 60px;
-}
-
-/* Set the fixed height of the footer here */
-#footer {
-  height: 60px;
-}
-
 
 // Colour Palette
 // -------------------------
@@ -139,4 +118,34 @@ a {
 
 #info {
 	margin-bottom: 30px;
+}
+
+/**
+Pathway specific stuff
+**/
+
+
+.graph-paper{
+
+  background-color: #fff;
+  background-size: 100px 100px, 100px 100px, 10px 10px, 10px 10px;
+  background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
+  background-image: -webkit-linear-gradient(@gray-lighter 2px, transparent 2px),
+  -webkit-linear-gradient(0, @gray-lighter 2px, transparent 2px),
+  -webkit-linear-gradient(@gray-lighter 1px, transparent 1px),
+  -webkit-linear-gradient(0, @gray-lighter 1px, transparent 1px);
+  background-image: -moz-linear-gradient(@gray-lighter 2px, transparent 2px),
+  -moz-linear-gradient(0, @gray-lighter 2px, transparent 2px),
+  -moz-linear-gradient(@gray-lighter 1px, transparent 1px),
+  -moz-linear-gradient(0, @gray-lighter 1px, transparent 1px);
+  background-image: linear-gradient(@gray-lighter 2px, transparent 2px),
+  linear-gradient(90deg, @gray-lighter 2px, transparent 2px),
+  linear-gradient(@gray-lighter 1px, transparent 1px),
+  linear-gradient(90deg, @gray-lighter 1px, transparent 1px);
+  -pie-background: linear-gradient(@gray-lighter 2px, transparent 2px) -2px -2px / 100px,
+  linear-gradient(90deg, @gray-lighter 2px, transparent 2px) -2px -2px / 100px,
+  linear-gradient(@gray-lighter 1px, transparent 1px) -1px -1px / 20px,
+  linear-gradient(90deg, @gray-lighter 1px, transparent 1px) -1px -1px / 20px,
+  @mc-colour-2;
+
 }

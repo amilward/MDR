@@ -51,11 +51,16 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="${createLink(uri: '/')}">MDC</a>
+                    <a class="navbar-brand" href="${createLink(uri: '/')}">Model Catalogue</a>
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a href="${createLink(uri: '/')}">Home</a></li>
+<sec:ifNotLoggedIn>
+                        <li><a href="#">Introduction</a></li>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">Download</a></li>
+                        <li><a href="#">Contact</a></li>
+</sec:ifNotLoggedIn>
 <sec:ifLoggedIn>
                         <!-- Metadata curation menu -->
                         <li><g:link action="list" controller="ValueDomain"> Data model </g:link></li>
@@ -97,13 +102,13 @@
                                 <li><g:link mapping="importData">Import data</g:link></li>
                             </ul>
                         </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><g:link data-placement="bottom" class="btn btn-inverse" data-original-title="Logout" rel="tooltip" controller="logout"> Logout </g:link></li>
     </sec:ifAnyGranted>
 </sec:ifLoggedIn>
                     </ul>
 
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><g:link data-placement="bottom" class="btn btn-inverse" data-original-title="Logout" rel="tooltip" controller="logout"> Logout </g:link></li>
-                    </ul>
                 </div>
             </div>
         </nav>

@@ -53,7 +53,7 @@ $(document).ready(function () {
 	});
 
 	function resizeWindows(){
-		$('#container').height($('html').height()-90);
+		$('#container').height($('body').height()-123);
 	}
 
 
