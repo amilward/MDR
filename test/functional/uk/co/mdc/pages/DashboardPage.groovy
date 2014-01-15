@@ -20,5 +20,6 @@ class DashboardPage extends BasePageWithNav{
 		pathwaysLink { $("#pathways") }
 		dashboardPathways { $("#dashboard-pathways") }
 		createPathwaysLink { $("#dashCreatePathway") }
+        flibblewidget { $("#flibbleWidget5") }
 	}
 }

@@ -106,8 +106,19 @@ class PathwaysService {
 		//return the data element to the consumer (the controller)
 		pathwaysModelInstance
 	}
-	
-	
+
+    /**
+     * Return a list of top-level pathways, with a given set of searach criteria
+     * @param criteria The search criteria
+     * @return a list of pathways (top level only)
+     */
+    @PreAuthorize("hasRole('ROLE_USER')")
+    @PostFilter("hasPermission(filterObject, read) or hasPermission(filterObject, admin)")
+    List<PathwaysModel> getTopLevelPathways() {
+        return PathwaysModel.findAllByParentNode(null);
+    }
+
+
 	/* ************************* GET VALUED DOMAINS ***********************************************
 	 * requires that the authenticated user have read or admin permission on the specified Data Element
 	 ******************************************************************************************** */

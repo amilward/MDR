@@ -8,7 +8,7 @@ function pathwaysList(){
 	oTable = $('#documentTable').dataTable( {
         "bProcessing": true,
         "bServerSide": true,
-        "sAjaxSource": "dataTables",
+        "sAjaxSource": "topLevelPathways",
         "sEmptyTable": "Loading data from server",
         "bAutoWidth": false,
         "aaSorting": [[ 0, "asc" ]],
