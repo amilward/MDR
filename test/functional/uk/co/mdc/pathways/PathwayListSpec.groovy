@@ -23,10 +23,21 @@ class PathwayListSpec extends GebReportingSpec{
         at DashboardPage
 
 
-        //when: "I go to the dashboard pathways list screen"
+        when: "I go to the dashboard pathways list screen"
+        $("#pathways").click()
 
-        //then: "The pathways list is displayed and only the top level pathways are listed."
 
+        then: "The pathways list is displayed and only the top level pathways are listed."
+
+        def table= $("#dashboard-pathways").find("table",0)
+        table.displayed
+
+
+        and: "the pathways list contains a known top-level pathway"
+        table.find("a", text: "Transplanting and Monitoring Pathway").displayed
+
+        and: "the pathways list does not contain a known subpathway"
+        !table.find("a", text: "Guarding Patient on recovery and transfer to nursing ward").displayed
 
 
         when: "I go to the pathways list page"
