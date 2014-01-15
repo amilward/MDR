@@ -48,7 +48,7 @@ class PathwaysModelController {
 	
 	
 	
-	def dataTables(){
+	def topLevelPathways(){
 		
 		// set the variables needed to pass back to the data tables plugin to render the data elements
 		
@@ -59,34 +59,15 @@ class PathwaysModelController {
 		def sortCol
 		
 		//if the user searches for a data element return the search results using the data Element service
-		
+        def searchResults = pathwaysService.getTopLevelPathways()
+        total = searchResults.size()
+        displayTotal = searchResults.size()
 
-		if(params?.sSearch!='' && params?.sSearch!=null){
-			
-			def searchResults = pathwaysService.search(params.sSearch)
-			
-			total = searchResults.size()
-			displayTotal = searchResults.size()
-			
-			if(total>0){
-				data = searchResults
-			}else{
-				data=[]
-			}
-
-			//otherwise list the data elements using the data elements service and pass the relevant data
-			//back to the data tables plugin request as json
-			
-		}else{
-		
-			order = params?.sSortDir_0
-			sortCol = getSortField(params?.iSortCol_0.toInteger())
-			data = pathwaysService.list(max: params.iDisplayLength, offset: params.iDisplayStart, sort: sortCol, order: order)
-			total = pathwaysService.count()
-			displayTotal = pathwaysService.count()
-			
-		}
-		
+        if(total>0){
+            data = searchResults
+        }else{
+            data=[]
+        }
 		
 		def model = [sEcho: params.sEcho, iTotalRecords: total, iTotalDisplayRecords: displayTotal, aaData: data]
 
