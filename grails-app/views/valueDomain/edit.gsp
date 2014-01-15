@@ -14,7 +14,7 @@
 				<g:hiddenField name="id" value="${valueDomainInstance?.id}" />
 			    	<div class="navbar">
 					    <div class="navbar-inner">
-						    <ul class="nav">
+						    <ul class="nav nav-tabs">
 						  		<li><g:link action="show" id="${valueDomainInstance?.id}"><g:message code="default.button.show.label" default="Show" /></g:link></li>
 							    <li class="active"><g:link action="edit" id="${valueDomainInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link></li>
 							    <li><g:link action="create" id="${valueDomainInstance?.id}"><g:message code="default.button.create.label" default="Create" /></g:link></li>

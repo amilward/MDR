@@ -78,7 +78,7 @@ grails.project.dependency.resolution = {
     plugins {
 		
 		compile ":scaffolding:2.0.0"
-        compile ":searchable:0.6.6"
+        //compile ":searchable:0.6.6"
         compile ":spring-security-ui:0.2"
         compile ':spring-security-core:1.2.7.3'
         compile ":spring-security-acl:1.1.1"

@@ -36,15 +36,8 @@ class ValueDomain extends CatalogueElement  {
 	/*********************remove all the associated relations*****************************/
 	/******************************************************************************************************************/
 	
-	def prepareForDelete(){
-		if(this.relations.size()!=0){
-			
-			dataForDelete = this.relations()
-			
-			dataForDelete.each{ relationship->
-				this.removeFromRelations(relationship)
-			}
-		}
-	}
+	/*def prepareForDelete(){
+		
+	}*/
 	
 }

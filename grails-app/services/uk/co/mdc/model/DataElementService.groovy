@@ -69,7 +69,7 @@ class DataElementService {
 		//link any value domains that were selected with data element
 		
 		//linkValueDomains(dataElementInstance, parameters?.valueDomains)
-		catalogueElementService.linkRelations(dataElementInstance, parameters?.valueDomains, "ValueDomain")
+		catalogueElementService.linkRelations(dataElementInstance, parameters?.valueDomains, "DataValue")
 		
 		//link any relations that were selected with data element
 		

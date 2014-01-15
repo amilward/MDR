@@ -23,7 +23,7 @@ class ValueDomainService {
 	def aclService
 	def aclUtilService
 	def springSecurityService
-    
+    def catalogueElementService
 	
 	
 	/* **************************** ADD PERMISSIONS *****************************************
@@ -73,8 +73,8 @@ class ValueDomainService {
 		}
 		
 		//link any value domains that were selected with data element
-		
-		linkDataElements(valueDomainInstance, parameters.dataElements)
+		catalogueElementService.linkRelations(valueDomainInstance, parameters?.dataElements, "DataValue")
+		//linkDataElements(valueDomainInstance, parameters.dataElements)
 		
 		
 		// Grant the current user principal administrative permission
@@ -150,7 +150,8 @@ class ValueDomainService {
 	   
 	   if(valueDomainInstance.save(flush: true)){
 		   // add/remove value domains
-		   linkDataElements(valueDomainInstance, parameters?.dataElements)
+		   catalogueElementService.linkRelations(valueDomainInstance, parameters?.dataElements, "DataValue")
+		  // linkDataElements(valueDomainInstance, parameters?.dataElements)
 	   }
 	   
 	}
@@ -195,113 +196,7 @@ class ValueDomainService {
 		}
 	
 	
-	/* ************************* VALUE DOMAIN LINK FUNCTIONS************************
-	 * links the value domain with the data element specified via a link table
-	 ********************************************************************************* */
 	
-	
-	def linkDataElements(valueDomainInstance, dataElements){
-		
-		def associatedDataElements = valueDomainInstance.dataElementValueDomains()
-		
-		if(dataElements!=null){
-			
-			if (dataElements instanceof String) {
-				
-				DataElement dataElement =  DataElement.get(dataElements)
-				
-				associatedDataElements.each{ vd ->
-					if(dataElements!=vd.id.toString()){
-							DataElementValueDomain.unlink(vd, valueDomainInstance)
-					}
-				}
-
-				if(dataElement){
-					
-					DataElementValueDomain.link(dataElement, valueDomainInstance)
-					
-				}
-				
-			} else if (dataElements instanceof String[]) {
-			
-			
-				//remove all the value domains that aren't this one
-				associatedDataElements.each{ vd ->
-					if(!dataElements.contains(vd.id.toString())){
-							DataElementValueDomain.unlink(vd, valueDomainInstance)
-					}
-				}
-			
-				  for (dataElementID in dataElements){
-					  DataElement dataElement =  DataElement.get(dataElementID)
-					  if(dataElement){
-						  DataElementValueDomain.link(dataElement, valueDomainInstance)
-					  }
-				  }
-			}
-
-		}else{
-			
-			//remove all the data elements that aren't this one
-			associatedDataElements.each{ vd ->
-						DataElementValueDomain.unlink(vd, valueDomainInstance)
-			}
-			
-		}
-	}
-	
-	/* ************************* VALUE DOMAIN LINK FUNCTIONS************************
-	 * unlinks the external synonyms that have been removed from the value domain during an update
-	 ********************************************************************************* */
-	
-	/*def unLinkExternalReferences(valueDomainInstance, pExternalReferences){
-		
-			//if all data elements need to be removed or only a few elements need to be removed
-			
-			if(pExternalReferences==null && valueDomainInstance?.externalReferences.size()>0){
-				
-				def externalReferences = []
-				externalReferences += valueDomainInstance?.externalReferences
-				
-				externalReferences.each{ externalReference->
-					valueDomainInstance.removeFromExternalReferences(externalReference)
-				}
-				
-	
-			}else if(pExternalReferences){
-		
-			//	if(pExternalReferences.size() < valueDomainInstance?.externalReferences.size()){
-			
-				def externalReferences = []
-				
-				externalReferences += valueDomainInstance?.externalReferences
-				
-				externalReferences.each{ externalReference->
-					
-	
-					if(pExternalReferences instanceof String){
-						
-							if(pExternalReferences!=externalReference){
-						
-								valueDomainInstance.removeFromExternalReferences(externalReference)
-							
-							}
-						
-						}else{
-							
-							if(!pExternalReferences.contains(externalReference)){
-								
-								valueDomainInstance.removeFromExternalReferences(externalReference)
-								
-							}
-						
-						}
-					}
-			//}
-			}
-	}
-	
-*/	
 }
 
 	

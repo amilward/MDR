@@ -25,8 +25,7 @@ class DataElementMarshaller extends CustomMarshaller{
 			'model_reference_id' : dataElement?.relations("MandatoryModelElement")?.id,
 			'model_reference_name' : dataElement?.relations("MandatoryModelElement")?.name,
 			'subElements': limitRender(dataElement?.subElements),
-			'valueDomains': limitRender(dataElement?.relations("ValueDomain")),
-			'optionalModel': limitRender(dataElement?.relations("OptionalModelElement"))
+			'valueDomains': limitRender(dataElement?.relations("DataValue"))
 			]
 		}
 	}

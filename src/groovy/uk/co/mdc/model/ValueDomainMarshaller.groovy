@@ -16,7 +16,7 @@ class ValueDomainMarshaller extends CustomMarshaller{
 			'dataType_id' : valueDomain?.dataType?.id,
 			'dataType_name' : valueDomain?.dataType?.name,
 			'unitOfMeasure': valueDomain?.unitOfMeasure,
-			'dataElements': limitRender(valueDomain.relations("ValueDomain")),
+			'dataElements': limitRender(valueDomain.relations("DataValue")),
 			'regexDef': valueDomain.regexDef
 			]
 		}

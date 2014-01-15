@@ -172,7 +172,7 @@ class ValueDomainController {
 			return
 		}
 
-		[dataElements: dataElementService.list(), selectedDataElements: valueDomainInstance.dataElementValueDomains(), dataTypes: DataType.list(), externalSynonyms: ExternalReference.list(), valueDomainInstance: valueDomainInstance]
+		[dataElements: dataElementService.list(), selectedDataElements: valueDomainInstance.relations('DataValue'), dataTypes: DataType.list(), valueDomainInstance: valueDomainInstance]
 	}
     
 	/* **************************************************************************************
@@ -204,7 +204,9 @@ class ValueDomainController {
 			}
 		}
 		
+		//FIXME
 		//get  a data type object from the id in the parameter
+		
 		if(params?.dataType){
 			DataType dataType = DataType.get(params?.dataType)
 			params.dataType = dataType
@@ -233,7 +235,7 @@ class ValueDomainController {
 		
 		//if it doesn't exist redirect the user
 		if (!valueDomainInstance) {
-			flash.message = message(code: 'default.not.found.message', args: [message(code: 'valueDomain.label', default: 'ValueDomain'), id])
+			flash.message = message(code: 'default.not.found.message', args: [message(code: 'valueDomain.label', default: 'ValueDomain'), params.long('id')])
 			redirect(action: "list")
 			return
 		}
@@ -243,12 +245,12 @@ class ValueDomainController {
 			
 			valueDomainService.delete(valueDomainInstance)
 			
-			flash.message = message(code: 'default.deleted.message', args: [message(code: 'valueDomain.label', default: 'ValueDomain'), id])
+			flash.message = message(code: 'default.deleted.message', args: [message(code: 'valueDomain.label', default: 'ValueDomain'), params.long('id')])
 			redirect(action: "list")
 		}
 		catch (DataIntegrityViolationException e) {
-			flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'valueDomain.label', default: 'ValueDomain'), id])
-			redirect(action: "show", id: id)
+			flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'valueDomain.label', default: 'ValueDomain'), params.long('id')])
+			redirect(action: "show", id: params.long('id'))
 		}
 	}
 	

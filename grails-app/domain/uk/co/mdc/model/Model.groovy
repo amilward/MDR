@@ -22,22 +22,5 @@ class Model extends CatalogueElement  {
 		description type: 'text'
 	}
 	
-	
-	/******************************************************************************************************************/
-	/*********************remove all the associated valueDomains and collections before deleting data element*****************************/
-	/******************************************************************************************************************/
-	
-	def prepareForDelete(){
-				
-		if(this.relations.size()!=0){
-			
-			dataForDelete = this.relations()
-			
-			dataForDelete.each{ relationship->
-				this.removeFromRelations(relationship)
-			}
-		}
-	}
-	
-	
+
 }

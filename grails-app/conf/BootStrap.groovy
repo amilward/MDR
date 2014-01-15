@@ -246,7 +246,7 @@ class BootStrap {
 		if (!RelationshipType.count()) {
 			
 			new RelationshipType(name: "Synonym").save()
-			valueDomain = new RelationshipType(name: "ValueDomain").save(flush:true)
+			valueDomain = new RelationshipType(name: "DataValue", xYRelationship: "DataElement", yXRelationship: "ValueDomain").save(flush:true)
 			parentChild = new RelationshipType(name: "ParentChild", xYRelationship: "Parent", yXRelationship: "Child").save()
 			new RelationshipType(name: "OptionalModelElement", xYRelationship: "Model", yXRelationship: "OptionalElement").save()
 			modelElement = new RelationshipType(name: "ModelElement", xYRelationship: "Model", yXRelationship: "DataElement").save()

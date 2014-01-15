@@ -55,9 +55,9 @@ abstract class CatalogueElement {
 					objectId = relation.objectYId
 				}
 				
-				def modelElement = CatalogueElement.get(objectId)
-				modelElement.relationshipType = relation.relationshipType
-				relationsR.add(modelElement)
+				def catalogueElement = CatalogueElement.get(objectId)
+				catalogueElement.relationshipType = relation.relationshipType
+				relationsR.add(catalogueElement)
 			}
 		
 
@@ -71,48 +71,51 @@ abstract class CatalogueElement {
 				//array of relations to return to the caller
 				def relationsR = []
 				
-				def relationshipType = RelationshipType.findByName(relationTypeName)
+				if(relationTypeName){
 				
-				relations.each{ relation ->
-					if(relation.relationshipType.id==relationshipType.id){
-						def objectId
+					def relationshipType = RelationshipType.findByName(relationTypeName)
 						
-						//if the relation y side is this object then return the x side of the relationship otherwise return the y side
-						if(relation.objectYId == this.id){
-							objectId = relation.objectXId
+					relations.each{ relation ->
+						if(relation.relationshipType.id==relationshipType.id){
+							def objectId
 							
-							//if the relationship type has an xYRelationship then return this instead of the relationship type name
-							//i.e. if the relationship is parentChild and the object to return is the parent, then return Parent rather
-							//then ParentChild as the relationshipT type
+							//if the relation y side is this object then return the x side of the relationship otherwise return the y side
+							if(relation.objectYId == this.id){
+								objectId = relation.objectXId
+								
+								//if the relationship type has an xYRelationship then return this instead of the relationship type name
+								//i.e. if the relationship is parentChild and the object to return is the parent, then return Parent rather
+								//then ParentChild as the relationshipT type
+								
+								if(relationshipType.xYRelationship){
+									relationTypeName = relationshipType.xYRelationship
+								}
+								
+								
+							}else{
+													
+								objectId = relation.objectYId
+								
+								//if the relationship type has an yXRelationship then return this instead of the relationship type name
+								//i.e. if the relationship is parentChild and the object to return is the child, then return Child rather
+								//then ParentChild as the relationship type
+								
+								if(relationshipType.xYRelationship){
+									relationTypeName = relationshipType.yXRelationship
+								}
+								
 							
-							if(relationshipType.xYRelationship){
-								relationTypeName = relationshipType.xYRelationship
+								
 							}
 							
-							
-						}else{
-												
-							objectId = relation.objectYId
-							
-							//if the relationship type has an yXRelationship then return this instead of the relationship type name
-							//i.e. if the relationship is parentChild and the object to return is the child, then return Child rather
-							//then ParentChild as the relationship type
-							
-							if(relationshipType.xYRelationship){
-								relationTypeName = relationshipType.yXRelationship
-							}
-							
-						
-							
+							def catalogueElement = CatalogueElement.get(objectId)
+							catalogueElement.relationshipType = relationTypeName
+							relationsR.add(catalogueElement)
 						}
-						
-						def modelElement = CatalogueElement.get(objectId)
-						modelElement.relationshipType = relationTypeName
-						relationsR.add(modelElement)
+							
 					}
-						
+				
 				}
-			
 	
 				return relationsR
 			
@@ -122,6 +125,22 @@ abstract class CatalogueElement {
 	
 		public void addToRelations(Relationship relationship){
 			this.relations.add(relationship)
+		}
+		
+		/******************************************************************************************************************/
+		/*********************remove all the associated relations*****************************/
+		/******************************************************************************************************************/
+		
+		def prepareForDelete(){
+					
+			if(this.relations.size()!=0){
+				
+				dataForDelete = this.relations
+				
+				dataForDelete.each{ relationship->
+					this.removeFromRelations(relationship)
+				}
+			}
 		}
 		
 		
