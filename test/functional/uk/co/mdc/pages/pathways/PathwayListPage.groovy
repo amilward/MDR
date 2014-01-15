@@ -27,6 +27,7 @@ class PathwayListPage extends BasePageWithNav{
 		searchBox  { 	$("#documentTable_filter input") }
 	}
 
+
     boolean goToPathway(id){
         def link = dataTableRows.find("a", id: "$id")
         if(link){
@@ -36,5 +37,9 @@ class PathwayListPage extends BasePageWithNav{
             return false
         }
 
+    }
+
+    def getPathwayLink(pathwayName){
+        return dataTableRows.find("a", text: pathwayName)
     }
 }
