@@ -7,7 +7,6 @@
 
 <body>
 
-	<div class="container">
 
 		<!-- Jumbotron -->
 		<div class="jumbotron">
@@ -18,23 +17,21 @@
 				software components
 			</p>
 
-			<g:link controller="login" action="auth" class="btn btn-large btn-info">Login</g:link>
+			<g:link controller="login" action="auth" class="btn btn-large btn-primary">Login</g:link>
 			<span class="lead">&nbsp;&nbsp;or&nbsp;&nbsp;</span>
-			<g:link controller="register" action="index" class="btn btn-large btn-info">Sign Up</g:link>
+			<g:link controller="register" action="index" class="btn btn-large btn-primary">Sign Up</g:link>
 
 				
 		</div>
 
-		<hr>
-
 		<!-- Example row of columns -->
-		<div class="row">
+		<div id="info" class="row">
 			<div class="col-sm-4">
 				<h2>Forms</h2>
 				<p>Build forms from standard data elements in our friendly
 					drag-n-drop interface. Export your forms to your favourite tool.</p>
 				<p>
-					<a class="btn" href="#">More info&hellip;</a>
+					<a href="#">More info&hellip;</a>
 				</p>
 			</div>
             <div class="col-sm-4">
@@ -44,7 +41,7 @@
 					Automatically build databases, dashboard interfaces and reporting
 					data.</p>
 				<p>
-					<a class="btn" href="#">More info&hellip;</a>
+					<a href="#">More info&hellip;</a>
 				</p>
 			</div>
             <div class="col-sm-4">
@@ -53,11 +50,9 @@
 					databases and warehouses. Generate your own feeds, and generate
 					components for integration engines.</p>
 				<p>
-					<a class="btn" href="#">More info&hellip;</a>
+					<a href="#">More info&hellip;</a>
 				</p>
 			</div>
 		</div>
 
-	</div>
-	<!-- /container --> 
 </body>

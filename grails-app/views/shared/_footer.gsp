@@ -6,7 +6,7 @@
   <!-- BEGIN FOOTER -->
     <div id="footer">
         <div class="container">
-            <p class="text-muted">2013 © Model Catalog</p>
+            <p class="text-muted">Model Catalogue &copy; 2014 </p>
         </div>
     </div>
   <!-- END FOOTER -->

@@ -13,7 +13,130 @@
   states look.
 **/
 
+
+html,
+body {
+  height: 100%;
+  /* The html and body elements cannot have any padding or margin. */
+}
+
+/* Wrapper for page content to push down footer */
+#wrap {
+  min-height: 100%;
+  height: auto;
+  /* Negative indent footer by its height */
+  margin: 0 auto -60px;
+  /* Pad bottom by footer height */
+  padding: 0 0 60px;
+}
+
+/* Set the fixed height of the footer here */
+#footer {
+  height: 60px;
+}
+
+
+// Colour Palette
+// -------------------------
+
+/**
+	These colours were generated using:
+	http://www.colorsontheweb.com/colorwizard.asp
+	
+	Choose a base colour, and look at the tetradic colours.
+	To generate the lighter shades, I chose the lighter version 
+	of the colour from the 'tint and shade' chart, and looked at 
+	its tetradic matches. 
+
+**/
+
+
+// Theme Colours
+// -------------------------
+
+// Use these colours, in order of preference:
+
+@mc-colour-1: #4F687C; // Cobalt
+@mc-colour-2: #517B4F; // Dark Green
+@mc-colour-3: #794F7B; // Purple
+@mc-colour-4: #7B634F; // Brown
+
+// Lighter / Darker versions of the primary colour:
+
+@mc-colour-1-lightest: 	#C0CCD6; // lightest
+@mc-colour-1-lighter: 	#819BAF; // slightly lighter
+@mc-colour-1-darker: 	#27333D; // slightly darker
+
+// Lighter versions of the other colours for highlighting:
+
+@mc-colour-2-lightest: #C0D6BF; // Dark Green
+@mc-colour-3-lightest: #D5BFD6; // Purple
+@mc-colour-4-lightest: #D6CABF; // Brown
+
+
+// Grays
+// -------------------------
+
+@black:					 #000;
+@gray-darker:            lighten(#000, 13.5%); // #222
+@gray-dark:              lighten(#000, 20%);   // #333
+@gray:                   lighten(#000, 33.5%); // #555
+@gray-light:             lighten(#000, 60%);   // #999
+@gray-lighter:           lighten(#000, 93.5%); // #eee
+@white:					 #FFF;
+
 // Font
 @import url("http://fonts.googleapis.com/css?family=Open+Sans&.css");
 @font-family-sans-serif: "Open Sans";
 
+
+// First we customize bootstrap...
+
+@body-bg: @white;
+@text-color: @mc-colour-1-darker;
+@link-color: @mc-colour-1-lighter;
+
+@navbar-default-color: @white;
+@navbar-default-bg: @mc-colour-1;
+@navbar-default-border: @mc-colour-1-darker;
+
+@navbar-default-link-color: @white;
+@navbar-default-link-hover-color: @mc-colour-1-lightest;
+
+@jumbotron-bg: @mc-colour-2-lightest;
+@link-hover-color: @mc-colour-1-lighter;
+
+@headings-color: @mc-colour-1;
+
+@btn-primary-color: @white;
+@btn-primary-bg: @mc-colour-1;
+@btn-primary-border: @mc-colour-1-darker;
+
+
+// Now we do some other stuff...
+
+
+.jumbotron {
+	text-align: center;
+}
+
+a {
+	font-weight: bold;
+}
+
+.navbar a {
+	font-weight: normal;
+}
+
+#footer {
+	text-align: center;
+	background-color: @mc-colour-1;
+}
+
+#footer .text-muted{
+	color: @mc-colour-1-lightest;
+}
+
+#info {
+	margin-bottom: 30px;
+}
