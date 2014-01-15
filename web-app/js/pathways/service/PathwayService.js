@@ -210,4 +210,50 @@
     		dataType: 'json'
     		});
     }
+
+    self.jsonWrap = function(result, collection){
+        var ids = [];
+        var de = result.dataElements;
+        for (j in de){
+            var rid = result.dataElements[j].id;
+            ids.push(rid);
+        }
+        var jsonObject ={saveBasketCollection:"Save Collection",
+            collection_basket_id:result.id ,
+            name:collection.name ,
+            description:collection.description,
+            dataElementIds:ids
+        };
+        var jsonStuff = JSON.stringify(jsonObject);
+        return jsonStuff;
+    }
+
+    self.createCollection = function(collection){
+
+        console.log("startCollectionBasket" + collection.name);
+        var ncollection = "";
+        //I need to get the current collection basket reference if (thread safe? I suspect not)
+        $.ajax({
+            type: "GET",
+            url: root + "/collectionBasket/collectionAsJSON",
+            success: function(result){
+                if(result!=null){
+                    ncollection = self.jsonWrap(result,collection);
+                }
+            },
+            dataType: "json"
+        });
+        //FIXME : not a very elegant way to ensure method is called with data available
+        setTimeout(function(){
+            var data =  ncollection;
+            $.ajax({
+                type: "POST",
+                url: root + "/collection/saveDEBasketCollection",
+                data: {jsonobject: data},
+                success: function(e){
+                },
+                dataType: "json"
+            });
+        },300);
+    }
 }
