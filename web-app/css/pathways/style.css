@@ -1,0 +1,96 @@
+body {
+
+}
+.col-md-1,
+.col-md-2,
+.col-md-3,
+.col-md-4,
+.col-md-5,
+.col-md-6,
+.col-md-7,
+.col-md-8,
+.col-md-9,
+.col-md-10,
+.col-md-11,
+.col-md-12 {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.jsplumb-container{
+	height:3000px;
+	width:3000px;
+}
+
+#left-panel .panel-heading .add-node-link,
+#canvas-panel .panel-heading .add-node-link,
+#right-panel .panel-heading .add-node-link {
+  color: #ffffff;
+}
+#left-panel .panel-body,
+#canvas-panel .panel-body,
+#right-panel .panel-body {
+  min-height: 500px;
+}
+#left-panel .panel-body .jsplumb-container,
+#canvas-panel .panel-body .jsplumb-container,
+#right-panel .panel-body .jsplumb-container {
+  position: relative;
+  min-height: 500px;
+}
+#left-panel .panel-body .jsplumb-container .node,
+#canvas-panel .panel-body .jsplumb-container .node,
+#right-panel .panel-body .jsplumb-container .node {
+  position: absolute;
+  float: left;
+}
+#left-panel .panel-body .jsplumb-container .anchor,
+#canvas-panel .panel-body .jsplumb-container .anchor,
+#right-panel .panel-body .jsplumb-container .anchor {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #92b9d2;
+  cursor: pointer;
+  text-align:center;
+  position:relative;
+  left:45%;
+}
+#left-panel .inputs,
+#canvas-panel .inputs,
+#right-panel .inputs,
+#left-panel .outputs,
+#canvas-panel .outputs,
+#right-panel .outputs {
+  min-height: 0;
+}
+#pathwayName{
+	font-size: 20px;
+	margin-top:-2px;
+}
+
+#formDesignCart,#deCollectionCart, #collectionCart{
+	height: 50px;
+    margin-bottom: 10px;
+    padding: 5px;
+    text-align: center;
+    width: 100%;  
+/* IE10 Consumer Preview */ 
+background-image: -ms-linear-gradient(bottom, #FFFFFF 0%, #F5F5F5 100%);
+
+/* Mozilla Firefox */ 
+background-image: -moz-linear-gradient(bottom, #FFFFFF 0%, #F5F5F5 100%);
+
+/* Opera */ 
+background-image: -o-linear-gradient(bottom, #FFFFFF 0%, #F5F5F5 100%);
+
+/* Webkit (Safari/Chrome 10) */ 
+background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #FFFFFF), color-stop(1, #F5F5F5));
+
+/* Webkit (Chrome 11+) */ 
+background-image: -webkit-linear-gradient(bottom, #FFFFFF 0%, #F5F5F5 100%);
+
+/* W3C Markup, IE10 Release Preview */ 
+background-image: linear-gradient(to top, #FFFFFF 0%, #F5F5F5 100%);
+}
+

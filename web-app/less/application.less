@@ -1,0 +1,19 @@
+/**
+  Main application styles. This should just import the appropriate base, layout, module, state and theme files.
+**/
+
+@import "../bower_components/bootstrap/less/bootstrap";
+@icon-font-path: "/model_catalogue/bower_components/bootstrap/dist/fonts/";
+
+@import "base/base";
+
+@import "layout/major";
+
+@import "modules/_login_form";
+
+@import "themes/default";
+
+/** this is a hack for the S2UI plugin. We need to fix the registration page **/
+.s2ui_hidden_button {
+  visibility: hidden;
+}
