@@ -1,8 +1,8 @@
 # This is the root .gitignore file
 # Please use this one rather than creating .gitignore files lower down in the directory structure.
 
-# web application files
-/web-app/WEB-INF
+# web application files bootstrap data
+/web-app/WEB-INF/bootstrap-data
 
 # IDEA support files
 /.idea/
