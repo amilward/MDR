@@ -188,6 +188,41 @@ modules = {
         resource id: 'js', url: [dir: 'bower_components/angular', file: "angular.js"], nominify: true
     }
 
+    "angular-animate" {
+        dependsOn "angular"
+        resource id: 'js', url: [dir: 'bower_components/angular-animate', file: "angular-animate.js"], nominify: true
+    }
+
+    "angular-cookies" {
+        dependsOn "angular"
+        resource id: 'js', url: [dir: 'bower_components/angular-cookies', file: "angular-cookies.js"], nominify: true
+    }
+
+    "angular-loader" {
+        dependsOn "angular"
+        resource id: 'js', url: [dir: 'bower_components/angular-loader', file: "angular-loader.js"], nominify: true
+    }
+
+    "angular-resource" {
+        dependsOn "angular"
+        resource id: 'js', url: [dir: 'bower_components/angular-resource', file: "angular-resource.js"], nominify: true
+    }
+
+    "angular-route" {
+        dependsOn "angular"
+        resource id: 'js', url: [dir: 'bower_components/angular-route', file: "angular-route.js"], nominify: true
+    }
+
+    "angular-sanitize" {
+        dependsOn "angular"
+        resource id: 'js', url: [dir: 'bower_components/angular-sanitize', file: "angular-sanitize.js"], nominify: true
+    }
+
+    "angular-touch" {
+        dependsOn "angular"
+        resource id: 'js', url: [dir: 'bower_components/angular-touch', file: "angular-touch.js"], nominify: true
+    }
+
     angularPathwaysApp {
         dependsOn 'angular'
         resource id: 'js', url: [dir: 'js/angular/', file: "angular-app.js"], nominify: true
@@ -210,6 +245,38 @@ modules = {
         resource url:'css/style.css'
         resource url:[dir: 'less', file: 'application.less'], attrs:[rel: "stylesheet/less", type:'css']
         resource url: "js/vendor/less/less-1.6.0.min.js", disposition: 'head'
+    }
+
+    'angular-bootstrap' {
+        dependsOn "angular"
+
+        dependsOn "bootstrap-css"
+
+        resource url: "bower_components/angular-bootstrap/ui-bootstrap.js"
+        resource url: "bower_components/angular-bootstrap/ui-bootstrap-tpls.js"
+    }
+
+    'angular-security' {
+        dependsOn "angular-bootstrap"
+
+        // based on http://www.packtpub.com/angularjs-web-application-development/book
+
+        resource url: "js/angular-security/authorization.js"
+        resource url: "js/angular-security/index.js"
+        resource url: "js/angular-security/interceptor.js"
+        resource url: "js/angular-security/retryQueue.js"
+        resource url: "js/angular-security/security.js"
+
+        resource url: "js/angular-security/login/LoginFormController.js"
+        resource url: "js/angular-security/login/login.js"
+        resource url: "js/angular-security/login/toolbar.js"
+
+    }
+
+    appng {
+        dependsOn "angular-security"
+
+        resource url: "js/appng/app.js"
     }
 }
 

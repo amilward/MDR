@@ -1,9 +1,5 @@
 import grails.converters.JSON
-
-import javax.servlet.http.HttpServletResponse
-
 import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils
-
 import org.springframework.security.authentication.AccountExpiredException
 import org.springframework.security.authentication.CredentialsExpiredException
 import org.springframework.security.authentication.DisabledException
@@ -11,6 +7,8 @@ import org.springframework.security.authentication.LockedException
 import org.springframework.security.core.context.SecurityContextHolder as SCH
 import org.springframework.security.web.WebAttributes
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
+
+import javax.servlet.http.HttpServletResponse
 
 class LoginController {
 
@@ -41,7 +39,14 @@ class LoginController {
 	 */
 	def auth = {
 
-		def config = SpringSecurityUtils.securityConfig
+        if (request.getHeader("accept")?.contains("application/json")) {
+            // this is kind of hack but it is the easiest solution how send 401 for Angular AJAX calls
+            // later we can develop our own auth exception handler doing the same
+            response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "You are not authorized to this website")
+            return
+        }
+
+        def config = SpringSecurityUtils.securityConfig
 
 		if (springSecurityService.isLoggedIn()) {
 			redirect uri: config.successHandler.defaultTargetUrl
@@ -122,8 +127,18 @@ class LoginController {
 	 * The Ajax success redirect url.
 	 */
 	def ajaxSuccess = {
-		render([success: true, username: springSecurityService.authentication.name] as JSON)
-	}
+        def user = springSecurityService.currentUser
+        render([
+                success: true,
+                username: springSecurityService.authentication.name,
+                admin: SpringSecurityUtils.ifAllGranted("ROLE_ADMIN"),
+                email: user.email,
+                name: "${user.firstName ?: ''} ${user.lastName ?: ''}".trim(),
+                firstName: user.firstName,
+                lastName: user.lastName,
+                authorities: user.authorities*.authority.collect { it.toLowerCase() - "role_" }
+        ] as JSON)
+    }
 
 	/**
 	 * The Ajax denied redirect url.
