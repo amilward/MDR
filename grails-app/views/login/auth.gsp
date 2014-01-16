@@ -17,39 +17,39 @@
 					</div>
 				</g:if>
 
-                <p class="text-center">Please Login</p>
+                <h2 class="text-center">Please Login</h2>
 
 				<form action='${postUrl}' method='POST' id='loginForm' class="form-signin" autocomplete='off'>
 
 					<input type='text' placeholder="Username"
-						class='text_ input-block-level' name='j_username' id='username' />
+						class='text_ input-block-level input-full' name='j_username' id='username' />
 
 					<input type='password' placeholder="Password"
-						class='text_ input-block-level' name='j_password' id='password' />
+						class='text_ input-block-level input-full' name='j_password' id='password' />
 
+                    <p>
+                        <label id="remember_me_holder"
+                               for='remember_me'>
+                            <span class="checkboxtext"> <g:message
+                                code="springSecurity.login.remember.me.label"
+                                class="muted pull-right" />
+                            </span>
 
-					<p id="remember_me_holder">
-						<input type='checkbox' class='chk' name='${rememberMeParameter}'
-							id='remember_me'
-							<g:if test='${hasCookie}'>checked='checked'</g:if> /> <label
-							for='remember_me'><g:message
-								code="springSecurity.login.remember.me.label"
-								class="muted pull-right" /></label>
-					</p>
-
+                            <input type='checkbox' class='chk' name='${rememberMeParameter}'
+                                id='remember_me'
+                                <g:if test='${hasCookie}'>checked='checked'</g:if> />
+                        </label>
+                    </p>
 					<p>
 						<input type='submit' class="btn btn-large btn-primary btn-block"
 							id="submit"
 							value='${message(code: "springSecurity.login.button")}' />
 					</p>
+                    <a id="forgottenPasswordLink" class="btn btn-large btn-info btn-half-left" href="../register/forgotPassword">Forgot Password</a>
+                    <a id="registerLink" class="btn btn-large btn-info btn-half-right" href="../register/">Signup</a>
+                    <div class="clearfix"></div>
 				</form>
 			</div>
-		</div>
-		<div class="text-center">
-				<a id="forgottenPasswordLink" class="muted" href="../register/forgotPassword">Forgot Password</a>
-        </div>
-        <div class="text-center">
-				<a id="registerLink" class="muted" href="../register/">Signup</a>
 		</div>
 
 
