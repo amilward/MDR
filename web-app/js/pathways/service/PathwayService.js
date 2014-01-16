@@ -238,7 +238,7 @@
             url: root + "/collectionBasket/collectionAsJSON",
             success: function(result){
                 if(result!=null){
-                    ncollection = jsonWrap(result,collection);
+                    ncollection = self.jsonWrap(result,collection);
                 }
             },
             dataType: "json"

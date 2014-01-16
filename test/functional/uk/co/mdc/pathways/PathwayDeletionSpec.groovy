@@ -31,7 +31,7 @@ class PathwayDeletionSpec extends GebReportingSpec {
         dataTableTMLink.click()
         at PathwayShowPage
 
-        when: "I click on the edit modal"
+        when: "I click on the edit info button"
         editInfoButton.click()
 
         then: "The delete button is visible but the confirmation is not"

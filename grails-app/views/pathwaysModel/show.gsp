@@ -262,27 +262,27 @@
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
-<!-- Add NewDECollectionModal -->
-<div class="modal fade" id="AddNewDECollectionModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>-->
-                <h4 class="modal-title" id="myModalLabel">Add Data Element </h4>
-            </div>
-            <div class="modal-body">
-                <div id="deCollectionCart">Drag Data Element Here To Add <i style="display:block" class="fa fa-plus"></i>
-                    <ul class="pull-left" id="deCollectionCartList">
-                    </ul>
+    <!-- Add NewDECollectionModal -->
+    <div class="modal fade" id="AddNewDECollectionModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>-->
+                    <h4 class="modal-title" id="myModalLabel">Add Data Element </h4>
                 </div>
-                <div id="deCollectionList" ></div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-bind="click: $root.addNewDECollectionFinish">Finish</button>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+                <div class="modal-body">
+                    <div id="deCollectionCart">Drag Data Element Here To Add <i style="display:block" class="fa fa-plus"></i>
+                        <ul class="pull-left" id="deCollectionCartList">
+                        </ul>
+                    </div>
+                    <div id="deCollectionList" ></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bind="click: $root.addNewDECollectionFinish">Finish</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
 
 
 <!-- Update Pathway Info -->

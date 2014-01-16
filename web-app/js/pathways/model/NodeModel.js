@@ -154,8 +154,8 @@
             $('#AddCollectionModal').modal('show');
         }
         self.hideNewDECollectionDialog = function(){
-            //console.log("hideNewDECollectionDialog" + self.deCollection[0].name);
-           // self.addCollection(self.deCollection);
+           // console.log("hideNewDECollectionDialog" + self.deCollection[0].name);
+            //self.addCollection(self.deCollection);
             var cntr = Math.floor((Math.random()*100)+1);
             var deName = prompt("Please enter a name for the new Data Element Collection","pathway_"+ cntr);
             var deDesc = prompt("Please enter a description for the new Data Element Collection","blah_"+ cntr);
@@ -163,12 +163,12 @@
             newCollection.name = deName;
             newCollection.description = deDesc;
             pathwayService.createCollection(newCollection);
-            console.log("hideNewDECollectionDialog" + self.deCollection[0].name);
+           // console.log("hideNewDECollectionDialog" + self.deCollection[0].name);
             $('#AddNewDECollectionModal').modal('hide');
 
         }
         self.showNewDECollectionDialog = function(){
-            $('#AddNewDECollectionModal').modal('show');
+          //  $('#AddNewDECollectionModal').modal('show');
             self.addNewDECollectionDialog();
         }
         

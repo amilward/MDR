@@ -20,5 +20,10 @@ class DashboardPage extends BasePageWithNav{
 		pathwaysLink { $("#pathways") }
 		dashboardPathways { $("#dashboard-pathways") }
 		createPathwaysLink { $("#dashCreatePathway") }
+        pathwaysTable { $("#dashboard-pathways").find("table",0)}
 	}
+
+    def getPathwayLink(pathwayName){
+        return pathwaysTable.find("a", text: pathwayName)
+    }
 }
