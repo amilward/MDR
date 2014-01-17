@@ -195,6 +195,8 @@
                 }
             }
             self.selectedItem = n;
+            console.log("SELECTED:" + n.name);
+            console.log("SELECTED:" + self.selectedItem.name);
             
             $('#properties-panel .form-group input').css({'max-width': $('#properties-panel').width() - 15, 'min-width': $('#properties-panel').width() - 15});
             $('#properties-panel .form-group textarea').css({'max-width': $('#properties-panel').width() - 15, 'min-width': $('#properties-panel').width() - 15});
@@ -368,24 +370,17 @@
         };
         
         self.loadLink = function(JSONLink){
-        	//console.log('creating link')
         	var targetid = JSONLink.target;
         	var sourceid = JSONLink.source;
-        	
-        	//console.log(targetid)
-        	//console.log(sourceid)
 
         	if(targetid!=null && sourceid!=null){
 	        	var link = new LinkModel();
 	        	var source = null
 	        	var target = null
-	        	//console.log(ko.toJSON(self.pathwayModel.nodes))
 	        	
 	        	ko.utils.arrayForEach(self.pathwayModel.nodes, function(node) {
 				      if(node.id == targetid){
 				    	  target = node;
-				    	  //console.log(target)
-				    	  //console.log(node)
 				      }
 				});
 	        	
@@ -393,8 +388,7 @@
 	        	ko.utils.arrayForEach(self.pathwayModel.nodes, function(node) {
 				      if(node.id == sourceid){
 				    	  source = node;
-				    	  //console.log(source)
-				    	  //console.log(node)
+
 				      }
 				});
 	        	
@@ -421,11 +415,7 @@
 		        	
 		        	var sourceDiv = "node" + source.id
 		        	var targetDiv = "node" + target.id
-		        	
-		        	//console.log('divy stuff')
-		        	//console.log(sourceDiv)
-		        	
-		        	//console.log($("#" + sourceDiv).attr('id'))
+
 		        	
 		        	jsPlumb.connect({
 		        			source: sourceDiv,
@@ -434,7 +424,7 @@
 		       					"connectionId" : link.connectionId
 		       				},
 		       				anchor : 'Continuous',
-		       				paintStyle:{ strokeStyle: "#5c96bc", lineWidth: 2, outlineColor: "transparent", outlineWidth: 4  },
+		       				paintStyle:{ strokeStyle: "#5c96bc", lineWidth: 2, outlineColor: "transparent", outlineWidth: 4  }
                                                 /*
                                                 overlays:[ 
                                                     [ "Label", { label: link.name, location:0.25, id:link.connectionId } ]
@@ -455,10 +445,7 @@
 		    	 link = connection;
 		      }
 		    });
-		    
-		    
 		    //remove inputs/outputs
-		    
 		    var source = link.source; //Get the source node model instance            
    		    var target = link.target; //Get the target node model instance
    			
@@ -472,8 +459,6 @@
 		    if (ko.utils.arrayFirst(target.inputs, function (item) { return item === source })) {
 		        ko.utils.arrayRemoveItem(target.inputs, source);
 		    }
-		    
-		    
 		    //remove the link itself
 
 		    $.when(pathwayService.deleteLink(link.id)).done(function (data) {
@@ -498,14 +483,28 @@
         };
         
         //#endregion
-        //FIXME  need to pu this into either the node model method and find a better way to call it or take all
-        // he methods out of the node model and put them here 
         self.addFormFinish = function(){
       	    $('#AddFormModal').modal('hide');
         }
 	
+        self.refreshCollections = function(){
+            self.selectedItem.refreshCollections();
+        }
         self.addCollectionFinish = function(){
-        	$('#AddCollectionModal').modal('hide');
+            self.selectedItem.hideCollectionDialog();
+        }
+
+        self.addNewDECollection = function(){
+
+            //console.log("addNewDECollection" + self.selectedItem.name );
+
+            self.selectedItem.hideCollectionDialog();
+            self.selectedItem.showNewDECollectionDialog();
+        }
+
+        self.addNewDECollectionFinish = function(){
+            self.selectedItem.hideNewDECollectionDialog();
+            self.selectedItem.showCollectionDialog();
         }
         
         self.deleteSelectedElement = function(){
@@ -536,8 +535,6 @@
 			if(self.pathwayModel){
 				
 				$.when(pathwayService.loadPathway(self.pathwayModel.parentPathwayId)).done(function (pathwayJSON) {
-					
-					//console.log(pathwayJSON.pathwaysModelInstance)
 					self.loadPathway(pathwayJSON.pathwaysModelInstance);
 				});
 

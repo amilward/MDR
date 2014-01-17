@@ -28,6 +28,19 @@ class CollectionBasketController {
 		
 		render model as JSON
 	}
+
+    def collectionAsJSON() {
+        def current_user = SecUser.get(springSecurityService.currentUser.id)
+        def collectionBasketInstance = current_user.collectionBasket
+
+        def model = ["message":"fail"]
+
+        if(collectionBasketInstance){
+            model = collectionBasketInstance  //[dataElements: collectionBasketInstance?.dataElements]
+        }
+
+        render model as JSON
+    }
 	
 	/* This method is called from the dashboard template (main.js - collection basket scripts)
 	 * when the user drags a data element over the collection basket to add the element*/

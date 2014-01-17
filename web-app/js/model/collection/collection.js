@@ -3,7 +3,7 @@ START COLLECTION LIST  SCRIPTS
 ---------------------------------------------------------*/
 
 function collectionList(){
-	
+
 	$('#collectionList').html( '<table cellpadding="0" cellspacing="0" border="0" class="table table-bordered table-condensed table-hover table-striped" id="collectionTable"></table>' );
 	oTable = $('#collectionTable').dataTable( {
         "bProcessing": true,
@@ -34,7 +34,7 @@ function collectionList(){
 			    // Using `row[0]` is equivalent.
 			    "mRender": function ( data, type, row ) {
 			    	
-							return data + '<img class="floatright" src="../images/details_open.png" />'
+							return data + '<img class="floatright" src="../../images/details_open.png" />'
 
 			    },
 			    "mDataProp": "description", 
@@ -63,11 +63,10 @@ function collectionList(){
 			} );
 			
 		}
-	} );	
-	
+	} );
 
 	oTable.fnSetFilteringDelay(1000);
-	
+
 }
 
 
@@ -150,7 +149,7 @@ function collectionForm(mandatoryDataElements, requiredDataElements, optionalDat
 
 
 function collectionListDraggable(){
-	
+    console.log("collectionListDraggable");
 	$('#collectionList').html( '<table cellpadding="0" cellspacing="0" border="0" class="table table-bordered table-condensed table-hover table-striped" id="collectionTable"></table>' );
 	oTable = $('#collectionTable').dataTable( {
         "bProcessing": true,
@@ -181,7 +180,7 @@ function collectionListDraggable(){
 			    // Using `row[0]` is equivalent.
 			    "mRender": function ( data, type, row ) {
 			    	
-							return data + '<img class="floatright" src="../images/details_open.png" />'
+							return data + '<img class="floatright" src="../../images/details_open.png" />'
 
 			    },
 			    "mDataProp": "description", 
@@ -198,13 +197,13 @@ function collectionListDraggable(){
 				if ( oTable.fnIsOpen(nTr) )
 				{
 				/* This row is already open - close it */
-				this.src = "../images/details_open.png";
+				this.src = "../../images/details_open.png";
 				oTable.fnClose( nTr );
 				}
 				else
 				{
 				/* Open this row */
-				this.src = "../images/details_close.png";
+				this.src = "../../images/details_close.png";
 				oTable.fnOpen( nTr, formatCollectionDetails(nTr), 'details' );
 				}
 			} );
@@ -225,4 +224,75 @@ function collectionListDraggable(){
 
 	oTable.fnSetFilteringDelay(1000);
 	
+}
+
+function deCollectionListDraggable(){
+    $('#deCollectionList').html( '<table cellpadding="0" cellspacing="0" border="0" class="table table-bordered table-condensed table-hover table-striped" id="deCollectionTable"></table>' );
+    oTable = $('#deCollectionTable').dataTable( {
+        "bProcessing": true,
+        "bServerSide": true,
+        "sAjaxSource": "../../dataElement/dataTables",
+        "sEmptyTable": "Loading data from server",
+        "bAutoWidth": false,
+        "aaSorting": [[ 0, "asc" ]],
+        "aoColumns": [
+            {
+                // `data` refers to the data for the cell (defined by `mData`, which
+                // defaults to the column being worked with, in this case is the first
+                // Using `row[0]` is equivalent.
+                "mRender": function ( data, type, row ) {
+                    return '<a id="'+ row.id + '" href="' + root +'../../dataElement/show/' + row.id + '">' + data + '</a>'
+                },
+                "mDataProp": "name",
+                "sWidth":"30%",
+                "sTitle":"name"
+            },
+
+            {
+                // `data` refers to the data for the cell (defined by `mData`, which
+                // defaults to the column being worked with, in this case is the first
+                // Using `row[0]` is equivalent.
+                "mRender": function ( data, type, row ) {
+                    return '<a href="' + root +'/dataElementConcept/show/' + data + '">' + row.dataElementConcept_name + '</a>' + '<img class="floatright" src="../../images/details_open.png" />'
+                },
+                "mDataProp": "dataElementConcept_id",
+                "sWidth":"30%",
+                "sTitle":"dataElementConcept"
+            },
+            { "mDataProp": "id", "bVisible":    false }
+        ],
+        "fnDrawCallback": function () {
+
+            $('#deCollectionTable tbody td img').on( 'click', function () {
+                var nTr = $(this).parents('tr')[0];
+                if ( oTable.fnIsOpen(nTr) )
+                {
+                    /* This row is already open - close it */
+                    this.src = "../../images/details_open.png";
+                    oTable.fnClose( nTr );
+                }
+                else
+                {
+                    /* Open this row */
+                    this.src = "../../images/details_close.png";
+                    oTable.fnOpen( nTr, formatDataElementDetails(nTr), 'details' );
+                }
+            } );
+            /*  Adding data elements are thus draggable and can be adding to a new collection*/
+            $("#deCollectionTable tr").draggable({
+                helper: "clone",
+                start: function(event, ui) {
+                    c.tr = this;
+                    c.name = $(this).find("td").eq(0).html();
+                    c.id = $(this).find("td").eq(0).find("a").attr("id");
+                    c.helper = ui.helper;
+                }
+            });
+        }
+    } );
+
+    // oTable.fnFilter( class, $("uk.co.mdc.model.Collection").index(class) );
+
+    oTable.fnSetFilteringDelay(1000);
+
 }

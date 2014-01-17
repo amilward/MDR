@@ -1,0 +1,15 @@
+
+/**
+Install the bower components for front-end library management
+  
+  TODO: 
+**/
+task installBowerComponents(type: Exec){
+  workingDir "web-app/"
+  commandLine 'bower', 'install' 
+}
+
+//dependencies {
+//  bootstrap "org.grails:grails-plugin-tomcat:${project.grails.grailsVersion}" // No container is deployed by default, so add this
+//  compile 'org.grails.plugins:resources:1.2' // Just an example of adding a Grails plugin
+//}
