@@ -140,7 +140,7 @@ class ImportNHICService {
 			de.addToDataElementValueDomains(vd);
 			de.save();
 			println "importing: " + tokens[0]
-		},
+		},**/
 
 		'/Initial/TRA.csv' :
 		{ tokens ->
@@ -193,7 +193,7 @@ class ImportNHICService {
 			de.save();
 			println "importing: " + tokens[0]
 		},
-
+/**
 		'/Round1/ACS/ACS_GSTT.csv' :
 		{ tokens ->
 			def categories = [tokens[2], tokens[1], "GSTT","Round 1", "Acute Coronary Syndromes", "NHIC Datasets"];
