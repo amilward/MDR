@@ -185,6 +185,8 @@ modules = {
      * Angular support
      */
     angular {
+        // we will use jQuery anyway so let's depend on it directly to assure that it's loaded
+        // before angular and it won't fallback to jqLite
         resource id: 'js', url: [dir: 'bower_components/angular', file: "angular.js"], nominify: true
     }
 
@@ -249,8 +251,8 @@ modules = {
 
     'angular-bootstrap' {
         dependsOn "angular"
-
         dependsOn "bootstrap-css"
+        dependsOn "jquery"
 
         resource url: "bower_components/angular-bootstrap/ui-bootstrap.js"
         resource url: "bower_components/angular-bootstrap/ui-bootstrap-tpls.js"
@@ -261,22 +263,22 @@ modules = {
 
         // based on http://www.packtpub.com/angularjs-web-application-development/book
 
-        resource url: "js/angular-security/authorization.js"
-        resource url: "js/angular-security/index.js"
-        resource url: "js/angular-security/interceptor.js"
-        resource url: "js/angular-security/retryQueue.js"
-        resource url: "js/angular-security/security.js"
+        resource url: "js/appng/security/authorization.js"
+        resource url: "js/appng/security/index.js"
+        resource url: "js/appng/security/interceptor.js"
+        resource url: "js/appng/security/retryQueue.js"
+        resource url: "js/appng/security/security.js"
 
-        resource url: "js/angular-security/login/LoginFormController.js"
-        resource url: "js/angular-security/login/login.js"
-        resource url: "js/angular-security/login/toolbar.js"
+        resource url: "js/appng/security/login/LoginFormController.js"
+        resource url: "js/appng/security/login/login.js"
 
     }
 
     appng {
         dependsOn "angular-security"
-
+        dependsOn "angular-route"
         resource url: "js/appng/app.js"
+        resource url: "js/appng/toolbar.js"
     }
 }
 

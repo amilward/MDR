@@ -22,7 +22,7 @@ angular.module('security.login.form', [])
             $scope.authError = null;
 
             // Try to login
-            security.login($scope.user.username, $scope.user.pwd).then(function (loggedIn) {
+            security.login($scope.user.username, $scope.user.pwd, $scope.user.remember).then(function (loggedIn) {
                 if (!loggedIn) {
                     // If we get here then the login failed due to bad credentials
                     $scope.authError = 'Wrong username or password';

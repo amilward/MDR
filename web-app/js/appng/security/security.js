@@ -19,7 +19,7 @@ angular.module('security.service', [
         function openLoginDialog() {
             if (!loginDialog) {
                 loginDialog = $dialog.open({
-                    templateUrl: 'js/angular-security/login/form.tpl.html',
+                    templateUrl: 'js/appng/security/login/form.tpl.html',
                     controller: 'LoginFormController'})
                 loginDialog.result.then(onLoginDialogClose);
             }
@@ -62,8 +62,8 @@ angular.module('security.service', [
             },
 
             // Attempt to authenticate a user by the given email and password
-            login: function (username, password) {
-                var request = $http({
+            login: function (username, password, remember) {
+                var options = {
                     url: sec.loginUrl,
                     method: "POST",
                     params: {
@@ -71,7 +71,11 @@ angular.module('security.service', [
                         j_password: password,
                         ajax: true
                     }
-                });
+                }
+                if (remember) {
+                    options[sec.rememberMe] = true
+                }
+                var request = $http(options);
                 return request.then(function (response) {
                     service.currentUser = response.data.success ? response.data : null;
                     if (service.isAuthenticated()) {
@@ -100,7 +104,11 @@ angular.module('security.service', [
                     return $q.when(service.currentUser);
                 } else {
                     return $http.get('login/ajaxSuccess').then(function (response) {
-                        service.currentUser = response.data.user;
+                        if (!response.data.success) {
+                            service.currentUser = null;
+                            return null;
+                        }
+                        service.currentUser = response.data;
                         return service.currentUser;
                     });
                 }

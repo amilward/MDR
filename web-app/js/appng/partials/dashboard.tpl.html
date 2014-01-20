@@ -1,0 +1,11 @@
+<div class="jumbotron">
+    <h1>Dashboard</h1>
+
+    <p ng-hide="security.isAuthenticated()">
+        Welcome to Model Catalogue. Please <a ng-click="security.showLogin()">log in</a> to continue to the application.
+    </p>
+
+    <p ng-show="security.isAuthenticated()">
+        Hello<span ng-show="security.isAdmin()"> admin</span> user!
+    </p>
+</div>
