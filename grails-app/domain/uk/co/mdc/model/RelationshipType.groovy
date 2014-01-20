@@ -15,12 +15,15 @@ class RelationshipType {
 	//for instance this could be custom validation, display etc.....i.e. if the relationship 
 	//type is a mandatory data element then the model x must contain a value for the data element y
 	
-	Rule relationshipTypeRule
+	//Rule relationshipTypeRule
+    //FIXME thinking of adding constraints here
+    //but need to have a think about this before
+    //we go down this path
 
     static constraints = {
 		name unique:true
 		xYRelationship nullable:true
 		yXRelationship nullable:true
-		relationshipTypeRule nullable:true
+		//relationshipTypeRule nullable:true
     }
 }

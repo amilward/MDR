@@ -31,7 +31,6 @@ class DataElement extends CatalogueElement {
 		parent nullable: true
 		definition nullable: true
 		name blank: false
-		extension nullable: true
     }
 	
 	static mapping = {

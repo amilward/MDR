@@ -18,32 +18,31 @@ import org.springframework.transaction.annotation.Transactional
 class DataElementService {
 
 	static transactional = false
-	
+
 	def aclPermissionFactory
 	def aclService
 	def aclUtilService
 	def springSecurityService
-	def searchableService
 	def catalogueElementService
-	
+
 	
 	/* **************************** ADD PERMISSIONS *****************************************
-	 * calls add permission with the relevant permission when called with an integer 
+	 * calls add permission with the relevant permission when called with an integer
 	 * permission input
 	 ********************************************************************************* */
-		
+
 	void addPermission(DataElement dataElement, String username, int permission){
-		
+
 		addPermission dataElement, username,
 			aclPermissionFactory.buildFromMask(permission)
-			
+
 	}
-	
+
 	/*
 	 * requires that the authenticated user have admin permission on the report instance
 	 * to grant a permission to someone else
 	 * */
-	
+
 	@PreAuthorize("hasPermission(#dataElement, admin)")
 	@Transactional
 	void addPermission(DataElement dataElement, String username, Permission permission) {
@@ -54,38 +53,38 @@ class DataElementService {
 	 * requires that the authenticated user to have ROLE_USER to create a data element
 	 ********************************************************************************* */
 	
-	@Transactional 
-	@PreAuthorize("hasRole('ROLE_USER')") 
+	@Transactional
+	@PreAuthorize("hasRole('ROLE_USER')")
 	DataElement create(Map parameters) { 
 		
 		//save the dataElement
-		
-		DataElement dataElementInstance = new DataElement(parameters) 
-		
+
+		DataElement dataElementInstance = new DataElement(parameters)
+
 		if(!dataElementInstance.save(flush:true)){
 			return dataElementInstance
 		}
-		
+
 		//link any value domains that were selected with data element
-		
+
 		//linkValueDomains(dataElementInstance, parameters?.valueDomains)
 		catalogueElementService.linkRelations(dataElementInstance, parameters?.valueDomains, "DataValue")
-		
+
 		//link any relations that were selected with data element
-		
+
 		catalogueElementService.linkRelations(dataElementInstance, parameters?.synonyms, "Synonym")
-		
-		// Grant the current user principal administrative permission 
-		
+
+		// Grant the current user principal administrative permission
+
 		addPermission dataElementInstance, springSecurityService.authentication.name, BasePermission.ADMINISTRATION
-		
+
 		//Grant admin user administrative permissions
-		
+
 		addPermission dataElementInstance, 'admin', BasePermission.ADMINISTRATION
-		
+
 		//return the data element to the consumer (the controller)
-		
-		dataElementInstance 
+
+		dataElementInstance
 		
 		}
 	
@@ -111,10 +110,10 @@ class DataElementService {
 	List<DataElement> search(String sSearch) {
 		//searchableService.reindexAll()
 	   def searchResults = DataElement.search(sSearch)
-	   
+
 	   //refresh the objects to get the relational field (otherwise lazy and returns null)
-	   //.......bit of a hack will try and have a play with modifying the 
-	   //searchable plugin code to load the objects with the link classes 
+	   //.......bit of a hack will try and have a play with modifying the
+	   //searchable plugin code to load the objects with the link classes
 	   searchResults.results.each { dataElement->
                 dataElement.refresh()
             }
@@ -168,7 +167,7 @@ class DataElementService {
 	   }
 	   
 	   if(dataElementInstance.save(flush: true)){
-		   catalogueElementService.linkRelations(dataElementInstance, valueDomains, "ValueDomain")
+		   catalogueElementService.linkRelations(dataElementInstance, valueDomains, "DataValue")
 	   }
 	   
 	   if(dataElementInstance.save(flush: true)){

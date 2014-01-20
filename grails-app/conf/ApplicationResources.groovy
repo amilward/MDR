@@ -64,6 +64,11 @@ modules = {
 		dependsOn "dataTables"
 		resource url: "js/model/dataElement/dataElement.js"
 	}
+
+    relationshipType{
+        dependsOn "dataTables"
+        resource url: "js/model/relationshipType/relationshipType.js"
+    }
 	
 	conceptualDomain{
 		dependsOn "dataTables"

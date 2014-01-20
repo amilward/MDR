@@ -6,18 +6,22 @@ import org.json.simple.JSONObject;
 
 abstract class CatalogueElement {
 		
-		def storage = [:]
-		
-		JSONObject extension
+
+        //storage is used with propertyMissing to allow the user to extend any catalogue element properties
+        def storage = [:]
+
+        //finalized is used for versioning
+        //once an object is finalized it cannot be changed
+        //it's version number is updated and any subsequent update will
+        //be applied to the next version (isDraft)
+        Boolean finalized = false
 		
 		static hasMany = { relations: Relationship }
 		
 		static constraints = {
-			extension nullable:true
 		}
 		
 		static mapping = {
-			extension sqlType: 'blob'
 		}
 		
 		
@@ -74,46 +78,49 @@ abstract class CatalogueElement {
 				if(relationTypeName){
 				
 					def relationshipType = RelationshipType.findByName(relationTypeName)
+
+                    if(relationshipType){
 						
-					relations.each{ relation ->
-						if(relation.relationshipType.id==relationshipType.id){
-							def objectId
-							
-							//if the relation y side is this object then return the x side of the relationship otherwise return the y side
-							if(relation.objectYId == this.id){
-								objectId = relation.objectXId
-								
-								//if the relationship type has an xYRelationship then return this instead of the relationship type name
-								//i.e. if the relationship is parentChild and the object to return is the parent, then return Parent rather
-								//then ParentChild as the relationshipT type
-								
-								if(relationshipType.xYRelationship){
-									relationTypeName = relationshipType.xYRelationship
-								}
-								
-								
-							}else{
-													
-								objectId = relation.objectYId
-								
-								//if the relationship type has an yXRelationship then return this instead of the relationship type name
-								//i.e. if the relationship is parentChild and the object to return is the child, then return Child rather
-								//then ParentChild as the relationship type
-								
-								if(relationshipType.xYRelationship){
-									relationTypeName = relationshipType.yXRelationship
-								}
-								
-							
-								
-							}
-							
-							def catalogueElement = CatalogueElement.get(objectId)
-							catalogueElement.relationshipType = relationTypeName
-							relationsR.add(catalogueElement)
-						}
-							
-					}
+                        relations.each{ relation ->
+                            if(relation.relationshipType.id==relationshipType.id){
+                                def objectId
+
+                                //if the relation y side is this object then return the x side of the relationship otherwise return the y side
+                                if(relation.objectYId == this.id){
+                                    objectId = relation.objectXId
+
+                                    //if the relationship type has an xYRelationship then return this instead of the relationship type name
+                                    //i.e. if the relationship is parentChild and the object to return is the parent, then return Parent rather
+                                    //then ParentChild as the relationshipT type
+
+                                    if(relationshipType.xYRelationship){
+                                        relationTypeName = relationshipType.xYRelationship
+                                    }
+
+
+                                }else{
+
+                                    objectId = relation.objectYId
+
+                                    //if the relationship type has an yXRelationship then return this instead of the relationship type name
+                                    //i.e. if the relationship is parentChild and the object to return is the child, then return Child rather
+                                    //then ParentChild as the relationship type
+
+                                    if(relationshipType.yXRelationship){
+                                        relationTypeName = relationshipType.yXRelationship
+                                    }
+
+
+
+                                }
+
+                                def catalogueElement = CatalogueElement.get(objectId)
+                                catalogueElement.relationshipType = relationTypeName
+                                relationsR.add(catalogueElement)
+                            }
+
+                        }
+                    }
 				
 				}
 	
@@ -128,7 +135,7 @@ abstract class CatalogueElement {
 		}
 		
 		/******************************************************************************************************************/
-		/*********************remove all the associated relations*****************************/
+		/*********************remove all the associated relations before delete*****************************/
 		/******************************************************************************************************************/
 		
 		def prepareForDelete(){
@@ -142,32 +149,24 @@ abstract class CatalogueElement {
 				}
 			}
 		}
-		
-		
-		
-		/******************************************************************************************************************/
-		/****functions for adding json extensino to any model element************/
-		/******************************************************************************************************************/
-		
-		public boolean addExtraAttribute(String name, Object obj)
-		{
-			try{
-				if(extension==null)
-				{
-					extension = new JSONObject();
-				}
-				extension.put(name, obj);
-				this.save();
-				return true;
-			}catch(Exception e){
-				e.println
-				return false;
-			}
-		}
-		
-		public Object getExtraAttributeValue(String name)
-		{
-			return this.extension.get(name);
-			
-		}
+
+
+
+    /******************************************************************************************************************/
+    /******   method called before every update  used for versioning - all objects in the catalogue    ***********************/
+    /******   are immutable and should be cloned be updated   ***********************/
+    /******************************************************************************************************************/
+
+
+    def beforeUpdate(){
+        if(finalized){
+            println('clone the object')
+           // def newObjectInstance =
+        }
+    }
+
+
+
+
+
 }

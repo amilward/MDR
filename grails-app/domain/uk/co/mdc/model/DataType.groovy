@@ -11,7 +11,6 @@ class DataType extends CatalogueElement  {
     static constraints = {
 		enumerations nullable: true
 		name blank: false
-		extension nullable: true
     }
 	
 	static hasMany = {valueDomains: ValueDomain}

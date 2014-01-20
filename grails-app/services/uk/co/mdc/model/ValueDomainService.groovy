@@ -73,7 +73,7 @@ class ValueDomainService {
 		}
 		
 		//link any value domains that were selected with data element
-		catalogueElementService.linkRelations(valueDomainInstance, parameters?.dataElements, "DataValue")
+		catalogueElementService.linkRelations(valueDomainInstance, parameters?.dataElements, "DataValue", "YX")
 		//linkDataElements(valueDomainInstance, parameters.dataElements)
 		
 		
@@ -150,7 +150,7 @@ class ValueDomainService {
 	   
 	   if(valueDomainInstance.save(flush: true)){
 		   // add/remove value domains
-		   catalogueElementService.linkRelations(valueDomainInstance, parameters?.dataElements, "DataValue")
+		   catalogueElementService.linkRelations(valueDomainInstance, parameters?.dataElements, "DataValue", "YX")
 		  // linkDataElements(valueDomainInstance, parameters?.dataElements)
 	   }
 	   

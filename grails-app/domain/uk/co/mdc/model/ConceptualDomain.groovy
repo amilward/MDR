@@ -12,7 +12,6 @@ class ConceptualDomain extends CatalogueElement  {
 	static constraints = {
 		valueDomains nullable:true
 		name blank: false
-		extension nullable: true
 	}
 
 	def prepareForDelete(){

@@ -178,6 +178,7 @@ class BootStrap {
 		grantAdminPermissions(ValueDomain.list())
 		grantAdminPermissions(ConceptualDomain.list())
 		grantAdminPermissions(DataType.list())
+        grantAdminPermissions(RelationshipType.list())
 		grantAdminPermissions(Document.list())
 		grantAdminPermissions(Model.list())
 		grantAdminPermissions(FormDesign.list())
@@ -271,7 +272,7 @@ class BootStrap {
 									"07": "Number not present and trace not required",
 									"08": "Trace postponed (baby under six weeks old)"]
 
-							new DataType(name:"NHS NUMBER STATUS INDICATOR", enumerated: true, enumerations: nhsStatusEnumeration).save(failOnError: true)
+							//new DataType(name:"NHS NUMBER STATUS INDICATOR", enumerated: true, enumerations: nhsStatusEnumeration).save(failOnError: true)
 
 							Map genderCode = ["0": "Not Known", "1": "Male", "2": "Female", "9": "Not Specified"]
 

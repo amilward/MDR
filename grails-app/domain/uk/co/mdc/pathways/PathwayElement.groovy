@@ -20,7 +20,6 @@ abstract class PathwayElement extends CatalogueElement{
 		//transientId nullable:true
 		description nullable:true
 		pathwaysModel nullable:true
-		extension nullable: true
 		peCollection nullable:true
     }
 	

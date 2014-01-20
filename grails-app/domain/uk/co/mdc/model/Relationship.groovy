@@ -6,12 +6,8 @@ class Relationship  {
 	Integer objectYId
 	
 	RelationshipType relationshipType
-	
-	Rule relationshipRule
 
     static constraints = {
-		
-		relationshipRule nullable:true
 		
     }
 	

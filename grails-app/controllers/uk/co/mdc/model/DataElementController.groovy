@@ -197,7 +197,7 @@ class DataElementController extends RestfulController{
 			return
 		}
 		
-		[valueDomains: ValueDomain.list(), selectedValueDomains: dataElementInstance.relations("ValueDomain"), 
+		[valueDomains: ValueDomain.list(), selectedValueDomains: dataElementInstance.relations("DataValue"),
 			selectedSynonyms: dataElementInstance.relations("Synonym"), dataElements: dataElementService.list(), 
 			dataElementInstance: dataElementInstance, relationshipTypes: RelationshipType.list(), 
 			subElements: dataElementInstance.relations("ParentChild")]

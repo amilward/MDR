@@ -15,7 +15,6 @@ class Model extends CatalogueElement  {
 	 
     static constraints = {
 		name blank: false
-		extension nullable: true
     }
 	
 	static mapping = {
