@@ -103,7 +103,12 @@
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
-                        <li><g:link data-placement="bottom" class="btn btn-inverse" data-original-title="Logout" rel="tooltip" controller="logout"> Logout </g:link></li>
+<sec:ifLoggedIn>
+                        <li><g:link class="btn btn-inverse" controller="logout"> Logout </g:link></li>
+</sec:ifLoggedIn>
+<sec:ifNotLoggedIn>
+                        <li><g:link class="btn btn-inverse" controller="login" action="auth" > Login </g:link></li>
+</sec:ifNotLoggedIn>
                     </ul>
                 </div>
             </div>

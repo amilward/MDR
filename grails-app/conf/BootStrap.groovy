@@ -54,8 +54,6 @@ class BootStrap {
 		if(!SecUser.findByUsername('user1')){
 			//this if needs to be removed....only for development purposes
 
-            createBaseRoles()
-
 			//create user if none exists
 			createUsers()
 

@@ -160,6 +160,7 @@ grails{
 
 			securityConfigType = "Annotation"
 			controllerAnnotations.staticRules = [
+                '/':                    ['IS_AUTHENTICATED_ANONYMOUSLY'],
                 // Bower dependencies
                 '/bower_components/**': ['IS_AUTHENTICATED_ANONYMOUSLY'],
 				// Javascript

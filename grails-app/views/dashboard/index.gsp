@@ -3,7 +3,7 @@
 <head>
 <meta name="layout" content="main"/>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Model Catalogue - Home</title>
+<title>Model Catalogue - Dashboard</title>
 
 
 <!-- FIXME Styles in HTML is bad, bad, bad! Extract to generic CSS file.... -->
