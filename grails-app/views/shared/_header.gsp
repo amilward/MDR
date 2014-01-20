@@ -55,8 +55,9 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a href="${createLink(uri: '/')}">Home</a></li>
+
 <sec:ifLoggedIn>
+                        <li><a href="${createLink(uri: '/dashboard/')}">Dashboard</a></li>
                         <!-- Metadata curation menu -->
                         <li><g:link action="list" controller="ValueDomain"> Data model </g:link></li>
 

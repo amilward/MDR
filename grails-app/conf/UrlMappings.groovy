@@ -17,7 +17,7 @@ class UrlMappings {
 		name pendingUsers: "/role/pendingUsers"( controller: "role", action: "listPendingUsers" )
 		name importData: "/admin/importData"(view:"admin/importData")
 
-		"/"(controller:"index", action: "index")
+		"/"(controller:"dashboard", action: "index")
 		"403"(controller: "errors", action: "error403") 
 		"404"(controller: "errors", action: "error404") 
 		"500"(controller: "errors", action: "error500") 

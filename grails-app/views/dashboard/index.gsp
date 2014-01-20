@@ -46,12 +46,12 @@
 	  	<div class="dashboard-page" id="dashboard-options">
 			<div class="options-box">
 				<div class="dashboard_option" id="pathways">
-					<img src="images/dashboard/Pathways_colour.png"/>
+					<img src="../images/dashboard/Pathways_colour.png"/>
 					<span>Pathway Models</span>
 				</div>
 			</div>
 			<div class="dashboard_option" id="forms">
-				<img src="images/dashboard/Forms_colour.png"/>
+				<img src="../images/dashboard/Forms_colour.png"/>
 				<span>Form Models</span>
 			</div>
             <!--
@@ -65,7 +65,7 @@
 			</div>
 			-->
 			<div class="dashboard_option" id="metadata">
-				<img src="images/dashboard/Advanced_colour.png"/>
+				<img src="../images/dashboard/Advanced_colour.png"/>
 				<span>Metadata Curation</span>
 			</div>
             <!--

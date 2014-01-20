@@ -126,7 +126,9 @@ grails{
 
 			// page to redirect to if a login attempt fails
 			failureHandler.defaultFailureUrl = '/login/authfail/?login_error=1'
-			
+
+            // redirection page for success (including successful registration
+            successHandler.defaultTargetUrl = '/dashboard/'
 			
 			// Added by the Spring Security Core plugin:
 			userLookup.userDomainClassName = 'uk.co.mdc.SecUser'
