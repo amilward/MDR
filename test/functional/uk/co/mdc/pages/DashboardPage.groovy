@@ -7,11 +7,11 @@ import uk.co.mdc.modules.TopNavElements
 
 class DashboardPage extends BasePageWithNav{
 	
-	static url = "/"
+	static url = "/dashboard/"
 	
 	static at = {
-		url == "/" &&
-		title == "Model Catalogue - Home"
+		url == "/dashboard/" &&
+		title == "Model Catalogue - Dashboard"
 	}
 	
 	static content = {

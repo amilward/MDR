@@ -2,7 +2,6 @@ package uk.co.mdc
 
 import grails.converters.JSON
 import grails.plugins.springsecurity.SpringSecurityService
-import org.springframework.dao.DataIntegrityViolationException
 import uk.co.mdc.model.DataElement
 
 class CollectionBasketController {
@@ -96,7 +95,7 @@ class CollectionBasketController {
 		def collectionBasketInstance = current_user.collectionBasket
         if (!collectionBasketInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'collectionBasket.label', default: 'CollectionBasket'), id])
-            redirect(controller: "index")
+            redirect(controller: "dashboard")
             return
         }
 
