@@ -51,8 +51,14 @@ var appng = angular.module('appng', ['ngRoute', 'security', 'appng.toolbar'])
     }])
 
 // Dasboard controller, as for now it only exposes security service
-    .controller('DashboardCtrl', ['$scope', 'security', function ($scope, security) {
+    .controller('DashboardCtrl', ['$scope', '$http', 'security', function ($scope, $http, security) {
         $scope.security = security;
+        $scope.fetch = function () {
+            $http.get("collectionBasket/dataElementsAsJSON")
+                .success(function (data, status, headers, config) {
+                    $scope.dataElements = data;
+                })
+        };
     }])
 
 // Dummy controller, as for now it only exposes params service
