@@ -11,12 +11,11 @@ grails.project.source.level = 1.6
 //   run: [maxMemory:1024, minMemory:64, debug:false, maxPerm:256]
 //]
 
-
 // Grails 2.3 uses Aether by default
 grails.project.dependency.resolver = "maven"
 
 grails.project.dependency.resolution = {
-			
+
     // inherit Grails' default dependencies
     inherits("global") {
         // specify dependency exclusions here; for example, uncomment this to disable ehcache:
@@ -24,7 +23,8 @@ grails.project.dependency.resolution = {
     }
     log "warn" // log level of Ivy resolver, either 'error', 'warn', 'info', 'debug' or 'verbose'
     checksums true // Whether to verify checksums on resolve
-    legacyResolve false // whether to do a secondary resolve on plugin installation, not advised and here for backwards compatibility
+    legacyResolve false
+    // whether to do a secondary resolve on plugin installation, not advised and here for backwards compatibility
 
     repositories {
         inherits true // Whether to inherit repository definitions from plugins
@@ -51,7 +51,6 @@ grails.project.dependency.resolution = {
 
     dependencies {
 
-
         // Selenium WebDriver, for use in Geb
         def webDriverVersion = "2.37.0"
 
@@ -73,6 +72,11 @@ grails.project.dependency.resolution = {
 
 
         runtime 'mysql:mysql-connector-java:5.1.22'
+
+//        should fix svn plugin, but doesn't
+//        build("org.tmatesoft.svnkit:svnkit:1.3.5") {
+//            excludes "jna", "trilead-ssh2", "sqljet"
+//        }
     }
 
     plugins {
@@ -104,9 +108,17 @@ grails.project.dependency.resolution = {
         runtime ":jquery:1.8.3"
         runtime ":resources:1.1.6"
         runtime ":coffeescript-resources:0.3.8"
+// doesn't work well with latest grails
+//        runtime ":less-resources:1.3.0.2"
+        runtime ":twitter-bootstrap:3.0.3"
 
         // The following are dead, we shouldn't use them!
         compile ":csv:0.3.1"
     }
- }
+}
+
+grails.project.fork = [
+        test: false,
+        run: false
+]
 

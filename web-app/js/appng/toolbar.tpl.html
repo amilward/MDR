@@ -1,0 +1,74 @@
+<nav class="navbar navbar-default navbar-static-top" role="navigation">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#/" route-link>MDC</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="#/" route-link>Home</a></li>
+                <!-- Metadata curation menu -->
+                <li ng-show="isAuthenticated()"><a href="#/valuedomain/" route-link>Data Model</a></li>
+
+                <!-- Pathways menu -->
+                <li ng-show="isAuthenticated()" class="dropdown">
+                    <a class="dropdown-toggle" href="#">Pathways <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#/pathways/list/" route-link>List pathways</a></li>
+                        <li><a href="#/pathways/create/" route-link>Create pathway</a></li>
+                    </ul>
+                </li>
+
+                <!-- Form design menu -->
+                <li ng-show="isAuthenticated()" class="dropdown">
+                    <a class="dropdown-toggle" href="#"> Forms <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#/forms/list/" route-link> List Forms</a></li>
+                        <li><a href="#/forms/create/" route-link> Create Form </a></li>
+                    </ul>
+                </li>
+
+                <!-- Admin menu -->
+                <li ng-show="isAdmin()" class="dropdown">
+                    <a class="dropdown-toggle" href="#"> Administration <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-header">Roles</li>
+                        <li><a href="#/roles/search/" route-link>Search roles</a></li>
+                        <li><a href="#/roles/create/" route-link>Create role</a></li>
+                        <li class="dropdown-header">Users</li>
+                        <li><a href="#/users/search/" route-link>Search users</a></li>
+                        <li><a href="#/users/create/" route-link>Create user</a></li>
+                        <li><a href="#/registrationcodes/search/" route-link>Search Registration Code</a></li>
+                        <li><a href="#/roles/pendingUsers/" route-link>Activate pending users</a></li>
+                        <li class="divider"></li>
+                        <li class="dropdown-header" route-link>Import/Export</li>
+                        <li><a href="#/import/data/" route-link>Import data</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li class="divider-vertical"></li>
+                <li ng-show="isAuthenticated()">
+                    <a href="#">{{currentUser.firstName}} {{currentUser.lastName}}</a>
+                </li>
+                <li ng-show="isAuthenticated()" class="logout">
+                    <form class="navbar-form">
+                        <button class="btn logout" ng-click="logout()">Log out</button>
+                    </form>
+                </li>
+                <li ng-hide="isAuthenticated()" class="login">
+                    <form class="navbar-form">
+                        <button class="btn login" ng-click="login()">Log in</button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
