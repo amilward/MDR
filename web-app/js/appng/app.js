@@ -31,9 +31,16 @@ var appng = angular.module('appng', ['ngRoute', 'security', 'appng.toolbar'])
                 templateUrl: 'js/appng/partials/dashboard.tpl.html',
                 controller: 'DashboardCtrl'
             }).
-            when('/:controller/', {
+           /* when('/:controller/', {
                 templateUrl: 'js/appng/partials/dummy.tpl.html',
                 controller: 'DummyCtrl',
+                resolve: {
+                    user: securityAuthorizationProvider.requireAuthenticatedUser
+                }
+            }).*/
+            when('/dataElement', {
+                templateUrl: 'js/appng/partials/dataElement.tpl.html',
+                controller: 'DataElement',
                 resolve: {
                     user: securityAuthorizationProvider.requireAuthenticatedUser
                 }
@@ -59,6 +66,62 @@ var appng = angular.module('appng', ['ngRoute', 'security', 'appng.toolbar'])
                     $scope.dataElements = data;
                 })
         };
+    }])
+
+
+ // Dummy controller, as for now it only exposes params service
+    .controller('DataElement', ['$scope', '$http','ngTableParams', 'security', function ($scope, ngTableParams, $http, security) {
+
+        $scope.security = security;
+
+        var data = [
+            {name: "Moroni", age: 50},
+            {name: "Tiancum", age: 43},
+            {name: "Jacob", age: 27},
+            {name: "Nephi", age: 29},
+            {name: "Enos", age: 34},
+            {name: "Tiancum", age: 43},
+            {name: "Jacob", age: 27},
+            {name: "Nephi", age: 29},
+            {name: "Enos", age: 34},
+            {name: "Tiancum", age: 43},
+            {name: "Jacob", age: 27},
+            {name: "Nephi", age: 29},
+            {name: "Enos", age: 34},
+            {name: "Tiancum", age: 43},
+            {name: "Jacob", age: 27},
+            {name: "Nephi", age: 29},
+            {name: "Enos", age: 34}
+        ];
+        $scope.data = data;
+        $scope.tableParams = new ngTableParams({
+            page: 1,            // show first page
+            count: 10,          // count per page
+            filter: {
+                //name: 'M'       // initial filter
+            },
+            sorting: {
+                //name: 'asc'     // initial sorting
+            }
+        }, {
+            total: data.length, // length of data
+            getData: function ($defer, params) {
+                // use build-in angular filter
+                var filteredData = params.filter() ?
+                    $filter('filter')(data, params.filter()) :
+                    data;
+                var orderedData = params.sorting() ?
+                    $filter('orderBy')(filteredData, params.orderBy()) :
+                    data;
+                params.total(orderedData.length); // set total for recalc pagination
+                $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+            }
+        });
+        $scope.changeSelection = function(user) {
+            // console.info(user);
+        }
+
+
     }])
 
 // Dummy controller, as for now it only exposes params service

@@ -235,6 +235,11 @@ modules = {
         //resource id: 'js', url: [dir: 'js/angular/', file: "angular-app.js"], nominify: true
     }
 
+    "ng-table" {
+        dependsOn "angular"
+        resource id: 'js', url: [dir: 'bower_components/ng-table', file: "ng-table.js"], nominify: true
+    }
+
     /**
      *  Application libraries
      */
@@ -282,6 +287,7 @@ modules = {
     appng {
         dependsOn "angular-security"
         dependsOn "angular-route"
+        dependsOn "ng-table"
         resource url: "js/appng/app.js"
         resource url: "js/appng/toolbar.js"
     }

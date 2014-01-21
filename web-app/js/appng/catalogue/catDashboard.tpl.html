@@ -1,0 +1,13 @@
+<div class="jumbotron">
+    <h1>Dashboard</h1>
+
+    <p ng-hide="security.isAuthenticated()">
+        Welcome to Model Catalogue. Please <a ng-click="security.showLogin()">log in</a> to continue to the application.
+        If you try to <a class="btn btn-primary" ng-click="fetch()">Fetch</a> some protected resource you will be ask to
+        login automatically.
+    </p>
+
+    <p ng-show="security.isAuthenticated()">
+        Hello<span ng-show="security.isAdmin()"> admin</span> user!
+    </p>
+</div>

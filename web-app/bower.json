@@ -1,38 +1,39 @@
 {
-    "name": "model-catalogue",
-    "version": "1.0.0",
-    "homepage": "https://github.com/amilward/MDR",
-    "authors": [
-        "Ryan Brooks <ryanbrooksis@gmail.com>"
-    ],
-    "description": "Model Catalogue, including the metadata registry, forms generator and pathways tool",
-    "license": "MIT",
-    "private": true,
-    "ignore": [
-        "**/.*",
-        "node_modules",
-        "bower_components",
-        "test",
-        "tests"
-    ],
-    "dependencies": {
-        "angular": "~1.2.10",
-        "angular-animate": "~1.2.10",
-        "angular-cookies": "~1.2.10",
-        "angular-loader": "~1.2.10",
-        "angular-resource": "~1.2.10",
-        "angular-route": "~1.2.10",
-        "angular-sanitize": "~1.2.10",
-        "angular-touch": "~1.2.10",
-        "angular-mocks": "~1.2.10",
-        "angular-scenario": "~1.2.10",
-        "bootstrap": "~3.0.3",
-        "datatables": "~1.9.4",
-        "modernizr": "~2.7.1",
-        "angular-bootstrap": "~0.10.0",
-        "jasmine": "~2.0.0"
-    },
-    "resolutions": {
-        "jquery": ">= 1.9.0"
-    }
+  "name": "model-catalogue",
+  "version": "1.0.0",
+  "homepage": "https://github.com/amilward/MDR",
+  "authors": [
+    "Ryan Brooks <ryanbrooksis@gmail.com>"
+  ],
+  "description": "Model Catalogue, including the metadata registry, forms generator and pathways tool",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.2.10",
+    "angular-animate": "~1.2.10",
+    "angular-cookies": "~1.2.10",
+    "angular-loader": "~1.2.10",
+    "angular-resource": "~1.2.10",
+    "angular-route": "~1.2.10",
+    "angular-sanitize": "~1.2.10",
+    "angular-touch": "~1.2.10",
+    "angular-mocks": "~1.2.10",
+    "angular-scenario": "~1.2.10",
+    "bootstrap": "~3.0.3",
+    "datatables": "~1.9.4",
+    "modernizr": "~2.7.1",
+    "angular-bootstrap": "~0.10.0",
+    "jasmine": "~2.0.0"
+  },
+  "resolutions": {
+    "jquery": ">= 1.9.0",
+    "angular": "~1.2.10"
+  }
 }
