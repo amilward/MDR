@@ -1,8 +1,8 @@
 package uk.co.mdc.model
 
 class CatalogueElementService {
-	
-	
+
+
 	/* ************************* MODEL ELEMENT LINKAGE FUNCTIONS************************
 	 * links the model element with the relations specified via a link table
 	 ********************************************************************************* */

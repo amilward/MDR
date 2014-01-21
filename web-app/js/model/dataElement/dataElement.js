@@ -106,25 +106,24 @@ function dataElementList(){
 					return '<a id="'+ row.id + '" href="' + root +'/dataElement/show/' + row.id + '">' + data + '</a>'
 			    },
 			    "mDataProp": "name",
-			    "sWidth":"30%",
+			    "sWidth":"45%",
 			    "sTitle":"name"
-			},
-			{
-			    // `data` refers to the data for the cell (defined by `mData`, which
-			    // defaults to the column being worked with, in this case is the first
-			    // Using `row[0]` is equivalent.
-				"mRender": function ( data, type, row ) {	
-					if(data!=null){
-						return '<a href="' + root +'/dataElement/show/' + row.parent_id + '">' + data + '</a>'
-					}else{
-						return ''
-					}
-				
-		    },
-		    	"mDataProp": "parent_name", 
-		    	"sWidth":"30%",
-		    	"sTitle":"parent"
-			},
+			},{
+                // `data` refers to the data for the cell (defined by `mData`, which
+                // defaults to the column being worked with, in this case is the first
+                // Using `row[0]` is equivalent.
+                "mRender": function ( data, type, row ) {
+                    if(data!=null){
+                        return  data;
+                    }else{
+                        return '';
+                    }
+
+                },
+                "mDataProp": "versionNumber",
+                "sWidth":"10%",
+                "sTitle":"Version"
+            },
 			{
 			    // `data` refers to the data for the cell (defined by `mData`, which
 			    // defaults to the column being worked with, in this case is the first
@@ -133,9 +132,10 @@ function dataElementList(){
 				return '<a href="' + root +'/Model/show/' + data + '">' + row.model_name + '</a>' + '<img class="floatright" src="../images/details_open.png" />'
 		    },
 		   "mDataProp": "model_id", 
-		   "sWidth":"30%",
+		   "sWidth":"45%",
 		   "sTitle":"model"
 			},
+
 			{ "mDataProp": "id", "bVisible":    false }
 		],
 		"fnDrawCallback": function () {

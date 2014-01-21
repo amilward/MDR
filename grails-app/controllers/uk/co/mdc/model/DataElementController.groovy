@@ -141,7 +141,7 @@ class DataElementController extends RestfulController{
 		[valueDomains: valueDomainService.list(), dataElements: dataElementService.list(), dataElementInstance: new DataElement(params)]
 	}
 	
-	//NOTE TO SELF - NEED TO UPDATE WHEN RELEVANT SERVICES ARE CREATED
+	//FIXME - NEED TO UPDATE WHEN RELEVANT SERVICES ARE CREATED
 	//IN ADDITION NEED TO THINK ABOUT HOW TO LINK OBJECTS AS BOTH SIDES OF LINK REQURE WRITE PERMISSION
 	//POTENTIALLY COULD CREATE A 'PARTIAL WRITE' PERMISSION THAT ALLOWS USERS TO LINK BUT NOT EDIT
 	
@@ -196,6 +196,11 @@ class DataElementController extends RestfulController{
 			redirect(action: "list")
 			return
 		}
+
+        //check if the data element has been finalized
+        if(dataElementInstance.status!=CatalogueElement.Status.DRAFT && dataElementInstance.status!=CatalogueElement.Status.PENDING){
+            dataElementInstance = dataElementInstance.incrementVersion()
+        }
 		
 		[valueDomains: ValueDomain.list(), selectedValueDomains: dataElementInstance.relations("DataValue"),
 			selectedSynonyms: dataElementInstance.relations("Synonym"), dataElements: dataElementService.list(), 
@@ -381,7 +386,8 @@ class DataElementController extends RestfulController{
 		}
 		
 		//check if parent elements contain the given element
-		//asd
+
+		/*
 		
 		if((!params?.parent?.id || !params?.parent?.id.isEmpty()) &&  params?.id!=null){			
 			if(params.parent.id == params.id){
@@ -390,7 +396,7 @@ class DataElementController extends RestfulController{
 				return false
 			}
 
-		}
+		}*/
 		
 		//check if subelements contain the parent element
 		

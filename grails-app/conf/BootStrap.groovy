@@ -247,14 +247,17 @@ class BootStrap {
 		if (!RelationshipType.count()) {
 			
 			new RelationshipType(name: "Synonym").save()
-			valueDomain = new RelationshipType(name: "DataValue", xYRelationship: "DataElement", yXRelationship: "ValueDomain").save(flush:true)
+			valueDomain = new RelationshipType(name: "DataValue", xYRelationship: "DataElement", yXRelationship: "ValueDomain").save()
 			parentChild = new RelationshipType(name: "ParentChild", xYRelationship: "Parent", yXRelationship: "Child").save()
 			new RelationshipType(name: "OptionalModelElement", xYRelationship: "Model", yXRelationship: "OptionalElement").save()
 			modelElement = new RelationshipType(name: "ModelElement", xYRelationship: "Model", yXRelationship: "DataElement").save()
 			new RelationshipType(name: "MandatoryModelElement", xYRelationship: "Model", yXRelationship: "MandatoryElement").save()
 			new RelationshipType(name: "RequiredModelElement", xYRelationship: "Model", yXRelationship: "RequiredElement").save()
 			new RelationshipType(name: "ReferenceModelElement", xYRelationship: "Model", yXRelationship: "ReferenceElement").save()
-		}
+            new RelationshipType(name: "Supersession", xYRelationship: "Supercedes", yXRelationship: "SupercededBy").save()
+            new RelationshipType(name: "ValueMapping").save()
+
+        }
 		
 		
 		if (!ConceptualDomain.count()) {

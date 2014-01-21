@@ -3,6 +3,10 @@
 
 <table class="table table-hovered">
 				<tbody>
+                    <tr class="${hasErrors(bean: dataElementInstance, field: 'finlized', 'error')} ">
+                        <td class="left_col_show"><span id="name-label" ><g:message code="dataElement.status.label" default="Status" /></span></td>
+                        <td class="right_col_show"><g:select name="status" from="${['DRAFT','PENDING','FINALIZED','DELETED']}" value="${dataElementInstance?.status}" /></td>
+                    </tr>
 					<tr class="${hasErrors(bean: dataElementInstance, field: 'name', 'error')} ">
 						<td class="left_col_show"><span id="name-label" ><g:message code="dataElement.name.label" default="Name" /></span></td>
 						<td class="right_col_show"><g:textField title="tooltip.dataElement.name" class="input-large input-block-level"  name="name" value="${dataElementInstance?.name}"/></td>
@@ -14,23 +18,6 @@
 					<tr>
 						<td class="left_col_show"><span id="name-label" ><g:message code="dataElement.definition.label" default="Definition" /></span></td>
 						<td class="right_col_show"><g:textArea title="tooltip.dataElement.definition" class="input-block-level" name="definition" value="${dataElementInstance?.definition}"/></td>
-					</tr>
-					
-					<tr>
-						<td class="left_col_show"><span id="name-label" ><g:message code="dataElement.parent.label" default="Parent" /></span></td>
-						<td>
-						<g:select 
-						title="tooltip.dataElement.parent"
-						id="parent" 
-						name="parent.id" 
-						from="${uk.co.mdc.model.DataElement.list().minus(dataElementInstance)}" 
-						optionKey="id" 
-						optionValue="name"
-						value="${dataElementInstance?.parent?.id}" 
-						class="many-to-one" 
-						noSelection="${[null:'Select One...']}"
-						/>
-						</td>
 					</tr>
 					<tr>
 						<td class="left_col_show"><span id="name-label" >Associated Value Domains</span></td>

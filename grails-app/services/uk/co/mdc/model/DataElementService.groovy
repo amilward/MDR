@@ -6,6 +6,7 @@ import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.security.acls.domain.BasePermission
 import org.springframework.security.acls.model.Permission
 import org.springframework.transaction.annotation.Transactional
+import grails.validation.ValidationException
 
 
 	/* *********************************************************************
@@ -85,26 +86,26 @@ class DataElementService {
 		//return the data element to the consumer (the controller)
 
 		dataElementInstance
-		
+
 		}
-	
-	
+
+
 	/* ************************* GET DATA ELEMENTS***********************************************
 	 * requires that the authenticated user have read or admin permission on the specified Data Element
 	 ******************************************************************************************** */
-	
+
 	@PreAuthorize('hasPermission(#id, "uk.co.mdc.model.DataElement", read) or hasPermission(#id, "uk.co.mdc.model.DataElement", admin)')
 	DataElement get(long id) {
 	   DataElement.get id
 	   }
-	
-	
+
+
 	/* ************************* SEARCH DATA ELEMENTS***********************************************
-	 * requires that the authenticated user have ROLE_USER and read or admin permission on each 
-	 * returned Data Element; instances that don't have granted permissions will be removed from the returned 
-	 * List 
+	 * requires that the authenticated user have ROLE_USER and read or admin permission on each
+	 * returned Data Element; instances that don't have granted permissions will be removed from the returned
+	 * List
 	 * */
-	
+
 	@PreAuthorize("hasRole('ROLE_USER')")
 	@PostFilter("hasPermission(filterObject, read) or hasPermission(filterObject, admin)")
 	List<DataElement> search(String sSearch) {
@@ -120,88 +121,114 @@ class DataElementService {
 
 	   searchResults.results
 	   }
-	
-	
+
+
 	/* ************************* LIST DATA ELEMENTS***********************************************
-	 * requires that the authenticated user have ROLE_USER sand read or admin permission on each 
-	 * returned Data Element; instances that don't have granted permissions will be removed from the returned 
+	 * requires that the authenticated user have ROLE_USER sand read or admin permission on each
+	 * returned Data Element; instances that don't have granted permissions will be removed from the returned
 	 * List
 	 ******************************************************************************************** */
-	
+
 	@PreAuthorize("hasRole('ROLE_USER')")
 	@PostFilter("hasPermission(filterObject, read) or hasPermission(filterObject, admin)")
 	List<DataElement> list(Map parameters) {
 		DataElement.list parameters
 	}
-	
+
 	//no restrictions on the count method
-	
+
 	int count() { DataElement.count() }
-	
+
 	/* ************************* UPDATE DATA ELEMENTS***********************************************
 	 *  requires that the authenticated user have write or admin permission on the data element instance to edit it
 	 ******************************************************************************************** */
-	
+
 	@Transactional
 	@PreAuthorize("hasPermission(#dataElementInstance, write) or hasPermission(#dataElementInstance, admin)")
 	DataElement update(DataElement dataElementInstance, Map parameters) {
-		
-		def subElements = parameters?.subElements
-		parameters.remove('subElements')
-		//def relations = parameters?.relations
-		//parameters.remove('relations')
-		def synonyms = parameters?.synonyms
-		parameters.remove('synonyms')
-		def valueDomains = parameters?.valueDomains
-		parameters.remove('valueDomains')
-		
-	   // remove any subelements that have been specified for removal
-	  // unLinkSubElements(dataElementInstance, subElements)
-	   
-	   dataElementInstance.properties = parameters
-	   
-	   if(dataElementInstance.save(flush: true)){
-		   
-		   //add/remove relations that have specified for addition or removal
-		   catalogueElementService.linkRelations(dataElementInstance, synonyms, "Synonym")
-	   }
-	   
-	   if(dataElementInstance.save(flush: true)){
-		   catalogueElementService.linkRelations(dataElementInstance, valueDomains, "DataValue")
-	   }
-	   
-	   if(dataElementInstance.save(flush: true)){
-		   catalogueElementService.linkRelations(dataElementInstance, subElements, "ParentChild")
-	   }
-	   
-	   
-	   dataElementInstance
-	   
+
+        //only update a data element if the element is in draft otherwise only the status can be updated
+		if(dataElementInstance.status==CatalogueElement.Status.DRAFT){
+
+            def subElements = parameters?.subElements
+            parameters.remove('subElements')
+            //def relations = parameters?.relations
+            //parameters.remove('relations')
+            def synonyms = parameters?.synonyms
+            parameters.remove('synonyms')
+            def valueDomains = parameters?.valueDomains
+            parameters.remove('valueDomains')
+
+           // remove any subelements that have been specified for removal
+          // unLinkSubElements(dataElementInstance, subElements)
+
+           dataElementInstance.properties = parameters
+
+           //update revision number
+           dataElementInstance.revisionNumber++
+
+           if(dataElementInstance.save(flush: true)){
+
+               //add/remove relations that have specified for addition or removal
+               catalogueElementService.linkRelations(dataElementInstance, synonyms, "Synonym")
+           }
+
+           if(dataElementInstance.save(flush: true)){
+               catalogueElementService.linkRelations(dataElementInstance, valueDomains, "DataValue")
+           }
+
+           if(dataElementInstance.save(flush: true)){
+               catalogueElementService.linkRelations(dataElementInstance, subElements, "ParentChild")
+           }
+
+           dataElementInstance
+
+        }else if(dataElementInstance.status==CatalogueElement.Status.PENDING){
+
+            if(parameters?.status=='FINALIZED'){
+                dataElementInstance.versionNumber++
+                dataElementInstance.revisionNumber = 0
+            }
+
+            dataElementInstance.status = parameters?.status
+            dataElementInstance.save()
+
+            dataElementInstance
+        }else{
+            throw new ValidationException("You cannot edit an object once it has been finalized or removed", dataElementInstance)
+        }
+
 	}
-	
-	
-	
+
+
+
 	/* ************************* DELETE DATA ELEMENTS***********************************************
-	 * requires that the authenticated user have delete or admin permission on the report instance to 
+	 * requires that the authenticated user have delete or admin permission on the report instance to
 	 * edit it
 	 ******************************************************************************************** */
 
 	@Transactional @PreAuthorize("hasPermission(#dataElementInstance, delete) or hasPermission(#dataElementInstance, admin)")
 	void delete(DataElement dataElementInstance) {
-		
-		dataElementInstance.prepareForDelete()
-		dataElementInstance.delete(flush: true)
-		
-		// Delete the ACL information as well
-		aclUtilService.deleteAcl dataElementInstance
+
+        //only object in draft state can be deleted
+        if(dataElementInstance.status != CatalogueElement.Status.DRAFT){
+            dataElementInstance.status = CatalogueElement.Status.REMOVED
+        }else{
+            dataElementInstance.prepareForDelete()
+            dataElementInstance.delete(flush: true)
+            // Delete the ACL information as well
+            aclUtilService.deleteAcl dataElementInstance
+        }
+
+
    }
-	
-	
+
+
 	/* ************************* DELETE PERMISSIONS***********************************************
 	 * deletePermission requires that the authenticated user have admin permission on the report
 	 *  instance to delete a grant
 	 ******************************************************************************************** */
-	
+
 	@Transactional @PreAuthorize("hasPermission(#dataElementInstance, admin)")
 	void deletePermission(DataElement dataElementInstance, String username, Permission permission) {
 		def acl = aclUtilService.readAcl(dataElementInstance)
@@ -219,55 +246,4 @@ class DataElementService {
 		
 		}
 
-	
-	/* ************************* DATA ELEMENT LINKAGE FUNCTIONS************************
-	 * unlinks the sub elements that have been removed during an update of the data element
-	 ********************************************************************************* */
-	
-	
-	def unLinkSubElements(dataElementInstance, pSubElements){
-		
-		//if there are no sub elements i.e. ALL sub elements need to be removed 
-		//from the data element after the edit (presuming there were sub elements in the data element before the edit)
-		
-			if(pSubElements==null && dataElementInstance?.subElements.size()>0){
-				
-				//pass all the objects sub elements into a new array (otherwise we get all sorts or problems)
-				def subElements = []
-				subElements += dataElementInstance?.subElements
-				
-				//remove ALL of the subelements
-				
-				subElements.each{ subElement->
-					dataElementInstance.removeFromSubElements(subElement)
-				}
-				
-			//else if there are some sub elements
-				
-			}else if(pSubElements){
-			
-				//pass all the objects sub elements into a new array (otherwise we get all sorts or problems)
-				def subElements = []				
-				subElements += dataElementInstance?.subElements
-				
-				//remove the sub elements that need removing
-				subElements.each{ subElement->
-					
-					//check if only one sub element has been added
-					if(pSubElements instanceof String){
-							if(pSubElements!=subElement){
-								dataElementInstance.removeFromSubElements(subElement)
-							}						
-						}else{							
-							if(!pSubElements.contains(subElement)){								
-								dataElementInstance.removeFromSubElements(subElement)								
-							}						
-						}
-					}
-			
-		}
-	}
-	
-	
-	
 }

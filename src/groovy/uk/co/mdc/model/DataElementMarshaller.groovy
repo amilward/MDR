@@ -12,6 +12,7 @@ class DataElementMarshaller extends CustomMarshaller{
 			'name' : dataElement.name,
 			'description' : dataElement.description,
 			'definition' : dataElement.definition,
+            'versionNumber' : dataElement.versionNumber + '.' + dataElement.revisionNumber,
 			'parent_id' : dataElement?.parent?.id,
 			'parent_name' : dataElement?.parent?.name,
 			'model_id' : dataElement?.relations("ModelElement")?.id,

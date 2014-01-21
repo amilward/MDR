@@ -17,12 +17,12 @@ class DataElement extends CatalogueElement {
 	static auditable = true
 	
 	static searchable = {
-		except = ["extension", "storage", "relations"]
+		except = ["extension", "relations"]
 		spellCheck "include"
 
     } 
 	
-	static hasMany = [relations: Relationship, subElements: DataElement]
+	static hasMany = [relations: Relationship]
 
 	static belongsTo = [parent: DataElement]
 	
@@ -36,40 +36,11 @@ class DataElement extends CatalogueElement {
 	static mapping = {
 		description type: "text"
 		definition type: "text"
-		subElements cascade: "save-update"
 	}
 	
 
 	
 	
-	/******************************************************************************************************************/
-	/*********************remove all the associated valueDomains and collections before deleting data element*****************************/
-	/******************************************************************************************************************/
-	
-	
-	def prepareForDelete(){
-		
-		def dataForDelete
-		
-		if(this.dataElementValueDomains.size()!=0){
-			
-			dataForDelete = this.dataElementValueDomains()
-			
-			dataForDelete.each{ valueDomain->
-				this.removeFromDataElementValueDomains(valueDomain)
-			}
-		}
-		
-		
-		if(this.relations.size()!=0){
-			
-			dataForDelete = this.relations()
-			
-			dataForDelete.each{ relationship->
-				this.removeFromRelations(relationship)
-			}
-		}
-		
-	}
+
 	
 }

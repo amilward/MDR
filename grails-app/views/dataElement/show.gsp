@@ -1,5 +1,6 @@
 
 <%@ page import="uk.co.mdc.model.DataElement" %>
+<%@ page import="uk.co.mdc.model.CatalogueElement" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -28,6 +29,14 @@
 		<div class="box">
 			<table class="table table-hovered">
 				<tbody>
+                    <tr>
+                        <td class="left_col_show"><span id="name-label" ><g:message code="dataElement.version.label" default="Version" /></span></td>
+                        <td class="right_col_show">${dataElementInstance.versionNumber}.${dataElementInstance.revisionNumber}</td>
+                    </tr>
+                    <tr>
+                        <td class="left_col_show"><span id="name-label" ><g:message code="dataElement.status.label" default="State" /></span></td>
+                        <td class="right_col_show"><g:fieldValue bean="${dataElementInstance}" field="status"/></td>
+                    </tr>
 				<g:if test="${dataElementInstance?.name}">
 					<tr>
 						<td class="left_col_show"><span id="name-label" ><g:message code="dataElement.name.label" default="Data Element" /></span></td>
