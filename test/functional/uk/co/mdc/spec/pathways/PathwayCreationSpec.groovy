@@ -16,15 +16,10 @@ class PathwayCreationSpec extends GebReportingSpec {
 	def "Creating a new pathway using the nav menu as admin"() {
 
 		given:"I am on the dashboard view in a 1024x768 browser window"
-		driver.manage().window().setSize(new Dimension(1028, 768))
-		to LoginPage
-		username = "admin"
-		password = "admin123"
-		submitButton.click(DashboardPage)
-
-		waitFor{
-			at DashboardPage
-		}
+        driver.manage().window().setSize(new Dimension(1028, 768))
+        to LoginPage
+        loginRegularUser()
+        at DashboardPage
 		
 		when: "I click the pathways dropdown menu"
 		nav.expandPathwayMenuLink.click()
