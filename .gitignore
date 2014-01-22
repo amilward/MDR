@@ -1,5 +1,9 @@
 # This is the root .gitignore file
 # Please use this one rather than creating .gitignore files lower down in the directory structure.
+#
+
+# Gradle build cache
+/.gradle
 
 # web application files bootstrap data
 /web-app/WEB-INF/bootstrap-data
@@ -62,7 +66,9 @@
 # Geb testing cache
 /test/drivers 
 
-web-app/bower_components/
+# Javascript/NodeJS caches
+/web-app/bower_components/
+/node_modules/
 
 # OS generated files #
 ######################
