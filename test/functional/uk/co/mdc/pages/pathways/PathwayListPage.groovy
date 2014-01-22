@@ -28,6 +28,9 @@ class PathwayListPage extends BasePageWithNav{
 	}
 
 
+    def getPathwayLinks(){
+        return dataTableRows.find("a")
+    }
     boolean goToPathway(id){
         def link = dataTableRows.find("a", id: "$id")
         if(link){

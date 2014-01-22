@@ -215,6 +215,8 @@ class BootStrap {
 		grantUserPermissions(FormDesign.list())
 		grantUserPermissions(QuestionElement.list())
 		grantUserPermissions(InputField.list())
+        grantUserPermissions(Node.list())
+        grantUserPermissions(Link.list())
 		grantUserPermissions(PathwaysModel.list())
 
 	}
@@ -231,7 +233,8 @@ class BootStrap {
 	def grantUserPermissions(objectList){
 		for (object in objectList) {
 			//FIX me - by default user will have the 
-			aclUtilService.addPermission object, 'ROLE_USER', BasePermission.READ
+            aclUtilService.addPermission object, 'ROLE_USER', BasePermission.READ
+            aclUtilService.addPermission object, 'ROLE_USER', BasePermission.WRITE
 
 		}
 	}

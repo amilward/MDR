@@ -88,14 +88,14 @@
                 Properties:
             </div>
             <div class="panel-body">
-                <form class="form" role="form">
+                <form class="form" role="form" data-bind="submit: $root.updatePathway">
                     <div class="form-group">
                         <label for="txt-properties-name" class="control-label">Name: </label>
-                        <input id="txt-properties-name" type="text" class="form-control" data-bind="value: name, valueUpdate: 'input'" />
+                        <input id="txt-properties-name" type="text" class="form-control" data-bind="value: name, event: {change: $root.updatePathway}" />
                     </div>
                     <div class="form-group">
                         <label for="txt-desc" class="control-label">Description: </label>
-                        <textarea id="txt-desc" rows="3" class="form-control" data-bind="value: description, valueUpdate: 'input'"></textarea>
+                        <textarea id="txt-desc" rows="3" class="form-control" data-bind="value: description, event: {change: $root.updatePathway}"></textarea>
                     </div>
 
                 </form>
