@@ -1,7 +1,7 @@
 /**
  * Author: Adam Milward (adam.milward@outlook.com)
  */
-package uk.co.mdc.pathways;
+package uk.co.mdc.spec.pathways;
 import geb.spock.GebReportingSpec
 
 import uk.co.mdc.pages.authentication.LoginPage
