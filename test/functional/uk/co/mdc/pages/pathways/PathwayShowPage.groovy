@@ -44,9 +44,11 @@ class PathwayShowPage extends BasePageWithNav{
 		deleteSelectedElementButton {$("#deleteSelectedElement")}
 		propertiesName {js.exec("return document.getElementById('txt-properties-name').value")}
 		modalLabel { $("#createNodeModalLabel") }
+        createNode{$("#CreateNode")}
 		createNodeName { $("#createNodeName") }
 		createNodeDescription { $("#createNodeDescription") }
 		createNodeButton { $("#createNodeButton") }
+        cancelCreateNodeButton {createNode.find("button", text:"Cancel")}
 		newNodeTitleDiv { pathwayCanvas.find("div", text: "testNode")}
 
         editModal { module PathwayEditModal }

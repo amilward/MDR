@@ -104,5 +104,35 @@ class PathwayAddDeleteNodeSpec extends GebReportingSpec {
 						}
 							
 		}
-	
+
+    def "Set node name as node description by default" () {
+
+        driver.manage().window().setSize(new Dimension(1024, 768))
+        to LoginPage
+        loginRegularUser()
+        at DashboardPage
+
+        nav.goToPathwayListPage()
+        at PathwayListPage
+
+        goToPathwayInList(0)
+
+        at PathwayShowPage
+
+        when: "I click on create Node"
+        addNodeButton.click()
+
+        then: "the create node modal pops up"
+        waitFor{
+            modalLabel.text() == "Create Node"
+        }
+
+        when: "I fill in the name"
+        createNodeName = "testNode"
+        then: "the description of the node is set as the node name by default"
+        assert createNodeDescription == createNodeName
+
+        cancelCreateNodeButton.click() // Is this necessary?
+    }
+
 }
