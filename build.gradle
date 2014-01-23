@@ -1,15 +1,34 @@
+import org.gradle.api.tasks.Exec
 
-/**
-Install the bower components for front-end library management
-  
-  TODO: 
-**/
-task installBowerComponents(type: Exec){
-  workingDir "web-app/"
-  commandLine 'bower', 'install' 
+defaultTasks 'bower'
+
+// Get the path for the locally installed binaries
+task npmBin << {
+    new ByteArrayOutputStream().withStream { os ->
+        def result = exec {
+            executable = 'npm'
+            args = ['bin']
+            standardOutput = os
+        }
+        ext.binPath = os.toString().trim() + "/"
+    }
 }
 
-//dependencies {
-//  bootstrap "org.grails:grails-plugin-tomcat:${project.grails.grailsVersion}" // No container is deployed by default, so add this
-//  compile 'org.grails.plugins:resources:1.2' // Just an example of adding a Grails plugin
-//}
+
+// Install packages from package.json
+task npm(type: Exec) {
+    group = "Build"
+    description = "Installs all Node.js dependencies defined in package.json"
+    commandLine = ["npm", "install"]
+    inputs.file "package.json"
+    outputs.dir "node_modules"
+
+    tasks.npmBin.execute()
+
+}
+
+
+// Install the bower components for front-end library management
+task bower(dependsOn: 'npm', type: Exec){
+    commandLine "${npmBin.binPath}bower", 'install'
+}

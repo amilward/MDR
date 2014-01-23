@@ -62,6 +62,7 @@
                         <li><a href="#">Contact</a></li>
 </sec:ifNotLoggedIn>
 <sec:ifLoggedIn>
+                        <li><a href="${createLink(uri: '/dashboard/')}">Dashboard</a></li>
                         <!-- Metadata curation menu -->
                         <li><g:link action="list" controller="ValueDomain"> Data model </g:link></li>
 

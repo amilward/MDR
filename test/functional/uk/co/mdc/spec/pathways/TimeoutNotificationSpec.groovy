@@ -1,4 +1,4 @@
-package uk.co.mdc.pathways;
+package uk.co.mdc.spec.pathways;
 
 
 import geb.spock.GebReportingSpec

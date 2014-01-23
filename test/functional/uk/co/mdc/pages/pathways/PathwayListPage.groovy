@@ -39,6 +39,16 @@ class PathwayListPage extends BasePageWithNav{
 
     }
 
+    boolean goToPathwayInList(int index){
+        def link = dataTableRows.find("a")[index]
+        if(link){
+            link.click()
+            return true
+        }else{
+            return false
+        }
+    }
+
     def getPathwayLink(pathwayName){
         return dataTableRows.find("a", text: pathwayName)
     }
