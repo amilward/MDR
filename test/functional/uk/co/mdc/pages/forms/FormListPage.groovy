@@ -4,7 +4,7 @@ import geb.Browser
 import geb.Page
 import geb.Module
 
-class PathwayListPage extends Page{
+class FormListPage extends Page{
 	
 	static url = "/formDesign/list"
 	

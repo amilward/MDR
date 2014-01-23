@@ -17,13 +17,41 @@ class DashboardPage extends BasePageWithNav{
 	static content = {
 		nav { module TopNavElements }
 		dashboardOptions { $("#dashboard-options")}
+
 		pathwaysLink { $("#pathways") }
-		dashboardPathways { $("#dashboard-pathways") }
+        formScreenLink{ $("#forms")}
+
+        dashboardForms { $("#dashboard-forms") }
+        formsTable { dashboardForms.find("table",0)}
+
+        dashboardPathways { $("#dashboard-pathways") }
 		createPathwaysLink { $("#dashCreatePathway") }
-        pathwaysTable { $("#dashboard-pathways").find("table",0)}
+        pathwaysTable { dashboardPathways.find("table",0)}
 	}
 
     def getPathwayLink(pathwayName){
         return pathwaysTable.find("a", text: pathwayName)
+    }
+
+    def goToPathwaysScreen(){
+        pathwaysLink.click()
+        waitFor{
+            pathwaysTable.displayed
+        }
+    }
+
+    def getPathwaysLinks(){
+        return pathwaysTable.find("a")
+    }
+
+    def goToFormsScreen(){
+        formScreenLink.click()
+        waitFor{
+            formsTable.displayed
+        }
+    }
+
+    def getFormsLinks(){
+        return formsTable.find("a")
     }
 }
