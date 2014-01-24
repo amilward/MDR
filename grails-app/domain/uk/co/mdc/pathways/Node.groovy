@@ -1,39 +1,34 @@
 package uk.co.mdc.pathways
 
-import uk.co.mdc.model.Collection;
+import grails.rest.Linkable
 
-class Node extends PathwayElement{
-	
-	String x
-	String y
-	PathwaysModel subModel
-	PathwaysModel pathwaysModel
 
-	static belongsTo = [pathwaysModel: PathwaysModel]
-	
-	static hasOne = [subModel: PathwaysModel]
-	
-	public Node(String refId, String name,String x, String y, String desc, Collection peCollection){
-		super( refId, name, desc, peCollection)
-		this.x = x
-		this.y = y
-	}
-	
-	static hasMany = [
-		mandatoryInputs: Collection,
-		mandatoryOutputs: Collection,
-		optionalInputs: Collection,
-		optionalOutputs: Collection]
+@Linkable
+class Node extends Pathway{
+
+    String name
+    String description
+
+    // Coordinates for rendering node
+    int x
+    int y
+
+    // The owning pathway
+    Pathway parent
+    Pathway subPathway
+
+    // TODO Forms
+    // TODO Data elements
+//    static hasMany = [
+//            dataElements: DataElement
+//            form: Form
+//    ]
+
 
     static constraints = {
-		pathwaysModel nullable: true
-		subModel nullable: true
-		x nullable:true
-		y nullable:true
+        description nullable:true
+        subPathway nullable: true
+        x nullable:true
+        y nullable:true
     }
-	
-	static mapping = {
-		sort "name"
-	}
-
 }

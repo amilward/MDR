@@ -32,7 +32,7 @@
 	<g:select name="pathwayElements" from="${uk.co.mdc.pathways.PathwayElement.list()}" multiple="multiple" optionKey="id" size="5" value="${pathwaysModelInstance?.pathwayElements*.id}" class="many-to-many"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: pathwaysModelInstance, field: 'versionNo', 'error')} ">
+<div class="fieldcontain ${hasErrors(bean: pathwaysModelInstance, field: 'userVersion', 'error')} ">
 	<label for="versionNo">
 		<g:message code="pathwaysModel.versionNo.label" default="Version No" />
 		

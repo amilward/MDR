@@ -181,17 +181,7 @@ modules = {
     }
 
 
-    /**
-     * Angular support
-     */
-    angular {
-        resource id: 'js', url: [dir: 'bower_components/angular', file: "angular.js"], nominify: true
-    }
 
-    angularPathwaysApp {
-        dependsOn 'angular'
-        resource id: 'js', url: [dir: 'js/angular/', file: "angular-app.js"], nominify: true
-    }
 
     /**
      *  Application libraries

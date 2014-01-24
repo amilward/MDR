@@ -37,7 +37,7 @@
 </head>
 <body>
 
-	<g:render template="/pathwaysModel/createPathwayModal" />
+	<g:render template="/pathway/createPathwayModal" />
 	<g:render template="/formDesign/createFormModal" />
     <!-- BEGIN WRAP. We use the wrap to enable a sticky footer element-->
     <div id="wrap">

@@ -12,9 +12,7 @@ import uk.co.mdc.model.DataElementCollection
 import uk.co.mdc.model.ConceptualDomain
 import uk.co.mdc.model.Document
 import uk.co.mdc.model.DataElementValueDomain
-import uk.co.mdc.pathways.PathwaysModel
-import uk.co.mdc.pathways.Link
-import uk.co.mdc.pathways.Node
+import uk.co.mdc.pathways.Pathway
 
 class ImportNHICService {
 
@@ -43,7 +41,7 @@ class ImportNHICService {
 		grantUserPermissions(Document.list())
 		grantUserPermissions(ExternalReference.list())
 		grantUserPermissions(Collection.list())
-		grantUserPermissions(PathwaysModel.list())
+		grantUserPermissions(Pathway.list())
     }
 	private grantUserPermissions(objectList){
 		for (object in objectList) {

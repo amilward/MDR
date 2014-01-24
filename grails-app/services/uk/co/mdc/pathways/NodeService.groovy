@@ -13,7 +13,6 @@ import org.springframework.security.acls.model.Permission;
 import org.springframework.transaction.annotation.Transactional;
 
 import uk.co.mdc.forms.FormDesign;
-import uk.co.mdc.pathways.PathwaysModel;
 
 class NodeService {
 
@@ -196,7 +195,7 @@ class NodeService {
 	
 	@Transactional
 	@PreAuthorize("hasPermission(#nodeInstance, write) or hasPermission(#nodeInstance, admin)")
-	Node update(Node nodeInstance, Map parameters, PathwaysModel subPathway) {
+	Node update(Node nodeInstance, Map parameters, Pathway subPathway) {
 		
 		def forms = []
 		if(parameters?.forms){

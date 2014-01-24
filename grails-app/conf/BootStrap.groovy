@@ -9,7 +9,7 @@ import uk.co.mdc.forms.*
 import uk.co.mdc.model.*
 import uk.co.mdc.pathways.Link
 import uk.co.mdc.pathways.Node
-import uk.co.mdc.pathways.PathwaysModel
+import uk.co.mdc.pathways.Pathway
 import org.codehaus.groovy.grails.plugins.springsecurity.SecurityFilterPosition
 import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils
 import org.springframework.security.acls.domain.BasePermission
@@ -18,7 +18,7 @@ import org.springframework.security.acls.domain.BasePermission
 class BootStrap {
 	def aclService
 	def aclUtilService
-	def objectIdentityRetrievalStrategy
+	//def objectIdentityRetrievalStrategy
 	def sessionFactory
 	def springSecurityService
 	def grailsApplication
@@ -201,7 +201,9 @@ class BootStrap {
 		grantAdminPermissions(InputField.list())
 		grantAdminPermissions(Node.list())
 		grantAdminPermissions(Link.list())
-		grantAdminPermissions(PathwaysModel.list())
+
+        // We don't need to add permissions for nodes and links
+		grantAdminPermissions(Pathway.list())
 
 
 		// Grant ROLE_USER on everything
@@ -216,9 +218,9 @@ class BootStrap {
 		grantUserPermissions(FormDesign.list())
 		grantUserPermissions(QuestionElement.list())
 		grantUserPermissions(InputField.list())
-        grantUserPermissions(Node.list())
-        grantUserPermissions(Link.list())
-		grantUserPermissions(PathwaysModel.list())
+
+        // We don't need to add permissions for nodes and links
+		grantUserPermissions(Pathway.list())
 
 	}
 
@@ -558,261 +560,247 @@ class BootStrap {
 			formDesignInstance.addToFormDesignElements(section2)
 		}
 
-		if(!PathwaysModel.count()){
+		if(!Pathway.count()){
 
-			
-			
-			def pathway1 = new PathwaysModel(
-				name: 'Guarding Patient on recovery and transfer to nursing ward',
-				versionNo: '0.1',
-				isDraft: true
-				).save(failOnError:true)
-				
-			def node1 = new Node(
-					
-					name: 'Guard Patient',
-					x: '5px',
-					y: '0px',
-					description: 'guard patient on recovery'
-					).save(flush:true)
-
-			def node2 = new Node(
-					
-					name: 'Recovery',
-					x: '150px',
-					y: '100px',
-					description: 'recover'
-					).save(flush:true)
-
-			def node3 = new Node(
-					
-					name: 'Transfer to nursing ward',
-					x: '250px',
-					y: '300px',
-					description: 'transfer patient to the nursing ward'
-					).save(flush:true)
-
-			def link1 = new Link(
-					name: 'TM1',
-					source: node1,
-					target: node2,
-					).save(flush:true)
-
-			def link2 = new Link(
-					name: 'TM2',
-					source: node2,
-					target: node3,
-					).save(flush:true)
-
-
-
-			pathway1.addToPathwayElements(node1)
-			pathway1.addToPathwayElements(node2)
-			pathway1.addToPathwayElements(node3)
-			pathway1.addToPathwayElements(link1)
-			pathway1.addToPathwayElements(link2)
-			pathway1.save(flush:true)
-			
-			
 			//Add a form to the pathways
 			
-						def rulepw1 = new Rule(
-								name: 'display section rule',
-								predicate: 'question1 > 5',
-								consequence: 'display'
-								).save(failOnError:true)
-			
-						def inputFieldpw1 = new InputField(
-			
-								defaultValue: 'test default',
-								placeholder: 'test placeholder',
-								maxCharacters: 11,
-								unitOfMeasure: 'test UOM',
-								dataType: string,
-								format: 'test format',
-			
-								).save(failOnError: true)
-			
-						def inputFieldpw2 = new InputField(
-			
-								defaultValue: 'test default',
-								placeholder: 'test placeholder',
-								maxCharacters: 20,
-								unitOfMeasure: 'test2 UOM',
-								dataType: string,
-								format: 'test format2',
-			
-								).save(failOnError: true)
-			
-						def inputFieldpw3 = new InputField(
-			
-								defaultValue: 'te3st default',
-								placeholder: 'test3 placeholder',
-								maxCharacters: 13,
-								unitOfMeasure: 'tes3t UOM',
-								dataType: date,
-								format: 'test forma3t',
-			
-								).save(failOnError: true)
-			
-						def inputFieldpw4 = new InputField(
-			
-								defaultValue: 'test default',
-								placeholder: 'test placeholder',
-								maxCharacters: 9,
-								unitOfMeasure: 'test UOM',
-								dataType: string,
-								format: 'test format',
-			
-								).save(failOnError: true)
-			
-						def inputFieldpw5 = new InputField(
-			
-								defaultValue: 'test default',
-								placeholder: 'test pladasceholder',
-								maxCharacters: 11,
-								unitOfMeasure: 'test UOM',
-								dataType: string,
-								format: 'test format',
-			
-								).save(failOnError: true)
-			
-						def questionpw1 = new QuestionElement(
-								designOrder: 1,
-								prompt: 'how old are you',
-								style: 'this style1',
-								label: 'how old are you?',
-								additionalInstructions: 'more instructions',
-								inputField: inputFieldpw1
-								).save(failOnError: true)
-			
-						def questionpw2 = new QuestionElement(
-								designOrder: 2,
-								prompt: 'operation reference',
-								style: 'this style3',
-								label: 'origin of referral',
-								additionalInstructions: 'more instructions2 ',
-								inputField: inputFieldpw2
-								).save(failOnError: true)
-						
-						
-			
-						def questionpw3 = new QuestionElement(
-								designOrder: '3',
-								prompt: 'this is the thirs question',
-								style: 'this style5',
-								label: 'what is your favorite colour ?',
-								additionalInstructions: 'more instructions',
-								inputField: inputFieldpw3
-								).save(failOnError: true)
-			
-						def questionpw4 = new QuestionElement(
-								designOrder: 4,
-								prompt: 'this is the 4th question',
-								style: 'this style5',
-								label: 'what is your favorite animal ?',
-								additionalInstructions: 'more instructions',
-								inputField: inputFieldpw4
-								).save(failOnError: true)
-			
-						def questionpw5 = new QuestionElement(
-								designOrder: 5,
-								prompt: 'this is the 5th question',
-								style: 'this style5',
-								label: 'what is your favorite car ?',
-								additionalInstructions: 'more instructions',
-								inputField: inputFieldpw5
-								).save(failOnError: true)
-			
-			
-						def formDesignPW = new FormDesign(
-						name:'formDesignNamepw1',
-						versionNo:'V0.145',
-						isDraft:true,
-						description:'test description 1'
-						).save(failOnError: true)
-			
-			
-						def sectionpw1 = new SectionElement(
-								title: 'sectionpw1',
-								designOrder: 1
-								).save(failOnError:true)
-			
-						def sectionpw2 = new SectionElement(
-								title: 'sectionpw2',
-								designOrder: 2
-								).save(failOnError:true)
-			
-						sectionpw1.addToQuestionElements(questionpw1)
-						sectionpw1.addToQuestionElements(questionpw2)
-						sectionpw1.addToQuestionElements(questionpw3)
-			
-			
-						sectionpw2.addToRules(rulepw1)
-						sectionpw2.addToQuestionElements(questionpw4)
-						sectionpw2.addToQuestionElements(questionpw5)
-			
-						formDesignPW.addToFormDesignElements(sectionpw1)
-						formDesignPW.addToFormDesignElements(sectionpw2)
-						//End add form
-			
-			
-						def node11 = new Node(
-								
-								name: 'transfer to O.R.',
-								x: '5px',
-								y: '0px',
-								description: 'transfer patient to the Operating Room',
-								).save(flush:true)
-			
-			
-						def node12 = new Node(
-								
-								name: 'Anaesthesia and Operating Patient.',
-								x: '115px',
-								y: '110px',
-								description: 'perform the operation',
-								).save(flush:true)
-			
-			
-						def node13 = new Node(
-								
-								name: 'Guarding Patient on recovery and transfer to nursing ward',
-								x: '325px',
-								y: '330px',
-								description: 'transfer patient to the Operating Room',
-								subModel: pathway1
-								).save(flush:true)
-			
-			
-			
-						def link21 = new Link(
-								
-								name: 'TM21',
-								source: node11,
-								target: node12
-								).save(flush:true)
-			
-						def link22 = new Link(
-								
-								name: 'TM22',
-								source: node12,
-								target: node13,
-								).save(flush:true)
-			
-			
-						def pathway2 = new PathwaysModel(
-								name: 'Transplanting and Monitoring Pathway',
-								versionNo: '0.2',
-								isDraft: true
-						)
-						pathway2.addToPathwayElements(node11)
-						pathway2.addToPathwayElements(node12)
-						pathway2.addToPathwayElements(node13)
-						pathway2.addToPathwayElements(link21)
-						pathway2.addToPathwayElements(link22)
-						pathway2.save(flush:true)
+//						def rulepw1 = new Rule(
+//								name: 'display section rule',
+//								predicate: 'question1 > 5',
+//								consequence: 'display'
+//								).save(failOnError:true)
+//
+//						def inputFieldpw1 = new InputField(
+//
+//								defaultValue: 'test default',
+//								placeholder: 'test placeholder',
+//								maxCharacters: 11,
+//								unitOfMeasure: 'test UOM',
+//								dataType: string,
+//								format: 'test format',
+//
+//								).save(failOnError: true)
+//
+//						def inputFieldpw2 = new InputField(
+//
+//								defaultValue: 'test default',
+//								placeholder: 'test placeholder',
+//								maxCharacters: 20,
+//								unitOfMeasure: 'test2 UOM',
+//								dataType: string,
+//								format: 'test format2',
+//
+//								).save(failOnError: true)
+//
+//						def inputFieldpw3 = new InputField(
+//
+//								defaultValue: 'te3st default',
+//								placeholder: 'test3 placeholder',
+//								maxCharacters: 13,
+//								unitOfMeasure: 'tes3t UOM',
+//								dataType: date,
+//								format: 'test forma3t',
+//
+//								).save(failOnError: true)
+//
+//						def inputFieldpw4 = new InputField(
+//
+//								defaultValue: 'test default',
+//								placeholder: 'test placeholder',
+//								maxCharacters: 9,
+//								unitOfMeasure: 'test UOM',
+//								dataType: string,
+//								format: 'test format',
+//
+//								).save(failOnError: true)
+//
+//						def inputFieldpw5 = new InputField(
+//
+//								defaultValue: 'test default',
+//								placeholder: 'test pladasceholder',
+//								maxCharacters: 11,
+//								unitOfMeasure: 'test UOM',
+//								dataType: string,
+//								format: 'test format',
+//
+//								).save(failOnError: true)
+//
+//						def questionpw1 = new QuestionElement(
+//								designOrder: 1,
+//								prompt: 'how old are you',
+//								style: 'this style1',
+//								label: 'how old are you?',
+//								additionalInstructions: 'more instructions',
+//								inputField: inputFieldpw1
+//								).save(failOnError: true)
+//
+//						def questionpw2 = new QuestionElement(
+//								designOrder: 2,
+//								prompt: 'operation reference',
+//								style: 'this style3',
+//								label: 'origin of referral',
+//								additionalInstructions: 'more instructions2 ',
+//								inputField: inputFieldpw2
+//								).save(failOnError: true)
+//
+//
+//
+//						def questionpw3 = new QuestionElement(
+//								designOrder: '3',
+//								prompt: 'this is the thirs question',
+//								style: 'this style5',
+//								label: 'what is your favorite colour ?',
+//								additionalInstructions: 'more instructions',
+//								inputField: inputFieldpw3
+//								).save(failOnError: true)
+//
+//						def questionpw4 = new QuestionElement(
+//								designOrder: 4,
+//								prompt: 'this is the 4th question',
+//								style: 'this style5',
+//								label: 'what is your favorite animal ?',
+//								additionalInstructions: 'more instructions',
+//								inputField: inputFieldpw4
+//								).save(failOnError: true)
+//
+//						def questionpw5 = new QuestionElement(
+//								designOrder: 5,
+//								prompt: 'this is the 5th question',
+//								style: 'this style5',
+//								label: 'what is your favorite car ?',
+//								additionalInstructions: 'more instructions',
+//								inputField: inputFieldpw5
+//								).save(failOnError: true)
+//
+//
+//						def formDesignPW = new FormDesign(
+//						name:'formDesignNamepw1',
+//						versionNo:'V0.145',
+//						isDraft:true,
+//						description:'test description 1'
+//						).save(failOnError: true)
+//
+//
+//						def sectionpw1 = new SectionElement(
+//								title: 'sectionpw1',
+//								designOrder: 1
+//								).save(failOnError:true)
+//
+//						def sectionpw2 = new SectionElement(
+//								title: 'sectionpw2',
+//								designOrder: 2
+//								).save(failOnError:true)
+//
+//						sectionpw1.addToQuestionElements(questionpw1)
+//						sectionpw1.addToQuestionElements(questionpw2)
+//						sectionpw1.addToQuestionElements(questionpw3)
+//
+//
+//						sectionpw2.addToRules(rulepw1)
+//						sectionpw2.addToQuestionElements(questionpw4)
+//						sectionpw2.addToQuestionElements(questionpw5)
+//
+//						formDesignPW.addToFormDesignElements(sectionpw1)
+//						formDesignPW.addToFormDesignElements(sectionpw2)
+//						//End add form
+//
 
+
+
+
+
+
+            Node subPathway1 = new Node(
+                    name: 'Guarding Patient on recovery and transfer to nursing ward',
+                    description: 'transfer patient to the Operating Room',
+                    userVersion: '0.1',
+                    isDraft: true,
+                    x: '325px',
+                    y: '330px',
+            ).save(failOnError:true)
+
+            Node node1 = new Node(
+                    name: 'Guard Patient',
+                    x: '5px',
+                    y: '0px',
+                    description: 'guard patient on recovery'
+            ).save(failOnError: true)
+
+            Node node2 = new Node(
+                    name: 'Recovery',
+                    x: '150px',
+                    y: '100px',
+                    description: 'recover'
+            ).save(failOnError: true)
+
+            Node node3 = new Node(
+                    name: 'Transfer to nursing ward',
+                    x: '250px',
+                    y: '300px',
+                    description: 'transfer patient to the nursing ward'
+            ).save(failOnError: true)
+
+            def link1 = new Link(
+                    name: 'TM1',
+                    pathway: subPathway1,
+                    source: node1,
+                    target: node2,
+            ).save(failOnError:true)
+
+            def link2 = new Link(
+                    name: 'TM2',
+                    pathway: subPathway1,
+                    source: node2,
+                    target: node3,
+            ).save(failOnError:true)
+
+            subPathway1.addToNodes(node1)
+            subPathway1.addToNodes(node2)
+            subPathway1.addToNodes(node3)
+            subPathway1.addToLinks(link1)
+            subPathway1.addToLinks(link2)
+
+            def pathway1 = new Pathway(
+                    name: 'Transplanting and Monitoring Pathway',
+                    userVersion: '0.2',
+                    isDraft: true
+            ).save(failOnError: true)
+
+            def node21 = new Node(
+                    name: 'transfer to O.R.',
+                    x: '5px',
+                    y: '0px',
+                    description: 'transfer patient to the Operating Room',
+            ).save(flush:true)
+
+
+            def node22 = new Node(
+                    name: 'Anaesthesia and Operating Procedure',
+                    x: '115px',
+                    y: '110px',
+                    description: 'perform the operation',
+            ).save(flush:true)
+
+            def link21 = new Link(
+                    name: 'TM21',
+                    source: node21,
+                    target: node22,
+                    pathway: pathway1,
+            ).save(flush:true)
+
+            def link22 = new Link(
+                    name: 'TM22',
+                    source: node22,
+                    target: subPathway1,
+                    pathway: pathway1,
+            ).save(flush:true)
+
+
+            subPathway1.addToNodes(node21)
+                       .addToNodes(node22)
+                       .addToNodes(subPathway1)
+                       .addToLinks(link21)
+                       .addToLinks(link22)
 		}		
 	}
 	

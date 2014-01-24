@@ -97,14 +97,14 @@
 		  					<td>
 			  					<ul>
 			  						<g:each var="pathway" in="${draftPathways}">
-                                        <li><g:link controller="pathwaysModel" action="show" id="${pathway.id}">${pathway.name}</g:link> </li>
+                                        <li><g:link controller="pathway" action="show" id="${pathway.id}">${pathway.name}</g:link> </li>
 									</g:each>
 			  					</ul>
 			  				</td>
 		  					<td>
 			  					<ul>
 			  						<g:each var="pathway" in="${finalizedPathways}">
-                                        <li><g:link controller="pathwaysModel" action="show" id="${pathway.id}">${pathway.name}</g:link> </li>
+                                        <li><g:link controller="pathway" action="show" id="${pathway.id}">${pathway.name}</g:link> </li>
 									</g:each>
 			  					</ul>
 			  				</td>

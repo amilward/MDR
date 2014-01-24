@@ -156,7 +156,7 @@ class FormDesignService {
 			collection : collection,
 			name : form?.formDesignName,
 			description : form?.formDescription,
-			versionNo : form?.versionNo,
+			versionNo : form?.userVersion,
 			isDraft : form?.isDraft
 			).save(flush:true)
 		
@@ -347,7 +347,7 @@ class FormDesignService {
 		
 		formDesignInstance.name = form.formDesignName
 		formDesignInstance.description = form.formDescription
-		formDesignInstance.versionNo = form.versionNo
+		formDesignInstance.versionNo = form.userVersion
 		formDesignInstance.isDraft = form.isDraft.toBoolean()
 		
 		//update questions.

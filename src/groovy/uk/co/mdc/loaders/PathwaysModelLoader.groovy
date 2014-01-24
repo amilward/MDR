@@ -17,16 +17,16 @@ class PathwaysModelLoader {
 	 * @return Collection of loaded PathwayModels
 	 * @throws RuntimeException
 	 */
-	static List<PathwaysModel> loadXML(InputStream inputStream) {
-		def (List<PathwaysModel> pathwaysModels, List<HashMap<String,PathwayElement>> idToPathwayElementList) = mappedLoadXML(inputStream)
+	static List<Pathway> loadXML(InputStream inputStream) {
+		def (List<Pathway> pathwaysModels, List<HashMap<String,Node>> idToNodeList) = mappedLoadXML(inputStream)
 
 		return pathwaysModels
 	}
 
-	/** This method also exports the mapping used from the node identifiers to the PathwayElements
+	/** This method also exports the mapping used from the node identifiers to the Nodes
 	 * This is useful in testing the results. The method is protected as it is really only for
 	 * testing purposes and may change in the future.
-	 * @returns a list containing two elements: [List<PathwaysModel>,List<HashMap<String,PathwayElement>>]
+	 * @returns a list containing two elements: [List<Pathway>,List<HashMap<String,Node>>]
 	 */
 	protected static def mappedLoadXML(InputStream inputStream) {
 
@@ -39,9 +39,9 @@ class PathwaysModelLoader {
 			throw new RuntimeException("Unable to load XML",e);
 		}
 
-		//Define a list to hold the resulting PathwaysModels - this will be returned.
-		List<PathwaysModel> pathwaysModels = []
-		List<HashMap<String,PathwayElement>> idToPathwayElementList = []
+		//Define a list to hold the resulting Pathways - this will be returned.
+		List<Pathway> pathwaysModels = []
+		List<HashMap<String,Node>> idToNodeList = []
 		
 		//Check that there is at least a root element with the namespace
 		String nsXml = slurper.namespaceURI().toString()
@@ -51,47 +51,47 @@ class PathwaysModelLoader {
 			throw new RuntimeException("Unknown namespace in supplied XML: '"+nsXml+"' (Expected: '"+NS_PATHWAYS_MODEL+"')")
 		}
 
-		//test: "throw an exception when root element is not a PathwaysModels element"
-		final String EXPECTED_ROOT_ELEMENT_NAME = "PathwaysModels"
+		//test: "throw an exception when root element is not a Pathways element"
+		final String EXPECTED_ROOT_ELEMENT_NAME = "Pathways"
 		String rootElementName = slurper.name()
 
 		if (!rootElementName.equals(EXPECTED_ROOT_ELEMENT_NAME)) {
 			throw new RuntimeException("Unknown root element name in supplied XML: '"+rootElementName+"' (Expected: '"+EXPECTED_ROOT_ELEMENT_NAME+"')")
 		}
 
-		/* For each pm:PathwaysModel element in the pathways models :
+		/* For each pm:Pathway element in the pathways models :
 		 *  Create an empty pathway model
 		 *  Load (slurp) the pathway model nodes
 		 *  Load (slurp) the pathway model links
 		 *  [If there is an exception in slurp it implicitly gets passed up.]
 		 */
-		slurper."pm:PathwaysModel".each { pathwaysModelElement ->
+		slurper."pm:Pathway".each { pathwaysModelElement ->
 
-			def pathwaysModel = new PathwaysModel()
-			def idToPathwayElement = new HashMap<String,PathwayElement>();
-			model_slurpModelsAndNodes(idToPathwayElement, pathwaysModel, pathwaysModelElement)
+			def pathwaysModel = new Pathway()
+			def idToNode = new HashMap<String,Node>();
+			model_slurpModelsAndNodes(idToNode, pathwaysModel, pathwaysModelElement)
 
 			//Work out a mapping from IDs to nodes
 			//HashMap<String,Node> idRefToNode = new HashMap<String,Node>()
-			//addPathwaysModelID(pathwaysModel,idToPathwayElement);
+			//addPathwayID(pathwaysModel,idToNode);
 			//This is now done as it loads
 
-			model_slurpLinks(idToPathwayElement, pathwaysModel,  pathwaysModelElement)
+			model_slurpLinks(idToNode, pathwaysModel,  pathwaysModelElement)
 
 			//We get this far if there are no exceptions, so add to the list
 			pathwaysModels += pathwaysModel
-			idToPathwayElementList += idToPathwayElement
+			idToNodeList += idToNode
 		}
 
 		
-		return [pathwaysModels, idToPathwayElementList]
+		return [pathwaysModels, idToNodeList]
 	}
 
-	protected static def model_slurpModelsAndNodes(HashMap<String,PathwayElement> idToPathwayElement, PathwaysModel pathwaysModel, groovy.util.slurpersupport.NodeChild pathwaysModelElement) {
+	protected static def model_slurpModelsAndNodes(HashMap<String,Node> idToNode, Pathway pathwaysModel, groovy.util.slurpersupport.NodeChild pathwaysModelElement) {
 
 		//We must have a name
 		if (pathwaysModelElement.attributes().get('name') == null) {
-			throw new RuntimeException("Missing PathwaysModel/@name attribute")
+			throw new RuntimeException("Missing Pathway/@name attribute")
 		}
 		pathwaysModel.name = pathwaysModelElement.@name
 
@@ -106,7 +106,7 @@ class PathwaysModelLoader {
 		def descriptionCount = pathwaysModelElement.Description.size()
 
 		if (descriptionCount > 1) {
-			throw new RuntimeException("Too many Description elements. A maximum of one Description element is allowed in each PathwaysModel element.")
+			throw new RuntimeException("Too many Description elements. A maximum of one Description element is allowed in each Pathway element.")
 		} else if (descriptionCount == 1) {
 			pathwaysModel.description = pathwaysModelElement.Description.text()
 		}
@@ -123,7 +123,7 @@ class PathwaysModelLoader {
 			uk.co.mdc.pathways.Node node = new uk.co.mdc.pathways.Node()
 
 			//Slurp data into it
-			node_slurpModelsAndNodes(idToPathwayElement, node, it)
+			node_slurpModelsAndNodes(idToNode, node, it)
 
 			//Add to pathway elements
 			pathwaysModel.pathwayElements += node
@@ -131,9 +131,9 @@ class PathwaysModelLoader {
 		}
 	}
 
-	protected static def model_slurpLinks(HashMap<String,PathwayElement> idToPathwayElement, PathwaysModel pathwaysModel, groovy.util.slurpersupport.NodeChild pathwaysModelElement) {
+	protected static def model_slurpLinks(HashMap<String,Node> idToNode, Pathway pathwaysModel, groovy.util.slurpersupport.NodeChild pathwaysModelElement) {
 
-		assert idToPathwayElement != null
+		assert idToNode != null
 
 		//Create links
 		pathwaysModelElement.Link.each { linkElement ->
@@ -144,7 +144,7 @@ class PathwaysModelLoader {
 
 
 			//Slurp data into it
-			link_slurpLinks(idToPathwayElement, link, linkElement)
+			link_slurpLinks(idToNode, link, linkElement)
 
 			//Add to pathway elements
 			pathwaysModel.pathwayElements += link
@@ -163,16 +163,16 @@ class PathwaysModelLoader {
 			String nodeIdRef = nodeElement.@id.toString()
 
 			//Find the node
-			Node node = idToPathwayElement[nodeIdRef]
+			Node node = idToNode[nodeIdRef]
 
 			//Slurp link data into it
-			node_slurpLinks(idToPathwayElement, node, nodeElement)
+			node_slurpLinks(idToNode, node, nodeElement)
 		}
 	}
 
 	/* NODE */
 
-	protected static def node_slurpModelsAndNodes(HashMap<String,PathwayElement> idToPathwayElement, Node node, groovy.util.slurpersupport.NodeChild nodeElement) {
+	protected static def node_slurpModelsAndNodes(HashMap<String,Node> idToNode, Node node, groovy.util.slurpersupport.NodeChild nodeElement) {
 
 		//We must have an id
 		if (nodeElement.attributes().get('id') == null) {
@@ -181,10 +181,10 @@ class PathwaysModelLoader {
 	 
 
 		String tId = nodeElement.@id.toString()
-		if (idToPathwayElement[tId] != null) {
+		if (idToNode[tId] != null) {
 			throw new RuntimeException("There are two nodes with the same id='"+tId+"'")
 		}
-		idToPathwayElement[tId] = node
+		idToNode[tId] = node
 		
 		//We must have a name
 		if (nodeElement.attributes().get('name') == null) {
@@ -206,39 +206,39 @@ class PathwaysModelLoader {
 		}
 
 		//Make sure there is a submodel list to put items into
-		def numberOfsubModelElements = nodeElement."pm:PathwaysModel".size()
+		def numberOfsubModelElements = nodeElement."pm:Pathway".size()
 		if (numberOfsubModelElements != 0 && numberOfsubModelElements !=1) {
-			throw new RuntimeException("A node may only contain a maximum of 1 PathwaysModel.")
+			throw new RuntimeException("A node may only contain a maximum of 1 Pathway.")
 		}
 		if (numberOfsubModelElements )
 		//Load any submodels if present
-		/* For each pm:PathwaysModel element in the pathways models :
+		/* For each pm:Pathway element in the pathways models :
 		 *  Create an empty pathway model
 		 *  Load (slurp) the pathway model
 		 *  [If there is an exception in slurp it implicitly gets passed up.]
 		 */
-		nodeElement."pm:PathwaysModel".each { pathwaysModelElement ->
+		nodeElement."pm:Pathway".each { pathwaysModelElement ->
 
-			def createdPathwaysModel = new PathwaysModel()
-			model_slurpModelsAndNodes(idToPathwayElement,createdPathwaysModel,pathwaysModelElement)
+			def createdPathway = new Pathway()
+			model_slurpModelsAndNodes(idToNode,createdPathway,pathwaysModelElement)
 
 			//We get this far if there are no exceptions, so add to the list
-			node.subModel = createdPathwaysModel
-			createdPathwaysModel.parentNode = node
+			node.subModel = createdPathway
+			createdPathway.parentNode = node
 
 		}
 	}
 
-	protected static def node_slurpLinks(HashMap<String,PathwayElement> idToPathwayElement, Node node, groovy.util.slurpersupport.NodeChild nodeElement) {
-		nodeElement."pm:PathwaysModel".each { pathwaysModelElement ->
+	protected static def node_slurpLinks(HashMap<String,Node> idToNode, Node node, groovy.util.slurpersupport.NodeChild nodeElement) {
+		nodeElement."pm:Pathway".each { pathwaysModelElement ->
 			/* We know that the submodel must exist as we have already loaded it */
-			model_slurpLinks(idToPathwayElement, node.subModel, pathwaysModelElement)
+			model_slurpLinks(idToNode, node.subModel, pathwaysModelElement)
 		}
 	}
 
 	/* LINK */
 
-	protected static def link_slurpLinks(HashMap<String,PathwayElement> idToPathwayElement, Link link, groovy.util.slurpersupport.NodeChild linkElement) {
+	protected static def link_slurpLinks(HashMap<String,Node> idToNode, Link link, groovy.util.slurpersupport.NodeChild linkElement) {
 
 		//There must be a source and a target link id
 		if (linkElement.attributes().get('source') == null) {
@@ -254,26 +254,26 @@ class PathwaysModelLoader {
 		String targetRefId = linkElement.@target.toString()
 
 		//We must be able to dereference the ids
-		if (!idToPathwayElement.containsKey(sourceRefId)) {
+		if (!idToNode.containsKey(sourceRefId)) {
 
 			throw new RuntimeException("Unable to find Node for Link with source='"+sourceRefId+"'")
 		}
-		if (!idToPathwayElement.containsKey(targetRefId)) {
+		if (!idToNode.containsKey(targetRefId)) {
 
 			throw new RuntimeException("Unable to find Node for Link with target='"+targetRefId+"'")
 		}
 
 		//Actually dereference
-		link.source = idToPathwayElement[sourceRefId]
-		link.target = idToPathwayElement[targetRefId]
+		link.source = idToNode[sourceRefId]
+		link.target = idToNode[targetRefId]
 
 		//Load id and name if available		
 		String tId = linkElement.attributes().get('id').toString()
 		if (tId != null) {
-			if (idToPathwayElement[tId] != null) {
+			if (idToNode[tId] != null) {
 				throw new RuntimeException("There are two links with the same id='"+tId+"'")
 			}
-			idToPathwayElement[tId] = link
+			idToNode[tId] = link
 		}
 		
 		link.name = linkElement.attributes().get('name')?.toString()

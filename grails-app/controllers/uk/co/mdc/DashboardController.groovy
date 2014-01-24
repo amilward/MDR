@@ -3,18 +3,19 @@ package uk.co.mdc
 import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils
 
 import grails.plugins.springsecurity.Secured
-import uk.co.mdc.pathways.PathwaysModel
 import uk.co.mdc.forms.FormDesign
 
 
 @Secured(['ROLE_USER'])
 class DashboardController {
-	
+
+    def pathwayService
+
 	def index() {
 		
-	    def finalizedPathways = PathwaysModel.findAllByIsDraftAndParentNode(false,null)
+	    def finalizedPathways = pathwayService.topLevelPathways({draft: false})
 
-	    def draftPathways = PathwaysModel.findAllByIsDraftAndParentNode(true,null)
+	    def draftPathways = pathwayService.topLevelPathways({draft: true})
 
 	    def finalizedForms = FormDesign.findAll {
 	    	isDraft == false
