@@ -88,6 +88,7 @@
                 Properties:
             </div>
             <div class="panel-body">
+
                 <form class="form" role="form" data-bind="submit: $root.updatePathway">
                     <div class="form-group">
                         <label for="txt-properties-name" class="control-label">Name: </label>

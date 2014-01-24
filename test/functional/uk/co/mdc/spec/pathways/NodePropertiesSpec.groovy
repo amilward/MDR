@@ -1,4 +1,4 @@
-package uk.co.mdc.pathways
+package uk.co.mdc.spec.pathways
 
 import geb.spock.GebReportingSpec
 import org.openqa.selenium.Keys
@@ -17,7 +17,8 @@ class NodePropertiesSpec extends GebReportingSpec{
 
     def setup(){
         to LoginPage
-        loginRegularUser()
+        //loginRegularUser()
+        loginAdminUser()
         at DashboardPage
 
         nav.goToPathwayListPage()
@@ -26,11 +27,11 @@ class NodePropertiesSpec extends GebReportingSpec{
         getPathwayLinks()[0].click()
         at PathwayShowPage
     }
-    def "Updating properties is persisted instantly"(){
+    def "Updating properties and clicking out is persisted instantly"(){
 
         when: "I edit the name of a node and leave the textbox and refresh the page"
         //FIXME Replace with shortcuts in PathwayShowPage (they're on my other machine so I'm hard-coding to tick off the bug)
-        def node = pathwayCanvas.find(".node")[0]
+        def node = pathwayCanvas.find(".node")[1]
         node.click()
 
         def oldName = $('#txt-properties-name').value()
@@ -41,10 +42,10 @@ class NodePropertiesSpec extends GebReportingSpec{
         waitFor {
             node.text() == newName + oldName
         }
-        //go driver.currentUrl
-        refresh()
+        go driver.currentUrl // refresh() doesn't actually do anything :(
+
         at PathwayShowPage
-        node = pathwayCanvas.find(".node")[0]
+        node = pathwayCanvas.find(".node")[1]
 
         then: "The new name is still present"
         node.click()
@@ -69,8 +70,9 @@ class NodePropertiesSpec extends GebReportingSpec{
         waitFor {
             node.text() == newName + oldName
         }
-        //go driver.currentUrl
-        refresh()
+
+        go driver.currentUrl // refresh() doesn't actually do anything :(
+
         at PathwayShowPage
         node = pathwayCanvas.find(".node")[1]
 

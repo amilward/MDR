@@ -202,7 +202,8 @@ class BootStrap {
 		grantAdminPermissions(Node.list())
 		grantAdminPermissions(Link.list())
 		grantAdminPermissions(PathwaysModel.list())
-		
+
+
 		// Grant ROLE_USER on everything
 		grantUserPermissions(DataElement.list())
 		grantUserPermissions(ValueDomain.list())
@@ -235,7 +236,7 @@ class BootStrap {
 			//FIX me - by default user will have the 
             aclUtilService.addPermission object, 'ROLE_USER', BasePermission.READ
             aclUtilService.addPermission object, 'ROLE_USER', BasePermission.WRITE
-
+            aclUtilService.addPermission object, 'ROLE_USER', BasePermission.DELETE
 		}
 	}
 	

@@ -4,6 +4,7 @@ import grails.converters.JSON
 
 import org.springframework.dao.DataIntegrityViolationException
 import org.codehaus.groovy.grails.plugins.searchable.*
+import org.springframework.security.acls.domain.BasePermission
 import org.springframework.security.acls.model.Permission
 
 import grails.plugins.springsecurity.Secured
