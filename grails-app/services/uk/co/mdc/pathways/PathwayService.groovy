@@ -101,11 +101,12 @@ class PathwayService {
      */
     @PreAuthorize("hasRole('ROLE_USER')")
     List<Pathway> topLevelPathways(def searchCriteria) {
-        def pathways
+
+        List<Pathway> pathways
         if(searchCriteria == null){
             pathways = Pathway.list()
-        }
-        else{
+        }else{
+
             def nodeProps = Pathway.metaClass.properties*.name
             pathways = Pathway.withCriteria {
                 and {
@@ -117,7 +118,13 @@ class PathwayService {
                 }
             }
         }
-        return pathways
+        // FIXME this should be in the criteria, but I had problems getting that to work :(
+        println "---"
+        pathways.each { pathway ->
+            println pathway.class
+        }
+        return pathways.findAll { it.class == Pathway }
+
     }
 
 

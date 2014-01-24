@@ -707,7 +707,11 @@ class BootStrap {
 
 
 
-
+            def pathway1 = new Pathway(
+                    name: 'Transplanting and Monitoring Pathway',
+                    userVersion: '0.2',
+                    isDraft: true
+            ).save(failOnError: true)
 
 
             Node subPathway1 = new Node(
@@ -717,27 +721,31 @@ class BootStrap {
                     isDraft: true,
                     x: '325px',
                     y: '330px',
+                    parent: pathway1,
             ).save(failOnError:true)
 
             Node node1 = new Node(
                     name: 'Guard Patient',
                     x: '5px',
                     y: '0px',
-                    description: 'guard patient on recovery'
+                    description: 'guard patient on recovery',
+                    parent: pathway1,
             ).save(failOnError: true)
 
             Node node2 = new Node(
                     name: 'Recovery',
                     x: '150px',
                     y: '100px',
-                    description: 'recover'
+                    description: 'recover',
+                    parent: pathway1,
             ).save(failOnError: true)
 
             Node node3 = new Node(
                     name: 'Transfer to nursing ward',
                     x: '250px',
                     y: '300px',
-                    description: 'transfer patient to the nursing ward'
+                    description: 'transfer patient to the nursing ward',
+                    parent: pathway1,
             ).save(failOnError: true)
 
             def link1 = new Link(
@@ -760,17 +768,14 @@ class BootStrap {
             subPathway1.addToLinks(link1)
             subPathway1.addToLinks(link2)
 
-            def pathway1 = new Pathway(
-                    name: 'Transplanting and Monitoring Pathway',
-                    userVersion: '0.2',
-                    isDraft: true
-            ).save(failOnError: true)
+
 
             def node21 = new Node(
                     name: 'transfer to O.R.',
                     x: '5px',
                     y: '0px',
                     description: 'transfer patient to the Operating Room',
+                    parent: pathway1,
             ).save(flush:true)
 
 
@@ -779,6 +784,7 @@ class BootStrap {
                     x: '115px',
                     y: '110px',
                     description: 'perform the operation',
+                    parent: pathway1,
             ).save(flush:true)
 
             def link21 = new Link(

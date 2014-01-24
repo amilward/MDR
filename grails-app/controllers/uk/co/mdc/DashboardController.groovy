@@ -13,9 +13,9 @@ class DashboardController {
 
 	def index() {
 		
-	    def finalizedPathways = pathwayService.topLevelPathways({draft: false})
+	    def finalizedPathways = pathwayService.topLevelPathways([isDraft: false])
 
-	    def draftPathways = pathwayService.topLevelPathways({draft: true})
+	    def draftPathways = pathwayService.topLevelPathways([isDraft: true])
 
 	    def finalizedForms = FormDesign.findAll {
 	    	isDraft == false
