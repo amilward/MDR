@@ -99,8 +99,8 @@
 //							      }, 200);
                 if (!self.topLevelPathway) {
                 	if(pm.topLevelPathwayId){
-                		$.when(pathwayService.loadPathway(pm.topLevelPathwayId)).done(function (data) {
-                			var tlpm = self.createPathway(data.pathwaysModelInstance);
+                		$.when(pathwayService.loadPathway(pm.topLevelPathwayId)).done(function (pathway) {
+                			var tlpm = self.createPathway(pathway);
                    		 	self.topLevelPathway = tlpm;
                    		 	//console.log(self.topLevelPathway);
                 		});
@@ -139,6 +139,7 @@
 	       	 pm.topLevelPathwayId = pathwayJSON.topLevelPathwayId
 	       	 
 	       	var nodes = pathwayJSON.nodes;
+
      	    $.each(nodes, function( index, node ) {
 				        self.loadNode(node, pm);        	 
 				 });
@@ -171,32 +172,30 @@
         	
         };
 
-        self.selectNode = function (n, e) {
-            if (e) {
+        self.selectNode = function (node, event) {
+            if (event) {
                 //Check whether selected item has a parent node (i.e. whether in subpathway)
-                var bindingContext = ko.contextFor(e.target);
+                var bindingContext = ko.contextFor(event.target);
                 if (bindingContext.$parent instanceof NodeModel) {
                     //Switch to subpathway
                     $.when(pathwayService.loadPathway(bindingContext.$parent.subPathwayId)).done(function (pathwayJSON) {
                         
                     	self.containerPathway = self.pathwayModel;
-                        self.loadPathway(pathwayJSON.pathwaysModelInstance);
+                        self.loadPathway(pathwayJSON);
                         
-                        self.selectedItem = ko.utils.arrayFirst(self.pathwayModel.nodes, function (node) { return node.id === n.id });
+                        self.selectedItem = ko.utils.arrayFirst(self.pathwayModel.nodes, function (node) { return node.id === node.id });
                         $('#properties-panel .form-group input').css({'max-width': $('#properties-panel').width() - 15, 'min-width': $('#properties-panel').width() - 15});
                         $('#properties-panel .form-group textarea').css({'max-width': $('#properties-panel').width() - 15, 'min-width': $('#properties-panel').width() - 15});
                     });
                 } else if (bindingContext.$parent && bindingContext.$parent === self.topLevelPathway && self.containerPathway) {
-                	$.when(pathwayService.loadPathway(n.pathwayId)).done(function (pathwayJSON) {
-						self.loadPathway(pathwayJSON.pathwaysModelInstance);
-						self.selectedItem = ko.utils.arrayFirst(self.pathwayModel.nodes, function (node) { return node.id === n.id });
+                	$.when(pathwayService.loadPathway(node.pathwayId)).done(function (pathwayJSON) {
+						self.loadPathway(pathwayJSON);
+						self.selectedItem = ko.utils.arrayFirst(self.pathwayModel.nodes, function (node) { return node.id === node.id });
 			              
 					});
                 }
             }
-            self.selectedItem = n;
-            console.log("SELECTED:" + n.name);
-            console.log("SELECTED:" + self.selectedItem.name);
+            self.selectedItem = node;
             
             $('#properties-panel .form-group input').css({'max-width': $('#properties-panel').width() - 15, 'min-width': $('#properties-panel').width() - 15});
             $('#properties-panel .form-group textarea').css({'max-width': $('#properties-panel').width() - 15, 'min-width': $('#properties-panel').width() - 15});
@@ -216,22 +215,17 @@
         	//create the node in the model
         	//console.log(JSONNode.pathwaysModelVersion)
         	var node = new NodeModel();
-            var subNodes;
             node.name = JSONNode.name;
             node.description = JSONNode.description;
-            node.pathwayId = pm.id;
-            node.subPathwayName = JSONNode.subModelName;
-            node.subPathwayId = JSONNode.subModelId;
-            node.name = JSONNode.name;
             node.x = JSONNode.x ;
             node.y = JSONNode.y ;
             node.id = JSONNode.id;
-	        node.versionOnServer = JSONNode.nodeVersion;
-            // FIXME the following does lots of AJAX calls, we should probably grab the tree in one JSON hit.
-            subNodes = node.getSubNodes();
+	        node.version = JSONNode.version;
+            node.nodes = JSONNode.nodes;
+            node.links = JSONNode.links;
 
-            node.setCollections(JSONNode.optionalOutputs);
-            pm.versionOnServer = JSONNode.pathwaysModelVersion;
+            //node.setCollections(JSONNode.optionalOutputs);
+            pm.versionOnServer = JSONNode.version;
             pm.nodes.push(node);
         };
         
@@ -263,17 +257,6 @@
 	                node.versionOnServer = data.nodeVersion
 	                self.pathwayModel.versionOnServer = data.pathwaysModelVersion
 	                self.pathwayModel.nodes.push(node);
-	                
-	                //refresh the top level pathway if there have been updates
-	                
-	                if(self.pathwayModel.id == self.topLevelPathway.id){
-	                	self.topLevelPathway = self.pathwayModel
-	                }else if(node.pathwayId == self.topLevelPathway.id){
-	                	$.when(pathwayService.loadPathway(self.topLevelPathway.id)).done(function (data) {
-                			var tlpm = self.createPathway(data.pathwaysModelInstance);
-                   		 	self.topLevelPathway = tlpm;
-                		});
-	                }
 	                
             	}else{
             		alert('node creation failed')
@@ -402,13 +385,13 @@
                                 link.description = JSONLink.description;
 		        	link.connectionId = 'connection_' + source.id + '_' + target.id;        	
 		        	//If source is current node, and target node is not already in the outputs array, add it to outputs
-		            if (!ko.utils.arrayFirst(source.outputs, function (item) { return item === target })) {
-		                source.outputs.push(target);        
-		            }
-		            //If target is current node, and source node is not already in the inputs array, add it to inputs
-		            if (!ko.utils.arrayFirst(target.inputs, function (item) { return item === source })) {
-		                target.inputs.push(source);
-		            }
+//		            if (!ko.utils.arrayFirst(source.outputs, function (item) { return item === target })) {
+//		                source.outputs.push(target);
+//		            }
+//		            //If target is current node, and source node is not already in the inputs array, add it to inputs
+//		            if (!ko.utils.arrayFirst(target.inputs, function (item) { return item === source })) {
+//		                target.inputs.push(source);
+//		            }
 		            
 		        	link.versionOnServer = JSONLink.linkVersion;	
 		        	self.pathwayModel.links.push(link);	 
@@ -535,7 +518,7 @@
 			if(self.pathwayModel){
 				
 				$.when(pathwayService.loadPathway(self.pathwayModel.parentPathwayId)).done(function (pathwayJSON) {
-					self.loadPathway(pathwayJSON.pathwaysModelInstance);
+					self.loadPathway(pathwayJSON);
 				});
 
 			}
@@ -549,12 +532,6 @@
         self.itemEqualsToSelected = function(item) {
             return (item && self.selectedItem && item.id === self.selectedItem.id)
         };
-        
-        //Initialize form list using FormService
-        $.when(loadFormList()).done(function (data) {
-            //"data" is assumed to be pure JSON array containing items with no observable applied.
-            self.availableForms = data;
-        });
 
     };
     

@@ -18,21 +18,15 @@ function initPathways(pathwayId){
 
     //Bind the view model to <body> and its descendants
     ko.applyBindings(vm, document.getElementById('content'));
-    
 
-    //Initial action on page load
-    if(pathwayId){
     	
-    	$.when(pathwayService.loadPathway(pathwayId)).done(function (pathwayJSON) {
-			//console.log('test')
-			//console.log(pathwayJSON.pathwaysModelInstance)
-			vm.loadPathway(pathwayJSON.pathwaysModelInstance);
-		});
+    $.when(pathwayService.loadPathway(pathwayId)).done(function (pathwayJSON) {
+        //console.log('test')
+        //console.log(pathwayJSON.pathwaysModelInstance)
+        vm.loadPathway(pathwayJSON);
+    });
     	
-    }else{
-    	$('#CreatePathwayModal').modal({ show: true, keyboard: false, backdrop: 'static' });
-    	
-    }
+
     
     //save every 60 seconds
     

@@ -16,7 +16,7 @@
 				<h4 class="modal-title" id="myModalLabel">Create Pathway</h4>
 			</div>
 			<div class="modal-body">
-				<form class="form" role="form" id="createPathwayForm" action="${request.contextPath}/pathwaysModel/show" method="post">
+				<form class="form" role="form" id="createPathwayForm" action="${request.contextPath}/pathway/save" method="post">
 					<input type="hidden" name="createPathway" value="createPathway">
 					<div class="form-group">
 						<label for="txt-name" class="control-label">Name: </label> 
@@ -26,11 +26,11 @@
 					</div>
 					<div class="form-group">
 						<label for="txt-desc" class="control-label">Description: </label>
-						<textarea name="description" id="txt-desc" rows="3" class="form-control"
-							></textarea>
+						<textarea name="description" id="txt-desc" rows="3" class="form-control"></textarea>
 					</div>
 					<div class="form-group">
-                        <label for="txt-version" class="control-label">Version: </label> <input id="txt-version" type="text" name="versionNo" class="form-control"/>
+                        <label for="txt-version" class="control-label">Version: </label>
+                        <input id="txt-version" type="text" name="userVersion" class="form-control"/>
                     </div>
         	        <div class="form-group">
 			            <label for="bool-isDraft" class="control-label">Draft: </label> 

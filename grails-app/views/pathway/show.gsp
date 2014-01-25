@@ -1,20 +1,19 @@
-<%@ page import="uk.co.mdc.pathways.PathwaysModel"%>
+<%@ page import="uk.co.mdc.pathways.Pathway"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta name="layout" content="main_fullwidth">
 <g:set var="entityName"
-	value="${message(code: 'pathwaysModel.label', default: 'PathwaysModel')}" />
-<title>Show Pathway</title>
+	value="${message(code: 'pathway.label', default: 'Pathway')}" />
+<title>"Pathway Editor</title>
 <link rel="stylesheet"
 	href="${resource(dir: 'css', file: 'pathway.css')}" type="text/css">
-<parameter name="name" value="Show Pathways" />
+<parameter name="name" value="Pathway Editor" />
 
-<link rel="stylesheet" href="${resource(dir: 'css', file: 'bootstrap-editable.css')}" type="text/css">
-<link rel="stylesheet" href="${resource(dir: 'css', file: 'layout.css')}" type="text/css">
-<link rel="stylesheet" href="${resource(dir: 'css', file: 'custom.css')}" type="text/css">
-<link rel="stylesheet" href="${resource(dir: 'css/pathways', file: 'treeView.css')}" type="text/css">
-<link rel="stylesheet" href="${resource(dir: 'css', file: 'font-awesome.min.css')}" type="text/css">
+    <link rel="stylesheet" href="${resource(dir: 'css', file: 'layout.css')}" type="text/css">
+    <link rel="stylesheet" href="${resource(dir: 'css', file: 'custom.css')}" type="text/css">
+    <link rel="stylesheet" href="${resource(dir: 'css/pathways', file: 'treeView.css')}" type="text/css">
+    <link rel="stylesheet" href="${resource(dir: 'css', file: 'font-awesome.min.css')}" type="text/css">
 
 </head>
 <body>
@@ -45,19 +44,19 @@
     <div id="container" class="row">
 
 
-        <div id="tree-panel" class="ui-layout-west large-rounded" data-bind="with: topLevelPathway">
+        <div id="tree-panel" class="ui-layout-west large-rounded" data-bind="with: pathwayModel">
 
             <script id="pathwayTreeviewTemplate" type="text/html">
                 <li>
                     <span data-bind="click: $root.selectNode, css: {selectedItem: $root.itemEqualsToSelected($data)}, text: name"></span>
                     <ul>
-                        <!-- ko template: { name: 'pathwayTreeviewTemplate', foreach: subNodes } -->
+                        <!-- ko template: { name: 'pathwayTreeviewTemplate', foreach: nodes } -->
                         <!-- /ko -->
                     </ul>
                </li>
             </script>
 
-            <div data-bind="template: { name: 'pathwayTreeviewTemplate', foreach: $data.nodes}"><ul></ul></div>
+            <div data-bind="template: { name: 'pathwayTreeviewTemplate', foreach: nodes}"><ul></ul></div>
             <!-- TODO
                 3. Allow collapse/expand
             -->
@@ -346,15 +345,7 @@
 
 	<g:javascript disposition="defer" library="pathways" />
 	<r:script disposition="defer">
-
-		<g:if test="${id}">
-			pathwaysModelId = ${id}
-		</g:if>
-		<g:else>
-			pathwaysModelId = ''
-		</g:else>
-
-		initPathways(pathwaysModelId);
+		initPathways(${pathway?.id});
 	</r:script>
 
 </body>

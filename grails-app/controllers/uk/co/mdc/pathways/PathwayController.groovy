@@ -16,23 +16,33 @@ class PathwayController extends RestfulController{
     }
 
 
-    def show(Pathway pathway){
-        // If we've asked to create a pathway, lets give that a go
-        if(params.createPathway){
-            pathway = pathwayService.create(params)
-            if(pathway.hasErrors()){
-                respond pathway.errors
-            }
-        }
-        respond pathway
+    def list() {
+        //def model = [pathways: pathwayService.topLevelPathways()]
+        //respond model
+        // FIXME respond :)
+        [pathways: pathwayService.topLevelPathways()]
     }
 
+    def show(Pathway pathway){
+        def model = [pathway: pathway]
+        respond pathway, [model: model]
+    }
+
+    @Transactional
+    def save(Pathway pathway){
+        pathway = pathwayService.create(pathway)
+        if(pathway.hasErrors()){
+            respond pathway.errors
+        }else{
+            redirect pathway
+        }
+    }
 
     @Transactional
     def update(Pathway pathway){
-        if(pathway == null){
-            render status: NOT_FOUND
-        }
+            if(pathway == null){
+                respond pathway
+            }
 
         pathwayService.update(pathway)
         if (pathway.hasErrors()) {

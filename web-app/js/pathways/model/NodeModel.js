@@ -7,68 +7,37 @@
         self.name = undefined
         self.versionOnServer = undefined
         self.description = undefined;
-        self.type = 'node' //'node' | 'pathway'
         self.x = undefined
         self.y = undefined
-        self.pathwayId = undefined
-        self.subPathway = undefined;
-        self.subPathwayId = undefined;
-        self.subPathwayName = undefined;
-        self.subNodes = [];
-        self.inputs = [];
-        self.outputs = [];
-        self.forms = [];
-        self.collections = [];
-        self.deCollection = [];
-    	
+
+        self.nodes = [];
+        self.links = [];
+
+
 
         ko.track(self);
 
         
-        self.setCollections = function(JSONCollections){
+//        self.setCollections = function(JSONCollections){
+//
+//        	$.each(JSONCollections, function(index, JSONCollection){
+//        		if(JSONCollection.collectionType==='form'){
+//        			var form = new FormModel()
+//    	        	form.id = JSONCollection.id
+//    	        	form.name = JSONCollection.name
+//    	        	self.forms.push(form);
+//
+//        		}else{
+//        			var collection = new CollectionModel()
+//		        	collection.id = JSONCollection.id
+//		        	collection.name = JSONCollection.name
+//		        	self.collections.push(collection);
+//
+//        		}
+//        	});
+//
+//        }
 
-        	$.each(JSONCollections, function(index, JSONCollection){    
-        		if(JSONCollection.collectionType==='form'){
-        			var form = new FormModel()
-    	        	form.id = JSONCollection.id
-    	        	form.name = JSONCollection.name	        	
-    	        	self.forms.push(form);
-		        	
-        		}else{
-        			var collection = new CollectionModel()
-		        	collection.id = JSONCollection.id
-		        	collection.name = JSONCollection.name        	
-		        	self.collections.push(collection);
-        			
-        		}
-        	});
-        	
-        }
-        
-        self.getSubNodes = function(){
-        	if(self.subPathwayId){
-        		
-        	$.when(pathwayService.getPathwayNodes(self.subPathwayId)).done(function (data) {
-            	if(data.success===true){
-            		
-            		//reset subNodes
-            		self.subNodes = [];
-            		$.each(data.nodes, function(index, value){
-            			var node = new NodeModel()
-                		node.id = value.id
-                		node.name = value.name
-                		if(value.subModelId){
-                			node.subPathwayId = value.subModelId;
-                		}else{
-                			node.subPathwayId = null;
-                		}
-                		self.subNodes.push(node);
-            		})
-            		
-            		}
-            	});
-        	}
-        }
         
         self.addForm = function(form){
         	

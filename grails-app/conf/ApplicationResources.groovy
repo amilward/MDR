@@ -140,14 +140,9 @@ modules = {
 		dependsOn "jsplumb_lib"
 		dependsOn "knockout_lib"
 		dependsOn "jquery_layout_lib"
-		dependsOn "bootstrap_editable_lib"
-		dependsOn "dataTables"
-		//resource url: "js/pathways/pathway_model.js"
-		//resource url: "js/pathways/pathway.js"
 		resource url: "js/pathways/pathwaysLayout.js"
 		resource url: "js/pathways/AppViewModel.js"
 		resource url: "js/pathways/show.js"
-		resource url: "js/pathways/service/FormService.js"
 		resource url: "js/pathways/service/PathwayService.js"
 		resource url: "js/pathways/binding/knockout.jsplumb.js"
 		resource url: "js/pathways/model/CollectionModel.js"
@@ -156,17 +151,11 @@ modules = {
 		resource url: "js/pathways/model/PathwayModel.js"
 		resource url: "js/pathways/model/LinkModel.js"
 		resource url: "js/pathways/model/FormModel.js"
-		resource url: "js/forms/formDesign.js"
-		resource url: "js/model/collection/collection.js"
+		//resource url: "js/forms/formDesign.js"
+		//resource url: "js/model/collection/collection.js"
 
         resource url: "css/pathways/style.css"
 		
-	}
-	
-	pathwaysList{
-		dependsOn "dataTables"
-		dependsOn "knockout_lib"
-		resource url: "js/pathways/pathwaysList.js"
 	}
 
 	dForms{

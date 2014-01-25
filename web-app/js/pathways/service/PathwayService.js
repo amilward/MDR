@@ -7,32 +7,31 @@
     self.loadPathway = function (id) {
     	
     	 //Load a pathway model from server
-    	
     	return $.ajax({
-    		type : "POST",
+    		type : "GET",
     		// FIXME remove static app name
-    		url : "../../pathwaysModel/jsonPathways/" + id,
+    		url : "../../pathway/show/" + id + ".json",
     		contentType: "application/json; charset=utf-8",
     	});
        
     };
     
     //delete a pathway
-    self.deletePathway = function(pathwaysModelId){
+    self.deletePathway = function(pathwayId){
 	    return $.ajax({
 			type: "POST",
-			url: '../../pathwaysModel/delete/' + pathwaysModelId,
+			url: '../../pathway/delete/' + pathwayId + ".json",
 			contentType: 'application/json',
 			});
     }
     //update an existing pathway
 
-    self.updatePathway = function(pathwayModel){
+    self.updatePathway = function(pathway){
     	return $.ajax({
     		type : "POST",
     		// FIXME remove static app name
-    		url : "../../pathwaysModel/updatePathwayJSON",
-    		data : ko.toJSON(pathwayModel),
+    		url : "../../pathway/update/"+id,
+    		data : ko.toJSON(pathway),
     		contentType: "application/json; charset=utf-8"
     		
     	});
@@ -41,17 +40,17 @@
     
     //create a pathway and save it
     
-    self.savePathway = function (model) {
-
-    	return $.ajax({
-    		type : "POST",
-    		// FIXME remove static app name
-    		url : "../../pathwaysModel/createPathwayFromJSON",
-    		data : ko.toJSON(model),
-    		contentType: "application/json; charset=utf-8"
-    	});
-
-    };
+//    self.savePathway = function (model) {
+//
+//    	return $.ajax({
+//    		type : "POST",
+//    		// FIXME remove static app name
+//    		url : "../../pathway/save",
+//    		data : ko.toJSON(model),
+//    		contentType: "application/json; charset=utf-8"
+//    	});
+//
+//    };
     
     self.createNode = function(jsonNodeToServer){
 
@@ -77,7 +76,7 @@
     self.getPathwayNodes = function(pathwayId){
     	return $.ajax({
     		type: "POST",
-    		url: "../../PathwaysModel/getNodes/" + pathwayId,
+    		url: "../../PathwaysModel/getNodes/" + pathwayId + ".json",
     		contentType: 'application/json',
     		dataType: 'json'
     		});

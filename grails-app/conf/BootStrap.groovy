@@ -729,7 +729,6 @@ class BootStrap {
                     x: '5px',
                     y: '0px',
                     description: 'guard patient on recovery',
-                    parent: pathway1,
             ).save(failOnError: true)
 
             Node node2 = new Node(
@@ -737,7 +736,6 @@ class BootStrap {
                     x: '150px',
                     y: '100px',
                     description: 'recover',
-                    parent: pathway1,
             ).save(failOnError: true)
 
             Node node3 = new Node(
@@ -745,7 +743,6 @@ class BootStrap {
                     x: '250px',
                     y: '300px',
                     description: 'transfer patient to the nursing ward',
-                    parent: pathway1,
             ).save(failOnError: true)
 
             def link1 = new Link(
@@ -775,7 +772,6 @@ class BootStrap {
                     x: '5px',
                     y: '0px',
                     description: 'transfer patient to the Operating Room',
-                    parent: pathway1,
             ).save(flush:true)
 
 
@@ -784,7 +780,6 @@ class BootStrap {
                     x: '115px',
                     y: '110px',
                     description: 'perform the operation',
-                    parent: pathway1,
             ).save(flush:true)
 
             def link21 = new Link(
@@ -802,11 +797,11 @@ class BootStrap {
             ).save(flush:true)
 
 
-            subPathway1.addToNodes(node21)
-                       .addToNodes(node22)
-                       .addToNodes(subPathway1)
-                       .addToLinks(link21)
-                       .addToLinks(link22)
+            pathway1.addToNodes(node21)
+                    .addToNodes(node22)
+                    .addToNodes(subPathway1)
+                    .addToLinks(link21)
+                    .addToLinks(link22)
 		}		
 	}
 	

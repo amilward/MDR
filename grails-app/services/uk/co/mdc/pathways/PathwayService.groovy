@@ -119,10 +119,6 @@ class PathwayService {
             }
         }
         // FIXME this should be in the criteria, but I had problems getting that to work :(
-        println "---"
-        pathways.each { pathway ->
-            println pathway.class
-        }
         return pathways.findAll { it.class == Pathway }
 
     }
