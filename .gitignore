@@ -67,6 +67,7 @@
 /test/drivers 
 
 # Javascript/NodeJS caches
+/grails-app/assets/bower_components/
 /web-app/bower_components/
 /node_modules/
 

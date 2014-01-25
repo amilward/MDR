@@ -159,20 +159,23 @@ grails{
 
 			securityConfigType = "Annotation"
 			controllerAnnotations.staticRules = [
-                '/':                    ['IS_AUTHENTICATED_ANONYMOUSLY'],
-                // Bower dependencies
-                '/bower_components/**': ['IS_AUTHENTICATED_ANONYMOUSLY'],
+                '/':                            ['IS_AUTHENTICATED_ANONYMOUSLY'],
+
+                // Asset pipeline
+                '/assets/**':       ['IS_AUTHENTICATED_ANONYMOUSLY'],
+
 				// Javascript
-				'/js/**':      			['IS_AUTHENTICATED_ANONYMOUSLY'],
-				'/js/vendor/**':  		['IS_AUTHENTICATED_ANONYMOUSLY'],
-				'/plugins/**/js/**':	['IS_AUTHENTICATED_ANONYMOUSLY'],
+				'/js/**':      			        ['IS_AUTHENTICATED_ANONYMOUSLY'],
+				'/js/vendor/**':  		        ['IS_AUTHENTICATED_ANONYMOUSLY'],
+				'/plugins/**/js/**':	        ['IS_AUTHENTICATED_ANONYMOUSLY'],
 				// CSS
-				'/**/css/**':      		['IS_AUTHENTICATED_ANONYMOUSLY'],
-				'/css/**': 				['IS_AUTHENTICATED_ANONYMOUSLY'],
-                '/**/*.less':           ['IS_AUTHENTICATED_ANONYMOUSLY'],
+				'/**/css/**':      		        ['IS_AUTHENTICATED_ANONYMOUSLY'],
+				'/css/**': 				        ['IS_AUTHENTICATED_ANONYMOUSLY'],
+                '/**/*.less':                   ['IS_AUTHENTICATED_ANONYMOUSLY'],
 				// Images
-				'/images/**': 			['IS_AUTHENTICATED_ANONYMOUSLY'],
-				'/img/**': 				['IS_AUTHENTICATED_ANONYMOUSLY'],
+				'/images/**': 			        ['IS_AUTHENTICATED_ANONYMOUSLY'],
+				'/img/**': 				        ['IS_AUTHENTICATED_ANONYMOUSLY'],
+
 				// Anonymously acessible pages, e.g. registration & login
 				'/login/*':    			['IS_AUTHENTICATED_ANONYMOUSLY'],
 				'/logout/*':    		['IS_AUTHENTICATED_ANONYMOUSLY'],

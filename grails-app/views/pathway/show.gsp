@@ -15,8 +15,11 @@
     <link rel="stylesheet" href="${resource(dir: 'css/pathways', file: 'treeView.css')}" type="text/css">
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'font-awesome.min.css')}" type="text/css">
 
+
 </head>
-<body>
+<body >
+<g:set var="grailsParams" value="${params.collect{ it.key + '=\'' + it.value + '\''}.join('; ')}" />
+<div ng-app="pathway-editor" ng-init="${grailsParams}">
     <div class="row">
         <div class="col-xs-12">
             <button type="button" class="btn btn-link btn-xs pull-right" id="addNode" data-toggle="modal" data-target="#CreateNode">
@@ -41,50 +44,45 @@
 
 
 
-    <div id="container" class="row">
+    <div id="container" class="row" ng-controller="PathwayEditorCtrl">
+
+         <div id="tree-panel" class="ui-layout-west large-rounded">
+             <ul>
+                 <li ng-repeat="node in pathway.nodes" ng-include="'pathwayTreeView.html'"></li>
+             </ul>
+         </div>
+
+        <script type="text/ng-template" id="pathwayTreeView.html">
+            <span ng-click="selectNode(node)"  ng-class="{selectedItem: isSelected(node)}">{{node.name}}</span>
+            <ul>
+                <li ng-repeat="node in node.nodes" ng-include="'pathwayTreeView.html'" pathway="node"></li>
+            </ul>
+        </script>
 
 
-        <div id="tree-panel" class="ui-layout-west large-rounded" data-bind="with: pathwayModel">
-
-            <script id="pathwayTreeviewTemplate" type="text/html">
-                <li>
-                    <span data-bind="click: $root.selectNode, css: {selectedItem: $root.itemEqualsToSelected($data)}, text: name"></span>
-                    <ul>
-                        <!-- ko template: { name: 'pathwayTreeviewTemplate', foreach: nodes } -->
-                        <!-- /ko -->
-                    </ul>
-               </li>
-            </script>
-
-            <div data-bind="template: { name: 'pathwayTreeviewTemplate', foreach: nodes}"><ul></ul></div>
-            <!-- TODO
-                3. Allow collapse/expand
-            -->
-
-       </div>
 
         <div id="center-panel" class="ui-layout-center">
-        <div id="model-panel" class="ui-layout-center  large-rounded  " data-bind="with: pathwayModel">
+            <div id="model-panel" class="ui-layout-center  large-rounded  " data-bind="with: pathwayModel">
 
-	        <div id="canvas-panel" class="panel">
+	            <div id="canvas-panel" class="panel">
 
-            <div class="jsplumb-container panel-body graph-paper" data-bind="foreach: nodes, visible: true" style="display:none">
-                <div class="node" data-bind="makeNode: $data, click: $root.selectNode, style: {top:y, left:x}, attr: { 'id': 'node' + id}, css: {selectedItem: $root.itemEqualsToSelected($data)}">
-                    <div data-bind="attr:{title: description}, text: name">&nbsp;</div>
-                    <div class="fa fa-chevron-right ep right"></div>
-                    <div class="fa fa-chevron-left ep left"></div>
-                    <div class="fa fa-chevron-up ep up"></div>
-                    <div class="fa fa-chevron-down ep down"></div>
+                    <div class="jsplumb-container panel-body graph-paper" data-bind="foreach: nodes, visible: true" style="display:none">
+                        <div class="node" data-bind="makeNode: $data, click: $root.selectNode, style: {top:y, left:x}, attr: { 'id': 'node' + id}, css: {selectedItem: $root.itemEqualsToSelected($data)}">
+                            <div data-bind="attr:{title: description}, text: name">&nbsp;</div>
+                            <div class="fa fa-chevron-right ep right"></div>
+                            <div class="fa fa-chevron-left ep left"></div>
+                            <div class="fa fa-chevron-up ep up"></div>
+                            <div class="fa fa-chevron-down ep down"></div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
 
-        </div>
-    </div>
-
         <!-- If selectedItem is undefined, the right panel will be empty -->
-        <div id="properties-panel" class="ui-layout-east large-rounded panel panel-primary" data-bind="with: selectedItem">
+        <div id="properties-panel" class="ui-layout-east large-rounded panel panel-primary" ng-controller="NodePropertiesCtrl">
             <div class="panel-heading">
-                Properties:
+                Properties for "{{selectedNode.name}}"
             </div>
             <div class="panel-body">
 
@@ -156,7 +154,7 @@
             </div>
         </div>
     </div>
-
+    </div>
 
 
 
@@ -345,7 +343,7 @@
 
 	<g:javascript disposition="defer" library="pathways" />
 	<r:script disposition="defer">
-		initPathways(${pathway?.id});
+		//initPathways(${pathway?.id});
 	</r:script>
 
 </body>

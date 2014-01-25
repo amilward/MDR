@@ -25,6 +25,8 @@
 <r:require modules="application"/>
 
 
+
+
 <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>
 <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"/>
@@ -34,6 +36,9 @@
 
 <g:layoutHead />
 <r:layoutResources />
+
+    <asset:stylesheet href="datatables/media/css/jquery.dataTables.css"/>
+    <asset:stylesheet href="application.css"/>
 </head>
 <body>
 
@@ -65,7 +70,7 @@
                         <li class="dropdown">
                             <a id="nav-pathway-expand" class="dropdown-toggle" data-toggle="dropdown" href="#">Pathways <b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li id="nav-pathway-link"><g:link elementId="listPathwaysLink" action="list" controller="PathwaysModel"> List pathways </g:link></li>
+                                <li id="nav-pathway-link"><g:link elementId="listPathwaysLink" action="list" controller="pathway"> List pathways </g:link></li>
                                 <li><a id="createPathwayLink" href="#" data-toggle="modal" data-target="#createPathwayModal"> Create pathway </a></li>
                             </ul>
                         </li>

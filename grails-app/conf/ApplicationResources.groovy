@@ -3,17 +3,17 @@ modules = {
 
 	// Standard libraries
 	jquery_lib {
-		resource url: "bower_components/jquery/jquery.min.js", disposition: "head"
+		//resource url: "bower_components/jquery/jquery.min.js", disposition: "head"
 		resource url: "js/vendor/jquery/jquery-ui.1.10.2.js"
 	}
 	
 	jquery_layout_lib{
-		dependsOn "jquery_lib"
+		//dependsOn "jquery_lib"
 		resource url: "js/vendor/jquery/jquery.layout-1.3.0.min.js"
 	}
 	
 	jquery_dform_lib{
-		dependsOn "jquery_lib"
+		//dependsOn "jquery_lib"
 		resource url: "js/vendor/jquery/jquery.dform-1.1.0.min.js"
 	}
 	
@@ -38,20 +38,17 @@ modules = {
 	jsplumb_lib{
 		resource url: "js/vendor/jsplumb/jquery.jsPlumb-1.5.4-min.js"
 	}
-	
-	bootstrap_lib{
-        resource url: "bower_components/bootstrap/dist/js/bootstrap.min.js"
-	}
+
 	
 	bootstrap_editable_lib{
-		dependsOn "bootstrap_lib"
+		//dependsOn "bootstrap_lib"
 		resource url: "js/vendor/bootstrap-editable.js"
 	}
 
 	dataTables {
 		dependsOn "application"
-        resource url: "bower_components/datatables/media/js/jquery.dataTables.js"
-        resource url: "bower_components/datatables/media/css/jquery.dataTables.css"
+        //resource url: "bower_components/datatables/media/js/jquery.dataTables.js"
+        //resource url: "bower_components/datatables/media/css/jquery.dataTables.css"
         resource url: "js/datatable/jquery.dataTables.fnSetFilteringDelay.js"
 	}
 	
@@ -176,8 +173,7 @@ modules = {
      *  Application libraries
      */
     application_libraries {
-        dependsOn "jquery_lib"
-        dependsOn "bootstrap_lib"
+        //dependsOn "jquery_lib"
         dependsOn "modernizr_lib"
     }
 
@@ -187,8 +183,8 @@ modules = {
 
         // Keep this at the end, otherwise we'll override our classes with vendor defaults :(
         resource url:'css/style.css'
-        resource url:[dir: 'less', file: 'application.less'], attrs:[rel: "stylesheet/less", type:'css']
-        resource url: "js/vendor/less/less-1.6.0.min.js", disposition: 'head'
+        //resource url:[dir: 'less', file: 'application.less'], attrs:[rel: "stylesheet/less", type:'css']
+        //resource url: "js/vendor/less/less-1.6.0.min.js", disposition: 'head'
     }
 }
 
