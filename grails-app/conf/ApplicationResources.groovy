@@ -116,6 +116,21 @@ modules = {
 	
 	pathways{
 		resource url: "js/pathways/pathwaysLayout.js"
+        resource url: "js/pathways/pathwaysLayout.js"
+//		resource url: "js/pathways/AppViewModel.js"
+//		resource url: "js/pathways/show.js"
+//		resource url: "js/pathways/service/PathwayService.js"
+//		resource url: "js/pathways/binding/knockout.jsplumb.js"
+//		resource url: "js/pathways/model/CollectionModel.js"
+//      resource url: "js/pathways/model/DataElementModel.js"
+//		resource url: "js/pathways/model/NodeModel.js"
+//		resource url: "js/pathways/model/PathwayModel.js"
+//		resource url: "js/pathways/model/LinkModel.js"
+//		resource url: "js/pathways/model/FormModel.js"
+        //resource url: "js/forms/formDesign.js"
+        //resource url: "js/model/collection/collection.js"
+
+        resource url: "css/pathways/style.css"
 	}
 
 	dForms{

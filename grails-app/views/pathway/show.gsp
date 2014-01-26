@@ -25,14 +25,15 @@
 
     <div class="row">
         <div class="col-xs-12">
-            <button type="button" class="btn btn-link btn-xs pull-right" id="addNode" data-toggle="modal" data-target="#CreateNode">
+            <div class="pull-right">
+            <button type="button" class="btn btn-link btn-xs" id="addNode" data-toggle="modal" data-target="#CreateNode">
                 <i class="fa fa-plus"></i> Add Node
             </button>
-            <button type="button" class="btn btn-link btn-xs pull-right" id="editPathwayInfo" data-toggle="modal" data-target="#updatePathwayModal">
+            <button type="button" class="btn btn-link btn-xs" id="editPathwayInfo" data-toggle="modal" data-target="#updatePathwayModal">
                 <i class="fa fa-edit"></i> Edit Info
-            </button>
+            </button></div>
+            <div> <h3 id="pathwayName" ng-bind="pathway.name">&nbsp;</h3></div>
 
-            <h1 id="pathwayName" ng-bind="pathway.name">&nbsp;</h1>
         </div>
     </div>
 
@@ -105,7 +106,7 @@
 <script type="text/ng-template" id="templates/pathway/jsPlumbNode.html">
 <div class="node" id="node_{{node.id}}" ng-click="selectNode(node)"  ng-class="{selectedItem: isSelected(node)}" style="left: {{node.x}}px; top: {{node.y}}px">
     <div>{{node.name}}</div>
-    <div class="fa fa-chevron-right ep right"></div>
+    <div class="fa fa-chevron-right ep connector right"></div>
     <div class="fa fa-chevron-left ep left"></div>
     <div class="fa fa-chevron-up ep up"></div>
     <div class="fa fa-chevron-down ep down"></div>
@@ -272,9 +273,7 @@
 
     <!-- FIXME remove this and use asset pipeline only. The only reference left is for the layout... -->
 	<g:javascript disposition="defer" library="pathways" />
-    <asset:javascript src="angular/app.js"/>
 
-    <asset:javascript src="jquery.layout/dist/jquery.layout-latest.js"/>
 </body>
 </html>
 

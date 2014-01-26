@@ -69,9 +69,8 @@ angular.module('pathway.directives', [])
       jsPlumb.draggable(iElement, {
         containment: 'parent',
         stop: (event, ui) ->
-          scope.node.y = Math.floor(ui.position.top) + 'px';
-          scope.node.x = Math.floor(ui.position.left) + 'px';
-
+          scope.node.y = Math.floor(ui.position.top);
+          scope.node.x = Math.floor(ui.position.left);
       });
 
     }
