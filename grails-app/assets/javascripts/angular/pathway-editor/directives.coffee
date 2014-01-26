@@ -71,6 +71,7 @@ angular.module('pathway.directives', [])
         stop: (event, ui) ->
           scope.node.y = Math.floor(ui.position.top);
           scope.node.x = Math.floor(ui.position.left);
+
       });
 
     }
@@ -88,8 +89,8 @@ angular.module('pathway.directives', [])
       #FIXME: Needed the timeout to make sure the dom nodes are available. Need a better solution.
       setTimeout(->
         jsPlumb.connect({
-          source: "node_" + scope.link.source,
-          target: "node_" + scope.link.target,
+          source: "node" + scope.link.source,
+          target: "node" + scope.link.target,
           parameters: {
             connectionId: scope.link.id
           }

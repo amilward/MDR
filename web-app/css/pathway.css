@@ -239,45 +239,6 @@ background-image: linear-gradient(#def 2px, transparent 2px),
 	border: 1px solid #346789;
 	cursor: pointer;
 }
-/*
-.ep {
-	display: none;
-	position: absolute;
-	width: 1em;
-	height: 1em;
-	background-color: green;
-	cursor: pointer;
-	font-size: 125%;
-	 box-shadow: 0px 0px 2px black;
-	-webkit-transition: -webkit-box-shadow 0.25s ease-in;
-	-moz-transition: -moz-box-shadow 0.25s ease-in;
-	transition: box-shadow 0.25s ease-in; 
-}
-*/
-.right {
-	bottom: 37%;
-	right: 0;
-	
-}
-.left {
-	bottom: 37%;
-	left: 0;
-	
-}
-.up {
-	top: 0;
-	right: 47%;
-	
-}
-.down {
-	bottom: 0%;
-	right: 47%;
-	
-}
-
-/*.ep:hover {
-	box-shadow: 0px 0px 6px black;
-}*/
 
 ._jsPlumb_endpoint {
 	z-index: 3;

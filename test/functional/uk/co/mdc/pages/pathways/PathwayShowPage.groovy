@@ -9,17 +9,17 @@ import uk.co.mdc.pages.BasePageWithNav;
 
 class PathwayShowPage extends BasePageWithNav{
 	
-	static url = "/pathwaysModel/show/*" 
+	static url = "/pathway/show/*"
 	
 	static at = {
-		url == "/pathwaysModel/show/*" &&
-		title == "Show Pathway"
+		url == "/pathway/show/*" &&
+		title == "Pathway Editor"
 	}
 	
 	
 	
 	static content = {
-		pathwayName  { 	$("h1#pathwayName") }
+		pathwayName  { 	$("#pathwayName") }
 		addNodeButton { $("#addNode") }
 		node2(required:false) { $("#node7") }
 		addFormModal { $("#AddFormModal") }

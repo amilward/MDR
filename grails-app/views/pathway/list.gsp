@@ -15,7 +15,7 @@
 				<div class="message" role="status">${flash.message}</div>
 				</g:if>
 				<div id="pathwaysList" >
-                    <table width="100%">
+                    <table id="pathwayList" width="100%">
                         <thead>
                             <td><g:message code="pathway.name" /></td>
                             <td><g:message code="pathway.description" /></td>

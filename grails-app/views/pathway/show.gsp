@@ -5,7 +5,7 @@
 <meta name="layout" content="main_fullwidth">
 <g:set var="entityName"
 	value="${message(code: 'pathway.label', default: 'Pathway')}" />
-<title>"Pathway Editor</title>
+<title>Pathway Editor</title>
 <link rel="stylesheet"
 	href="${resource(dir: 'css', file: 'pathway.css')}" type="text/css">
 <parameter name="name" value="Pathway Editor" />
@@ -104,12 +104,12 @@
 </script>
 
 <script type="text/ng-template" id="templates/pathway/jsPlumbNode.html">
-<div class="node" id="node_{{node.id}}" ng-click="selectNode(node)"  ng-class="{selectedItem: isSelected(node)}" style="left: {{node.x}}px; top: {{node.y}}px">
+<div class="node" id="node{{node.id}}" ng-click="selectNode(node)"  ng-class="{selectedItem: isSelected(node)}" style="left: {{node.x}}px; top: {{node.y}}px">
     <div>{{node.name}}</div>
-    <div class="fa fa-chevron-right ep connector right"></div>
-    <div class="fa fa-chevron-left ep left"></div>
-    <div class="fa fa-chevron-up ep up"></div>
-    <div class="fa fa-chevron-down ep down"></div>
+    <div class="fa fa-arrow-circle-o-right ep right"></div>
+    <div class="fa fa-arrow-circle-o-left ep left"></div>
+    <div class="fa fa-arrow-circle-o-up ep up"></div>
+    <div class="fa fa-arrow-circle-o-down ep down"></div>
 </div>
 </script>
 <!-- Refactored down to this point -->
