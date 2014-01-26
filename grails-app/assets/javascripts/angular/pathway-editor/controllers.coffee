@@ -5,13 +5,28 @@ pathwayEditor = angular.module('pathway.controllers',['pathway.services'])
 
   $scope.selectNode = (node) ->
     NodeSelector.selectNode(node)
-    $rootScope.$broadcast('mcPathwayNodeSelected', node);
   $scope.isSelected = (node) ->
     NodeSelector.isSelected(node)
-
 ])
 
 .controller('NodePropertiesCtrl', ['$scope', 'NodeSelector', ($scope, NodeSelector) ->
+  $scope.switchToSubPathway = ->
+    console.log("FIXME: this should switch the pathway viewer's scope to node " + $scope.selectedNode.id)
+
+  $scope.delete = ->
+    console.log("FIXME: this should delete the node " + $scope.selectedNode.id)
+
+  $scope.removeForm = (form) ->
+    console.log("FIXME: this should remove form " + form.id + " from node "  + $scope.selectedNode.id )
+
+  $scope.addForm = ->
+    console.log("FIXME: this should add a form to node "+ $scope.selectedNode.id)
+
+  $scope.removeDataElement = (dataElement) ->
+    console.log("FIXME: this should remove the dataElement " + dataElement.id + " from node "  + $scope.selectedNode.id)
+
+  $scope.addDataElement = ->
+    console.log("FIXME: this should add a dataElement to node "  + $scope.selectedNode.id)
 
   # Watch the NodeSelector function for changes. The second function actions a change, setting the
   # selectedNode scope variable to be the new value retrieved from the service
@@ -21,6 +36,13 @@ pathwayEditor = angular.module('pathway.controllers',['pathway.services'])
       $scope.selectedNode = selectedNode
     , false # Just check for object equality
   )
+])
+
+.controller('GraphCanvasCtrl', ['$scope', 'NodeSelector', ($scope, NodeSelector) ->
+  $scope.selectNode = (node) ->
+    NodeSelector.selectNode(node)
+  $scope.isSelected = (node) ->
+    NodeSelector.isSelected(node)
 ])
 
 

@@ -1,19 +1,6 @@
 angular.module('pathway.directives', [])
 
-  #
-  # Tree View directive,
-  .directive('mcTreeView', [ ->
-      return {
-        templateUrl: 'pathwayTreeView.html'
-        scope: {
-          node: '=pathway',
-          isSelected: '&',
-          selectNode: '&'
-        }
-      }
-    ])
-
-  .directive('graphContainer', ->
+  .directive('mcGraphContainer', ->
     defaultOptions = {
       Endpoint: [ 'Dot', { radius: 1 } ],
       Anchor: 'Continuous',
@@ -47,7 +34,6 @@ angular.module('pathway.directives', [])
       }
     }
     return {
-    restrict: 'A',
     replace: false,
     scope: {
       options: '@'
@@ -61,34 +47,20 @@ angular.module('pathway.directives', [])
   )# end directive
 
   # Handle the nodes
-  .directive('graphNode', ->
+  .directive('mcGraphNode',  ->
     return {
-    restrict: 'A',
     replace: true,
     transclude: true,
-    requires: '^graphContainer', # Tie this directive to graphContainer
+    requires: '^mcGraphContainer', # Tie this directive to mcGraphContainer
     scope: {
       node: '=graphNode',
-      epClass: '@'
+      isSelected: '&',
+      selectNode: '&'
     },
-    #templateUrl: 'templates/graph-node.html',
-    template: '<div class="node" id="node_{{node.id}}" style="left: {{node.x}}; top: {{node.y}}">' +
-    '<div ng-transclude></div>' +
-    '<div class="fa fa-chevron-right ep right">' +
-    '</div><div class="fa fa-chevron-left ep left"></div>' +
-    '<div class="fa fa-chevron-up ep up"></div>' +
-    '<div class="fa fa-chevron-down ep down"></div>' +
-    '</div>',
+    templateUrl: 'templates/pathway/jsPlumbNode.html',
     link: (scope, iElement, iAttrs) ->
-      ep = '.' + (scope.epClass || 'ep');
-      iElement.on('mouseover', ->
-        $(ep, this).show();
-      )
-      iElement.on('mouseout', ->
-        $(ep, this).hide();
-      );
 
-      jsPlumb.makeSource($(ep, iElement), {
+      jsPlumb.makeSource($('.ep', iElement), {
         parent: iElement
       });
 
@@ -106,25 +78,23 @@ angular.module('pathway.directives', [])
   )# End of directive
 
   #Handle the links
-  .directive('graphLink', ->
+  .directive('mcGraphLink', ->
     return {
     restrict: 'A',
     requires: '^graphContainer', #Tie this directive to graphContainer
     scope: {
-      source: '@',
-      target: '@',
-      id: '@'
+      link: '=graphLink',
     },
     link: (scope, iElement, iAttrs) ->
       #FIXME: Needed the timeout to make sure the dom nodes are available. Need a better solution.
       setTimeout(->
         jsPlumb.connect({
-          source: "node_" + scope.source,
-          target: "node_" + scope.target,
+          source: "node_" + scope.link.source,
+          target: "node_" + scope.link.target,
           parameters: {
-            connectionId: scope.id
+            connectionId: scope.link.id
           }
-        }).canvas.id = scope.id; # Give the resulting svg node an id for simpler retrieval
+        }).canvas.id = scope.link.id; # Give the resulting svg node an id for simpler retrieval
       , 1)
     }
   )

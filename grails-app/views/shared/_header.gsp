@@ -38,6 +38,8 @@
 <r:layoutResources />
 
     <asset:stylesheet href="datatables/media/css/jquery.dataTables.css"/>
+
+    <asset:stylesheet href="angular-xeditable/dist/css/xeditable.css"/>
     <asset:stylesheet href="application.css"/>
 </head>
 <body>

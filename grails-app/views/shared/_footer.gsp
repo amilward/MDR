@@ -63,8 +63,9 @@
 
 
 
-    <asset:javascript src="angular/app.js"/>
-    <asset:javascript src="bootstrap/dist/js/bootstrap.min.js"/>
+
+    <asset:javascript src="bootstrap/dist/js/bootstrap.js"/>
+    <asset:javascript src="angular-xeditable/dist/js/xeditable.js"/>
     <asset:javascript src="datatables/media/js/jquery.dataTables.js"/>
   <r:layoutResources />
   </body>

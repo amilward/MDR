@@ -1,0 +1,35 @@
+.pathwayEditor {
+  /**
+    * A graph-paper-like background
+    **/
+  .graph-paper{
+
+    background-color: #fff;
+    background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+    background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
+    background-image: -webkit-linear-gradient(#def 2px, transparent 2px),
+    -webkit-linear-gradient(0, #def 2px, transparent 2px),
+    -webkit-linear-gradient(rgba(221,238,255,.3) 1px, transparent 1px),
+    -webkit-linear-gradient(0, rgba(221,238,255,.3) 1px, transparent 1px);
+    background-image: -moz-linear-gradient(#def 2px, transparent 2px),
+    -moz-linear-gradient(0, #def 2px, transparent 2px),
+    -moz-linear-gradient(rgba(221,238,255,.3) 1px, transparent 1px),
+    -moz-linear-gradient(0, rgba(221,238,255,.3) 1px, transparent 1px);
+    background-image: linear-gradient(#def 2px, transparent 2px),
+    linear-gradient(90deg, #def 2px, transparent 2px),
+    linear-gradient(rgba(221,238,255,.3) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(221,238,255,.3) 1px, transparent 1px);
+    -pie-background: linear-gradient(#def 2px, transparent 2px) -2px -2px / 100px,
+    linear-gradient(90deg, #def 2px, transparent 2px) -2px -2px / 100px,
+    linear-gradient(rgba(221,238,255,.3) 1px, transparent 1px) -1px -1px / 20px,
+    linear-gradient(90deg, rgba(221,238,255,.3) 1px, transparent 1px) -1px -1px / 20px,
+    #269;
+  }
+
+  .canvas {
+      -webkit-border-radius: 6px;
+      -moz-border-radius: 6px;
+      border-radius: 6px;
+      .graph-paper
+  }
+}

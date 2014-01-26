@@ -15,175 +15,104 @@
     <link rel="stylesheet" href="${resource(dir: 'css/pathways', file: 'treeView.css')}" type="text/css">
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'font-awesome.min.css')}" type="text/css">
 
+    <asset:stylesheet href="jquery.layout/dist/jquery.layout-latest.css"/>
 
 </head>
 <body >
 <g:set var="grailsParams" value="${params.collect{ it.key + '=\'' + it.value + '\''}.join('; ')}" />
-<div ng-app="pathway-editor" ng-init="${grailsParams}">
+<div ng-app="pathway-editor" ng-init="${grailsParams}" class="pathwayEditor">
+<div ng-controller="PathwayEditorCtrl">
+
     <div class="row">
         <div class="col-xs-12">
             <button type="button" class="btn btn-link btn-xs pull-right" id="addNode" data-toggle="modal" data-target="#CreateNode">
                 <i class="fa fa-plus"></i> Add Node
             </button>
-            <button type="button" class="btn btn-link btn-xs pull-right" id="updatePathway" data-bind="click: updatePathway">
-                <i class="fa fa-save"></i> Save
-            </button>
             <button type="button" class="btn btn-link btn-xs pull-right" id="editPathwayInfo" data-toggle="modal" data-target="#updatePathwayModal">
                 <i class="fa fa-edit"></i> Edit Info
             </button>
-            <button type="button" class="btn btn-link btn-xs pull-right" id="goToParent" data-bind="visible: isSubPathway(), click: goToParent()" style="display:none">
-                <i class="fa fa-arrow-up"></i> Parent
-            </button>
 
-            <div class="form-group">
-                <h1 id="pathwayName" data-bind="text: pathwayModel ? pathwayModel.name : ''">&nbsp;</h1>
-            </div>
+            <h1 id="pathwayName" ng-bind="pathway.name">&nbsp;</h1>
         </div>
     </div>
-    <div >
 
 
+    <div id="container" class="row" >
 
-    <div id="container" class="row" ng-controller="PathwayEditorCtrl">
-
-         <div id="tree-panel" class="ui-layout-west large-rounded">
+         <div class="ui-layout-west" id="tree-panel" >
              <ul>
-                 <li ng-repeat="node in pathway.nodes" ng-include="'pathwayTreeView.html'"></li>
+                 <li ng-repeat="node in pathway.nodes" ng-include="'templates/pathway/pathwayTreeView.html'"></li>
              </ul>
          </div>
 
-        <script type="text/ng-template" id="pathwayTreeView.html">
-            <span ng-click="selectNode(node)"  ng-class="{selectedItem: isSelected(node)}">{{node.name}}</span>
-            <ul>
-                <li ng-repeat="node in node.nodes" ng-include="'pathwayTreeView.html'" pathway="node"></li>
-            </ul>
-        </script>
 
-
-
-        <div id="center-panel" class="ui-layout-center">
-            <div id="model-panel" class="ui-layout-center  large-rounded  " data-bind="with: pathwayModel">
-
-	            <div id="canvas-panel" class="panel">
-
-                    <div class="jsplumb-container panel-body graph-paper" data-bind="foreach: nodes, visible: true" style="display:none">
-                        <div class="node" data-bind="makeNode: $data, click: $root.selectNode, style: {top:y, left:x}, attr: { 'id': 'node' + id}, css: {selectedItem: $root.itemEqualsToSelected($data)}">
-                            <div data-bind="attr:{title: description}, text: name">&nbsp;</div>
-                            <div class="fa fa-chevron-right ep right"></div>
-                            <div class="fa fa-chevron-left ep left"></div>
-                            <div class="fa fa-chevron-up ep up"></div>
-                            <div class="fa fa-chevron-down ep down"></div>
-                        </div>
-                    </div>
-
-                </div>
+        <div class="ui-layout-center">
+            <div mc-graph-container class="jsplumb-container canvas" ng-controller="GraphCanvasCtrl">
+                <div mc-graph-node graph-node="node" select-node="selectNode(node)" is-selected="isSelected(node)" ng-repeat="node in pathway.nodes"></div>
+                <div mc-graph-link graph-link="link" ng-repeat="link in pathway.links"></div>
             </div>
+        </div>
+
 
         <!-- If selectedItem is undefined, the right panel will be empty -->
-        <div id="properties-panel" class="ui-layout-east large-rounded panel panel-primary" ng-controller="NodePropertiesCtrl">
+        <div class="ui-layout-east large-rounded panel panel-primary" id="properties-panel" ng-controller="NodePropertiesCtrl">
             <div class="panel-heading">
-                Properties for "{{selectedNode.name}}"
+                Properties
             </div>
-            <div class="panel-body">
+            <div class="panel-body" ng-hide="selectedNode">
+                <p>Select a node to view it's properties</p>
+            </div>
+            <div class="panel-body" ng-show="selectedNode">
+                <h4><a href="#" editable-text="selectedNode.name">{{ selectedNode.name || "empty" }}</a></h4>
+                <p><a href="#" editable-text="selectedNode.description">{{ selectedNode.description || "empty" }}</a></p>
 
-                <form class="form" role="form" data-bind="submit: $root.updatePathway">
-                    <div class="form-group">
-                        <label for="txt-properties-name" class="control-label">Name: </label>
-                        <input id="txt-properties-name" type="text" class="form-control" data-bind="value: name, event: {change: $root.updatePathway}" />
-                    </div>
-                    <div class="form-group">
-                        <label for="txt-desc" class="control-label">Description: </label>
-                        <textarea id="txt-desc" rows="3" class="form-control" data-bind="value: description, event: {change: $root.updatePathway}"></textarea>
-                    </div>
+                <button type="button"class="btn btn-default btn-xs" ng-show="selectedNode.nodes" ng-click="switchToSubPathway()">
+                    <i class="fa fa-sitemap"></i> Go to sub-pathway
+                </button>
 
-                </form>
-                <!-- ko if: !($data instanceof LinkModel) -->
-                <div class="panel">
-                    <div class="panel-default">Pathways Model</div>
-                    <div class="panel-body">
-                        <div>
-                            <button id="viewSubPathway" type="button" class="btn btn-link btn-xs pull-right" data-bind="click: viewSubPathway">
-                                <i class="fa fa-plus"></i> View
-                            </button>
-                        </div>
-                        <!--
-                        <div data-bind="if: subPathwayId === null || subPathwayId === undefined">
-                            <button id="addSubPathway" type="button" class="btn btn-link btn-xs pull-right" data-bind="click: createSubPathway">
-                                <i class="fa fa-plus"></i> Add
-                            </button>
-                        </div>
-                        -->
-                    </div>
-                </div>
+                <button type="button" class="btn btn-danger btn-xs" ng-click="delete()">
+                    <i class="fa fa-trash-o"></i> Delete
+                </button>
 
-                <div class="panel panel-default">
-                    <!-- ko if: forms!=[]-->
-                    <div class="panel-heading">Forms</div>
-                    <div class="panel-body forms">
-                        <ul class="list-group" data-bind="foreach: forms">
-                            <li class="list-group-item"><a href="#" data-bind="click: previewForm, text: name"></a>
-                                <i class="fa icon-remove" data-bind="click: function(){$parent.removeForm(id);}"></i></li>
-                        </ul>
-                    </div>
-                    <!-- /ko -->
-                    <button type="button" id="addFormToNode" class="btn btn-link btn-xs pull-right" data-bind="click: addFormDialog">
-                        <i class="fa fa-plus"></i> Add Form
-                    </button>
-                </div>
+                <h5>Forms <i class="fa fa-plus-square-o" ng-click="addForm()"></i></h5>
+                <ul>
+                    <li ng-repeat="form in selectedNode.forms">
+                        {{form.name}}
+                         <i class="fa fa-minus-square-o" ng-click="removeForm(form)"></i>
+                    </li>
+                </ul>
 
-                <div class="panel panel-default">
-                    <!-- ko if: collections!=[] -->
-                    <div class="panel-heading">Collections</div>
-                    <div class="panel-body forms">
-                        <ul class="list-group" data-bind="foreach: collections">
-                            <li class="list-group-item"><a href="#" data-bind="click: previewCollections, text: name"></a>
-                             <i class="fa icon-remove" data-bind="click: function(){$parent.removeCollection(id);}"></i></li>
-                        </ul>
-                    </div>
-              	 <!-- /ko -->
-                    <button type="button" class="btn btn-link btn-xs pull-right" data-bind="click: addCollectionDialog">
-                        <i class="fa fa-plus"></i> Add Collections
-                    </button>
-                </div>
-                <!-- /ko -->
-                <div class="pull-right">
-                    <button type="button" id="deleteSelectedElement" class="btn btn-danger btn-xs pull-right" data-bind="click: $parent.deleteSelectedElement">
-                        <span class="glyphicon glyphicon-remove"></span> Delete
-                    </button>
-                </div>
+                <h5>Data elements <i class="fa fa-plus-square-o" ng-click="addDataElement()"></i></h5>
+                <ul>
+                    <li ng-repeat="element in selectedNode.dataElements">
+                        {{element.name}}
+                        <!-- FIXME: Add data element collections to list (possibly a little folder icon? -->
+                        <i class="fa fa-minus-square-o" ng-click="removeDataElement(element)"></i>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
-    </div>
 
+<!-- FIXME refactor into a separate file -->
+<script type="text/ng-template" id="templates/pathway/pathwayTreeView.html">
+    <span ng-click="selectNode(node)"  ng-class="{selectedItem: isSelected(node)}">{{node.name}}</span>
+    <ul>
+        <li ng-repeat="node in node.nodes" ng-include="'templates/pathway/pathwayTreeView.html'" pathway="node"></li>
+    </ul>
+</script>
 
-
-	<!-- Add Pathway Modal -->
-    <div class="modal fade" id="CreatePathwayModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content" >
-                <div class="modal-header">
-                    <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>-->
-                    <h4 class="modal-title" id="myModalLabel">Create Pathway</h4>
-                </div>
-                <div class="modal-body">
-                    <form class="form" role="form">
-                        <div class="form-group">
-                            <label for="txt-name" class="control-label">Name: </label>
-                            <input id="txt-name" type="text" class="form-control"/>
-                        </div>
-                        <div class="form-group">
-                            <label for="txt-desc" class="control-label">Description: </label>
-                            <textarea id="txt-desc" rows="3" class="form-control"></textarea>
-                        </div>
-			        </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-bind="click: $root.savePathway">Create</button>
-                </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
+<script type="text/ng-template" id="templates/pathway/jsPlumbNode.html">
+<div class="node" id="node_{{node.id}}" ng-click="selectNode(node)"  ng-class="{selectedItem: isSelected(node)}" style="left: {{node.x}}px; top: {{node.y}}px">
+    <div>{{node.name}}</div>
+    <div class="fa fa-chevron-right ep right"></div>
+    <div class="fa fa-chevron-left ep left"></div>
+    <div class="fa fa-chevron-up ep up"></div>
+    <div class="fa fa-chevron-down ep down"></div>
+</div>
+</script>
+<!-- Refactored down to this point -->
+<!-- Modals and other bits of hidden content -->
 
     <!-- Add Node Modal -->
     <div class="modal fade" id="CreateNode" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -230,7 +159,7 @@
                    <div id="formDesignList" ></div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-bind="click: $root.addFormFinish">Finish</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Finish</button>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
@@ -341,11 +270,11 @@
 </div>
 <!-- /.modal -->
 
+    <!-- FIXME remove this and use asset pipeline only. The only reference left is for the layout... -->
 	<g:javascript disposition="defer" library="pathways" />
-	<r:script disposition="defer">
-		//initPathways(${pathway?.id});
-	</r:script>
+    <asset:javascript src="angular/app.js"/>
 
+    <asset:javascript src="jquery.layout/dist/jquery.layout-latest.js"/>
 </body>
 </html>
 
