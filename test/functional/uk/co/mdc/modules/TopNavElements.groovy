@@ -36,8 +36,6 @@ class TopNavElements extends Module{
      * Go to the list page for pathways
      */
     void goToPathwayListPage(){
-        println "going to pathways"
-
         expandPathwayMenuLink.click()
         listPathwaysLink.click()
     }

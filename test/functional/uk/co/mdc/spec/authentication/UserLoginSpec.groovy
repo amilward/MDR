@@ -92,7 +92,7 @@ class UserLoginSpec extends GebReportingSpec {
 	//Then I am redirected to the requested resource
 	def "Successful login when attempting to go somewhere else"() {
 		when: 'I go to a restricted page and I am not logged in'
-		to PathwayListPage
+		to PathwayListPage.url
 		
 		then:'I am redirected to the login screen'
 		waitFor{

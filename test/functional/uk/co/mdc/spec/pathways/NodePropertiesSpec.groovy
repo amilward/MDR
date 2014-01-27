@@ -17,8 +17,7 @@ class NodePropertiesSpec extends GebReportingSpec{
 
     def setup(){
         to LoginPage
-        //loginRegularUser()
-        loginAdminUser()
+        loginRegularUser()
         at DashboardPage
 
         nav.goToPathwayListPage()

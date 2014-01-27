@@ -21,10 +21,14 @@ class NodeSpec extends spock.lang.Specification {
 
 		def expected = [
 			name: "Bill",
-			desc: "One half of the flowerpot men",
+			description: "One half of the flowerpot men",
 			x: 10,
 			y: 15,
-			peCollection: new Collection()
+            parent: new Pathway(
+                    name: "pathway 1",
+                    userVersion: "1.0",
+                    isDraft: true,
+            ).save()
 		]
 		
 		//
@@ -39,7 +43,7 @@ class NodeSpec extends spock.lang.Specification {
 		node1.description == expected.description
 		node1.x.toInteger() == expected.x
 		node1.y.toInteger() == expected.y
-		node1.peCollection == expected.peCollection
+        node1.parent == expected.parent
 
 		//
 		// Ensure name can't be null
@@ -60,7 +64,7 @@ class NodeSpec extends spock.lang.Specification {
 		node1 = new Node(expected)
 		
 		then: 'it is all fine'
-		node1.validate()
+		println node1.validate().toString() + ": " + node1.errors
 		!node1.hasErrors()
 	}
 }

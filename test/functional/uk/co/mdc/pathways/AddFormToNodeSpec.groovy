@@ -60,13 +60,8 @@ class AddFormToNodeSpec extends GebReportingSpec {
 						pathwayName.text() == pName
 					}
 					
-					when: "I click on a node"
+					when: "I click on a node and add a form"
 					node2.click()
-				
-					then: "the add form button is visible in the properties panel"
-					addFormButton.@type=="button"					
-					
-					when: "I click on the add form button"
 					addFormButton.click()
 					
 					then: "the add form modal is displayed"

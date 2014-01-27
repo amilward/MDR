@@ -23,7 +23,7 @@ class PathwayShowPage extends BasePageWithNav{
 		addNodeButton { $("#addNode") }
 		node2(required:false) { $("#node7") }
 		addFormModal { $("#AddFormModal") }
-		addFormButton { $("#addFormToNode") }
+		addFormButton { $("h5", text: "Forms").find("i") }
 		formDesignTableFirstRow { $("#formDesignTable tbody tr", 0) }
 		formDesignTableRows { $("#formDesignTable tbody tr") }
 		formDesignTableFRLink { formDesignTableFirstRow.find("a") }

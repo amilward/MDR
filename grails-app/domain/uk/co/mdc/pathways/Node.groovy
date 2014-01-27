@@ -10,8 +10,8 @@ class Node extends Pathway{
     String description
 
     // Coordinates for rendering node
-    int x
-    int y
+    Integer x
+    Integer y
 
     // The owning pathway
     Pathway parent
