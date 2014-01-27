@@ -1,4 +1,4 @@
-package uk.co.mdc.registration;
+package uk.co.mdc.spec.registration;
 import geb.spock.GebReportingSpec
 
 import uk.co.mdc.pages.registration.RegistrationPage

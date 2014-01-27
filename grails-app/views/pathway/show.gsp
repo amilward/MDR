@@ -29,7 +29,7 @@
                 <button type="button" class="btn btn-link btn-xs" id="addNode" data-toggle="modal" data-target="#CreateNode">
                     <i class="fa fa-plus"></i> Add Node
                 </button>
-                <small editable-textarea="pathway.description" e-form="pathwayDescriptionForm">
+                <small id="pathwayDescription" editable-textarea="pathway.description" e-form="pathwayDescriptionForm">
                     {{pathway.description || 'This pathway needs a description'}}
                     <small><i class="fa fa-edit" ng-click="pathwayDescriptionForm.$show()" ng-hide="pathwayDescriptionForm.$visible"></i></small>
                 </small>
@@ -111,7 +111,7 @@
 
 <script type="text/ng-template" id="templates/pathway/jsPlumbNode.html">
 <div class="node" id="node{{node.id}}" ng-click="selectNode(node)"  ng-class="{selectedItem: isSelected(node)}" style="left: {{node.x}}px; top: {{node.y}}px">
-    <div>{{node.name}}</div>
+    <div><i class="fa " ng-class="{'fa-sitemap': node.nodes.length > 0}"></i> {{node.name}}</div>
     <div class="fa fa-arrow-circle-o-right ep right"></div>
     <div class="fa fa-arrow-circle-o-left ep left"></div>
     <div class="fa fa-arrow-circle-o-up ep up"></div>
@@ -217,65 +217,6 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
-
-
-<!-- Update Pathway Info -->
-    <div id="updatePathwayModal" class="modal fade" tabindex="-1"	role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop = "true" >
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>-->
-				<h4 class="modal-title" id="myModalLabel">Update Pathway</h4>
-			</div>
-			<div class="modal-body">
-
-				<form class="form" role="form" data-bind="with: pathwayModel" id="createPathwayForm" action="#" method="post">
-					<div class="form-group">
-						<label for="txt-name" class="control-label">Name: </label>
-						<input name="name"
-							id="txt-nameUpdate" type="text" class="form-control" data-bind="value: name, valueUpdate: 'input'"
-							 />
-					</div>
-					<div class="form-group">
-						<label for="txt-desc" class="control-label">Description: </label>
-						<textarea name="description" id="txt-descUpdate" rows="3" class="form-control" data-bind="value: description, valueUpdate: 'input'"
-							></textarea>
-					</div>
-					<div class="form-group">
-            <label for="txt-version" class="control-label">Version: </label> <input
-              id="txt-versionNoUpdate" type="text" name="version" class="form-control" data-bind="value: versionNo, valueUpdate: 'input'"
-              />
-          </div>
-          <div class="form-group">
-			            <label for="bool-isDraft" class="control-label">Draft: </label>
-			            <select id="select-isDraftUpdate" name="isDraft" data-bind="optionsText: 'isDraft', value: isDraft, optionsCaption: 'Choose...'">
-									<option value="true">true</option>
-   									 <option value="false">false</option>
-								</select>
-			          </div>
-				</form>
-			</div>
-			<div class="modal-footer">
-                <button class="closeModalLink" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <div class="pull-left">
-                    <div id="deletePathway-initial">
-                        <button type="button" id="deletePathway" class="btn btn-danger" data-bind="click: deletePathway">
-                            <span class="glyphicon glyphicon-remove"></span> Delete Pathway
-                        </button>
-                    </div>
-                    <div id="deletePathway-confirmation" class="pull-right" aria-hidden="true" style="display: none;">
-                        <button type="button" id="cancelDeletePathway" class="btn btn-default">Abort deletion</button>
-                        <button type="button" id="confirmDeletePathway" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span>Confirm (WARNING: this cannot be undone)</button>
-                    </div>
-                </div>
-            </div>
-
-		</div>
-		<!-- /.modal-content -->
-	</div>
-	<!-- /.modal-dialog -->
-</div>
-<!-- /.modal -->
 
     <!-- FIXME remove this and use asset pipeline only. The only reference left is for the layout... -->
 	<g:javascript disposition="defer" library="pathways" />

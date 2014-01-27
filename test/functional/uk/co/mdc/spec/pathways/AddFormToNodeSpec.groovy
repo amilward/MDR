@@ -1,9 +1,7 @@
 /**
  * Author: Adam Milward (adam.milward@outlook.com)
  */
-package uk.co.mdc.pathways;
-import geb.error.RequiredPageContentNotPresent
-import geb.error.UnresolvablePropertyException
+package uk.co.mdc.spec.pathways;
 import geb.spock.GebReportingSpec
 
 import uk.co.mdc.pages.authentication.LoginPage
@@ -13,8 +11,8 @@ import uk.co.mdc.pages.pathways.PathwayShowPage
 
 import org.openqa.selenium.Dimension
 
-class PathwayAddDeleteNodeSpec extends GebReportingSpec {
-	def "View a Pathway add a new node and then delete as admin"() {
+class AddFormToNodeSpec extends GebReportingSpec {
+	def "View a Pathway and add a form to a Node on the pathway as admin"() {
 		
 			given:"I am on the dashboard view in a 1024x768 browser window"
 					driver.manage().window().setSize(new Dimension(1028, 768))
@@ -46,7 +44,8 @@ class PathwayAddDeleteNodeSpec extends GebReportingSpec {
 					waitFor{
 						dataTableRows.size() > 0
 					}
-
+					
+					
 					when: "I click on the first pathway link"
 					def pName = dataTableTMLink.text()
 					dataTableTMLink.click()
@@ -61,48 +60,29 @@ class PathwayAddDeleteNodeSpec extends GebReportingSpec {
 						pathwayName.text() == pName
 					}
 					
-					when: "I click on add node"
-					addNodeButton.click()
+					when: "I click on a node and add a form"
+					node2.click()
+					addFormButton.click()
 					
-					then: "the create node modal pops up"
+					then: "the add form modal is displayed"
 					waitFor{
-						modalLabel.text() == "Create Node"
+						addFormModal.displayed
+						formDesignTableRows.size() > 0
 					}
 					
-					when: "I fill in the information"
-					createNodeName = "testNode"
-					createNodeDescription = "testDesc"
-					createNodeButton.click()
-					
-					then: "the node appears in the interface with the testNode title"
-
-					waitFor{
-						newNodeTitleDiv.displayed
-					}
-
-					when: "I click on the node I have just created"
-					newNodeTitleDiv.click()
-				
-					then: "the delete node button is visible in the properties panel"
-					waitFor{
-						deleteSelectedElementButton.@type=="button"	
-						propertiesName == "testNode"
+					when: "I drag and drop the first row of the form list"
+					interact {
+						dragAndDropBy(formDesignTableFirstRow, 0, -175)
 					}
 					
-					when: "I click on the delete node button"
-					deleteSelectedElementButton.click()
-					
-					then: "the node is deleted"
+					then: "the form name is added to the form list"
+					def formName = formDesignTableFRLink.text()
 					waitFor{
-							try {
-								newNodeTitleDiv.text() != "testNode"
-							} catch (UnresolvablePropertyException e) {
-								return true
-							} catch (RequiredPageContentNotPresent e) {
-								return true
-							} 
-						}
-							
+						formDesignCartListFirstItem.text() == formName
+					}
+					
+					
+					
 		}
 	
 }

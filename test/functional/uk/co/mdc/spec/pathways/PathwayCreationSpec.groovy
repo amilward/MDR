@@ -2,7 +2,7 @@
  * Author: Ryan Brooks (ryan.brooks@ndm.ox.ac.uk)
  * 		   Adam Milward (adam.milward@outlook.com)
  */
-package uk.co.mdc.pathways;
+package uk.co.mdc.spec.pathways;
 import geb.spock.GebReportingSpec
 
 import uk.co.mdc.pages.authentication.LoginPage
@@ -61,31 +61,32 @@ class PathwayCreationSpec extends GebReportingSpec {
 		and: "it displays the name of the pathway"
 		waitFor{
 			pathwayName.text() == varPathwayName
+            pathwayDescription.text() == varDescription
+            pathwayUserVersion.text() == varVersionNo
+            //pathway.isDraft.text() == varIsDraft
+
 			pathwayCanvas.height == 3000
 			pathwayCanvas.width == 3000
-			
 		}
 
-// REMOVED IN ANTICIPATION OF X-EDITABLE TITLE FIELDS
-// If we go back to an edit screen this needs to be put back in
-//		when: "I click on the edit info"
-//		editInfoButton.click()
-//
-//
-//		then: "the update pathway info modal is displayed"
-//		waitFor{
-//			updatePathwayModal.displayed
-//		}
-//
-//		and: "the pathways Info is the same as the info entered when we created the pathway"
-//
-//
-//		waitFor{
-//			pathwayInfoName == varPathwayName
-//			pathwayInfoDescription == varDescription
-//			pathwayInfoVersionNo == varVersionNo
-//			pathwayInfoIsDraft == varIsDraft
-//		}
+		when: "I click on the edit info"
+		editInfoButton.click()
+
+
+		then: "the update pathway info modal is displayed"
+		waitFor{
+			updatePathwayModal.displayed
+		}
+
+		and: "the pathways Info is the same as the info entered when we created the pathway"
+
+
+		waitFor{
+			pathwayInfoName == varPathwayName
+			pathwayInfoDescription == varDescription
+			pathwayInfoVersionNo == varVersionNo
+			pathwayInfoIsDraft == varIsDraft
+		}
 		
 	}
 }

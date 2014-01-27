@@ -4,10 +4,10 @@ import uk.co.mdc.pages.BasePageWithNav;
 
 class PathwayListPage extends BasePageWithNav{
 	
-	static url = "pathwaysModel/list"
+	static url = "pathway/list"
 	
 	static at = {
-		url == "pathwaysModel/list" &&
+		url == "pathway/list" &&
 		title == "All pathways"
 	}
 	
@@ -39,6 +39,16 @@ class PathwayListPage extends BasePageWithNav{
             return false
         }
 
+    }
+
+    boolean goToPathwayInList(int index){
+        def link = dataTableRows.find("a")[index]
+        if(link){
+            link.click()
+            return true
+        }else{
+            return false
+        }
     }
 
     def getPathwayLink(pathwayName){
