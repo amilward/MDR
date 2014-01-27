@@ -10,6 +10,7 @@ pathwayEditor = angular.module('pathway.controllers',['pathway.services'])
 ])
 
 .controller('NodePropertiesCtrl', ['$scope', 'NodeSelector', ($scope, NodeSelector) ->
+  $scope.selectedNode = null
   $scope.switchToSubPathway = ->
     console.log("FIXME: this should switch the pathway viewer's scope to node " + $scope.selectedNode.id)
 

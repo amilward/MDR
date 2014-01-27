@@ -12,7 +12,7 @@ import spock.lang.Specification
  * Created by rb on 23/01/2014.
  */
 @TestFor(PathwayService)
-@Mock([ Pathway, Node, Link, NodeService, LinkService])
+@Mock([ Pathway, Node, Link])
 @TestMixin(DomainClassUnitTestMixin)
 class PathwayServiceSpec extends Specification{
 

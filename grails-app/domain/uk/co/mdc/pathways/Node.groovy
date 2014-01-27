@@ -15,7 +15,6 @@ class Node extends Pathway{
 
     // The owning pathway
     Pathway parent
-    Pathway subPathway
 
     // TODO Forms
     // TODO Data elements
@@ -27,7 +26,6 @@ class Node extends Pathway{
 
     static constraints = {
         description nullable:true
-        subPathway nullable: true
         x nullable:true
         y nullable:true
     }

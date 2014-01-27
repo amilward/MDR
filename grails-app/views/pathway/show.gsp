@@ -26,14 +26,20 @@
     <div class="row">
         <div class="col-xs-12">
             <div class="pull-right">
-            <button type="button" class="btn btn-link btn-xs" id="addNode" data-toggle="modal" data-target="#CreateNode">
-                <i class="fa fa-plus"></i> Add Node
-            </button>
-            <button type="button" class="btn btn-link btn-xs" id="editPathwayInfo" data-toggle="modal" data-target="#updatePathwayModal">
-                <i class="fa fa-edit"></i> Edit Info
-            </button></div>
-            <div> <h3 id="pathwayName" ng-bind="pathway.name">&nbsp;</h3></div>
-
+                <button type="button" class="btn btn-link btn-xs" id="addNode" data-toggle="modal" data-target="#CreateNode">
+                    <i class="fa fa-plus"></i> Add Node
+                </button>
+                <small editable-textarea="pathway.description" e-form="pathwayDescriptionForm">
+                    {{pathway.description || 'This pathway needs a description'}}
+                    <small><i class="fa fa-edit" ng-click="pathwayDescriptionForm.$show()" ng-hide="pathwayDescriptionForm.$visible"></i></small>
+                </small>
+            </div>
+            <div>
+                <h3>
+                    <span  id="pathwayName" editable-text="pathway.name"        e-style="width: 25em">{{ pathway.name || 'Please set the pathway name' }}</span>
+                    <small id="userVersion" editable-text="pathway.userVersion" e-style="width: 5em">{{pathway.userVersion}}</small>
+                </h3>
+            </div>
         </div>
     </div>
 
