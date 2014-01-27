@@ -1,4 +1,4 @@
-<%@ page import="uk.co.mdc.model.ConceptualDomain" %>
+<%@ page import="uk.co.mdc.catalogue.ConceptualDomain" %>
 
 
 <table class="table table-hovered">

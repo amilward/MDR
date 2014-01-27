@@ -2,7 +2,7 @@ package uk.co.mdc.forms
 
 class FormRule {
 	
-	//In Steve's model these are called local definitions not rules
+	//In Steve's catalogue these are called local definitions not rules
 	String name
 	String predicate
 	String consequence

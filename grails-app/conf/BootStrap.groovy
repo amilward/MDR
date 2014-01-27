@@ -6,7 +6,7 @@ import uk.co.mdc.SecAuth
 import uk.co.mdc.SecUser
 import uk.co.mdc.SecUserSecAuth
 import uk.co.mdc.forms.*
-import uk.co.mdc.model.*
+import uk.co.mdc.catalogue.*
 import uk.co.mdc.pathways.Link
 import uk.co.mdc.pathways.Node
 import uk.co.mdc.pathways.PathwaysModel
@@ -246,14 +246,10 @@ class BootStrap {
 		
 		if (!RelationshipType.count()) {
 			
-			new RelationshipType(name: "Synonym").save()
-			valueDomain = new RelationshipType(name: "DataValue", xYRelationship: "DataElement", yXRelationship: "ValueDomain").save()
-			parentChild = new RelationshipType(name: "ParentChild", xYRelationship: "Parent", yXRelationship: "Child").save()
-			new RelationshipType(name: "OptionalModelElement", xYRelationship: "Model", yXRelationship: "OptionalElement").save()
-			modelElement = new RelationshipType(name: "ModelElement", xYRelationship: "Model", yXRelationship: "DataElement").save()
-			new RelationshipType(name: "MandatoryModelElement", xYRelationship: "Model", yXRelationship: "MandatoryElement").save()
-			new RelationshipType(name: "RequiredModelElement", xYRelationship: "Model", yXRelationship: "RequiredElement").save()
-			new RelationshipType(name: "ReferenceModelElement", xYRelationship: "Model", yXRelationship: "ReferenceElement").save()
+			new RelationshipType(name: "Synonym", xYRelationship: "SynonymousWith", yXRelationship: "SynonymousWith").save()
+			valueDomain = new RelationshipType(name: "DataValue", xYRelationship: "DataElementFor", yXRelationship: "ValueDomainFor").save()
+			parentChild = new RelationshipType(name: "ParentChild", xYRelationship: "ParentOf", yXRelationship: "ChildOf").save()
+			modelElement = new RelationshipType(name: "ModelElement", xYRelationship: "ModelContains", yXRelationship: "ContainedInModel").save()
             new RelationshipType(name: "Supersession", xYRelationship: "Supercedes", yXRelationship: "SupercededBy").save()
             new RelationshipType(name: "ValueMapping").save()
 

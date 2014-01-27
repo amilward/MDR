@@ -1,5 +1,5 @@
 ﻿
-    //The main view model
+    //The main view catalogue
     var AppViewModel = function () {
     	
         var self = this;
@@ -158,7 +158,7 @@
         		
         		//create pathwayModal
         		self.pathwayModel = pathway;
-        		 //Set the new pathway model id given the id created on the server
+        		 //Set the new pathway catalogue id given the id created on the server
                 self.pathwayModel.id = data.pathwayId;
                 self.pathwayModel.versionOnServer = data.versionOnServer
                // //console.log(self.pathwayModel.id)
@@ -212,8 +212,8 @@
         };
         
         self.loadNode = function(JSONNode, pm) {
-        	//create the node in the model
-        	//create the node in the model
+        	//create the node in the catalogue
+        	//create the node in the catalogue
         	//console.log(JSONNode.pathwaysModelVersion)
         	var node = new NodeModel();
             var subNodes;
@@ -245,7 +245,7 @@
         		description = $('#createNodeDescription').val();
         	}
         	
-        	//create the node in the model
+        	//create the node in the catalogue
         	var node = new NodeModel();
             node.name = name;
             node.description = description;
@@ -255,7 +255,7 @@
            // //console.log(jsonNodeToServer)
             //after the node has been created on the server using the pathways service methods
             //pass the version number and the id from the server to the node and 
-            //add it to the pathways model
+            //add it to the pathways catalogue
 
             $.when(pathwayService.createNode(jsonNodeToServer)).done(function (data) {
             	if(data.success===true){
@@ -320,7 +320,7 @@
 		    
         	
 		    
-		    //remove the ko node from pathway model
+		    //remove the ko node from pathway catalogue
         	$.when(pathwayService.deleteNode(nodeId)).done(function (data) {
 			    ko.utils.arrayRemoveItem(self.pathwayModel.nodes, nodeToDelete);
 			    ////console.log(self.pathwayModel.nodes);
@@ -446,8 +446,8 @@
 		      }
 		    });
 		    //remove inputs/outputs
-		    var source = link.source; //Get the source node model instance            
-   		    var target = link.target; //Get the target node model instance
+		    var source = link.source; //Get the source node catalogue instance
+   		    var target = link.target; //Get the target node catalogue instance
    			
    			//If source is current node, and target node is not already in the outputs array, add it to outputs
 		    if (ko.utils.arrayFirst(source.outputs, function (item) { return item === target })) {

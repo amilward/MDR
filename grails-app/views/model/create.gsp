@@ -1,9 +1,9 @@
-<%@ page import="uk.co.mdc.model.Model" %>
+<%@ page import="uk.co.mdc.catalogue.Model" %>
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta name="layout" content="main">
-		<g:set var="entityName" value="${message(code: 'model.label', default: 'Model')}" />
+		<g:set var="entityName" value="${message(code: 'catalogue.label', default: 'Model')}" />
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'bootstrap-duallistbox.css')}" type="text/css">
 		<title><g:message code="default.create.label" args="[entityName]" /></title>
 	<parameter name="name" value=" CREATE COLLECTION " />

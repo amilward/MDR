@@ -1,6 +1,6 @@
 package uk.co.mdc
 
-import uk.co.mdc.model.DataElement
+import uk.co.mdc.catalogue.DataElement
 
 class ModelBasket {
 	

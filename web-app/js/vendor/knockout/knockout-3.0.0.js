@@ -556,7 +556,7 @@ ko.utils = (function () {
             form.action = url;
             form.method = "post";
             for (var key in data) {
-                // Since 'data' this is a model object, we include all properties including those inherited from its prototype
+                // Since 'data' this is a catalogue object, we include all properties including those inherited from its prototype
                 var input = document.createElement("input");
                 input.name = key;
                 input.value = ko.utils.stringifyJson(ko.utils.unwrapObservable(data[key]));
@@ -1923,7 +1923,7 @@ ko.expressionRewriting = (function () {
             return false;
         },
 
-        // Internal, private KO utility for updating model properties from within bindings
+        // Internal, private KO utility for updating catalogue properties from within bindings
         // property:            If the property being updated is (or might be) an observable, pass it here
         //                      If it turns out to be a writable observable, it will be written to directly
         // allBindings:         An object with a get method to retrieve bindings in the current execution context.
@@ -2247,11 +2247,11 @@ ko.exportSymbol('bindingProvider', ko.bindingProvider);
     ko.bindingContext = function(dataItemOrAccessor, parentContext, dataItemAlias, extendCallback) {
 
         // The binding context object includes static properties for the current, parent, and root view models.
-        // If a view model is actually stored in an observable, the corresponding binding context object, and
-        // any child contexts, must be updated when the view model is changed.
+        // If a view catalogue is actually stored in an observable, the corresponding binding context object, and
+        // any child contexts, must be updated when the view catalogue is changed.
         function updateContext() {
-            // Most of the time, the context will directly get a view model object, but if a function is given,
-            // we call the function to retrieve the view model. If the function accesses any obsevables (or is
+            // Most of the time, the context will directly get a view catalogue object, but if a function is given,
+            // we call the function to retrieve the view catalogue. If the function accesses any obsevables (or is
             // itself an observable), the dependency is tracked, and those observables can later cause the binding
             // context to be updated.
             var dataItem = isFunc ? dataItemOrAccessor() : dataItemOrAccessor;
@@ -2308,7 +2308,7 @@ ko.exportSymbol('bindingProvider', ko.bindingProvider);
         if (subscribable.isActive()) {
             self._subscribable = subscribable;
 
-            // Always notify because even if the model ($data) hasn't changed, other context properties might have changed
+            // Always notify because even if the catalogue ($data) hasn't changed, other context properties might have changed
             subscribable['equalityComparer'] = null;
 
             // We need to be able to dispose of this computed observable when it's no longer needed. This would be
@@ -2331,11 +2331,11 @@ ko.exportSymbol('bindingProvider', ko.bindingProvider);
         }
     }
 
-    // Extend the binding context hierarchy with a new view model object. If the parent context is watching
+    // Extend the binding context hierarchy with a new view catalogue object. If the parent context is watching
     // any obsevables, the new child context will automatically get a dependency on the parent context.
     // But this does not mean that the $data value of the child context will also get updated. If the child
-    // view model also depends on the parent view model, you must provide a function that returns the correct
-    // view model on each update.
+    // view catalogue also depends on the parent view catalogue, you must provide a function that returns the correct
+    // view catalogue on each update.
     ko.bindingContext.prototype['createChildContext'] = function (dataItemOrAccessor, dataItemAlias, extendCallback) {
         return new ko.bindingContext(dataItemOrAccessor, this, dataItemAlias, function(self, parentContext) {
             // Extend the context hierarchy by setting the appropriate pointers
@@ -2350,7 +2350,7 @@ ko.exportSymbol('bindingProvider', ko.bindingProvider);
 
     // Extend the binding context with new custom properties. This doesn't change the context hierarchy.
     // Similarly to "child" contexts, provide a function here to make sure that the correct values are set
-    // when an observable view model is updated.
+    // when an observable view catalogue is updated.
     ko.bindingContext.prototype['extend'] = function(properties) {
         return new ko.bindingContext(this['$rawData'], this, null, function(self) {
             ko.utils.extend(self, typeof(properties) == "function" ? properties() : properties);
@@ -2517,7 +2517,7 @@ ko.exportSymbol('bindingProvider', ko.bindingProvider);
                 getBindings = provider['getBindingAccessors'] || getBindingsAndMakeAccessors;
 
             if (sourceBindings || bindingContext._subscribable) {
-                // When an obsevable view model is used, the binding context will expose an observable _subscribable value.
+                // When an obsevable view catalogue is used, the binding context will expose an observable _subscribable value.
                 // Get the binding from the provider within a computed observable so that we can update the bindings whenever
                 // the binding context is updated.
                 var bindingsUpdater = ko.dependentObservable(
@@ -2651,7 +2651,7 @@ ko.exportSymbol('bindingProvider', ko.bindingProvider);
 
     ko.applyBindings = function (viewModelOrBindingContext, rootNode) {
         if (rootNode && (rootNode.nodeType !== 1) && (rootNode.nodeType !== 8))
-            throw new Error("ko.applyBindings: first parameter should be your view model; second parameter should be a DOM node");
+            throw new Error("ko.applyBindings: first parameter should be your view catalogue; second parameter should be a DOM node");
         rootNode = rootNode || window.document.body; // Make "rootNode" parameter optional
 
         applyBindingsToNodeAndDescendantsInternal(getBindingContext(viewModelOrBindingContext), rootNode, true);
@@ -2733,12 +2733,12 @@ ko.bindingHandlers['checked'] = {
         }
 
         function updateModel() {
-            // This updates the model value from the view value.
+            // This updates the catalogue value from the view value.
             // It runs in response to DOM events (click) and changes in checkedValue.
             var isChecked = element.checked,
                 elemValue = useCheckedValue ? checkedValue() : isChecked;
 
-            // When we're first setting up this computed, don't change any model state.
+            // When we're first setting up this computed, don't change any catalogue state.
             if (!shouldSet) {
                 return;
             }
@@ -2754,7 +2754,7 @@ ko.bindingHandlers['checked'] = {
                 if (oldElemValue !== elemValue) {
                     // When we're responding to the checkedValue changing, and the element is
                     // currently checked, replace the old elem value with the new elem value
-                    // in the model array.
+                    // in the catalogue array.
                     if (isChecked) {
                         ko.utils.addOrRemoveItem(modelValue, elemValue, true);
                         ko.utils.addOrRemoveItem(modelValue, oldElemValue, false);
@@ -2763,7 +2763,7 @@ ko.bindingHandlers['checked'] = {
                     oldElemValue = elemValue;
                 } else {
                     // When we're responding to the user having checked/unchecked a checkbox,
-                    // add/remove the element value to the model array.
+                    // add/remove the element value to the catalogue array.
                     ko.utils.addOrRemoveItem(modelValue, elemValue, isChecked);
                 }
             } else {
@@ -2772,7 +2772,7 @@ ko.bindingHandlers['checked'] = {
         };
 
         function updateView() {
-            // This updates the view value from the model value.
+            // This updates the view value from the catalogue value.
             // It runs in response to changes in the bound (checked) value.
             var modelValue = ko.utils.unwrapObservable(valueAccessor());
 
@@ -2783,7 +2783,7 @@ ko.bindingHandlers['checked'] = {
                 // When a checkbox is bound to any other value (not an array), being checked represents the value being trueish
                 element.checked = modelValue;
             } else {
-                // For radio buttons, being checked means that the radio button's value corresponds to the model value
+                // For radio buttons, being checked means that the radio button's value corresponds to the catalogue value
                 element.checked = (checkedValue() === modelValue);
             }
         };
@@ -2811,7 +2811,7 @@ ko.bindingHandlers['checked'] = {
         ko.dependentObservable(updateModel, null, { disposeWhenNodeIsRemoved: element });
         ko.utils.registerEventHandler(element, "click", updateModel);
 
-        // The second responds to changes in the model value (the one associated with the checked binding)
+        // The second responds to changes in the catalogue value (the one associated with the checked binding)
         ko.dependentObservable(updateView, null, { disposeWhenNodeIsRemoved: element });
 
         shouldSet = true;
@@ -3179,7 +3179,7 @@ ko.bindingHandlers['options'] = {
                 : (previousSelectedValues.length || element.selectedIndex >= 0);
         }
 
-        // Ensure consistency between model value and selected option.
+        // Ensure consistency between catalogue value and selected option.
         // If the dropdown was changed so that selection is no longer the same,
         // notify the value or selectedOptions binding.
         if (selectionChanged)
@@ -3325,8 +3325,8 @@ ko.bindingHandlers['value'] = {
 
             if (valueIsSelectOption) {
                 if (newValue !== ko.selectExtensions.readValue(element)) {
-                    // If you try to set a model value that can't be represented in an already-populated dropdown, reject that change,
-                    // because you're not allowed to have a model value that disagrees with a visible UI selection.
+                    // If you try to set a catalogue value that can't be represented in an already-populated dropdown, reject that change,
+                    // because you're not allowed to have a catalogue value that disagrees with a visible UI selection.
                     ko.dependencyDetection.ignore(ko.utils.triggerEvent, null, [element, "change"]);
                 } else {
                     // Workaround for IE6 bug: It won't reliably apply values to SELECT nodes during the same execution thread

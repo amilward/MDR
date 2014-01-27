@@ -400,7 +400,7 @@ Editableform is linked with one of input types, e.g. 'text', 'select' etc.
             if(params.value === 'abc') {
                 return d.reject('error message'); //returning error via deferred object
             } else {
-                //async saving data in js model
+                //async saving data in js catalogue
                 someModel.asyncSaveMethod({
                    ..., 
                    success: function(){

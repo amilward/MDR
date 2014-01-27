@@ -6,7 +6,7 @@
 	
     self.loadPathway = function (id) {
     	
-    	 //Load a pathway model from server
+    	 //Load a pathway catalogue from server
     	
     	return $.ajax({
     		type : "POST",

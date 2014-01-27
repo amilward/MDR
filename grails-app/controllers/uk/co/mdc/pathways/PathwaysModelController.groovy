@@ -73,7 +73,7 @@ class PathwaysModelController {
 
 		//NB. when the json is rendered it uses a custom json marshaller so that it includes the relevant
 		//information (and doesn't return the whole database)
-		//the corresponding json marshaller is stored in src/groovy/uk/co/mdc/model/xxxxxxMarshaller.groovy
+		//the corresponding json marshaller is stored in src/groovy/uk/co/mdc/catalogue/xxxxxxMarshaller.groovy
 				
 		render model as JSON
 	}
@@ -89,7 +89,7 @@ class PathwaysModelController {
 		
 		}else{
 			
-			 model = [errors: true, details: 'no model for this id included']
+			 model = [errors: true, details: 'no catalogue for this id included']
 		}
 		
 		

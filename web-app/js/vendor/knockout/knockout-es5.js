@@ -10,7 +10,7 @@
     // Model tracking
     // --------------
     //
-    // This is the central feature of Knockout-ES5. We augment model objects by converting properties
+    // This is the central feature of Knockout-ES5. We augment catalogue objects by converting properties
     // into ES5 getter/setter pairs that read/write an underlying Knockout observable. This means you can
     // use plain JavaScript syntax to read/write the property while still getting the full benefits of
     // Knockout's automatic dependency detection and notification triggering.
@@ -25,7 +25,7 @@
     //     var firstNameLength = myModel.user.firstName.length; // Read
     //     myModel.user.firstName = 'Bert'; // Write
 
-    // `ko.track(model)` converts each property on the given model object into a getter/setter pair that
+    // `ko.track(catalogue)` converts each property on the given catalogue object into a getter/setter pair that
     // wraps a Knockout observable. Optionally specify an array of property names to wrap; otherwise we
     // wrap all properties. If any of the properties are already observables, we replace them with
     // ES5 getter/setter pairs that wrap your original observable instances. In the case of readonly
@@ -79,7 +79,7 @@
     var objectToObservableMap;
 
     // Gets or creates the hidden internal key-value collection of observables corresponding to
-    // properties on the model object.
+    // properties on the catalogue object.
     function getAllObservablesForObject(obj, createIfNotDefined) {
         if (!objectToObservableMap) {
             objectToObservableMap = weakMapFactory();
@@ -96,7 +96,7 @@
     // Computed properties
     // -------------------
     //
-    // The preceding code is already sufficient to upgrade ko.computed model properties to ES5
+    // The preceding code is already sufficient to upgrade ko.computed catalogue properties to ES5
     // getter/setter pairs (or in the case of readonly ko.computed properties, just a getter).
     // These then behave like a regular property with a getter function, except they are smarter:
     // your evaluator is only invoked when one of its dependencies changes. The result is cached
@@ -148,10 +148,10 @@
     // To solve this, Knockout-ES5 detects array values, and modifies them as follows:
     //  1. Associates a hidden subscribable with each array instance that it encounters
     //  2. Intercepts standard mutators (`push`/`pop`/etc.) and makes them trigger the subscribable
-    // Then, for model properties whose values are arrays, the property's underlying observable
+    // Then, for catalogue properties whose values are arrays, the property's underlying observable
     // subscribes to the array subscribable, so it can trigger a change notification after mutation.
 
-    // Given an observable that underlies a model property, watch for any array value that might
+    // Given an observable that underlies a catalogue property, watch for any array value that might
     // be assigned as the property value, and hook into its change events
     function notifyWhenPresentOrFutureArrayValuesMutate(ko, observable) {
         var watchingArraySubscription = null;
@@ -171,7 +171,7 @@
     }
 
     // Listens for array mutations, and when they happen, cause the observable to fire notifications.
-    // This is used to make model properties of type array fire notifications when the array changes.
+    // This is used to make catalogue properties of type array fire notifications when the array changes.
     // Returns a subscribable that can later be disposed.
     function startWatchingArrayInstance(ko, observable, arrayInstance) {
         var subscribable = getSubscribableForArray(ko, arrayInstance);
@@ -251,11 +251,11 @@
     // or tell them that object values have mutated, etc. To handle this, we set up some
     // extra utility functions that can return or work with the underlying observables.
 
-    // Returns the underlying observable associated with a model property (or `null` if the
-    // model or property doesn't exist, or isn't associated with an observable). This means
+    // Returns the underlying observable associated with a catalogue property (or `null` if the
+    // catalogue or property doesn't exist, or isn't associated with an observable). This means
     // you can subscribe to the property, e.g.:
     //
-    //     ko.getObservable(model, 'propertyName')
+    //     ko.getObservable(catalogue, 'propertyName')
     //       .subscribe(function(newValue) { ... });
     function getObservable(obj, propertyName) {
         if (!obj || typeof obj !== 'object') {

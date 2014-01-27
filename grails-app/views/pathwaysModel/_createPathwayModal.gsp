@@ -7,7 +7,7 @@
 <!--  FIXME add padding so scroll of modal works -->
 <!--  <g :javascript library="pathwa yCreationModal"/> -->
 
-<!-- TODO include JS library (knockout + view model) -->
+<!-- TODO include JS library (knockout + view catalogue) -->
 <div id="createPathwayModal" class="modal fade" tabindex="-1"	role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop = "true" >
 	<div class="modal-dialog">
 		<div class="modal-content">

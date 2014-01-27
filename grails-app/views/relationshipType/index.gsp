@@ -1,5 +1,5 @@
 
-<%@ page import="uk.co.mdc.model.RelationshipType" %>
+<%@ page import="uk.co.mdc.catalogue.RelationshipType" %>
 <!DOCTYPE html>
 <html>
 	<head>

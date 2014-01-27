@@ -10,13 +10,13 @@ function initPathways(pathwayId){
 
 	//create new pathwayService
 	pathwayService = new PathwayService()
-    //Create the main view model
+    //Create the main view catalogue
     vm = new AppViewModel();
 
 
     //console.log('applying bindings')
 
-    //Bind the view model to <body> and its descendants
+    //Bind the view catalogue to <body> and its descendants
     ko.applyBindings(vm, document.getElementById('content'));
     
 

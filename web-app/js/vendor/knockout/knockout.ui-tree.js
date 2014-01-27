@@ -266,7 +266,7 @@
 		};
 	
     ko.tree = {
-        // Defines a view model class you can use to populate a grid
+        // Defines a view catalogue class you can use to populate a grid
         viewModel: function (configuration) {
 			this.selectedNode = ko.observable(undefined);
 			

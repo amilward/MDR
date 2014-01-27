@@ -37,7 +37,7 @@
 		<g:message code="node.mandatoryInputs.label" default="Mandatory Inputs" />
 		
 	</label>
-	<g:select name="mandatoryInputs" from="${uk.co.mdc.model.Model.list()}" multiple="multiple" optionKey="id" size="5" value="${nodeInstance?.mandatoryInputs*.id}" class="many-to-many"/>
+	<g:select name="mandatoryInputs" from="${uk.co.mdc.catalogue.Model.list()}" multiple="multiple" optionKey="id" size="5" value="${nodeInstance?.mandatoryInputs*.id}" class="many-to-many"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: nodeInstance, field: 'mandatoryOutputs', 'error')} ">
@@ -45,7 +45,7 @@
 		<g:message code="node.mandatoryOutputs.label" default="Mandatory Outputs" />
 		
 	</label>
-	<g:select name="mandatoryOutputs" from="${uk.co.mdc.model.Model.list()}" multiple="multiple" optionKey="id" size="5" value="${nodeInstance?.mandatoryOutputs*.id}" class="many-to-many"/>
+	<g:select name="mandatoryOutputs" from="${uk.co.mdc.catalogue.Model.list()}" multiple="multiple" optionKey="id" size="5" value="${nodeInstance?.mandatoryOutputs*.id}" class="many-to-many"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: nodeInstance, field: 'name', 'error')} ">
@@ -61,7 +61,7 @@
 		<g:message code="node.optionalInputs.label" default="Optional Inputs" />
 		
 	</label>
-	<g:select name="optionalInputs" from="${uk.co.mdc.model.Model.list()}" multiple="multiple" optionKey="id" size="5" value="${nodeInstance?.optionalInputs*.id}" class="many-to-many"/>
+	<g:select name="optionalInputs" from="${uk.co.mdc.catalogue.Model.list()}" multiple="multiple" optionKey="id" size="5" value="${nodeInstance?.optionalInputs*.id}" class="many-to-many"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: nodeInstance, field: 'optionalOutputs', 'error')} ">
@@ -69,6 +69,6 @@
 		<g:message code="node.optionalOutputs.label" default="Optional Outputs" />
 		
 	</label>
-	<g:select name="optionalOutputs" from="${uk.co.mdc.model.Model.list()}" multiple="multiple" optionKey="id" size="5" value="${nodeInstance?.optionalOutputs*.id}" class="many-to-many"/>
+	<g:select name="optionalOutputs" from="${uk.co.mdc.catalogue.Model.list()}" multiple="multiple" optionKey="id" size="5" value="${nodeInstance?.optionalOutputs*.id}" class="many-to-many"/>
 </div>
 

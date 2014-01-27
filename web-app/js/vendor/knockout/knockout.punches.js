@@ -159,7 +159,7 @@ filters.fit = function(value, length, replacement, trimWhere) {
     }
 };
 
-// Convert a model object to JSON
+// Convert a catalogue object to JSON
 filters.json = function(rootObject, space, replacer) {     // replacer and space are optional
     return ko.toJSON(rootObject, replacer, space);
 };

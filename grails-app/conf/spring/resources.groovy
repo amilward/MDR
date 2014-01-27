@@ -1,13 +1,13 @@
 import groovy_metadata_registry.APIAuthenticationFilters
 import util.marshalling.CustomObjectMarshallers
-import uk.co.mdc.model.DataElementMarshaller
+import uk.co.mdc.catalogue.DataElementMarshaller
 import uk.co.mdc.forms.FieldMarshaller
 import uk.co.mdc.forms.QuestionElementMarshaller
 import uk.co.mdc.forms.FormDesignMarshaller
 import uk.co.mdc.forms.SectionElementMarshaller
-import uk.co.mdc.model.ValueDomainMarshaller
-import uk.co.mdc.model.ConceptualDomainMarshaller
-import uk.co.mdc.model.ModelMarshaller
+import uk.co.mdc.catalogue.ValueDomainMarshaller
+import uk.co.mdc.catalogue.ConceptualDomainMarshaller
+import uk.co.mdc.catalogue.ModelMarshaller
 import uk.co.mdc.pathways.PathwaysModelMarshaller
 import uk.co.mdc.pathways.LinkMarshaller
 import uk.co.mdc.pathways.NodeMarshaller

@@ -1,4 +1,4 @@
-<%@ page import="uk.co.mdc.model.DataElement" %>
+<%@ page import="uk.co.mdc.catalogue.DataElement" %>
 
 
 <table class="table table-hovered">

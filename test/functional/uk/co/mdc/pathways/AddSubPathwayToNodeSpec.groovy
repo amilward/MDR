@@ -69,7 +69,7 @@ class AddSubPathwayToNodeSpec extends GebReportingSpec {
 					//when: "I click on the add sub pathway button"
 					//addSubPathwayButton.click()
 					
-					//then: "a subPathway is added, the view model is updated and the view subPathway button is displayed"
+					//then: "a subPathway is added, the view catalogue is updated and the view subPathway button is displayed"
 					//waitFor{
 					//	viewSubPathwayButton.displayed
 					//	viewSubPathwayButton.@type=="button"

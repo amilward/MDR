@@ -1689,7 +1689,7 @@
 				}
 				switch(!0) {
 					case (!s.data && !s.ajax): throw "Neither data nor ajax settings supplied.";
-					// function option added here for easier model integration (also supporting async - see callback)
+					// function option added here for easier catalogue integration (also supporting async - see callback)
 					case ($.isFunction(s.data)):
 						s.data.call(this, obj, $.proxy(function (d) {
 							d = this._parse_json(d, obj);
@@ -4498,8 +4498,8 @@
 //*/
 
 /*
-* jsTree model plugin
-* This plugin gets jstree to use a class model to retrieve data, creating great dynamism
+* jsTree catalogue plugin
+* This plugin gets jstree to use a class catalogue to retrieve data, creating great dynamism
 */
 (function ($) {
 	var nodeInterface = ["getChildren","getChildrenCount","getAttr","getName","getProps"],
@@ -4514,7 +4514,7 @@
 		};
 	$.jstree.plugin("model", {
 		__init : function () {
-			if(!this.data.json_data) { throw "jsTree model: jsTree json_data plugin not included."; }
+			if(!this.data.json_data) { throw "jsTree catalogue: jsTree json_data plugin not included."; }
 			this._get_settings().json_data.data = function (n, b) {
 				var obj = (n == -1) ? this._get_settings().model.object : n.data("jstree_model");
 				if(!validateInterface(obj, nodeInterface)) { return b.call(null, false); }

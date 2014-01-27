@@ -5,7 +5,7 @@ import uk.co.mdc.pathways.*;
 class PathwaysModelLoader {
 
 	/**
-	 * Namespace string of the pathways model.
+	 * Namespace string of the pathways catalogue.
 	 */
 	public static final def NS_PATHWAYS_MODEL = "http://pathways.mdc.co.uk/1/pm.xsd"
 
@@ -60,9 +60,9 @@ class PathwaysModelLoader {
 		}
 
 		/* For each pm:PathwaysModel element in the pathways models :
-		 *  Create an empty pathway model
-		 *  Load (slurp) the pathway model nodes
-		 *  Load (slurp) the pathway model links
+		 *  Create an empty pathway catalogue
+		 *  Load (slurp) the pathway catalogue nodes
+		 *  Load (slurp) the pathway catalogue links
 		 *  [If there is an exception in slurp it implicitly gets passed up.]
 		 */
 		slurper."pm:PathwaysModel".each { pathwaysModelElement ->
@@ -213,8 +213,8 @@ class PathwaysModelLoader {
 		if (numberOfsubModelElements )
 		//Load any submodels if present
 		/* For each pm:PathwaysModel element in the pathways models :
-		 *  Create an empty pathway model
-		 *  Load (slurp) the pathway model
+		 *  Create an empty pathway catalogue
+		 *  Load (slurp) the pathway catalogue
 		 *  [If there is an exception in slurp it implicitly gets passed up.]
 		 */
 		nodeElement."pm:PathwaysModel".each { pathwaysModelElement ->

@@ -110,7 +110,7 @@
                 var dragItem;
                 $element.sortable(ko.utils.extend(sortable.options, {
                     start: function(event, ui) {
-                        //make sure that fields have a chance to update model
+                        //make sure that fields have a chance to update catalogue
                         ui.item.find("input:focus").change();
                         if (startActual) {
                             startActual.apply(this, arguments);
@@ -126,7 +126,7 @@
                         dragItem = ko.utils.domData.get(ui.item[0], DRAGKEY);
 
                         if (dragItem) {
-                            //copy the model item, if a clone option is provided
+                            //copy the catalogue item, if a clone option is provided
                             if (dragItem.clone) {
                             	
                          

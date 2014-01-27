@@ -1,6 +1,6 @@
 package uk.co.mdc.forms
 
-import uk.co.mdc.model.CatalogueElement;
+import uk.co.mdc.catalogue.CatalogueElement;
 
 class FormDesignElement extends CatalogueElement  {
 	

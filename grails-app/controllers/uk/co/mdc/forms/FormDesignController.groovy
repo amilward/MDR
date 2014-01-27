@@ -1,12 +1,9 @@
 package uk.co.mdc.forms
 
 import org.springframework.dao.DataIntegrityViolationException
-import uk.co.mdc.model.*
+import uk.co.mdc.catalogue.ValueDomain
 import grails.converters.*
-import org.springframework.security.acls.model.Permission
 import grails.plugins.springsecurity.Secured
-import org.codehaus.groovy.grails.web.json.*
-import groovy.json.StringEscapeUtils
 
 @Secured(['ROLE_USER'])
 
@@ -96,7 +93,7 @@ class FormDesignController {
 
 		//NB. when the json is rendered it uses a custom json marshaller so that it includes the relevant
 		//information (and doesn't return the whole database)
-		//the corresponding json marshaller is stored in src/groovy/uk/co/mdc/model/xxxxxxMarshaller.groovy
+		//the corresponding json marshaller is stored in src/groovy/uk/co/mdc/catalogue/xxxxxxMarshaller.groovy
 				
 		render model as JSON
 	}
@@ -398,7 +395,7 @@ class FormDesignController {
 	
 	
 	
-	//forms get forms model
+	//forms get forms catalogue
 	
 	def jsonFormsBuilder(Long id){
 		
@@ -408,7 +405,7 @@ class FormDesignController {
 		
 		def model = [formDesign: formDesignInstance]
 		
-		//def model = [questions: questions]
+		//def catalogue = [questions: questions]
 		
 		render model as JSON
 		
@@ -626,9 +623,9 @@ class FormDesignController {
 		
 		def questions = formDesignInstance.getQuestions()
 		
-		def model = [action:"index.html", method:"get", html: questions]
+		def catalogue = [action:"index.html", method:"get", html: questions]
 		
-		render model as JSON
+		render catalogue as JSON
 		
 	}
  * 
@@ -647,7 +644,7 @@ class FormDesignController {
 		 formDesignInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
 				   [message(code: 'formDesign.label', default: 'FormDesign')] as Object[],
 				   "Another user has updated this FormDesign while you were editing")
-		 render(view: "edit", model: [formDesignInstance: formDesignInstance])
+		 render(view: "edit", catalogue: [formDesignInstance: formDesignInstance])
 		 return
 	 }
  }
@@ -655,7 +652,7 @@ class FormDesignController {
  formDesignInstance.properties = params
 
  if (!formDesignInstance.save(flush: true)) {
-	 render(view: "edit", model: [formDesignInstance: formDesignInstance])
+	 render(view: "edit", catalogue: [formDesignInstance: formDesignInstance])
 	 return
  }
 

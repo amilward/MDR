@@ -1,5 +1,7 @@
 package uk.co.mdc.pathways
 
+import uk.co.mdc.catalogue.Model
+
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -167,7 +169,7 @@ class NodeService {
 		def collections = []	
 		
 		if(parameters?.forms){			
-			//FIXME at the moment we are putting the forms into the optionalOutputs - as we develop the model this may change
+			//FIXME at the moment we are putting the forms into the optionalOutputs - as we develop the catalogue this may change
 			def pForms = parameters?.forms			
 			pForms.each{ form->
 				collections.push(FormDesign.get(form.id))
@@ -176,10 +178,10 @@ class NodeService {
 		
 		
 		if(parameters?.collections){
-			//FIXME at the moment we are putting the collections into the optionalOutputs - as we develop the model this may change
+			//FIXME at the moment we are putting the collections into the optionalOutputs - as we develop the catalogue this may change
 			def pCollection = parameters?.collections
 			pCollection.each{ collection->
-				collections.push(uk.co.mdc.model.Model.get(collection.id))
+				collections.push(Model.get(collection.id))
 			}  			
 		}		
 		
@@ -201,7 +203,7 @@ class NodeService {
 		def forms = []
 		if(parameters?.forms){
 			
-			//FIXME at the moment we are putting the forms into the optionalOutputs - as we develop the model this may change
+			//FIXME at the moment we are putting the forms into the optionalOutputs - as we develop the catalogue this may change
 			def pForms = parameters?.forms
 			
 			pForms.each{ form->

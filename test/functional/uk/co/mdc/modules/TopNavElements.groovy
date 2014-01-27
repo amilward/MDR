@@ -8,7 +8,7 @@ class TopNavElements extends Module{
 	
 	static content = {
 		homeLink  { 	$("li#projectHomeLink").find("a:first", text: "MDC") }
-		modelLink  { 	$("li#nav-model-link").find("a:first", text: "Data model") }
+		modelLink  { 	$("li#nav-catalogue-link").find("a:first", text: "Data catalogue") }
 		pathwayLink { 	$("li#nav-pathway-link").find("a:first", text: "Pathways") }
 		
 		// Pathways menu

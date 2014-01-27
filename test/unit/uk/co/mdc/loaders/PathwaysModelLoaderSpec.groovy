@@ -64,7 +64,7 @@ class PathwaysModelLoaderSpec extends spock.lang.Specification {
 			RuntimeException e = thrown()
 	}
 	
-	/* Load empty model */
+	/* Load empty catalogue */
 			
 	static final String XML_PATHWAYS_MODELS_EMPTY = XML_PI+"""
 		<PathwaysModels xmlns="""+QUOTED_NS_PATHWAYS_MODEL+""">
@@ -270,7 +270,7 @@ class PathwaysModelLoaderSpec extends spock.lang.Specification {
 		<PathwaysModel versionNo="1.0" isDraft="false" name="name">
 			<Node id="id.1" name="A">
 				<PathwaysModel name="B"/>
-				<!-- This next pathways model is not allowed -->
+				<!-- This next pathways catalogue is not allowed -->
 				<PathwaysModel name="C"/>
 			</Node>
 		</PathwaysModel>

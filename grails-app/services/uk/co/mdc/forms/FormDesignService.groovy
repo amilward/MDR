@@ -9,16 +9,16 @@ import org.springframework.security.acls.domain.BasePermission
 import org.springframework.security.acls.model.Permission
 import org.springframework.transaction.annotation.Transactional
 
-import uk.co.mdc.model.DataElement;
-import uk.co.mdc.model.ValueDomain;
-import uk.co.mdc.model.DataType;
-import uk.co.mdc.model.Model;
+import uk.co.mdc.catalogue.DataElement;
+import uk.co.mdc.catalogue.ValueDomain;
+import uk.co.mdc.catalogue.DataType;
+import uk.co.mdc.catalogue.Model;
 import grails.converters.JSON
 
 import org.codehaus.groovy.grails.web.json.*;
 
 	/* *********************************************************************
-	 * This service allows the user to access the form design model
+	 * This service allows the user to access the form design catalogue
 	 * It will be called by the form design controller
 	 * *************************************************************** */
 

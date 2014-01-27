@@ -3,7 +3,7 @@ angular.module('security.login.form', [])
 // The LoginFormController provides the behaviour behind a reusable form to allow users to authenticate.
 // This controller and its template (login/form.tpl.html) are used in a modal dialog box by the security service.
     .controller('LoginFormController', ['$scope', 'security', function ($scope, security) {
-        // The model for this form
+        // The catalogue for this form
         $scope.user = {};
 
         // Any error message from failing to login
@@ -16,7 +16,7 @@ angular.module('security.login.form', [])
             $scope.authReason = ( security.isAuthenticated() ) ? 'You are not authorized to access the resources.' : 'You have been logged out';
         }
 
-        // Attempt to authenticate the user specified in the form's model
+        // Attempt to authenticate the user specified in the form's catalogue
         $scope.login = function () {
             // Clear any previous security errors
             $scope.authError = null;

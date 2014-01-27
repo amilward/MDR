@@ -1,3 +1,3 @@
-<%@ page import="uk.co.mdc.model.Relationship" %>
+<%@ page import="uk.co.mdc.catalogue.Relationship" %>
 
 

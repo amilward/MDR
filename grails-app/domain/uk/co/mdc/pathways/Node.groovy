@@ -1,6 +1,6 @@
 package uk.co.mdc.pathways
 
-import uk.co.mdc.model.Model;
+import uk.co.mdc.catalogue.Model;
 
 class Node extends PathwayElement{
 	

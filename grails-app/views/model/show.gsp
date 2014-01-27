@@ -1,10 +1,10 @@
 
-<%@ page import="uk.co.mdc.model.Model" %>
+<%@ page import="uk.co.mdc.catalogue.Model" %>
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta name="layout" content="main">
-		<g:set var="entityName" value="${message(code: 'model.label', default: 'Model')}" />
+		<g:set var="entityName" value="${message(code: 'catalogue.label', default: 'Model')}" />
 		<title><g:message code="default.show.label" args="[entityName]" /></title>
 		<parameter name="name" value=" COLLECTION - ${modelInstance?.name}" />
 	</head>

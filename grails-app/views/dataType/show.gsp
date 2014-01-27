@@ -1,5 +1,5 @@
 
-<%@ page import="uk.co.mdc.model.DataType" %>
+<%@ page import="uk.co.mdc.catalogue.DataType" %>
 <!DOCTYPE html>
 <html>
 	<head>

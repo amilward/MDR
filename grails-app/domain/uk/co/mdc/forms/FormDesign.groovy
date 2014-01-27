@@ -1,6 +1,6 @@
 package uk.co.mdc.forms
 
-import uk.co.mdc.model.Model
+import uk.co.mdc.catalogue.Model
 
 class FormDesign extends Model{
 	
@@ -11,7 +11,7 @@ class FormDesign extends Model{
 	String description
 	FormDesignElement header
 	FormDesignElement footer
-	//collection - link to the metadata registry model
+	//collection - link to the metadata registry catalogue
 	Model collection
 	List <FormDesignElement> formDesignElements
 

@@ -1,6 +1,6 @@
 
-<%@ page import="uk.co.mdc.model.DataElement" %>
-<%@ page import="uk.co.mdc.model.CatalogueElement" %>
+<%@ page import="uk.co.mdc.catalogue.DataElement" %>
+<%@ page import="uk.co.mdc.catalogue.CatalogueElement" %>
 <!DOCTYPE html>
 <html>
 	<head>

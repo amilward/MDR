@@ -1,8 +1,8 @@
 package uk.co.mdc.pathways
 
-import uk.co.mdc.model.Model
-import uk.co.mdc.model.DataElement
-import uk.co.mdc.model.CatalogueElement;
+import uk.co.mdc.catalogue.Model
+import uk.co.mdc.catalogue.DataElement
+import uk.co.mdc.catalogue.CatalogueElement;
 
 abstract class PathwayElement extends CatalogueElement{
 	

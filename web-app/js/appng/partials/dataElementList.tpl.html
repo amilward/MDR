@@ -1,0 +1,27 @@
+<div ng-controller="DataElementList">
+
+   <!-- <div>
+        <strong>Selected Data Elements:</strong> {{ selectedDataElements }}
+    </div> -->
+    <button class="btn btn-default" ng-click="clearSelection()">Clear Selection</button>
+    <table ng-table="tableParams" show-filter="true" class="table ng-table-rowselected">
+        <tr ng-repeat="dataElement in $data"
+            ng-click="changeSelection(dataElement)"
+            ng-class="{'active': dataElement.$selected}">
+            <td data-title="'Name'" sortable="'name'" filter="{ 'name': 'text' }">
+                <a href="#/dataElement/show/{{dataElement.id}}">{{dataElement.name}}</a>
+            </td>
+            <td data-title="'Description'" sortable="'description'" filter="{ 'description': 'text' }">
+                {{dataElement.description}}
+            </td>
+            <td data-title="'Version'" sortable="versionNumber" filter="{ 'versionNumber': 'text' }">
+                {{dataElement.versionNumber}}
+            </td>
+
+            <td data-title="'Status'" sortable="status" filter="{ 'status': 'select' }" filter-data="status()">
+                {{dataElement.status}}
+            </td>
+        </tr>
+    </table>
+    </div>
+</div>

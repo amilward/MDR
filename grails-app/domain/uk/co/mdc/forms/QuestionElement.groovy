@@ -1,7 +1,7 @@
 package uk.co.mdc.forms
 
-import uk.co.mdc.model.DataElement
-import uk.co.mdc.model.ValueDomain
+import uk.co.mdc.catalogue.DataElement
+import uk.co.mdc.catalogue.ValueDomain
 
 class QuestionElement extends FormDesignElement implements Comparable{
 

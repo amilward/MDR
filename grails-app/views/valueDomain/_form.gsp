@@ -1,4 +1,4 @@
-<%@ page import="uk.co.mdc.model.ValueDomain" %>
+<%@ page import="uk.co.mdc.catalogue.ValueDomain" %>
 
 <table class="table table-hovered">
 				<tbody>
@@ -15,7 +15,7 @@
 						<td class="right_col_show">
 						<g:select id="conceptualDomain" 
 							name="conceptualDomain.id" 
-							from="${uk.co.mdc.model.ConceptualDomain.list()}" 
+							from="${uk.co.mdc.catalogue.ConceptualDomain.list()}"
 							noSelection="['': 'select one...']"
 							optionKey="id" 
 							optionValue="name" 

@@ -175,14 +175,14 @@ function dashboard() {
 BEGIN COLLECTION BASKET SCRIPTS
 ---------------------------------------------------------*/
 
-/* The model basket  is like a traditional shopping cart. When a user is created a corresponding model cart is created which belongs to that user. 
- * The model basket is persisted across sessions and allows users to add data elements via drag and drop on the dashboard using javascript and ajax
- * (please see the modelBasket model and controller
- *  Once they have added all the data elements needed they can view their data elements and then create a model from them.
+/* The catalogue basket  is like a traditional shopping cart. When a user is created a corresponding catalogue cart is created which belongs to that user.
+ * The catalogue basket is persisted across sessions and allows users to add data elements via drag and drop on the dashboard using javascript and ajax
+ * (please see the modelBasket catalogue and controller
+ *  Once they have added all the data elements needed they can view their data elements and then create a catalogue from them.
  * */
 
 
-/* this function starts the model basket on the dashboard
+/* this function starts the catalogue basket on the dashboard
  * it makes an ajax request to the controller to get the data elements in the models cart for the current user
  * and displays them */
 
@@ -212,8 +212,8 @@ function startModelBasket() {
 	
 	
 	
-	/* bind the droppable behaviour for the data elements in the model basket
-	* This allows you to drag data elements out of the model basket. This in bound
+	/* bind the droppable behaviour for the data elements in the catalogue basket
+	* This allows you to drag data elements out of the catalogue basket. This in bound
 	* to the whole page so that the user can drag a data element out of the models cart 
 	* anywhere on the page to remove them
 	*/
@@ -247,7 +247,7 @@ function dataElementDragStart(){
 		greedy: true,
 		drop: function( event, ui ) {
 		
-		// change the data element link text to include the reference id...this will be useful when we are trying to create a model from the cart
+		// change the data element link text to include the reference id...this will be useful when we are trying to create a catalogue from the cart
 		var link = $(c.name);
 		link.text(c.refId + ' - ' + $(c.name).text());
 
@@ -266,7 +266,7 @@ function dataElementDragStart(){
 
 
 /* This function is called when the user drops a data element onto the cart
- * This is an ajax request to model basket controller to add the dataElement to the basket
+ * This is an ajax request to catalogue basket controller to add the dataElement to the basket
  * is passes the information via json and should receive a json success message
  */
 
@@ -287,8 +287,8 @@ function addToModelBasket(dataElementId){
 	
 }
 
-/* This function is called when the user drags and drops a data element out of the model basket that they no longer want
- * This is an ajax request to model basket controller to remove the dataElement from the basket
+/* This function is called when the user drags and drops a data element out of the catalogue basket that they no longer want
+ * This is an ajax request to catalogue basket controller to remove the dataElement from the basket
  * is passes the information via json and should receive a json success message
  */
 
@@ -356,7 +356,7 @@ function conceptualDomainList(){
 	
 	//initialise datatable with custom hide/show columns
 	//and server side processing
-	//and draggable columns - so that the data elements within the table can be dragged onto the model cart
+	//and draggable columns - so that the data elements within the table can be dragged onto the catalogue cart
 	
 	$('#conceptualDomainList').html( '<table cellpadding="0" cellspacing="0" border="0" class="table table-bordered table-condensed table-hover table-striped" id="conceptualDomainTable"></table>' );
 	oTable = $('#conceptualDomainTable').dataTable( {
@@ -556,7 +556,7 @@ END EDIT CONCEPTUALDOMAIN  SCRIPTS
 
 
 /*--------------------------------------------------------
-START model  SCRIPTS
+START catalogue  SCRIPTS
 ---------------------------------------------------------*/
 
 
@@ -609,7 +609,7 @@ START model  SCRIPTS
 
 
 /*--------------------------------------------------------
-END EDIT model  SCRIPTS
+END EDIT catalogue  SCRIPTS
 ---------------------------------------------------------*/
 
 

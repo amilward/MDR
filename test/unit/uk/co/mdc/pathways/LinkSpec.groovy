@@ -3,8 +3,6 @@ package uk.co.mdc.pathways
 
 import grails.test.mixin.*
 
-import uk.co.mdc.model.Model
-
 /**
  * Simple unit tests for pathway links
  * @author Ryan Brooks (ryan.brooks@ndm.ox.ac.uk)

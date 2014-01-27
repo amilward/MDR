@@ -1,4 +1,4 @@
-<%@ page import="uk.co.mdc.model.DataElement" %>
+<%@ page import="uk.co.mdc.catalogue.DataElement" %>
 <!DOCTYPE html>
 <html>
 	<head>

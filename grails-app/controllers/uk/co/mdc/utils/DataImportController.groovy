@@ -41,7 +41,7 @@ class DataImportController {
 	
 	/**
 	 * Simple enum to record the state of the process. Might need to be
-	 * moved into domain model once we get asynchronous support in Grails 2.3
+	 * moved into domain catalogue once we get asynchronous support in Grails 2.3
 	 * @author Ryan Brooks (ryan.brooks@ndm.ox.ac.uk)
 	 *
 	 */

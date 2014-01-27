@@ -1,5 +1,5 @@
 
-<%@ page import="uk.co.mdc.model.ConceptualDomain" %>
+<%@ page import="uk.co.mdc.catalogue.ConceptualDomain" %>
 <!DOCTYPE html>
 <html>
 	<head>

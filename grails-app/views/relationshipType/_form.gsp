@@ -1,4 +1,4 @@
-<%@ page import="uk.co.mdc.model.RelationshipType" %>
+<%@ page import="uk.co.mdc.catalogue.RelationshipType" %>
 
 <table class="table table-hovered">
     <tbody>

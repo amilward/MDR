@@ -18,7 +18,7 @@ function modelList(){
 				    // Using `row[0]` is equivalent.
 				"mRender": function ( data, type, row ) {	
 					if(row.modelType=='model'){
-						return '<a id="'+ row.id + '" href="' + root +'/model/show/' + row.id + '">' + data + '</a>'
+						return '<a id="'+ row.id + '" href="' + root +'/catalogue/show/' + row.id + '">' + data + '</a>'
 					}else{
 						return '<a id="'+ row.id + '" href="' + root +'/formDesign/show/' + row.id + '">' + data + '</a>'	
 					}
@@ -141,7 +141,7 @@ function modelDualListBox(){
 
 function modelForm(mandatoryDataElements, requiredDataElements, optionalDataElements, referenceDataElements){
 	
-	//set up form selecting the data elements that have been included in the model 
+	//set up form selecting the data elements that have been included in the catalogue
 	//and when this is done set up the dual list boxes (otherwise it may miss some)
 	selectModelDataElements(mandatoryDataElements, requiredDataElements, optionalDataElements, referenceDataElements).done(modelDualListBox())
 
@@ -154,7 +154,7 @@ function modelListDraggable(){
 	oTable = $('#modelTable').dataTable( {
         "bProcessing": true,
         "bServerSide": true,
-        "sAjaxSource": "../../model/dataTables",
+        "sAjaxSource": "../../catalogue/dataTables",
         "sEmptyTable": "Loading data from server",
         "bAutoWidth": false,
         "aaSorting": [[ 0, "asc" ]],
@@ -165,7 +165,7 @@ function modelListDraggable(){
 				    // Using `row[0]` is equivalent.
 				"mRender": function ( data, type, row ) {		
 					if(row.modelType=='model'){
-						return '<a id="'+ row.id + '" href="' + root +'/model/show/' + row.id + '">' + data + '</a>'
+						return '<a id="'+ row.id + '" href="' + root +'/catalogue/show/' + row.id + '">' + data + '</a>'
 					}else{
 						return '<a id="'+ row.id + '" href="' + root +'/formDesign/show/' + row.id + '">' + data + '</a>'	
 					}

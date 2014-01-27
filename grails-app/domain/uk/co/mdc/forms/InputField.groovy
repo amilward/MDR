@@ -2,7 +2,7 @@ package uk.co.mdc.forms
 
 import java.util.Map;
 
-import uk.co.mdc.model.DataType
+import uk.co.mdc.catalogue.DataType
 
 class InputField {
 	

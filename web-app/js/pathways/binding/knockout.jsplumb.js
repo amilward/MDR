@@ -95,8 +95,8 @@ jsPlumb.bind("connection", function (info) {
 
 		//console.log('create with conn id')
 		
-	    var source = ko.dataFor(info.source); //Get the source node model instance            
-	    var target = ko.dataFor(info.target); //Get the target node model instance
+	    var source = ko.dataFor(info.source); //Get the source node catalogue instance
+	    var target = ko.dataFor(info.target); //Get the target node catalogue instance
 	    
 	    connectionId = 'connection_' + source.id + '_' + target.id;
 	    //ensure that there isn't a link that for the object already

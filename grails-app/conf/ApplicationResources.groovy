@@ -156,7 +156,7 @@ modules = {
 		resource url: "js/pathways/service/FormService.js"
 		resource url: "js/pathways/service/PathwayService.js"
 		resource url: "js/pathways/binding/knockout.jsplumb.js"
-		//resource url: "js/pathways/model/modelModel.js"
+		//resource url: "js/pathways/catalogue/modelModel.js"
 		resource url: "js/pathways/model/NodeModel.js"
 		resource url: "js/pathways/model/PathwayModel.js"
 		resource url: "js/pathways/model/LinkModel.js"
@@ -225,6 +225,12 @@ modules = {
         resource id: 'js', url: [dir: 'bower_components/angular-sanitize', file: "angular-sanitize.js"], nominify: true
     }
 
+    "angular-xeditable" {
+        dependsOn "angular"
+        resource id: 'js', url: [dir: 'bower_components/angular-xeditable/dist/js', file: "xeditable.js"], nominify: true
+        resource url:'bower_components/angular-xeditable/dist/css/xeditable.css'
+    }
+
     "angular-touch" {
         dependsOn "angular"
         resource id: 'js', url: [dir: 'bower_components/angular-touch', file: "angular-touch.js"], nominify: true
@@ -237,7 +243,7 @@ modules = {
 
     "ng-table" {
         dependsOn "angular"
-        resource id: 'js', url: [dir: 'bower_components/ng-table', file: "ng-table.js"], nominify: true
+        resource id: 'js', url: [dir: 'bower_components/ng-table', file: "ng-table.0.3.2.js"], nominify: true
     }
 
     /**
@@ -287,8 +293,12 @@ modules = {
     appng {
         dependsOn "angular-security"
         dependsOn "angular-route"
+        dependsOn "angular-resource"
+        dependsOn "angular-xeditable"
         dependsOn "ng-table"
         resource url: "js/appng/app.js"
+        resource url: "js/appng/controllers.js"
+        resource url: "js/appng/services.js"
         resource url: "js/appng/toolbar.js"
     }
 }

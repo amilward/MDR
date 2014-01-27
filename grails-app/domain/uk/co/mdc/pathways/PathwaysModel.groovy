@@ -1,6 +1,6 @@
 package uk.co.mdc.pathways
 
-import uk.co.mdc.model.CatalogueElement;
+import uk.co.mdc.catalogue.CatalogueElement;
 
 class PathwaysModel extends CatalogueElement{
 	
@@ -55,7 +55,7 @@ class PathwaysModel extends CatalogueElement{
 		
 	}
 	
-	//get the top level pathway that contains this particular pathways model
+	//get the top level pathway that contains this particular pathways catalogue
 	
 	PathwaysModel getTopLevelPathwaysModel(){
 		

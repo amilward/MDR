@@ -1,0 +1,36 @@
+<div ng-controller="DataElementShow">
+    <h1>Data Element:</h1>
+    <h1> <a href="#" onbeforesave="updateModel(dataElement)" editable-text="dataElement.name">{{ dataElement.name || 'empty' }}</a>
+        <small> <a href="#" onbeforesave="updateModel(dataElement)" editable-select="dataElement.status" e-ng-options="s.value as s.text for s in statuses">{{ dataElement.status || 'empty' }}</a></small>
+        <small> {{ dataElement.versionNumber || 'empty' }} </small></h1>
+    <p>Description: <a href="#" onbeforesave="updateModel(dataElement)" editable-textarea="dataElement.description">{{ dataElement.description || 'empty' }}</a></p>
+    <p>Relations:</p>
+    <table ng-table="tableParams" show-filter="true" class="table ng-table-rowselected">
+        <tr ng-repeat="relation in ngTableRelations"
+            ng-click="changeSelection(relation)"
+            ng-class="{'active': relation.$selected}">
+
+            <td data-title="'Class'" sortable="'class'" filter="{ 'class': 'text' }">
+                {{relation.class}}
+            </td>
+
+            <td data-title="'Name'" sortable="'name'" filter="{ 'name': 'text' }">
+                <a href="#/relation/show/{{relation.id}}">{{relation.name}}</a>
+            </td>
+
+            <td data-title="'Direction'" sortable="'relationshipDirection'" filter="{ 'relationshipDirection': 'text' }">
+                {{relation.relationshipDirection}} (this)
+            </td>
+
+            <td data-title="'Type'" sortable="'type'" filter="{ 'type': 'text' }">
+                {{relation.type}}
+            </td>
+
+
+
+
+
+        </tr>
+    </table>
+
+</div>

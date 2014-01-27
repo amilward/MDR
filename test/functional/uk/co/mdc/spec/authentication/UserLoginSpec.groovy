@@ -129,7 +129,7 @@ class UserLoginSpec extends GebReportingSpec {
 	//Then my session is terminated and I am returned to the log in page
 	
 	// Given I am logged in as a standard user
-	// When I visit the pathways, form designer or data model sections
+	// When I visit the pathways, form designer or data catalogue sections
 	// Then I am able to view them
 //	def "Standard user has permissions to view the main areas"(){
 //		given:"I am logged in as a standard user"
@@ -138,10 +138,10 @@ class UserLoginSpec extends GebReportingSpec {
 //		password = "password1"
 //		submitButton.click(DashboardPage)
 //		
-//		when: "I click on the data model link in the navigation bar"
+//		when: "I click on the data catalogue link in the navigation bar"
 //		nav.modelLink.click()
 //		
-//		then: "I am taken to the data model page"
+//		then: "I am taken to the data catalogue page"
 //		waitFor{
 //			at ModelListPage
 //		}

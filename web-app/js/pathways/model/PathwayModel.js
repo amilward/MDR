@@ -1,5 +1,5 @@
 ﻿
-    //Pathway model
+    //Pathway catalogue
     var PathwayModel = function () {
         var self = this;
         self.id = undefined;

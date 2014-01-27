@@ -1,4 +1,4 @@
-<%@ page import="uk.co.mdc.model.ValueDomain" %>
+<%@ page import="uk.co.mdc.catalogue.ValueDomain" %>
 <!DOCTYPE html>
 <html>
 	<head>
