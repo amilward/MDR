@@ -43,6 +43,7 @@ class PathwayShowPage extends BasePageWithNav{
 
 		deleteSelectedElementButton {$("#deleteSelectedElement")}
 		propertiesName {js.exec("return document.getElementById('txt-properties-name').value")}
+        propertiesDescription{js.exec("return document.getElementById('txt-desc').value")}
 		modalLabel { $("#createNodeModalLabel") }
         createNode{$("#CreateNode")}
 		createNodeName { $("#createNodeName") }
