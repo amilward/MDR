@@ -486,7 +486,13 @@
         self.addFormFinish = function(){
       	    $('#AddFormModal').modal('hide');
         }
-	
+
+        self.addNodeCancel = function(){
+
+            $('#createNodeName').val('');
+            $('#createNodeDescription').val('');
+            $('#CreateNode').modal('hide');
+        }
         self.refreshCollections = function(){
             self.selectedItem.refreshCollections();
         }

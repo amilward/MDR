@@ -213,7 +213,7 @@
                 </div>
                 <div class="modal-footer">
                     <button id="createNodeButton" type="button" class="btn btn-primary" data-bind="click: $root.saveNode">Create</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button id="cancelCreateNodeButton" type="button" class="btn btn-default" data-dismiss="modal" data-bind="click: $root.addNodeCancel">Cancel</button>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->

@@ -80,6 +80,8 @@ class PathwayAddDeleteNodeSpec extends GebReportingSpec {
 
     def "Check that When I create a node with no description then the description is blank" () {
 
+        at PathwayShowPage
+
         when: "I click on create Node"
         addNodeButton.click()
 
@@ -107,5 +109,27 @@ class PathwayAddDeleteNodeSpec extends GebReportingSpec {
         then: "I delete the node"
         deleteSelectedElementButton.click()
 
+    }
+
+    def "Clear content of the Create node form after the user has cancelled the action"(){
+        at PathwayShowPage
+        
+        when: "I click on create Node"
+        addNodeButton.click()
+
+        then: "the create node modal pops up"
+        waitFor{
+            modalLabel.text() == "Create Node"
+        }
+
+        when: "I fill in the name, click cancel node and click on create Node again"
+        createNodeName = "testNode"
+        createNodeDescription = "testDesc"
+        cancelCreateNodeButton.click()
+        addNodeButton.click()
+
+        then: "Name and description textboxes are empty"
+        createNodeName == ""
+        createNodeDescription==""
     }
 }

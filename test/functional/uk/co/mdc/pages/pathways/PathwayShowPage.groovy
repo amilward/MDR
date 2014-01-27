@@ -49,7 +49,7 @@ class PathwayShowPage extends BasePageWithNav{
 		createNodeName { $("#createNodeName") }
 		createNodeDescription { $("#createNodeDescription") }
 		createNodeButton { $("#createNodeButton") }
-        cancelCreateNodeButton {createNode.find("button", text:"Cancel")}
+        cancelCreateNodeButton {$("#cancelCreateNodeButton")}
 		newNodeTitleDiv { pathwayCanvas.find("div", text: "testNode")}
 
         editModal { module PathwayEditModal }
