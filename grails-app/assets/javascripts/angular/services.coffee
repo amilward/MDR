@@ -4,10 +4,6 @@
 #
 
 angular.module('pathway.services', ['ngResource'])
-.service 'Grails', ($resource) ->
-  getResource: (scope) ->
-    $resource "/:grailsAppName/:controller/:action/:id",
-      {grailsAppName: scope.grailsAppName || '', controller: scope.controller || '', action: scope.action || '', id: scope.id || ''}, ->
 
 .service 'NodeSelector', ->
   selectedNode = null
