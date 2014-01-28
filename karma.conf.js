@@ -3,8 +3,12 @@ module.exports = function(config) {
 	config.set({
 		basePath: '.',
 		frameworks: ['jasmine'],
-		browsers: ['Chrome', 'Firefox'],
-		//browsers: ['Chrome', 'Firefox', 'Safari'],
+
+		browsers: [
+            'Chrome',
+            //'Firefox', // Firefox is slow!
+            'Safari'
+        ],
 		reporters: ['progress', 'junit', 'coverage'],
 		singleRun: false,
         autoWatch : true,
@@ -20,11 +24,15 @@ module.exports = function(config) {
 		},
 		
 		files: [
-			// MOST OF THE FOLLOWING SHOULD BE REMOVED (or at least fixed and put in lib/)
+            // Required libraries
             'grails-app/assets/bower_components/jquery/jquery.js',
             'grails-app/assets/bower_components/angular/angular.js',
             'grails-app/assets/bower_components/angular-resource/angular-resource.js',
 
+            // App under test
+            'grails-app/assets/javascripts/**/*.coffee',
+
+            // Tests
             'test/frontend/lib/angular/angular-mocks.js',
             //'test/frontend/lib/angular/angular-scenario.js',
             'test/frontend/**/*.coffee',
