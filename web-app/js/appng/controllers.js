@@ -42,7 +42,7 @@ catalogueControllers.controller('DashboardCtrl', ['$scope', '$http', 'security',
 
 
     // Data Element controller, as for now it only exposes params service
-catalogueControllers.controller('DataElementList', ['$scope', '$http','ngTableParams', 'security', '$filter','DataElementService', '$q', function ($scope, $http, ngTableParams, security, $filter, DataElementService, $q) {
+catalogueControllers.controller('DataElementList', ['$scope', '$http','ngTableParams', 'security', '$filter','DataElementService','CatalogueService', '$q', function ($scope, $http, ngTableParams, security, $filter, DataElementService, CatalogueService, $q) {
         $scope.security = security;
         $scope.tableParams
 
@@ -78,26 +78,12 @@ catalogueControllers.controller('DataElementList', ['$scope', '$http','ngTablePa
         $scope.status = function() {
             var def = $q.defer(),
 
-            status = [{
-                'id': 'DRAFT',
-                'title': 'DRAFT'
-                    },
-                {
-                    'id': 'PENDING',
-                    'title': 'PENDING'
-                },
-                {
-                    'id': 'FINALIZED',
-                    'title': 'FINALIZED'
-                },
-                {
-                    'id': 'DELETED',
-                    'title': 'DELETED'
-                }];
+            status = CatalogueService.statuses;
 
             def.resolve(status);
             return def;
         };
+
 
 
         $scope.selectedDataElements = [];
@@ -127,19 +113,50 @@ catalogueControllers.controller('DataElementList', ['$scope', '$http','ngTablePa
 
 
 // Show controller, as for now it only exposes params service
-catalogueControllers.controller('DataElementShow', ['$scope', '$routeParams','ngTableParams', 'security', '$filter', 'DataElementService', function ($scope, $routeParams, ngTableParams, security, $filter, DataElementService) {
+catalogueControllers.controller('DataElementShow', ['$scope', '$routeParams','ngTableParams', 'security', '$filter', 'DataElementService', '$location', 'CatalogueService', 'RelationshipTypeService', function ($scope, $routeParams, ngTableParams, security, $filter, DataElementService, $location, CatalogueService, RelationshipTypeService) {
     $scope.security = security;
+    $scope.relationshipToAdd;
     $scope.tableParams;
     $scope.ngTableRelations;
 
-    $scope.statuses = [
-        {value: "DRAFT", text: 'DRAFT'},
-        {value: "PENDING", text: 'PENDING'},
-        {value: "FINALIZED", text: 'FINALIZED'},
-        {value: "DELETED", text: 'DELETED'}
-    ];
+    $scope.statuses = CatalogueService.statuses;
 
-    $scope.dataElement = DataElementService.show({ id:  $routeParams.dataElementId}, function(dataElement){
+    $scope.dataElements = DataElementService.list();
+
+    $scope.relationshipTypes = RelationshipTypeService.list(function(relationshipTypes){
+        if(!relationshipTypes.errors){
+            $scope.relationshipTypes = relationshipTypes;
+        }else{
+            var errors  = result.errors
+            angular.forEach(errors, function(value, key){
+                alert(value.message)
+            });
+
+        }
+    });
+
+
+    $scope.addRelationshipPanel = true;
+    $scope.toggleAddRelationshipPanel = function() {
+        $scope.addRelationshipPanel = $scope.addRelationshipPanel === false ? true: false;
+    };
+
+    $scope.addRelationship = function(relation){
+        var newRelation = {};
+        newRelation.id = relation.object.id;
+        newRelation.name = relation.object.name;
+        newRelation.type = relation.type.name;
+        newRelation.relationshipDirection = relation.direction;
+        newRelation.class = relation.object.class;
+        $scope.dataElement.relations.push(newRelation);
+        $scope.ngTableRelations.push(newRelation);
+        $scope.relationshipToAdd = {};
+
+        $scope.updateModel($scope.dataElement)
+
+    }
+
+    $scope.showDataElement = function(){ DataElementService.show({ id:  $routeParams.dataElementId}, function(dataElement){
 
         $scope.tableParams = new ngTableParams({
             page: 1,            // show first page
@@ -168,10 +185,14 @@ catalogueControllers.controller('DataElementShow', ['$scope', '$routeParams','ng
             }
         });
 
-
+        $scope.dataElement =  dataElement
 
     });
 
+
+    }
+
+    $scope.showDataElement();
 
     $scope.updateModel = function(dataElement){
 
@@ -181,7 +202,13 @@ catalogueControllers.controller('DataElementShow', ['$scope', '$routeParams','ng
            if(!data.errors){
                $scope.dataElement = data;
            }else{
-               alert(data.errors.message)
+               var errors  = data.errors
+               angular.forEach(errors, function(value, key){
+                   alert(value.message)
+               });
+
+               $scope.showDataElement();
+
            }
 
        });
@@ -194,26 +221,30 @@ catalogueControllers.controller('DataElementShow', ['$scope', '$routeParams','ng
 
 
 // Show controller, as for now it only exposes params service
-catalogueControllers.controller('DataElementCreate', ['$scope', '$routeParams','ngTableParams', 'security', '$filter', 'DataElementService', 'RelationshipTypeService', function ($scope, $routeParams, ngTableParams, security, $filter, DataElementService, RelationshipTypeService) {
+catalogueControllers.controller('DataElementCreate', ['$scope', '$routeParams','ngTableParams', 'security', '$filter', 'DataElementService', 'RelationshipTypeService', '$location', 'CatalogueService', function ($scope, $routeParams, ngTableParams, security, $filter, DataElementService, RelationshipTypeService, $location, CatalogueService) {
     $scope.security = security;
     $scope.relationshipToAdd;
     $scope.tableParams;
     $scope.ngTableRelations = [];
 
+    $scope.addRelationshipPanel = true;
+    $scope.toggleAddRelationshipPanel = function() {
+        $scope.addRelationshipPanel = $scope.addRelationshipPanel === false ? true: false;
+    };
+
     $scope.relationshipTypes = RelationshipTypeService.list(function(relationshipTypes){
         if(!relationshipTypes.errors){
             $scope.relationshipTypes = relationshipTypes;
         }else{
-            alert(relationshipTypes.errors.message)
+            var errors  = result.errors
+            angular.forEach(errors, function(value, key){
+                alert(value.message)
+            });
+
         }
     });
 
-    $scope.statuses = [
-        {value: "DRAFT", text: 'DRAFT'},
-        {value: "PENDING", text: 'PENDING'},
-        {value: "FINALIZED", text: 'FINALIZED'},
-        {value: "DELETED", text: 'DELETED'}
-    ];
+    $scope.statuses = CatalogueService.statuses;
 
     $scope.dataElement = {
         "name":"",
@@ -225,22 +256,19 @@ catalogueControllers.controller('DataElementCreate', ['$scope', '$routeParams','
         ]
     };
 
-    /*
-     "relations":[
-        {"id":19,"name":"CORE - REFERRALS","relationshipType":"ModelElement"},
-        {"id":28,"name":"NHS ETHNIC CATEGORY","relationshipType":"DataValue"}
-     ]
-     */
-
     $scope.dataElements = DataElementService.list();
 
 
     $scope.createDataElement = function(){
         DataElementService.save({dataElement: $scope.dataElement}, function(result){
             if(!result.errors){
-                //do something i.e. go to the show page for this element
+                //go to the show page for this element
+                $location.path("/dataElement/show/" + result.id)
             }else{
-                alert(result.errors.message)
+                var errors  = result.errors
+                angular.forEach(errors, function(value, key){
+                    alert(value.message)
+                });
             }
         });
     }

@@ -194,6 +194,11 @@ class DataElementService {
 
                dataElementInstance
 
+            }else if(request.dataElement?.status=="REMOVED"){
+
+                dataElementInstance.status = request.dataElement?.status
+                dataElementInstance.save(flush:true)
+
             }else{
 
                 dataElementInstance.errors.rejectValue("status","message.code","Element must be approved before update. Please change status to pending")
@@ -208,17 +213,6 @@ class DataElementService {
             //- this is the only operation that a user can make to a pending object
 
             if(request.dataElement?.status=='FINALIZED' || request.dataElement?.status=='DRAFT' ){
-                //check that we have the right version i.e. no one else has updated the data element whilst we have been
-                //looking at it
-
-                if (request.version != null) {
-                    if (dataElementInstance.version > request.version) {
-                        dataElementInstance.errors.rejectValue("version",
-                                "Another user has updated this DataElement while you were editing")
-                        render status: NOT_FOUND, errors: dataElementInstance.errors as JSON
-                        return
-                    }
-                }
 
                 dataElementInstance.versionNumber++
                 dataElementInstance.revisionNumber = 0
@@ -227,6 +221,11 @@ class DataElementService {
                 dataElementInstance.save(flush:true)
 
                 dataElementInstance
+
+            }else if(request.dataElement?.status==CatalogueElement.Status.REMOVED){
+
+                dataElementInstance.status = request.dataElement?.status
+                dataElementInstance.save(flush:true)
 
             }else{
 

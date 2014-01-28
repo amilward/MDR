@@ -5,14 +5,15 @@ package uk.co.mdc.catalogue
 
 import geb.spock.GebReportingSpec
 import org.openqa.selenium.Dimension
+import uk.co.mdc.pages.catalogue.DataElementCreatePage
 import uk.co.mdc.pages.catalogue.DataElementShowPage
 
-class ShowDataElementSpec extends GebReportingSpec {
-	def "View a data element with a given Id and edit the name of the element"() {
+class CreateDataElementSpec extends GebReportingSpec {
+	def "Create a data element and add a relationship"() {
 		
-			given:"I am on the show data element view with id 25 in a 1024x768 browser window"
+			given:"I am on the create data element view in a 1024x768 browser window"
 					driver.manage().window().setSize(new Dimension(1028, 768))
-					to DataElementShowPage, 25
+					to DataElementCreatePage
                     waitFor{
                         loginBox.displayed
                     }
@@ -24,10 +25,9 @@ class ShowDataElementSpec extends GebReportingSpec {
 
                     then: "The data element information is visible"
                     waitFor{
-                        dataElementName.text()=="SOURCE OF REFERRAL FOR OUT-PATIENTS"
-                        dataElementDescription.text()=="This identifies the source of referral of each Consultant Out-Patient Episode."
+                        dataElementName.text()=="empty"
+                        dataElementDescription.text()=="empty"
                         dataElementStatus.text()=="DRAFT"
-                        dataElementVersion.text()=="0.1"
                     }
 
                     when: "I click on the data element name"
@@ -39,15 +39,29 @@ class ShowDataElementSpec extends GebReportingSpec {
                     }
 
                     when: "I change the name of the data element and save"
-                    editableInput = "Test name"
+                    editableInput = "Test create name"
                     editableSubmit.click()
 
-                    then: "the data element name is changed and the version is incremented and nothing else"
+                    then: "the data element name is changed"
                     waitFor{
-                        dataElementName.text()=="Test name"
-                        dataElementDescription.text()=="This identifies the source of referral of each Consultant Out-Patient Episode."
-                        dataElementStatus.text()=="DRAFT"
-                        dataElementVersion.text()=="0.2"
+                        dataElementName.text()=="Test create name"
+                    }
+
+                    when: "I click on the data element description"
+                    dataElementDescription.click()
+
+                    then: "the editable input panel is displayed"
+                    waitFor{
+                        editableControls.displayed
+                    }
+
+                    when: "I change the description of the data element and save"
+                    editableTextarea = "Test create description"
+                    editableSubmit.click()
+
+                    then: "the data element description is changed"
+                    waitFor{
+                        dataElementDescription.text()=="Test create description"
                     }
 
                     when: "I click on Add Relationship"
@@ -119,6 +133,20 @@ class ShowDataElementSpec extends GebReportingSpec {
                         relationsTableName.displayed
                         relationsTableClass.displayed
                     }
+
+                    when: "I click on the add data element button"
+                    createDataElementButton.click()
+
+                    then: "the data element is created and I am forwarded to the show page"
+                    waitFor{
+                        at DataElementShowPage
+                        dataElementName.text()=="Test create name"
+                        dataElementDescription.text()=="Test create description"
+                        dataElementStatus.text()=="DRAFT"
+                        dataElementVersion.text()=="0.1"
+                    }
+
+
 
 
 		}

@@ -9,37 +9,37 @@ import uk.co.mdc.forms.FormDesign
 
 @Secured(['IS_AUTHENTICATED_ANONYMOUSLY'])
 class IndexController {
-	def springSecurityService
-	def pathwaysService
-	
-	def index() { 
-		
-		if(SpringSecurityUtils.ifAllGranted("ROLE_USER")){
-		
-		
-			def finalizedPathways =
-                    PathwaysModel.findAllByIsDraftAndParentNode(false,null)
+    def springSecurityService
+    def pathwaysService
 
-			def draftPathways = PathwaysModel.findAllByIsDraftAndParentNode(true,null)
+    def index() {
+
+        if (SpringSecurityUtils.ifAllGranted("ROLE_USER")) {
 
 
-			def finalizedForms = FormDesign.findAll {
-				isDraft == false
-			}
-			def draftForms = FormDesign.findAll {
-				isDraft == true
-			}
+            def finalizedPathways =
+                    PathwaysModel.findAllByIsDraftAndParentNode(false, null)
 
-			
-			render(	view: "/dashboard", 
-					model: [ 	finalizedPathways : finalizedPathways, 
-								draftPathways : draftPathways,
-								finalizedForms : finalizedForms, 
-								draftForms : draftForms,])
-		} else {
-			render(view: "/index")
-		
-		}
+            def draftPathways = PathwaysModel.findAllByIsDraftAndParentNode(true, null)
 
-	}
+
+            def finalizedForms = FormDesign.findAll {
+                isDraft == false
+            }
+            def draftForms = FormDesign.findAll {
+                isDraft == true
+            }
+
+
+            render(view: "/dashboard",
+                    model: [finalizedPathways: finalizedPathways,
+                            draftPathways: draftPathways,
+                            finalizedForms: finalizedForms,
+                            draftForms: draftForms,])
+        } else {
+            render(view: "/index")
+
+        }
+
+    }
 }

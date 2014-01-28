@@ -1,4 +1,4 @@
-var appng = angular.module('appng', ['ngRoute', 'security', 'appng.toolbar','xeditable', 'ngTable', 'catalogueControllers', 'dataElementServices', 'relationshipTypeServices'])
+var appng = angular.module('appng', ['ngRoute', 'security', 'appng.toolbar','xeditable', 'ngTable', 'catalogueControllers', 'dataElementServices', 'relationshipTypeServices', 'catalogueServices'])
 
     .config(['securityAuthorizationProvider', '$routeProvider', function (securityAuthorizationProvider, $routeProvider) {
         $routeProvider.

@@ -16,7 +16,7 @@ class CustomMarshaller {
     def limitRenderRelations(elements){
 
         def toRender = elements.collect{ element->
-            ["id": element.id, "name":element.name, "type": element.relationshipType.name, "relationshipDirection": element.relationshipDirection, class: element.getClass() ]
+            ["id": element.id, "name":element.name, "type": element.relationshipType.name, "relationshipDirection": element.relationshipDirection, class: element.getClass().getSimpleName() ]
         }
 
         return toRender

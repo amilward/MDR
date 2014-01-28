@@ -29,3 +29,23 @@ relationshipTypeServices.factory('RelationshipTypeService', ['$resource',
             }
         );
     }]);
+
+
+var catalogueServices = angular.module('catalogueServices', ['ngResource']);
+
+catalogueServices.factory('CatalogueService', function() {
+    return {
+        statuses: [
+                    {id: "DRAFT", title: 'DRAFT'},
+                    {id: "PENDING", title: 'PENDING'},
+                    {id: "FINALIZED", title: 'FINALIZED'},
+                    {id: "REMOVED", title: 'REMOVED'}
+                    ]
+    }
+});
+
+
+
+
+
+
