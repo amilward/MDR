@@ -1,9 +1,9 @@
-<div ng-controller="DataElementShow">
-    <h1>Data Element:</h1>
-    <h1> <a href="#" onbeforesave="updateModel(dataElement)" editable-text="dataElement.name">{{ dataElement.name || 'empty' }}</a>
-        <small> <a href="#" onbeforesave="updateModel(dataElement)" editable-select="dataElement.status" e-ng-options="s.value as s.text for s in statuses">{{ dataElement.status || 'empty' }}</a></small>
-        <small> {{ dataElement.versionNumber || 'empty' }} </small></h1>
-    <p>Description: <a href="#" onbeforesave="updateModel(dataElement)" editable-textarea="dataElement.description">{{ dataElement.description || 'empty' }}</a></p>
+<div ng-controller="DataElementShow" id="dataElementShow">
+    <h2 id="dataElementShowTitle">Data Element:</h2>
+    <h1> <a id="dataElementName" href="#" onbeforesave="updateModel(dataElement)" editable-text="dataElement.name">{{ dataElement.name || 'empty' }}</a>
+        <small> <a id="dataElementStatus" href="#" onbeforesave="updateModel(dataElement)" editable-select="dataElement.status" e-ng-options="s.value as s.text for s in statuses">{{ dataElement.status || 'empty' }}</a></small>
+        <small> <span id="dataElementVersion">{{ dataElement.versionNumber || 'empty' }} </span> </small></h1>
+    <p>Description: <a id="dataElementDescription" href="#" onbeforesave="updateModel(dataElement)" editable-textarea="dataElement.description">{{ dataElement.description || 'empty' }}</a></p>
     <p>Relations:</p>
     <table ng-table="tableParams" show-filter="true" class="table ng-table-rowselected">
         <tr ng-repeat="relation in ngTableRelations"

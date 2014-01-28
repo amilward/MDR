@@ -177,7 +177,13 @@ catalogueControllers.controller('DataElementShow', ['$scope', '$routeParams','ng
 
        DataElementService.update({id:  $scope.dataElement.id, version: $scope.dataElement.version, dataElement: $scope.dataElement},
        function(data){
-           $scope.dataElement = data;
+
+           if(!data.errors){
+               $scope.dataElement = data;
+           }else{
+               alert(data.errors.message)
+           }
+
        });
 
 
@@ -195,7 +201,11 @@ catalogueControllers.controller('DataElementCreate', ['$scope', '$routeParams','
     $scope.ngTableRelations = [];
 
     $scope.relationshipTypes = RelationshipTypeService.list(function(relationshipTypes){
-        $scope.relationshipTypes = relationshipTypes;
+        if(!relationshipTypes.errors){
+            $scope.relationshipTypes = relationshipTypes;
+        }else{
+            alert(relationshipTypes.errors.message)
+        }
     });
 
     $scope.statuses = [
@@ -227,7 +237,11 @@ catalogueControllers.controller('DataElementCreate', ['$scope', '$routeParams','
 
     $scope.createDataElement = function(){
         DataElementService.save({dataElement: $scope.dataElement}, function(result){
-            console.log(result);
+            if(!result.errors){
+                //do something i.e. go to the show page for this element
+            }else{
+                alert(result.errors.message)
+            }
         });
     }
 

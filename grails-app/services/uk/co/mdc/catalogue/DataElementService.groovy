@@ -203,7 +203,11 @@ class DataElementService {
 
         }else if(dataElementInstance.status==CatalogueElement.Status.PENDING){
 
-            if(request.dataElement?.status=='FINALIZED'){
+
+            //check whether the data element is being changed to finalized or back to draft
+            //- this is the only operation that a user can make to a pending object
+
+            if(request.dataElement?.status=='FINALIZED' || request.dataElement?.status=='DRAFT' ){
                 //check that we have the right version i.e. no one else has updated the data element whilst we have been
                 //looking at it
 
@@ -218,12 +222,19 @@ class DataElementService {
 
                 dataElementInstance.versionNumber++
                 dataElementInstance.revisionNumber = 0
+
+                dataElementInstance.status = request.dataElement?.status
+                dataElementInstance.save(flush:true)
+
+                dataElementInstance
+
+            }else{
+
+                dataElementInstance.errors.rejectValue("status","dataElement.status.error.updatePending","You cannot edit properties of a pending object, either finalize or set back to draft")
+                dataElementInstance
             }
 
-            dataElementInstance.status = request.dataElement?.status
-            dataElementInstance.save(flush:true)
 
-            dataElementInstance
         }else{
             dataElementInstance.errors.rejectValue("status","message.code","You cannot edit an object once it has been finalized or removed")
             dataElementInstance

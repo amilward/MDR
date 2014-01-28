@@ -164,7 +164,7 @@ class DataElementController extends RestfulController{
 
     private boolean renderWithErrors(DataElement dataElement) {
         if (dataElement.hasErrors()) {
-            render errors: dataElement.errors as JSON
+            render dataElement.errors as JSON
             return true
 
         }

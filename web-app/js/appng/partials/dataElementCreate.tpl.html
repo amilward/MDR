@@ -3,20 +3,20 @@
 
 
     <h1><button class="btn btn-default" ng-click="createDataElement()">Create</button> Data Element:</h1>
-    <h1> Name: <a href="#" onbeforesave="updateModel(dataElement)" editable-text="dataElement.name">{{ dataElement.name || 'empty' }}</a></h1>
-    <p>Status:  <a href="#" editable-select="dataElement.status" e-ng-options="s.value as s.text for s in statuses">{{ dataElement.status || 'empty' }}</a></p>
+    <h1> Name: <a id="dataElementName" href="#" onbeforesave="updateModel(dataElement)" editable-text="dataElement.name">{{ dataElement.name || 'empty' }}</a></h1>
+    <p>Status:  <a id="dataElementStatus" href="#" editable-select="dataElement.status" e-ng-options="s.value as s.text for s in statuses">{{ dataElement.status || 'empty' }}</a></p>
 
 
-    <p>Description: <a href="#" editable-textarea="dataElement.description">{{ dataElement.description || 'empty' }}</a></p>
-    <p><button class="btn btn-default" ng-click="addRelationship(relationshipToAdd)">Add Relationship</button></p>
+    <p>Description: <a id="dataElementDescription" href="#" editable-textarea="dataElement.description">{{ dataElement.description || 'empty' }}</a></p>
+    <p><button id="addRelationship" class="btn btn-default" ng-click="addRelationship(relationshipToAdd)">Add Relationship</button></p>
     <p>
-       Type: <a href="#" editable-select="relationshipToAdd.type" e-ng-options="s as s.name for s in relationshipTypes">{{ relationshipToAdd.type.name || 'empty' }}</a>
+       Type: <a id="relationshipType" href="#" editable-select="relationshipToAdd.type" e-ng-options="s as s.name for s in relationshipTypes">{{ relationshipToAdd.type.name || 'empty' }}</a>
     </p>
     <p>
-       Direction: <a href="#" editable-select="relationshipToAdd.direction" e-ng-options="s as s for s in [relationshipToAdd.type.xYRelationship, relationshipToAdd.type.yXRelationship]">{{ relationshipToAdd.direction || 'empty' }}</a>
+       Direction: <a id="relationshipDirection" href="#" editable-select="relationshipToAdd.direction" e-ng-options="s as s for s in [relationshipToAdd.type.xYRelationship, relationshipToAdd.type.yXRelationship]">{{ relationshipToAdd.direction || 'empty' }}</a>
     </p>
     <p>
-       Object:<a href="#" editable-select="relationshipToAdd.object" e-ng-options="s as s.name for s in dataElements">{{ relationshipToAdd.object.name || 'empty' }}</a>
+       Object:<a id="relation" href="#" editable-select="relationshipToAdd.object" e-ng-options="s as s.name for s in dataElements">{{ relationshipToAdd.object.name || 'empty' }}</a>
     </p>
 
     <p>Relations:</p>
