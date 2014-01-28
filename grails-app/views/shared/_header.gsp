@@ -55,8 +55,9 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a href="${createLink(uri: '/')}">Home</a></li>
+
 <sec:ifLoggedIn>
+                        <li><a href="${createLink(uri: '/dashboard/')}">Dashboard</a></li>
                         <!-- Metadata curation menu -->
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Data Curation <b class="caret"></b></a>
@@ -127,7 +128,12 @@
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
-                        <li><g:link data-placement="bottom" class="btn btn-inverse" data-original-title="Logout" rel="tooltip" controller="logout"> Logout </g:link></li>
+<sec:ifLoggedIn>
+                        <li><g:link class="btn btn-inverse" controller="logout"> Logout </g:link></li>
+</sec:ifLoggedIn>
+<sec:ifNotLoggedIn>
+                        <li><g:link class="btn btn-inverse" controller="login" action="auth" > Login </g:link></li>
+</sec:ifNotLoggedIn>
                     </ul>
                 </div>
             </div>

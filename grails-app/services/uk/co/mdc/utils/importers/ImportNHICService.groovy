@@ -1,12 +1,17 @@
 package uk.co.mdc.utils.importers
 import org.json.simple.JSONObject
 import org.springframework.security.acls.domain.BasePermission
-import uk.co.mdc.catalogue.Model;
-import uk.co.mdc.catalogue.ValueDomain
-import uk.co.mdc.catalogue.DataElement
-import uk.co.mdc.catalogue.DataType
-import uk.co.mdc.catalogue.ConceptualDomain
-import uk.co.mdc.catalogue.Document
+import uk.co.mdc.model.SchemaSpecification;
+import uk.co.mdc.model.Collection;
+import uk.co.mdc.model.ExternalReference
+import uk.co.mdc.model.ValueDomain
+import uk.co.mdc.model.DataElement
+import uk.co.mdc.model.DataType
+import uk.co.mdc.model.DataElementConcept
+import uk.co.mdc.model.DataElementCollection
+import uk.co.mdc.model.ConceptualDomain
+import uk.co.mdc.model.Document
+import uk.co.mdc.model.DataElementValueDomain
 import uk.co.mdc.pathways.PathwaysModel
 import uk.co.mdc.pathways.Link
 import uk.co.mdc.pathways.Node
@@ -37,10 +42,7 @@ class ImportNHICService {
 		grantUserPermissions(DataType.list())
 		grantUserPermissions(Document.list())
 		grantUserPermissions(ExternalReference.list())
-		grantUserPermissions(Model.list())
-		grantUserPermissions(FormDesign.list())
-		grantUserPermissions(QuestionElement.list())
-		grantUserPermissions(InputField.list())
+		grantUserPermissions(Collection.list())
 		grantUserPermissions(PathwaysModel.list())
     }
 	private grantUserPermissions(objectList){
@@ -52,7 +54,7 @@ class ImportNHICService {
 
 	
 	private static functions = [
-		'/Initial/CAN.csv' :
+		/** '/Initial/CAN.csv' :
 		{ tokens ->
 			def categories = [tokens[2], tokens[1], "Initial Proposal - CUH","Ovarian Cancer", "NHIC Datasets"];
 			def dec = importDataElementConcepts(categories, null);
@@ -290,7 +292,7 @@ class ImportNHICService {
 			de.save();
 			println "importing: " + tokens[0] + "_Round1_UCL"
 		},
-
+**/
 		'/Round1/CAN/CAN_CUH.csv' :
 		{ tokens ->
 			def categories = [tokens[2], tokens[1], "CUH","Round 1", "Ovarian Cancer", "NHIC Datasets"];
@@ -328,7 +330,7 @@ class ImportNHICService {
 			de.save();
 			println "importing: " + tokens[0] + "_Round1_CAN"
 		},
-
+/**
 		'/Round1/CAN/CAN_GSTT.csv' :
 		{ tokens ->
 			def categories = [tokens[2], tokens[1], "GSTT","Round 1", "Ovarian Cancer", "NHIC Datasets"];
@@ -672,16 +674,15 @@ class ImportNHICService {
 			{
 				return dec;
 			}
-		/*	def matches = DataElementConcept.findAllWhere("name" : name, "parent" : dec)
+			def matches = DataElementConcept.findAllWhere("name" : name, "parent" : dec)
 			if(matches.empty)
 			{
-				ne w  DataEl ementConcept('name': name, 'parent': dec).save()
+				new DataElementConcept('name': name, 'parent': dec).save()
 			}
 			else
 			{
 				matches.first();
 			}
-			*/
 		}
 	}
 

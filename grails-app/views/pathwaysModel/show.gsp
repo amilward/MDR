@@ -71,7 +71,11 @@
 
             <div class="jsplumb-container panel-body graph-paper" data-bind="foreach: nodes, visible: true" style="display:none">
                 <div class="node" data-bind="makeNode: $data, click: $root.selectNode, style: {top:y, left:x}, attr: { 'id': 'node' + id}, css: {selectedItem: $root.itemEqualsToSelected($data)}">
-                    <div data-bind="attr:{title: description}, text: name">&nbsp;</div>
+                    <div>
+                        <i class="fa " data-bind="css: {'fa-sitemap': subPathwayId}"></i>
+                        <span data-bind="attr:{title: description}, text: name">&nbsp;</span>
+
+                    </div>
                     <div class="fa fa-chevron-right ep right"></div>
                     <div class="fa fa-chevron-left ep left"></div>
                     <div class="fa fa-chevron-up ep up"></div>
@@ -209,7 +213,7 @@
                 </div>
                 <div class="modal-footer">
                     <button id="createNodeButton" type="button" class="btn btn-primary" data-bind="click: $root.saveNode">Create</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button id="cancelCreateNodeButton" type="button" class="btn btn-default" data-dismiss="modal" data-bind="click: $root.addNodeCancel">Cancel</button>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
