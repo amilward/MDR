@@ -69,24 +69,6 @@ class PathwayCreationSpec extends GebReportingSpec {
 			pathwayCanvas.width == 3000
 		}
 
-		when: "I click on the edit info"
-		editInfoButton.click()
-
-
-		then: "the update pathway info modal is displayed"
-		waitFor{
-			updatePathwayModal.displayed
-		}
-
-		and: "the pathways Info is the same as the info entered when we created the pathway"
-
-
-		waitFor{
-			pathwayInfoName == varPathwayName
-			pathwayInfoDescription == varDescription
-			pathwayInfoVersionNo == varVersionNo
-			pathwayInfoIsDraft == varIsDraft
-		}
-		
+        // FIXME go to list and confirm it's right there too
 	}
 }

@@ -7,9 +7,16 @@
     "test": "test"
   },
   "dependencies": {
-    "bower": "~1.2.8"
+    "bower": "~1.2.8",
+    "karma": "~0.10.9"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "karma": "~0.10",
+    "karma-coffee-preprocessor": "~0.1",
+    "karma-coverage": "~0.1.5",
+    "karma-safari-launcher": "~0.1.1",
+    "karma-junit-reporter": "~0.2.1"
+  },
   "scripts": {
     "test": "gradle test"
   },

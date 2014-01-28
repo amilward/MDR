@@ -12,8 +12,6 @@
 
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'layout.css')}" type="text/css">
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'custom.css')}" type="text/css">
-    <link rel="stylesheet" href="${resource(dir: 'css/pathways', file: 'treeView.css')}" type="text/css">
-    <link rel="stylesheet" href="${resource(dir: 'css', file: 'font-awesome.min.css')}" type="text/css">
 
     <asset:stylesheet href="jquery.layout/dist/jquery.layout-latest.css"/>
 
@@ -26,8 +24,8 @@
     <div class="row">
         <div class="col-xs-12">
             <div class="pull-right">
-                <button type="button" class="btn btn-link btn-xs" id="addNode" data-toggle="modal" data-target="#CreateNode">
-                    <i class="fa fa-plus"></i> Add Node
+                <button type="button" class="btn btn-link btn-xs" ng-click="addNode()">
+                    <i class="fa fa-plus-square-o"></i> Add Node
                 </button>
                 <small id="pathwayDescription" editable-textarea="pathway.description" e-form="pathwayDescriptionForm">
                     {{pathway.description || 'This pathway needs a description'}}
@@ -52,14 +50,12 @@
              </ul>
          </div>
 
-
         <div class="ui-layout-center">
             <div mc-graph-container class="jsplumb-container canvas" ng-controller="GraphCanvasCtrl">
                 <div mc-graph-node graph-node="node" select-node="selectNode(node)" is-selected="isSelected(node)" ng-repeat="node in pathway.nodes"></div>
                 <div mc-graph-link graph-link="link" ng-repeat="link in pathway.links"></div>
             </div>
         </div>
-
 
         <!-- If selectedItem is undefined, the right panel will be empty -->
         <div class="ui-layout-east large-rounded panel panel-primary" id="properties-panel" ng-controller="NodePropertiesCtrl">
@@ -77,7 +73,7 @@
                     <i class="fa fa-sitemap"></i> Go to sub-pathway
                 </button>
 
-                <button type="button" class="btn btn-danger btn-xs" ng-click="delete()">
+                <button type="button" class="btn btn-danger btn-xs" ng-click="deleteNode()">
                     <i class="fa fa-trash-o"></i> Delete
                 </button>
 
@@ -120,34 +116,6 @@
 </script>
 <!-- Refactored down to this point -->
 <!-- Modals and other bits of hidden content -->
-
-    <!-- Add Node Modal -->
-    <div class="modal fade" id="CreateNode" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>-->
-                    <h4 class="modal-title" id="createNodeModalLabel">Create Node</h4>
-                </div>
-                <div class="modal-body">
-                    <form class="form" role="form">
-                        <div class="form-group">
-                            <label for="txt-name" class="control-label">Name: </label>
-                            <input id="createNodeName" type="text" class="form-control"/>
-                        </div>
-                        <div class="form-group">
-                            <label for="txt-name" class="control-label">Description: </label>
-                            <input id="createNodeDescription" type="text" class="form-control"/>
-                        </div>
-			        </form>
-                </div>
-                <div class="modal-footer">
-                    <button id="createNodeButton" type="button" class="btn btn-primary" data-bind="click: $root.saveNode">Create</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
 
 
     <!-- Add Form Modal -->

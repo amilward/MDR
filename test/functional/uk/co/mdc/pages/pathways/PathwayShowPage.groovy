@@ -33,11 +33,6 @@ class PathwayShowPage extends BasePageWithNav{
 		formDesignTableFRLink { formDesignTableFirstRow.find("a") }
 		formDesignCartListFirstItem { $("#formCartList li") }
 
-        editInfoButton { $("#editPathwayInfo") }
-		pathwayInfoName { js.exec("return document.getElementById('txt-nameUpdate').value")}
-		pathwayInfoDescription { js.exec("return document.getElementById('txt-descUpdate').value")}
-		pathwayInfoVersionNo { js.exec("return document.getElementById('txt-versionNoUpdate').value")}
-		pathwayInfoIsDraft  { js.exec("return document.getElementById('select-isDraftUpdate').value")}
 		pathwayCanvas { $(".jsplumb-container") }
 
         goToParentButton { $("#goToParent") }

@@ -9,7 +9,8 @@
 		<parameter name="name" value="Pathways" />
 	</head>
 	<body>
-		<div class="box" ng-app="pathway-editor">
+        <g:set var="grailsParams" value="${params.collect{ it.key + '=\'' + it.value + '\''}.join('; ')}" />
+		<div class="box" ng-app="pathway-editor" ng-init="${grailsParams}}">
 			<div id="list-pathways" class="content scaffold-list" role="main">
 				<g:if test="${flash.message}">
 				<div class="message" role="status">${flash.message}</div>
@@ -30,7 +31,7 @@
                                 <td>${pathway.description}</td>
                                 <td>${pathway.userVersion}</td>
                                 <td>${pathway.isDraft}</td>
-                                <td><div confirm-delete onDelete="deleteNode(${pathway.id})"></div></td>
+                                <td><div confirm-delete on-confirm="deletePathway(${pathway.id})"></div></td>
                             </tr>
                         </g:each>
                         </tbody>

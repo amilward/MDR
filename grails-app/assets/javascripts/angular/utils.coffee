@@ -6,7 +6,7 @@ angular.module('utils', [])
     replace: true,
     templateUrl: 'templates/deleteConfirmation.html',
     scope: {
-      onDelete: '&'
+      onConfirm: '&'
     }
     controller: ($scope) ->
       $scope.isDeleting = false
@@ -15,6 +15,6 @@ angular.module('utils', [])
       $scope.cancel = ->
         $scope.isDeleting = false
       $scope.confirm = ->
-        $scope.onDelete()
+        $scope.onConfirm()
   }
 )# End of directive

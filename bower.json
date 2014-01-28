@@ -25,7 +25,8 @@
     "jquery-ui": "~1.10.3",
     "angular-xeditable": "~0.1.8",
     "jsplumb": "~1.5.5",
-    "jquery.layout": "*"
+    "jquery.layout": "*",
+    "font-awesome": "~4.0.3"
   },
   "resolutions": {
     "jquery": ">= 1.9.0"
