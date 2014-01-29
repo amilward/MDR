@@ -260,12 +260,12 @@ class BootStrap {
 		
 		if (!RelationshipType.count()) {
 			
-			new RelationshipType(name: "Synonym", xYRelationship: "SynonymousWith", yXRelationship: "SynonymousWith").save()
-			valueDomain = new RelationshipType(name: "DataValue", xYRelationship: "DataElementFor", yXRelationship: "ValueDomainFor").save()
+			new RelationshipType(name: "Synonym", xYRelationship: "SynonymousWith", yXRelationship: "SynonymousWith", objectXClass: "DataElement", objectYClass: "DataElement").save()
+			valueDomain = new RelationshipType(name: "DataValue", xYRelationship: "DataElementFor", yXRelationship: "ValueDomainFor", objectXClass: "DataElement", objectYClass: "ValueDomain").save()
 			parentChild = new RelationshipType(name: "ParentChild", xYRelationship: "ParentOf", yXRelationship: "ChildOf").save()
-			modelElement = new RelationshipType(name: "ModelElement", xYRelationship: "ModelContains", yXRelationship: "ContainedInModel").save()
+			modelElement = new RelationshipType(name: "ModelElement", xYRelationship: "ModelContains", yXRelationship: "ContainedInModel", objectXClass: "Model", objectYClass: "DataElement").save()
             new RelationshipType(name: "Supersession", xYRelationship: "Supercedes", yXRelationship: "SupercededBy").save()
-            new RelationshipType(name: "ValueMapping").save()
+            new RelationshipType(name: "ValueMapping", xYRelationship: "MapsTo", yXRelationship: "MapsTo", objectXClass: "ValueDomain", objectYClass: "ValueDomain").save()
 
         }
 		
@@ -380,7 +380,7 @@ class BootStrap {
 									def d1 = new DataElement(name:"SOURCE OF REFERRAL FOR OUT-PATIENTS",
 									description:"This identifies the source of referral of each Consultant Out-Patient Episode.",
 									relations: []).save(failOnError: true, flush:true)
-									
+
 									Relationship.link(REF, d1, modelElement)
 									
 									def v1 = new ValueDomain(name:"NHS SOURCE OF REFERRAL FOR OUT-PATIENTS",

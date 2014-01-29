@@ -10,6 +10,12 @@ class RelationshipType {
 	
 	//the both sides of the relationship i.e. for parentChild this would be child (for synonym this is synonym, so the same on both sides)
 	String yXRelationship
+
+    //this is nullable - you can constrain the relationship type
+    String objectXClass
+
+    //this is nullable - you can constrain the relationship type
+    String objectYClass
 	
 	//this is the rule that describes the relationship in terms of X and Y
 	//for instance this could be custom validation, display etc.....i.e. if the relationship 
@@ -22,8 +28,8 @@ class RelationshipType {
 
     static constraints = {
 		name unique:true
-		xYRelationship nullable:true
-		yXRelationship nullable:true
+        objectXClass nullable:true
+        objectYClass nullable:true
 		//relationshipTypeRule nullable:true
     }
 }

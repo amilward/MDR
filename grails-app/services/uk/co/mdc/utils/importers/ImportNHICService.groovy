@@ -1,17 +1,17 @@
 package uk.co.mdc.utils.importers
 import org.json.simple.JSONObject
 import org.springframework.security.acls.domain.BasePermission
-import uk.co.mdc.model.SchemaSpecification;
-import uk.co.mdc.model.Collection;
-import uk.co.mdc.model.ExternalReference
-import uk.co.mdc.model.ValueDomain
-import uk.co.mdc.model.DataElement
-import uk.co.mdc.model.DataType
-import uk.co.mdc.model.DataElementConcept
-import uk.co.mdc.model.DataElementCollection
-import uk.co.mdc.model.ConceptualDomain
-import uk.co.mdc.model.Document
-import uk.co.mdc.model.DataElementValueDomain
+//import uk.co.mdc.model.SchemaSpecification;
+//import uk.co.mdc.model.Collection;
+//import uk.co.mdc.model.ExternalReference
+import uk.co.mdc.catalogue.ValueDomain
+import uk.co.mdc.catalogue.DataElement
+import uk.co.mdc.catalogue.DataType
+//import uk.co.mdc.model.DataElementConcept
+//import uk.co.mdc.model.DataElementCollection
+//import uk.co.mdc.model.ConceptualDomain
+//import uk.co.mdc.model.Document
+//import uk.co.mdc.model.DataElementValueDomain
 import uk.co.mdc.pathways.PathwaysModel
 import uk.co.mdc.pathways.Link
 import uk.co.mdc.pathways.Node
@@ -24,7 +24,7 @@ class ImportNHICService {
 	def aclUtilService
 	def dataTypeService
 	
-	
+	/*
     def importData() {
 		def applicationContext = grailsApplication.mainContext
 		String basePath = applicationContext.getResource("/").getFile().toString()
@@ -140,7 +140,7 @@ class ImportNHICService {
 			de.addToDataElementValueDomains(vd);
 			de.save();
 			println "importing: " + tokens[0]
-		},**/
+		},*
 
 		'/Initial/TRA.csv' :
 		{ tokens ->
@@ -292,7 +292,7 @@ class ImportNHICService {
 			de.save();
 			println "importing: " + tokens[0] + "_Round1_UCL"
 		},
-**/
+*
 		'/Round1/CAN/CAN_CUH.csv' :
 		{ tokens ->
 			def categories = [tokens[2], tokens[1], "CUH","Round 1", "Ovarian Cancer", "NHIC Datasets"];
@@ -662,7 +662,7 @@ class ImportNHICService {
 			de.save();
 			println "importing: " + tokens[0] + "_Round1_OUH"
 		}
- **/
+ *
 	]
 
 
@@ -737,5 +737,5 @@ class ImportNHICService {
 			description:description).save(failOnError: true);
 		}
 		return cd
-	}
+	}*/
 }

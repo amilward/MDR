@@ -112,7 +112,7 @@ class DataElementController extends RestfulController{
 
     @Transactional
     @Override
-    def update() {
+    def update(Integer id) {
 
         /* ***
          * validate the data element for parent-children-synonym relationships and ensure they are mutually exclusive
@@ -123,7 +123,7 @@ class DataElementController extends RestfulController{
 
         //get the data element
 
-        def dataElementInstance = findInstance()
+        def dataElementInstance = findInstance(id)
 
         if (!dataElementInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'dataElement.label', default: 'DataElement'), id])
@@ -148,6 +148,15 @@ class DataElementController extends RestfulController{
 
     private DataElement findInstance() {
         def dataElement = dataElementService.get(params.long('id'))
+        if (!dataElement) {
+            flash.message = "DataElement not found with id $params.id"
+            redirect action: list
+        }
+        dataElement
+    }
+
+    private DataElement findInstance(Integer id) {
+        def dataElement = dataElementService.get(id)
         if (!dataElement) {
             flash.message = "DataElement not found with id $params.id"
             redirect action: list

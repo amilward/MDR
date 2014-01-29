@@ -1,5 +1,7 @@
 package uk.co.mdc.catalogue
 
+import org.codehaus.groovy.grails.exceptions.InvalidPropertyException
+
 class Relationship  {
 	
 	Integer objectXId
@@ -16,7 +18,8 @@ class Relationship  {
 		def s
 		def s1 = Relationship.findByObjectXIdAndObjectYId(objectX.id, objectY.id)
 		def s2 = Relationship.findByObjectXIdAndObjectYId(objectY.id, objectX.id)
-		
+
+        //check if the relationship already exists
 		if(s1){
 			
 			s = s1
@@ -24,15 +27,31 @@ class Relationship  {
 		}else if(s2){
 		
 			s = s2
-		
+
+		//if the relationship doesn't exist then create a new one
 		}else{
-		
+
+            //validate that objectX and objectY are the right class
+            if(relationshipType.objectXClass){
+                if(objectX.getClass().getSimpleName()!=relationshipType.objectXClass){
+                    throw new InvalidPropertyException("object X (" + objectX +  ") must be of the " + relationshipType.objectXClass + " class for " + relationshipType.name)
+                }
+            }
+
+            if(relationshipType.objectYClass){
+                if(objectY.getClass().getSimpleName()!=relationshipType.objectYClass){
+                    throw new InvalidPropertyException("object Y (" + objectY +  ") must be of the " + relationshipType.objectYClass + " class" + relationshipType.name)
+                }
+            }
+
+
+		    //create the relationship
 			s = new Relationship( 	objectXId: objectX.id,
 							 		objectYId: objectY.id,
 									relationshipType: relationshipType).save(flush:true, failOnError:true)
 			
 			
-			//if relations not intialised for objects then initialise						
+			//if relations not initialised for objects then initialise (this gets around a hibernate bug)
 									
 			if(!objectX.relations){objectX.relations = []}	
 			if(!objectY.relations){objectY.relations = []}

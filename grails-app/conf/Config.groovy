@@ -178,8 +178,8 @@ grails{
 				'/login/*':    			['IS_AUTHENTICATED_ANONYMOUSLY'],
 				'/logout/*':    		['IS_AUTHENTICATED_ANONYMOUSLY'],
 				'/register/*':    		['IS_AUTHENTICATED_ANONYMOUSLY'],
-				
-				'/securityInfo/**': 	["hasAnyRole('ROLE_ADMIN')",'IS_AUTHENTICATED_FULLY'],
+                 '/ng/*': ['IS_AUTHENTICATED_ANONYMOUSLY'],
+                 '/securityInfo/**': 	["hasAnyRole('ROLE_ADMIN')",'IS_AUTHENTICATED_FULLY'],
 				'/role':  				["hasAnyRole('ROLE_ADMIN')",'IS_AUTHENTICATED_FULLY'],
 				'/role/**':  			["hasAnyRole('ROLE_ADMIN')",'IS_AUTHENTICATED_FULLY'],
 				'/user':  				["hasAnyRole('ROLE_ADMIN')",'IS_AUTHENTICATED_FULLY'],

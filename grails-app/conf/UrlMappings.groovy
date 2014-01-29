@@ -17,12 +17,12 @@ class UrlMappings {
 		name pendingUsers: "/role/pendingUsers"( controller: "role", action: "listPendingUsers" )
 		name importData: "/admin/importData"(view:"admin/importData")
 
-        "/"(view:"/index")
-
-		"403"(controller: "errors", action: "error403") 
-		"404"(controller: "errors", action: "error404") 
-		"500"(controller: "errors", action: "error500") 
-		"500"(controller: "errors", action: "error403", exception: AccessDeniedException) 
-		"500"(controller: "errors", action: "error403", exception: NotFoundException) 
+        //"/"(view:"/index")
+        "/"(controller: "ng", action: "index")
+		"403"(controller: "errors", action: "error403")
+		"404"(controller: "errors", action: "error404")
+		"500"(controller: "errors", action: "error500")
+		"500"(controller: "errors", action: "error403", exception: AccessDeniedException)
+		"500"(controller: "errors", action: "error403", exception: NotFoundException)
 	}
 }

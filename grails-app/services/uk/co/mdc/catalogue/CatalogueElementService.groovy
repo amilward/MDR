@@ -3,6 +3,7 @@ package uk.co.mdc.catalogue
 import grails.validation.ValidationException
 import uk.co.mdc.catalogue.CatalogueElement
 import uk.co.mdc.catalogue.Relationship
+import org.codehaus.groovy.grails.exceptions.InvalidPropertyException
 
 class CatalogueElementService {
 
@@ -28,8 +29,86 @@ class CatalogueElementService {
 
         //iterate through the map and link the relations
         relationsByType.each{ relationType, rRelations ->
-            this.linkRelations(catalogueElementInstance, rRelations, relationType)
+
+            catalogueElementInstance = this.validateRelations(catalogueElementInstance, rRelations, relationType)
+
+            if(!catalogueElementInstance.hasErrors()){
+                try{
+                    this.linkRelations(catalogueElementInstance, rRelations, relationType)
+                }catch(Exception e){
+                    catalogueElementInstance.errors.rejectValue("relations","message.code",e.getMessage())
+
+                }
+            }else{
+                return catalogueElementInstance
+            }
         }
+
+        catalogueElementInstance
+
+    }
+
+
+    //function for validating that the relationship matches the relation type class
+
+    def validateRelations(catalogueElementInstance, relations, String relType){
+
+        def relationshipType = RelationshipType.findByName(relType)
+
+        if (relations.size()==1) {
+
+            def objectY
+            def objectX
+
+            if(relations.relationshipDirection[0]==relationshipType.yXRelationship){
+                objectY =  CatalogueElement.get(relations.id)
+                objectX = catalogueElementInstance
+            }else{
+                objectX =  CatalogueElement.get(relations.id)
+                objectY = catalogueElementInstance
+            }
+
+            if(objectX.getClass().getSimpleName()!=relationshipType.objectXClass && relationshipType.objectXClass!=null){
+                catalogueElementInstance.errors.rejectValue("relations","message.code","object X (" + catalogueElementInstance +  ") must be of the " + relationshipType.objectXClass + " class for " + relationshipType.name)
+            }
+
+            if(objectY.getClass().getSimpleName()!=relationshipType.objectYClass&&relationshipType.objectYClass!=null){
+                catalogueElementInstance.errors.rejectValue("relations","message.code","object Y (" + objectY +  ") must be of the " + relationshipType.objectYClass + " class for " + relationshipType.name)
+
+            }
+
+        }else if (relations.size()>1) {
+
+            for (relation in relations){
+
+                def objectY
+                def objectX
+
+
+                if(relation.relationshipDirection[0]==relationshipType.yXRelationship){
+                    objectX =  CatalogueElement.get(relations.id)
+                    objectY = catalogueElementInstance
+                }else{
+                    objectY =  CatalogueElement.get(relations.id)
+                    objectX = catalogueElementInstance
+                }
+
+                if(objectX.getClass().getSimpleName()!=relationshipType.objectXClass && relationshipType.objectXClass!=null){
+                    catalogueElementInstance.errors.rejectValue("relations","message.code","object X (" + catalogueElementInstance +  ") must be of the " + relationshipType.objectXClass + " class for " + relationshipType.name)
+
+                }
+
+                if(objectY.getClass().getSimpleName()!=relationshipType.objectYClass&&relationshipType.objectYClass!=null){
+                    catalogueElementInstance.errors.rejectValue("relations","message.code","object Y (" + objectY +  ") must be of the " + relationshipType.objectYClass + " class for " + relationshipType.name)
+
+                }
+
+            }
+
+        }
+
+        catalogueElementInstance
+
 
     }
 
@@ -75,14 +154,20 @@ class CatalogueElementService {
 					
 					if(newRelation){
 
-                        if(relations?.direction){
-                            if(relations.direction==relationType.yXRelationship){
-
-                                Relationship.link(newRelation, catalogueElementInstance, relationType)
+                        if(relations.relationshipDirection[0]){
+                            if(relations.relationshipDirection[0]==relationType.yXRelationship){
+                                try{
+                                    Relationship.link(catalogueElementInstance, newRelation, relationType)
+                                }catch (Exception e){
+                                    throw new InvalidPropertyException(e.getMessage())                
+                                }
 
                             }else{
-
-                                Relationship.link(catalogueElementInstance, newRelation, relationType)
+                                try{
+                                    Relationship.link(newRelation, catalogueElementInstance, relationType)
+                                }catch (Exception e){
+                                    throw new InvalidPropertyException(e.getMessage())                
+                                }
                                 
                             }
 
@@ -109,13 +194,18 @@ class CatalogueElementService {
 					  for (relation in relations){
 						  def newRelation =  CatalogueElement.get(relation.id)
 
-                          if(relation.direction==relationType.yXRelationship){
-
-                              Relationship.link(newRelation, catalogueElementInstance, relationType)
-
+                          if(relation.relationshipDirection[0]==relationType.yXRelationship){
+                              try{
+                                Relationship.link(newRelation, catalogueElementInstance, relationType)
+                              }catch (Exception e){
+                                  throw new InvalidPropertyException(e.getMessage())                
+                              }
                           }else{
-
-                              Relationship.link(catalogueElementInstance, newRelation, relationType)
+                              try{
+                                Relationship.link(catalogueElementInstance, newRelation, relationType)
+                              }catch (Exception e){
+                                  throw new InvalidPropertyException(e.getMessage())                
+                              }
 
                           }
 
@@ -147,7 +237,7 @@ class CatalogueElementService {
  * links the catalogue element with the relations specified via a link table
  ********************************************************************************* */
 
-    def linkRelations(catalogueElementInstance, relations, String relType, String direction){
+    /*def linkRelations(catalogueElementInstance, relations, String relType, String direction){
 
 
         //FIXME we need to have a more robust check for direction but good enough for now
@@ -246,7 +336,7 @@ class CatalogueElementService {
         }
     }
 
-
+*/
 	
 	//Method to check if parameters contain one another (i.e. array or single)
 	

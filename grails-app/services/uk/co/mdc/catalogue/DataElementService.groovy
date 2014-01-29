@@ -69,18 +69,7 @@ class DataElementService {
 		DataElement dataElementInstance = new DataElement(request)
 
         if(dataElementInstance.save(flush:true, failOnErorr:true)){
-            catalogueElementService.linkRelations(dataElementInstance, relations)
-
-
-            //link any value domains that were selected with data element
-
-            //linkValueDomains(dataElementInstance, parameters?.valueDomains)
-            //catalogueElementService.linkRelations(dataElementInstance, request?.valueDomains, "DataValue")
-
-            //link any relations that were selected with data element
-
-            //catalogueElementService.linkRelations(dataElementInstance, request?.synonyms, "Synonym")
-
+            dataElementInstance = catalogueElementService.linkRelations(dataElementInstance, relations)
             // Grant the current user principal administrative permission
 
             addPermission dataElementInstance, springSecurityService.authentication.name, BasePermission.ADMINISTRATION
@@ -161,7 +150,7 @@ class DataElementService {
         if (request.version != null) {
             if (dataElementInstance.version > request.version) {
                 dataElementInstance.errors.rejectValue("version", "Another user has updated this DataElement while you were editing")
-                return
+                return dataElementInstance
             }
         }
 
@@ -189,7 +178,8 @@ class DataElementService {
 
                if(dataElementInstance.save(flush:true) && relations){
 
-                   catalogueElementService.linkRelations(dataElementInstance, relations)
+                  dataElementInstance = catalogueElementService.linkRelations(dataElementInstance, relations)
+
                }
 
                dataElementInstance

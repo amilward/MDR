@@ -2,7 +2,7 @@ package uk.co.mdc
 
 import grails.converters.JSON
 import grails.plugins.springsecurity.SpringSecurityService
-import uk.co.mdc.model.DataElement
+import uk.co.mdc.catalogue.DataElement
 
 class CollectionBasketController {
 	
